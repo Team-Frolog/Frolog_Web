@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 0, 0, 0;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: none; /* Firefox */
+}
+
+body {
+  /* basic setting */
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+
+  margin: 0;
+  width: 100vw;
+  height: fit-content;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overscroll-behavior-y: none;
+  overflow: auto;
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  box-sizing: content-box;
+  padding: 0;
+  cursor: pointer;
+}
