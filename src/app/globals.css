@@ -14,9 +14,26 @@
   }
 }
 
-* {
-  box-sizing: border-box;
-  scrollbar-width: none; /* Firefox */
+@layer base {
+  * {
+    box-sizing: border-box;
+    scrollbar-width: none; /* Firefox */
+  }
+  a {
+    text-decoration: none;
+  }
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+  }
+  button {
+    background: none;
+    border: none;
+    box-sizing: content-box;
+    cursor: pointer;
+  }
 }
 
 body {
@@ -34,24 +51,4 @@ body {
 
   overscroll-behavior-y: none;
   overflow: auto;
-}
-
-img {
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button {
-  background: none;
-  border: none;
-  box-sizing: content-box;
-  padding: 0;
-  cursor: pointer;
 }
