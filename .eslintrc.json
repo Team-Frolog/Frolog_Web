@@ -1,3 +1,67 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "createDefaultProgram": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "ignorePatterns": ["public"], // eslint 미적용될 폴더나 파일
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off", // React import 불필요
+    "react/jsx-key": "warn", // 반복문으로 생성하는 요소에 key 강제
+    "react/jsx-filename-extension": [
+      // 파일 확장자 .jx, .ts, .tsx 허용
+      2,
+      { "extensions": [".js", ".ts", ".tsx"] }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "function-declaration", // 컴포넌트 선언 시 function 선언문 사용
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "@typescript-eslint/naming-convention": [
+      // 네이밍 컨벤션
+      "warn",
+      {
+        "selector": "typeAlias", // 타입 선언
+        "format": ["PascalCase"],
+        "prefix": ["T"] // T로 시작
+      },
+      {
+        "selector": "interface", // 인터페이스 선언
+        "format": ["PascalCase"],
+        "prefix": ["I"] // I로 시작
+      },
+      {
+        "selector": "variable",
+        "format": ["camelCase", "UPPER_CASE"]
+      },
+      {
+        "selector": "function", // exported function (컴포넌트 명)
+        "format": ["PascalCase"],
+        "modifiers": ["exported"]
+      },
+      {
+        "selector": "function", // function
+        "format": ["camelCase"]
+      }
+    ]
+  }
 }
