@@ -21,8 +21,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_ACTIONS }}
         with:
           source-directory: 'output'
-          destination-github-username: "JIMIN1020"
-          destination-repository-name: "frolog-dev"
+          destination-github-username: 'JIMIN1020'
+          destination-repository-name: 'Frolog_Web'
           user-email: ${{ secrets.ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
