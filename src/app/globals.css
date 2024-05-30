@@ -17,7 +17,7 @@
 @layer base {
   * {
     box-sizing: border-box;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
   }
   a {
     text-decoration: none;
@@ -36,6 +36,17 @@
   }
 }
 
+html {
+  background-color: rgb(241, 241, 241);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+
+  @media screen and (min-width: 430px) {
+    overflow: hidden;
+  }
+}
+
 body {
   /* basic setting */
   color: rgb(var(--foreground-rgb));
@@ -44,11 +55,18 @@ body {
   margin: 0;
   width: 100vw;
   height: fit-content;
+  min-height: 100dvh;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
+  background-color: white;
   overscroll-behavior-y: none;
   overflow: auto;
+
+  @media screen and (min-width: 430px) {
+    width: 450px;
+    height: 100vh;
+  }
 }
