@@ -1,5 +1,4 @@
-import FormHeader from '@/components/common/header/FormHeader';
-import ErrorPopUp from '@/components/form/ErrorPopUp';
+import FormButton from '@/components/form/FormButton';
 import FormInput from '@/components/form/FormInput';
 import React from 'react';
 
@@ -12,7 +11,7 @@ function JoinPage() {
         errorMsg='에러 메시지'
         placeholder='비밀번호 입력'
       />
-      <ErrorPopUp />
+      <FormButton />
     </div>
   );
 }
