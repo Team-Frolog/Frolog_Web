@@ -54,17 +54,19 @@ body {
 
   margin: 0;
   width: 100vw;
+
+  /* mobile view setting */
   height: fit-content;
   min-height: 100dvh;
 
   display: flex;
   justify-content: center;
-  align-items: center;
 
   background-color: white;
   overscroll-behavior-y: none;
   overflow: auto;
 
+  /* PC view setting */
   @media screen and (min-width: 430px) {
     width: 450px;
     height: 100vh;
