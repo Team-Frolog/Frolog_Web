@@ -19,7 +19,7 @@ function CheckItem({ termsData }: Props) {
   const isChecked = isIncluded ? true : watch(`terms.${termsData.name}`);
 
   return (
-    <div className='flex justify-between'>
+    <div className='flex justify-between gap-[20px]'>
       <div className='flex gap-[12px]'>
         <button
           type='button'
@@ -46,7 +46,7 @@ function CheckItem({ termsData }: Props) {
         <button
           type='button'
           onClick={() => setOpenDetail(true)}
-          className='text-body_md text-gray-600'
+          className='text-body_md w-[30px] text-end text-gray-600'
         >
           보기
         </button>
