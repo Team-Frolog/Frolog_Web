@@ -8,7 +8,7 @@ interface Props {
 
 function ButtonWithText({ children, btnText }: Props) {
   return (
-    <div className='flex h-[110px] flex-col'>
+    <div className='flex h-[120px] flex-col'>
       <Button>{btnText}</Button>
       <div className='flex w-full flex-1 items-center justify-center'>
         {children}

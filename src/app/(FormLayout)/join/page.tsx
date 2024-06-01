@@ -1,19 +1,13 @@
-import FormButton from '@/components/form/FormButton';
-import FormInput from '@/components/form/FormInput';
+'use client';
+
+import Step1 from '@/components/join/step1/Step1';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 function JoinPage() {
-  return (
-    <div>
-      <FormInput
-        type='text'
-        title='닉네임'
-        errorMsg='에러 메시지'
-        placeholder='비밀번호 입력'
-      />
-      <FormButton />
-    </div>
-  );
+  const step = Number(useSearchParams().get('step')!);
+
+  return <div className='h-full'>{step === 1 && <Step1 />}</div>;
 }
 
 export default JoinPage;
