@@ -19,9 +19,18 @@ const config: Config = {
         xl: ['18px', { lineHeight: '28px' }],
         title_lg: ['18px', { lineHeight: '28px' }],
         title_xl: ['24px', { lineHeight: '34px' }],
-        h_md: ['34px', { lineHeight: '48px' }],
-        h_lg: ['48px', { lineHeight: '64px' }],
-        h_xl: ['60px', { lineHeight: '78px' }],
+        h_md: [
+          '34px',
+          { lineHeight: '48px', letterSpacing: '0.4px', fontWeight: 400 },
+        ],
+        h_md_bold: [
+          '34px',
+          { lineHeight: '48px', letterSpacing: '0.4px', fontWeight: 700 },
+        ],
+        h_lg: ['48px', { lineHeight: '64px', fontWeight: 400 }],
+        h_lg_bold: ['48px', { lineHeight: '64px', fontWeight: 700 }],
+        h_xl: ['60px', { lineHeight: '78px', fontWeight: 400 }],
+        h_xl_bold: ['60px', { lineHeight: '78px', fontWeight: 700 }],
       },
       colors: {
         white: '#FFFFFF',
