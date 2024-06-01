@@ -29,8 +29,6 @@
     -o-user-drag: none;
   }
   button {
-    background: none;
-    border: none;
     box-sizing: content-box;
     cursor: pointer;
   }
@@ -54,6 +52,7 @@ body {
 
   margin: 0;
   width: 100vw;
+  position: relative;
 
   /* mobile view setting */
   height: fit-content;

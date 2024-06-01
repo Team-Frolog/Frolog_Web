@@ -1,5 +1,6 @@
 import FormHeader from '@/components/common/header/FormHeader';
 import FormInput from '@/components/form/FormInput';
+import TermsPopUp from '@/components/form/TermsPopUp';
 import React from 'react';
 
 function JoinPage() {
@@ -11,6 +12,7 @@ function JoinPage() {
         errorMsg='에러 메시지'
         placeholder='비밀번호 입력'
       />
+      <TermsPopUp />
     </div>
   );
 }

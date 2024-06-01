@@ -16,6 +16,7 @@ const config: Config = {
         body_sm: ['12px', { lineHeight: '18px' }],
         body_md: ['14px', { lineHeight: '20px' }],
         body_lg: ['16px', { lineHeight: '24px' }],
+        body_lg_bold: ['16px', { lineHeight: '24px', fontWeight: 700 }],
         body_xl: ['18px', { lineHeight: '28px' }],
         title_lg: ['18px', { lineHeight: '28px' }],
         title_xl: ['24px', { lineHeight: '34px' }],
