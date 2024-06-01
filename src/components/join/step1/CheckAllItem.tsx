@@ -4,24 +4,16 @@ import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 function CheckAllItem() {
-  const [allAgree, setAllAgree] = useState<boolean>(false);
-  const { setValue } = useFormContext();
+  const { setValue, watch } = useFormContext();
+  const isAllAgree = watch('terms.marketing') && watch('terms.ads');
 
   const handleAllAgree = () => {
-    if (allAgree) {
-      setAllAgree(false);
-      setValue('age', false);
-      setValue('termsOfUse', false);
-      setValue('privacyPolicy', false);
-      setValue('marketing', false);
-      setValue('ads', false);
+    if (isAllAgree) {
+      setValue('terms.marketing', false);
+      setValue('terms.ads', false);
     } else {
-      setAllAgree(true);
-      setValue('age', true);
-      setValue('termsOfUse', true);
-      setValue('privacyPolicy', true);
-      setValue('marketing', true);
-      setValue('ads', true);
+      setValue('terms.marketing', true);
+      setValue('terms.ads', true);
     }
   };
   return (
@@ -29,7 +21,7 @@ function CheckAllItem() {
       <button type='button' onClick={handleAllAgree}>
         <Image
           src={
-            allAgree
+            isAllAgree
               ? ICONS.common.check.circle_checked
               : ICONS.common.check.circle_unchecked
           }

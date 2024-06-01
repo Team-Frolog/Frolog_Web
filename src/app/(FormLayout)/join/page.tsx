@@ -12,9 +12,6 @@ function JoinPage() {
   const methods = useForm<IJoinForm>({
     defaultValues: {
       terms: {
-        age: false,
-        termsOfUse: false,
-        privacyPolicy: false,
         marketing: false,
         ads: false,
       },
