@@ -11,7 +11,11 @@ function JoinPage() {
   const step = Number(useSearchParams().get('step')!);
 
   const methods = useForm<IJoinForm>({
+    mode: 'onBlur',
     defaultValues: {
+      email: '',
+      password: '',
+      passwordCheck: '',
       terms: {
         marketing: false,
         ads: false,

@@ -1,8 +1,8 @@
 export interface IJoinForm {
+  email: string;
+  password: string;
+  passwordCheck: string;
   terms: {
-    age: boolean;
-    termsOfUse: boolean;
-    privacyPolicy: boolean;
     marketing: boolean;
     ads: boolean;
   };
