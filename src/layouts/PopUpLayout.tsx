@@ -65,23 +65,3 @@ function PopUpLayout({ children, closePopUp }: PopUpProps) {
 }
 
 export default PopUpLayout;
-
-// const Background = styled(motion.div)`
-//   width: 100%;
-//   height: calc(100dvh * 100);
-//   background-color: ${({ theme }) => theme.colors.bg_popup};
-
-//   position: fixed;
-//   bottom: 0;
-//   left: 0;
-//   z-index: 900;
-
-//   // 모바일 사이즈(최대 430px)에서 벗어날 경우 사이즈 고정
-//   @media screen and (min-width: 430px) {
-//     top: 0;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     width: 450px;
-//     height: 100vh;
-//   }
-// `;

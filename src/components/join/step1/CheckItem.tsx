@@ -1,7 +1,7 @@
 import { ICONS } from '@/constants/icons';
-import { ITermsOfUse, termsOfUse } from '@/data/terms';
+import { ITermsOfUse } from '@/data/terms';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import TermsPopUp from './TermsPopUp';
 import { AnimatePresence } from 'framer-motion';
@@ -16,7 +16,7 @@ function CheckItem({ termsData }: Props) {
   const isIncluded = ['age', 'termsOfUse', 'privacyPolicy'].includes(
     termsData.name
   );
-  const value = isIncluded ? true : watch(`terms.${termsData.name}`);
+  const isChecked = isIncluded ? true : watch(`terms.${termsData.name}`);
 
   return (
     <div className='flex justify-between'>
@@ -26,12 +26,12 @@ function CheckItem({ termsData }: Props) {
           onClick={
             isIncluded
               ? () => {}
-              : () => setValue(`terms.${termsData.name}`, !value)
+              : () => setValue(`terms.${termsData.name}`, !isChecked)
           }
         >
           <Image
             src={
-              value
+              isChecked
                 ? ICONS.common.check.circle_checked
                 : ICONS.common.check.circle_unchecked
             }

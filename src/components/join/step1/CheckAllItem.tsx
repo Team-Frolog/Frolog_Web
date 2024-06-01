@@ -1,6 +1,6 @@
 import { ICONS } from '@/constants/icons';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
 function CheckAllItem() {
