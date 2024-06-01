@@ -22,7 +22,7 @@ function ErrorPopUp() {
       }}
       transition={{ duration: 0.2 }}
     >
-      <Image src={ICONS.form.error} alt='err' width={20} height={20} />
+      <Image src={ICONS.common.form.error} alt='err' width={20} height={20} />
       <span className='text-body_md text-white'>에러 메시지</span>
     </motion.div>
   );

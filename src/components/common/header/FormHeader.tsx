@@ -20,7 +20,7 @@ function FormHeader() {
         onClick={handleClickBack}
       >
         <Image
-          src={ICONS.form.backBtn}
+          src={ICONS.common.form.backBtn}
           alt='backBtn'
           width={55}
           height={24}
