@@ -29,8 +29,6 @@
     -o-user-drag: none;
   }
   button {
-    background: none;
-    border: none;
     box-sizing: content-box;
     cursor: pointer;
   }
@@ -54,17 +52,20 @@ body {
 
   margin: 0;
   width: 100vw;
+  position: relative;
+
+  /* mobile view setting */
   height: fit-content;
   min-height: 100dvh;
 
   display: flex;
   justify-content: center;
-  align-items: center;
 
   background-color: white;
   overscroll-behavior-y: none;
   overflow: auto;
 
+  /* PC view setting */
   @media screen and (min-width: 430px) {
     width: 450px;
     height: 100vh;
