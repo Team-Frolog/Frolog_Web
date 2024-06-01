@@ -11,7 +11,7 @@ function Step1() {
         <CheckAllItem />
         <TermsContainer />
       </div>
-      <ButtonWithText btnText='다음'>
+      <ButtonWithText btnText='다음' route='/join?step=2'>
         <p className='text-body_sm text-center text-gray-400'>
           개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있으며,
           <br />
