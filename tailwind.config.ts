@@ -35,6 +35,7 @@ const config: Config = {
       },
       colors: {
         main: '#00CE4C',
+        main_bright: '#A1FF56',
         white: '#FFFFFF',
         error: '#FF6464',
         error_bg: '#FF64644D',
@@ -52,6 +53,9 @@ const config: Config = {
       fontWeight: {
         base: '400',
         bold: '700',
+      },
+      spacing: {
+        page: '24px',
       },
     },
   },
