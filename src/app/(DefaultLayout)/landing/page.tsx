@@ -20,7 +20,7 @@ function LandingPage() {
           <br />
           나갈 시간
         </h2>
-        <ButtonWithText btnText='로그인 하기'>
+        <ButtonWithText btnText='로그인 하기' route='/login'>
           <div className='flex gap-[6px]'>
             <span className='text-body_lg text-gray-400'>우리 초면인가요?</span>
             <Link href='/join?step=1' className='text-body_lg_bold text-white'>
