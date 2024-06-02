@@ -1,7 +1,22 @@
+import Timer from '@/components/common/form/Timer';
 import { inputStyle } from '@/styles/input';
-import React from 'react';
+import React, { useState } from 'react';
 
-function CodeInput() {
+interface Props {
+  code: string;
+  setCode: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function CodeInput({ code, setCode }: Props) {
+  const [isExpired, setIsExpired] = useState<boolean>(false);
+  const [resetTimer, setResetTimer] = useState<boolean>(false);
+
+  const handleClickSend = () => {
+    setIsExpired(false);
+    setResetTimer((prev) => !prev);
+    // 서버 코드 요청
+  };
+
   return (
     <div className='flex w-full flex-col gap-[8px]'>
       <h6 className='mb-[4px] text-body_md text-white'>
@@ -10,22 +25,27 @@ function CodeInput() {
       <div className='relative w-full'>
         <input
           type='number'
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
           placeholder='인증번호 입력'
-          className={`w-full rounded-[12px] border px-[16px] py-[18px] pr-[110px] text-body_lg outline-none ${inputStyle.default}`}
+          className={`w-full rounded-[12px] border px-[16px] py-[18px] pr-[110px] text-body_lg outline-none ${isExpired ? inputStyle.error : inputStyle.default}`}
         />
         <div className='absolute bottom-1/4 right-[16px] flex items-center gap-[8px]'>
-          <span className='text-body_sm text-gray-500'>2:00</span>
+          <Timer reset={resetTimer} setIsExpired={setIsExpired} />
           <button
             type='button'
+            onClick={handleClickSend}
             className='rounded-[6px] border border-gray-500 px-[10px] py-[6px] text-[12px] text-white'
           >
             재전송
           </button>
         </div>
       </div>
-      <span className='text-body_md text-error'>
-        입력 유효시간이 지났어요. 다시 인증해주세요.
-      </span>
+      {isExpired && (
+        <span className='text-body_md text-error'>
+          입력 유효시간이 지났어요. 다시 인증해주세요.
+        </span>
+      )}
     </div>
   );
 }

@@ -17,6 +17,7 @@ function JoinPage() {
       email: '',
       password: '',
       passwordCheck: '',
+      isCodeVerified: false,
       terms: {
         marketing: false,
         ads: false,
