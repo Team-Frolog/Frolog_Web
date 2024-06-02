@@ -16,19 +16,32 @@ interface Props {
   route: string;
   isTyping: boolean;
   disabled?: boolean;
+  onClick?: () => void;
 }
 
-function FormButton({ route, isTyping, disabled }: Props) {
+function FormButton({ route, isTyping, disabled, onClick }: Props) {
+  const commonClasses = `bg-main text-body_lg_bold box-border w-full px-[30px] py-[18px] text-center ${isTyping ? mode.button.typing : mode.button.default} transition-all`;
   return (
     <div
       className={`w-full ${isTyping ? mode.div.typing : mode.div.default} flex transition-all`}
     >
-      <Link
-        href={route}
-        className={`bg-main text-body_lg_bold box-border w-full px-[30px] py-[18px] text-center ${isTyping ? mode.button.typing : mode.button.default} transition-all ${disabled ? `pointer-events-none opacity-[0.4]` : ``}`}
-      >
-        다음
-      </Link>
+      {onClick ? (
+        <button
+          type='button'
+          onClick={onClick}
+          disabled={disabled}
+          className={`${commonClasses} ${disabled ? 'pointer-events-none opacity-[0.4]' : ''}`}
+        >
+          다음
+        </button>
+      ) : (
+        <Link
+          href={route}
+          className={`${commonClasses} ${disabled ? 'pointer-events-none opacity-[0.4]' : ''}`}
+        >
+          다음
+        </Link>
+      )}
     </div>
   );
 }
