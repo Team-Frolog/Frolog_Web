@@ -5,16 +5,20 @@ import React, { useState } from 'react';
 interface Props {
   code: string;
   setCode: React.Dispatch<React.SetStateAction<string>>;
+  setErrorOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleCodeSend: () => void;
 }
 
-function CodeInput({ code, setCode }: Props) {
+function CodeInput({ code, setCode, handleCodeSend, setErrorOpen }: Props) {
   const [isExpired, setIsExpired] = useState<boolean>(false);
   const [resetTimer, setResetTimer] = useState<boolean>(false);
 
   const handleClickSend = () => {
     setIsExpired(false);
+    handleCodeSend();
     setResetTimer((prev) => !prev);
-    // 서버 코드 요청
+    setCode('');
+    setErrorOpen(false);
   };
 
   return (

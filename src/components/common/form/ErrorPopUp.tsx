@@ -5,7 +5,11 @@ import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
 
-function ErrorPopUp() {
+interface Props {
+  errorMsg: string;
+}
+
+function ErrorPopUp({ errorMsg }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -23,7 +27,7 @@ function ErrorPopUp() {
       transition={{ duration: 0.2 }}
     >
       <Image src={ICONS.common.form.error} alt='err' width={20} height={20} />
-      <span className='text-body_md text-white'>에러 메시지</span>
+      <span className='text-body_md text-white'>{errorMsg}</span>
     </motion.div>
   );
 }
