@@ -14,10 +14,9 @@ function JobSelector() {
       </div>
       <div className='relative w-full'>
         <select
-          disabled={!watch('job')}
           defaultValue='무직'
           onChange={(e) => setValue('job', e.target.value)}
-          className={`w-full appearance-none rounded-[12px] border border-solid border-gray-800 bg-gray-800 p-[16px] text-body_lg outline-none ${!watch('job') ? 'pointer-events-none text-gray-600' : 'cursor-pointer text-white'}`}
+          className={`w-full appearance-none rounded-[12px] border border-solid border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg outline-none ${!watch('job') ? 'pointer-events-none text-gray-600' : 'cursor-pointer text-white'}`}
         >
           <option value='무직'>무직</option>
           <option value='학생'>학생</option>

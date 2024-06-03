@@ -24,6 +24,7 @@ function JoinPage() {
       },
       nickname: '',
       job: '무직',
+      gender: '남성',
     },
   });
 
