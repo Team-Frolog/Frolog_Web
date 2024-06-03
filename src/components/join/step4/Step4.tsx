@@ -3,11 +3,17 @@ import React from 'react';
 import JobSelector from './JobSelector';
 import GenderSelector from './GenderSelector';
 import DateSelector from './DateSelector';
+import FormButton from '@/components/common/form/FormButton';
+import { useFormContext } from 'react-hook-form';
 
 function Step4() {
+  const {
+    watch,
+    formState: { errors },
+  } = useFormContext();
   return (
     <div className='flex h-full w-full flex-col justify-between pb-page'>
-      <div className='flex w-full flex-col p-page'>
+      <div className='flex w-full flex-col gap-[36px] p-page'>
         <FormInput
           title='닉네임'
           type='text'
@@ -24,6 +30,11 @@ function Step4() {
         <GenderSelector />
         <DateSelector />
       </div>
+      <FormButton
+        route='/join?step=4'
+        isTyping={false}
+        disabled={!watch('nickname') || Boolean(errors.nickname)}
+      />
     </div>
   );
 }
