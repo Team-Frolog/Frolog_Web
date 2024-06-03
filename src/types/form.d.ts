@@ -6,4 +6,5 @@ export interface IJoinForm {
     marketing: boolean;
     ads: boolean;
   };
+  nickname: string;
 }

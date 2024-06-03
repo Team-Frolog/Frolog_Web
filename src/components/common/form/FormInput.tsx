@@ -6,7 +6,7 @@ interface Props {
   type: 'text' | 'email' | 'password';
   placeholder: string;
   title?: string;
-  fieldName: 'email' | 'password' | 'passwordCheck';
+  fieldName: 'email' | 'password' | 'passwordCheck' | 'nickname';
   options: RegisterOptions;
 }
 
