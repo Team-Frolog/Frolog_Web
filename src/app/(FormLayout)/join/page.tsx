@@ -23,6 +23,7 @@ function JoinPage() {
         ads: false,
       },
       nickname: '',
+      job: '무직',
     },
   });
 

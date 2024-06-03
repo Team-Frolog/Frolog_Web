@@ -6,6 +6,7 @@ export const ICONS = {
     form: {
       backBtn: `${BASE_PATH}/common/form/back-btn.svg`,
       error: `${BASE_PATH}/common/form/error-icon.svg`,
+      select: `${BASE_PATH}/common/form/select-icon.svg`,
     },
     check: {
       circle_checked: `${BASE_PATH}/common/check/circle-checked.svg`,

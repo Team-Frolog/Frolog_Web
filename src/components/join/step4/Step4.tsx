@@ -1,5 +1,6 @@
 import FormInput from '@/components/common/form/FormInput';
 import React from 'react';
+import JobSelector from './JobSelector';
 
 function Step4() {
   return (
@@ -13,10 +14,11 @@ function Step4() {
           options={{
             pattern: {
               value: /^[가-힣a-zA-Z0-9]{4,15}$/,
-              message: '4~15자, 한글, 영문 또는 숫자를 조합하세요.',
+              message: '4~15자, 한글, 영문 또는 숫자를 입력하세요.',
             },
           }}
         />
+        <JobSelector />
       </div>
     </div>
   );

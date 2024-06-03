@@ -7,12 +7,20 @@ interface Props {
   fieldName: 'job' | 'gender' | 'birthDate';
 }
 
+const defaultValue = {
+  job: '무직',
+  gender: '남성',
+  birthDate: Date.now(),
+};
+
 function ToggleButton({ fieldName }: Props) {
-  const [isPublic, setIsPublic] = useState<boolean>(false);
+  const [isPublic, setIsPublic] = useState<boolean>(true);
   const { setValue } = useFormContext();
 
   useEffect(() => {
-    if (!isPublic) {
+    if (isPublic) {
+      setValue(fieldName, defaultValue[fieldName]);
+    } else {
       setValue(fieldName, null);
     }
   }, [isPublic]);
