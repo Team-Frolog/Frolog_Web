@@ -1,4 +1,4 @@
-import ToggleButton from '@/components/common/form/ToggleButton';
+import FormTitleWithToggle from '@/components/common/form/FormTitleWithToggle';
 import { ICONS } from '@/constants/icons';
 import Image from 'next/image';
 import React from 'react';
@@ -8,10 +8,7 @@ function JobSelector() {
   const { watch, setValue } = useFormContext();
   return (
     <div className='flex w-full flex-col gap-[10px]'>
-      <div className='flex w-full justify-between'>
-        <h6 className='mb-[4px] text-body_md text-white'>직업</h6>
-        <ToggleButton fieldName='job' />
-      </div>
+      <FormTitleWithToggle title='직업' fieldName='job' />
       <div className='relative w-full'>
         <select
           defaultValue='무직'

@@ -1,4 +1,4 @@
-import ToggleButton from '@/components/common/form/ToggleButton';
+import FormTitleWithToggle from '@/components/common/form/FormTitleWithToggle';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -11,10 +11,7 @@ function GenderSelector() {
 
   return (
     <div className='flex w-full flex-col gap-[10px]'>
-      <div className='flex w-full justify-between'>
-        <h6 className='mb-[4px] text-body_md text-white'>성별</h6>
-        <ToggleButton fieldName='gender' />
-      </div>
+      <FormTitleWithToggle title='성별' fieldName='gender' />
       <div className='grid w-full grid-cols-3 gap-[12px]'>
         <button
           type='button'

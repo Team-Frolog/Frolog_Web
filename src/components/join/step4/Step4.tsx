@@ -2,6 +2,7 @@ import FormInput from '@/components/common/form/FormInput';
 import React from 'react';
 import JobSelector from './JobSelector';
 import GenderSelector from './GenderSelector';
+import DateSelector from './DateSelector';
 
 function Step4() {
   return (
@@ -21,6 +22,7 @@ function Step4() {
         />
         <JobSelector />
         <GenderSelector />
+        <DateSelector />
       </div>
     </div>
   );

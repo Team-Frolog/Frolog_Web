@@ -5,6 +5,7 @@ import Step2 from '@/components/join/step2/Step2';
 import Step3 from '@/components/join/step3/Step3';
 import Step4 from '@/components/join/step4/Step4';
 import { IJoinForm } from '@/types/form';
+import { getToday } from '@/utils/date';
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -25,6 +26,7 @@ function JoinPage() {
       nickname: '',
       job: '무직',
       gender: '남성',
+      birthDate: getToday(),
     },
   });
 

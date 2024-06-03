@@ -1,5 +1,6 @@
 'use client';
 
+import { getToday } from '@/utils/date';
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -10,7 +11,7 @@ interface Props {
 const defaultValue = {
   job: '무직',
   gender: '남성',
-  birthDate: Date.now(),
+  birthDate: getToday(),
 };
 
 function ToggleButton({ fieldName }: Props) {
