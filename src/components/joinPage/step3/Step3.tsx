@@ -4,6 +4,7 @@ import FormButton from '@/components/common/form/FormButton';
 import { useRouter } from 'next/navigation';
 import ErrorPopUp from '@/components/common/form/ErrorPopUp';
 import { AnimatePresence } from 'framer-motion';
+import { PAGES } from '@/constants/pageConfig';
 
 function Step3() {
   const router = useRouter();
@@ -43,7 +44,7 @@ function Step3() {
           {errorOpen && <ErrorPopUp errorMsg='인증코드를 다시 확인해주세요' />}
         </AnimatePresence>
         <FormButton
-          route='/join?step=4'
+          route={`${PAGES.JOIN}?step=4`}
           onClick={handleClickNext}
           isTyping={false}
           disabled={!code}

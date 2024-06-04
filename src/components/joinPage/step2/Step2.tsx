@@ -1,5 +1,6 @@
 import FormButton from '@/components/common/form/FormButton';
 import FormInput from '@/components/common/form/FormInput';
+import { PAGES } from '@/constants/pageConfig';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -11,8 +12,8 @@ function Step2() {
   } = useFormContext();
 
   return (
-    <div className='pb-page flex h-full w-full flex-col justify-between'>
-      <div className='p-page flex w-full flex-col'>
+    <div className='flex h-full w-full flex-col justify-between pb-page'>
+      <div className='flex w-full flex-col p-page'>
         <div className='flex flex-col gap-[36px]'>
           <FormInput
             type='email'
@@ -63,7 +64,7 @@ function Step2() {
         </div>
       </div>
       <FormButton
-        route='/join?step=3'
+        route={`${PAGES.JOIN}?step=3`}
         isTyping={false}
         disabled={Boolean(
           !watch('email') ||

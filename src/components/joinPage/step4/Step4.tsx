@@ -9,6 +9,7 @@ import FormButton from '@/components/common/form/FormButton';
 import { useFormContext } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { JOIN_FORM_KEY } from '@/constants/storage';
+import { PAGES } from '@/constants/pageConfig';
 
 function Step4() {
   const router = useRouter();
@@ -44,7 +45,7 @@ function Step4() {
         <DateSelector />
       </div>
       <FormButton
-        route='/join/finish'
+        route={PAGES.JOIN_FINISH}
         onClick={handleSubmitJoin}
         buttonText='가입완료!'
         isTyping={false}
