@@ -23,6 +23,7 @@ function FormInput({ type, placeholder, title, fieldName, options }: Props) {
       <input
         type={type}
         placeholder={placeholder}
+        style={{ imeMode: type === 'password' ? 'disabled' : 'auto' }}
         className={`rounded-[12px] border px-[16px] py-[18px] text-body_lg outline-none ${watch(fieldName) && errors[fieldName] ? inputStyle.error : inputStyle.default}`}
         {...register(fieldName, options)}
       />

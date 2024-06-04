@@ -29,6 +29,8 @@ function CodeInput({ code, setCode, handleCodeSend, setErrorOpen }: Props) {
       <div className='relative w-full'>
         <input
           type='number'
+          pattern='[0-9]*'
+          inputMode='numeric'
           value={code}
           onChange={(e) => setCode(e.target.value)}
           placeholder='인증번호 입력'

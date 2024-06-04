@@ -12,7 +12,7 @@ function Step4() {
     formState: { errors },
   } = useFormContext();
   return (
-    <div className='flex h-full w-full flex-col justify-between pb-page'>
+    <div className='flex h-full w-full flex-col justify-between gap-[24px] pb-page'>
       <div className='flex w-full flex-col gap-[36px] p-page'>
         <FormInput
           title='닉네임'
