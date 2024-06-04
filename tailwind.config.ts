@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        mobile: '430px',
+      },
       fontFamily: {
         pretendard: ['var(--font-pretendard)'],
       },

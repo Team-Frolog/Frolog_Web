@@ -77,3 +77,26 @@ body {
     height: 100vh;
   }
 }
+
+/* type=date input icon 색상 세팅 */
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(74%) sepia(6%) saturate(146%) hue-rotate(184deg)
+    brightness(94%) contrast(88%);
+  cursor: pointer;
+}
+
+input[type='date']::-moz-calendar-picker-indicator {
+  filter: invert(74%) sepia(6%) saturate(146%) hue-rotate(184deg)
+    brightness(94%) contrast(88%);
+  cursor: pointer;
+}
+
+input[type='date']::-ms-clear {
+  display: none;
+}
+
+input[type='date']::-ms-expand {
+  filter: invert(74%) sepia(6%) saturate(146%) hue-rotate(184deg)
+    brightness(94%) contrast(88%);
+  cursor: pointer;
+}
