@@ -11,7 +11,7 @@ function LinkButton({ children, route, disabled }: Props) {
   return (
     <Link
       href={route}
-      className={`bg-main text-body_lg_bold box-border w-full rounded-[30px] px-[30px] py-[18px] text-center text-white transition-all ${disabled ? `pointer-events-none opacity-[0.4]` : ``}`}
+      className={`box-border w-full rounded-[30px] bg-main px-[30px] py-[18px] text-center text-body_lg_bold text-white transition-all ${disabled ? `pointer-events-none opacity-[0.4]` : ``}`}
     >
       {children}
     </Link>

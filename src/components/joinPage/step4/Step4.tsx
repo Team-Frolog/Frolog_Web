@@ -31,7 +31,8 @@ function Step4() {
         <DateSelector />
       </div>
       <FormButton
-        route='/join?step=4'
+        route='/join/finish'
+        buttonText='가입완료!'
         isTyping={false}
         disabled={!watch('nickname') || Boolean(errors.nickname)}
       />

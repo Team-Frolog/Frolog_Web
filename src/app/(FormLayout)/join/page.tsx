@@ -1,9 +1,9 @@
 'use client';
 
-import Step1 from '@/components/join/step1/Step1';
-import Step2 from '@/components/join/step2/Step2';
-import Step3 from '@/components/join/step3/Step3';
-import Step4 from '@/components/join/step4/Step4';
+import Step1 from '@/components/joinPage/step1/Step1';
+import Step2 from '@/components/joinPage/step2/Step2';
+import Step3 from '@/components/joinPage/step3/Step3';
+import Step4 from '@/components/joinPage/step4/Step4';
 import { IJoinForm } from '@/types/form';
 import { getToday } from '@/utils/date';
 import { useSearchParams } from 'next/navigation';

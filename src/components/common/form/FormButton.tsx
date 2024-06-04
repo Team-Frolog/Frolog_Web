@@ -17,9 +17,16 @@ interface Props {
   isTyping: boolean;
   disabled?: boolean;
   onClick?: () => void;
+  buttonText?: string;
 }
 
-function FormButton({ route, isTyping, disabled, onClick }: Props) {
+function FormButton({
+  route,
+  isTyping,
+  disabled,
+  onClick,
+  buttonText = '다음',
+}: Props) {
   const commonClasses = `bg-main text-body_lg_bold box-border w-full px-[30px] py-[18px] text-center ${isTyping ? mode.button.typing : mode.button.default} transition-all`;
   return (
     <div
@@ -32,14 +39,14 @@ function FormButton({ route, isTyping, disabled, onClick }: Props) {
           disabled={disabled}
           className={`${commonClasses} ${disabled ? 'pointer-events-none opacity-[0.4]' : ''}`}
         >
-          다음
+          {buttonText}
         </button>
       ) : (
         <Link
           href={route}
           className={`${commonClasses} ${disabled ? 'pointer-events-none opacity-[0.4]' : ''}`}
         >
-          다음
+          {buttonText}
         </Link>
       )}
     </div>

@@ -13,4 +13,8 @@ export const ICONS = {
       circle_unchecked: `${BASE_PATH}/common/check/circle-uncheck.svg`,
     },
   },
+  join: {
+    lightOn: `${BASE_PATH}/joinPage/light-on.svg`,
+    lightOff: `${BASE_PATH}/joinPage/light-off.svg`,
+  },
 };
