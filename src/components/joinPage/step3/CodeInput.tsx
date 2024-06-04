@@ -21,6 +21,12 @@ function CodeInput({ code, setCode, handleCodeSend, setErrorOpen }: Props) {
     setErrorOpen(false);
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.currentTarget.blur();
+    }
+  };
+
   return (
     <div className='flex w-full flex-col gap-[8px]'>
       <h6 className='mb-[4px] text-body_md text-white'>
@@ -34,6 +40,7 @@ function CodeInput({ code, setCode, handleCodeSend, setErrorOpen }: Props) {
           value={code}
           onChange={(e) => setCode(e.target.value)}
           placeholder='인증번호 입력'
+          onKeyDown={handleKeyPress}
           className={`w-full rounded-[12px] border px-[16px] py-[18px] pr-[110px] text-body_lg outline-none ${isExpired ? inputStyle.error : inputStyle.default}`}
         />
         <div className='absolute bottom-1/4 right-[16px] flex items-center gap-[8px]'>
