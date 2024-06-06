@@ -18,9 +18,8 @@ function JoinPage() {
   usePreventRefresh(); // 새로고침 방지
 
   const defaultValue =
-    typeof window !== 'undefined' && localStorage.getItem(JOIN_FORM_KEY)
-      ? JSON.parse(localStorage.getItem(JOIN_FORM_KEY)!)!
-      : {
+    step === 1
+      ? {
           email: '',
           password: '',
           passwordCheck: '',
@@ -32,7 +31,9 @@ function JoinPage() {
           job: '무직',
           gender: '남성',
           birthDate: getToday(),
-        };
+        }
+      : typeof window !== 'undefined' &&
+        JSON.parse(localStorage.getItem(JOIN_FORM_KEY)!)!;
 
   const methods = useForm<IJoinForm>({
     mode: 'onBlur',
@@ -43,7 +44,9 @@ function JoinPage() {
   // step별 폼 상태 저장
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem(JOIN_FORM_KEY, JSON.stringify(getValues()));
+      step === 1
+        ? localStorage.removeItem(JOIN_FORM_KEY)
+        : localStorage.setItem(JOIN_FORM_KEY, JSON.stringify(getValues()));
     }
   }, [step]);
 
