@@ -6,9 +6,9 @@ import {
   onResponseErrorServer,
 } from '../interceptors/interceptor.server';
 
-export const privateInstance = axios.create({
+export const serverInstance = axios.create({
   baseURL: BASE_URL,
 });
 
-privateInstance.interceptors.request.use(onRequestServer);
-privateInstance.interceptors.response.use(onResponse, onResponseErrorServer);
+serverInstance.interceptors.request.use(onRequestServer);
+serverInstance.interceptors.response.use(onResponse, onResponseErrorServer);

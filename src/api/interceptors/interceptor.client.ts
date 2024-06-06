@@ -1,6 +1,6 @@
 import { COOKIE_KEY } from '@/constants/storage';
 import { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import { privateInstance } from '../instances/privateInstance.server';
+import { privateInstance } from '../instances/serverInstance';
 import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 
 export const onRequestClient = async (config: InternalAxiosRequestConfig) => {

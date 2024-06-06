@@ -6,9 +6,9 @@ import {
 } from '../interceptors/interceptor.client';
 import { onResponse } from '../interceptors/interceptor';
 
-export const privateInstance = axios.create({
+export const clientInstance = axios.create({
   baseURL: BASE_URL,
 });
 
-privateInstance.interceptors.request.use(onRequestClient);
-privateInstance.interceptors.response.use(onResponse, onResponseErrorClient);
+clientInstance.interceptors.request.use(onRequestClient);
+clientInstance.interceptors.response.use(onResponse, onResponseErrorClient);
