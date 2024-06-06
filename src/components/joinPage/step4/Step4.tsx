@@ -15,6 +15,7 @@ function Step4() {
   const router = useRouter();
   const {
     watch,
+    register,
     formState: { errors },
   } = useFormContext();
 
@@ -33,12 +34,12 @@ function Step4() {
           type='text'
           fieldName='nickname'
           placeholder='4~15자, 한글, 영문 또는 숫자를 입력하세요.'
-          options={{
+          {...register('nickname', {
             pattern: {
               value: /^[가-힣a-zA-Z0-9]{4,15}$/,
               message: '4~15자, 한글, 영문 또는 숫자를 입력하세요.',
             },
-          }}
+          })}
         />
         <JobSelector />
         <GenderSelector />

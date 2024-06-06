@@ -21,7 +21,7 @@ export const PAGES: IPages = {
 
 export const PAGE_CONFIG: IPageConfig = {
   JOIN: {
-    PATH: PAGES.join,
+    PATH: PAGES.JOIN,
     NAME: '회원가입',
     QUERY: {
       '1': '약관 동의',
