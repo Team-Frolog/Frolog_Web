@@ -9,19 +9,12 @@ const pretendard = localFont({
   variable: '--font-pretendard',
 });
 
-// const notoSansKR = Noto_Sans_KR({
-//   subsets: ['latin'],
-//   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-//   display: 'swap',
-//   adjustFontFallback: false,
-// });
-
 export const metadata: Metadata = {
   title: 'Frolog | 프롤로그',
   description: 'Web site created with Next.js.',
   viewport:
     'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
-  themeColor: '#ffffff',
+  themeColor: '#0E0E0E',
 };
 
 export default function RootLayout({

@@ -21,6 +21,24 @@ function CodeInput({ code, setCode, handleCodeSend, setErrorOpen }: Props) {
     setErrorOpen(false);
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (
+      event.key === 'Enter' ||
+      (event.key === 'Backspace' && code.length === 0)
+    ) {
+      event.currentTarget.blur();
+    }
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value;
+    setCode(inputValue);
+
+    if (inputValue.length === 6) {
+      event.target.blur(); // 입력 요소로부터 포커스를 제거하여 키보드를 내림
+    }
+  };
+
   return (
     <div className='flex w-full flex-col gap-[8px]'>
       <h6 className='mb-[4px] text-body_md text-white'>
@@ -28,10 +46,14 @@ function CodeInput({ code, setCode, handleCodeSend, setErrorOpen }: Props) {
       </h6>
       <div className='relative w-full'>
         <input
+          autoFocus
           type='number'
+          pattern='[0-9]*'
+          inputMode='numeric'
           value={code}
-          onChange={(e) => setCode(e.target.value)}
+          onChange={handleChange}
           placeholder='인증번호 입력'
+          onKeyDown={handleKeyPress}
           className={`w-full rounded-[12px] border px-[16px] py-[18px] pr-[110px] text-body_lg outline-none ${isExpired ? inputStyle.error : inputStyle.default}`}
         />
         <div className='absolute bottom-1/4 right-[16px] flex items-center gap-[8px]'>

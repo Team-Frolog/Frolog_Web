@@ -1,5 +1,6 @@
 import FormButton from '@/components/common/form/FormButton';
 import FormInput from '@/components/common/form/FormInput';
+import { PAGES } from '@/constants/pageConfig';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -7,19 +8,22 @@ function Step2() {
   const {
     watch,
     trigger,
+    register,
     formState: { errors },
   } = useFormContext();
 
   return (
-    <div className='pb-page flex h-full w-full flex-col justify-between'>
-      <div className='p-page flex w-full flex-col'>
+    <div className='flex h-full w-full flex-col justify-between pb-page'>
+      <div className='flex w-full flex-col p-page'>
         <div className='flex flex-col gap-[36px]'>
           <FormInput
+            autoFocus
             type='email'
             placeholder='이메일을 입력하세요'
             title='이메일'
             fieldName='email'
-            options={{
+            errorMessage={errors.email && String(errors.email.message)}
+            {...register('email', {
               required: true,
               pattern: {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
@@ -29,7 +33,7 @@ function Step2() {
                 trigger('email');
                 // 이메일 중복 확인
               },
-            }}
+            })}
           />
           <div className='flex flex-col gap-[8px]'>
             <FormInput
@@ -37,18 +41,22 @@ function Step2() {
               placeholder='8~15자 영문 대소문자, 숫자 포함'
               title='비밀번호'
               fieldName='password'
-              options={{
+              errorMessage={errors.password && String(errors.password.message)}
+              {...register('password', {
                 pattern: {
                   value: /^(?=.[A-Z])(?=.[a-z])(?=.*\d)[A-Za-z\d]{8,15}$/i,
                   message: '8~15자의 영문 대소문자, 숫자를 조합하세요.',
                 },
-              }}
+              })}
             />
             <FormInput
               type='password'
               placeholder='비밀번호를 재입력하세요'
               fieldName='passwordCheck'
-              options={{
+              errorMessage={
+                errors.passwordCheck && String(errors.passwordCheck.message)
+              }
+              {...register('passwordCheck', {
                 validate: {
                   matches: (value: string) =>
                     value === watch('password') ||
@@ -57,13 +65,13 @@ function Step2() {
                 onChange: () => {
                   trigger('passwordCheck');
                 },
-              }}
+              })}
             />
           </div>
         </div>
       </div>
       <FormButton
-        route='/join?step=3'
+        route={`${PAGES.JOIN}?step=3`}
         isTyping={false}
         disabled={Boolean(
           !watch('email') ||

@@ -17,8 +17,8 @@ function CheckAllItem() {
     }
   };
   return (
-    <div className='flex gap-[12px]'>
-      <button type='button' onClick={handleAllAgree}>
+    <div className='flex gap-[12px]' onClick={handleAllAgree}>
+      <button type='button'>
         <Image
           src={
             isAllAgree

@@ -19,16 +19,16 @@ function CheckItem({ termsData }: Props) {
   const isChecked = isIncluded ? true : watch(`terms.${termsData.name}`);
 
   return (
-    <div className='flex justify-between gap-[20px]'>
+    <div
+      className='flex justify-between gap-[20px]'
+      onClick={
+        isIncluded
+          ? () => {}
+          : () => setValue(`terms.${termsData.name}`, !isChecked)
+      }
+    >
       <div className='flex gap-[12px]'>
-        <button
-          type='button'
-          onClick={
-            isIncluded
-              ? () => {}
-              : () => setValue(`terms.${termsData.name}`, !isChecked)
-          }
-        >
+        <button type='button' className='h-[24px] w-[24px]'>
           <Image
             src={
               isChecked
@@ -40,13 +40,15 @@ function CheckItem({ termsData }: Props) {
             height={24}
           />
         </button>
-        <span className='text-body_lg_bold'>{termsData.label}</span>
+        <span className='flex-1 cursor-default text-body_lg_bold'>
+          {termsData.label}
+        </span>
       </div>
       {termsData.view && (
         <button
           type='button'
           onClick={() => setOpenDetail(true)}
-          className='text-body_md w-[30px] text-end text-gray-600'
+          className='w-[30px] text-end text-body_md text-gray-600'
         >
           보기
         </button>

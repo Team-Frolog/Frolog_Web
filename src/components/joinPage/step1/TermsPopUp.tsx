@@ -1,28 +1,27 @@
 'use client';
 
-import { ITermsOfUse, termsOfUse } from '@/data/terms';
+import { ITerms } from '@/data/terms';
 import PopUpLayout from '@/layouts/PopUpLayout';
 import React from 'react';
+import TermsText from '../TermsText';
 
 interface Props {
-  termsData: ITermsOfUse;
+  termsData: ITerms;
   closePopUp: () => void;
 }
 
 function TermsPopUp({ termsData, closePopUp }: Props) {
   return (
     <PopUpLayout closePopUp={() => {}}>
-      <div className='flex flex-col overflow-hidden px-[10px] py-[20px] text-gray-900'>
-        <h5 className='text-body_lg_bold w-full border-b border-gray-400 pb-[12px] text-center'>
+      <div className='flex flex-col overflow-hidden px-[16px] py-[20px] text-gray-900'>
+        <h5 className='w-full border-b border-gray-400 pb-[12px] text-center text-body_lg_bold'>
           {termsData.title}
         </h5>
-        <p className='text-body_lg flex-1 overflow-auto whitespace-pre-wrap py-[20px]'>
-          {termsData.view}
-        </p>
+        <TermsText text={termsData.view!} />
         <button
           type='button'
           onClick={closePopUp}
-          className='text-main text-body_lg_bold w-full border-t border-gray-400 pt-[12px]'
+          className='w-full border-t border-gray-400 pt-[12px] text-body_lg_bold text-main'
         >
           확인
         </button>

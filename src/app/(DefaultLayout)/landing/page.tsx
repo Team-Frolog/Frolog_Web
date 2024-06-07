@@ -3,6 +3,7 @@
 import ButtonWithText from '@/components/common/button/ButtonWithText';
 import BigTitle from '@/components/common/text/BigTitle';
 import { ICONS } from '@/constants/icons';
+import { PAGES } from '@/constants/pageConfig';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -24,7 +25,10 @@ function LandingPage() {
         <ButtonWithText btnText='로그인 하기' route='/login'>
           <div className='flex gap-[6px]'>
             <span className='text-body_lg text-gray-400'>우리 초면인가요?</span>
-            <Link href='/join?step=1' className='text-body_lg_bold text-white'>
+            <Link
+              href={`${PAGES.JOIN}?step=1`}
+              className='text-body_lg_bold text-white'
+            >
               회원가입 하기
             </Link>
           </div>
