@@ -17,6 +17,7 @@ function Step2() {
       <div className='flex w-full flex-col p-page'>
         <div className='flex flex-col gap-[36px]'>
           <FormInput
+            autoFocus
             type='email'
             placeholder='이메일을 입력하세요'
             title='이메일'
