@@ -7,7 +7,7 @@ import LinkButton from '../common/button/LinkButton';
 import Image from 'next/image';
 
 function JoinFinishLight() {
-  const [icon, setIcon] = useState(ICONS.join.lightOff);
+  const [icon, setIcon] = useState<string>(ICONS.join.lightOff);
 
   useEffect(() => {
     const timer = setTimeout(() => {

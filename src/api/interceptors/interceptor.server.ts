@@ -1,7 +1,7 @@
 import { COOKIE_KEY } from '@/constants/storage';
 import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { cookies } from 'next/headers';
-import { privateInstance } from '../instances/serverInstance';
+import { serverInstance } from '../instances/serverInstance';
 
 export const onRequestServer = async (config: InternalAxiosRequestConfig) => {
   try {
@@ -47,7 +47,7 @@ export const onResponseErrorServer = async (error: AxiosError) => {
         const newAccessToken = result.data.accessToken; // 새로운 토큰 꺼내기
         cookieStore.set(COOKIE_KEY.accessToken, newAccessToken);
         originReq.headers['authorization'] = `Bearer ${newAccessToken}`; // 기존 요청 헤더에 담기
-        return privateInstance(originReq);
+        return serverInstance(originReq);
       }
       // access token 발급 실패한 경우 -> 재로그인
       else {

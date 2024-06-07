@@ -1,5 +1,5 @@
 import { ICONS } from '@/constants/icons';
-import { ITermsOfUse } from '@/data/terms';
+import { ITerms } from '@/data/terms';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -7,7 +7,7 @@ import TermsPopUp from './TermsPopUp';
 import { AnimatePresence } from 'framer-motion';
 
 interface Props {
-  termsData: ITermsOfUse;
+  termsData: ITerms;
 }
 
 function CheckItem({ termsData }: Props) {
