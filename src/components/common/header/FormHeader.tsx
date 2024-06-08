@@ -4,12 +4,17 @@ import React from 'react';
 import { ICONS } from '@/constants/icons';
 import { useFormTitle } from '@/hooks/useFormTitle';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { JOIN_FORM_KEY } from '@/constants/storage';
 
 function FormHeader() {
+  const router = useRouter();
   const { title } = useFormTitle();
 
   const handleClickBack = () => {
-    window.history.back();
+    localStorage.removeItem(JOIN_FORM_KEY);
+    router.push('/landing');
   };
 
   return (
