@@ -1,10 +1,12 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import CodeInput from './CodeInput';
-import FormButton from '@/components/common/form/FormButton';
-import { useRouter } from 'next/navigation';
 import ErrorPopUp from '@/components/common/form/ErrorPopUp';
 import { AnimatePresence } from 'framer-motion';
 import { PAGES } from '@/constants/pageConfig';
+import Button from '@/components/common/button/Button';
+import { useRouter } from 'next/navigation';
 
 function Step3() {
   const router = useRouter();
@@ -19,7 +21,7 @@ function Step3() {
   const handleClickNext = () => {
     // 서버 인증코드 검증
     if (+code === 123456) {
-      router.push('/join?step=4');
+      router.push(`${PAGES.JOIN}?step=4`);
     } else {
       setErrorOpen(true);
     }
@@ -30,28 +32,23 @@ function Step3() {
   }, [code]);
 
   return (
-    <div className='flex h-full w-full flex-col justify-between pb-page'>
-      <div className='p-page'>
-        <CodeInput
-          code={code}
-          setCode={setCode}
-          handleCodeSend={handleCodeSend}
-          setErrorOpen={setErrorOpen}
-          isExpired={isExpired}
-          setIsExpired={setIsExpired}
-        />
-      </div>
+    <div className='flex h-full w-full flex-col justify-between p-page'>
+      <CodeInput
+        code={code}
+        setCode={setCode}
+        handleCodeSend={handleCodeSend}
+        setErrorOpen={setErrorOpen}
+        isExpired={isExpired}
+        setIsExpired={setIsExpired}
+      />
 
       <div className='flex w-full flex-col items-center gap-[12px]'>
         <AnimatePresence>
           {errorOpen && <ErrorPopUp errorMsg='인증코드를 다시 확인해주세요' />}
         </AnimatePresence>
-        <FormButton
-          route={`${PAGES.JOIN}?step=4`}
-          onClick={handleClickNext}
-          isTyping={false}
-          disabled={!code || isExpired}
-        />
+        <Button onClick={handleClickNext} disabled={!code || isExpired}>
+          다음
+        </Button>
       </div>
     </div>
   );

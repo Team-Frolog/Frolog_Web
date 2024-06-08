@@ -1,3 +1,5 @@
+'use client';
+
 import FormTitleWithToggle from '@/components/common/form/FormTitleWithToggle';
 import { ICONS } from '@/constants/icons';
 import Image from 'next/image';

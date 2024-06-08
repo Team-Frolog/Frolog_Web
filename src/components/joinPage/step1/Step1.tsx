@@ -1,3 +1,5 @@
+'use client';
+
 import ButtonWithText from '@/components/common/button/ButtonWithText';
 import React from 'react';
 import CheckAllItem from './CheckAllItem';

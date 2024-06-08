@@ -1,3 +1,5 @@
+'use client';
+
 import { ICONS } from '@/constants/icons';
 import { ITerms } from '@/data/terms';
 import Image from 'next/image';

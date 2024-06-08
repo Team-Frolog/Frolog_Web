@@ -1,7 +1,7 @@
 'use client';
 
 import { ICONS } from '@/constants/icons';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import LinkButton from '../common/button/LinkButton';
 import Image from 'next/image';

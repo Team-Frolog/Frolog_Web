@@ -1,4 +1,6 @@
-import FormButton from '@/components/common/form/FormButton';
+'use client';
+
+import LinkButton from '@/components/common/button/LinkButton';
 import FormInput from '@/components/common/form/FormInput';
 import { PAGES } from '@/constants/pageConfig';
 import React, { useEffect } from 'react';
@@ -18,8 +20,8 @@ function Step2() {
   }, [password, trigger]);
 
   return (
-    <div className='flex h-full w-full flex-col justify-between pb-page'>
-      <div className='flex w-full flex-col p-page'>
+    <div className='flex h-full w-full flex-col justify-between p-page'>
+      <div className='flex w-full flex-col'>
         <div className='flex flex-col gap-[36px]'>
           <FormInput
             autoFocus
@@ -79,9 +81,8 @@ function Step2() {
           </div>
         </div>
       </div>
-      <FormButton
+      <LinkButton
         route={`${PAGES.JOIN}?step=3`}
-        isTyping={false}
         disabled={Boolean(
           !watch('email') ||
             !watch('password') ||
@@ -90,7 +91,9 @@ function Step2() {
             errors.password ||
             errors.passwordCheck
         )}
-      />
+      >
+        다음
+      </LinkButton>
     </div>
   );
 }

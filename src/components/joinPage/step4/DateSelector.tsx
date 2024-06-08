@@ -1,3 +1,5 @@
+'use client';
+
 import FormTitleWithToggle from '@/components/common/form/FormTitleWithToggle';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';

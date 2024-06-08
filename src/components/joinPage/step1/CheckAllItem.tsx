@@ -1,3 +1,5 @@
+'use client';
+
 import { ICONS } from '@/constants/icons';
 import { consentsKeys } from '@/data/joinForm';
 import Image from 'next/image';

@@ -1,3 +1,5 @@
+'use client';
+
 import Timer from '@/components/common/form/Timer';
 import React, { useState } from 'react';
 
