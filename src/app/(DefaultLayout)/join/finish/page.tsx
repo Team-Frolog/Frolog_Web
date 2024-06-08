@@ -9,7 +9,7 @@ import PopperAnimation from '@/components/animation/PopperAnimation';
 
 function JoinFinishPage() {
   const router = useRouter();
-  useCustomBack(() => router.push('/login'));
+  useCustomBack('/login');
 
   return (
     <div className='flex h-fit w-full flex-col justify-between overflow-hidden mobile:h-screen'>
