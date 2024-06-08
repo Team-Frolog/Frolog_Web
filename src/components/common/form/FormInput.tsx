@@ -5,7 +5,7 @@ import { inputStyle } from '@/styles/input';
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   type: 'text' | 'email' | 'password';
   placeholder: string;
-  fieldName: 'email' | 'password' | 'passwordCheck' | 'nickname';
+  fieldName: 'email' | 'password' | 'passwordCheck' | 'username';
   errorMessage?: string;
   title?: string;
 }

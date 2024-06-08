@@ -1,4 +1,4 @@
-export const privateInfo = `
+export const privacyPolicy = `
 프롤로그(이하 "회사")는 개인정보보호 관련 법령상의 규정을 준수하며, 이용자의 권익 보호에 최선을 다하고 있습니다. 본 개인정보 처리방침은 회사가 제공하는 서비스 이용에 적용되며, 다음과 같은 내용을 포함하고 있습니다.
 
 **제1조 [개인정보의 처리 목적]**
@@ -99,9 +99,9 @@ export const privateInfo = `
 
 **제12조 [정보주체의 권익침해에 대한 구제방법]**
 정보주체는 개인정보침해로 인한 구제를 받기 위하여 다음의 기관에 분쟁해결이나 상담 등을 신청할 수 있습니다.
-1.&nbsp;&nbsp;개인정보분쟁조정위원회: (국번 없이) 1833-6972 ([www.kopico.go.kr](http://www.kopico.go.kr/))
+1.&nbsp;&nbsp;개인정보분쟁조정위원회: (국번 없이) 1833-6972 (http://www.kopico.go.kr/)
 2.&nbsp;&nbsp;개인정보침해신고센터: (국번 없이) 118 (privacy.kisa.or.kr)
-3.&nbsp;&nbsp;대검찰청: (국번 없이) 1301 ([www.spo.go.kr](http://www.spo.go.kr/))
+3.&nbsp;&nbsp;대검찰청: (국번 없이) 1301 (http://www.spo.go.kr/)
 4.&nbsp;&nbsp;경찰청: (국번 없이) 182 (ecrm.cyber.go.kr)
 
 **제13조 [개인정보 처리방침 변경]**

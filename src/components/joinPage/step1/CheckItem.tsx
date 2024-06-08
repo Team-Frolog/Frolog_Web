@@ -13,21 +13,14 @@ interface Props {
 function CheckItem({ termsData }: Props) {
   const [openDetail, setOpenDetail] = useState<boolean>(false);
   const { watch, setValue } = useFormContext();
-  const isIncluded = ['age', 'termsOfUse', 'privacyPolicy'].includes(
-    termsData.name
-  );
-  const isChecked = isIncluded ? true : watch(`terms.${termsData.name}`);
+  const isChecked = watch(`consents.${termsData.name}.given`);
 
   return (
-    <div
-      className='flex justify-between gap-[20px]'
-      onClick={
-        isIncluded
-          ? () => {}
-          : () => setValue(`terms.${termsData.name}`, !isChecked)
-      }
-    >
-      <div className='flex gap-[12px]'>
+    <div className='flex justify-between gap-[20px]'>
+      <div
+        className='flex gap-[12px]'
+        onClick={() => setValue(`consents.${termsData.name}.given`, !isChecked)}
+      >
         <button type='button' className='h-[24px] w-[24px]'>
           <Image
             src={

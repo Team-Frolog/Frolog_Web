@@ -32,9 +32,9 @@ function Step4() {
         <FormInput
           title='닉네임'
           type='text'
-          fieldName='nickname'
+          fieldName='username'
           placeholder='4~15자, 한글, 영문 또는 숫자를 입력하세요.'
-          {...register('nickname', {
+          {...register('username', {
             pattern: {
               value: /^[가-힣a-zA-Z0-9]{4,15}$/,
               message: '4~15자, 한글, 영문 또는 숫자를 입력하세요.',

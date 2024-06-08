@@ -6,13 +6,14 @@ function DateSelector() {
   const { watch, setValue } = useFormContext();
   return (
     <div className='flex w-full flex-col gap-[10px]'>
-      <FormTitleWithToggle title='생년월일' fieldName='birthDate' />
+      <FormTitleWithToggle title='생년월일' fieldName='birth_date' />
       <input
         type='date'
-        value={watch('birthDate')}
-        disabled={!watch('birthDate')}
-        onChange={(e) => setValue('birthDate', e.target.value)}
-        className={`w-full appearance-none rounded-[12px] border border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg outline-none focus:border-main ${!watch('birthDate') ? 'text-gray-600' : 'text-white'}`}
+        value={watch('personal_infos.birth_date.value')}
+        onChange={(e) =>
+          setValue('personal_infos.birth_date.value', e.target.value)
+        }
+        className={`w-full appearance-none rounded-[12px] border border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg outline-none focus:border-main`}
       />
     </div>
   );
