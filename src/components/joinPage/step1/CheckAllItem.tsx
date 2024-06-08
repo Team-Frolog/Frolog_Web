@@ -27,7 +27,9 @@ function CheckAllItem() {
         />
       </button>
 
-      <span className='text-body_lg_bold'>네, 모두 동의합니다.</span>
+      <span className='cursor-default text-body_lg_bold'>
+        네, 모두 동의합니다.
+      </span>
     </div>
   );
 }

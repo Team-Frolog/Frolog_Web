@@ -1,7 +1,7 @@
 import FormButton from '@/components/common/form/FormButton';
 import FormInput from '@/components/common/form/FormInput';
 import { PAGES } from '@/constants/pageConfig';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 function Step2() {
@@ -11,6 +11,11 @@ function Step2() {
     register,
     formState: { errors },
   } = useFormContext();
+  const password = watch('password');
+
+  useEffect(() => {
+    trigger('passwordCheck');
+  }, [password, trigger]);
 
   return (
     <div className='flex h-full w-full flex-col justify-between pb-page'>
@@ -44,7 +49,7 @@ function Step2() {
               errorMessage={errors.password && String(errors.password.message)}
               {...register('password', {
                 pattern: {
-                  value: /^(?=.[A-Z])(?=.[a-z])(?=.*\d)[A-Za-z\d]{8,15}$/i,
+                  value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,15}$/,
                   message: '8~15자의 영문 대소문자, 숫자를 조합하세요.',
                 },
               })}
@@ -59,11 +64,15 @@ function Step2() {
               {...register('passwordCheck', {
                 validate: {
                   matches: (value: string) =>
+                    value.length === 0 ||
                     value === watch('password') ||
                     '비밀번호가 일치하지 않아요.',
                 },
-                onChange: () => {
-                  trigger('passwordCheck');
+                onChange: async (e) => {
+                  const value = e.target.value;
+                  if (value.length > 0) {
+                    await trigger('passwordCheck');
+                  }
                 },
               })}
             />
