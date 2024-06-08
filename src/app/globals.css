@@ -1,3 +1,7 @@
+@import url('../styles/components.css');
+@import url('../styles/inputs.css');
+@import url('../styles/markdown.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,10 +38,14 @@
   }
 }
 
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+input[type='number'] {
+  -moz-appearance: textfield; /*For FireFox*/
+
+  &::-webkit-inner-spin-button {
+    /*For Webkits like Chrome and Safari*/
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 html {
@@ -99,42 +107,4 @@ input[type='date']::-ms-expand {
   filter: invert(74%) sepia(6%) saturate(146%) hue-rotate(184deg)
     brightness(94%) contrast(88%);
   cursor: pointer;
-}
-
-.prose {
-  color: #0e0e0e;
-
-  gap: 0;
-
-  p {
-    margin: 0;
-    padding: 0;
-  }
-  ol {
-    margin: 0;
-    padding: 0 0 0 18px;
-
-    li {
-      margin: 0;
-      padding: 0;
-
-      &::marker {
-        color: #0e0e0e;
-      }
-    }
-  }
-
-  ul {
-    margin: 0;
-    padding: 0 0 0 18px;
-
-    li {
-      margin: 0;
-      padding: 0;
-
-      &::marker {
-        color: #0e0e0e;
-      }
-    }
-  }
 }

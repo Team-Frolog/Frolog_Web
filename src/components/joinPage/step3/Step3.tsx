@@ -10,6 +10,7 @@ function Step3() {
   const router = useRouter();
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
   const [code, setCode] = useState<string>('');
+  const [isExpired, setIsExpired] = useState<boolean>(false);
 
   const handleCodeSend = () => {
     // 코드 요청
@@ -36,6 +37,8 @@ function Step3() {
           setCode={setCode}
           handleCodeSend={handleCodeSend}
           setErrorOpen={setErrorOpen}
+          isExpired={isExpired}
+          setIsExpired={setIsExpired}
         />
       </div>
 
@@ -47,7 +50,7 @@ function Step3() {
           route={`${PAGES.JOIN}?step=4`}
           onClick={handleClickNext}
           isTyping={false}
-          disabled={!code}
+          disabled={!code || isExpired}
         />
       </div>
     </div>

@@ -1,6 +1,5 @@
 import React, { ForwardedRef } from 'react';
-import { RegisterOptions, useFormContext } from 'react-hook-form';
-import { inputStyle } from '@/styles/input';
+import { useFormContext } from 'react-hook-form';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   type: 'text' | 'email' | 'password';
@@ -34,7 +33,7 @@ const FormInput = React.forwardRef(
           ref={ref}
           placeholder={placeholder}
           style={{ imeMode: type === 'password' ? 'disabled' : 'auto' }}
-          className={`rounded-[12px] border px-[16px] py-[18px] text-body_lg outline-none ${watch(fieldName) && errors[fieldName] ? inputStyle.error : inputStyle.default}`}
+          className={`input-common ${watch(fieldName) && errors[fieldName] ? 'input-error' : 'input-default'}`}
           onKeyDown={handleKeyPress}
           {...props}
         />

@@ -30,7 +30,7 @@ function Timer({ reset, setIsExpired }: Props) {
   }, [timeLeft]);
 
   return (
-    <span className='w-[30px] text-center text-body_sm text-gray-500'>
+    <span className='w-[30px] text-start text-body_sm text-gray-500'>
       {Math.floor((timeLeft / (1000 * 60)) % 60)}:
       {String(Math.floor((timeLeft / 1000) % 60)).padStart(2, '0')}
     </span>
