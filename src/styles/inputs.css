@@ -16,7 +16,7 @@
   }
 
   .input-code-common {
-    @apply w-full rounded-[12px] border px-[16px] py-[18px] pr-[110px] text-body_lg outline-none;
+    @apply w-full rounded-[12px] border px-[16px] py-[18px] pr-[110px] text-body_lg outline-none focus:outline-none;
   }
 
   .input-code-error {

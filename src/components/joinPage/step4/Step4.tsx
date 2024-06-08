@@ -33,11 +33,12 @@ function Step4() {
           title='닉네임'
           type='text'
           fieldName='username'
-          placeholder='4~15자, 한글, 영문 또는 숫자를 입력하세요.'
+          placeholder='4~15자, 한글, 영문 또는 숫자를 입력하세요. (공백 제외)'
+          errorMessage={errors.username && String(errors.username.message)}
           {...register('username', {
             pattern: {
               value: /^[가-힣a-zA-Z0-9]{4,15}$/,
-              message: '4~15자, 한글, 영문 또는 숫자를 입력하세요.',
+              message: '4~15자, 한글, 영문 또는 숫자를 입력하세요. (공백 제외)',
             },
           })}
         />

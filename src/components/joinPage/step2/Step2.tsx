@@ -43,7 +43,7 @@ function Step2() {
           <div className='flex flex-col gap-[8px]'>
             <FormInput
               type='password'
-              placeholder='8~15자 영문 대소문자, 숫자 포함'
+              placeholder='8~15자 영문 대소문자, 숫자를 포함해주세요'
               title='비밀번호'
               fieldName='password'
               errorMessage={errors.password && String(errors.password.message)}

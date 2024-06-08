@@ -10,7 +10,10 @@ interface Props {
 
 function ToggleButton({ fieldName }: Props) {
   const { watch, setValue } = useFormContext();
-  const isPublic = watch(`personal_infos.${fieldName}.visibility`);
+  const isPublic =
+    typeof window === 'undefined'
+      ? true
+      : watch(`personal_infos.${fieldName}.visibility`);
 
   return (
     <div className='flex gap-[4px]'>
