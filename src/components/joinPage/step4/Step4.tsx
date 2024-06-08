@@ -1,7 +1,7 @@
 'use client';
 
 import FormInput from '@/components/common/form/FormInput';
-import React from 'react';
+import React, { useEffect } from 'react';
 import JobSelector from './JobSelector';
 import GenderSelector from './GenderSelector';
 import DateSelector from './DateSelector';
@@ -30,6 +30,7 @@ function Step4() {
     <div className='flex h-full w-full flex-col justify-between gap-[24px] pb-page'>
       <div className='flex w-full flex-col gap-[36px] p-page'>
         <FormInput
+          autoFocus
           title='닉네임'
           type='text'
           fieldName='username'
@@ -51,7 +52,7 @@ function Step4() {
         onClick={handleSubmitJoin}
         buttonText='가입완료!'
         isTyping={false}
-        disabled={!watch('nickname') || Boolean(errors.nickname)}
+        disabled={!watch('username') || Boolean(errors.username)}
       />
     </div>
   );

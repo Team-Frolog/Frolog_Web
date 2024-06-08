@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form';
 
 function DateSelector() {
   const { watch, setValue } = useFormContext();
+
   return (
     <div className='flex w-full flex-col gap-[10px]'>
       <FormTitleWithToggle title='생년월일' fieldName='birth_date' />
@@ -13,7 +14,9 @@ function DateSelector() {
         onChange={(e) =>
           setValue('personal_infos.birth_date.value', e.target.value)
         }
-        className={`w-full appearance-none rounded-[12px] border border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg outline-none focus:border-main`}
+        onKeyDown={(e) => e.preventDefault()}
+        onClick={(e) => e.currentTarget.showPicker()}
+        className={`relative w-full cursor-pointer appearance-none rounded-[12px] border border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg outline-none focus:border-main`}
       />
     </div>
   );

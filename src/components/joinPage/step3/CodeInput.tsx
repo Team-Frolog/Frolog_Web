@@ -1,5 +1,4 @@
 import Timer from '@/components/common/form/Timer';
-import { inputStyle } from '@/styles/input';
 import React, { useState } from 'react';
 
 interface Props {
