@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input-common {
+    @apply rounded-[12px] border px-[16px] py-[18px] text-body_lg outline-none focus:outline-none;
+  }
+
+  .input-default {
+    @apply border-gray-800 bg-gray-800 text-white placeholder:text-gray-600 focus:border-main;
+  }
+
+  .input-error {
+    @apply border-error bg-error_bg;
+  }
+
+  .input-code-common {
+    @apply w-full rounded-[12px] border px-[16px] py-[18px] pr-[110px] text-body_lg outline-none focus:outline-none;
+  }
+
+  .input-code-error {
+    @apply pointer-events-none border-error bg-error_bg text-gray-500 placeholder:text-gray-500;
+  }
+}

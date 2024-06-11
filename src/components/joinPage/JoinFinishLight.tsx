@@ -1,27 +1,27 @@
 'use client';
 
 import { ICONS } from '@/constants/icons';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import LinkButton from '../common/button/LinkButton';
 import Image from 'next/image';
 
 function JoinFinishLight() {
-  const [icon, setIcon] = useState<string>(ICONS.join.lightOff);
+  const [icon, setIcon] = useState<string>(ICONS.join.lightOn);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIcon(ICONS.join.lightOn);
-    }, 1000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIcon(ICONS.join.lightOn);
+  //   }, 2000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+      // initial={{ opacity: 0, y: 30 }}
+      // animate={{ opacity: 1, y: 0 }}
+      // transition={{ type: 'spring', stiffness: 300, damping: 15 }}
       className='relative w-full'
     >
       <div

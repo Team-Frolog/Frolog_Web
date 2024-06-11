@@ -1,12 +1,17 @@
+'use client';
+
 import FormTitleWithToggle from '@/components/common/form/FormTitleWithToggle';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
 function GenderSelector() {
   const { watch, setValue } = useFormContext();
+  const buttonStyle =
+    'rounded-[12px] border border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg';
+  const selected = 'border-main text-body_lg_bold';
 
   const handleClick = (value: string) => {
-    setValue('gender', value);
+    setValue('personal_infos.gender.value', value);
   };
 
   return (
@@ -16,21 +21,21 @@ function GenderSelector() {
         <button
           type='button'
           onClick={() => handleClick('남성')}
-          className={`rounded-[12px] border border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg ${!watch('gender') ? 'text-gray-600' : 'text-white'} ${watch('gender') === '남성' && 'border-main text-body_lg_bold'}`}
+          className={`${buttonStyle} ${(watch('personal_infos.gender.value') === '남성' || typeof window === 'undefined') && selected}`}
         >
           남성
         </button>
         <button
           type='button'
           onClick={() => handleClick('여성')}
-          className={`rounded-[12px] border border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg ${!watch('gender') ? 'text-gray-600' : 'text-white'} ${watch('gender') === '여성' && 'border-main text-body_lg_bold'}`}
+          className={`${buttonStyle} ${watch('personal_infos.gender.value') === '여성' && selected}`}
         >
           여성
         </button>
         <button
           type='button'
           onClick={() => handleClick('기타')}
-          className={`rounded-[12px] border border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg ${!watch('gender') ? 'text-gray-600' : 'text-white'} ${watch('gender') === '기타' && 'border-main text-body_lg_bold'}`}
+          className={`${buttonStyle} ${watch('personal_infos.gender.value') === '기타' && selected}`}
         >
           기타
         </button>

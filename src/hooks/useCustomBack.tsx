@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
-const useCustomBack = (onBack: () => void) => {
+const useCustomBack = (route: string) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -14,7 +14,7 @@ const useCustomBack = (onBack: () => void) => {
     const handlePopState = (event: PopStateEvent) => {
       event.preventDefault();
       router.replace(pathname); // 현재 페이지로 redirect
-      onBack(); // 커스텀 함수 실행
+      router.push(route);
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -24,7 +24,7 @@ const useCustomBack = (onBack: () => void) => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
       window.removeEventListener('popstate', handlePopState);
     };
-  }, [onBack, router, pathname]);
+  }, [router, pathname]);
 };
 
 export default useCustomBack;

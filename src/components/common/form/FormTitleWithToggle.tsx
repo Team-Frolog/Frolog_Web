@@ -1,9 +1,10 @@
 import React from 'react';
 import ToggleButton from './ToggleButton';
+import { TInfoName } from '@/types/form';
 
 interface Props {
   title: string;
-  fieldName: 'job' | 'gender' | 'birthDate';
+  fieldName: TInfoName;
 }
 
 function FormTitleWithToggle({ title, fieldName }: Props) {

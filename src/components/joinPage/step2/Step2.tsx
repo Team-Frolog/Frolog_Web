@@ -1,7 +1,9 @@
-import FormButton from '@/components/common/form/FormButton';
+'use client';
+
+import LinkButton from '@/components/common/button/LinkButton';
 import FormInput from '@/components/common/form/FormInput';
 import { PAGES } from '@/constants/pageConfig';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 function Step2() {
@@ -11,10 +13,15 @@ function Step2() {
     register,
     formState: { errors },
   } = useFormContext();
+  const password = watch('password');
+
+  useEffect(() => {
+    trigger('passwordCheck');
+  }, [password, trigger]);
 
   return (
-    <div className='flex h-full w-full flex-col justify-between pb-page'>
-      <div className='flex w-full flex-col p-page'>
+    <div className='flex h-full w-full flex-col justify-between p-page'>
+      <div className='flex w-full flex-col'>
         <div className='flex flex-col gap-[36px]'>
           <FormInput
             autoFocus
@@ -38,13 +45,13 @@ function Step2() {
           <div className='flex flex-col gap-[8px]'>
             <FormInput
               type='password'
-              placeholder='8~15자 영문 대소문자, 숫자 포함'
+              placeholder='8~15자 영문 대소문자, 숫자를 포함해주세요'
               title='비밀번호'
               fieldName='password'
               errorMessage={errors.password && String(errors.password.message)}
               {...register('password', {
                 pattern: {
-                  value: /^(?=.[A-Z])(?=.[a-z])(?=.*\d)[A-Za-z\d]{8,15}$/i,
+                  value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,15}$/,
                   message: '8~15자의 영문 대소문자, 숫자를 조합하세요.',
                 },
               })}
@@ -59,20 +66,23 @@ function Step2() {
               {...register('passwordCheck', {
                 validate: {
                   matches: (value: string) =>
+                    value.length === 0 ||
                     value === watch('password') ||
                     '비밀번호가 일치하지 않아요.',
                 },
-                onChange: () => {
-                  trigger('passwordCheck');
+                onChange: async (e) => {
+                  const value = e.target.value;
+                  if (value.length > 0) {
+                    await trigger('passwordCheck');
+                  }
                 },
               })}
             />
           </div>
         </div>
       </div>
-      <FormButton
+      <LinkButton
         route={`${PAGES.JOIN}?step=3`}
-        isTyping={false}
         disabled={Boolean(
           !watch('email') ||
             !watch('password') ||
@@ -81,7 +91,9 @@ function Step2() {
             errors.password ||
             errors.passwordCheck
         )}
-      />
+      >
+        다음
+      </LinkButton>
     </div>
   );
 }

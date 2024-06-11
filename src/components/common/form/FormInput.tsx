@@ -1,11 +1,12 @@
+'use client';
+
 import React, { ForwardedRef } from 'react';
-import { RegisterOptions, useFormContext } from 'react-hook-form';
-import { inputStyle } from '@/styles/input';
+import { useFormContext } from 'react-hook-form';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   type: 'text' | 'email' | 'password';
   placeholder: string;
-  fieldName: 'email' | 'password' | 'passwordCheck' | 'nickname';
+  fieldName: 'email' | 'password' | 'passwordCheck' | 'username';
   errorMessage?: string;
   title?: string;
 }
@@ -22,7 +23,7 @@ const FormInput = React.forwardRef(
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.key === 'Enter') {
-        event.currentTarget.blur(); // 입력란 포커스를 잃음
+        event.currentTarget.blur();
       }
     };
 
@@ -34,7 +35,7 @@ const FormInput = React.forwardRef(
           ref={ref}
           placeholder={placeholder}
           style={{ imeMode: type === 'password' ? 'disabled' : 'auto' }}
-          className={`rounded-[12px] border px-[16px] py-[18px] text-body_lg outline-none ${watch(fieldName) && errors[fieldName] ? inputStyle.error : inputStyle.default}`}
+          className={`input-common ${watch(fieldName) && errors[fieldName] ? 'input-error' : 'input-default'}`}
           onKeyDown={handleKeyPress}
           {...props}
         />
