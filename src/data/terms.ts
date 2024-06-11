@@ -1,5 +1,5 @@
 import { marketing } from './terms/marketing';
-import { privateInfo } from './terms/privateInfo';
+import { privacyPolicy } from './terms/privacyPolicy';
 import { termsOfUse } from './terms/termsOfUse';
 
 export interface ITerms {
@@ -14,17 +14,17 @@ export const terms: ITerms[] = [
   { id: 0, name: 'age', label: '[필수] 만 14세 이상입니다.' },
   {
     id: 1,
-    name: 'termsOfUse',
+    name: 'terms_of_use',
     label: '[필수] 이용약관 동의',
     title: '이용약관 동의',
     view: termsOfUse,
   },
   {
     id: 2,
-    name: 'privacyPolicy',
+    name: 'privacy_policy',
     label: '[필수] 개인정보 수집 및 이용동의',
     title: '개인정보 수집 및 이용동의',
-    view: privateInfo,
+    view: privacyPolicy,
   },
   {
     id: 3,

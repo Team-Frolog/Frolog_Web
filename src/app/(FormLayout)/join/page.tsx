@@ -5,11 +5,11 @@ import Step2 from '@/components/joinPage/step2/Step2';
 import Step3 from '@/components/joinPage/step3/Step3';
 import Step4 from '@/components/joinPage/step4/Step4';
 import { JOIN_FORM_KEY } from '@/constants/storage';
+import { defaultValue } from '@/data/joinForm';
 import usePreventRefresh from '@/hooks/usePreventRefresh';
 import { IJoinForm } from '@/types/form';
-import { getToday } from '@/utils/date';
 import { useSearchParams } from 'next/navigation';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function JoinPage() {
@@ -17,27 +17,13 @@ function JoinPage() {
 
   usePreventRefresh(); // 새로고침 방지
 
-  const defaultValue =
-    step === 1
-      ? {
-          email: '',
-          password: '',
-          passwordCheck: '',
-          terms: {
-            marketing: false,
-            ads: false,
-          },
-          nickname: '',
-          job: '무직',
-          gender: '남성',
-          birthDate: getToday(),
-        }
-      : typeof window !== 'undefined' &&
-        JSON.parse(localStorage.getItem(JOIN_FORM_KEY)!)!;
-
   const methods = useForm<IJoinForm>({
     mode: 'onBlur',
-    defaultValues: defaultValue,
+    defaultValues:
+      step === 1
+        ? defaultValue
+        : typeof window !== 'undefined' &&
+          JSON.parse(localStorage.getItem(JOIN_FORM_KEY)!)!,
   });
   const { getValues } = methods;
 

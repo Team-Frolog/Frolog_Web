@@ -1,5 +1,6 @@
+'use client';
+
 import Timer from '@/components/common/form/Timer';
-import { inputStyle } from '@/styles/input';
 import React, { useState } from 'react';
 
 interface Props {
@@ -7,10 +8,18 @@ interface Props {
   setCode: React.Dispatch<React.SetStateAction<string>>;
   setErrorOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handleCodeSend: () => void;
+  isExpired: boolean;
+  setIsExpired: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function CodeInput({ code, setCode, handleCodeSend, setErrorOpen }: Props) {
-  const [isExpired, setIsExpired] = useState<boolean>(false);
+function CodeInput({
+  code,
+  setCode,
+  handleCodeSend,
+  setErrorOpen,
+  isExpired,
+  setIsExpired,
+}: Props) {
   const [resetTimer, setResetTimer] = useState<boolean>(false);
 
   const handleClickSend = () => {
@@ -47,14 +56,15 @@ function CodeInput({ code, setCode, handleCodeSend, setErrorOpen }: Props) {
       <div className='relative w-full'>
         <input
           autoFocus
-          type='number'
+          type='text'
           pattern='[0-9]*'
           inputMode='numeric'
           value={code}
           onChange={handleChange}
           placeholder='인증번호 입력'
           onKeyDown={handleKeyPress}
-          className={`w-full rounded-[12px] border px-[16px] py-[18px] pr-[110px] text-body_lg outline-none ${isExpired ? inputStyle.error : inputStyle.default}`}
+          disabled={isExpired}
+          className={`input-code-common ${isExpired ? 'input-code-error' : 'input-default'}`}
         />
         <div className='absolute bottom-1/4 right-[16px] flex items-center gap-[8px]'>
           <Timer reset={resetTimer} setIsExpired={setIsExpired} />

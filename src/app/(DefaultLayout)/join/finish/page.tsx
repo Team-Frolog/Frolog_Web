@@ -5,14 +5,16 @@ import React from 'react';
 import JoinFinishLight from '@/components/joinPage/JoinFinishLight';
 import useCustomBack from '@/hooks/useCustomBack';
 import { useRouter } from 'next/navigation';
+import PopperAnimation from '@/components/animation/PopperAnimation';
 
 function JoinFinishPage() {
   const router = useRouter();
-  useCustomBack(() => router.push('/login'));
+  useCustomBack('/login');
 
   return (
     <div className='flex h-fit w-full flex-col justify-between overflow-hidden mobile:h-screen'>
-      <div className='py-[80px]'>
+      <div className='relative py-[80px]'>
+        <PopperAnimation />
         <BigTitle align='text-center'>
           야호!
           <br />
