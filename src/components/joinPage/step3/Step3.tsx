@@ -7,15 +7,30 @@ import { AnimatePresence } from 'framer-motion';
 import { PAGES } from '@/constants/pageConfig';
 import Button from '@/components/common/button/Button';
 import { useRouter } from 'next/navigation';
+import { requestCode } from '@/api/class';
+import { useFormContext } from 'react-hook-form';
+import { FetchError } from '@frolog/frolog-api';
 
 function Step3() {
+  const { watch } = useFormContext();
   const router = useRouter();
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
   const [code, setCode] = useState<string>('');
   const [isExpired, setIsExpired] = useState<boolean>(false);
 
-  const handleCodeSend = () => {
-    // 코드 요청
+  const handleCodeSend = async () => {
+    try {
+      const data = await requestCode.fetch({
+        target: 'signUp',
+        email: watch('email'),
+      });
+      console.log('request data', data);
+    } catch (err) {
+      if (err instanceof FetchError) {
+        console.log(err);
+      }
+      console.log(err);
+    }
   };
 
   const handleClickNext = () => {
@@ -26,6 +41,10 @@ function Step3() {
       setErrorOpen(true);
     }
   };
+
+  useEffect(() => {
+    handleCodeSend();
+  }, []);
 
   useEffect(() => {
     setErrorOpen(false);

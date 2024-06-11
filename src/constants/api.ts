@@ -1,1 +1,1 @@
-export const BASE_URL = '';
+export const BASE_URL = 'https://api.frolog.kr';
