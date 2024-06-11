@@ -22,7 +22,7 @@ function LandingPage() {
           <br />
           나갈 시간
         </BigTitle>
-        <ButtonWithText btnText='로그인 하기' route='/login'>
+        <ButtonWithText btnText='로그인 하기' route='/login' disabled={true}>
           <div className='flex gap-[6px]'>
             <span className='text-body_lg text-gray-400'>우리 초면인가요?</span>
             <Link
