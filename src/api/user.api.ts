@@ -6,13 +6,13 @@ import {
   GetUsernameAvailabilityReq,
   RequestEmailCode,
   RequestEmailCodeReq,
-  RequestEmailCodeRes,
   SignUp,
   SignUpReq,
   VerifyEmailCode,
   VerifyEmailCodeReq,
 } from '@frolog/frolog-api';
 
+const signUp = new SignUp(baseOptions);
 const getEmailAvailability = new GetEmailAvailability(baseOptions);
 const getUserNameAvailability = new GetUsernameAvailability(baseOptions);
 const requestEmailCode = new RequestEmailCode(baseOptions);
@@ -21,9 +21,10 @@ const verifyEmailCode = new VerifyEmailCode(baseOptions);
 export const userAPI = {
   signUp: async (formData: SignUpReq) => {
     try {
-      // new SignUp(baseOptions).fetch({});
+      const data = await signUp.fetch(formData);
+      return data;
     } catch (err) {
-      // error handling
+      window.alert('다시 시도해주세요.');
     }
   },
   checkEmail: async (req: GetEmailAvailabilityReq) => {

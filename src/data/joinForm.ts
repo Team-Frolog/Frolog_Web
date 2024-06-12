@@ -30,7 +30,7 @@ export const defaultValue: IJoinForm = {
     },
   },
 
-  personal_infos: {
+  additional_info: {
     occupation: {
       value: '무직',
       visibility: true,

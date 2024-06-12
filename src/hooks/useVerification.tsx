@@ -1,12 +1,12 @@
 import { userAPI } from '@/api/user.api';
 import useStore from '@/store/store';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export const useVerification = () => {
   const [isVerified, setIsVerified] = useState<boolean | null>(null);
   const [isSendFailed, setIsSendFailed] = useState(false);
-  const { setEmailCodeToken, emailCodeToken } = useStore();
+  const { setEmailCodeToken, emailCodeToken, setEmailVerifiedToken } =
+    useStore();
 
   const sendEmailCode = async (email: string) => {
     const data = await userAPI.requestCode({ email, target: 'signUp' });
@@ -30,6 +30,7 @@ export const useVerification = () => {
 
     if (data!.result) {
       setIsVerified(true);
+      setEmailVerifiedToken(data!.email_verified_token!);
     } else {
       setIsVerified(false);
     }

@@ -1,18 +1,24 @@
 'use client';
 
+import { userAPI } from '@/api/user.api';
 import Step1 from '@/components/joinPage/step1/Step1';
 import Step2 from '@/components/joinPage/step2/Step2';
 import Step3 from '@/components/joinPage/step3/Step3';
 import Step4 from '@/components/joinPage/step4/Step4';
+import { PAGES } from '@/constants/pageConfig';
 import { JOIN_FORM_KEY } from '@/constants/storage';
 import { defaultValue } from '@/data/joinForm';
 import usePreventRefresh from '@/hooks/usePreventRefresh';
+import useStore from '@/store/store';
 import { IJoinForm } from '@/types/form';
-import { useSearchParams } from 'next/navigation';
+import { transformJoinForm } from '@/utils/transformJoinForm';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function JoinPage() {
+  const router = useRouter();
+  const { emailVerifiedToken, resetToken } = useStore();
   const step = Number(useSearchParams().get('step')!);
 
   usePreventRefresh(); // 새로고침 방지
@@ -25,7 +31,7 @@ function JoinPage() {
         : typeof window !== 'undefined' &&
           JSON.parse(localStorage.getItem(JOIN_FORM_KEY)!)!,
   });
-  const { getValues } = methods;
+  const { getValues, handleSubmit } = methods;
 
   // step별 폼 상태 저장
   useEffect(() => {
@@ -36,9 +42,23 @@ function JoinPage() {
     }
   }, [step]);
 
+  const handleSignUp = async (data: IJoinForm) => {
+    const formData = transformJoinForm(data, emailVerifiedToken!);
+    console.log(formData);
+
+    const signUpResult = await userAPI.signUp(formData);
+    console.log(signUpResult);
+
+    if (signUpResult?.result) {
+      resetToken();
+      localStorage.removeItem(JOIN_FORM_KEY);
+      router.push(PAGES.JOIN_FINISH);
+    }
+  };
+
   return (
     <FormProvider {...methods}>
-      <form className='h-full'>
+      <form className='h-full' onSubmit={handleSubmit(handleSignUp)}>
         {step === 1 && <Step1 />}
         {step === 2 && <Step2 />}
         {step === 3 && <Step3 />}

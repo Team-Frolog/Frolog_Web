@@ -6,28 +6,16 @@ import JobSelector from './JobSelector';
 import GenderSelector from './GenderSelector';
 import DateSelector from './DateSelector';
 import { useFormContext } from 'react-hook-form';
-import { JOIN_FORM_KEY } from '@/constants/storage';
-import { PAGES } from '@/constants/pageConfig';
 import Button from '@/components/common/button/Button';
-import { useRouter } from 'next/navigation';
 import { userAPI } from '@/api/user.api';
 
 function Step4() {
-  const router = useRouter();
   const {
     watch,
     register,
     setError,
     formState: { errors },
   } = useFormContext();
-
-  const handleSubmitJoin = () => {
-    // 폼 상태 제거
-    localStorage.removeItem(JOIN_FORM_KEY);
-
-    // 실패한 경우
-    router.push(PAGES.JOIN_FINISH);
-  };
 
   return (
     <div className='flex h-full w-full flex-col justify-between gap-[24px] p-page'>
@@ -45,9 +33,11 @@ function Step4() {
               message: '4~15자, 한글, 영문 또는 숫자를 입력하세요. (공백 제외)',
             },
             onBlur: async (e) => {
-              if (!errors.username) {
+              const value = e.target.value;
+
+              if (!errors.username && value.trim() !== '') {
                 const data = await userAPI.checkNickname({
-                  username: e.target.value,
+                  username: value,
                 });
                 if (!data) {
                   setError('username', {
@@ -64,7 +54,7 @@ function Step4() {
         <DateSelector />
       </div>
       <Button
-        onClick={handleSubmitJoin}
+        type='submit'
         disabled={!watch('username') || Boolean(errors.username)}
       >
         가입완료
