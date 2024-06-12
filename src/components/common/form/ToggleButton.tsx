@@ -13,7 +13,7 @@ function ToggleButton({ fieldName }: Props) {
   const isPublic =
     typeof window === 'undefined'
       ? true
-      : watch(`personal_infos.${fieldName}.visibility`);
+      : watch(`additional_info.${fieldName}.visibility`);
 
   return (
     <div className='flex gap-[4px]'>
@@ -24,7 +24,7 @@ function ToggleButton({ fieldName }: Props) {
         type='checkbox'
         checked={isPublic}
         onChange={() =>
-          setValue(`personal_infos.${fieldName}.visibility`, !isPublic)
+          setValue(`additional_info.${fieldName}.visibility`, !isPublic)
         }
         className='relative h-[20px] w-[40px] cursor-pointer appearance-none rounded-[20px] bg-gray-700 outline-none before:absolute before:left-[2px] before:top-[2px] before:h-[16px] before:w-[16px] before:rounded-[50%] before:bg-white before:transition-transform before:duration-200 checked:bg-main checked:before:translate-x-[20px]'
       />

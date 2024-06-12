@@ -15,7 +15,7 @@ function JobSelector() {
         <select
           defaultValue='무직'
           onChange={(e) =>
-            setValue('personal_infos.occupation.value', e.target.value)
+            setValue('additional_info.occupation.value', e.target.value)
           }
           className={`w-full cursor-pointer appearance-none rounded-[12px] border border-solid border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg text-white outline-none`}
         >

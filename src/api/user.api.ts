@@ -1,71 +1,62 @@
+import { baseOptions } from './options';
 import {
-  IRequestCodeReq,
-  ISignUpReq,
-  IVerifyCodeReq,
-} from '@/types/api/user/request';
-import { clientInstance } from './instances/clientInstance';
-import { AxiosResponse } from 'axios';
-import {
-  IValidationRes,
-  IRequestCodeRes,
-  ISignUpRes,
-  IVerifyCodeRes,
-} from '@/types/api/user/response';
+  GetEmailAvailability,
+  GetEmailAvailabilityReq,
+  GetUsernameAvailability,
+  GetUsernameAvailabilityReq,
+  RequestEmailCode,
+  RequestEmailCodeReq,
+  SignUp,
+  SignUpReq,
+  VerifyEmailCode,
+  VerifyEmailCodeReq,
+} from '@frolog/frolog-api';
+
+const signUp = new SignUp(baseOptions);
+const getEmailAvailability = new GetEmailAvailability(baseOptions);
+const getUserNameAvailability = new GetUsernameAvailability(baseOptions);
+const requestEmailCode = new RequestEmailCode(baseOptions);
+const verifyEmailCode = new VerifyEmailCode(baseOptions);
 
 export const userAPI = {
-  signUp: async (formData: ISignUpReq) => {
+  signUp: async (formData: SignUpReq) => {
     try {
-      const { data }: AxiosResponse<ISignUpRes> = await clientInstance.post(
-        '/v1/auth/signup',
-        formData
-      );
+      const data = await signUp.fetch(formData);
       return data;
     } catch (err) {
-      // error handling
+      window.alert('다시 시도해주세요.');
     }
   },
-  checkEmail: async (email: string) => {
+  checkEmail: async (req: GetEmailAvailabilityReq) => {
     try {
-      const { data }: AxiosResponse<IValidationRes> = await clientInstance.get(
-        `/v1/auth/signup?email=${email}`
-      );
-      return data;
+      const data = await getEmailAvailability.fetch(req);
+      return data.result;
     } catch (err) {
-      // error handling
+      window.alert('다시 시도해주세요.');
     }
   },
-  checkNickname: async (username: string) => {
+  checkNickname: async (req: GetUsernameAvailabilityReq) => {
     try {
-      const { data }: AxiosResponse<IValidationRes> = await clientInstance.get(
-        `/v1/profile/validate-username?username=${username}`
-      );
-      return data;
+      const data = await getUserNameAvailability.fetch(req);
+      return data.result;
     } catch (err) {
-      // error handling
+      window.alert('다시 시도해주세요.');
     }
   },
-  requestCode: async (email: string) => {
+  requestCode: async (req: RequestEmailCodeReq) => {
     try {
-      const req: IRequestCodeReq = {
-        email,
-        target: 'signUp',
-      };
-      const { data }: AxiosResponse<IRequestCodeRes> =
-        await clientInstance.post(`/v1/auth/request-email-code`, req);
+      const data = await requestEmailCode.fetch(req);
       return data;
     } catch (err) {
-      // error handling
+      window.alert('다시 시도해주세요.');
     }
   },
-  verifyCode: async (codeData: IVerifyCodeReq) => {
+  verifyCode: async (req: VerifyEmailCodeReq) => {
     try {
-      const { data }: AxiosResponse<IVerifyCodeRes> = await clientInstance.post(
-        `/v1/auth/verify-email-code`,
-        codeData
-      );
+      const data = await verifyEmailCode.fetch(req);
       return data;
     } catch (err) {
-      // error handling
+      window.alert('다시 시도해주세요.');
     }
   },
 };
