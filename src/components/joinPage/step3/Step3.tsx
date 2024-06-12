@@ -4,31 +4,28 @@ import React, { useEffect, useState } from 'react';
 import CodeInput from './CodeInput';
 import ErrorPopUp from '@/components/common/form/ErrorPopUp';
 import { AnimatePresence } from 'framer-motion';
-import { PAGES } from '@/constants/pageConfig';
 import Button from '@/components/common/button/Button';
-import { useRouter } from 'next/navigation';
 import { useVerification } from '@/hooks/useVerification';
 import { useFormContext } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { PAGES } from '@/constants/pageConfig';
 
 function Step3() {
-  const { watch } = useFormContext();
-  const { isFailed, sendEmailCode } = useVerification();
   const router = useRouter();
-  const [errorOpen, setErrorOpen] = useState<boolean>(false);
+  const { watch } = useFormContext();
+  const {
+    isSendFailed,
+    sendEmailCode,
+    verifyEmailCode,
+    isVerified,
+    setIsVerified,
+  } = useVerification();
   const [code, setCode] = useState<string>('');
   const [isExpired, setIsExpired] = useState<boolean>(false);
 
   const handleSendCode = () => {
+    setIsVerified(null);
     sendEmailCode(watch('email'));
-  };
-
-  const handleClickNext = () => {
-    // 서버 인증코드 검증
-    if (+code === 123456) {
-      router.push(`${PAGES.JOIN}?step=4`);
-    } else {
-      setErrorOpen(true);
-    }
   };
 
   useEffect(() => {
@@ -36,7 +33,13 @@ function Step3() {
   }, []);
 
   useEffect(() => {
-    setErrorOpen(false);
+    if (isVerified) {
+      router.push(`${PAGES.JOIN}?step=4`);
+    }
+  }, [isVerified]);
+
+  useEffect(() => {
+    setIsVerified(null);
   }, [code]);
 
   return (
@@ -45,16 +48,21 @@ function Step3() {
         code={code}
         setCode={setCode}
         handleSendCode={handleSendCode}
-        setErrorOpen={setErrorOpen}
         isExpired={isExpired}
+        isFailed={isSendFailed}
         setIsExpired={setIsExpired}
       />
 
       <div className='flex w-full flex-col items-center gap-[12px]'>
         <AnimatePresence>
-          {errorOpen && <ErrorPopUp errorMsg='인증코드를 다시 확인해주세요' />}
+          {isVerified === false && (
+            <ErrorPopUp errorMsg='인증코드를 다시 확인해주세요' />
+          )}
         </AnimatePresence>
-        <Button onClick={handleClickNext} disabled={!code || isExpired}>
+        <Button
+          onClick={() => verifyEmailCode(code)}
+          disabled={!code || isExpired || isSendFailed}
+        >
           다음
         </Button>
       </div>

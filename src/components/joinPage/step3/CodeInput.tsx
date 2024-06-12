@@ -6,9 +6,9 @@ import React, { useState } from 'react';
 interface Props {
   code: string;
   setCode: React.Dispatch<React.SetStateAction<string>>;
-  setErrorOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handleSendCode: () => void;
   isExpired: boolean;
+  isFailed: boolean;
   setIsExpired: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -16,8 +16,8 @@ function CodeInput({
   code,
   setCode,
   handleSendCode,
-  setErrorOpen,
   isExpired,
+  isFailed,
   setIsExpired,
 }: Props) {
   const [resetTimer, setResetTimer] = useState<boolean>(false);
@@ -27,7 +27,6 @@ function CodeInput({
     handleSendCode();
     setResetTimer((prev) => !prev);
     setCode('');
-    setErrorOpen(false);
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -64,7 +63,7 @@ function CodeInput({
           placeholder='인증번호 입력'
           onKeyDown={handleKeyPress}
           disabled={isExpired}
-          className={`input-code-common ${isExpired ? 'input-code-error' : 'input-default'}`}
+          className={`input-code-common ${isExpired || isFailed ? 'input-code-error' : 'input-default'}`}
         />
         <div className='absolute bottom-1/4 right-[16px] flex items-center gap-[8px]'>
           <Timer reset={resetTimer} setIsExpired={setIsExpired} />
@@ -77,9 +76,11 @@ function CodeInput({
           </button>
         </div>
       </div>
-      {isExpired && (
+      {(isExpired || isFailed) && (
         <span className='text-body_md text-error'>
-          입력 유효시간이 지났어요. 다시 인증해주세요.
+          {isExpired
+            ? '입력 유효시간이 지났어요. 다시 인증해주세요.'
+            : '다시 시도해주세요.'}
         </span>
       )}
     </div>
