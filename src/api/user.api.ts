@@ -1,69 +1,53 @@
+import { BASE_URL } from '@/constants/api';
 import {
-  IRequestCodeReq,
-  ISignUpReq,
-  IVerifyCodeReq,
-} from '@/types/api/user/request';
-import { clientInstance } from './instances/clientInstance';
-import { AxiosResponse } from 'axios';
-import {
-  IValidationRes,
-  IRequestCodeRes,
-  ISignUpRes,
-  IVerifyCodeRes,
-} from '@/types/api/user/response';
+  GetEmailAvailability,
+  GetUsernameAvailability,
+  RequestEmailCode,
+  SignUp,
+  SignUpReq,
+} from '@frolog/frolog-api';
+
+const baseOptions = {
+  baseURL: BASE_URL,
+};
+
+const getEmailAvailability = new GetEmailAvailability(baseOptions);
+const getUserNameAvailability = new GetUsernameAvailability(baseOptions);
+const requestCode = new RequestEmailCode(baseOptions);
 
 export const userAPI = {
-  signUp: async (formData: ISignUpReq) => {
+  signUp: async (formData: SignUpReq) => {
     try {
-      const { data }: AxiosResponse<ISignUpRes> = await clientInstance.post(
-        '/v1/auth/signup',
-        formData
-      );
-      return data;
+      // new SignUp(baseOptions).fetch({});
     } catch (err) {
       // error handling
     }
   },
   checkEmail: async (email: string) => {
     try {
-      const { data }: AxiosResponse<IValidationRes> = await clientInstance.get(
-        `/v1/auth/signup?email=${email}`
-      );
-      return data;
+      const data = await getEmailAvailability.fetch({ email });
+      return data.result;
     } catch (err) {
-      // error handling
+      window.alert('다시 시도해주세요.');
     }
   },
   checkNickname: async (username: string) => {
     try {
-      const { data }: AxiosResponse<IValidationRes> = await clientInstance.get(
-        `/v1/profile/validate-username?username=${username}`
-      );
-      return data;
+      //
     } catch (err) {
       // error handling
     }
   },
   requestCode: async (email: string) => {
     try {
-      const req: IRequestCodeReq = {
-        email,
-        target: 'signUp',
-      };
-      const { data }: AxiosResponse<IRequestCodeRes> =
-        await clientInstance.post(`/v1/auth/request-email-code`, req);
-      return data;
+      //
     } catch (err) {
       // error handling
     }
   },
-  verifyCode: async (codeData: IVerifyCodeReq) => {
+  verifyCode: async () => {
     try {
-      const { data }: AxiosResponse<IVerifyCodeRes> = await clientInstance.post(
-        `/v1/auth/verify-email-code`,
-        codeData
-      );
-      return data;
+      //
     } catch (err) {
       // error handling
     }

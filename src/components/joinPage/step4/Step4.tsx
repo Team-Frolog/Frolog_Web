@@ -10,7 +10,6 @@ import { JOIN_FORM_KEY } from '@/constants/storage';
 import { PAGES } from '@/constants/pageConfig';
 import Button from '@/components/common/button/Button';
 import { useRouter } from 'next/navigation';
-import { getUserNameAvailability } from '@/api/class';
 
 function Step4() {
   const router = useRouter();
@@ -44,10 +43,10 @@ function Step4() {
               message: '4~15자, 한글, 영문 또는 숫자를 입력하세요. (공백 제외)',
             },
             onBlur: async (e) => {
-              const data = await getUserNameAvailability.fetch({
-                username: e.target.value,
-              });
-              console.log(data);
+              // const data = await getUserNameAvailability.fetch({
+              //   username: e.target.value,
+              // });
+              // console.log(data);
             },
           })}
         />

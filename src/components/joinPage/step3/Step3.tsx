@@ -7,7 +7,6 @@ import { AnimatePresence } from 'framer-motion';
 import { PAGES } from '@/constants/pageConfig';
 import Button from '@/components/common/button/Button';
 import { useRouter } from 'next/navigation';
-import { requestCode } from '@/api/class';
 import { useFormContext } from 'react-hook-form';
 import { FetchError } from '@frolog/frolog-api';
 
@@ -20,11 +19,11 @@ function Step3() {
 
   const handleCodeSend = async () => {
     try {
-      const data = await requestCode.fetch({
-        target: 'signUp',
-        email: watch('email'),
-      });
-      console.log('request data', data);
+      // const data = await requestCode.fetch({
+      //   target: 'signUp',
+      //   email: watch('email'),
+      // });
+      // console.log('request data', data);
     } catch (err) {
       if (err instanceof FetchError) {
         console.log(err);
