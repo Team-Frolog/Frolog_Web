@@ -6,7 +6,7 @@ export const useVerification = () => {
   const [isVerified, setIsVerified] = useState<boolean | null>(null);
   const [isSendFailed, setIsSendFailed] = useState(false);
   const { setEmailCodeToken, emailCodeToken, setEmailVerifiedToken } =
-    useStore();
+    useStore().verification;
 
   const sendEmailCode = async (email: string) => {
     const data = await userAPI.requestCode({ email, target: 'signUp' });

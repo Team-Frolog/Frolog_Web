@@ -18,7 +18,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 function JoinPage() {
   const router = useRouter();
-  const { emailVerifiedToken, resetToken } = useStore();
+  const { verification } = useStore();
   const step = Number(useSearchParams().get('step')!);
 
   usePreventRefresh(); // 새로고침 방지
@@ -43,14 +43,11 @@ function JoinPage() {
   }, [step]);
 
   const handleSignUp = async (data: IJoinForm) => {
-    const formData = transformJoinForm(data, emailVerifiedToken!);
-    console.log(formData);
-
+    const formData = transformJoinForm(data, verification.emailVerifiedToken!);
     const signUpResult = await userAPI.signUp(formData);
-    console.log(signUpResult);
 
     if (signUpResult?.result) {
-      resetToken();
+      verification.resetToken();
       localStorage.removeItem(JOIN_FORM_KEY);
       router.push(PAGES.JOIN_FINISH);
     }
