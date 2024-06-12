@@ -7,29 +7,19 @@ import { AnimatePresence } from 'framer-motion';
 import { PAGES } from '@/constants/pageConfig';
 import Button from '@/components/common/button/Button';
 import { useRouter } from 'next/navigation';
+import { useVerification } from '@/hooks/useVerification';
 import { useFormContext } from 'react-hook-form';
-import { FetchError } from '@frolog/frolog-api';
 
 function Step3() {
   const { watch } = useFormContext();
+  const { isFailed, sendEmailCode } = useVerification();
   const router = useRouter();
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
   const [code, setCode] = useState<string>('');
   const [isExpired, setIsExpired] = useState<boolean>(false);
 
-  const handleCodeSend = async () => {
-    try {
-      // const data = await requestCode.fetch({
-      //   target: 'signUp',
-      //   email: watch('email'),
-      // });
-      // console.log('request data', data);
-    } catch (err) {
-      if (err instanceof FetchError) {
-        console.log(err);
-      }
-      console.log(err);
-    }
+  const handleSendCode = () => {
+    sendEmailCode(watch('email'));
   };
 
   const handleClickNext = () => {
@@ -42,7 +32,7 @@ function Step3() {
   };
 
   useEffect(() => {
-    handleCodeSend();
+    handleSendCode();
   }, []);
 
   useEffect(() => {
@@ -54,7 +44,7 @@ function Step3() {
       <CodeInput
         code={code}
         setCode={setCode}
-        handleCodeSend={handleCodeSend}
+        handleSendCode={handleSendCode}
         setErrorOpen={setErrorOpen}
         isExpired={isExpired}
         setIsExpired={setIsExpired}

@@ -7,7 +7,7 @@ interface Props {
   code: string;
   setCode: React.Dispatch<React.SetStateAction<string>>;
   setErrorOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  handleCodeSend: () => void;
+  handleSendCode: () => void;
   isExpired: boolean;
   setIsExpired: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -15,7 +15,7 @@ interface Props {
 function CodeInput({
   code,
   setCode,
-  handleCodeSend,
+  handleSendCode,
   setErrorOpen,
   isExpired,
   setIsExpired,
@@ -24,7 +24,7 @@ function CodeInput({
 
   const handleClickSend = () => {
     setIsExpired(false);
-    handleCodeSend();
+    handleSendCode();
     setResetTimer((prev) => !prev);
     setCode('');
     setErrorOpen(false);

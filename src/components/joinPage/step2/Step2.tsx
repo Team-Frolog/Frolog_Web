@@ -42,7 +42,9 @@ function Step2() {
                 trigger('email');
 
                 if (!errors.email) {
-                  const data = await userAPI.checkEmail(e.target.value);
+                  const data = await userAPI.checkEmail({
+                    email: e.target.value,
+                  });
                   if (!data) {
                     setError('email', {
                       type: 'manual',

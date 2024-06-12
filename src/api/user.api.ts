@@ -1,19 +1,18 @@
-import { BASE_URL } from '@/constants/api';
+import { baseOptions } from './options';
 import {
   GetEmailAvailability,
+  GetEmailAvailabilityReq,
   GetUsernameAvailability,
   RequestEmailCode,
+  RequestEmailCodeReq,
+  RequestEmailCodeRes,
   SignUp,
   SignUpReq,
 } from '@frolog/frolog-api';
 
-const baseOptions = {
-  baseURL: BASE_URL,
-};
-
 const getEmailAvailability = new GetEmailAvailability(baseOptions);
 const getUserNameAvailability = new GetUsernameAvailability(baseOptions);
-const requestCode = new RequestEmailCode(baseOptions);
+const requestEmailCode = new RequestEmailCode(baseOptions);
 
 export const userAPI = {
   signUp: async (formData: SignUpReq) => {
@@ -23,9 +22,9 @@ export const userAPI = {
       // error handling
     }
   },
-  checkEmail: async (email: string) => {
+  checkEmail: async (req: GetEmailAvailabilityReq) => {
     try {
-      const data = await getEmailAvailability.fetch({ email });
+      const data = await getEmailAvailability.fetch(req);
       return data.result;
     } catch (err) {
       window.alert('다시 시도해주세요.');
@@ -38,11 +37,12 @@ export const userAPI = {
       // error handling
     }
   },
-  requestCode: async (email: string) => {
+  requestCode: async (req: RequestEmailCodeReq) => {
     try {
-      //
+      const data = await requestEmailCode.fetch(req);
+      return data;
     } catch (err) {
-      // error handling
+      window.alert('다시 시도해주세요.');
     }
   },
   verifyCode: async () => {
