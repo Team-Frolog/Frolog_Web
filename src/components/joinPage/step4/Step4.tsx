@@ -10,12 +10,14 @@ import { JOIN_FORM_KEY } from '@/constants/storage';
 import { PAGES } from '@/constants/pageConfig';
 import Button from '@/components/common/button/Button';
 import { useRouter } from 'next/navigation';
+import { userAPI } from '@/api/user.api';
 
 function Step4() {
   const router = useRouter();
   const {
     watch,
     register,
+    setError,
     formState: { errors },
   } = useFormContext();
 
@@ -43,10 +45,17 @@ function Step4() {
               message: '4~15자, 한글, 영문 또는 숫자를 입력하세요. (공백 제외)',
             },
             onBlur: async (e) => {
-              // const data = await getUserNameAvailability.fetch({
-              //   username: e.target.value,
-              // });
-              // console.log(data);
+              if (!errors.username) {
+                const data = await userAPI.checkNickname({
+                  username: e.target.value,
+                });
+                if (!data) {
+                  setError('username', {
+                    type: 'manual',
+                    message: '이미 사용 중인 닉네임이에요.',
+                  });
+                }
+              }
             },
           })}
         />

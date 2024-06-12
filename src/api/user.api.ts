@@ -3,6 +3,7 @@ import {
   GetEmailAvailability,
   GetEmailAvailabilityReq,
   GetUsernameAvailability,
+  GetUsernameAvailabilityReq,
   RequestEmailCode,
   RequestEmailCodeReq,
   RequestEmailCodeRes,
@@ -33,11 +34,12 @@ export const userAPI = {
       window.alert('다시 시도해주세요.');
     }
   },
-  checkNickname: async (username: string) => {
+  checkNickname: async (req: GetUsernameAvailabilityReq) => {
     try {
-      //
+      const data = await getUserNameAvailability.fetch(req);
+      return data.result;
     } catch (err) {
-      // error handling
+      window.alert('다시 시도해주세요.');
     }
   },
   requestCode: async (req: RequestEmailCodeReq) => {
