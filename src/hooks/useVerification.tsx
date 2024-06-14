@@ -5,8 +5,11 @@ import { useState } from 'react';
 export const useVerification = () => {
   const [isVerified, setIsVerified] = useState<boolean | null>(null);
   const [isSendFailed, setIsSendFailed] = useState(false);
-  const { setEmailCodeToken, emailCodeToken, setEmailVerifiedToken } =
-    useStore().verification;
+  const {
+    setEmailCodeToken,
+    setEmailVerifiedToken,
+    verification: { emailCodeToken },
+  } = useStore();
 
   const sendEmailCode = async (email: string) => {
     const data = await userAPI.requestCode({ email, target: 'signUp' });

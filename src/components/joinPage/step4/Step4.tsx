@@ -13,6 +13,7 @@ function Step4() {
   const {
     watch,
     register,
+    trigger,
     setError,
     formState: { errors },
   } = useFormContext();
@@ -25,17 +26,19 @@ function Step4() {
           title='닉네임'
           type='text'
           fieldName='username'
-          placeholder='4~15자, 한글, 영문 또는 숫자를 입력하세요. (공백 제외)'
+          placeholder='4~15자 이내 한글, 영문 또는 숫자를 입력하세요. (공백 제외)'
           errorMessage={errors.username && String(errors.username.message)}
           {...register('username', {
             pattern: {
               value: /^[가-힣a-zA-Z0-9]{4,15}$/,
-              message: '4~15자, 한글, 영문 또는 숫자를 입력하세요. (공백 제외)',
+              message:
+                '4~15자 이내 한글, 영문 또는 숫자를 입력하세요. (공백 제외)',
             },
             onBlur: async (e) => {
+              const isValid = await trigger('username');
               const value = e.target.value;
 
-              if (!errors.username && value.trim() !== '') {
+              if (isValid && value.trim() !== '') {
                 const data = await userAPI.checkNickname({
                   username: value,
                 });

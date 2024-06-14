@@ -8,7 +8,7 @@ import Step4 from '@/components/joinPage/step4/Step4';
 import { PAGES } from '@/constants/pageConfig';
 import { JOIN_FORM_KEY } from '@/constants/storage';
 import { defaultValue } from '@/data/joinForm';
-import usePreventRefresh from '@/hooks/usePreventRefresh';
+import { usePreventBack } from '@/hooks/usePreventBack';
 import useStore from '@/store/store';
 import { IJoinForm } from '@/types/form';
 import { transformJoinForm } from '@/utils/transformJoinForm';
@@ -17,11 +17,10 @@ import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function JoinPage() {
+  usePreventBack();
   const router = useRouter();
-  const { verification } = useStore();
+  const { verification, resetToken } = useStore();
   const step = Number(useSearchParams().get('step')!);
-
-  usePreventRefresh(); // 새로고침 방지
 
   const methods = useForm<IJoinForm>({
     mode: 'onBlur',
@@ -47,7 +46,7 @@ function JoinPage() {
     const signUpResult = await userAPI.signUp(formData);
 
     if (signUpResult?.result) {
-      verification.resetToken();
+      resetToken();
       localStorage.removeItem(JOIN_FORM_KEY);
       router.push(PAGES.JOIN_FINISH);
     }
