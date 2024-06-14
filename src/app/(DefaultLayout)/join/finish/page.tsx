@@ -3,13 +3,11 @@
 import BigTitle from '@/components/common/text/BigTitle';
 import React from 'react';
 import JoinFinishLight from '@/components/joinPage/JoinFinishLight';
-import useCustomBack from '@/hooks/useCustomBack';
-import { useRouter } from 'next/navigation';
 import PopperAnimation from '@/components/animation/PopperAnimation';
+import { usePreventBack } from '@/hooks/usePreventBack';
 
 function JoinFinishPage() {
-  const router = useRouter();
-  useCustomBack('/login');
+  usePreventBack();
 
   return (
     <div className='flex h-fit w-full flex-col justify-between overflow-hidden mobile:h-screen'>
