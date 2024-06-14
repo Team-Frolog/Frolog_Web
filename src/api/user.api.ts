@@ -24,6 +24,7 @@ export const userAPI = {
       const data = await signUp.fetch(formData);
       return data;
     } catch (err) {
+      console.log('회원가입 오류', err);
       window.alert('다시 시도해주세요.');
     }
   },
@@ -32,6 +33,7 @@ export const userAPI = {
       const data = await getEmailAvailability.fetch(req);
       return data.result;
     } catch (err) {
+      console.log('이메일 중복 검증 오류', err);
       window.alert('다시 시도해주세요.');
     }
   },
@@ -40,6 +42,7 @@ export const userAPI = {
       const data = await getUserNameAvailability.fetch(req);
       return data.result;
     } catch (err) {
+      console.log('닉네임 중복 검증 오류', err);
       window.alert('다시 시도해주세요.');
     }
   },
@@ -48,6 +51,7 @@ export const userAPI = {
       const data = await requestEmailCode.fetch(req);
       return data;
     } catch (err) {
+      console.log('코드 요청 오류', err);
       window.alert('다시 시도해주세요.');
     }
   },
@@ -56,6 +60,7 @@ export const userAPI = {
       const data = await verifyEmailCode.fetch(req);
       return data;
     } catch (err) {
+      console.log('코드 검증 오류', err);
       window.alert('다시 시도해주세요.');
     }
   },

@@ -39,6 +39,7 @@ function JoinPage() {
       step === 1
         ? localStorage.removeItem(JOIN_FORM_KEY)
         : localStorage.setItem(JOIN_FORM_KEY, JSON.stringify(getValues()));
+      console.log(localStorage.getItem(JOIN_FORM_KEY));
     }
   }, [step]);
 

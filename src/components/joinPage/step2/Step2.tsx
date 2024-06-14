@@ -39,9 +39,10 @@ function Step2() {
                 message: '이메일 형식을 확인해주세요.',
               },
               onBlur: async (e) => {
+                const isVaild = await trigger('email');
                 const value = e.target.value;
 
-                if (!errors.email && value.trim() !== '') {
+                if (isVaild && value.trim() !== '') {
                   const data = await userAPI.checkEmail({
                     email: value,
                   });
