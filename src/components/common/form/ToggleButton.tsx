@@ -1,7 +1,7 @@
 'use client';
 
 import { TInfoName } from '@/types/form';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 interface Props {
@@ -10,10 +10,17 @@ interface Props {
 
 function ToggleButton({ fieldName }: Props) {
   const { watch, setValue } = useFormContext();
-  const isPublic =
-    typeof window === 'undefined'
-      ? true
-      : watch(`additional_info.${fieldName}.visibility`);
+  const [isPublic, setIsPublic] = useState(true);
+
+  useEffect(() => {
+    const visibility = watch(`additional_info.${fieldName}.visibility`);
+    setIsPublic(visibility);
+  }, [watch, fieldName]);
+
+  const handleChange = () => {
+    setValue(`additional_info.${fieldName}.visibility`, !isPublic);
+    setIsPublic(!isPublic);
+  };
 
   return (
     <div className='flex gap-[4px]'>
@@ -23,9 +30,7 @@ function ToggleButton({ fieldName }: Props) {
       <input
         type='checkbox'
         checked={isPublic}
-        onChange={() =>
-          setValue(`additional_info.${fieldName}.visibility`, !isPublic)
-        }
+        onChange={handleChange}
         className='relative h-[20px] w-[40px] cursor-pointer appearance-none rounded-[20px] bg-gray-700 outline-none before:absolute before:left-[2px] before:top-[2px] before:h-[16px] before:w-[16px] before:rounded-[50%] before:bg-white before:transition-transform before:duration-200 checked:bg-main checked:before:translate-x-[20px]'
       />
     </div>

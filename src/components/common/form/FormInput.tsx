@@ -35,7 +35,7 @@ const FormInput = React.forwardRef(
           ref={ref}
           placeholder={placeholder}
           style={{ imeMode: type === 'password' ? 'disabled' : 'auto' }}
-          className={`input-common ${watch(fieldName) && errors[fieldName] ? 'input-error' : 'input-default'}`}
+          className={`input-common placeholder:text-sm ${watch(fieldName) && errors[fieldName] ? 'input-error' : 'input-default'}`}
           onKeyDown={handleKeyPress}
           {...props}
         />
