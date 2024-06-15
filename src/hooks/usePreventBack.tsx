@@ -8,7 +8,7 @@ export const usePreventBack = () => {
   useEffect(() => {
     const handlePopState = (event: any) => {
       event.preventDefault();
-      window.location.replace('/login');
+      window.location.replace('/landing');
     };
 
     window.addEventListener('popstate', handlePopState);
