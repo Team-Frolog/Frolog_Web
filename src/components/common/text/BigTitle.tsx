@@ -6,9 +6,7 @@ interface Props {
 }
 
 function BigTitle({ children, align }: Props) {
-  return (
-    <h1 className={`text-h_lg_bold text-main_bright ${align}`}>{children}</h1>
-  );
+  return <h1 className={`text-h_lg_bold text-main ${align}`}>{children}</h1>;
 }
 
 export default BigTitle;

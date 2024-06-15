@@ -9,10 +9,7 @@ import { PAGES } from '@/constants/pageConfig';
 import { JOIN_FORM_KEY } from '@/constants/storage';
 import { defaultValue } from '@/data/joinForm';
 import { usePreventBack } from '@/hooks/usePreventBack';
-import {
-  useAuthActions,
-  useVerifyToken,
-} from '@/store/authStore';
+import { useAuthActions, useVerifyToken } from '@/store/authStore';
 import { IJoinForm } from '@/types/form';
 import { transformJoinForm } from '@/utils/transformJoinForm';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -52,7 +49,7 @@ function JoinPage() {
     if (signUpResult?.result) {
       resetToken();
       localStorage.removeItem(JOIN_FORM_KEY);
-      router.push(PAGES.JOIN_FINISH);
+      router.push(`${PAGES.JOIN_FINISH}?username=${data.username}`);
     }
   };
 
