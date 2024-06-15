@@ -9,7 +9,10 @@ import { PAGES } from '@/constants/pageConfig';
 import { JOIN_FORM_KEY } from '@/constants/storage';
 import { defaultValue } from '@/data/joinForm';
 import { usePreventBack } from '@/hooks/usePreventBack';
-import useStore from '@/store/store';
+import {
+  useAuthActions,
+  useVerifyToken,
+} from '@/store/authStore';
 import { IJoinForm } from '@/types/form';
 import { transformJoinForm } from '@/utils/transformJoinForm';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -19,7 +22,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 function JoinPage() {
   usePreventBack();
   const router = useRouter();
-  const { verification, resetToken } = useStore();
+  const verifyToken = useVerifyToken();
+  const { resetToken } = useAuthActions();
   const step = Number(useSearchParams().get('step')!);
 
   const methods = useForm<IJoinForm>({
@@ -42,7 +46,7 @@ function JoinPage() {
   }, [step]);
 
   const handleSignUp = async (data: IJoinForm) => {
-    const formData = transformJoinForm(data, verification.emailVerifiedToken!);
+    const formData = transformJoinForm(data, verifyToken!);
     const signUpResult = await userAPI.signUp(formData);
 
     if (signUpResult?.result) {

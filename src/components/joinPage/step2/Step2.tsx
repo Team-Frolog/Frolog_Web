@@ -1,25 +1,46 @@
 'use client';
 
 import { userAPI } from '@/api/user.api';
-import LinkButton from '@/components/common/button/LinkButton';
+import Button from '@/components/common/button/Button';
 import FormInput from '@/components/common/form/FormInput';
 import { PAGES } from '@/constants/pageConfig';
-import React, { useEffect } from 'react';
+import { useVerification } from '@/hooks/useVerification';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 function Step2() {
+  const router = useRouter();
+  const [isDisabled, setIsDisabled] = useState(true);
+  const { isSendFailed, sendEmailCode } = useVerification();
   const {
     watch,
     trigger,
     register,
     setError,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useFormContext();
+  const email = watch('email');
   const password = watch('password');
+  const passwordCheck = watch('passwordCheck');
 
   useEffect(() => {
-    trigger('passwordCheck');
-  }, [password, trigger]);
+    const disabled = Boolean(!email || !password || !passwordCheck || !isValid);
+    setIsDisabled(disabled);
+  }, [email, password, passwordCheck, isValid]);
+
+  const handleSendCode = () => {
+    sendEmailCode(watch('email')).then(() => {
+      if (isSendFailed) {
+        setError('email', {
+          type: 'manual',
+          message: '인증 요청을 다시 시도해주세요.',
+        });
+      } else {
+        router.push(`${PAGES.JOIN}?step=3`);
+      }
+    });
+  };
 
   return (
     <div className='flex h-full w-full flex-col justify-between p-page'>
@@ -68,6 +89,9 @@ function Step2() {
                   value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,15}$/,
                   message: '8~15자의 영문 대소문자, 숫자를 조합하세요.',
                 },
+                onChange: () => {
+                  trigger('passwordCheck');
+                },
               })}
             />
             <FormInput
@@ -95,19 +119,9 @@ function Step2() {
           </div>
         </div>
       </div>
-      <LinkButton
-        route={`${PAGES.JOIN}?step=3`}
-        disabled={Boolean(
-          !watch('email') ||
-            !watch('password') ||
-            !watch('passwordCheck') ||
-            errors.email ||
-            errors.password ||
-            errors.passwordCheck
-        )}
-      >
+      <Button onClick={handleSendCode} disabled={isDisabled}>
         다음
-      </LinkButton>
+      </Button>
     </div>
   );
 }

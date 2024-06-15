@@ -1,31 +1,23 @@
 'use client';
 
 import Timer from '@/components/common/form/Timer';
-import React, { useState } from 'react';
+import useAuthStore, { useAuthActions, useCodeTime } from '@/store/authStore';
+import React from 'react';
 
 interface Props {
   code: string;
   setCode: React.Dispatch<React.SetStateAction<string>>;
   handleSendCode: () => void;
-  isExpired: boolean;
   isFailed: boolean;
-  setIsExpired: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function CodeInput({
-  code,
-  setCode,
-  handleSendCode,
-  isExpired,
-  isFailed,
-  setIsExpired,
-}: Props) {
-  const [resetTimer, setResetTimer] = useState<boolean>(false);
+function CodeInput({ code, setCode, handleSendCode, isFailed }: Props) {
+  const expiredTime = useCodeTime();
+  const { resetCodeTime } = useAuthActions();
 
   const handleClickSend = () => {
-    setIsExpired(false);
     handleSendCode();
-    setResetTimer((prev) => !prev);
+    resetCodeTime();
     setCode('');
   };
 
@@ -62,11 +54,11 @@ function CodeInput({
           onChange={handleChange}
           placeholder='인증번호 입력'
           onKeyDown={handleKeyPress}
-          disabled={isExpired}
-          className={`input-code-common ${isExpired || isFailed ? 'input-code-error' : 'input-default'}`}
+          disabled={expiredTime === 0}
+          className={`input-code-common ${expiredTime === 0 || isFailed ? 'input-code-error' : 'input-default'}`}
         />
         <div className='absolute bottom-1/4 right-[16px] flex items-center gap-[8px]'>
-          <Timer reset={resetTimer} setIsExpired={setIsExpired} />
+          <Timer />
           <button
             type='button'
             onClick={handleClickSend}
@@ -76,9 +68,9 @@ function CodeInput({
           </button>
         </div>
       </div>
-      {(isExpired || isFailed) && (
+      {(expiredTime === 0 || isFailed) && (
         <span className='text-body_md text-error'>
-          {isExpired
+          {expiredTime === 0
             ? '입력 유효시간이 지났어요. 다시 인증해주세요.'
             : '다시 시도해주세요.'}
         </span>

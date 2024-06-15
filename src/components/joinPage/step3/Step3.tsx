@@ -9,9 +9,11 @@ import { useVerification } from '@/hooks/useVerification';
 import { useFormContext } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/pageConfig';
+import { useCodeTime } from '@/store/authStore';
 
 function Step3() {
   const router = useRouter();
+  const expiredTime = useCodeTime();
   const { watch } = useFormContext();
   const {
     isSendFailed,
@@ -21,16 +23,11 @@ function Step3() {
     setIsVerified,
   } = useVerification();
   const [code, setCode] = useState<string>('');
-  const [isExpired, setIsExpired] = useState<boolean>(false);
 
   const handleSendCode = () => {
     setIsVerified(null);
     sendEmailCode(watch('email'));
   };
-
-  useEffect(() => {
-    handleSendCode();
-  }, []);
 
   useEffect(() => {
     if (isVerified) {
@@ -48,9 +45,7 @@ function Step3() {
         code={code}
         setCode={setCode}
         handleSendCode={handleSendCode}
-        isExpired={isExpired}
         isFailed={isSendFailed}
-        setIsExpired={setIsExpired}
       />
 
       <div className='flex w-full flex-col items-center gap-[12px]'>
@@ -61,7 +56,7 @@ function Step3() {
         </AnimatePresence>
         <Button
           onClick={() => verifyEmailCode(code)}
-          disabled={!code || isExpired || isSendFailed}
+          disabled={!code || expiredTime === 0 || isSendFailed}
         >
           다음
         </Button>

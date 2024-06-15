@@ -1,40 +1,30 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useAuthActions, useCodeTime } from '@/store/authStore';
 
-const MINUTES = 3 * 60 * 1000;
-
-interface Props {
-  reset: boolean;
-  setIsExpired: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-function Timer({ reset, setIsExpired }: Props) {
-  const [timeLeft, setTimeLeft] = useState<number>(MINUTES);
-
-  useEffect(() => {
-    setTimeLeft(MINUTES);
-  }, [reset]);
+function Timer() {
+  const expiredTime = useCodeTime();
+  const { codeTimePass } = useAuthActions();
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - 1000);
+      codeTimePass();
     }, 1000);
 
-    if (timeLeft <= 0) {
+    if (expiredTime <= 0) {
       clearInterval(timer);
-      setIsExpired(true);
     }
 
     return () => {
       clearInterval(timer);
     };
-  }, [timeLeft]);
+  }, [expiredTime]);
 
   return (
     <span className='w-[30px] text-start text-body_sm text-gray-500'>
-      {Math.floor((timeLeft / (1000 * 60)) % 60)}:
-      {String(Math.floor((timeLeft / 1000) % 60)).padStart(2, '0')}
+      {Math.floor((expiredTime / (1000 * 60)) % 60)}:
+      {String(Math.floor((expiredTime / 1000) % 60)).padStart(2, '0')}
     </span>
   );
 }
