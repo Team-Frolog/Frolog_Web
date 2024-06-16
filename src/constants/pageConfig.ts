@@ -17,9 +17,14 @@ export const PAGES: IPages = {
   LANDING: '/landing',
   JOIN: '/join',
   JOIN_FINISH: '/join/finish',
+  LOGIN: '/login',
 } as const;
 
 export const PAGE_CONFIG: IPageConfig = {
+  LOGIN: {
+    PATH: PAGES.LOGIN,
+    NAME: '로그인',
+  },
   JOIN: {
     PATH: PAGES.JOIN,
     NAME: '회원가입',

@@ -1,6 +1,7 @@
 import { PAGE_CONFIG } from '@/constants/pageConfig';
+import { getPathName, isPathExists } from '@/utils/path';
 import { usePathname, useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /* ----- Form - 경로에 따른 페이지 제목 구하는 훅 ----- */
 export const useFormTitle = () => {
@@ -8,13 +9,17 @@ export const useFormTitle = () => {
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const step = searchParams.get('step');
 
   useEffect(() => {
-    // join인 경우 -> step별 타이틀 가져오기
     if (pathname === PAGE_CONFIG.JOIN.PATH) {
-      setTitle(PAGE_CONFIG.JOIN.QUERY![searchParams.get('step')!]);
+      setTitle(PAGE_CONFIG.JOIN.QUERY![step!]);
+    } else if (isPathExists(pathname)) {
+      setTitle(getPathName(pathname) || '');
+    } else {
+      setTitle('');
     }
-  }, [pathname, searchParams]);
+  }, [pathname, step]);
 
   return { title };
 };
