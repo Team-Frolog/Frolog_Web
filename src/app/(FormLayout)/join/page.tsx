@@ -1,56 +1,30 @@
 'use client';
 
-import { userAPI } from '@/api/user.api';
 import Step1 from '@/components/joinPage/step1/Step1';
 import Step2 from '@/components/joinPage/step2/Step2';
 import Step3 from '@/components/joinPage/step3/Step3';
 import Step4 from '@/components/joinPage/step4/Step4';
-import { PAGES } from '@/constants/pageConfig';
 import { JOIN_FORM_KEY } from '@/constants/storage';
 import { defaultValue } from '@/data/joinForm';
-import { usePreventBack } from '@/hooks/usePreventBack';
-import { useAuthActions, useVerifyToken } from '@/store/authStore';
+import { useJoin } from '@/hooks/auth/useJoin';
+import { usePreventBack } from '@/hooks/gesture/usePreventBack';
 import { IJoinForm } from '@/types/form';
-import { transformJoinForm } from '@/utils/transformJoinForm';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function JoinPage() {
   usePreventBack();
-  const router = useRouter();
-  const verifyToken = useVerifyToken();
-  const { resetToken } = useAuthActions();
-  const step = Number(useSearchParams().get('step')!);
-
   const methods = useForm<IJoinForm>({
     mode: 'onBlur',
     defaultValues:
-      step === 1
-        ? defaultValue
-        : typeof window !== 'undefined' &&
-          JSON.parse(localStorage.getItem(JOIN_FORM_KEY)!)!,
+      typeof window !== 'undefined' && localStorage.getItem(JOIN_FORM_KEY)
+        ? JSON.parse(localStorage.getItem(JOIN_FORM_KEY)!)
+        : defaultValue,
   });
   const { getValues, handleSubmit } = methods;
+  const { step, joinUser } = useJoin(getValues);
 
-  // step별 폼 상태 저장
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      step === 1
-        ? localStorage.removeItem(JOIN_FORM_KEY)
-        : localStorage.setItem(JOIN_FORM_KEY, JSON.stringify(getValues()));
-    }
-  }, [step]);
-
-  const handleSignUp = async (data: IJoinForm) => {
-    const formData = transformJoinForm(data, verifyToken!);
-    const signUpResult = await userAPI.signUp(formData);
-
-    if (signUpResult?.result) {
-      resetToken();
-      localStorage.removeItem(JOIN_FORM_KEY);
-      router.push(`${PAGES.JOIN_FINISH}?username=${data.username}`);
-    }
+  const handleSignUp = (data: IJoinForm) => {
+    joinUser(data);
   };
 
   return (
