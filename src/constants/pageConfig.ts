@@ -18,6 +18,7 @@ export const PAGES: IPages = {
   JOIN: '/join',
   JOIN_FINISH: '/join/finish',
   LOGIN: '/login',
+  FIND_PASSWORD: '/find-password',
 } as const;
 
 export const PAGE_CONFIG: IPageConfig = {

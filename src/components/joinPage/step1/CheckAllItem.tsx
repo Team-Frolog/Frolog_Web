@@ -1,8 +1,7 @@
 'use client';
 
-import { ICONS } from '@/constants/icons';
+import CheckButton from '@/components/common/button/CheckButton';
 import { consentsKeys } from '@/data/joinForm';
-import Image from 'next/image';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -16,19 +15,7 @@ function CheckAllItem() {
 
   return (
     <div className='flex gap-[12px]' onClick={handleAllAgree}>
-      <button type='button'>
-        <Image
-          src={
-            isAllAgree
-              ? ICONS.common.check.circle_checked
-              : ICONS.common.check.circle_unchecked
-          }
-          alt='check'
-          width={24}
-          height={24}
-        />
-      </button>
-
+      <CheckButton isChecked={isAllAgree} />
       <span className='cursor-default text-body_lg_bold'>
         네, 모두 동의합니다.
       </span>

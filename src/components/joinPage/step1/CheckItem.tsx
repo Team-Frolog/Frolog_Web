@@ -1,12 +1,11 @@
 'use client';
 
-import { ICONS } from '@/constants/icons';
 import { ITerms } from '@/data/terms';
-import Image from 'next/image';
 import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import TermsPopUp from './TermsPopUp';
 import { AnimatePresence } from 'framer-motion';
+import CheckButton from '@/components/common/button/CheckButton';
 
 interface Props {
   termsData: ITerms;
@@ -23,18 +22,7 @@ function CheckItem({ termsData }: Props) {
         className='flex gap-[12px]'
         onClick={() => setValue(`consents.${termsData.name}.given`, !isChecked)}
       >
-        <button type='button' className='h-[24px] w-[24px]'>
-          <Image
-            src={
-              isChecked
-                ? ICONS.common.check.circle_checked
-                : ICONS.common.check.circle_unchecked
-            }
-            alt='check'
-            width={24}
-            height={24}
-          />
-        </button>
+        <CheckButton isChecked={isChecked} />
         <span className='flex-1 cursor-default text-body_lg_bold'>
           {termsData.label}
         </span>
