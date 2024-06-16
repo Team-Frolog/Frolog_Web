@@ -16,7 +16,7 @@ interface ILoginForm {
 function LoginPage() {
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const methods = useForm<ILoginForm>({
-    mode: 'onSubmit',
+    mode: 'onBlur',
     defaultValues: {
       email: '',
       password: '',
@@ -24,17 +24,21 @@ function LoginPage() {
   });
 
   const {
+    handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isValid },
   } = methods;
 
   const handleLogin = () => {
-    //
+    // login
   };
 
   return (
     <FormProvider {...methods}>
-      <form className='flex h-full flex-col justify-between'>
+      <form
+        onSubmit={handleSubmit(handleLogin)}
+        className='flex h-full flex-col justify-between'
+      >
         <div className='flex flex-col gap-[20px]'>
           <div className='flex flex-col gap-[32px]'>
             <FormInput
@@ -58,12 +62,7 @@ function LoginPage() {
               title='비밀번호'
               fieldName='password'
               errorMessage={errors.password && String(errors.password.message)}
-              {...register('password', {
-                pattern: {
-                  value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,15}$/,
-                  message: '8~15자의 영문 대소문자, 숫자를 조합하세요.',
-                },
-              })}
+              {...register('password', { required: true })}
             />
           </div>
           <div
@@ -77,9 +76,8 @@ function LoginPage() {
         <ButtonWithText
           btnText='로그인 하기'
           route='/login'
-          disabled={false}
-          btnType='button'
-          onClick={handleLogin}
+          disabled={!isValid}
+          btnType='submit'
         >
           <Link
             href={PAGES.FIND_PASSWORD}

@@ -7,8 +7,7 @@ interface Props {
   children: React.ReactNode;
   route: string;
   disabled: boolean;
-  btnType?: 'button' | 'link';
-  onClick?: () => void;
+  btnType?: 'link' | 'submit';
 }
 
 function ButtonWithText({
@@ -17,18 +16,17 @@ function ButtonWithText({
   route,
   disabled,
   btnType = 'link',
-  onClick,
 }: Props) {
   return (
     <div className='flex h-[120px] flex-col'>
-      {btnType === 'button' ? (
-        <Button type='button' onClick={onClick}>
-          {btnText}
-        </Button>
-      ) : (
+      {btnType === 'link' ? (
         <LinkButton disabled={disabled} route={route}>
           {btnText}
         </LinkButton>
+      ) : (
+        <Button type={btnType} disabled={disabled}>
+          {btnText}
+        </Button>
       )}
 
       <div className='flex w-full flex-1 items-center justify-center'>
