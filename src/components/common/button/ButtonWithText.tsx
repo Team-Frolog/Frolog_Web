@@ -18,7 +18,7 @@ function ButtonWithText({
   btnType = 'link',
 }: Props) {
   return (
-    <div className='flex h-[120px] flex-col'>
+    <div className='flex h-[120px] w-full flex-col'>
       {btnType === 'link' ? (
         <LinkButton disabled={disabled} route={route}>
           {btnText}

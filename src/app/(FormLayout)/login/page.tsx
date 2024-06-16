@@ -2,19 +2,22 @@
 
 import ButtonWithText from '@/components/common/button/ButtonWithText';
 import CheckButton from '@/components/common/button/CheckButton';
+import ErrorPopUp from '@/components/common/form/ErrorPopUp';
 import FormInput from '@/components/common/form/FormInput';
 import { PAGES } from '@/constants/pageConfig';
+import { useLogin } from '@/hooks/auth/useLogin';
+import { AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-interface ILoginForm {
+export interface ILoginForm {
   email: string;
   password: string;
 }
 
 function LoginPage() {
-  const [isSaved, setIsSaved] = useState<boolean>(false);
+  const { isSaved, setIsSaved, userLogin, isFaild } = useLogin();
   const methods = useForm<ILoginForm>({
     mode: 'onBlur',
     defaultValues: {
@@ -29,8 +32,8 @@ function LoginPage() {
     formState: { errors, isValid },
   } = methods;
 
-  const handleLogin = () => {
-    // login
+  const handleLogin = (data: ILoginForm) => {
+    userLogin(data);
   };
 
   return (
@@ -73,19 +76,26 @@ function LoginPage() {
             <span className='cursor-default text-body_md'>자동 로그인</span>
           </div>
         </div>
-        <ButtonWithText
-          btnText='로그인 하기'
-          route='/login'
-          disabled={!isValid}
-          btnType='submit'
-        >
-          <Link
-            href={PAGES.FIND_PASSWORD}
-            className='text-body_lg_bold text-white'
+        <div className='flex w-full flex-col items-center gap-[12px]'>
+          <AnimatePresence>
+            {isFaild && (
+              <ErrorPopUp errorMsg='로그인 정보를 다시 확인해주세요' />
+            )}
+          </AnimatePresence>
+          <ButtonWithText
+            btnText='로그인 하기'
+            route='/login'
+            disabled={!isValid}
+            btnType='submit'
           >
-            비밀번호를 잊으셨나요?
-          </Link>
-        </ButtonWithText>
+            <Link
+              href={PAGES.FIND_PASSWORD}
+              className='text-body_lg_bold text-white'
+            >
+              비밀번호를 잊으셨나요?
+            </Link>
+          </ButtonWithText>
+        </div>
       </form>
     </FormProvider>
   );
