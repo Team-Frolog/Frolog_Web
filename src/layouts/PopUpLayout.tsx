@@ -1,6 +1,6 @@
 'use client';
 
-import { useClickOutside } from '@/hooks/useClickOutside';
+import { useClickOutside } from '@/hooks/gesture/useClickOutside';
 import { modalBackgroundVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';

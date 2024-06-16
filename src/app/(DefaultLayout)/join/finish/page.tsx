@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PopperAnimation from '@/components/animation/PopperAnimation';
-import { usePreventBack } from '@/hooks/usePreventBack';
+import { usePreventBack } from '@/hooks/gesture/usePreventBack';
 import { useSearchParams } from 'next/navigation';
 import LinkButton from '@/components/common/button/LinkButton';
 import FinishLight from '@/components/common/FinishLight';

@@ -4,7 +4,7 @@ import { userAPI } from '@/api/user.api';
 import Button from '@/components/common/button/Button';
 import FormInput from '@/components/common/form/FormInput';
 import { PAGES } from '@/constants/pageConfig';
-import { useVerification } from '@/hooks/useVerification';
+import { useVerification } from '@/hooks/auth/useVerification';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';

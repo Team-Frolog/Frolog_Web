@@ -5,7 +5,7 @@ import CodeInput from './CodeInput';
 import ErrorPopUp from '@/components/common/form/ErrorPopUp';
 import { AnimatePresence } from 'framer-motion';
 import Button from '@/components/common/button/Button';
-import { useVerification } from '@/hooks/useVerification';
+import { useVerification } from '@/hooks/auth/useVerification';
 import { useFormContext } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/pageConfig';
