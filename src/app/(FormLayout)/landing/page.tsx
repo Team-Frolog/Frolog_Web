@@ -2,20 +2,15 @@
 
 import ButtonWithText from '@/components/common/button/ButtonWithText';
 import BigTitle from '@/components/common/text/BigTitle';
-import { ICONS } from '@/constants/icons';
 import { PAGES } from '@/constants/pageConfig';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 function LandingPage() {
   return (
-    <div className='flex h-dvh w-full flex-col bg-gray-900'>
-      <header className='p-page pb-0'>
-        <Image src={ICONS.common.cancel} alt='x' width={24} height={24} />
-      </header>
+    <div className='flex h-full w-full flex-col bg-gray-900'>
       <div className='flex w-full flex-1 flex-col justify-between p-page'>
-        <BigTitle>
+        <BigTitle type='bright'>
           이제,
           <br />
           우물 밖으로

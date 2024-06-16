@@ -11,7 +11,9 @@ function FinishLight({ children }: Props) {
   return (
     <div className='relative z-0 w-full'>
       <div className='absolute bottom-[100px] left-1/2 w-full -translate-x-1/2'>
-        <BigTitle align='text-center'>{children}</BigTitle>
+        <BigTitle type='default' align='text-center'>
+          {children}
+        </BigTitle>
       </div>
 
       <Image

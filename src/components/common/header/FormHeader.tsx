@@ -4,17 +4,22 @@ import React from 'react';
 import { ICONS } from '@/constants/icons';
 import { useFormTitle } from '@/hooks/useFormTitle';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { JOIN_FORM_KEY } from '@/constants/storage';
+import { PAGES } from '@/constants/pageConfig';
 
 function FormHeader() {
   const router = useRouter();
+  const pathname = usePathname();
   const { title } = useFormTitle();
 
   const handleClickBack = () => {
-    localStorage.removeItem(JOIN_FORM_KEY);
-    router.push('/landing');
+    if (pathname === PAGES.LANDING) {
+      router.push('/well');
+    } else {
+      localStorage.removeItem(JOIN_FORM_KEY);
+      router.push('/landing');
+    }
   };
 
   return (
