@@ -19,7 +19,7 @@ function Step4() {
   } = useFormContext();
 
   return (
-    <div className='flex h-full w-full flex-col justify-between gap-[24px] p-page'>
+    <div className='flex h-full w-full flex-col justify-between gap-[24px]'>
       <div className='flex w-full flex-col gap-[36px]'>
         <FormInput
           autoFocus

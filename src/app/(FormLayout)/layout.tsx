@@ -5,7 +5,9 @@ function FormLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className='flex w-screen flex-col'>
       <FormHeader />
-      <div className='flex-1'>{children}</div>
+      <div className='flex h-full w-full flex-1 flex-col justify-between p-page'>
+        {children}
+      </div>
     </div>
   );
 }

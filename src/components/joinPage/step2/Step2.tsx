@@ -43,7 +43,7 @@ function Step2() {
   };
 
   return (
-    <div className='flex h-full w-full flex-col justify-between p-page'>
+    <div className='flex h-full flex-col justify-between'>
       <div className='flex w-full flex-col'>
         <div className='flex flex-col gap-[36px]'>
           <FormInput

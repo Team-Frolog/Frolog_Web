@@ -40,7 +40,7 @@ function Step3() {
   }, [code]);
 
   return (
-    <div className='flex h-full w-full flex-col justify-between p-page'>
+    <div className='flex h-full w-full flex-col justify-between'>
       <CodeInput
         code={code}
         setCode={setCode}
