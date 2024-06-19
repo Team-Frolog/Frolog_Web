@@ -1,6 +1,6 @@
 'use client';
 
-import { userAPI } from '@/api/user.api';
+import { userAPI } from '@/app/api/user.api';
 import Button from '@/components/common/button/Button';
 import FormInput from '@/components/common/form/FormInput';
 import { PAGES } from '@/constants/pageConfig';

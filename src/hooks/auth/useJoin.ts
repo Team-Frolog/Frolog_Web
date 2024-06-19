@@ -1,4 +1,4 @@
-import { userAPI } from '@/api/user.api';
+import { userAPI } from '@/app/api/user.api';
 import { JOIN_FORM_KEY } from '@/constants/storage';
 import { transformJoinForm } from '@/utils/transformJoinForm';
 import { useEffect } from 'react';

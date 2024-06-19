@@ -15,6 +15,10 @@ const cspHeader = `
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  env: {
+    NEXTAUTH_URL: 'http://localhost:3000/api/auth',
+    NEXTAUTH_SECRET: 'frolog',
+  },
   async headers() {
     return [
       {
