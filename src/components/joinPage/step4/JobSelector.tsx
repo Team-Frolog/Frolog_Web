@@ -2,6 +2,7 @@
 
 import FormTitleWithToggle from '@/components/common/form/FormTitleWithToggle';
 import { ICONS } from '@/constants/icons';
+import { jobs } from '@/data/jobs';
 import Image from 'next/image';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -13,15 +14,17 @@ function JobSelector() {
       <FormTitleWithToggle title='직업' fieldName='occupation' />
       <div className='relative w-full'>
         <select
-          defaultValue='무직'
+          defaultValue={jobs[0].value}
           onChange={(e) =>
             setValue('additional_info.occupation.value', e.target.value)
           }
           className={`w-full cursor-pointer appearance-none rounded-[12px] border border-solid border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg text-white outline-none`}
         >
-          <option value='무직'>무직</option>
-          <option value='학생'>학생</option>
-          <option value='직장인'>직장인</option>
+          {jobs.map((item) => (
+            <option key={item.id} value={item.value}>
+              {item.value}
+            </option>
+          ))}
         </select>
         <Image
           src={ICONS.common.form.select}
