@@ -15,7 +15,7 @@ function FormHeader() {
 
   const handleClickBack = () => {
     if (pathname === PAGES.LANDING) {
-      router.push('/well');
+      router.push('/');
     } else {
       localStorage.removeItem(JOIN_FORM_KEY);
       router.push('/landing');

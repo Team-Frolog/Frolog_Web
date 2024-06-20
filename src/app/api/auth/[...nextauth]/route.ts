@@ -5,7 +5,7 @@ import { baseOptions } from '../../options';
 
 const logIn = new SignIn(baseOptions);
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialProvider({
       credentials: {

@@ -16,7 +16,7 @@ export const useLogin = () => {
     });
 
     if (result?.ok) {
-      router.push('/well');
+      router.push('/');
     } else {
       setIsFaild(true);
     }

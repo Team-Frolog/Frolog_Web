@@ -29,6 +29,7 @@ function LoginPage() {
   const {
     handleSubmit,
     register,
+    watch,
     formState: { errors, isValid },
   } = methods;
 
@@ -52,7 +53,6 @@ function LoginPage() {
               fieldName='email'
               errorMessage={errors.email && String(errors.email.message)}
               {...register('email', {
-                required: true,
                 pattern: {
                   value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
                   message: '이메일 형식을 확인해주세요.',
@@ -65,7 +65,7 @@ function LoginPage() {
               title='비밀번호'
               fieldName='password'
               errorMessage={errors.password && String(errors.password.message)}
-              {...register('password', { required: true })}
+              {...register('password')}
             />
           </div>
           <div
@@ -85,7 +85,7 @@ function LoginPage() {
           <ButtonWithText
             btnText='로그인 하기'
             route='/login'
-            disabled={!isValid}
+            disabled={!isValid || !watch('email') || !watch('password')}
             btnType='submit'
           >
             <Link
