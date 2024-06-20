@@ -15,7 +15,6 @@ export const useLogin = () => {
       password: data.password,
     });
 
-    // 로그인 성공
     if (result?.ok) {
       router.push('/well');
     } else {

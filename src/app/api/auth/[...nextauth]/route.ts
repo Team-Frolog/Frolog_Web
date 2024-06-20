@@ -1,5 +1,9 @@
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import { SignIn } from '@frolog/frolog-api';
+import NextAuth, { NextAuthOptions, User } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
+import { baseOptions } from '../../options';
+
+const logIn = new SignIn(baseOptions);
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -9,12 +13,23 @@ const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const user = {
-          id: '1',
-          accessToken: 'access',
-          refreshToken: 'refresh',
-        };
-        return user;
+        const data = await logIn.fetch({
+          email: credentials?.email!,
+          password: credentials?.password!,
+        });
+
+        if (data.result) {
+          const user: User = {
+            id: data.id!,
+            name: '',
+            email: '',
+            image: '',
+            accessToken: data.access_token!,
+            refreshToken: data.refresh_token!,
+          };
+          return user;
+        }
+        return null;
       },
     }),
   ],
