@@ -13,7 +13,7 @@ export const transformJoinForm = (
   );
 
   const transformedPersonalInfos = Object.entries(
-    joinFormData.additional_info
+    joinFormData.personal_infos
   ).map(([type, info]) => ({
     type,
     value: (info as IInfo).value,
@@ -26,6 +26,6 @@ export const transformJoinForm = (
     password: joinFormData.password,
     username: joinFormData.username!,
     consents: transformedConsents,
-    additional_info: transformedPersonalInfos,
+    personal_infos: transformedPersonalInfos,
   };
 };

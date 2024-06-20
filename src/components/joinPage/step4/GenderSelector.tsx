@@ -11,7 +11,7 @@ function GenderSelector() {
   const selected = 'border-main text-body_lg_bold';
 
   const handleClick = (value: string) => {
-    setValue('additional_info.gender.value', value);
+    setValue('personal_infos.gender.value', value);
   };
 
   return (
@@ -21,21 +21,21 @@ function GenderSelector() {
         <button
           type='button'
           onClick={() => handleClick('남성')}
-          className={`${buttonStyle} ${(watch('additional_info.gender.value') === '남성' || typeof window === 'undefined') && selected}`}
+          className={`${buttonStyle} ${(watch('personal_infos.gender.value') === '남성' || typeof window === 'undefined') && selected}`}
         >
           남성
         </button>
         <button
           type='button'
           onClick={() => handleClick('여성')}
-          className={`${buttonStyle} ${watch('additional_info.gender.value') === '여성' && selected}`}
+          className={`${buttonStyle} ${watch('personal_infos.gender.value') === '여성' && selected}`}
         >
           여성
         </button>
         <button
           type='button'
           onClick={() => handleClick('기타')}
-          className={`${buttonStyle} ${watch('additional_info.gender.value') === '기타' && selected}`}
+          className={`${buttonStyle} ${watch('personal_infos.gender.value') === '기타' && selected}`}
         >
           기타
         </button>

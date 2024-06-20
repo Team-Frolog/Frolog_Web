@@ -29,7 +29,7 @@ export interface IJoinForm {
   };
 
   // 개인 식별 정보 리스트(Array)
-  additional_info: {
+  personal_infos: {
     [key: TInfoName]: IInfo;
   };
   [];

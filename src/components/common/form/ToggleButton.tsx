@@ -13,12 +13,12 @@ function ToggleButton({ fieldName }: Props) {
   const [isPublic, setIsPublic] = useState(true);
 
   useEffect(() => {
-    const visibility = watch(`additional_info.${fieldName}.visibility`);
+    const visibility = watch(`personal_infos.${fieldName}.visibility`);
     setIsPublic(visibility);
   }, [watch, fieldName]);
 
   const handleChange = () => {
-    setValue(`additional_info.${fieldName}.visibility`, !isPublic);
+    setValue(`personal_infos.${fieldName}.visibility`, !isPublic);
     setIsPublic(!isPublic);
   };
 

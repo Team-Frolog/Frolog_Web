@@ -12,9 +12,9 @@ function DateSelector() {
       <FormTitleWithToggle title='생년월일' fieldName='birth_date' />
       <input
         type='date'
-        value={watch('additional_info.birth_date.value')}
+        value={watch('personal_infos.birth_date.value')}
         onChange={(e) =>
-          setValue('additional_info.birth_date.value', e.target.value)
+          setValue('personal_infos.birth_date.value', e.target.value)
         }
         onKeyDown={(e) => e.preventDefault()}
         onClick={(e) => e.currentTarget.showPicker()}
