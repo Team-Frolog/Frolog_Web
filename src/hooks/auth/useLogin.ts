@@ -17,6 +17,7 @@ export const useLogin = () => {
 
     if (result?.ok) {
       router.push('/');
+      location.reload();
     } else {
       setIsFaild(true);
     }
