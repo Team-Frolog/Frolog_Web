@@ -1,4 +1,5 @@
 import { Session } from 'next-auth';
+import { signOut } from 'next-auth/react';
 import { useEffect, useRef } from 'react';
 
 export const RefreshTokenHandler = ({
@@ -15,6 +16,10 @@ export const RefreshTokenHandler = ({
   useEffect(() => {
     if (interval.current) {
       clearInterval(interval.current);
+    }
+
+    if (session?.user.error) {
+      signOut();
     }
 
     const watchAndUpdateIfExpire = () => {
