@@ -18,7 +18,7 @@ export const RefreshTokenHandler = ({
       clearInterval(interval.current);
     }
 
-    if (session?.user.error) {
+    if (session?.user.error === 'RefreshAccessTokenError') {
       signOut();
     }
 

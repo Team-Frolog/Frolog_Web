@@ -10,8 +10,8 @@ function WellPage() {
     <div className='flex w-full flex-col gap-5 break-all p-page'>
       <h1>메인 우물 페이지입니다</h1>
       <span>
-        <strong>로그인 한 user:</strong> <br />
-        {session?.user.accessToken}
+        <strong>로그인 한 user: </strong>
+        {session?.user.id}
       </span>
       <Button onClick={() => signOut({ callbackUrl: '/login' })}>
         임시 로그아웃 버튼

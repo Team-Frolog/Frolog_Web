@@ -39,6 +39,7 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         // 최초 로그인 시에만 실행
+        token.id = user.id;
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
         token.accessTokenExpires = getExpFromToken(user.accessToken);
@@ -46,7 +47,7 @@ export const authOptions: NextAuthOptions = {
 
       const timeRemaing =
         token.accessTokenExpires -
-        (Math.floor(new Date().getTime() / 1000) + 10 * 60);
+        (Math.floor(new Date().getTime() / 1000) + 10 * 60); // 10분 전
 
       // 유효기간이 지난 경우
       if (timeRemaing <= 0) {
@@ -57,6 +58,7 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token) {
+        session.user.id = token.id;
         session.user.accessToken = token.accessToken;
         session.user.refreshToken = token.refreshToken;
         session.user.accessTokenExpires = token.accessTokenExpires;
