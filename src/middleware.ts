@@ -23,6 +23,15 @@ export async function middleware(req: NextRequest) {
   const isWithAuth = protectedRoutes.includes(pathname);
   const isWithOutAuth = publicRoutes.includes(pathname);
 
+  const isLoggedIn = !!token;
+  const isLoginPage = pathname === '/login';
+
+  if (isLoggedIn && isLoginPage) {
+    return NextResponse.redirect(new URL('/', req.url));
+  } else if (!isLoggedIn && isLoginPage) {
+    return NextResponse.next();
+  }
+
   // 로그인 여부에 따라 redirect
   if (isWithAuth) return withAuth(req, !!token);
   else if (isWithOutAuth) return withOutAuth(req, !!token);
