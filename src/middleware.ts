@@ -13,7 +13,7 @@ const publicRoutes: string[] = [
 
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET }); // 로그인 유무 판단
-  console.log('token', token);
+  console.log('token', token, process.env.NEXTAUTH_SECRET);
   const { pathname } = req.nextUrl;
 
   // pathname이 어느 routes에 속하는지 확인
