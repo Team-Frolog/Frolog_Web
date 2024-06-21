@@ -1,6 +1,6 @@
 'use client';
 
-import { RefreshTokenHandler } from '@/lib/refreshTokenHandler';
+import { RefreshTokenHandler } from '@/lib/RefreshTokenHandler';
 import { SessionProvider, useSession } from 'next-auth/react';
 
 type Props = {
