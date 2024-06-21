@@ -19,6 +19,9 @@ const nextConfig = {
     NEXTAUTH_URL: 'http://localhost:3000/api/auth',
     NEXTAUTH_SECRET: 'frolog',
   },
+  experimental: {
+    middleware: true,
+  },
   async headers() {
     return [
       {
