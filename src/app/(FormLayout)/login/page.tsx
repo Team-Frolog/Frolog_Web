@@ -7,8 +7,10 @@ import FormInput from '@/components/common/form/FormInput';
 import { PAGES } from '@/constants/pageConfig';
 import { useLogin } from '@/hooks/auth/useLogin';
 import { AnimatePresence } from 'framer-motion';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 export interface ILoginForm {
@@ -17,6 +19,15 @@ export interface ILoginForm {
 }
 
 function LoginPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      router.replace('/');
+    }
+  }, [session, status]);
+
   const { isSaved, setIsSaved, userLogin, isFaild } = useLogin();
   const methods = useForm<ILoginForm>({
     mode: 'onBlur',

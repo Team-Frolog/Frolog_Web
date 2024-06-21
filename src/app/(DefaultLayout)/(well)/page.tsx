@@ -6,6 +6,7 @@ import React from 'react';
 
 function WellPage() {
   const { data: session } = useSession();
+
   return (
     <div className='flex w-full flex-col gap-5 break-all p-page'>
       <h1>메인 우물 페이지입니다</h1>
