@@ -1,42 +1,11 @@
 import { baseOptions } from '@/app/api/options';
-import { RefreshToken, SignIn } from '@frolog/frolog-api';
+import { SignIn } from '@frolog/frolog-api';
 import { NextAuthOptions, User } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
-import jwt from 'jsonwebtoken';
-import { JWT } from 'next-auth/jwt';
+import { refreshAccessToken } from './refreshAccessToken';
+import { getExpFromToken } from '@/utils/decodeToken';
 
 const logIn = new SignIn(baseOptions);
-const refresh = new RefreshToken(baseOptions);
-
-interface TokenPaylod {
-  sub: 'signIn';
-  id: string;
-  exp: number;
-  iat: number;
-}
-
-const refreshAccessToken = async (tokenObj: JWT) => {
-  try {
-    const data = await refresh.fetch({ refresh_token: tokenObj.refreshToken });
-
-    if (data.result) {
-      const tokenPaylod = jwt.decode(data.access_token!) as TokenPaylod;
-      return {
-        ...tokenObj,
-        accessToken: data.access_token as string,
-        refreshToken: data.refresh_token as string,
-        accessTokenExpires: tokenPaylod.exp,
-      };
-    } else {
-      throw new Error('Refresh failed');
-    }
-  } catch (err) {
-    return {
-      ...tokenObj,
-      error: 'RefreshAccessTokenError',
-    };
-  }
-};
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -70,11 +39,9 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         // 최초 로그인 시에만 실행
-        const tokenPaylod = jwt.decode(user.accessToken)! as TokenPaylod;
-
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
-        token.accessTokenExpires = tokenPaylod.exp;
+        token.accessTokenExpires = getExpFromToken(user.accessToken);
       }
 
       const timeRemaing =
@@ -102,7 +69,7 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: 'jwt',
-    maxAge: 60 * 60 * 24 * 14,
+    maxAge: 60 * 60 * 24 * 30,
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
