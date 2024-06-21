@@ -12,8 +12,11 @@ const publicRoutes: string[] = [
 ]; // 로그인이 되면 접근할 수 없는 페이지 목록
 
 export async function middleware(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET }); // 로그인 유무 판단
-  console.log('token', token, process.env.NEXTAUTH_SECRET);
+  const token = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+    cookieName: '__Secure-next-auth.session-token',
+  }); // 로그인 유무 판단
   const { pathname } = req.nextUrl;
 
   // pathname이 어느 routes에 속하는지 확인
