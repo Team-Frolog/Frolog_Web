@@ -1,0 +1,50 @@
+'use client';
+
+import { ICONS } from '@/constants/icons';
+import Image from 'next/image';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { PAGES } from '@/constants/pageConfig';
+
+function ProgressHeader() {
+  const router = useRouter();
+  const step = Number(useSearchParams().get('step')!);
+  const percentage = (100 / 7) * step;
+
+  const handleClickBack = () => {
+    // localStorage.removeItem(JOIN_FORM_KEY);
+    if (step === 1) {
+      router.push(`${PAGES.JOIN_FINISH}`);
+    } else {
+      router.push(`${PAGES.TEST}?step=${step - 1}`);
+    }
+  };
+
+  return (
+    <div className='block w-full pb-0'>
+      <button
+        type='button'
+        className='m-[24px] cursor-pointer'
+        onClick={handleClickBack}
+      >
+        <Image
+          src={ICONS.common.back.back_600}
+          alt='backBtn'
+          width={12}
+          height={20}
+          priority
+        />
+      </button>
+      <div className='h-[4px] w-full bg-gray-300'>
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: `${percentage}%` }}
+          className='h-full bg-main'
+        ></motion.div>
+      </div>
+    </div>
+  );
+}
+
+export default ProgressHeader;

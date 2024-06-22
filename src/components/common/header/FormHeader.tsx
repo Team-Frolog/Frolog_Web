@@ -23,14 +23,14 @@ function FormHeader() {
   };
 
   return (
-    <div className='flex flex-col gap-3 p-[24px] pb-0'>
+    <div className='block gap-3 p-[24px] pb-0'>
       <button
         type='button'
         className='cursor-pointer'
         onClick={handleClickBack}
       >
         <Image
-          src={ICONS.common.form.backBtn}
+          src={ICONS.common.back.back_500}
           alt='backBtn'
           width={55}
           height={24}
