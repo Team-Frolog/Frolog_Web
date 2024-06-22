@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FormInput from '../common/form/FormInput';
 import { useFormContext } from 'react-hook-form';
 import { userAPI } from '@/app/api/user.api';
@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 
 function Step1() {
   const router = useRouter();
+  const [isEmailChecked, setIsEmailChecked] = useState(false);
   const { isSendFailed, sendEmailCode } = useVerification();
   const {
     register,
@@ -45,6 +46,9 @@ function Step1() {
             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
             message: '이메일 형식을 확인해주세요.',
           },
+          onChange: () => {
+            setIsEmailChecked(false);
+          },
           onBlur: async (e) => {
             const isVaild = await trigger('email');
             const value = e.target.value;
@@ -53,17 +57,22 @@ function Step1() {
               const data = await userAPI.checkEmail({
                 email: value,
               });
-              if (!data) {
+              if (data) {
                 setError('email', {
                   type: 'manual',
-                  message: '이미 사용 중인 이메일이에요.',
+                  message: '존재하지 않는 이메일이에요.',
                 });
+              } else {
+                setIsEmailChecked(true);
               }
             }
           },
         })}
       />
-      <Button onClick={handleSendCode} disabled={!watch('email') || !isValid}>
+      <Button
+        onClick={handleSendCode}
+        disabled={!watch('email') || !isValid || !isEmailChecked}
+      >
         다음
       </Button>
     </div>
