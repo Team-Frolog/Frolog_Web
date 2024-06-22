@@ -22,7 +22,7 @@ function Question() {
 
     setTimeout(() => {
       router.push(`${PAGES.TEST}?step=${step + 1}`);
-    }, 700);
+    }, 500);
   };
 
   return (

@@ -28,7 +28,7 @@ function LoginPage() {
     }
   }, [session, status]);
 
-  const { isSaved, setIsSaved, userLogin, isFaild } = useLogin();
+  const { isSaved, setIsSaved, userLogin, isFaild, setIsFaild } = useLogin();
   const methods = useForm<ILoginForm>({
     mode: 'onBlur',
     defaultValues: {
@@ -36,6 +36,12 @@ function LoginPage() {
       password: '',
     },
   });
+
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSubmit(handleLogin)();
+    }
+  };
 
   const {
     handleSubmit,
@@ -59,6 +65,7 @@ function LoginPage() {
             <FormInput
               autoFocus
               type='email'
+              onKeyDown={handleEnter}
               placeholder='이메일을 입력하세요'
               title='이메일'
               fieldName='email'
@@ -68,15 +75,23 @@ function LoginPage() {
                   value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
                   message: '이메일 형식을 확인해주세요.',
                 },
+                onChange: () => {
+                  setIsFaild(false);
+                },
               })}
             />
             <FormInput
               type='password'
               placeholder='비밀번호를 입력하세요'
+              onKeyDown={handleEnter}
               title='비밀번호'
               fieldName='password'
               errorMessage={errors.password && String(errors.password.message)}
-              {...register('password')}
+              {...register('password', {
+                onChange: () => {
+                  setIsFaild(false);
+                },
+              })}
             />
           </div>
           <div
