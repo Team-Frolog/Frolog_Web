@@ -10,17 +10,17 @@ interface Props {
 function FinishLight({ children }: Props) {
   return (
     <div className='relative z-0 w-full'>
-      <div className='absolute bottom-[100px] left-1/2 w-full -translate-x-1/2'>
+      <div className='absolute bottom-[10px] left-1/2 w-full -translate-x-1/2'>
         <BigTitle type='default' align='text-center'>
           {children}
         </BigTitle>
       </div>
 
       <Image
-        src={ICONS.join.lightOn}
+        src={ICONS.join.light}
         alt='light'
-        width={390}
-        height={476}
+        width={30}
+        height={30}
         className={`w-full`}
       />
     </div>

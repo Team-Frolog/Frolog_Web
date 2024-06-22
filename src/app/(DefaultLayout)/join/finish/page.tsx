@@ -8,30 +8,30 @@ import LinkButton from '@/components/common/button/LinkButton';
 import FinishLight from '@/components/common/FinishLight';
 import Image from 'next/image';
 import { IMAGES } from '../../../../constants/images';
-import BigTitle from '../../../../components/common/text/BigTitle';
+import { ICONS } from '@/constants/icons';
+import Link from 'next/link';
+import { PAGES } from '@/constants/pageConfig';
 
 function JoinFinishPage() {
   const username = useSearchParams().get('username');
   usePreventBack();
 
   return (
-    <div
-      className='flex h-full w-full flex-col justify-between overflow-hidden pt-[50%]'
-      style={{
-        backgroundImage: "url('/images/etc/finish-bg.svg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      <BigTitle type='default' align='text-center'>
+    <div className='relative flex h-full w-full flex-col justify-between overflow-hidden pt-[30px]'>
+      <Link
+        className='absolute left-[24px] top-[24px] z-10 cursor-pointer'
+        href={PAGES.LOGIN}
+      >
+        <Image src={ICONS.common.cancel} alt='x' width={24} height={24} />
+      </Link>
+      <FinishLight>
         야호!
         <br />
         가입이
         <br />
         완료되었어요
-      </BigTitle>
-
-      <div className='flex w-full flex-1 flex-col items-center justify-end gap-[12px] p-[24px]'>
+      </FinishLight>
+      <div className='flex w-full flex-1 flex-col items-center justify-end gap-[12px] bg-white p-[24px]'>
         <div className='flex w-full flex-1 items-center justify-center'>
           <Image
             src={IMAGES.frog.congrats}
@@ -47,7 +47,7 @@ function JoinFinishPage() {
             <br />
             독서 성향을 알기 위해, 간단히 7가지만 물어볼게요!
           </span>
-          <LinkButton route='/frolog-test'>내 독서성향 알아보기</LinkButton>
+          <LinkButton route={`${PAGES.TEST}?step=1`}>내 독서성향 알아보기</LinkButton>
         </div>
       </div>
       <PopperAnimation />
