@@ -1,14 +1,12 @@
-'use client';
-
 import ProgressHeader from '@/components/common/header/ProgressHeader';
-import { useSearchParams } from 'next/navigation';
+import Question from '@/components/testPage/Question';
 import React from 'react';
 
 function TestPage() {
-  const step = Number(useSearchParams().get('step')!);
   return (
-    <div className='h-full bg-white'>
+    <div className='flex h-full flex-col bg-white text-gray-900'>
       <ProgressHeader />
+      <Question />
     </div>
   );
 }

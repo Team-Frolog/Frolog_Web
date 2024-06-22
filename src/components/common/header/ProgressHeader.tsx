@@ -13,7 +13,6 @@ function ProgressHeader() {
   const percentage = (100 / 7) * step;
 
   const handleClickBack = () => {
-    // localStorage.removeItem(JOIN_FORM_KEY);
     if (step === 1) {
       router.push(`${PAGES.JOIN_FINISH}`);
     } else {

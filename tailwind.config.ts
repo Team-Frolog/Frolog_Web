@@ -10,7 +10,9 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        mobile: '430px',
+        mobile: {
+          max: '430px',
+        },
       },
       fontFamily: {
         pretendard: ['var(--font-pretendard)'],
@@ -23,7 +25,9 @@ const config: Config = {
         body_lg_bold: ['16px', { lineHeight: '24px', fontWeight: 700 }],
         body_xl: ['18px', { lineHeight: '28px' }],
         title_lg: ['18px', { lineHeight: '28px' }],
+        title_lg_bold: ['18px', { lineHeight: '28px', fontWeight: 700 }],
         title_xl: ['24px', { lineHeight: '34px' }],
+        title_xl_bold: ['24px', { lineHeight: '34px', fontWeight: 700 }],
         h_md: [
           '34px',
           { lineHeight: '48px', letterSpacing: '0.4px', fontWeight: 400 },
