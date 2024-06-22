@@ -8,10 +8,14 @@ import Button from '@/components/common/button/Button';
 import { useVerification } from '@/hooks/auth/useVerification';
 import { useFormContext } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { PAGES } from '@/constants/pageConfig';
 import { useCodeTime } from '@/store/authStore';
 
-function Step3() {
+interface Props {
+  type: 'signUp' | 'resetPassword';
+  route: string;
+}
+
+function CodeForm({ type, route }: Props) {
   const router = useRouter();
   const expiredTime = useCodeTime();
   const { watch } = useFormContext();
@@ -26,12 +30,12 @@ function Step3() {
 
   const handleSendCode = () => {
     setIsVerified(null);
-    sendEmailCode(watch('email'));
+    sendEmailCode(watch('email'), type);
   };
 
   useEffect(() => {
     if (isVerified) {
-      router.push(`${PAGES.JOIN}?step=4`);
+      router.push(route);
     }
   }, [isVerified]);
 
@@ -65,4 +69,4 @@ function Step3() {
   );
 }
 
-export default Step3;
+export default CodeForm;

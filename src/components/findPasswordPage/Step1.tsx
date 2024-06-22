@@ -20,7 +20,7 @@ function Step1() {
   } = useFormContext();
 
   const handleSendCode = () => {
-    sendEmailCode(watch('email')).then(() => {
+    sendEmailCode(watch('email'), 'resetPassword').then(() => {
       if (isSendFailed) {
         setError('email', {
           type: 'manual',

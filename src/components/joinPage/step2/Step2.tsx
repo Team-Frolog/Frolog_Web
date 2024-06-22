@@ -30,7 +30,7 @@ function Step2() {
   }, [email, password, passwordCheck, isValid]);
 
   const handleSendCode = () => {
-    sendEmailCode(watch('email')).then(() => {
+    sendEmailCode(watch('email'), 'signUp').then(() => {
       if (isSendFailed) {
         setError('email', {
           type: 'manual',

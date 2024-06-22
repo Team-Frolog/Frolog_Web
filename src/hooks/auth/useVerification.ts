@@ -8,8 +8,11 @@ export const useVerification = () => {
   const codeToken = useCodeToken();
   const { setEmailCodeToken, setEmailVerifiedToken } = useAuthActions();
 
-  const sendEmailCode = async (email: string) => {
-    const data = await userAPI.requestCode({ email, target: 'signUp' });
+  const sendEmailCode = async (
+    email: string,
+    target: 'signUp' | 'resetPassword'
+  ) => {
+    const data = await userAPI.requestCode({ email, target });
 
     if (data!.result) {
       setEmailCodeToken(data!.email_code_token!);
