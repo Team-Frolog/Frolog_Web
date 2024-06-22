@@ -10,7 +10,7 @@ function QuestionItem({ data, isSelected, ...props }: Props) {
   return (
     <button
       {...props}
-      className={`box-border w-full cursor-pointer rounded-[12px] p-[30px] text-center ${isSelected ? 'bg-main text-white' : 'bg-gray-200'}`}
+      className={`box-border w-full cursor-pointer rounded-[12px] p-[30px] text-center ${isSelected ? 'bg-main text-body_lg_bold text-white' : 'bg-gray-200 text-body_lg'}`}
     >
       {data.value}
     </button>
