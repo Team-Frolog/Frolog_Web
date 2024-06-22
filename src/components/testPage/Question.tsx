@@ -6,12 +6,16 @@ import QuestionTitle from './QuestionTitle';
 import QuestionItem from './QuestionItem';
 import { questions } from '@/data/test';
 import { PAGES } from '@/constants/pageConfig';
+import { usePreventBack } from '@/hooks/gesture/usePreventBack';
 
 function Question() {
+  const username = useSearchParams().get('username')!;
+  const step = Number(useSearchParams().get('step')!);
   const router = useRouter();
   const [answers, setAnswers] = useState<number[]>(Array(7).fill(0));
-  const step = Number(useSearchParams().get('step')!);
   const data = questions[step - 1];
+
+  usePreventBack(`${PAGES.JOIN_FINISH}?username=${username}`);
 
   const handleClickAnswer = (id: number) => {
     setAnswers((prev) => {

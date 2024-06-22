@@ -16,7 +16,7 @@ interface IFindForm {
 }
 
 function FindPasswordPage() {
-  usePreventBack();
+  usePreventBack(PAGES.LANDING);
   const step = Number(useSearchParams().get('step')!);
 
   const methods = useForm<IFindForm>({

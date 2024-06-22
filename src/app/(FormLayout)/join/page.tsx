@@ -13,7 +13,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { PAGES } from '@/constants/pageConfig';
 
 function JoinPage() {
-  usePreventBack();
+  usePreventBack(PAGES.LANDING);
   const methods = useForm<IJoinForm>({
     mode: 'onBlur',
     defaultValues:

@@ -1,14 +1,14 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
-export const usePreventBack = () => {
+export const usePreventBack = (redirectUrl: string) => {
   const router = useRouter();
   const step = useSearchParams().get('step');
 
   useEffect(() => {
     const handlePopState = (event: any) => {
       event.preventDefault();
-      window.location.replace('/landing');
+      window.location.replace(redirectUrl);
     };
 
     window.addEventListener('popstate', handlePopState);

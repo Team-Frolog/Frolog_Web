@@ -14,7 +14,7 @@ import { PAGES } from '@/constants/pageConfig';
 
 function JoinFinishPage() {
   const username = useSearchParams().get('username');
-  usePreventBack();
+  usePreventBack(PAGES.LANDING);
 
   return (
     <div className='relative flex h-full w-full flex-col justify-between overflow-hidden pt-[30px]'>
@@ -47,7 +47,9 @@ function JoinFinishPage() {
             <br />
             독서 성향을 알기 위해, 간단히 7가지만 물어볼게요!
           </span>
-          <LinkButton route={`${PAGES.TEST}?step=1`}>내 독서성향 알아보기</LinkButton>
+          <LinkButton route={`${PAGES.TEST}?step=1&username=${username}`}>
+            내 독서성향 알아보기
+          </LinkButton>
         </div>
       </div>
       <PopperAnimation />
