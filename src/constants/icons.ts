@@ -17,7 +17,7 @@ export const ICONS = {
     },
   },
   join: {
-    lightOn: `${BASE_PATH}/joinPage/light-on.svg`,
+    lightOn: `${BASE_PATH}/joinPage/light.svg`,
     lightOff: `${BASE_PATH}/joinPage/light-off.svg`,
   },
 } as const;
