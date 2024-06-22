@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PopperAnimation from '@/components/animation/PopperAnimation';
 import { usePreventBack } from '@/hooks/gesture/usePreventBack';
 import { useSearchParams } from 'next/navigation';
@@ -11,10 +11,15 @@ import { IMAGES } from '../../../../constants/images';
 import { ICONS } from '@/constants/icons';
 import Link from 'next/link';
 import { PAGES } from '@/constants/pageConfig';
+import { TEST_ANSWER_KEY } from '@/constants/storage';
 
 function JoinFinishPage() {
   const username = useSearchParams().get('username');
   usePreventBack(PAGES.LANDING);
+
+  useEffect(() => {
+    localStorage.removeItem(TEST_ANSWER_KEY);
+  }, []);
 
   return (
     <div className='relative flex h-full w-full flex-col justify-between overflow-hidden pt-[30px]'>
