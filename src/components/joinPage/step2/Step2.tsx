@@ -54,7 +54,6 @@ function Step2() {
             fieldName='email'
             errorMessage={errors.email && String(errors.email.message)}
             {...register('email', {
-              required: true,
               pattern: {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
                 message: '이메일 형식을 확인해주세요.',

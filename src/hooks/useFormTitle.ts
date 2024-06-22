@@ -14,6 +14,8 @@ export const useFormTitle = () => {
   useEffect(() => {
     if (pathname === PAGE_CONFIG.JOIN.PATH) {
       setTitle(PAGE_CONFIG.JOIN.QUERY![step!]);
+    } else if (pathname === PAGE_CONFIG.FIND_PASSWORD.PATH) {
+      setTitle(PAGE_CONFIG.FIND_PASSWORD.QUERY![step!]);
     } else if (isPathExists(pathname)) {
       setTitle(getPathName(pathname) || '');
     } else {
