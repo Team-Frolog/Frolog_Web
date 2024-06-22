@@ -2,6 +2,7 @@
 
 import CodeForm from '@/components/common/form/code/CodeForm';
 import Step1 from '@/components/findPasswordPage/Step1';
+import Step3 from '@/components/findPasswordPage/Step3';
 import { PAGES } from '@/constants/pageConfig';
 import { usePreventBack } from '@/hooks/gesture/usePreventBack';
 import { useSearchParams } from 'next/navigation';
@@ -37,6 +38,7 @@ function FindPasswordPage() {
             route={`${PAGES.FIND_PASSWORD}?step=3`}
           />
         )}
+        {step === 3 && <Step3 />}
       </form>
     </FormProvider>
   );
