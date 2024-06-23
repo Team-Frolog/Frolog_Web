@@ -12,7 +12,7 @@ function ProgressHeader() {
   const router = useRouter();
   const testStep = useTestStep();
   const { moveTestStep } = useStepActions();
-  const percentage = (100 / 7) * testStep;
+  const percentage = (100 / 8) * testStep;
 
   const handleClickBack = () => {
     if (testStep === 1) {

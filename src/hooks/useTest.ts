@@ -26,22 +26,25 @@ export const useTest = () => {
       return newArr;
     });
 
-    if (testStep === 7) {
-      const result = testEvaluator(answers);
-      window.location.replace(`${PAGES.TEST_RESULT}?type=${result}`);
-    } else {
-      setTimeout(() => {
-        moveTestStep(1);
-      }, 500);
-    }
+    setTimeout(() => {
+      moveTestStep(1);
+    }, 500);
   };
 
   useEffect(() => {
-    setTestData(questions[testStep - 1]);
+    if (testStep <= 7) {
+      setTestData(questions[testStep - 1]);
 
-    const currentAnswers = answers.slice(0, testStep);
-    localStorage.setItem(TEST_ANSWER_KEY, JSON.stringify(currentAnswers));
-    setAnswers(currentAnswers);
+      const currentAnswers = answers.slice(0, testStep);
+      localStorage.setItem(TEST_ANSWER_KEY, JSON.stringify(currentAnswers));
+      setAnswers(currentAnswers);
+    } else {
+      setTimeout(() => {
+        const result = testEvaluator(answers);
+        // TODO: 서버에 결과 보내기
+        window.location.replace(`${PAGES.TEST}?loading=true&type=${result}`);
+      }, 1000);
+    }
   }, [testStep]);
 
   return { testStep, answers, handleClickAnswer, testData };

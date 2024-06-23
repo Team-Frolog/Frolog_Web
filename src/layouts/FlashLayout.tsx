@@ -7,24 +7,16 @@ interface Props {
   children: React.ReactNode;
 }
 
-function FinishLight({ children }: Props) {
+function FinishLayout({ children }: Props) {
   return (
-    <div className='relative z-0 w-full'>
-      <div className='absolute bottom-[60px] left-1/2 w-full -translate-x-1/2'>
+    <div className='relative z-0 h-full w-full'>
+      <div className='absolute left-1/2 top-[170px] w-full -translate-x-1/2'>
         <BigTitle type='default' align='text-center'>
           {children}
         </BigTitle>
       </div>
-
-      <Image
-        src={ICONS.join.light}
-        alt='light'
-        width={30}
-        height={30}
-        className={`w-full`}
-      />
     </div>
   );
 }
 
-export default FinishLight;
+export default FinishLayout;
