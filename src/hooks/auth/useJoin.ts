@@ -6,24 +6,22 @@ import { PAGES } from '@/constants/pageConfig';
 import { useRouter } from 'next/navigation';
 import { useAuthActions, useVerifyToken } from '@/store/authStore';
 import { IJoinForm } from '@/types/form';
+import { useJoinStep } from '@/store/stepStore';
 
 export const useJoin = (getValues: () => IJoinForm) => {
   const router = useRouter();
+  const joinStep = useJoinStep();
   const verifyToken = useVerifyToken();
-  const [step, setStep] = useState<number>(() => {
-    const current = sessionStorage.getItem(STEP_KEY.JOIN);
-    return current ? Number(current) : 1;
-  });
   const { resetToken } = useAuthActions();
 
   // step별 폼 상태 저장
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      step === 1
+      joinStep === 1
         ? localStorage.removeItem(JOIN_FORM_KEY)
         : localStorage.setItem(JOIN_FORM_KEY, JSON.stringify(getValues()));
     }
-  }, [step]);
+  }, [joinStep]);
 
   const joinUser = async (data: IJoinForm) => {
     const formData = transformJoinForm(data, verifyToken!);
@@ -36,10 +34,5 @@ export const useJoin = (getValues: () => IJoinForm) => {
     }
   };
 
-  const goNextStep = () => {
-    sessionStorage.setItem(STEP_KEY.JOIN, String(step + 1));
-    setStep((prev) => prev + 1);
-  };
-
-  return { joinUser, step, goNextStep };
+  return { joinUser, joinStep };
 };

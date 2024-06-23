@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist, devtools } from 'zustand/middleware';
+import { persist, devtools, createJSONStorage } from 'zustand/middleware';
 
 interface Actions {
   setEmailCodeToken: (value: string | null) => void;
@@ -45,7 +45,11 @@ const useAuthStore = create<AuthStore>()(
       }),
       {
         name: 'AuthStore',
+        storage: createJSONStorage(() => sessionStorage),
         partialize: (state) => ({
+          emailCodeToken: state.emailCodeToken,
+          emailVerifiedToken: state.emailVerifiedToken,
+          expiredTime: state.expiredTime,
           setEmailCodeToken: state.actions.setEmailCodeToken,
           setEmailVerifiedToken: state.actions.setEmailVerifiedToken,
           resetToken: state.actions.resetToken,

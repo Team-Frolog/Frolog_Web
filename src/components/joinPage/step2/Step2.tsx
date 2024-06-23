@@ -4,14 +4,12 @@ import { userAPI } from '@/app/api/user.api';
 import Button from '@/components/common/button/Button';
 import FormInput from '@/components/common/form/FormInput';
 import { useVerification } from '@/hooks/auth/useVerification';
+import { useStepActions } from '@/store/stepStore';
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-interface Props {
-  onClickNext: () => void;
-}
-
-function Step2({ onClickNext }: Props) {
+function Step2() {
+  const { goNextJoinStep } = useStepActions();
   const [isDisabled, setIsDisabled] = useState(true);
   const { isSendFailed, sendEmailCode } = useVerification();
   const {
@@ -38,7 +36,7 @@ function Step2({ onClickNext }: Props) {
           message: '인증 요청을 다시 시도해주세요.',
         });
       } else {
-        onClickNext();
+        goNextJoinStep();
       }
     });
   };

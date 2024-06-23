@@ -9,6 +9,7 @@ import { defaultValue } from '@/data/joinForm';
 import { useJoin } from '@/hooks/auth/useJoin';
 import { IJoinForm } from '@/types/form';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useStepActions } from '@/store/stepStore';
 
 function JoinPage() {
   const methods = useForm<IJoinForm>({
@@ -20,7 +21,8 @@ function JoinPage() {
   });
   const { getValues, handleSubmit } = methods;
 
-  const { joinUser, step, goNextStep } = useJoin(getValues);
+  const { goNextJoinStep } = useStepActions();
+  const { joinUser, joinStep } = useJoin(getValues);
 
   const handleSignUp = (data: IJoinForm) => {
     joinUser(data);
@@ -29,10 +31,12 @@ function JoinPage() {
   return (
     <FormProvider {...methods}>
       <form className='h-full' onSubmit={handleSubmit(handleSignUp)}>
-        {step === 1 && <Step1 onClickNext={goNextStep} />}
-        {step === 2 && <Step2 onClickNext={goNextStep} />}
-        {step === 3 && <CodeForm type='signUp' onClickNext={goNextStep} />}
-        {step === 4 && <Step4 />}
+        {joinStep === 1 && <Step1 />}
+        {joinStep === 2 && <Step2 />}
+        {joinStep === 3 && (
+          <CodeForm type='signUp' onClickNext={goNextJoinStep} />
+        )}
+        {joinStep === 4 && <Step4 />}
       </form>
     </FormProvider>
   );

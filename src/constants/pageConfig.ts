@@ -2,17 +2,13 @@ interface IPageConfig {
   [key: string]: {
     PATH: string;
     NAME?: string;
-    QUERY?: {
+    STEP?: {
       [key: string]: string;
     };
   };
 }
 
-interface IPages {
-  [key: string]: string;
-}
-
-export const PAGES: IPages = {
+export const PAGES = {
   HOME: '/',
   LANDING: '/landing',
   JOIN: '/join',
@@ -30,7 +26,7 @@ export const PAGE_CONFIG: IPageConfig = {
   FIND_PASSWORD: {
     PATH: PAGES.FIND_PASSWORD,
     NAME: '비밀번호 찾기',
-    QUERY: {
+    STEP: {
       '1': '이메일 인증',
       '2': '인증코드 입력',
       '3': '비밀번호 재설정',
@@ -39,7 +35,7 @@ export const PAGE_CONFIG: IPageConfig = {
   JOIN: {
     PATH: PAGES.JOIN,
     NAME: '회원가입',
-    QUERY: {
+    STEP: {
       '1': '약관 동의',
       '2': '회원가입',
       '3': '인증코드 입력',

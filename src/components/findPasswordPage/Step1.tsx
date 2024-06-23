@@ -4,14 +4,10 @@ import { useFormContext } from 'react-hook-form';
 import { userAPI } from '@/app/api/user.api';
 import Button from '../common/button/Button';
 import { useVerification } from '@/hooks/auth/useVerification';
-import { useRouter } from 'next/navigation';
+import { useStepActions } from '@/store/stepStore';
 
-interface Props {
-  onClickNext: () => void;
-}
-
-function Step1({ onClickNext }: Props) {
-  const router = useRouter();
+function Step1() {
+  const { goNextFindStep } = useStepActions();
   const [isEmailChecked, setIsEmailChecked] = useState(false);
   const { isSendFailed, sendEmailCode } = useVerification();
   const {
@@ -30,7 +26,7 @@ function Step1({ onClickNext }: Props) {
           message: '인증 요청을 다시 시도해주세요.',
         });
       } else {
-        onClickNext();
+        goNextFindStep();
       }
     });
   };

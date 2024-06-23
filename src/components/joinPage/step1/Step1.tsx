@@ -6,12 +6,10 @@ import CheckAllItem from './CheckAllItem';
 import TermsContainer from './TermsContainer';
 import { requiredConsentsKeys } from '@/data/joinForm';
 import { useFormContext } from 'react-hook-form';
+import { useStepActions } from '@/store/stepStore';
 
-interface Props {
-  onClickNext: () => void;
-}
-
-function Step1({ onClickNext }: Props) {
+function Step1() {
+  const { goNextJoinStep } = useStepActions();
   const { watch } = useFormContext();
   const isAgree = requiredConsentsKeys.every((key) => watch(key));
 
@@ -26,7 +24,7 @@ function Step1({ onClickNext }: Props) {
         btnType='button'
         btnText='다음'
         disabled={!isAgree}
-        onClick={onClickNext}
+        onClick={goNextJoinStep}
       >
         <p className='text-center text-body_sm text-gray-400'>
           개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있으며,

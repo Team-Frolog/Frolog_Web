@@ -5,6 +5,7 @@ import Step1 from '@/components/findPasswordPage/Step1';
 import Step3 from '@/components/findPasswordPage/Step3';
 import { FIND_FORM_KEY } from '@/constants/storage';
 import { useFindPassword } from '@/hooks/auth/useFindPassword';
+import { useStepActions } from '@/store/stepStore';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -27,16 +28,17 @@ function FindPasswordPage() {
           },
   });
 
-  const { step, goNextStep } = useFindPassword(methods.getValues);
+  const { goNextFindStep } = useStepActions();
+  const { findStep } = useFindPassword(methods.getValues);
 
   return (
     <FormProvider {...methods}>
       <form className='h-full'>
-        {step === 1 && <Step1 onClickNext={goNextStep} />}
-        {step === 2 && (
-          <CodeForm type='resetPassword' onClickNext={goNextStep} />
+        {findStep === 1 && <Step1 />}
+        {findStep === 2 && (
+          <CodeForm type='resetPassword' onClickNext={goNextFindStep} />
         )}
-        {step === 3 && <Step3 />}
+        {findStep === 3 && <Step3 />}
       </form>
     </FormProvider>
   );
