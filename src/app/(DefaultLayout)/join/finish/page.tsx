@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import PopperAnimation from '@/components/animation/PopperAnimation';
-import { usePreventBack } from '@/hooks/gesture/usePreventBack';
 import { useSearchParams } from 'next/navigation';
 import LinkButton from '@/components/common/button/LinkButton';
 import FinishLight from '@/components/common/FinishLight';
@@ -11,15 +10,9 @@ import { IMAGES } from '../../../../constants/images';
 import { ICONS } from '@/constants/icons';
 import Link from 'next/link';
 import { PAGES } from '@/constants/pageConfig';
-import { TEST_ANSWER_KEY } from '@/constants/storage';
 
 function JoinFinishPage() {
   const username = useSearchParams().get('username');
-  usePreventBack(PAGES.LANDING);
-
-  useEffect(() => {
-    localStorage.removeItem(TEST_ANSWER_KEY);
-  }, []);
 
   return (
     <div className='relative flex h-full w-full flex-col justify-between overflow-hidden pt-[30px]'>
@@ -52,9 +45,7 @@ function JoinFinishPage() {
             <br />
             독서 성향을 알기 위해, 간단히 7가지만 물어볼게요!
           </span>
-          <LinkButton route={`${PAGES.TEST}?step=1&username=${username}`}>
-            내 독서성향 알아보기
-          </LinkButton>
+          <LinkButton route={PAGES.TEST}>내 독서성향 알아보기</LinkButton>
         </div>
       </div>
       <PopperAnimation />

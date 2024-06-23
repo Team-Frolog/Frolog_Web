@@ -4,19 +4,21 @@ import { ICONS } from '@/constants/icons';
 import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/pageConfig';
+import { useStepActions, useTestStep } from '@/store/stepStore';
 
 function ProgressHeader() {
   const router = useRouter();
-  const step = Number(useSearchParams().get('step')!);
-  const percentage = (100 / 7) * step;
+  const testStep = useTestStep();
+  const { moveTestStep } = useStepActions();
+  const percentage = (100 / 7) * testStep;
 
   const handleClickBack = () => {
-    if (step === 1) {
-      router.push(`${PAGES.JOIN_FINISH}`);
+    if (testStep === 1) {
+      router.push(PAGES.JOIN_FINISH);
     } else {
-      router.push(`${PAGES.TEST}?step=${step - 1}`);
+      moveTestStep(-1);
     }
   };
 

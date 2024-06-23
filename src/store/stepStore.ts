@@ -7,7 +7,7 @@ interface Actions {
   resetTestStep: () => void;
   goNextJoinStep: () => void;
   goNextFindStep: () => void;
-  goNextTestStep: () => void;
+  moveTestStep: (n: number) => void;
 }
 
 interface StepStore {
@@ -45,9 +45,9 @@ const useStepStore = create<StepStore>()(
             set((state) => ({
               findStep: state.findStep + 1,
             })),
-          goNextTestStep: () =>
+          moveTestStep: (n: number) =>
             set((state) => ({
-              testStep: state.testStep + 1,
+              testStep: state.testStep + n,
             })),
         },
       }),
@@ -63,7 +63,7 @@ const useStepStore = create<StepStore>()(
           resetTestStep: state.actions.resetTestStep,
           goNextJoinStep: state.actions.goNextJoinStep,
           goNextFindStep: state.actions.goNextFindStep,
-          goNextTestStep: state.actions.goNextTestStep,
+          moveTestStep: state.actions.moveTestStep,
         }),
       }
     )

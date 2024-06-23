@@ -6,7 +6,7 @@ import QuestionItem from './QuestionItem';
 import { useTest } from '@/hooks/useTest';
 
 function Question() {
-  const { testData, answers, handleClickAnswer, step } = useTest();
+  const { testData, answers, handleClickAnswer, testStep } = useTest();
 
   return (
     <div className='flex flex-1 flex-col gap-[50px] p-page mobile:gap-0'>
@@ -16,7 +16,7 @@ function Question() {
           <QuestionItem
             key={item.id}
             data={item}
-            isSelected={answers[step - 1] === item.id}
+            isSelected={answers[testStep - 1] === item.id}
             onClick={() => handleClickAnswer(item.id)}
           />
         ))}
