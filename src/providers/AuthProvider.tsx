@@ -1,5 +1,6 @@
 'use client';
 
+import { useFormReset } from '@/hooks/auth/useFormReset';
 import { RefreshTokenHandler } from '@/lib/RefreshTokenHandler';
 import { SessionProvider, useSession } from 'next-auth/react';
 
@@ -17,6 +18,7 @@ export default function AuthProvider({ children }: Props) {
 
 function Auth() {
   const { data: session, update } = useSession();
+  useFormReset();
 
   return (
     <>{session && <RefreshTokenHandler session={session} update={update} />}</>

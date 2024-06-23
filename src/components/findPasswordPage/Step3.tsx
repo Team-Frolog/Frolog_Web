@@ -54,9 +54,10 @@ function Step3() {
         />
       </div>
       <Button
+        type='submit'
         disabled={!watch('password') || !watch('passwordCheck') || !isValid}
       >
-        다음
+        비밀번호 재설정 완료
       </Button>
     </div>
   );

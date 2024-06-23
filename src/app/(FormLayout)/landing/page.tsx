@@ -1,18 +1,10 @@
-'use client';
-
 import ButtonWithText from '@/components/common/button/ButtonWithText';
 import BigTitle from '@/components/common/text/BigTitle';
 import { PAGES } from '@/constants/pageConfig';
-import { JOIN_FORM_KEY, STEP_KEY } from '@/constants/storage';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 function LandingPage() {
-  useEffect(() => {
-    localStorage.removeItem(JOIN_FORM_KEY);
-    sessionStorage.setItem(STEP_KEY.JOIN, '1');
-  }, []);
-
   return (
     <>
       <BigTitle type='bright'>
@@ -29,7 +21,7 @@ function LandingPage() {
       >
         <div className='flex gap-[6px]'>
           <span className='text-body_lg text-gray-400'>우리 초면인가요?</span>
-          <Link href={`${PAGES.JOIN}`} className='text-body_lg_bold text-white'>
+          <Link href={PAGES.JOIN} className='text-body_lg_bold text-white'>
             회원가입 하기
           </Link>
         </div>

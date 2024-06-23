@@ -4,10 +4,13 @@ import { useFormContext } from 'react-hook-form';
 import { userAPI } from '@/app/api/user.api';
 import Button from '../common/button/Button';
 import { useVerification } from '@/hooks/auth/useVerification';
-import { PAGES } from '@/constants/pageConfig';
 import { useRouter } from 'next/navigation';
 
-function Step1() {
+interface Props {
+  onClickNext: () => void;
+}
+
+function Step1({ onClickNext }: Props) {
   const router = useRouter();
   const [isEmailChecked, setIsEmailChecked] = useState(false);
   const { isSendFailed, sendEmailCode } = useVerification();
@@ -27,7 +30,7 @@ function Step1() {
           message: '인증 요청을 다시 시도해주세요.',
         });
       } else {
-        router.push(`${PAGES.FIND_PASSWORD}?step=2`);
+        onClickNext();
       }
     });
   };

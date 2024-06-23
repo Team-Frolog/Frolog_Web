@@ -1,4 +1,5 @@
 export const JOIN_FORM_KEY = '@FROLOG_JOIN_FORM';
+export const FIND_FORM_KEY = '@FROLOG_FIND_FORM';
 export const TEST_ANSWER_KEY = '@FROLOG_TEST_ANSWER';
 export const STEP_KEY = {
   JOIN: '@FROLOG_JOIN_STEP',
