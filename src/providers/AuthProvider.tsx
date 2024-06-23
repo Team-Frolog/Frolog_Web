@@ -19,16 +19,14 @@ export default function AuthProvider({ children }: Props) {
 }
 
 function Auth() {
-  const rememberMe = localStorage.getItem(REMEMBER_ME_KEY);
-  const isLoggedIn = sessionStorage.getItem(REMEMBER_ME_KEY);
   const { data: session, update } = useSession();
   useFormReset();
 
   useEffect(() => {
     if (
-      rememberMe === 'false' &&
-      !isLoggedIn &&
-      typeof window !== 'undefined'
+      typeof window !== 'undefined' &&
+      localStorage.getItem(REMEMBER_ME_KEY) === 'false' &&
+      !sessionStorage.getItem(REMEMBER_ME_KEY)
     ) {
       localStorage.removeItem(REMEMBER_ME_KEY);
       sessionStorage.removeItem(REMEMBER_ME_KEY);
