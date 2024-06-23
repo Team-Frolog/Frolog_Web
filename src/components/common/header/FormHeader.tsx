@@ -18,7 +18,7 @@ function FormHeader() {
       router.push('/');
     } else {
       localStorage.removeItem(JOIN_FORM_KEY);
-      router.push('/landing');
+      router.back();
     }
   };
 

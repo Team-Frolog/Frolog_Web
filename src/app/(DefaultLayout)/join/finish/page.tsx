@@ -18,7 +18,7 @@ function JoinFinishPage() {
     <div className='relative flex h-full w-full flex-col justify-between overflow-hidden pt-[30px]'>
       <Link
         className='absolute left-[24px] top-[24px] z-10 cursor-pointer'
-        href={PAGES.LOGIN}
+        href='/'
       >
         <Image src={ICONS.common.cancel} alt='x' width={24} height={24} />
       </Link>
