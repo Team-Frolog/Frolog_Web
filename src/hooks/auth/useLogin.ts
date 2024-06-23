@@ -1,4 +1,5 @@
 import { ILoginForm } from '@/app/(FormLayout)/login/page';
+import { REMEMBER_ME_KEY } from '@/constants/storage';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -17,6 +18,13 @@ export const useLogin = () => {
 
     if (result?.ok) {
       router.push('/');
+
+      if (isSaved) {
+        localStorage.setItem(REMEMBER_ME_KEY, 'true');
+      } else {
+        localStorage.setItem(REMEMBER_ME_KEY, 'false');
+        sessionStorage.setItem(REMEMBER_ME_KEY, 'logged_in');
+      }
     } else {
       setIsFaild(true);
     }
