@@ -1,4 +1,4 @@
-import { PAGE_CONFIG } from '@/constants/pageConfig';
+import { PAGE_CONFIG } from '@/constants/page';
 
 export const isPathExists = (path: string): boolean => {
   for (const key in PAGE_CONFIG) {

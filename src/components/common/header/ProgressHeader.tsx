@@ -5,7 +5,7 @@ import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { PAGES } from '@/constants/pageConfig';
+import { PAGES } from '@/constants/page';
 import { useStepActions, useTestStep } from '@/store/stepStore';
 
 function ProgressHeader() {

@@ -1,8 +1,8 @@
 import { userAPI } from '@/app/api/user.api';
-import { JOIN_FORM_KEY, STEP_KEY } from '@/constants/storage';
+import { JOIN_FORM_KEY } from '@/constants/storage';
 import { transformJoinForm } from '@/utils/transformJoinForm';
-import { useEffect, useState } from 'react';
-import { PAGES } from '@/constants/pageConfig';
+import { useEffect } from 'react';
+import { PAGES } from '@/constants/page';
 import { useRouter } from 'next/navigation';
 import { useAuthActions, useVerifyToken } from '@/store/authStore';
 import { IJoinForm } from '@/types/form';

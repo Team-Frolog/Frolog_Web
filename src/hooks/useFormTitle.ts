@@ -1,4 +1,4 @@
-import { PAGE_CONFIG } from '@/constants/pageConfig';
+import { PAGE_CONFIG } from '@/constants/page';
 import { useSteps } from '@/store/stepStore';
 import { getPathName, isPathExists } from '@/utils/path';
 import { usePathname } from 'next/navigation';

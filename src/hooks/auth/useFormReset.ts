@@ -1,4 +1,4 @@
-import { PAGES } from '@/constants/pageConfig';
+import { PAGES } from '@/constants/page';
 import {
   FIND_FORM_KEY,
   JOIN_FORM_KEY,

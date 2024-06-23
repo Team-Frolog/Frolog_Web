@@ -9,7 +9,7 @@ import Image from 'next/image';
 import { IMAGES } from '../../../../constants/images';
 import { ICONS } from '@/constants/icons';
 import Link from 'next/link';
-import { PAGES } from '@/constants/pageConfig';
+import { PAGES } from '@/constants/page';
 
 function JoinFinishPage() {
   const username = useSearchParams().get('username');

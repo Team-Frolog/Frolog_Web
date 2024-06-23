@@ -1,6 +1,6 @@
 import ButtonWithText from '@/components/common/button/ButtonWithText';
 import BigTitle from '@/components/common/text/BigTitle';
-import { PAGES } from '@/constants/pageConfig';
+import { PAGES } from '@/constants/page';
 import Link from 'next/link';
 import React from 'react';
 

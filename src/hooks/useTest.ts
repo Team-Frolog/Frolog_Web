@@ -1,6 +1,8 @@
+import { PAGES } from '@/constants/page';
 import { TEST_ANSWER_KEY } from '@/constants/storage';
 import { Question, questions } from '@/data/test';
 import { useStepActions, useTestStep } from '@/store/stepStore';
+import { testEvaluator } from '@/utils/testEvaluator';
 import { useEffect, useState } from 'react';
 
 export const useTest = () => {
@@ -24,9 +26,14 @@ export const useTest = () => {
       return newArr;
     });
 
-    setTimeout(() => {
-      moveTestStep(1);
-    }, 500);
+    if (testStep === 7) {
+      const result = testEvaluator(answers);
+      window.location.replace(`${PAGES.TEST_RESULT}?type=${result}`);
+    } else {
+      setTimeout(() => {
+        moveTestStep(1);
+      }, 500);
+    }
   };
 
   useEffect(() => {
