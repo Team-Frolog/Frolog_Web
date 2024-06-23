@@ -3,14 +3,15 @@
 import { userAPI } from '@/app/api/user.api';
 import Button from '@/components/common/button/Button';
 import FormInput from '@/components/common/form/FormInput';
-import { PAGES } from '@/constants/pageConfig';
 import { useVerification } from '@/hooks/auth/useVerification';
-import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-function Step2() {
-  const router = useRouter();
+interface Props {
+  onClickNext: () => void;
+}
+
+function Step2({ onClickNext }: Props) {
   const [isDisabled, setIsDisabled] = useState(true);
   const { isSendFailed, sendEmailCode } = useVerification();
   const {
@@ -37,7 +38,7 @@ function Step2() {
           message: '인증 요청을 다시 시도해주세요.',
         });
       } else {
-        router.push(`${PAGES.JOIN}?step=3`);
+        onClickNext();
       }
     });
   };

@@ -7,13 +7,10 @@ import Step4 from '@/components/joinPage/step4/Step4';
 import { JOIN_FORM_KEY } from '@/constants/storage';
 import { defaultValue } from '@/data/joinForm';
 import { useJoin } from '@/hooks/auth/useJoin';
-import { usePreventBack } from '@/hooks/gesture/usePreventBack';
 import { IJoinForm } from '@/types/form';
 import { FormProvider, useForm } from 'react-hook-form';
-import { PAGES } from '@/constants/pageConfig';
 
 function JoinPage() {
-  usePreventBack(PAGES.LANDING);
   const methods = useForm<IJoinForm>({
     mode: 'onBlur',
     defaultValues:
@@ -22,7 +19,8 @@ function JoinPage() {
         : defaultValue,
   });
   const { getValues, handleSubmit } = methods;
-  const { step, joinUser } = useJoin(getValues);
+
+  const { joinUser, step, goNextStep } = useJoin(getValues);
 
   const handleSignUp = (data: IJoinForm) => {
     joinUser(data);
@@ -31,11 +29,9 @@ function JoinPage() {
   return (
     <FormProvider {...methods}>
       <form className='h-full' onSubmit={handleSubmit(handleSignUp)}>
-        {step === 1 && <Step1 />}
-        {step === 2 && <Step2 />}
-        {step === 3 && (
-          <CodeForm type='signUp' route={`${PAGES.JOIN}?step=4`} />
-        )}
+        {step === 1 && <Step1 onClickNext={goNextStep} />}
+        {step === 2 && <Step2 onClickNext={goNextStep} />}
+        {step === 3 && <CodeForm type='signUp' onClickNext={goNextStep} />}
         {step === 4 && <Step4 />}
       </form>
     </FormProvider>

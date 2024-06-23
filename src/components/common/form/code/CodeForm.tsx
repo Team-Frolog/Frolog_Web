@@ -12,10 +12,10 @@ import { useCodeTime } from '@/store/authStore';
 
 interface Props {
   type: 'signUp' | 'resetPassword';
-  route: string;
+  onClickNext: () => void;
 }
 
-function CodeForm({ type, route }: Props) {
+function CodeForm({ type, onClickNext }: Props) {
   const router = useRouter();
   const expiredTime = useCodeTime();
   const { watch } = useFormContext();
@@ -35,7 +35,7 @@ function CodeForm({ type, route }: Props) {
 
   useEffect(() => {
     if (isVerified) {
-      router.push(route);
+      onClickNext();
     }
   }, [isVerified]);
 

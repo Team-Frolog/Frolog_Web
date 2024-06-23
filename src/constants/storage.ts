@@ -1,2 +1,7 @@
 export const JOIN_FORM_KEY = '@FROLOG_JOIN_FORM';
 export const TEST_ANSWER_KEY = '@FROLOG_TEST_ANSWER';
+export const STEP_KEY = {
+  JOIN: '@FROLOG_JOIN_STEP',
+  FIND_PASSWORD: '@FROLOG_FIND_PASSWORD_STEP',
+  TEST: '@FROLOG_TEST_STEP',
+} as const;
