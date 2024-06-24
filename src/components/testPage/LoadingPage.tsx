@@ -14,7 +14,7 @@ function LoadingPage() {
       setIsDone(true);
 
       setTimeout(() => {
-        window.location.replace(`${PAGES.TEST_RESULT}?type=${type}`);
+        window.location.replace(`${PAGES.TEST_RESULT}/${type}`);
       }, 1500);
     }, 2000);
   }, []);

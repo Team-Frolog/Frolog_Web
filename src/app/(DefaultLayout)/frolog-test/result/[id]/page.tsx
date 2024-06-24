@@ -1,12 +1,14 @@
-'use client';
-
 import { testResult } from '@/data/testResult';
-import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
-function TestResultPage() {
-  const type = useSearchParams().get('type');
-  const testData = testResult[Number(type)];
+interface Props {
+  params: {
+    id: string;
+  };
+}
+
+function TestResultPage({ params: { id } }: Props) {
+  const testData = testResult[Number(id)];
 
   return (
     <div className='flex h-fit w-full flex-col gap-[12px] whitespace-pre-wrap pt-[60px] text-gray-800'>
