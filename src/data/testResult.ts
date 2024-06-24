@@ -1,61 +1,76 @@
-interface Quote {
-  [key: number]: {
-    id: number;
-    title: string;
-    text: string;
-  }[];
+interface Quotes {
+  [key: number]: Quote[];
 }
 
-export const quotes: Quote = {
+interface Quote {
+  id: number;
+  title: string;
+  text: string;
+}
+
+interface TestResult {
+  [key: number]: {
+    title: string;
+    subTitle: string;
+    quote: Quote;
+    type: {
+      title: string;
+      tag: string;
+    };
+    descriptions: { id: number; text: string }[];
+  };
+}
+
+export const quotes: Quotes = {
   1: [
     {
       id: 1,
       title: '어느 날, 알랭 드 보통이 말했다',
-      text: '책을 읽을 때마다 마음 속 깊은 곳에서\n무언가가 깨어나는 듯한 느낌이 든다.',
+      text: '"책을 읽을 때마다 마음 속 깊은 곳에서\n무언가가 깨어나는 듯한 느낌이 든다."',
     },
     {
       id: 2,
       title: '문학의 거장, 무라카미 하루키는 이렇게 말했다',
-      text: '진정한 감동은 마음 깊이 새겨지고,\n그 여운은 오래도록 남는다.',
+      text: '"진정한 감동은 마음 깊이 새겨지고,\n그 여운은 오래도록 남는다."',
     },
     {
       id: 3,
       title: '따뜻한 진심을 전하는 앤 라모트는 말했다',
-      text: '사람의 마음을 움직이는 건거창한\n말이 아니라, 작은 진심이다.',
+      text: '"사람의 마음을 움직이는 건거창한\n말이 아니라, 작은 진심이다."',
     },
   ],
   2: [
     {
       id: 1,
       title: '어느 날, 코피 아난이 말했다',
-      text: '지식은 힘이다. 정보는 해방이다.\n교육은 진보의 전제 조건이다.',
+      text: '"지식은 힘이다. 정보는 해방이다.\n교육은 진보의 전제 조건이다."',
     },
     {
       id: 2,
       title: '별을 사랑한 과학자, 칼 세이건은 이렇게 말했다',
-      text: '우리는 읽을 때마다\n세상을 새롭게 탐험하는 것이다.',
+      text: '"우리는 읽을 때마다\n세상을 새롭게 탐험하는 것이다."',
     },
     {
       id: 3,
       title: '항해의 지혜를 담은 조지프 콘래드는 말했다',
-      text: '지식은 무한한 바다와 같아서,\n우리는 그 바다를 항해하는 항해사다.',
+      text: '"지식은 무한한 바다와 같아서,\n우리는 그 바다를 항해하는 항해사다."',
     },
   ],
   3: [
     {
       id: 1,
       title: '성공의 비밀을 아는 나폴레온 힐은 이렇게 말했다',
-      text: '성공은 행동을 요구하며,\n책은 그 행동의 지침서가 된다.',
+      text: '"성공은 행동을 요구하며,\n책은 그 행동의 지침서가 된다."',
     },
     {
       id: 2,
       title: '자기계발의 대가, 브라이언 트레이시는 말했다',
-      text: '목표를 세우고 달성하는 과정에서\n우리는 진정한 자신을 발견한다.',
+      text: '"목표를 세우고 달성하는 과정에서\n우리는 진정한 자신을 발견한다."',
     },
     {
       id: 3,
       title: '미래를 비추는 토니 로빈스는 말했다',
-      text: '책은 우리가 꿈꾸는 미래로\n가는 길을 비추는 등불이다.',
+      text: '"책은 우리가 꿈꾸는 미래로\n가는 길을 비추는 등불이다."',
     },
   ],
 };
@@ -66,7 +81,7 @@ const getQuote = (num: number) => {
   return quoteList[randomIndex];
 };
 
-export const testResult = {
+export const testResult: TestResult = {
   1: {
     title: '마음을 울리는\n감성 개구리',
     subTitle: '책 속에 감동을 찾는 나(๑˘ ᵕ˘๑)\n내 마음을 울리는 책이 좋아!',
