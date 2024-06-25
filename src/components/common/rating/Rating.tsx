@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
-import { ICONS } from '@/constants/icons';
-import Image from 'next/image';
+import Star from './Star';
 
 interface Props {
   rating: number;
@@ -12,37 +11,11 @@ function Rating({ rating }: Props) {
     let currentRating = rate;
     for (let i = 0; i < 5; i += 1) {
       if (currentRating >= 1) {
-        stars.push(
-          <Image
-            src={ICONS.common.star.full}
-            alt='star'
-            key={i}
-            width={20}
-            height={20}
-          />
-        );
+        stars.push(<Star rating={1} key={i} />);
         currentRating -= 1;
-      } else if (currentRating > 0) {
-        stars.push(
-          <Image
-            src={ICONS.common.star.half}
-            alt='half star'
-            key={i}
-            width={20}
-            height={20}
-          />
-        );
+      } else if (currentRating >= 0) {
+        stars.push(<Star rating={currentRating} key={i} />);
         currentRating = 0;
-      } else {
-        stars.push(
-          <Image
-            src={ICONS.common.star.default}
-            alt='no star'
-            key={i}
-            width={20}
-            height={20}
-          />
-        );
       }
     }
     return stars;
