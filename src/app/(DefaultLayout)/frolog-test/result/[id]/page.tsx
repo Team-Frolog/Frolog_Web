@@ -1,3 +1,4 @@
+import BooksByType from '@/components/testResultPage/BooksByType';
 import { testResult } from '@/data/testResult';
 import React from 'react';
 
@@ -12,7 +13,7 @@ function TestResultPage({ params: { id } }: Props) {
 
   return (
     <div className='flex h-fit w-full flex-col gap-[12px] whitespace-pre-wrap pt-[60px] text-gray-800'>
-      <div className='flex w-full flex-col items-center gap-[32px] rounded-[12px] bg-white py-[32px]'>
+      <div className='flex w-full flex-col items-center gap-[32px] rounded-[12px] bg-white px-[24px] py-[36px]'>
         <div className='h-[80px] w-[80px] bg-gray-400'>logo</div>
         <div className='flex flex-col items-center gap-[16px]'>
           <h1 className='text-center text-h_lg_bold'>{testData.title}</h1>
@@ -43,9 +44,7 @@ function TestResultPage({ params: { id } }: Props) {
         </div>
       </div>
 
-      <div className='rounded-[12px] bg-white'>
-        <div></div>
-      </div>
+      <BooksByType type={+id} />
     </div>
   );
 }

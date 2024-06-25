@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .tag-common {
+    @apply w-fit rounded-[8px] border-[0.5px] px-[12px] py-[6px] text-caption_bold;
+  }
+  .default-tag {
+    @apply border-gray-600 bg-gray-300 text-gray-600;
+  }
+  .pro-tag {
+    @apply bg-main_bg border-main text-main;
+  }
+  .con-tag {
+    @apply bg-error_bg_light border-error text-error;
+  }
+}

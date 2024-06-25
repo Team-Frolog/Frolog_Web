@@ -19,6 +19,7 @@ const config: Config = {
       },
       fontSize: {
         caption: ['10px', { lineHeight: '14px' }],
+        caption_bold: ['10px', { lineHeight: '14px', fontWeight: 700 }],
         body_sm: ['12px', { lineHeight: '18px' }],
         body_md: ['14px', { lineHeight: '20px' }],
         body_lg: ['16px', { lineHeight: '24px' }],
@@ -45,9 +46,11 @@ const config: Config = {
       colors: {
         main: '#00CE4C',
         main_bright: '#A1FF56',
+        main_bg: 'rgba(0, 206, 76, 0.10)',
         white: '#FFFFFF',
         error: '#FF6464',
         error_bg: '#FF64644D',
+        error_bg_light: 'rgba(255, 100, 100, 0.10)',
         gray: {
           200: '#F5F6F9',
           300: '#EDEFF4',
