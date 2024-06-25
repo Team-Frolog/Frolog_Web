@@ -2,6 +2,11 @@ const BASE_PATH = '/icons';
 
 export const ICONS = {
   common: {
+    star: {
+      default: `${BASE_PATH}/common/star/star-empty.svg`,
+      half: `${BASE_PATH}/common/star/star-half.svg`,
+      full: `${BASE_PATH}/common/star/star-full.svg`,
+    },
     back: {
       back_500: `${BASE_PATH}/common/back/back-500.svg`,
       back_600: `${BASE_PATH}/common/back/back-600.svg`,

@@ -1,5 +1,5 @@
 import React from 'react';
-import BookItem from './BookItem';
+import BookItem from '../common/book/BookItem';
 
 interface Props {
   type: number;

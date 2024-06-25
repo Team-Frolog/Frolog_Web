@@ -1,5 +1,6 @@
 import React from 'react';
-import Tag from '../common/tag/Tag';
+import Tag from '../tag/Tag';
+import Rating from '../rating/Rating';
 
 function BookItem() {
   return (
@@ -11,6 +12,7 @@ function BookItem() {
           <span className='text-caption_bold text-gray-600'>안녕달</span>
         </div>
         <div className='flex flex-col gap-[8px]'>
+          <Rating rating={4} />
           <div className='flex flex-col gap-[4px]'>
             <Tag type='pros' text='술술 읽혀요' />
             <Tag type='cons' text='다른 비슷한 책이 더 나아요' />
