@@ -17,7 +17,7 @@ function Button({
     <button
       type={type}
       disabled={disabled}
-      className={`box-border w-full rounded-[30px] bg-main px-[30px] py-[18px] text-body_lg_bold text-white transition-all ${disabled && `pointer-events-none opacity-[0.4]`}`}
+      className={`button ${disabled && `button-disabled`}`}
       {...props}
     >
       {children}
