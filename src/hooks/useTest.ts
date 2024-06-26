@@ -44,8 +44,10 @@ export const useTest = () => {
       setAnswers(currentAnswers);
     } else {
       const account = localStorage.getItem(TEMP_ACCOUNT_KEY);
+      console.log('account', account);
 
       if (account) {
+        console.log('login');
         userLogin(JSON.parse(account));
       } else {
         window.alert(ERROR_ALERT);
