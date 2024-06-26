@@ -16,7 +16,7 @@ function TestResultPage({ params: { id } }: Props) {
   return (
     <div className='flex h-fit w-full flex-col gap-[12px] whitespace-pre-wrap pt-[60px] text-gray-800'>
       <div className='flex w-full flex-col items-center bg-white'>
-        <div className='relative flex h-[300px] w-full flex-col items-center justify-end gap-[32px] bg-gray-900'>
+        <div className='relative flex h-[300px] w-full flex-col items-center justify-end gap-[32px] bg-gray-900 mobile:h-[270px]'>
           <Image
             src={IMAGES.shape[id as '1' | '2' | '3']}
             alt='shape'
@@ -25,9 +25,11 @@ function TestResultPage({ params: { id } }: Props) {
             className='absolute left-0 top-0 w-full'
           />
           <div className='z-10 h-[80px] w-[80px] bg-gray-400'>logo</div>
-          <h1 className='z-10 text-center text-h_lg_bold'>{testData.title}</h1>
+          <h1 className='z-10 text-center text-h_lg_bold mobile:text-h_lg_bold'>
+            {testData.title}
+          </h1>
         </div>
-        <div className='z-10 flex flex-col items-center gap-[32px] rounded-[12px] px-[24px] py-[36px]'>
+        <div className='z-10 flex flex-col items-center gap-[32px] rounded-[12px] px-[24px] py-[36px] mobile:pb-[36px] mobile:pt-[12px]'>
           <h5 className='text-center text-body_xl_bold'>{testData.subTitle}</h5>
           <div className='z-10 h-[180px] w-[180px] bg-gray-400'>frog</div>
           <div className='flex flex-col items-center gap-[8px]'>
@@ -36,7 +38,7 @@ function TestResultPage({ params: { id } }: Props) {
               {testData.quote.text}
             </span>
           </div>
-          <hr className='h-[1px] w-[70%] border-gray-500' />
+          <hr className='h-[1px] w-[80%] border-gray-500' />
           <div className='flex flex-col items-center gap-[20px]'>
             <div className='flex flex-col items-center gap-[8px]'>
               <h3 className='text-title_xl_bold'>{testData.type.title}</h3>
@@ -44,7 +46,7 @@ function TestResultPage({ params: { id } }: Props) {
                 {testData.type.tag}
               </span>
             </div>
-            <ul className='list-disc'>
+            <ul className='w-[95%] list-disc'>
               {testData.descriptions.map((item) => (
                 <li className='text-body_md' key={item.id}>
                   {item.text}
@@ -52,9 +54,9 @@ function TestResultPage({ params: { id } }: Props) {
               ))}
             </ul>
           </div>
+          <TempButton type={id} />
         </div>
       </div>
-      <TempButton type={id} />
     </div>
   );
 }
