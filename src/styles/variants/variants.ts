@@ -28,3 +28,11 @@ export const staggerItemVariants = {
     },
   },
 };
+
+export const tapVariants = {
+  tap: {
+    scale: 0.95,
+    opacity: 0.9,
+    transition: { duration: 0 },
+  },
+};
