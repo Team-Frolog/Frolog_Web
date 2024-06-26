@@ -11,13 +11,12 @@ import { useEffect } from 'react';
 
 export const useFormReset = () => {
   const { data: session } = useSession();
-
-  if (session) return null;
-
   const { resetFindStep, resetJoinStep, resetTestStep } = useStepActions();
   const pathname = usePathname();
 
   useEffect(() => {
+    if (session) return;
+
     if (pathname !== PAGES.JOIN) {
       localStorage.removeItem(JOIN_FORM_KEY);
       resetJoinStep();
@@ -30,5 +29,5 @@ export const useFormReset = () => {
       localStorage.removeItem(TEST_ANSWER_KEY);
       resetTestStep();
     }
-  }, [pathname, session]);
+  }, [pathname]);
 };

@@ -1,5 +1,5 @@
 import { userAPI } from '@/app/api/user.api';
-import { JOIN_FORM_KEY } from '@/constants/storage';
+import { JOIN_FORM_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
 import { transformJoinForm } from '@/utils/transformJoinForm';
 import { useEffect } from 'react';
 import { PAGES } from '@/constants/page';
@@ -34,6 +34,10 @@ export const useJoin = (getValues: () => IJoinForm) => {
     if (signUpResult?.result) {
       resetToken();
       localStorage.removeItem(JOIN_FORM_KEY);
+      localStorage.setItem(
+        TEMP_ACCOUNT_KEY,
+        JSON.stringify({ email: formData.email, password: formData.password })
+      );
       router.push(`${PAGES.JOIN_FINISH}?username=${data.username}`);
     }
   };

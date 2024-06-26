@@ -28,7 +28,8 @@ function LoginPage() {
     }
   }, [session, status]);
 
-  const { isSaved, setIsSaved, userLogin, isFaild, setIsFaild } = useLogin();
+  const { isSaved, setIsSaved, userLogin, isFaild, setIsFaild } =
+    useLogin('login');
   const methods = useForm<ILoginForm>({
     mode: 'onBlur',
     defaultValues: {
