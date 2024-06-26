@@ -28,12 +28,16 @@ function FindPasswordPage() {
           },
   });
 
+  const { handleSubmit } = methods;
   const { goNextFindStep } = useStepActions();
-  const { findStep } = useFindPassword(methods.getValues);
+  const { findStep, resetPassword } = useFindPassword(methods.getValues);
 
   return (
     <FormProvider {...methods}>
-      <form className='h-full'>
+      <form
+        className='h-full'
+        onSubmit={handleSubmit((data) => resetPassword(data))}
+      >
         {findStep === 1 && <Step1 />}
         {findStep === 2 && (
           <CodeForm type='resetPassword' onClickNext={goNextFindStep} />

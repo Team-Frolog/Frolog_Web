@@ -24,13 +24,12 @@ function JoinPage() {
   const { goNextJoinStep } = useStepActions();
   const { joinUser, joinStep } = useJoin(getValues);
 
-  const handleSignUp = (data: IJoinForm) => {
-    joinUser(data);
-  };
-
   return (
     <FormProvider {...methods}>
-      <form className='h-full' onSubmit={handleSubmit(handleSignUp)}>
+      <form
+        className='h-full'
+        onSubmit={handleSubmit((data) => joinUser(data))}
+      >
         {joinStep === 1 && <Step1 />}
         {joinStep === 2 && <Step2 />}
         {joinStep === 3 && (
