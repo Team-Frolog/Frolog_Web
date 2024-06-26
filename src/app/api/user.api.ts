@@ -1,3 +1,4 @@
+import { ERROR_ALERT } from '@/constants/message';
 import { baseOptions } from './options';
 import {
   GetEmailAvailability,
@@ -6,6 +7,8 @@ import {
   GetUsernameAvailabilityReq,
   RequestEmailCode,
   RequestEmailCodeReq,
+  ResetPassword,
+  ResetPasswordReq,
   SignUp,
   SignUpReq,
   VerifyEmailCode,
@@ -17,6 +20,7 @@ const getEmailAvailability = new GetEmailAvailability(baseOptions);
 const getUserNameAvailability = new GetUsernameAvailability(baseOptions);
 const requestEmailCode = new RequestEmailCode(baseOptions);
 const verifyEmailCode = new VerifyEmailCode(baseOptions);
+const resetPassword = new ResetPassword(baseOptions);
 
 export const userAPI = {
   signUp: async (formData: SignUpReq) => {
@@ -24,8 +28,7 @@ export const userAPI = {
       const data = await signUp.fetch(formData);
       return data;
     } catch (err) {
-      console.log('회원가입 오류', err);
-      window.alert('다시 시도해주세요.');
+      window.alert(ERROR_ALERT);
     }
   },
   checkEmail: async (req: GetEmailAvailabilityReq) => {
@@ -33,8 +36,7 @@ export const userAPI = {
       const data = await getEmailAvailability.fetch(req);
       return data.result;
     } catch (err) {
-      console.log('이메일 중복 검증 오류', err);
-      window.alert('다시 시도해주세요.');
+      window.alert(ERROR_ALERT);
     }
   },
   checkNickname: async (req: GetUsernameAvailabilityReq) => {
@@ -42,8 +44,7 @@ export const userAPI = {
       const data = await getUserNameAvailability.fetch(req);
       return data.result;
     } catch (err) {
-      console.log('닉네임 중복 검증 오류', err);
-      window.alert('다시 시도해주세요.');
+      window.alert(ERROR_ALERT);
     }
   },
   requestCode: async (req: RequestEmailCodeReq) => {
@@ -51,8 +52,7 @@ export const userAPI = {
       const data = await requestEmailCode.fetch(req);
       return data;
     } catch (err) {
-      console.log('코드 요청 오류', err);
-      window.alert('다시 시도해주세요.');
+      window.alert(ERROR_ALERT);
     }
   },
   verifyCode: async (req: VerifyEmailCodeReq) => {
@@ -60,8 +60,15 @@ export const userAPI = {
       const data = await verifyEmailCode.fetch(req);
       return data;
     } catch (err) {
-      console.log('코드 검증 오류', err);
-      window.alert('다시 시도해주세요.');
+      window.alert(ERROR_ALERT);
+    }
+  },
+  resetPassword: async (req: ResetPasswordReq) => {
+    try {
+      const data = await resetPassword.fetch(req);
+      return data.result;
+    } catch (err) {
+      window.alert(ERROR_ALERT);
     }
   },
 };
