@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import FormInput from '../common/form/FormInput';
 import { useFormContext } from 'react-hook-form';
 import { userAPI } from '@/app/api/user.api';
-import Button from '../common/button/Button';
-import { useVerification } from '@/hooks/auth/useVerification';
 import { useStepActions } from '@/store/stepStore';
+import SendButton from '../common/form/SendButton';
 
 function Step1() {
   const { goNextFindStep } = useStepActions();
   const [isEmailChecked, setIsEmailChecked] = useState(false);
-  const { isSendFailed, sendEmailCode } = useVerification();
   const {
     register,
     setError,
@@ -17,19 +15,6 @@ function Step1() {
     watch,
     formState: { errors, isValid },
   } = useFormContext();
-
-  const handleSendCode = () => {
-    sendEmailCode(watch('email'), 'resetPassword').then(() => {
-      if (isSendFailed) {
-        setError('email', {
-          type: 'manual',
-          message: '인증 요청을 다시 시도해주세요.',
-        });
-      } else {
-        goNextFindStep();
-      }
-    });
-  };
 
   return (
     <div className='flex h-full w-full flex-col justify-between'>
@@ -68,12 +53,11 @@ function Step1() {
           },
         })}
       />
-      <Button
-        onClick={handleSendCode}
-        disabled={!watch('email') || !isValid || !isEmailChecked}
-      >
-        다음
-      </Button>
+      <SendButton
+        onNext={goNextFindStep}
+        isDisabled={!watch('email') || !isValid || !isEmailChecked}
+        type='resetPassword'
+      />
     </div>
   );
 }

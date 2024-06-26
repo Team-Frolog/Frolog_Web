@@ -1,9 +1,9 @@
 'use client';
 
 import { userAPI } from '@/app/api/user.api';
-import Button from '@/components/common/button/Button';
 import FormInput from '@/components/common/form/FormInput';
-import { useVerification } from '@/hooks/auth/useVerification';
+import SendButton from '@/components/common/form/SendButton';
+import PasswordForm from '@/components/common/form/password/PasswordForm';
 import { useStepActions } from '@/store/stepStore';
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -11,7 +11,7 @@ import { useFormContext } from 'react-hook-form';
 function Step2() {
   const { goNextJoinStep } = useStepActions();
   const [isDisabled, setIsDisabled] = useState(true);
-  const { isSendFailed, sendEmailCode } = useVerification();
+
   const {
     watch,
     trigger,
@@ -27,19 +27,6 @@ function Step2() {
     const disabled = Boolean(!email || !password || !passwordCheck || !isValid);
     setIsDisabled(disabled);
   }, [email, password, passwordCheck, isValid]);
-
-  const handleSendCode = () => {
-    sendEmailCode(watch('email'), 'signUp').then(() => {
-      if (isSendFailed) {
-        setError('email', {
-          type: 'manual',
-          message: '인증 요청을 다시 시도해주세요.',
-        });
-      } else {
-        goNextJoinStep();
-      }
-    });
-  };
 
   return (
     <div className='flex h-full flex-col justify-between'>
@@ -75,51 +62,14 @@ function Step2() {
               },
             })}
           />
-          <div className='flex flex-col gap-[8px]'>
-            <FormInput
-              type='password'
-              placeholder='8~15자 영문 대소문자, 숫자를 포함해주세요'
-              title='비밀번호'
-              fieldName='password'
-              errorMessage={errors.password && String(errors.password.message)}
-              {...register('password', {
-                pattern: {
-                  value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,15}$/,
-                  message: '8~15자의 영문 대소문자, 숫자를 조합하세요.',
-                },
-                onChange: () => {
-                  trigger('passwordCheck');
-                },
-              })}
-            />
-            <FormInput
-              type='password'
-              placeholder='비밀번호를 재입력하세요'
-              fieldName='passwordCheck'
-              errorMessage={
-                errors.passwordCheck && String(errors.passwordCheck.message)
-              }
-              {...register('passwordCheck', {
-                validate: {
-                  matches: (value: string) =>
-                    value.length === 0 ||
-                    value === watch('password') ||
-                    '비밀번호가 일치하지 않아요.',
-                },
-                onChange: async (e) => {
-                  const value = e.target.value;
-                  if (value.length > 0) {
-                    await trigger('passwordCheck');
-                  }
-                },
-              })}
-            />
-          </div>
+          <PasswordForm />
         </div>
       </div>
-      <Button onClick={handleSendCode} disabled={isDisabled}>
-        다음
-      </Button>
+      <SendButton
+        onNext={goNextJoinStep}
+        isDisabled={isDisabled}
+        type='signUp'
+      />
     </div>
   );
 }

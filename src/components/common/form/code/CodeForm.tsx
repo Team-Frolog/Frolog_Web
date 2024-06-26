@@ -7,7 +7,6 @@ import { AnimatePresence } from 'framer-motion';
 import Button from '@/components/common/button/Button';
 import { useVerification } from '@/hooks/auth/useVerification';
 import { useFormContext } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 import { useCodeTime } from '@/store/authStore';
 
 interface Props {
@@ -16,7 +15,6 @@ interface Props {
 }
 
 function CodeForm({ type, onClickNext }: Props) {
-  const router = useRouter();
   const expiredTime = useCodeTime();
   const { watch } = useFormContext();
   const {

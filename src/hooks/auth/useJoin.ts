@@ -12,7 +12,7 @@ export const useJoin = (getValues: () => IJoinForm) => {
   const router = useRouter();
   const joinStep = useJoinStep();
   const verifyToken = useVerifyToken();
-  const { resetToken } = useAuthActions();
+  const { resetToken, resetCodeTime } = useAuthActions();
 
   // step별 폼 상태 저장
   useEffect(() => {
@@ -22,6 +22,10 @@ export const useJoin = (getValues: () => IJoinForm) => {
         : localStorage.setItem(JOIN_FORM_KEY, JSON.stringify(getValues()));
     }
   }, [joinStep]);
+
+  useEffect(() => {
+    resetCodeTime();
+  }, []);
 
   const joinUser = async (data: IJoinForm) => {
     const formData = transformJoinForm(data, verifyToken!);
