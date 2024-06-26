@@ -1,4 +1,4 @@
-import BooksByType from '@/components/testResultPage/BooksByType';
+import TempButton from '@/components/common/TempButton';
 import { IMAGES } from '@/constants/images';
 import { testResult } from '@/data/testResult';
 import Image from 'next/image';
@@ -54,8 +54,7 @@ function TestResultPage({ params: { id } }: Props) {
           </div>
         </div>
       </div>
-
-      <BooksByType type={+id} />
+      <TempButton type={id} />
     </div>
   );
 }
