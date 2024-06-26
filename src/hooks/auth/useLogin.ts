@@ -15,7 +15,6 @@ export const useLogin = (type: 'login' | 'test') => {
       email: data.email,
       password: data.password,
     });
-    console.log(result);
 
     if (result?.ok) {
       if (type === 'login') {
@@ -27,7 +26,6 @@ export const useLogin = (type: 'login' | 'test') => {
         }
         router.push('/');
       } else {
-        console.log('in');
         localStorage.removeItem(TEMP_ACCOUNT_KEY);
         localStorage.setItem(REMEMBER_ME_KEY, 'false');
         sessionStorage.setItem(REMEMBER_ME_KEY, 'logged_in');

@@ -36,6 +36,17 @@ export const useTest = () => {
     }, 500);
   };
 
+  const handleLogin = async () => {
+    const account = localStorage.getItem(TEMP_ACCOUNT_KEY);
+
+    if (account) {
+      await userLogin(JSON.parse(account));
+    } else {
+      window.alert(ERROR_ALERT);
+      router.back();
+    }
+  };
+
   useEffect(() => {
     if (testStep <= 7) {
       setTestData(questions[testStep - 1]);
@@ -43,17 +54,7 @@ export const useTest = () => {
       localStorage.setItem(TEST_ANSWER_KEY, JSON.stringify(currentAnswers));
       setAnswers(currentAnswers);
     } else {
-      const account = localStorage.getItem(TEMP_ACCOUNT_KEY);
-      console.log('account', account);
-
-      if (account) {
-        console.log('login');
-        userLogin(JSON.parse(account));
-      } else {
-        window.alert(ERROR_ALERT);
-        router.back();
-      }
-
+      handleLogin();
       setTimeout(() => {
         const result = testEvaluator(answers);
         // TODO: 서버에 결과 보내기
