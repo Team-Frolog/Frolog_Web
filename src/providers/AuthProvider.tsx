@@ -2,7 +2,7 @@
 
 import { REMEMBER_ME_KEY } from '@/constants/storage';
 import { useFormReset } from '@/hooks/auth/useFormReset';
-import { RefreshTokenHandler } from '@/lib/RefreshTokenHandler';
+import { TokenHandler } from '@/lib/TokenHandler';
 import { SessionProvider, signOut, useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 
@@ -34,7 +34,5 @@ function Auth() {
     }
   }, []);
 
-  return (
-    <>{session && <RefreshTokenHandler session={session} update={update} />}</>
-  );
+  return <>{session && <TokenHandler session={session} update={update} />}</>;
 }

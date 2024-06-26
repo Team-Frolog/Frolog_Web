@@ -9,10 +9,10 @@ declare module 'next-auth' {
       refreshToken: string;
       accessTokenExpires: number;
       error: string;
-    } & DefaultSession['user'];
+    };
   }
 
-  interface User extends DefaultUser {
+  interface User {
     id: string;
     accessToken: string;
     refreshToken: string;

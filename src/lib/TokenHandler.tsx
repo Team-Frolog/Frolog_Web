@@ -2,7 +2,7 @@ import { Session } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import { useEffect, useRef } from 'react';
 
-export const RefreshTokenHandler = ({
+export const TokenHandler = ({
   session,
   update,
 }: {

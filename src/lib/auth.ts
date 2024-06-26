@@ -1,6 +1,6 @@
 import { baseOptions } from '@/app/api/options';
 import { SignIn } from '@frolog/frolog-api';
-import { NextAuthOptions, User } from 'next-auth';
+import { NextAuthOptions } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
 import { refreshAccessToken } from './refreshAccessToken';
 import { getExpFromToken } from '@/utils/decodeToken';
@@ -21,11 +21,8 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (data.result) {
-          const user: User = {
+          const user = {
             id: data.id || '',
-            name: '',
-            email: '',
-            image: '',
             accessToken: data.access_token!,
             refreshToken: data.refresh_token!,
           };
@@ -47,7 +44,7 @@ export const authOptions: NextAuthOptions = {
 
       const timeRemaing =
         token.accessTokenExpires -
-        (Math.floor(new Date().getTime() / 1000) + 10 * 60); // 10분 전
+        (Math.floor(new Date().getTime() / 1000) + 5 * 60); // 10분 전
 
       // 유효기간이 지난 경우
       if (timeRemaing <= 0) {
