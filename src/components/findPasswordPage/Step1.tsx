@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FormInput from '../common/form/FormInput';
 import { useFormContext } from 'react-hook-form';
-import { authAPI } from '@/app/api/user.api';
+import { authAPI } from '@/app/api/auth.api';
 import { useStepActions } from '@/store/stepStore';
 import SendButton from '../common/form/SendButton';
 

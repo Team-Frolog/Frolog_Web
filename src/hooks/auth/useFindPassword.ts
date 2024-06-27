@@ -1,5 +1,5 @@
 import { IFindForm } from '@/app/(FormLayout)/find-password/page';
-import { authAPI } from '@/app/api/user.api';
+import { authAPI } from '@/app/api/auth.api';
 import { PAGES } from '@/constants/page';
 import { FIND_FORM_KEY } from '@/constants/storage';
 import { useAuthActions, useVerifyToken } from '@/store/authStore';

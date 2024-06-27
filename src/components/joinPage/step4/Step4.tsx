@@ -7,7 +7,7 @@ import GenderSelector from './GenderSelector';
 import DateSelector from './DateSelector';
 import { useFormContext } from 'react-hook-form';
 import Button from '@/components/common/button/Button';
-import { authAPI } from '@/app/api/user.api';
+import { authAPI } from '@/app/api/auth.api';
 
 function Step4() {
   const {

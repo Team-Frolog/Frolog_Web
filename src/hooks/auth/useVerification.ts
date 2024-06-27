@@ -1,4 +1,4 @@
-import { authAPI } from '@/app/api/user.api';
+import { authAPI } from '@/app/api/auth.api';
 import { useAuthActions, useCodeToken } from '@/store/authStore';
 import { useState } from 'react';
 

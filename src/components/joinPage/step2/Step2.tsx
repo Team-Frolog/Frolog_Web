@@ -1,6 +1,6 @@
 'use client';
 
-import { authAPI } from '@/app/api/user.api';
+import { authAPI } from '@/app/api/auth.api';
 import FormInput from '@/components/common/form/FormInput';
 import SendButton from '@/components/common/form/SendButton';
 import PasswordForm from '@/components/common/form/password/PasswordForm';

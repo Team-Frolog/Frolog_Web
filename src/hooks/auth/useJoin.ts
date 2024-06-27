@@ -1,4 +1,4 @@
-import { authAPI } from '@/app/api/user.api';
+import { authAPI } from '@/app/api/auth.api';
 import { JOIN_FORM_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
 import { transformJoinForm } from '@/utils/transformJoinForm';
 import { useEffect } from 'react';
