@@ -40,7 +40,7 @@ function LoginPage() {
 
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleSubmit(handleLogin)();
+      handleSubmit((data) => userLogin(data))();
     }
   };
 
@@ -51,17 +51,10 @@ function LoginPage() {
     formState: { errors, isValid },
   } = methods;
 
-  const handleLogin = (data: ILoginForm) => {
-    setIsFaild(false);
-    setTimeout(() => {
-      userLogin(data);
-    }, 300);
-  };
-
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={handleSubmit(handleLogin)}
+        onSubmit={handleSubmit((data) => userLogin(data))}
         className='flex h-full flex-col justify-between'
       >
         <div className='flex flex-col gap-[20px]'>

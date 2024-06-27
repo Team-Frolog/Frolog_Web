@@ -25,6 +25,8 @@ export const useVerification = () => {
   };
 
   const verifyEmailCode = async (code: string) => {
+    setIsVerified(null);
+
     if (!codeToken) {
       return;
     }

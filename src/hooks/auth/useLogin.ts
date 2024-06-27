@@ -10,6 +10,8 @@ export const useLogin = (type: 'login' | 'test') => {
   const [isFaild, setIsFaild] = useState<boolean>(false);
 
   const userLogin = async (data: ILoginForm) => {
+    setIsFaild(false);
+
     const result = await signIn('credentials', {
       redirect: false,
       email: data.email,
