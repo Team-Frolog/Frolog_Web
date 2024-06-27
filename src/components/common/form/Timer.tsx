@@ -12,10 +12,12 @@ function Timer() {
     if (expiredTime !== null) {
       setRemainingTime(expiredTime - Date.now());
     }
-  }, []);
+  }, [expiredTime]);
 
   useEffect(() => {
     if (expiredTime === null) return;
+
+    let timeoutId: number;
 
     const updateRemainingTime = () => {
       const now = Date.now();
@@ -26,14 +28,14 @@ function Timer() {
         setEndTime(0);
       } else {
         setRemainingTime(timeLeft);
+        timeoutId = window.setTimeout(updateRemainingTime, 1000);
       }
     };
 
     updateRemainingTime();
-    const timer = setInterval(updateRemainingTime, 1000);
 
-    return () => clearInterval(timer);
-  }, [expiredTime]);
+    return () => clearTimeout(timeoutId);
+  }, [expiredTime, setEndTime]);
 
   if (remainingTime === null) return null;
 
