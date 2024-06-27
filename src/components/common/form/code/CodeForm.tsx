@@ -58,7 +58,7 @@ function CodeForm({ type, onClickNext }: Props) {
         </AnimatePresence>
         <Button
           onClick={() => verifyEmailCode(code)}
-          disabled={!code || expiredTime === 0 || isSendFailed}
+          disabled={!code || !expiredTime || isSendFailed}
         >
           다음
         </Button>

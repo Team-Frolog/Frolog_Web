@@ -32,10 +32,6 @@ function Timer() {
     updateRemainingTime();
     const timer = setInterval(updateRemainingTime, 1000);
 
-    if (remainingTime === 0) {
-      clearInterval(timer);
-    }
-
     return () => clearInterval(timer);
   }, [expiredTime]);
 
