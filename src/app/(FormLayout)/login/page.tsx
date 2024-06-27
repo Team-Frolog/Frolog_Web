@@ -52,7 +52,10 @@ function LoginPage() {
   } = methods;
 
   const handleLogin = (data: ILoginForm) => {
-    userLogin(data);
+    setIsFaild(false);
+    setTimeout(() => {
+      userLogin(data);
+    }, 300);
   };
 
   return (
