@@ -1,30 +1,47 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthActions, useCodeTime } from '@/store/authStore';
 
 function Timer() {
   const expiredTime = useCodeTime();
-  const { codeTimePass } = useAuthActions();
+  const { setEndTime } = useAuthActions();
+  const [remainingTime, setRemainingTime] = useState<number | null>(null);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      codeTimePass();
-    }, 1000);
-
-    if (expiredTime <= 0) {
-      clearInterval(timer);
+    if (expiredTime !== null) {
+      setRemainingTime(expiredTime - Date.now());
     }
+  }, []);
 
-    return () => {
-      clearInterval(timer);
+  useEffect(() => {
+    if (expiredTime === null) return;
+
+    const updateRemainingTime = () => {
+      const now = Date.now();
+      const timeLeft = expiredTime - now;
+
+      if (timeLeft <= 0) {
+        setRemainingTime(0);
+        setEndTime(0);
+        clearInterval(timer);
+      } else {
+        setRemainingTime(timeLeft);
+      }
     };
+
+    updateRemainingTime();
+    const timer = setInterval(updateRemainingTime, 1000);
+
+    return () => clearInterval(timer);
   }, [expiredTime]);
+
+  if (remainingTime === null) return null;
 
   return (
     <span className='w-[30px] text-start text-body_sm text-gray-500'>
-      {Math.floor((expiredTime / (1000 * 60)) % 60)}:
-      {String(Math.floor((expiredTime / 1000) % 60)).padStart(2, '0')}
+      {Math.floor((remainingTime / (1000 * 60)) % 60)}:
+      {String(Math.floor((remainingTime / 1000) % 60)).padStart(2, '0')}
     </span>
   );
 }

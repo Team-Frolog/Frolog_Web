@@ -1,7 +1,7 @@
 'use client';
 
 import Timer from '@/components/common/form/Timer';
-import useAuthStore, { useAuthActions, useCodeTime } from '@/store/authStore';
+import { useCodeTime } from '@/store/authStore';
 import React from 'react';
 
 interface Props {
@@ -13,11 +13,9 @@ interface Props {
 
 function CodeInput({ code, setCode, handleSendCode, isFailed }: Props) {
   const expiredTime = useCodeTime();
-  const { resetCodeTime } = useAuthActions();
 
   const handleClickSend = () => {
     handleSendCode();
-    resetCodeTime();
     setCode('');
   };
 

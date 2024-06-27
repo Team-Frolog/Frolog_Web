@@ -1,4 +1,5 @@
 import { authAPI } from '@/app/api/auth.api';
+import { CODE_EXPIRE_TIME } from '@/constants/auth';
 import { useAuthActions, useCodeToken } from '@/store/authStore';
 import { useState } from 'react';
 
@@ -6,12 +7,14 @@ export const useVerification = () => {
   const [isVerified, setIsVerified] = useState<boolean | null>(null);
   const [isSendFailed, setIsSendFailed] = useState<boolean>(false);
   const codeToken = useCodeToken();
-  const { setEmailCodeToken, setEmailVerifiedToken } = useAuthActions();
+  const { setEmailCodeToken, setEmailVerifiedToken, setEndTime } =
+    useAuthActions();
 
   const sendEmailCode = async (
     email: string,
     target: 'signUp' | 'resetPassword'
   ) => {
+    setEndTime(Date.now() + CODE_EXPIRE_TIME);
     const data = await authAPI.requestCode({ email, target });
 
     if (data!.result) {

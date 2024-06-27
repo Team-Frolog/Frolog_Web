@@ -20,10 +20,6 @@ export const useFindPassword = (getValues: () => IFindForm) => {
     }
   }, [findStep]);
 
-  useEffect(() => {
-    resetCodeTime();
-  }, []);
-
   const resetPassword = async (data: IFindForm) => {
     const result = await authAPI.resetPassword({
       email: data.email,
