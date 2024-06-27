@@ -2,14 +2,13 @@ import { IFindForm } from '@/app/(FormLayout)/find-password/page';
 import { authAPI } from '@/app/api/auth.api';
 import { PAGES } from '@/constants/page';
 import { FIND_FORM_KEY } from '@/constants/storage';
-import { useAuthActions, useVerifyToken } from '@/store/authStore';
+import { useVerifyToken } from '@/store/authStore';
 import { useFindStep } from '@/store/stepStore';
 import { useEffect } from 'react';
 
 export const useFindPassword = (getValues: () => IFindForm) => {
   const findStep = useFindStep();
   const verifyToken = useVerifyToken();
-  const { resetCodeTime } = useAuthActions();
 
   // step별 폼 상태 저장
   useEffect(() => {

@@ -24,7 +24,6 @@ function Timer() {
       if (timeLeft <= 0) {
         setRemainingTime(0);
         setEndTime(0);
-        clearInterval(timer);
       } else {
         setRemainingTime(timeLeft);
       }
@@ -32,6 +31,10 @@ function Timer() {
 
     updateRemainingTime();
     const timer = setInterval(updateRemainingTime, 1000);
+
+    if (remainingTime === 0) {
+      clearInterval(timer);
+    }
 
     return () => clearInterval(timer);
   }, [expiredTime]);
