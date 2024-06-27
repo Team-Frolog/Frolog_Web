@@ -1,4 +1,4 @@
-import { userAPI } from '@/app/api/user.api';
+import { authAPI } from '@/app/api/user.api';
 import { JOIN_FORM_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
 import { transformJoinForm } from '@/utils/transformJoinForm';
 import { useEffect } from 'react';
@@ -29,7 +29,7 @@ export const useJoin = (getValues: () => IJoinForm) => {
 
   const joinUser = async (data: IJoinForm) => {
     const formData = transformJoinForm(data, verifyToken!);
-    const signUpResult = await userAPI.signUp(formData);
+    const signUpResult = await authAPI.signUp(formData);
 
     if (signUpResult?.result) {
       resetToken();

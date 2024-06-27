@@ -1,4 +1,4 @@
-import { userAPI } from '@/app/api/user.api';
+import { authAPI } from '@/app/api/user.api';
 import { useAuthActions, useCodeToken } from '@/store/authStore';
 import { useState } from 'react';
 
@@ -12,7 +12,7 @@ export const useVerification = () => {
     email: string,
     target: 'signUp' | 'resetPassword'
   ) => {
-    const data = await userAPI.requestCode({ email, target });
+    const data = await authAPI.requestCode({ email, target });
 
     if (data!.result) {
       setEmailCodeToken(data!.email_code_token!);
@@ -26,7 +26,7 @@ export const useVerification = () => {
       return;
     }
 
-    const data = await userAPI.verifyCode({
+    const data = await authAPI.verifyCode({
       email_code: code,
       email_code_token: codeToken!,
     });

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FormInput from '../common/form/FormInput';
 import { useFormContext } from 'react-hook-form';
-import { userAPI } from '@/app/api/user.api';
+import { authAPI } from '@/app/api/user.api';
 import { useStepActions } from '@/store/stepStore';
 import SendButton from '../common/form/SendButton';
 
@@ -38,7 +38,7 @@ function Step1() {
             const value = e.target.value;
 
             if (isVaild && value.trim() !== '') {
-              const data = await userAPI.checkEmail({
+              const data = await authAPI.checkEmail({
                 email: value,
               });
               if (data) {

@@ -1,6 +1,6 @@
 'use client';
 
-import { userAPI } from '@/app/api/user.api';
+import { authAPI } from '@/app/api/user.api';
 import FormInput from '@/components/common/form/FormInput';
 import SendButton from '@/components/common/form/SendButton';
 import PasswordForm from '@/components/common/form/password/PasswordForm';
@@ -49,7 +49,7 @@ function Step2() {
                 const value = e.target.value;
 
                 if (isVaild && value.trim() !== '') {
-                  const data = await userAPI.checkEmail({
+                  const data = await authAPI.checkEmail({
                     email: value,
                   });
                   if (!data) {

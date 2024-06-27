@@ -22,7 +22,7 @@ const requestEmailCode = new RequestEmailCode(baseOptions);
 const verifyEmailCode = new VerifyEmailCode(baseOptions);
 const resetPassword = new ResetPassword(baseOptions);
 
-export const userAPI = {
+export const authAPI = {
   signUp: async (formData: SignUpReq) => {
     try {
       const data = await signUp.fetch(formData);

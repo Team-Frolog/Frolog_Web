@@ -1,5 +1,5 @@
 import { IFindForm } from '@/app/(FormLayout)/find-password/page';
-import { userAPI } from '@/app/api/user.api';
+import { authAPI } from '@/app/api/user.api';
 import { PAGES } from '@/constants/page';
 import { FIND_FORM_KEY } from '@/constants/storage';
 import { useAuthActions, useVerifyToken } from '@/store/authStore';
@@ -25,7 +25,7 @@ export const useFindPassword = (getValues: () => IFindForm) => {
   }, []);
 
   const resetPassword = async (data: IFindForm) => {
-    const result = await userAPI.resetPassword({
+    const result = await authAPI.resetPassword({
       email: data.email,
       email_verified_token: verifyToken || '',
       password: data.password,
