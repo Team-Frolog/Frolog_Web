@@ -38,7 +38,7 @@ function TestResultPage({ params: { id } }: Props) {
               {testData.quote.text}
             </span>
           </div>
-          <hr className='h-[1px] w-[80%] border-gray-500' />
+          <hr className='h-[1px] w-[90%] border-gray-500' />
           <div className='flex flex-col items-center gap-[20px]'>
             <div className='flex flex-col items-center gap-[8px]'>
               <h3 className='text-title_xl_bold'>{testData.type.title}</h3>
