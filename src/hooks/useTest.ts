@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 import { useLogin } from './auth/useLogin';
 import { useRouter } from 'next/navigation';
 import { ERROR_ALERT } from '@/constants/message';
+import { getSession } from 'next-auth/react';
+import { userAPI } from '@/app/api/user.api';
 
 export const useTest = () => {
   const testStep = useTestStep();
@@ -55,10 +57,23 @@ export const useTest = () => {
       setAnswers(currentAnswers);
     } else {
       handleLogin();
-      setTimeout(() => {
-        const result = testEvaluator(answers);
-        // TODO: 서버에 결과 보내기
-        window.location.replace(`${PAGES.TEST}?loading=true&type=${result}`);
+
+      setTimeout(async () => {
+        const testResult = testEvaluator(answers);
+        const session = await getSession();
+
+        const reqData = {
+          id: session?.user.id!,
+          reading_preference: testResult.toString(),
+        };
+
+        const result = await userAPI.editTestType(reqData);
+
+        if (result) {
+          window.location.replace(
+            `${PAGES.TEST}?loading=true&type=${testResult}`
+          );
+        }
       }, 1000);
     }
   }, [testStep]);

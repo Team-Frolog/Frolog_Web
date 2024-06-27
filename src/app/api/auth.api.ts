@@ -44,6 +44,7 @@ export const authAPI = {
       const data = await getUserNameAvailability.fetch(req);
       return data.result;
     } catch (err) {
+      console.log(err);
       window.alert(ERROR_ALERT);
     }
   },
