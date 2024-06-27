@@ -16,7 +16,7 @@ function ProgressHeader() {
 
   const handleClickBack = () => {
     if (testStep === 1) {
-      router.push(PAGES.JOIN_FINISH);
+      router.back();
     } else {
       moveTestStep(-1);
     }
