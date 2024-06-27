@@ -1,3 +1,4 @@
+import { CODE_EXPIRE_TIME } from '@/constants/auth';
 import { create } from 'zustand';
 import { persist, devtools, createJSONStorage } from 'zustand/middleware';
 
@@ -5,14 +6,13 @@ interface Actions {
   setEmailCodeToken: (value: string | null) => void;
   setEmailVerifiedToken: (value: string | null) => void;
   resetToken: () => void;
-  codeTimePass: () => void;
-  resetCodeTime: () => void;
+  setEndTime: (time: number | null) => void;
 }
 
 interface AuthStore {
   emailCodeToken: string | null;
   emailVerifiedToken: string | null;
-  expiredTime: number;
+  expiredTime: number | null;
   actions: Actions;
 }
 
@@ -22,7 +22,7 @@ const useAuthStore = create<AuthStore>()(
       (set) => ({
         emailCodeToken: null,
         emailVerifiedToken: null,
-        expiredTime: 3 * 60 * 1000,
+        expiredTime: null,
         actions: {
           setEmailCodeToken: (value: string | null) =>
             set(() => ({ emailCodeToken: value })),
@@ -33,14 +33,8 @@ const useAuthStore = create<AuthStore>()(
               emailCodeToken: null,
               emailVerifiedToken: null,
             })),
-          codeTimePass: () =>
-            set((state) => ({
-              expiredTime: state.expiredTime - 1000,
-            })),
-          resetCodeTime: () =>
-            set(() => ({
-              expiredTime: 3 * 60 * 1000,
-            })),
+          setEndTime: (time: number | null) =>
+            set(() => ({ expiredTime: time })),
         },
       }),
       {
@@ -53,8 +47,7 @@ const useAuthStore = create<AuthStore>()(
           setEmailCodeToken: state.actions.setEmailCodeToken,
           setEmailVerifiedToken: state.actions.setEmailVerifiedToken,
           resetToken: state.actions.resetToken,
-          codeTimePass: state.actions.codeTimePass,
-          resetCodeTime: state.actions.resetCodeTime,
+          setEndTime: state.actions.setEndTime,
         }),
       }
     )
