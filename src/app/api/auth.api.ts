@@ -5,6 +5,7 @@ import {
   GetEmailAvailabilityReq,
   GetUsernameAvailability,
   GetUsernameAvailabilityReq,
+  Quit,
   RequestEmailCode,
   RequestEmailCodeReq,
   ResetPassword,
@@ -25,6 +26,7 @@ const requestEmailCode = new RequestEmailCode(baseOptions);
 const verifyEmailCode = new VerifyEmailCode(baseOptions);
 const resetPassword = new ResetPassword(baseOptions);
 const signOut = new SignOut(authOptions);
+const quit = new Quit(authOptions);
 
 export const authAPI = {
   signUp: async (formData: SignUpReq) => {
@@ -36,8 +38,9 @@ export const authAPI = {
     }
   },
   signOut: async () => {
-    const session = await getSession();
     try {
+      const session = await getSession();
+
       if (session) {
         const req: SignOutReq = {
           id: session?.user.id,
@@ -48,6 +51,17 @@ export const authAPI = {
         return data.result;
       } else {
         throw new Error();
+      }
+    } catch (err) {
+      window.alert(ERROR_ALERT);
+    }
+  },
+  quit: async () => {
+    try {
+      const session = await getSession();
+      if (session) {
+        const data = await quit.fetch({ id: session?.user.id });
+        return data.result;
       }
     } catch (err) {
       console.log(err);

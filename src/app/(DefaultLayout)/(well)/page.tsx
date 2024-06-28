@@ -21,6 +21,16 @@ function WellPage() {
     signOut({ callbackUrl: '/login' });
   };
 
+  const handleQuit = async () => {
+    if (session) {
+      const result = await authAPI.quit();
+
+      if (result) {
+        signOut({ callbackUrl: '/landing' });
+      }
+    }
+  };
+
   return (
     <div className='flex w-full flex-col gap-5 break-all p-page'>
       <h1>메인 우물 페이지입니다</h1>
@@ -29,7 +39,7 @@ function WellPage() {
         {session?.user.id}
       </span>
       <Button onClick={handleSignOut}>임시 로그아웃 버튼</Button>
-      <Button>회원탈퇴</Button>
+      <Button onClick={handleQuit}>회원탈퇴</Button>
       <Button onClick={() => router.push('/landing')}>랜딩페이지로</Button>
     </div>
   );
