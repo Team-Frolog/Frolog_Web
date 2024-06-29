@@ -29,7 +29,7 @@ export const testResult: TestResult = {
       text: '“책은 어느 사람에게는 울타리가 되고,\n어느 사람에게는 사다리가 된다.”',
     },
     type: {
-      title: '당신의 독서 성향은 감정형입니다',
+      title: '내 독서 성향은 감정형이에요',
       tag: '#감동적인 #힐링 #읽기쉬운 #에세이',
     },
     descriptions: [
@@ -49,7 +49,7 @@ export const testResult: TestResult = {
       text: '"내가 세계를 알게 된 것은\n책에 의해서였다."',
     },
     type: {
-      title: '당신의 독서 성향은 사고형입니다',
+      title: '내 독서 성향은 사고형이에요',
       tag: '#전문적인 #논리적인 #스테디셀러',
     },
     descriptions: [
@@ -68,7 +68,7 @@ export const testResult: TestResult = {
       text: '“내 성공의 중요한 부분은\n내가 독서에 시간을 할애했다는 것이다.”',
     },
     type: {
-      title: '당신의 독서 성향은 성취형입니다',
+      title: '내 독서 성향은 성취형이에요',
       tag: '#베스트셀러 #실용적인 #지금뜨는',
     },
     descriptions: [

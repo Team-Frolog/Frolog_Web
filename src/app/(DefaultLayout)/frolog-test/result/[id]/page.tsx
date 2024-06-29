@@ -1,4 +1,4 @@
-import TempButton from '@/components/common/TempButton';
+import StartButton from '@/components/testPage/StartButton';
 import { IMAGES } from '@/constants/images';
 import { testResult } from '@/data/testResult';
 import Image from 'next/image';
@@ -24,21 +24,26 @@ function TestResultPage({ params: { id } }: Props) {
             height={450}
             className='absolute left-0 top-0 w-full'
           />
-          <div className='z-10 h-[80px] w-[80px] bg-gray-400'>logo</div>
           <h1 className='z-10 text-center text-h_lg_bold mobile:text-h_lg_bold'>
             {testData.title}
           </h1>
         </div>
         <div className='z-10 flex flex-col items-center gap-[32px] rounded-[12px] px-[24px] py-[36px] mobile:pb-[36px] mobile:pt-[12px]'>
           <h5 className='text-center text-body_xl_bold'>{testData.subTitle}</h5>
-          <div className='z-10 h-[180px] w-[180px] bg-gray-400'>frog</div>
+          <Image
+            src={IMAGES.test.frog[id as '1' | '2' | '3']}
+            alt='frog'
+            width={188}
+            height={176}
+            className={`h-[200px] ${id === '3' && 'w-[228px]'}`}
+          />
           <div className='flex flex-col items-center gap-[8px]'>
             <h5 className='text-body_lg_bold'>{testData.quote.title}</h5>
             <span className='text-center text-body_lg'>
               {testData.quote.text}
             </span>
           </div>
-          <hr className='h-[1px] w-[90%] border-gray-500' />
+          <hr className='h-[1px] w-full border-gray-500' />
           <div className='flex flex-col items-center gap-[20px]'>
             <div className='flex flex-col items-center gap-[8px]'>
               <h3 className='text-title_xl_bold'>{testData.type.title}</h3>
@@ -46,7 +51,7 @@ function TestResultPage({ params: { id } }: Props) {
                 {testData.type.tag}
               </span>
             </div>
-            <ul className='w-[95%] list-disc'>
+            <ul className='w-full list-disc'>
               {testData.descriptions.map((item) => (
                 <li className='text-body_md' key={item.id}>
                   {item.text}
@@ -54,7 +59,7 @@ function TestResultPage({ params: { id } }: Props) {
               ))}
             </ul>
           </div>
-          <TempButton type={id} />
+          <StartButton />
         </div>
       </div>
     </div>
