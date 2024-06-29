@@ -30,7 +30,7 @@ function Auth() {
     ) {
       localStorage.removeItem(REMEMBER_ME_KEY);
       sessionStorage.removeItem(REMEMBER_ME_KEY);
-      signOut();
+      signOut({ callbackUrl: '/', redirect: true });
     }
   }, []);
 

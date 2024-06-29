@@ -18,7 +18,7 @@ function WellPage() {
     //     signOut({ callbackUrl: '/login' });
     //   }
     // }
-    signOut({ callbackUrl: '/login' });
+    signOut({ callbackUrl: '/login', redirect: true });
   };
 
   const handleQuit = async () => {
@@ -26,7 +26,7 @@ function WellPage() {
       const result = await authAPI.quit();
 
       if (result) {
-        signOut({ callbackUrl: '/landing' });
+        signOut({ callbackUrl: '/landing', redirect: true });
       }
     }
   };

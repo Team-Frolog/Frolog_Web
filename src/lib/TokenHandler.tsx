@@ -19,7 +19,7 @@ export const TokenHandler = ({
     }
 
     if (session?.user.error === 'RefreshAccessTokenError') {
-      signOut();
+      signOut({ callbackUrl: '/', redirect: true });
     }
 
     const watchAndUpdateIfExpire = () => {
