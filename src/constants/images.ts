@@ -8,9 +8,16 @@ export const IMAGES = {
       done: `${BASE_PATH}/frog/frog-evaluation-done.svg`,
     },
   },
-  shape: {
-    '1': `${BASE_PATH}/test-type/type1.svg`,
-    '2': `${BASE_PATH}/test-type/type2.svg`,
-    '3': `${BASE_PATH}/test-type/type3.svg`,
+  test: {
+    shape: {
+      '1': `${BASE_PATH}/test/shape/type1.svg`,
+      '2': `${BASE_PATH}/test/shape/type2.svg`,
+      '3': `${BASE_PATH}/test/shape/type3.svg`,
+    },
+    frog: {
+      '1': `${BASE_PATH}/test/frog/type1.svg`,
+      '2': `${BASE_PATH}/test/frog/type2.svg`,
+      '3': `${BASE_PATH}/test/frog/type3.svg`,
+    },
   },
 };

@@ -6,7 +6,7 @@ import Button from './button/Button';
 function TempButton({ type }: { type: string }) {
   const handleShare = async () => {
     try {
-      const imageUrl = `/images/test-result/type${type}.png`; // 경로는 필요에 따라 조정
+      const imageUrl = `/images/test/result-image/type${type}.png`; // 경로는 필요에 따라 조정
 
       // 이미지를 Blob 객체로 변환
       const response = await fetch(imageUrl);

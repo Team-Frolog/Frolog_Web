@@ -18,7 +18,7 @@ function TestResultPage({ params: { id } }: Props) {
       <div className='flex w-full flex-col items-center bg-white'>
         <div className='relative flex h-[300px] w-full flex-col items-center justify-end gap-[32px] bg-gray-900 mobile:h-[270px]'>
           <Image
-            src={IMAGES.shape[id as '1' | '2' | '3']}
+            src={IMAGES.test.shape[id as '1' | '2' | '3']}
             alt='shape'
             width={390}
             height={450}
