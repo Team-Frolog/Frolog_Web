@@ -13,14 +13,13 @@ interface Props {
 
 const MotionLink = motion(Link);
 
-function LinkButton({ children, route, disabled }: Props) {
-  const classes = `button text-center ${disabled && `button-disabled`}`;
+function LinkButton({ children, route, disabled = false }: Props) {
   return (
     <MotionLink
       variants={tapVariants}
       whileTap='tap'
       href={route}
-      className={classes}
+      className={`button block text-center ${disabled && `button-disabled`}`}
     >
       {children}
     </MotionLink>

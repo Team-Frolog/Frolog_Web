@@ -15,7 +15,7 @@ function TestResultPage({ params: { id } }: Props) {
 
   return (
     <div className='flex h-fit w-full flex-col gap-[12px] whitespace-pre-wrap pt-[60px] text-gray-800'>
-      <div className='flex w-full flex-col items-center bg-white'>
+      <div className='flex w-full flex-col items-center bg-white pb-[70px]'>
         <div className='relative flex h-[300px] w-full flex-col items-center justify-end gap-[32px] bg-gray-900 mobile:h-[270px]'>
           <Image
             src={IMAGES.test.shape[id as '1' | '2' | '3']}
@@ -59,8 +59,8 @@ function TestResultPage({ params: { id } }: Props) {
               ))}
             </ul>
           </div>
-          <StartButton />
         </div>
+        <StartButton />
       </div>
     </div>
   );
