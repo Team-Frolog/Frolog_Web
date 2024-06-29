@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import lottieAni from 'public/lotties/popper.json';
 import dynamic from 'next/dynamic';
