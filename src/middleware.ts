@@ -7,7 +7,6 @@ const publicRoutes: string[] = [
   '/landing',
   '/login',
   '/join',
-  '/join/finish',
   '/find-password',
 ]; // 로그인이 되면 접근할 수 없는 페이지 목록
 

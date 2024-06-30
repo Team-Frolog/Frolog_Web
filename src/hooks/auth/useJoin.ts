@@ -7,12 +7,26 @@ import { useRouter } from 'next/navigation';
 import { useAuthActions, useVerifyToken } from '@/store/authStore';
 import { IJoinForm } from '@/types/form';
 import { useJoinStep } from '@/store/stepStore';
+import { ERROR_ALERT } from '@/constants/message';
+import { useLogin } from './useLogin';
 
 export const useJoin = (getValues: () => IJoinForm) => {
   const router = useRouter();
   const joinStep = useJoinStep();
   const verifyToken = useVerifyToken();
   const { resetToken } = useAuthActions();
+  const { userLogin } = useLogin('test');
+
+  const handleLogin = async () => {
+    const account = localStorage.getItem(TEMP_ACCOUNT_KEY);
+
+    if (account) {
+      await userLogin(JSON.parse(account));
+    } else {
+      window.alert(ERROR_ALERT);
+      router.back();
+    }
+  };
 
   // step별 폼 상태 저장
   useEffect(() => {
@@ -35,6 +49,7 @@ export const useJoin = (getValues: () => IJoinForm) => {
         JSON.stringify({ email: formData.email, password: formData.password })
       );
       router.push(`${PAGES.JOIN_FINISH}?username=${data.username}`);
+      handleLogin();
     }
   };
 
