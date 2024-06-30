@@ -23,6 +23,7 @@
   ],
   "rules": {
     "no-var": "warn",
+    "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "off",
     "react/react-in-jsx-scope": "off", // React import 불필요
     "react/jsx-key": "warn", // 반복문으로 생성하는 요소에 key 강제
@@ -43,13 +44,11 @@
       "warn",
       {
         "selector": "typeAlias", // 타입 선언
-        "format": ["PascalCase"],
-        "prefix": ["T"] // T로 시작
+        "format": ["PascalCase"]
       },
       {
         "selector": "interface", // 인터페이스 선언
-        "format": ["PascalCase"],
-        "prefix": ["I"] // I로 시작
+        "format": ["PascalCase"]
       },
       {
         "selector": "variable",
