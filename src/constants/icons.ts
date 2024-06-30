@@ -19,4 +19,7 @@ export const ICONS = {
   join: {
     light: `${BASE_PATH}/joinPage/light.svg`,
   },
+  test: {
+    download: `${BASE_PATH}/testPage/download-icon.svg`,
+  },
 } as const;

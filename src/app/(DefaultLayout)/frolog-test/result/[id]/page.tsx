@@ -1,3 +1,4 @@
+import DownloadButton from '@/components/testPage/DownloadButton';
 import StartButton from '@/components/testPage/StartButton';
 import { IMAGES } from '@/constants/images';
 import { testResult } from '@/data/testResult';
@@ -6,7 +7,7 @@ import React from 'react';
 
 interface Props {
   params: {
-    id: string;
+    id: '1' | '2' | '3';
   };
 }
 
@@ -14,11 +15,12 @@ function TestResultPage({ params: { id } }: Props) {
   const testData = testResult[Number(id)];
 
   return (
-    <div className='flex h-fit w-full flex-col gap-[12px] whitespace-pre-wrap pt-[60px] text-gray-800'>
+    <div className='flex h-fit w-full flex-col gap-[12px] whitespace-pre-wrap pt-[30px] text-gray-800'>
       <div className='flex w-full flex-col items-center bg-white pb-[70px]'>
         <div className='relative flex h-[300px] w-full flex-col items-center justify-end gap-[32px] bg-gray-900 mobile:h-[270px]'>
+          <DownloadButton type={id} />
           <Image
-            src={IMAGES.test.shape[id as '1' | '2' | '3']}
+            src={IMAGES.test.shape[id]}
             alt='shape'
             width={390}
             height={450}
@@ -31,7 +33,7 @@ function TestResultPage({ params: { id } }: Props) {
         <div className='z-10 flex flex-col items-center gap-[32px] rounded-[12px] px-[24px] py-[36px] mobile:pb-[36px] mobile:pt-[12px]'>
           <h5 className='text-center text-body_xl_bold'>{testData.subTitle}</h5>
           <Image
-            src={IMAGES.test.frog[id as '1' | '2' | '3']}
+            src={IMAGES.test.frog[id]}
             alt='frog'
             width={188}
             height={176}
