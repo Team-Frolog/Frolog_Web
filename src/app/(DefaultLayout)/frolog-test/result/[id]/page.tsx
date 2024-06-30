@@ -1,3 +1,4 @@
+import QuitButton from '@/components/common/button/QuitButton';
 import DownloadButton from '@/components/testPage/DownloadButton';
 import StartButton from '@/components/testPage/StartButton';
 import { IMAGES } from '@/constants/images';
@@ -15,10 +16,13 @@ function TestResultPage({ params: { id } }: Props) {
   const testData = testResult[Number(id)];
 
   return (
-    <div className='flex h-fit w-full flex-col gap-[12px] whitespace-pre-wrap pt-[30px] text-gray-800'>
+    <div className='relative flex h-fit w-full flex-col gap-[12px] whitespace-pre-wrap pt-[36px] text-gray-800'>
+      <div className='absolute left-0 top-0 z-[20] flex w-full items-center justify-between p-[24px]'>
+        <QuitButton route='/' classes='cursor-pointer' />
+        <DownloadButton type={id} />
+      </div>
       <div className='flex w-full flex-col items-center bg-white pb-[70px]'>
         <div className='relative flex h-[300px] w-full flex-col items-center justify-end gap-[32px] bg-gray-900 mobile:h-[270px]'>
-          <DownloadButton type={id} />
           <Image
             src={IMAGES.test.shape[id]}
             alt='shape'

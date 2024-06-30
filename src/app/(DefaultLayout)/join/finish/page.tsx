@@ -3,19 +3,16 @@ import PopperAnimation from '@/components/animation/PopperAnimation';
 import FinishLight from '@/components/common/FinishLight';
 import Image from 'next/image';
 import { IMAGES } from '../../../../constants/images';
-import { ICONS } from '@/constants/icons';
-import Link from 'next/link';
 import TestStartButton from '@/components/joinPage/TestStartButton';
+import QuitButton from '@/components/common/button/QuitButton';
 
 function JoinFinishPage() {
   return (
     <div className='relative flex h-full w-full flex-col justify-between overflow-hidden pt-[30px]'>
-      <Link
-        className='absolute left-[24px] top-[24px] z-10 cursor-pointer'
-        href='/'
-      >
-        <Image src={ICONS.common.cancel} alt='x' width={24} height={24} />
-      </Link>
+      <QuitButton
+        route='/'
+        classes='absolute left-[24px] top-[24px] z-10 cursor-pointer'
+      />
       <FinishLight>
         야호!
         <br />

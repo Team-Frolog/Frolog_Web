@@ -31,11 +31,8 @@ function DownloadButton({ type }: Props) {
   }, []);
 
   return (
-    <button
-      onClick={onClickImgLink}
-      className='absolute right-[20px] top-0 z-[20]'
-    >
-      <Image src={ICONS.test.download} alt='download' width={32} height={32} />
+    <button onClick={onClickImgLink}>
+      <Image src={ICONS.test.download} alt='download' width={30} height={30} />
     </button>
   );
 }
