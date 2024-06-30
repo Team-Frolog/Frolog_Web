@@ -18,8 +18,7 @@ function CheckItem({ termsData }: Props) {
 
   return (
     <div className='flex justify-between gap-[20px]'>
-      <button
-        type='button'
+      <div
         className='flex gap-[12px]'
         onClick={() => setValue(`consents.${termsData.name}.given`, !isChecked)}
       >
@@ -27,7 +26,7 @@ function CheckItem({ termsData }: Props) {
         <span className='flex-1 cursor-default text-body_lg_bold'>
           {termsData.label}
         </span>
-      </button>
+      </div>
       {termsData.view && (
         <button
           type='button'
