@@ -91,14 +91,13 @@ function LoginPage() {
               })}
             />
           </div>
-          <button
-            type='button'
+          <div
             className='flex items-center gap-[8px]'
             onClick={() => setIsSaved((prev) => !prev)}
           >
             <CheckButton isChecked={isSaved} />
             <span className='cursor-default text-body_md'>자동 로그인</span>
-          </button>
+          </div>
         </div>
         <div className='flex w-full flex-col items-center gap-[12px]'>
           <AnimatePresence>
