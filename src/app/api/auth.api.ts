@@ -1,5 +1,4 @@
 import { ERROR_ALERT } from '@/constants/message';
-import { authOptions, baseOptions } from './options';
 import {
   GetEmailAvailability,
   GetEmailAvailabilityReq,
@@ -18,6 +17,7 @@ import {
   VerifyEmailCodeReq,
 } from '@frolog/frolog-api';
 import { getSession } from 'next-auth/react';
+import { authOptions, baseOptions } from './options';
 
 const signUp = new SignUp(baseOptions);
 const getEmailAvailability = new GetEmailAvailability(baseOptions);
@@ -28,7 +28,7 @@ const resetPassword = new ResetPassword(baseOptions);
 const signOut = new SignOut(authOptions);
 const quit = new Quit(authOptions);
 
-export const authAPI = {
+const authAPI = {
   signUp: async (formData: SignUpReq) => {
     try {
       const data = await signUp.fetch(formData);
@@ -49,9 +49,8 @@ export const authAPI = {
         const data = await signOut.fetch(req);
 
         return data.result;
-      } else {
-        throw new Error();
       }
+      throw new Error();
     } catch (err) {
       window.alert(ERROR_ALERT);
     }
@@ -64,7 +63,6 @@ export const authAPI = {
         return data.result;
       }
     } catch (err) {
-      console.log(err);
       window.alert(ERROR_ALERT);
     }
   },
@@ -81,7 +79,6 @@ export const authAPI = {
       const data = await getUserNameAvailability.fetch(req);
       return data.result;
     } catch (err) {
-      console.log(err);
       window.alert(ERROR_ALERT);
     }
   },
@@ -110,3 +107,5 @@ export const authAPI = {
     }
   },
 };
+
+export default authAPI;

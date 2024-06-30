@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import React, { useCallback } from 'react';
 import { ICONS } from '@/constants/icons';
+import { ERROR_ALERT } from '@/constants/message';
 
 interface Props {
   type: '1' | '2' | '3';
@@ -25,13 +26,13 @@ function DownloadButton({ type }: Props) {
         }, 1000);
         a.remove();
       })
-      .catch((err) => {
-        console.error('err', err);
+      .catch(() => {
+        window.alert(ERROR_ALERT);
       });
-  }, []);
+  }, [type]);
 
   return (
-    <button onClick={onClickImgLink}>
+    <button type='button' onClick={onClickImgLink}>
       <Image src={ICONS.test.download} alt='download' width={30} height={30} />
     </button>
   );

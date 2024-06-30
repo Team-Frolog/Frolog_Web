@@ -1,6 +1,6 @@
 'use client';
 
-import { authAPI } from '@/app/api/auth.api';
+import authAPI from '@/app/api/auth.api';
 import Button from '@/components/common/button/Button';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';

@@ -1,10 +1,10 @@
 import { EditProfile, EditProfileReq } from '@frolog/frolog-api';
-import { authOptions } from './options';
 import { ERROR_ALERT } from '@/constants/message';
+import { authOptions } from './options';
 
 const editProfile = new EditProfile(authOptions);
 
-export const userAPI = {
+const userAPI = {
   editTestType: async (req: EditProfileReq) => {
     try {
       const data = await editProfile.fetch(req);
@@ -14,3 +14,5 @@ export const userAPI = {
     }
   },
 };
+
+export default userAPI;

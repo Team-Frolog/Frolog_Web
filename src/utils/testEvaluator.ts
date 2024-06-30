@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 type NumberObj = { [key: number]: number };
 
 export const weight: NumberObj = {

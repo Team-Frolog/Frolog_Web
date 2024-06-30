@@ -1,6 +1,6 @@
 'use client';
 
-import { authAPI } from '@/app/api/auth.api';
+import authAPI from '@/app/api/auth.api';
 import FormInput from '@/components/common/form/FormInput';
 import SendButton from '@/components/common/form/SendButton';
 import PasswordForm from '@/components/common/form/password/PasswordForm';
@@ -46,7 +46,7 @@ function Step2() {
               },
               onBlur: async (e) => {
                 const isVaild = await trigger('email');
-                const value = e.target.value;
+                const { value } = e.target;
 
                 if (isVaild && value.trim() !== '') {
                   const data = await authAPI.checkEmail({

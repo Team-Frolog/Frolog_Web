@@ -21,7 +21,7 @@ function FinishLight({ children }: Props) {
         alt='light'
         width={30}
         height={30}
-        className={`w-full`}
+        className='w-full'
       />
     </div>
   );

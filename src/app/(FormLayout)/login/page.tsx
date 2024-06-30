@@ -26,7 +26,7 @@ function LoginPage() {
     if (status === 'authenticated') {
       router.replace('/');
     }
-  }, [session, status]);
+  }, [router, session, status]);
 
   const { isSaved, setIsSaved, userLogin, isFaild, setIsFaild } =
     useLogin('login');
@@ -38,18 +38,18 @@ function LoginPage() {
     },
   });
 
-  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSubmit((data) => userLogin(data))();
-    }
-  };
-
   const {
     handleSubmit,
     register,
     watch,
     formState: { errors, isValid },
   } = methods;
+
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSubmit((data) => userLogin(data))();
+    }
+  };
 
   return (
     <FormProvider {...methods}>
@@ -91,13 +91,14 @@ function LoginPage() {
               })}
             />
           </div>
-          <div
+          <button
+            type='button'
             className='flex items-center gap-[8px]'
             onClick={() => setIsSaved((prev) => !prev)}
           >
             <CheckButton isChecked={isSaved} />
             <span className='cursor-default text-body_md'>자동 로그인</span>
-          </div>
+          </button>
         </div>
         <div className='flex w-full flex-col items-center gap-[12px]'>
           <AnimatePresence>

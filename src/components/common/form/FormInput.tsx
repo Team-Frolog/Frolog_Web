@@ -11,6 +11,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   title?: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const FormInput = React.forwardRef(
   (
     { type, placeholder, title, fieldName, errorMessage, ...props }: Props,

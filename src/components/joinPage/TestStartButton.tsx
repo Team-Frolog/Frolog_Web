@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import LinkButton from '../common/button/LinkButton';
 import { PAGES } from '@/constants/page';
 import { useSearchParams } from 'next/navigation';
+import LinkButton from '../common/button/LinkButton';
 
 function TestStartButton() {
   const username = useSearchParams().get('username');

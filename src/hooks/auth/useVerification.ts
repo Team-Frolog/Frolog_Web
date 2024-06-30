@@ -1,4 +1,4 @@
-import { authAPI } from '@/app/api/auth.api';
+import authAPI from '@/app/api/auth.api';
 import { CODE_EXPIRE_TIME } from '@/constants/auth';
 import { useAuthActions, useCodeToken } from '@/store/authStore';
 import { useState } from 'react';

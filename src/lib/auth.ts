@@ -2,8 +2,8 @@ import { baseOptions } from '@/app/api/options';
 import { SignIn } from '@frolog/frolog-api';
 import { NextAuthOptions } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
-import { refreshAccessToken } from './refreshAccessToken';
 import { getExpFromToken } from '@/utils/decodeToken';
+import { refreshAccessToken } from './refreshAccessToken';
 
 const logIn = new SignIn(baseOptions);
 
@@ -15,9 +15,11 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
+        if (!credentials) return null;
+
         const data = await logIn.fetch({
-          email: credentials?.email!,
-          password: credentials?.password!,
+          email: credentials.email,
+          password: credentials.password,
         });
 
         if (data.result) {

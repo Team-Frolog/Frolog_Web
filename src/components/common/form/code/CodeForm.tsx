@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import CodeInput from './CodeInput';
 import ErrorPopUp from '@/components/common/form/ErrorPopUp';
 import { AnimatePresence } from 'framer-motion';
 import Button from '@/components/common/button/Button';
 import { useVerification } from '@/hooks/auth/useVerification';
 import { useFormContext } from 'react-hook-form';
 import { useCodeTime } from '@/store/authStore';
+import CodeInput from './CodeInput';
 
 interface Props {
   type: 'signUp' | 'resetPassword';
@@ -35,11 +35,11 @@ function CodeForm({ type, onClickNext }: Props) {
     if (isVerified) {
       onClickNext();
     }
-  }, [isVerified]);
+  }, [isVerified, onClickNext]);
 
   useEffect(() => {
     setIsVerified(null);
-  }, [code]);
+  }, [code, setIsVerified]);
 
   return (
     <div className='flex h-full w-full flex-col justify-between'>

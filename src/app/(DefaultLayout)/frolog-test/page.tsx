@@ -9,17 +9,15 @@ import React from 'react';
 function TestPage() {
   const isLoading = useSearchParams().get('loading');
 
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
   return (
-    <>
-      {isLoading ? (
-        <LoadingPage />
-      ) : (
-        <div className='flex h-full flex-col bg-white text-gray-900'>
-          <ProgressHeader />
-          <Question />
-        </div>
-      )}
-    </>
+    <div className='flex h-full flex-col bg-white text-gray-900'>
+      <ProgressHeader />
+      <Question />
+    </div>
   );
 }
 

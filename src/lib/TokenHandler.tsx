@@ -2,13 +2,12 @@ import { Session } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import { useEffect, useRef } from 'react';
 
-export const TokenHandler = ({
-  session,
-  update,
-}: {
+interface Props {
   session: Session | null;
   update: (data?: any) => Promise<Session | null>;
-}) => {
+}
+
+export function TokenHandler({ session, update }: Props) {
   const interval = useRef<ReturnType<typeof setInterval> | undefined>(
     undefined
   );
@@ -37,5 +36,6 @@ export const TokenHandler = ({
     return () => clearInterval(interval.current);
   }, [session, update]);
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>;
-};
+}

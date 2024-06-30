@@ -16,7 +16,7 @@ export const PAGES = {
   LOGIN: '/login',
   FIND_PASSWORD: '/find-password',
   TEST: '/frolog-test',
-  TEST_RESULT: '/frolog-test/result'
+  TEST_RESULT: '/frolog-test/result',
 } as const;
 
 export const PAGE_CONFIG: IPageConfig = {

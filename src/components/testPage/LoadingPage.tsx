@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import FinishLight from '../common/FinishLight';
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 import { PAGES } from '@/constants/page';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
+import FinishLight from '../common/FinishLight';
 
 function LoadingPage() {
   const type = useSearchParams().get('type');
@@ -27,6 +27,7 @@ function LoadingPage() {
     }, 4000);
 
     return () => clearInterval(loadingInterval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

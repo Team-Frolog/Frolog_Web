@@ -1,6 +1,6 @@
 import React from 'react';
-import FormInput from '../FormInput';
 import { useFormContext } from 'react-hook-form';
+import FormInput from '../FormInput';
 
 function PasswordForm() {
   const {
@@ -43,7 +43,7 @@ function PasswordForm() {
               '비밀번호가 일치하지 않아요.',
           },
           onChange: async (e) => {
-            const value = e.target.value;
+            const { value } = e.target;
             if (value.length > 0) {
               await trigger('passwordCheck');
             }

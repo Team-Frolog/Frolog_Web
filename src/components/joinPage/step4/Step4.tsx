@@ -2,12 +2,12 @@
 
 import FormInput from '@/components/common/form/FormInput';
 import React from 'react';
+import authAPI from '@/app/api/auth.api';
+import { useFormContext } from 'react-hook-form';
+import Button from '@/components/common/button/Button';
 import JobSelector from './JobSelector';
 import GenderSelector from './GenderSelector';
 import DateSelector from './DateSelector';
-import { useFormContext } from 'react-hook-form';
-import Button from '@/components/common/button/Button';
-import { authAPI } from '@/app/api/auth.api';
 
 function Step4() {
   const {
@@ -36,7 +36,7 @@ function Step4() {
             },
             onBlur: async (e) => {
               const isValid = await trigger('username');
-              const value = e.target.value;
+              const { value } = e.target;
 
               if (isValid && value.trim() !== '') {
                 const data = await authAPI.checkNickname({

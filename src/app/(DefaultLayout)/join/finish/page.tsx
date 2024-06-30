@@ -2,9 +2,9 @@ import React from 'react';
 import PopperAnimation from '@/components/animation/PopperAnimation';
 import FinishLight from '@/components/common/FinishLight';
 import Image from 'next/image';
-import { IMAGES } from '../../../../constants/images';
 import TestStartButton from '@/components/joinPage/TestStartButton';
 import QuitButton from '@/components/common/button/QuitButton';
+import { IMAGES } from '@/constants/images';
 
 function JoinFinishPage() {
   return (

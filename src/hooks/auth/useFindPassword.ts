@@ -1,5 +1,5 @@
 import { IFindForm } from '@/app/(FormLayout)/find-password/page';
-import { authAPI } from '@/app/api/auth.api';
+import authAPI from '@/app/api/auth.api';
 import { PAGES } from '@/constants/page';
 import { FIND_FORM_KEY } from '@/constants/storage';
 import { useVerifyToken } from '@/store/authStore';
@@ -13,11 +13,13 @@ export const useFindPassword = (getValues: () => IFindForm) => {
   // step별 폼 상태 저장
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      findStep === 1
-        ? localStorage.removeItem(FIND_FORM_KEY)
-        : localStorage.setItem(FIND_FORM_KEY, JSON.stringify(getValues()));
+      if (findStep === 1) {
+        localStorage.removeItem(FIND_FORM_KEY);
+      } else {
+        localStorage.setItem(FIND_FORM_KEY, JSON.stringify(getValues()));
+      }
     }
-  }, [findStep]);
+  }, [findStep, getValues]);
 
   const resetPassword = async (data: IFindForm) => {
     const result = await authAPI.resetPassword({

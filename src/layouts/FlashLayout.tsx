@@ -1,6 +1,4 @@
-import { ICONS } from '@/constants/icons';
 import React from 'react';
-import Image from 'next/image';
 import BigTitle from '@/components/common/text/BigTitle';
 
 interface Props {

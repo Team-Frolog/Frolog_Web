@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import React from 'react';
 
 function layout({ children }: { children: React.ReactNode }) {

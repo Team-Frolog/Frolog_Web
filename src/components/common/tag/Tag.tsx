@@ -8,7 +8,7 @@ interface Props {
 function Tag({ type, text }: Props) {
   return (
     <div
-      className={`tag-common ${type === 'default' ? 'default-tag' : type === 'pros' ? 'pro-tag' : 'con-tag'}`}
+      className={`tag-common ${type === 'default' && 'default-tag'} ${type === 'pros' ? 'pro-tag' : 'con-tag'}`}
     >
       {type === 'default' ? '첫 리뷰 작성자가 되어보세요!' : text}
     </div>

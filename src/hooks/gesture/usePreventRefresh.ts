@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { useEffect } from 'react';
 
 const usePreventRefresh = () => {

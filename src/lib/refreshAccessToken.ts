@@ -16,9 +16,8 @@ export const refreshAccessToken = async (tokenObj: JWT) => {
         refreshToken: data.refresh_token as string,
         accessTokenExpires: getExpFromToken(data.access_token!),
       };
-    } else {
-      throw new Error();
     }
+    throw new Error();
   } catch (err) {
     return {
       ...tokenObj,

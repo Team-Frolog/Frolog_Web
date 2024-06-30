@@ -3,6 +3,8 @@
 import React from 'react';
 import lottieAni from 'public/lotties/popper.json';
 import dynamic from 'next/dynamic';
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const Lottie = dynamic(() => import('react-lottie-player'), { ssr: false });
 
 function PopperAnimation() {

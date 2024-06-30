@@ -1,6 +1,6 @@
 import React from 'react';
-import ToggleButton from './ToggleButton';
 import { TInfoName } from '@/types/form';
+import ToggleButton from './ToggleButton';
 
 interface Props {
   title: string;

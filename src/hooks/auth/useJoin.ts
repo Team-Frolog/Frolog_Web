@@ -1,4 +1,4 @@
-import { authAPI } from '@/app/api/auth.api';
+import authAPI from '@/app/api/auth.api';
 import { JOIN_FORM_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
 import { transformJoinForm } from '@/utils/transformJoinForm';
 import { useEffect } from 'react';
@@ -31,11 +31,13 @@ export const useJoin = (getValues: () => IJoinForm) => {
   // step별 폼 상태 저장
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      joinStep === 1
-        ? localStorage.removeItem(JOIN_FORM_KEY)
-        : localStorage.setItem(JOIN_FORM_KEY, JSON.stringify(getValues()));
+      if (joinStep === 1) {
+        localStorage.removeItem(JOIN_FORM_KEY);
+      } else {
+        localStorage.setItem(JOIN_FORM_KEY, JSON.stringify(getValues()));
+      }
     }
-  }, [joinStep]);
+  }, [getValues, joinStep]);
 
   const joinUser = async (data: IJoinForm) => {
     const formData = transformJoinForm(data, verifyToken!);

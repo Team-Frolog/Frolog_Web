@@ -1,7 +1,3 @@
-interface Quotes {
-  [key: number]: Quote[];
-}
-
 interface Quote {
   title: string;
   text: string;

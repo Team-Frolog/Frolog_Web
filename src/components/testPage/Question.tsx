@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
+import { useTest } from '@/hooks/useTest';
 import QuestionTitle from './QuestionTitle';
 import QuestionItem from './QuestionItem';
-import { useTest } from '@/hooks/useTest';
 
 function Question() {
   const { testData, answers, handleClickAnswer, testStep } = useTest();

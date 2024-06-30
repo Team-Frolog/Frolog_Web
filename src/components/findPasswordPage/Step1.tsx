@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import FormInput from '../common/form/FormInput';
 import { useFormContext } from 'react-hook-form';
-import { authAPI } from '@/app/api/auth.api';
+import authAPI from '@/app/api/auth.api';
 import { useStepActions } from '@/store/stepStore';
+import FormInput from '../common/form/FormInput';
 import SendButton from '../common/form/SendButton';
 
 function Step1() {
@@ -35,7 +35,7 @@ function Step1() {
           },
           onBlur: async (e) => {
             const isVaild = await trigger('email');
-            const value = e.target.value;
+            const { value } = e.target;
 
             if (isVaild && value.trim() !== '') {
               const data = await authAPI.checkEmail({

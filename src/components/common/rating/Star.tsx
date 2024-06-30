@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Star = ({ rating }: { rating: number }) => {
+function Star({ rating }: { rating: number }) {
   const starWidth = `${rating * 100}%`;
   const gradientId = `starGradient-${Math.random().toString(36).slice(2, 9)}`;
 
@@ -38,6 +38,6 @@ const Star = ({ rating }: { rating: number }) => {
       </svg>
     </div>
   );
-};
+}
 
 export default Star;

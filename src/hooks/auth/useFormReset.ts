@@ -29,5 +29,5 @@ export const useFormReset = () => {
       localStorage.removeItem(TEST_ANSWER_KEY);
       resetTestStep();
     }
-  }, [pathname]);
+  }, [pathname, resetFindStep, resetJoinStep, resetTestStep, session]);
 };

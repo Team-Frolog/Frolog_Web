@@ -3,9 +3,9 @@
 import { ITerms } from '@/data/terms';
 import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
-import TermsPopUp from './TermsPopUp';
 import { AnimatePresence } from 'framer-motion';
 import CheckButton from '@/components/common/button/CheckButton';
+import TermsPopUp from './TermsPopUp';
 
 interface Props {
   termsData: ITerms;
@@ -18,7 +18,8 @@ function CheckItem({ termsData }: Props) {
 
   return (
     <div className='flex justify-between gap-[20px]'>
-      <div
+      <button
+        type='button'
         className='flex gap-[12px]'
         onClick={() => setValue(`consents.${termsData.name}.given`, !isChecked)}
       >
@@ -26,7 +27,7 @@ function CheckItem({ termsData }: Props) {
         <span className='flex-1 cursor-default text-body_lg_bold'>
           {termsData.label}
         </span>
-      </div>
+      </button>
       {termsData.view && (
         <button
           type='button'

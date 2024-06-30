@@ -1,4 +1,3 @@
-import { CODE_EXPIRE_TIME } from '@/constants/auth';
 import { create } from 'zustand';
 import { persist, devtools, createJSONStorage } from 'zustand/middleware';
 

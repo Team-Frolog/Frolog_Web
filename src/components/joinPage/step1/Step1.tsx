@@ -2,11 +2,11 @@
 
 import ButtonWithText from '@/components/common/button/ButtonWithText';
 import React from 'react';
-import CheckAllItem from './CheckAllItem';
-import TermsContainer from './TermsContainer';
 import { requiredConsentsKeys } from '@/data/joinForm';
 import { useFormContext } from 'react-hook-form';
 import { useStepActions } from '@/store/stepStore';
+import TermsContainer from './TermsContainer';
+import CheckAllItem from './CheckAllItem';
 
 function Step1() {
   const { goNextJoinStep } = useStepActions();

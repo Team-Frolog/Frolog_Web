@@ -5,7 +5,6 @@ import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { PAGES } from '@/constants/page';
 import { useStepActions, useTestStep } from '@/store/stepStore';
 
 function ProgressHeader() {
@@ -42,7 +41,7 @@ function ProgressHeader() {
           initial={{ width: 0 }}
           animate={{ width: `${percentage}%` }}
           className='h-full bg-main'
-        ></motion.div>
+        />
       </div>
     </div>
   );

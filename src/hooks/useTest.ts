@@ -5,7 +5,7 @@ import { useStepActions, useTestStep } from '@/store/stepStore';
 import { testEvaluator } from '@/utils/testEvaluator';
 import { useEffect, useState } from 'react';
 import { getSession } from 'next-auth/react';
-import { userAPI } from '@/app/api/user.api';
+import userAPI from '@/app/api/user.api';
 
 export const useTest = () => {
   const testStep = useTestStep();
@@ -15,9 +15,8 @@ export const useTest = () => {
     if (typeof window !== 'undefined') {
       const savedAnswers = localStorage.getItem(TEST_ANSWER_KEY);
       return savedAnswers ? JSON.parse(savedAnswers) : [];
-    } else {
-      return [];
     }
+    return [];
   });
 
   const handleClickAnswer = (id: number) => {
@@ -44,17 +43,19 @@ export const useTest = () => {
         const testResult = testEvaluator(answers);
         const session = await getSession();
 
-        const reqData = {
-          id: session?.user.id!,
-          reading_preference: testResult.toString(),
-        };
+        if (session) {
+          const reqData = {
+            id: session?.user.id,
+            reading_preference: testResult.toString(),
+          };
 
-        const result = await userAPI.editTestType(reqData);
+          const result = await userAPI.editTestType(reqData);
 
-        if (result) {
-          window.location.replace(
-            `${PAGES.TEST}?loading=true&type=${testResult}`
-          );
+          if (result) {
+            window.location.replace(
+              `${PAGES.TEST}?loading=true&type=${testResult}`
+            );
+          }
         }
       }, 1000);
     }
