@@ -8,7 +8,7 @@ export const useTooltip = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsOpenTooltip(false);
-    }, 2000);
+    }, 3000);
   }, []);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export const useTooltip = () => {
 
       const closeDoneTimeout = setTimeout(() => {
         setIsOpenDone(false);
-      }, 2000);
+      }, 3000);
 
       return () => {
         clearTimeout(doneTimeout);

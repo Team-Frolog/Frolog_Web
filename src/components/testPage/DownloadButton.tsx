@@ -51,9 +51,20 @@ function DownloadButton({ type }: Props) {
         {isOpenTooltip && (
           <motion.div
             initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            animate={{
+              y: [0, -5, 0],
+              opacity: [1, 1, 1],
+              transition: {
+                duration: 0.5,
+                repeat: Infinity,
+                repeatDelay: 0.5,
+                ease: 'linear',
+              },
+            }}
+            transition={{
+              duration: 0.3,
+            }}
             exit={{ y: 10, opacity: 0 }}
-            transition={{ duration: 0.2 }}
             className='absolute bottom-[-50px] right-[-7px] w-[130px] rounded-[12px] bg-gray-300 p-[12px] text-center text-body_sm text-gray-800 after:absolute after:right-[15px] after:top-[-5px] after:h-0 after:w-0 after:rotate-45 after:border-[8px] after:border-solid after:border-gray-300'
           >
             결과를 저장해보세요!
