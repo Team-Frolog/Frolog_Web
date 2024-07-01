@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ICONS } from '@/constants/icons';
 import { ERROR_ALERT } from '@/constants/message';
 
@@ -10,6 +10,8 @@ interface Props {
 }
 
 function DownloadButton({ type }: Props) {
+  const [isDownloaded, setIsDownloaded] = useState<boolean>(false);
+
   const onClickImgLink = useCallback(() => {
     const srcUrl = `/images/test/result-image/type${type}.png`;
     fetch(srcUrl, { method: 'GET' })
@@ -25,6 +27,7 @@ function DownloadButton({ type }: Props) {
           window.URL.revokeObjectURL(url);
         }, 1000);
         a.remove();
+        setIsDownloaded(true);
       })
       .catch(() => {
         window.alert(ERROR_ALERT);
@@ -33,7 +36,12 @@ function DownloadButton({ type }: Props) {
 
   return (
     <button type='button' onClick={onClickImgLink}>
-      <Image src={ICONS.test.download} alt='download' width={30} height={30} />
+      <Image
+        src={isDownloaded ? ICONS.test.download_done : ICONS.test.download}
+        alt='download'
+        width={30}
+        height={30}
+      />
     </button>
   );
 }

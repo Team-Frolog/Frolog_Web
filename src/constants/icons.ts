@@ -21,5 +21,6 @@ export const ICONS = {
   },
   test: {
     download: `${BASE_PATH}/testPage/download-icon.svg`,
+    download_done: `${BASE_PATH}/testPage/download-done.svg`,
   },
 } as const;
