@@ -1,16 +1,19 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { ICONS } from '@/constants/icons';
 import { ERROR_ALERT } from '@/constants/message';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useTooltip } from '@/hooks/popup/useTooltip';
 
 interface Props {
   type: '1' | '2' | '3';
 }
 
 function DownloadButton({ type }: Props) {
-  const [isDownloaded, setIsDownloaded] = useState<boolean>(false);
+  const { isOpenTooltip, isOpenDone, isDownloaded, setIsDownloaded } =
+    useTooltip();
 
   const onClickImgLink = useCallback(() => {
     const srcUrl = `/images/test/result-image/type${type}.png`;
@@ -35,14 +38,42 @@ function DownloadButton({ type }: Props) {
   }, [type]);
 
   return (
-    <button type='button' onClick={onClickImgLink}>
-      <Image
-        src={isDownloaded ? ICONS.test.download_done : ICONS.test.download}
-        alt='download'
-        width={30}
-        height={30}
-      />
-    </button>
+    <div className='relative z-20 w-fit'>
+      <button type='button' onClick={isDownloaded ? undefined : onClickImgLink}>
+        <Image
+          src={isDownloaded ? ICONS.test.download_done : ICONS.test.download}
+          alt='download'
+          width={30}
+          height={30}
+        />
+      </button>
+      <AnimatePresence>
+        {isOpenTooltip && (
+          <motion.div
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 10, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className='absolute bottom-[-50px] right-[-7px] w-[130px] rounded-[12px] bg-gray-300 p-[12px] text-center text-body_sm text-gray-800 after:absolute after:right-[15px] after:top-[-5px] after:h-0 after:w-0 after:rotate-45 after:border-[8px] after:border-solid after:border-gray-300'
+          >
+            결과를 저장해보세요!
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isOpenDone && (
+          <motion.div
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 10, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className='absolute bottom-[-50px] right-[-7px] w-[80px] rounded-[12px] bg-gray-300 p-[12px] text-center text-body_sm text-gray-800 after:absolute after:right-[15px] after:top-[-5px] after:h-0 after:w-0 after:rotate-45 after:border-[8px] after:border-solid after:border-gray-300'
+          >
+            저장완료!
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
