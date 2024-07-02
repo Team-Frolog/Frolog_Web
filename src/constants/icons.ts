@@ -2,6 +2,12 @@ const BASE_PATH = '/icons';
 
 export const ICONS = {
   common: {
+    navigation: {
+      well: `${BASE_PATH}/common/navigation/well-icon.svg`,
+      feed: `${BASE_PATH}/common/navigation/feed-icon.svg`,
+      search: `${BASE_PATH}/common/navigation/search-icon.svg`,
+      profile: `${BASE_PATH}/common/navigation/profile-icon.svg`,
+    },
     back: {
       back_500: `${BASE_PATH}/common/back/back-500.svg`,
       back_600: `${BASE_PATH}/common/back/back-600.svg`,
