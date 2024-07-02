@@ -1,4 +1,4 @@
-import { ILoginForm } from '@/app/(FormLayout)/login/page';
+import { ILoginForm } from '@/app/(form)/login/page';
 import { REMEMBER_ME_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
