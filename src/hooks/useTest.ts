@@ -13,7 +13,7 @@ export const useTest = () => {
   const [testData, setTestData] = useState<Question>(questions[0]);
   const [answers, setAnswers] = useState<number[]>(() => {
     if (typeof window !== 'undefined') {
-      const savedAnswers = localStorage.getItem(TEST_ANSWER_KEY);
+      const savedAnswers = sessionStorage.getItem(TEST_ANSWER_KEY);
       return savedAnswers ? JSON.parse(savedAnswers) : [];
     }
     return [];
@@ -23,7 +23,7 @@ export const useTest = () => {
     setAnswers((prev) => {
       const newArr = [...prev];
       newArr[testStep - 1] = id;
-      localStorage.setItem(TEST_ANSWER_KEY, JSON.stringify(newArr));
+      sessionStorage.setItem(TEST_ANSWER_KEY, JSON.stringify(newArr));
       return newArr;
     });
 
@@ -36,7 +36,7 @@ export const useTest = () => {
     if (testStep <= 7) {
       setTestData(questions[testStep - 1]);
       const currentAnswers = answers.slice(0, testStep);
-      localStorage.setItem(TEST_ANSWER_KEY, JSON.stringify(currentAnswers));
+      sessionStorage.setItem(TEST_ANSWER_KEY, JSON.stringify(currentAnswers));
       setAnswers(currentAnswers);
     } else {
       setTimeout(async () => {

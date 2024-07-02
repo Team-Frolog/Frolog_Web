@@ -6,6 +6,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useStepActions, useTestStep } from '@/store/stepStore';
+import { TEST_ANSWER_KEY } from '@/constants/storage';
 
 function ProgressHeader() {
   const router = useRouter();
@@ -15,6 +16,7 @@ function ProgressHeader() {
 
   const handleClickBack = () => {
     if (testStep === 1) {
+      sessionStorage.removeItem(TEST_ANSWER_KEY);
       router.back();
     } else {
       moveTestStep(-1);
