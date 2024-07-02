@@ -39,7 +39,11 @@ function DownloadButton({ type }: Props) {
 
   return (
     <div className='relative z-20 w-fit'>
-      <button type='button' onClick={isDownloaded ? undefined : onClickImgLink}>
+      <button
+        type='button'
+        onClick={isDownloaded ? undefined : onClickImgLink}
+        className={`${isDownloaded && 'cursor-default'}`}
+      >
         <Image
           src={isDownloaded ? ICONS.test.download_done : ICONS.test.download}
           alt='download'
