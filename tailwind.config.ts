@@ -21,6 +21,7 @@ const config: Config = {
         caption: ['10px', { lineHeight: '14px' }],
         caption_bold: ['10px', { lineHeight: '14px', fontWeight: 700 }],
         body_sm: ['12px', { lineHeight: '18px' }],
+        body_sm_bold: ['12px', { lineHeight: '18px', fontWeight: 700 }],
         body_md: ['14px', { lineHeight: '20px' }],
         body_lg: ['16px', { lineHeight: '24px' }],
         body_lg_bold: ['16px', { lineHeight: '24px', fontWeight: 700 }],

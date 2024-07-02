@@ -11,7 +11,13 @@
     "node": true,
     "es6": true
   },
-  "ignorePatterns": ["public", "src/middleware.ts", "src/types"], // eslint 미적용될 폴더나 파일
+  "ignorePatterns": [
+    "public",
+    "src/middleware.ts",
+    "src/types",
+    "tailwind.config.ts",
+    "next.config.js"
+  ], // eslint 미적용될 폴더나 파일
   "extends": [
     "next/core-web-vitals",
     "airbnb",

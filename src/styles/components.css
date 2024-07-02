@@ -9,4 +9,7 @@
   .button-disabled {
     @apply pointer-events-none opacity-[0.4];
   }
+  .navItem {
+    @apply flex flex-col items-center gap-[4px];
+  }
 }
