@@ -5,18 +5,14 @@ import {
   TEST_ANSWER_KEY,
 } from '@/constants/storage';
 import { useStepActions } from '@/store/stepStore';
-import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
 export const useFormReset = () => {
-  const { data: session } = useSession();
   const { resetFindStep, resetJoinStep, resetTestStep } = useStepActions();
   const pathname = usePathname();
 
   useEffect(() => {
-    if (session) return;
-
     if (pathname !== PAGES.JOIN) {
       localStorage.removeItem(JOIN_FORM_KEY);
       resetJoinStep();
@@ -26,8 +22,8 @@ export const useFormReset = () => {
       resetFindStep();
     }
     if (pathname !== PAGES.TEST) {
-      localStorage.removeItem(TEST_ANSWER_KEY);
+      sessionStorage.removeItem(TEST_ANSWER_KEY);
       resetTestStep();
     }
-  }, [pathname, resetFindStep, resetJoinStep, resetTestStep, session]);
+  }, [pathname, resetFindStep, resetJoinStep, resetTestStep]);
 };
