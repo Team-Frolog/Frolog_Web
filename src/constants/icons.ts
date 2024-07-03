@@ -22,6 +22,9 @@ export const ICONS = {
       circle_unchecked: `${BASE_PATH}/common/check/circle-uncheck.svg`,
     },
   },
+  well: {
+    arrow: `${BASE_PATH}/wellPage/circle-arrow.svg`,
+  },
   join: {
     light: `${BASE_PATH}/joinPage/light.svg`,
   },

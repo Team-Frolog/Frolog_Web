@@ -20,5 +20,8 @@ export const IMAGES = {
       '3': `${BASE_PATH}/test/frog/type3.svg`,
     },
   },
+  well: {
+    header: `${BASE_PATH}/well/well-header.svg`,
+  },
   ground: `${BASE_PATH}/etc/ground.svg`,
 };

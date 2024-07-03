@@ -11,7 +11,7 @@ import { usePathname } from 'next/navigation';
 function NavigationBar() {
   const pathname = usePathname();
   return (
-    <div className='fixed bottom-0 left-[50%] flex h-[80px] w-[450px] translate-x-[-50%] items-center justify-around bg-white px-[20px] pb-[15px] mobile:w-full'>
+    <div className='fixed bottom-0 left-[50%] flex h-[80px] w-[450px] translate-x-[-50%] items-center justify-around bg-white px-[20px] pb-[15px] mobile:left-0 mobile:w-full mobile:translate-x-0'>
       <Link href='/well' className='navItem'>
         <WellIcon
           fill={pathname === '/well' ? '#313239' : '#B3B6C5'}
