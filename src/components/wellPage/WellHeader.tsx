@@ -1,7 +1,10 @@
+'use client';
+
 import { ICONS } from '@/constants/icons';
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 import React from 'react';
+import { motion } from 'framer-motion';
 
 function WellHeader() {
   return (
@@ -22,8 +25,26 @@ function WellHeader() {
           height={24}
           className='mb-[6px]'
         />
+
         <h3 className='text-body_xl_bold'>로그인이 필요해요</h3>
         <span className='text-body_md text-gray-600'>현재 높이 0cm</span>
+      </div>
+      <div className='absolute left-0 top-[30px] flex h-full w-full items-center justify-center'>
+        <motion.img
+          animate={{
+            width: ['0%', '80%', '0%'],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            repeatDelay: 1,
+            ease: 'linear',
+          }}
+          src={IMAGES.well.pointing}
+          alt='pointing'
+          width={276}
+          height={276}
+        />
       </div>
     </div>
   );
