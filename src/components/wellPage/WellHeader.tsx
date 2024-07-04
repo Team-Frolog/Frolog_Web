@@ -32,12 +32,12 @@ function WellHeader() {
       <div className='absolute left-0 top-[30px] flex h-full w-full items-center justify-center'>
         <motion.img
           animate={{
-            width: ['0%', '80%', '0%'],
+            width: ['20%', '80%', '20%'],
           }}
           transition={{
             duration: 2,
             repeat: Infinity,
-            repeatDelay: 1,
+            repeatDelay: 0,
             ease: 'linear',
           }}
           src={IMAGES.well.pointing}
