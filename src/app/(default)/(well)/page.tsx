@@ -18,7 +18,11 @@ function WellPage() {
     //     signOut({ callbackUrl: '/login' });
     //   }
     // }
-    signOut({ callbackUrl: '/login', redirect: true });
+    if (session) {
+      signOut({ callbackUrl: '/login', redirect: true });
+    } else {
+      router.push('/login');
+    }
   };
 
   const handleQuit = async () => {

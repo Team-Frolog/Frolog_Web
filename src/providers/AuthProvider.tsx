@@ -17,6 +17,7 @@ function Auth() {
 
   useEffect(() => {
     if (
+      session &&
       typeof window !== 'undefined' &&
       localStorage.getItem(REMEMBER_ME_KEY) === 'false' &&
       !sessionStorage.getItem(REMEMBER_ME_KEY)
