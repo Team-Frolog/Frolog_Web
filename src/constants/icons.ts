@@ -25,6 +25,7 @@ export const ICONS = {
   well: {
     arrow: `${BASE_PATH}/wellPage/circle-arrow.svg`,
     plus: `${BASE_PATH}/wellPage/circle-plus.svg`,
+    edit: `${BASE_PATH}/wellPage/well-edit.svg`,
   },
   join: {
     light: `${BASE_PATH}/joinPage/light.svg`,

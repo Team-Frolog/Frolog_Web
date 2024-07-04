@@ -22,6 +22,11 @@ function WellHeader() {
         height={144}
         className='absolute left-0 top-0 w-full'
       />
+      {session && (
+        <button type='button' className='absolute right-[28px] top-[28px] z-10'>
+          <Image src={ICONS.well.edit} alt='edit' width={24} height={24} />
+        </button>
+      )}
       <h1 className='text-title_xl_bold'>소중한 나의 첫 우물</h1>
       <div className='flex flex-col items-center gap-[4px]'>
         <Link
