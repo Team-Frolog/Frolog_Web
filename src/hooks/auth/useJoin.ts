@@ -52,6 +52,8 @@ export const useJoin = (getValues: () => IJoinForm) => {
       );
       router.push(`${PAGES.JOIN_FINISH}?username=${data.username}`);
       handleLogin();
+    } else {
+      window.alert(ERROR_ALERT);
     }
   };
 
