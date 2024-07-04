@@ -7,6 +7,7 @@ export const IMAGES = {
       loading: `${BASE_PATH}/frog/frog-evaluating.svg`,
       done: `${BASE_PATH}/frog/frog-evaluating-done.svg`,
     },
+    sitting: `${BASE_PATH}/frog/frog-sitting.svg`,
   },
   test: {
     shape: {
