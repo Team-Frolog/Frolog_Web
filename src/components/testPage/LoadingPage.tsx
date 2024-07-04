@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
@@ -27,7 +29,6 @@ function LoadingPage() {
     }, 4000);
 
     return () => clearInterval(loadingInterval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

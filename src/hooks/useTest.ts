@@ -1,11 +1,12 @@
+import userAPI from '@/app/api/user.api';
+import { POST_ERROR } from '@/constants/message';
 import { PAGES } from '@/constants/page';
 import { TEST_ANSWER_KEY } from '@/constants/storage';
 import { Question, questions } from '@/data/test';
 import { useStepActions, useTestStep } from '@/store/stepStore';
 import { testEvaluator } from '@/utils/testEvaluator';
-import { useEffect, useState } from 'react';
 import { getSession } from 'next-auth/react';
-import userAPI from '@/app/api/user.api';
+import { useEffect, useState } from 'react';
 
 export const useTest = () => {
   const testStep = useTestStep();
@@ -32,34 +33,34 @@ export const useTest = () => {
     }, 500);
   };
 
+  const postTestResult = async (type: string) => {
+    const session = await getSession();
+    if (session) {
+      const reqData = {
+        id: session?.user.id,
+        reading_preference: type,
+      };
+      const result = await userAPI.editTestType(reqData);
+
+      if (!result) {
+        window.alert(POST_ERROR);
+      }
+    }
+  };
+
   useEffect(() => {
     if (testStep <= 7) {
       setTestData(questions[testStep - 1]);
       const currentAnswers = answers.slice(0, testStep);
       sessionStorage.setItem(TEST_ANSWER_KEY, JSON.stringify(currentAnswers));
       setAnswers(currentAnswers);
-    } else {
-      setTimeout(async () => {
-        const testResult = testEvaluator(answers);
-        const session = await getSession();
-
-        if (session) {
-          const reqData = {
-            id: session?.user.id,
-            reading_preference: testResult.toString(),
-          };
-
-          const result = await userAPI.editTestType(reqData);
-
-          if (result) {
-            window.location.replace(
-              `${PAGES.TEST}?loading=true&type=${testResult}`
-            );
-          }
-        }
-      }, 1000);
+    }
+    if (testStep === 8) {
+      const testResult = testEvaluator(answers);
+      moveTestStep(1);
+      window.location.replace(`${PAGES.TEST}?loading=true&type=${testResult}`);
     }
   }, [testStep]);
 
-  return { testStep, answers, handleClickAnswer, testData };
+  return { testStep, answers, handleClickAnswer, testData, postTestResult };
 };

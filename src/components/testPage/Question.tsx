@@ -1,13 +1,18 @@
 'use client';
 
 import React from 'react';
-import { useTest } from '@/hooks/useTest';
+import { Question as QuestionType } from '@/data/test';
 import QuestionTitle from './QuestionTitle';
 import QuestionItem from './QuestionItem';
 
-function Question() {
-  const { testData, answers, handleClickAnswer, testStep } = useTest();
+interface Props {
+  testData: QuestionType;
+  answers: number[];
+  handleClickAnswer: (id: number) => void;
+  testStep: number;
+}
 
+function Question({ testData, answers, handleClickAnswer, testStep }: Props) {
   return (
     <div className='flex flex-1 flex-col gap-[50px] p-page mobile:gap-0'>
       <QuestionTitle data={testData} />
