@@ -40,7 +40,8 @@ function WellPage() {
       </span>
       <Button onClick={handleSignOut}>임시 로그아웃 버튼</Button>
       <Button onClick={handleQuit}>회원탈퇴</Button>
-      <Button onClick={() => router.push('/landing')}>랜딩페이지로</Button>
+      <Button onClick={() => router.push('/landing')}>랜딩 페이지로</Button>
+      <Button onClick={() => router.push('/well')}>우물 페이지로 (임시)</Button>
     </div>
   );
 }
