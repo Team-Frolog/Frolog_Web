@@ -69,7 +69,7 @@ function DownloadButton({ type }: Props) {
               duration: 0.3,
             }}
             exit={{ opacity: 0 }}
-            className='absolute bottom-[-50px] right-[-7px] w-[130px] rounded-[12px] bg-gray-300 p-[12px] text-center text-body_sm text-gray-800 after:absolute after:right-[15px] after:top-[-5px] after:h-0 after:w-0 after:rotate-45 after:border-[8px] after:border-solid after:border-gray-300'
+            className='tooltip w-[130px]'
           >
             결과를 저장해보세요!
           </motion.div>
@@ -82,7 +82,7 @@ function DownloadButton({ type }: Props) {
             animate={{ y: 0, opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className='absolute bottom-[-50px] right-[-7px] w-[80px] rounded-[12px] bg-gray-300 p-[12px] text-center text-body_sm text-gray-800 after:absolute after:right-[15px] after:top-[-5px] after:h-0 after:w-0 after:rotate-45 after:border-[8px] after:border-solid after:border-gray-300'
+            className='tooltip w-[80px]'
           >
             저장완료!
           </motion.div>
