@@ -15,4 +15,7 @@
   .tooltip {
     @apply absolute bottom-[-50px] right-[-7px] rounded-[12px] bg-gray-300 p-[12px] text-center text-body_sm text-gray-800 after:absolute after:right-[15px] after:top-[-5px] after:h-0 after:w-0 after:rotate-45 after:border-[8px] after:border-solid after:border-gray-300;
   }
+  .circle {
+    @apply absolute h-[320px] w-[320px] rounded-[50%] border-2 border-main_bright bg-none;
+  }
 }

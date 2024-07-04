@@ -47,6 +47,7 @@ const config: Config = {
       colors: {
         main: '#00CE4C',
         main_bright: '#A1FF56',
+        main_hightlight: '#A0FF56',
         main_bg: 'rgba(0, 206, 76, 0.10)',
         white: '#FFFFFF',
         error: '#FF6464',

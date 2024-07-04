@@ -23,7 +23,6 @@ export const IMAGES = {
   },
   well: {
     header: `${BASE_PATH}/well/well-header.svg`,
-    pointing: `${BASE_PATH}/well/pointing.svg`,
   },
   ground: `${BASE_PATH}/etc/ground.svg`,
 };
