@@ -26,7 +26,7 @@ function Auth() {
       sessionStorage.removeItem(REMEMBER_ME_KEY);
       signOut({ callbackUrl: '/', redirect: true });
     }
-  }, []);
+  }, [session]);
 
   return session && <TokenHandler session={session} update={update} />;
 }

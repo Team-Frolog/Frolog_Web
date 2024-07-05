@@ -36,3 +36,16 @@ export const tapVariants = {
     transition: { duration: 0 },
   },
 };
+
+export const pointing = {
+  animate: {
+    opacity: [1, 1, 0],
+    scale: [0, 1],
+  },
+  transition: {
+    duration: 1.5,
+    repeat: Infinity,
+    repeatDelay: 0.8,
+    ease: 'linear',
+  },
+};
