@@ -7,12 +7,12 @@ import Step4 from '@/components/joinPage/step4/Step4';
 import { JOIN_FORM_KEY } from '@/constants/storage';
 import { defaultValue } from '@/data/joinForm';
 import { useJoin } from '@/hooks/auth/useJoin';
-import { IJoinForm } from '@/types/form';
+import { JoinForm } from '@/types/form';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useStepActions } from '@/store/stepStore';
 
 function JoinPage() {
-  const methods = useForm<IJoinForm>({
+  const methods = useForm<JoinForm>({
     mode: 'onBlur',
     defaultValues:
       typeof window !== 'undefined' && localStorage.getItem(JOIN_FORM_KEY)

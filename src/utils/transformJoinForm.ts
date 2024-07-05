@@ -1,14 +1,14 @@
-import { IConsent, IInfo, IJoinForm } from '@/types/form';
+import { Consent, Info, JoinForm } from '@/types/form';
 
 export const transformJoinForm = (
-  joinFormData: IJoinForm,
+  joinFormData: JoinForm,
   email_verified_token: string
 ) => {
   const transformedConsents = Object.entries(joinFormData.consents).map(
     ([type, consent]) => ({
       type,
-      version: (consent as IConsent).version,
-      given: (consent as IConsent).given,
+      version: (consent as Consent).version,
+      given: (consent as Consent).given,
     })
   );
 
@@ -16,8 +16,8 @@ export const transformJoinForm = (
     joinFormData.personal_infos
   ).map(([type, info]) => ({
     type,
-    value: (info as IInfo).value,
-    visibility: (info as IInfo).visibility,
+    value: (info as Info).value,
+    visibility: (info as Info).visibility,
   }));
 
   return {

@@ -1,10 +1,10 @@
 import React from 'react';
-import { TInfoName } from '@/types/form';
+import { InfoName } from '@/types/form';
 import ToggleButton from './ToggleButton';
 
 interface Props {
   title: string;
-  fieldName: TInfoName;
+  fieldName: InfoName;
 }
 
 function FormTitleWithToggle({ title, fieldName }: Props) {

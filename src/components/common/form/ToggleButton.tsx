@@ -1,11 +1,11 @@
 'use client';
 
-import { TInfoName } from '@/types/form';
+import { InfoName } from '@/types/form';
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 interface Props {
-  fieldName: TInfoName;
+  fieldName: InfoName;
 }
 
 function ToggleButton({ fieldName }: Props) {

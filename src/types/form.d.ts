@@ -1,23 +1,23 @@
-type TTermsName =
+type TermsName =
   | 'age'
   | 'terms_of_use'
   | 'marketing'
   | 'privacy_policy'
   | 'ads';
 
-type TInfoName = 'occupation' | 'birth_date' | 'gender';
+type InfoName = 'occupation' | 'birth_date' | 'gender';
 
-export interface IConsent {
+export interface Consent {
   version: string; // 버전 (e.g. 2024-05-06)
   given: boolean; // 동의 여부
 }
 
-export interface IInfo {
+export interface Info {
   value: string; // 실제 데이터
   visibility: boolean; // 공개 여부
 }
 
-export interface IJoinForm {
+export interface JoinForm {
   email: string;
   password: string;
   passwordCheck: string;
@@ -25,12 +25,12 @@ export interface IJoinForm {
 
   // 약관 동의 리스트(Array)
   consents: {
-    [key: TTermsName]: IConsent;
+    [key: TermsName]: Consent;
   };
 
   // 개인 식별 정보 리스트(Array)
   personal_infos: {
-    [key: TInfoName]: IInfo;
+    [key: InfoName]: Info;
   };
   [];
 }

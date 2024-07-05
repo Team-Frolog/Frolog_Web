@@ -5,12 +5,12 @@ import { useEffect } from 'react';
 import { PAGES } from '@/constants/page';
 import { useRouter } from 'next/navigation';
 import { useAuthActions, useVerifyToken } from '@/store/authStore';
-import { IJoinForm } from '@/types/form';
+import { JoinForm } from '@/types/form';
 import { useJoinStep } from '@/store/stepStore';
 import { ERROR_ALERT } from '@/constants/message';
 import { useLogin } from './useLogin';
 
-export const useJoin = (getValues: () => IJoinForm) => {
+export const useJoin = (getValues: () => JoinForm) => {
   const router = useRouter();
   const joinStep = useJoinStep();
   const verifyToken = useVerifyToken();
@@ -39,7 +39,7 @@ export const useJoin = (getValues: () => IJoinForm) => {
     }
   }, [getValues, joinStep]);
 
-  const joinUser = async (data: IJoinForm) => {
+  const joinUser = async (data: JoinForm) => {
     const formData = transformJoinForm(data, verifyToken!);
     const signUpResult = await authAPI.signUp(formData);
 

@@ -1,7 +1,7 @@
-import { IJoinForm } from '@/types/form';
+import { JoinForm } from '@/types/form';
 import { getToday } from '@/utils/date';
 
-export const defaultValue: IJoinForm = {
+export const defaultValue: JoinForm = {
   email: '',
   password: '',
   passwordCheck: '',
