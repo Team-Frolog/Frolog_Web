@@ -23,7 +23,7 @@ function FormHeader() {
   };
 
   return (
-    <div className='block gap-3 p-[24px] pb-0'>
+    <div className='block w-full gap-3 p-[24px] pb-0'>
       <button
         type='button'
         className='cursor-pointer'

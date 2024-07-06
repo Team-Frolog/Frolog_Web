@@ -14,7 +14,7 @@ interface Props {
 
 function Question({ testData, answers, handleClickAnswer, testStep }: Props) {
   return (
-    <div className='flex flex-1 flex-col gap-[50px] bg-white p-page text-gray-900 mobile:gap-0'>
+    <div className='flex w-full flex-1 flex-col gap-[50px] bg-white p-page text-gray-900 mobile:gap-0'>
       <QuestionTitle data={testData} />
       <div className='flex flex-1 flex-col justify-normal gap-[20px] mobile:justify-center'>
         {testData.answers.map((item) => (
