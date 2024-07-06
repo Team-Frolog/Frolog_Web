@@ -32,7 +32,7 @@ function ButtonWithText({
         </Button>
       )}
       {btnType === 'button' && (
-        <Button type={btnType} onClick={onClick}>
+        <Button type={btnType} onClick={onClick} disabled={disabled}>
           {btnText}
         </Button>
       )}
