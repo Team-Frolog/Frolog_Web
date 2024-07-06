@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import AuthProvider from '@/providers/AuthProvider';
+import ThemeProvider from '@/providers/ThemeProvider';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -15,7 +16,6 @@ export const metadata: Metadata = {
   description: 'Web site created with Next.js.',
   viewport:
     'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
-  themeColor: '#0E0E0E',
 };
 
 export default function RootLayout({
@@ -25,10 +25,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='kr' className={`${pretendard.variable}`}>
+      <ThemeProvider />
       <AuthProvider>
-        <body className={`${pretendard.className} bg-gray-900 text-white`}>
-          {children}
-        </body>
+        <body className={`${pretendard.className} text-white`}>{children}</body>
       </AuthProvider>
     </html>
   );

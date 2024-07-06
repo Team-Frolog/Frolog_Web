@@ -1,4 +1,4 @@
-interface IPageConfig {
+interface PageConfig {
   [key: string]: {
     PATH: string;
     NAME?: string;
@@ -19,7 +19,15 @@ export const PAGES = {
   TEST_RESULT: '/frolog-test/result',
 } as const;
 
-export const PAGE_CONFIG: IPageConfig = {
+export const DARK_PAGE: string[] = [
+  PAGES.HOME,
+  PAGES.LANDING,
+  PAGES.JOIN,
+  PAGES.LOGIN,
+  PAGES.FIND_PASSWORD,
+];
+
+export const PAGE_CONFIG: PageConfig = {
   LOGIN: {
     PATH: PAGES.LOGIN,
     NAME: '로그인',
