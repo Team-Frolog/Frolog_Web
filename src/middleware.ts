@@ -2,7 +2,7 @@ import { getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const protectedRoutes: string[] = []; // 로그인이 필요한 페이지 목록
+const protectedRoutes: string[] = ['/frolog-test']; // 로그인이 필요한 페이지 목록
 const publicRoutes: string[] = [
   '/landing',
   '/login',
