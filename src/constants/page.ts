@@ -19,14 +19,6 @@ export const PAGES = {
   TEST_RESULT: '/frolog-test/result',
 } as const;
 
-export const DARK_PAGE: string[] = [
-  PAGES.HOME,
-  PAGES.LANDING,
-  PAGES.JOIN,
-  PAGES.LOGIN,
-  PAGES.FIND_PASSWORD,
-];
-
 export const PAGE_CONFIG: PageConfig = {
   LOGIN: {
     PATH: PAGES.LOGIN,

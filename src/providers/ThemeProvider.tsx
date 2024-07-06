@@ -1,6 +1,6 @@
 'use client';
 
-import { DARK_PAGE } from '@/constants/page';
+import { PAGE_THEME } from '@/constants/theme';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
@@ -24,11 +24,13 @@ function ThemeProvider() {
   }, []);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && windowWidth !== undefined && windowWidth < 450) {
-      const html = document.querySelector('html')!;
-      html.style.backgroundColor = DARK_PAGE.includes(pathname)
-        ? '#0E0E0E'
-        : '#FFFFFF';
+    if (
+      typeof window !== 'undefined' &&
+      windowWidth !== undefined &&
+      windowWidth < 450
+    ) {
+      const html = document.querySelector('body')!;
+      html.style.background = PAGE_THEME[pathname] && '#0E0E0E';
     }
   }, [pathname]);
 
