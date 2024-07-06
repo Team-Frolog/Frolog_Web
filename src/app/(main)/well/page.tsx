@@ -4,7 +4,7 @@ import FrogOnBook from '@/components/wellPage/FrogOnBook';
 
 function WellPage() {
   return (
-    <div className='flex h-fit w-full flex-1 flex-col items-center justify-end'>
+    <div className='flex h-fit w-full flex-1 flex-col items-center justify-end bg-white text-gray-800'>
       <WellHeader />
       <div className='flex w-full flex-col items-center'>
         <FrogOnBook />

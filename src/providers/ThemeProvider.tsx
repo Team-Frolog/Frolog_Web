@@ -29,10 +29,10 @@ function ThemeProvider() {
       windowWidth !== undefined &&
       windowWidth < 450
     ) {
-      const html = document.querySelector('body')!;
-      html.style.background = PAGE_THEME[pathname] && '#0E0E0E';
+      const html = document.querySelector('html')!;
+      html.style.background = PAGE_THEME[pathname] || '#0E0E0E';
     }
-  }, [pathname]);
+  }, [pathname, windowWidth]);
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>;
