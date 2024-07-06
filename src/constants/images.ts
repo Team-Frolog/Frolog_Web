@@ -24,5 +24,9 @@ export const IMAGES = {
   well: {
     header: `${BASE_PATH}/well/well-header.svg`,
   },
+  book: {
+    background: `${BASE_PATH}/book/book-bg.svg`,
+    skin: `${BASE_PATH}/book/book-skin.svg`,
+  },
   ground: `${BASE_PATH}/etc/ground.svg`,
 };

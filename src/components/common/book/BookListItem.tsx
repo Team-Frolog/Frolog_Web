@@ -7,7 +7,7 @@ interface Props {
   bookData: BooksByType;
 }
 
-function BookItem({ bookData }: Props) {
+function BookListItem({ bookData }: Props) {
   return (
     <div className='flex w-full gap-[20px] text-gray-800'>
       <div className='h-[170px] w-[120px] bg-gray-400'>image</div>
@@ -39,4 +39,4 @@ function BookItem({ bookData }: Props) {
   );
 }
 
-export default BookItem;
+export default BookListItem;
