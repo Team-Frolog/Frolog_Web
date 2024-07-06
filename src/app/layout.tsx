@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import AuthProvider from '@/providers/AuthProvider';
-import ThemeProvider from '@/providers/ThemeProvider';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -25,7 +24,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang='kr' className={`${pretendard.variable}`}>
-      <ThemeProvider />
       <AuthProvider>
         <body className={`${pretendard.className} text-white`}>{children}</body>
       </AuthProvider>

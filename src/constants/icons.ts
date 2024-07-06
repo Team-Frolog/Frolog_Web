@@ -8,10 +8,7 @@ export const ICONS = {
       search: `${BASE_PATH}/common/navigation/search-icon.svg`,
       profile: `${BASE_PATH}/common/navigation/profile-icon.svg`,
     },
-    back: {
-      back_500: `${BASE_PATH}/common/back/back-500.svg`,
-      back_600: `${BASE_PATH}/common/back/back-600.svg`,
-    },
+    back: `${BASE_PATH}/common/back/back.svg`,
     cancel: `${BASE_PATH}/common/x-icon.svg`,
     form: {
       error: `${BASE_PATH}/common/form/error-icon.svg`,

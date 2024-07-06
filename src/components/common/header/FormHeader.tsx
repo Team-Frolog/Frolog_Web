@@ -30,10 +30,10 @@ function FormHeader() {
         onClick={handleClickBack}
       >
         <Image
-          src={ICONS.common.back.back_500}
+          src={ICONS.common.back}
           alt='backBtn'
-          width={55}
-          height={24}
+          width={12}
+          height={20}
           priority
         />
       </button>
