@@ -55,7 +55,7 @@ function LoginPage() {
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit((data) => userLogin(data))}
-        className='flex h-full flex-col justify-between'
+        className='form-layout'
       >
         <div className='flex flex-col gap-[20px]'>
           <div className='flex flex-col gap-[32px]'>

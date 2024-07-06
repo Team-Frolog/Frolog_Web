@@ -10,7 +10,7 @@ function Step3() {
   } = useFormContext();
 
   return (
-    <div className='flex h-full w-full flex-col justify-between'>
+    <>
       <PasswordForm />
       <Button
         type='submit'
@@ -18,7 +18,7 @@ function Step3() {
       >
         비밀번호 재설정 완료
       </Button>
-    </div>
+    </>
   );
 }
 

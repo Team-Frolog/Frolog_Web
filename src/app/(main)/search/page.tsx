@@ -1,7 +1,7 @@
 import React from 'react';
 
 function SearchPage() {
-  return <div>SearchPage</div>;
+  return <div className='flex-1'>SearchPage</div>;
 }
 
 export default SearchPage;

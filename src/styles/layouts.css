@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .default-h-w {
+    @apply h-fit min-h-dvh w-screen flex flex-col;
+  }
+  .form-layout {
+    @apply flex flex-1 flex-col justify-between gap-[24px];
+  }
+}

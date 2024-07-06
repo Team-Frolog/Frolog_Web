@@ -27,7 +27,7 @@ function JoinPage() {
   return (
     <FormProvider {...methods}>
       <form
-        className='h-full'
+        className='form-layout'
         onSubmit={handleSubmit((data) => joinUser(data))}
       >
         {joinStep === 1 && <Step1 />}

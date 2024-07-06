@@ -35,7 +35,7 @@ function FindPasswordPage() {
   return (
     <FormProvider {...methods}>
       <form
-        className='h-full'
+        className='form-layout'
         onSubmit={handleSubmit((data) => resetPassword(data))}
       >
         {findStep === 1 && <Step1 />}

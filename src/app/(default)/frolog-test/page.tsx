@@ -19,7 +19,7 @@ function TestPage() {
   }
 
   return (
-    <div className='flex h-full flex-col bg-white text-gray-900'>
+    <>
       <ProgressHeader />
       <Question
         testData={testData}
@@ -27,7 +27,7 @@ function TestPage() {
         handleClickAnswer={handleClickAnswer}
         testStep={testStep}
       />
-    </div>
+    </>
   );
 }
 

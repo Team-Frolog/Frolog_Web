@@ -14,7 +14,7 @@ function Step1() {
   const isAgree = requiredConsentsKeys.every((key) => watch(key));
 
   return (
-    <div className='flex h-full flex-col justify-between'>
+    <>
       <div className='flex w-full flex-col gap-[20px]'>
         <span className='text-body_md'>서비스 이용약관에 동의해주세요.</span>
         <CheckAllItem />
@@ -32,7 +32,7 @@ function Step1() {
           동의 거부시 서비스 이용이 제한됩니다.
         </p>
       </ButtonWithText>
-    </div>
+    </>
   );
 }
 

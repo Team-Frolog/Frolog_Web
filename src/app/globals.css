@@ -2,6 +2,7 @@
 @import url('../styles/inputs.css');
 @import url('../styles/markdown.css');
 @import url('../styles/tags.css');
+@import url('../styles/layouts.css');
 
 @tailwind base;
 @tailwind components;

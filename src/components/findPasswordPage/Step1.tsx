@@ -17,7 +17,7 @@ function Step1() {
   } = useFormContext();
 
   return (
-    <div className='flex h-full w-full flex-col justify-between'>
+    <>
       <FormInput
         autoFocus
         type='email'
@@ -58,7 +58,7 @@ function Step1() {
         isDisabled={!watch('email') || !isValid || !isEmailChecked}
         type='resetPassword'
       />
-    </div>
+    </>
   );
 }
 

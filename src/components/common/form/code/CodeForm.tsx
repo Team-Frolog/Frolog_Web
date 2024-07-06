@@ -42,7 +42,7 @@ function CodeForm({ type, onClickNext }: Props) {
   }, [code, setIsVerified]);
 
   return (
-    <div className='flex h-full w-full flex-col justify-between'>
+    <>
       <CodeInput
         code={code}
         setCode={setCode}
@@ -63,7 +63,7 @@ function CodeForm({ type, onClickNext }: Props) {
           다음
         </Button>
       </div>
-    </div>
+    </>
   );
 }
 

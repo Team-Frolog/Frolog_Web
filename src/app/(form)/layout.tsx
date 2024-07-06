@@ -3,9 +3,9 @@ import React from 'react';
 
 function FormLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className='flex w-screen flex-col'>
+    <div className='default-h-w'>
       <FormHeader />
-      <div className='flex h-full w-full flex-1 flex-col justify-between p-page'>
+      <div className='flex h-fit w-full flex-1 flex-col justify-between p-page'>
         {children}
       </div>
     </div>

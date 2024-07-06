@@ -24,7 +24,7 @@ function ProgressHeader() {
   };
 
   return (
-    <div className='block w-full pb-0'>
+    <div className='block w-full bg-white pb-0'>
       <button
         type='button'
         className='m-[24px] cursor-pointer'
