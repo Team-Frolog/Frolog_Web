@@ -57,7 +57,7 @@ function TestResultPage({ params: { id } }: Props) {
                 {testData.type.tag}
               </span>
             </div>
-            <ul className='w-full list-disc pl-[20px]'>
+            <ul className='w-full list-inside list-disc'>
               {testData.descriptions.map((item) => (
                 <li className=' text-body_md' key={item.id}>
                   {item.text}
