@@ -31,7 +31,7 @@ function ProgressHeader() {
         onClick={handleClickBack}
       >
         <Image
-          src={ICONS.common.back.back_600}
+          src={ICONS.common.back}
           alt='backBtn'
           width={12}
           height={20}

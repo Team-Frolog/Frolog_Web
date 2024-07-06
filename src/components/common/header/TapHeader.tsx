@@ -34,7 +34,7 @@ function TapHeader() {
         </div>
         <div
           // className={`absolute bottom-0 h-[3px] w-[60px] bg-white transition-all ${click ? 'left-[84px]' : 'left-0'}`}
-          className={`absolute bottom-0 right-0 h-[3px] w-[60px] bg-white transition-all`}
+          className='absolute bottom-0 right-0 h-[3px] w-[60px] bg-white transition-all'
         />
       </div>
     </div>
