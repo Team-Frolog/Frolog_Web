@@ -13,11 +13,11 @@ function SendButton({ onNext, isDisabled, type }: Props) {
   const { isSendFailed, sendEmailCode } = useVerification();
   const { watch, setError } = useFormContext();
 
-  const handleSendCode = () => {
+  const handleSendCode = async () => {
     sendEmailCode(watch('email'), type).then(() => {
       if (isSendFailed) {
         setError('email', {
-          type: 'manual',
+          type: 'custom',
           message: '인증 요청을 다시 시도해주세요.',
         });
       } else {

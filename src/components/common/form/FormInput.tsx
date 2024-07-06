@@ -17,10 +17,7 @@ const FormInput = React.forwardRef(
     { type, placeholder, title, fieldName, errorMessage, ...props }: Props,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
-    const {
-      watch,
-      formState: { errors },
-    } = useFormContext();
+    const { watch } = useFormContext();
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.key === 'Enter') {
@@ -36,7 +33,7 @@ const FormInput = React.forwardRef(
           ref={ref}
           placeholder={placeholder}
           style={{ imeMode: type === 'password' ? 'disabled' : 'auto' }}
-          className={`input-common placeholder:text-sm ${watch(fieldName) && errors[fieldName] ? 'input-error' : 'input-default'}`}
+          className={`input-common placeholder:text-sm ${watch(fieldName) && errorMessage ? 'input-error' : 'input-default'}`}
           onKeyDown={handleKeyPress}
           {...props}
         />

@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import authAPI from '@/app/api/auth.api';
+import { useEmailValidation } from '@/hooks/auth/useEmailValidation';
 import { useStepActions } from '@/store/stepStore';
 import FormInput from '../common/form/FormInput';
 import SendButton from '../common/form/SendButton';
 
 function Step1() {
   const { goNextFindStep } = useStepActions();
-  const [isEmailChecked, setIsEmailChecked] = useState(false);
+  const { handleValidateEmail, isEmailChecked, setIsEmailChecked } =
+    useEmailValidation('findPassword');
   const {
     register,
-    setError,
-    trigger,
     watch,
     formState: { errors, isValid },
   } = useFormContext();
@@ -30,27 +29,8 @@ function Step1() {
             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
             message: '이메일 형식을 확인해주세요.',
           },
-          onChange: () => {
-            setIsEmailChecked(false);
-          },
-          onBlur: async (e) => {
-            const isVaild = await trigger('email');
-            const { value } = e.target;
-
-            if (isVaild && value.trim() !== '') {
-              const data = await authAPI.checkEmail({
-                email: value,
-              });
-              if (data) {
-                setError('email', {
-                  type: 'manual',
-                  message: '존재하지 않는 이메일이에요.',
-                });
-              } else {
-                setIsEmailChecked(true);
-              }
-            }
-          },
+          onChange: () => setIsEmailChecked(false),
+          onBlur: (e) => handleValidateEmail(e),
         })}
       />
       <SendButton
