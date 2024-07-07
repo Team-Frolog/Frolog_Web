@@ -8,7 +8,7 @@ import { IMAGES } from '@/constants/images';
 
 function JoinFinishPage() {
   return (
-    <div className='relative flex h-full w-full flex-col justify-between overflow-hidden pt-[30px]'>
+    <div className='relative flex h-full w-full flex-col justify-between overflow-hidden'>
       <QuitButton
         route='/'
         classes='absolute left-[24px] top-[24px] z-10 cursor-pointer'

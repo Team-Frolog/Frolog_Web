@@ -32,7 +32,7 @@ function LoadingPage() {
   }, []);
 
   return (
-    <div className='flex h-full w-full flex-col items-center pt-[30px]'>
+    <div className='flex h-full w-full flex-col items-center'>
       <FinishLight>
         <motion.div
           initial={{ y: 10, opacity: 0 }}

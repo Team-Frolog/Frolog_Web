@@ -9,7 +9,7 @@ interface Props {
 
 function FinishLight({ children }: Props) {
   return (
-    <div className='relative z-0 w-full bg-gray-900'>
+    <div className='relative z-0 w-full bg-gray-900 pt-[30px]'>
       <div className='absolute bottom-[60px] left-1/2 w-full -translate-x-1/2'>
         <BigTitle type='default' align='text-center'>
           {children}
