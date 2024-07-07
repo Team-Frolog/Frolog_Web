@@ -19,6 +19,7 @@ export const ICONS = {
       circle_unchecked: `${BASE_PATH}/common/check/circle-uncheck.svg`,
     },
   },
+  expand: `${BASE_PATH}/newReviewPage/expand.svg`,
   well: {
     arrow: `${BASE_PATH}/wellPage/circle-arrow.svg`,
     plus: `${BASE_PATH}/wellPage/circle-plus.svg`,
