@@ -6,12 +6,10 @@ import { Question, questions } from '@/data/test';
 import { useStepActions, useTestStep } from '@/store/stepStore';
 import { testEvaluator } from '@/utils/testEvaluator';
 import { getSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export const useTest = () => {
   const testStep = useTestStep();
-  const router = useRouter();
   const { moveTestStep } = useStepActions();
   const [testData, setTestData] = useState<Question>(questions[0]);
   const [answers, setAnswers] = useState<number[]>(() => {
@@ -60,7 +58,7 @@ export const useTest = () => {
     if (testStep === 8) {
       const testResult = testEvaluator(answers);
       moveTestStep(1);
-      router.replace(`${PAGES.TEST}?loading=true&type=${testResult}`);
+      window.location.replace(`${PAGES.TEST}?loading=true&type=${testResult}`);
     }
   }, [testStep]);
 
