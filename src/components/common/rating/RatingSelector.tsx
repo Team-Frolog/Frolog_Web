@@ -19,7 +19,7 @@ function RatingSelector() {
   };
 
   return (
-    <div className='flex w-full flex-col items-center justify-center gap-[8px] py-[20px] text-gray-800'>
+    <div className='flex w-full flex-col items-center justify-center gap-[8px] text-gray-800'>
       <h1 className='text-h_xl_bold'>{rating?.toFixed(1) || 3.5}</h1>
       <h4 className='text-body_lg'>
         {rating ? ratingMessage[rating] : '별점을 남겨주세요'}
