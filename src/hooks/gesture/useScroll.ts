@@ -34,7 +34,7 @@ export const useScroll = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.intersectionRatio >= 0.75) {
+          if (entry.intersectionRatio >= 0.8) {
             darkmode();
           } else {
             lightmode();
@@ -42,8 +42,7 @@ export const useScroll = () => {
         });
       },
       {
-        threshold: 0.75,
-        rootMargin: '113px',
+        threshold: 0.8,
       }
     );
 
