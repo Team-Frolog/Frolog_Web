@@ -1,12 +1,11 @@
 'use client';
 
-import { ICONS } from '@/constants/icons';
-import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useStepActions, useTestStep } from '@/store/stepStore';
 import { TEST_ANSWER_KEY } from '@/constants/storage';
+import BackIcon from 'public/icons/common/back/back.svg';
 
 function ProgressHeader() {
   const router = useRouter();
@@ -30,13 +29,7 @@ function ProgressHeader() {
         className='m-[24px] cursor-pointer'
         onClick={handleClickBack}
       >
-        <Image
-          src={ICONS.common.back}
-          alt='backBtn'
-          width={12}
-          height={20}
-          priority
-        />
+        <BackIcon fill='#B3B6C5' />
       </button>
       <div className='h-[4px] w-full bg-gray-300'>
         <motion.div

@@ -1,12 +1,11 @@
 'use client';
 
 import React from 'react';
-import { ICONS } from '@/constants/icons';
 import { useFormTitle } from '@/hooks/useFormTitle';
-import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { JOIN_FORM_KEY } from '@/constants/storage';
 import { PAGES } from '@/constants/page';
+import BackIcon from 'public/icons/common/back/back.svg';
 
 function FormHeader() {
   const router = useRouter();
@@ -29,13 +28,7 @@ function FormHeader() {
         className='cursor-pointer'
         onClick={handleClickBack}
       >
-        <Image
-          src={ICONS.common.back}
-          alt='backBtn'
-          width={12}
-          height={20}
-          priority
-        />
+        <BackIcon fill='#B3B6C5' />
       </button>
       <h3 className='text-h_md_bold'>{title}</h3>
     </div>
