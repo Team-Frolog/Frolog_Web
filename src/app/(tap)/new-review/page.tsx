@@ -1,7 +1,7 @@
 import BookInfo from '@/components/common/book/BookInfo';
 import React from 'react';
 
-function WritingPage() {
+function NewReviewPage() {
   return (
     <div className='flex h-fit w-full flex-1 flex-col items-center bg-white text-gray-800'>
       <BookInfo />
@@ -14,4 +14,4 @@ function WritingPage() {
   );
 }
 
-export default WritingPage;
+export default NewReviewPage;
