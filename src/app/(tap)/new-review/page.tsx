@@ -6,6 +6,8 @@ import TagList from '@/components/common/tag/TagList';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useScroll } from '@/hooks/gesture/useScroll';
+import Textarea from '@/components/common/form/input/Textarea';
+import { textareaType } from '@/data/textareaType';
 
 interface ReviewForm {
   rating: number | null;
@@ -36,8 +38,8 @@ function NewReviewPage() {
           <RatingSelector />
           <TagList type='pros' />
           <TagList type='cons' />
-          <div>한줄평</div>
-          <div>리뷰</div>
+          <Textarea option={textareaType.oneLiner} />
+          <Textarea option={textareaType.review} />
           <div>완료 버튼</div>
         </div>
       </form>
