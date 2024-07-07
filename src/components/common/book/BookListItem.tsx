@@ -1,5 +1,5 @@
 import React from 'react';
-import Tag from '../tag/Tag';
+import MajorTag from '../tag/MajorTag';
 import Rating from '../rating/Rating';
 import { BooksByType } from '../../../data/dummy/booksByType';
 
@@ -23,11 +23,11 @@ function BookListItem({ bookData }: Props) {
           <div className='flex flex-col gap-[4px]'>
             {bookData.totalReviews > 0 ? (
               <>
-                <Tag type='pros' text='술술 읽혀요' />
-                <Tag type='cons' text='다른 비슷한 책이 더 나아요' />
+                <MajorTag type='pros' text='술술 읽혀요' />
+                <MajorTag type='cons' text='다른 비슷한 책이 더 나아요' />
               </>
             ) : (
-              <Tag type='default' />
+              <MajorTag type='default' />
             )}
           </div>
           <span className='text-caption_bold text-gray-600'>

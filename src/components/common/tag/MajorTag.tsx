@@ -5,7 +5,7 @@ interface Props {
   text?: string;
 }
 
-function Tag({ type, text }: Props) {
+function MajorTag({ type, text }: Props) {
   return (
     <div
       className={`tag-common ${type === 'default' && 'default-tag'} ${type === 'pros' ? 'pro-tag' : 'con-tag'}`}
@@ -15,4 +15,4 @@ function Tag({ type, text }: Props) {
   );
 }
 
-export default Tag;
+export default MajorTag;
