@@ -1,6 +1,6 @@
-const DARK = '#0E0E0E';
-const LIGHT = '#FFFFFF';
-const HALF = '-webkit-linear-gradient(to bottom, #0E0E0E 50%, white 50%)';
+const DARK = 'dark';
+const LIGHT = 'light';
+const HALF = 'half-gradient';
 
 export const PAGE_THEME: {
   [key: string]: string;
@@ -17,4 +17,5 @@ export const PAGE_THEME: {
   '/frolog-test/result/3': HALF,
   '/well': HALF,
   '/writing': HALF,
+  '/new-review': HALF,
 };

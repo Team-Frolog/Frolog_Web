@@ -32,7 +32,8 @@ function ThemeProvider() {
       windowWidth < 450
     ) {
       const html = document.querySelector('html')!;
-      html.style.background = PAGE_THEME[pathname] || '#0E0E0E';
+      const themeClass = PAGE_THEME[pathname] || 'dark';
+      html.className = themeClass;
     }
   }, [pathname, windowWidth]);
 
