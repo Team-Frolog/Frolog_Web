@@ -1,11 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { ratingMessage } from '@/data/ratingMessage';
+import { useFormContext } from 'react-hook-form';
 import Star from './Star';
 
 function RatingSelector() {
-  const [rating, setRating] = useState<number | null>(null);
+  const { setValue, watch } = useFormContext();
+  const rating = watch('rating');
 
   const handleRating = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
     const star = e.currentTarget;
@@ -15,7 +17,7 @@ function RatingSelector() {
 
     const newRating = clickPosition < starHalf ? index + 0.5 : index + 1;
 
-    setRating(newRating === 0.5 ? 1 : newRating);
+    setValue('rating', newRating === 0.5 ? 1 : newRating);
   };
 
   return (

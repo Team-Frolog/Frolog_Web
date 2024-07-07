@@ -4,13 +4,20 @@ import React from 'react';
 interface Props {
   tag: TagType;
   type: 'pros' | 'cons';
+  onClick: (id: string) => void;
+  isSelected: boolean;
 }
 
-function Tag({ tag, type }: Props) {
+function Tag({ tag, type, onClick, isSelected }: Props) {
+  const getBgColor = () => {
+    if (!isSelected) return 'tag-not-selected';
+    return type === 'pros' ? 'pro-tag' : 'con-tag';
+  };
   return (
     <button
       type='button'
-      className={`tag-common ${type === 'pros' ? 'tag-not-selected' : 'con-tag'}`}
+      onClick={() => onClick(tag.id)}
+      className={`tag-common ${getBgColor()}`}
     >
       {tag.value}
     </button>

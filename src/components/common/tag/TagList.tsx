@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { conTags, proTags } from '@/data/tag';
+import { useTags } from '@/hooks/useTags';
 import { motion, useAnimationControls } from 'framer-motion';
 import Image from 'next/image';
 import { ICONS } from '@/constants/icons';
@@ -12,8 +13,9 @@ interface Props {
 }
 
 function TagList({ type }: Props) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const { handleTagSelect, selectedTags } = useTags(type);
   const controls = useAnimationControls();
+  const [isExpanded, setIsExpanded] = useState(false);
   const tagData = type === 'pros' ? proTags : conTags;
 
   useEffect(() => {
@@ -22,7 +24,7 @@ function TagList({ type }: Props) {
     } else {
       controls.start({ height: '170px' });
     }
-  }, [isExpanded]);
+  }, [isExpanded, controls]);
 
   return (
     <div className='flex w-full flex-col gap-[8px]'>
@@ -30,12 +32,19 @@ function TagList({ type }: Props) {
         {type === 'pros' ? '장점' : '단점'} 키워드 (1~5개 고르세요)
       </span>
       <motion.div
+        initial={{ height: '170px' }}
         animate={controls}
         transition={{ duration: 0.3 }}
         className='relative flex w-[90%] flex-wrap gap-[16px] overflow-hidden mobile:w-full'
       >
         {tagData.map((item) => (
-          <Tag key={item.id} type='pros' tag={item} />
+          <Tag
+            key={item.id}
+            type={type}
+            tag={item}
+            onClick={handleTagSelect}
+            isSelected={selectedTags.includes(item.id)}
+          />
         ))}
         <div
           className={`absolute bottom-0 left-0 z-10 h-[60px] w-full transition-all duration-300 ${isExpanded ? 'opacity-0' : 'opacity-100'}`}
@@ -56,5 +65,3 @@ function TagList({ type }: Props) {
 }
 
 export default TagList;
-
-// box-shadow: inset 0px -100px 70px -90px rgba(0,0,0,0);
