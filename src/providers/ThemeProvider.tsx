@@ -26,11 +26,10 @@ function ThemeProvider() {
   }, []);
 
   useEffect(() => {
-    if (
-      typeof window !== 'undefined' &&
-      windowWidth !== undefined &&
-      windowWidth < 450
-    ) {
+    if (typeof window !== 'undefined') {
+      if (windowWidth >= 450) {
+        return;
+      }
       const html = document.querySelector('html')!;
       const themeClass = PAGE_THEME[pathname] || 'dark';
       html.className = themeClass;
