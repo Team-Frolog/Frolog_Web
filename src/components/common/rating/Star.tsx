@@ -1,18 +1,27 @@
 import React from 'react';
 
-function Star({ rating }: { rating: number }) {
+interface Props {
+  rating: number;
+  size?: number;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+}
+
+function Star({ rating, size = 20, onClick }: Props) {
   const starWidth = `${rating * 100}%`;
   const gradientId = `starGradient-${Math.random().toString(36).slice(2, 9)}`;
+  const scaleFactor = size / 20;
 
   return (
-    <div className='relative inline-block'>
+    <div
+      className={`relative inline-block ${onClick && 'cursor-pointer'}`}
+      onClick={onClick || undefined}
+    >
       <svg
-        className='h-[24px] w-[20px]'
-        viewBox='0 0 20 20'
+        className={`h-[${size}px] w-[${size}px]`}
+        viewBox={`0 0 ${size} ${size}`}
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
       >
-        {/* Define a linear gradient */}
         <defs>
           <linearGradient id={gradientId} x1='0%' y1='0%' x2='100%' y2='0%'>
             <stop
@@ -25,8 +34,7 @@ function Star({ rating }: { rating: number }) {
             />
           </linearGradient>
         </defs>
-        {/* Star path using the linear gradient */}
-        <g id='icon-star-mono'>
+        <g id='icon-star-mono' transform={`scale(${scaleFactor})`}>
           <path
             id='Vector'
             fill={`url(#${gradientId})`}

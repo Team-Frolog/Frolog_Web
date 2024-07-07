@@ -5,7 +5,7 @@ import Book from './Book';
 
 function BookInfo() {
   return (
-    <div className='relative flex w-full flex-col items-center gap-[20px] py-[24px]'>
+    <div className='relative flex w-full flex-col items-center gap-[20px] pt-[24px]'>
       <Image
         src={IMAGES.book.background}
         alt='bg'
