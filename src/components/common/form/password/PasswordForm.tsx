@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import FormInput from '../FormInput';
+import FormInput from '../input/FormInput';
 
 function PasswordForm() {
   const {

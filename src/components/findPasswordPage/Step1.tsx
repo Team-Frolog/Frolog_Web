@@ -2,8 +2,8 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useEmailValidation } from '@/hooks/auth/useEmailValidation';
 import { useStepActions } from '@/store/stepStore';
-import FormInput from '../common/form/FormInput';
-import SendButton from '../common/form/SendButton';
+import FormInput from '../common/form/input/FormInput';
+import SendButton from '../common/form/button/SendButton';
 
 function Step1() {
   const { goNextFindStep } = useStepActions();

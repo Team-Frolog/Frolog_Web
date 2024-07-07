@@ -1,6 +1,6 @@
 'use client';
 
-import FormInput from '@/components/common/form/FormInput';
+import FormInput from '@/components/common/form/input/FormInput';
 import React from 'react';
 import authAPI from '@/app/api/auth.api';
 import { useFormContext } from 'react-hook-form';

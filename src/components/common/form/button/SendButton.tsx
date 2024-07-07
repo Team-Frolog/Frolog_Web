@@ -1,7 +1,7 @@
 import React from 'react';
 import { useVerification } from '@/hooks/auth/useVerification';
 import { useFormContext } from 'react-hook-form';
-import Button from '../button/Button';
+import Button from '../../button/Button';
 
 interface Props {
   onNext: () => void;

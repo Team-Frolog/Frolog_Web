@@ -3,7 +3,7 @@
 import ButtonWithText from '@/components/common/button/ButtonWithText';
 import CheckButton from '@/components/common/button/CheckButton';
 import ErrorPopUp from '@/components/common/form/ErrorPopUp';
-import FormInput from '@/components/common/form/FormInput';
+import FormInput from '@/components/common/form/input/FormInput';
 import { PAGES } from '@/constants/page';
 import { useLogin } from '@/hooks/auth/useLogin';
 import { AnimatePresence } from 'framer-motion';

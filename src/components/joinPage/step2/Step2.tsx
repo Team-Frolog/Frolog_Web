@@ -1,7 +1,7 @@
 'use client';
 
-import FormInput from '@/components/common/form/FormInput';
-import SendButton from '@/components/common/form/SendButton';
+import FormInput from '@/components/common/form/input/FormInput';
+import SendButton from '@/components/common/form/button/SendButton';
 import PasswordForm from '@/components/common/form/password/PasswordForm';
 import { useEmailValidation } from '@/hooks/auth/useEmailValidation';
 import { useStepActions } from '@/store/stepStore';
