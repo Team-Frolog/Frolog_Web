@@ -17,11 +17,12 @@ export const useJoin = (getValues: () => JoinForm) => {
   const { resetToken } = useAuthActions();
   const { userLogin } = useLogin('test');
 
-  const handleLogin = async () => {
+  const handleLogin = async (username: string) => {
     const account = localStorage.getItem(TEMP_ACCOUNT_KEY);
 
     if (account) {
       await userLogin(JSON.parse(account));
+      window.location.replace(`${PAGES.JOIN_FINISH}?username=${username}`);
     } else {
       window.alert(ERROR_ALERT);
       router.back();
@@ -50,8 +51,7 @@ export const useJoin = (getValues: () => JoinForm) => {
         TEMP_ACCOUNT_KEY,
         JSON.stringify({ email: formData.email, password: formData.password })
       );
-      router.replace(`${PAGES.JOIN_FINISH}?username=${data.username}`);
-      handleLogin();
+      handleLogin(data.username!);
     } else {
       window.alert(ERROR_ALERT);
     }
