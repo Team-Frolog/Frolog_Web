@@ -32,7 +32,7 @@ function ThemeProvider() {
       const html = document.querySelector('html')!;
       html.style.background = PAGE_THEME[pathname] || '#0E0E0E';
     }
-  }, [pathname, windowWidth]);
+  }, [pathname, windowWidth, window]);
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>;
