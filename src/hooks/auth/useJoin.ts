@@ -50,7 +50,7 @@ export const useJoin = (getValues: () => JoinForm) => {
         TEMP_ACCOUNT_KEY,
         JSON.stringify({ email: formData.email, password: formData.password })
       );
-      router.push(`${PAGES.JOIN_FINISH}?username=${data.username}`);
+      router.replace(`${PAGES.JOIN_FINISH}?username=${data.username}`);
       handleLogin();
     } else {
       window.alert(ERROR_ALERT);

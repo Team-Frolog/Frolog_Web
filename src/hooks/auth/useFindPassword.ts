@@ -4,10 +4,12 @@ import { PAGES } from '@/constants/page';
 import { FIND_FORM_KEY } from '@/constants/storage';
 import { useVerifyToken } from '@/store/authStore';
 import { useFindStep } from '@/store/stepStore';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export const useFindPassword = (getValues: () => IFindForm) => {
   const findStep = useFindStep();
+  const router = useRouter();
   const verifyToken = useVerifyToken();
 
   // step별 폼 상태 저장
@@ -29,7 +31,7 @@ export const useFindPassword = (getValues: () => IFindForm) => {
     });
 
     if (result) {
-      window.location.replace(PAGES.LOGIN);
+      router.replace(PAGES.LOGIN);
     }
   };
 
