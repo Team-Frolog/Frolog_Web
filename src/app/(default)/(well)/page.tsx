@@ -2,6 +2,7 @@
 
 import authAPI from '@/app/api/auth.api';
 import Button from '@/components/common/button/Button';
+import LinkButton from '@/components/common/button/LinkButton';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -45,7 +46,7 @@ function WellPage() {
       <Button onClick={handleSignOut}>임시 로그아웃 버튼</Button>
       <Button onClick={handleQuit}>회원탈퇴</Button>
       <Button onClick={() => router.push('/landing')}>랜딩 페이지로</Button>
-      <Button onClick={() => router.push('/well')}>우물 페이지로 (임시)</Button>
+      <LinkButton route='/well'>우물 페이지로 (임시)</LinkButton>
     </div>
   );
 }

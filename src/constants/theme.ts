@@ -1,6 +1,6 @@
 const DARK = '#0E0E0E';
 const LIGHT = '#FFFFFF';
-const HALF = 'linear-gradient(to bottom, #0E0E0E 50%, white 50%)';
+const HALF = '-webkit-linear-gradient(to bottom, #0E0E0E 50%, white 50%)';
 
 export const PAGE_THEME: {
   [key: string]: string;
