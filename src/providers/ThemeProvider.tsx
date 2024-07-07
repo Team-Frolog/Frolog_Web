@@ -6,7 +6,9 @@ import React, { useEffect, useState } from 'react';
 
 function ThemeProvider() {
   const pathname = usePathname();
-  const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
+  const [windowWidth, setWindowWidth] = useState<number>(
+    typeof window !== 'undefined' ? window.innerWidth : 0
+  );
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -32,7 +34,7 @@ function ThemeProvider() {
       const html = document.querySelector('html')!;
       html.style.background = PAGE_THEME[pathname] || '#0E0E0E';
     }
-  }, [pathname, windowWidth, window]);
+  }, [pathname, windowWidth]);
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>;
