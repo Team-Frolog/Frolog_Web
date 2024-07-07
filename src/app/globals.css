@@ -4,9 +4,9 @@
 @import url('../styles/tags.css');
 @import url('../styles/layouts.css');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @media (prefers-color-scheme: dark) {
   :root {
