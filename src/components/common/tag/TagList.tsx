@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { conTags, proTags } from '@/data/tag';
 import { useTags } from '@/hooks/useTags';
-import { motion, useAnimationControls } from 'framer-motion';
+import { AnimatePresence, motion, useAnimationControls } from 'framer-motion';
 import Image from 'next/image';
 import { ICONS } from '@/constants/icons';
 import Tag from './Tag';
@@ -37,6 +37,21 @@ function TagList({ type }: Props) {
         transition={{ duration: 0.3 }}
         className='relative flex w-[90%] flex-wrap gap-[16px] overflow-hidden mobile:w-full'
       >
+        <AnimatePresence>
+          {!isExpanded && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className='absolute bottom-0 left-0 z-10 h-[60px] w-full'
+              style={{
+                boxShadow: 'inset 0px -120px 60px -70px #ffffff',
+              }}
+            />
+          )}
+        </AnimatePresence>
+
         {tagData.map((item) => (
           <Tag
             key={item.id}
@@ -46,19 +61,19 @@ function TagList({ type }: Props) {
             isSelected={selectedTags.includes(item.id)}
           />
         ))}
-        <div
-          className={`absolute bottom-0 left-0 z-10 h-[60px] w-full transition-all duration-300 ${isExpanded ? 'opacity-0' : 'opacity-100'}`}
-          style={{
-            boxShadow: 'inset 0px -120px 60px -70px #ffffff',
-          }}
-        />
       </motion.div>
       <button
         type='button'
-        className={`flex w-full justify-center transition-all duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
+        className='flex w-full justify-center'
         onClick={() => setIsExpanded((prev) => !prev)}
       >
-        <Image src={ICONS.expand} alt='expand' width={25} height={24} />
+        <Image
+          src={ICONS.expand}
+          alt='expand'
+          width={25}
+          height={24}
+          className={`transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
+        />
       </button>
     </div>
   );
