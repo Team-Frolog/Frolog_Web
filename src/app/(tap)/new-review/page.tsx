@@ -5,6 +5,7 @@ import RatingSelector from '@/components/common/rating/RatingSelector';
 import TagList from '@/components/common/tag/TagList';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useScroll } from '@/hooks/gesture/useScroll';
 
 interface ReviewForm {
   rating: number | null;
@@ -15,6 +16,7 @@ interface ReviewForm {
 }
 
 function NewReviewPage() {
+  useScroll();
   const methods = useForm<ReviewForm>({
     mode: 'onChange',
     defaultValues: {

@@ -3,10 +3,8 @@
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import BackIcon from 'public/icons/common/back/back.svg';
-import { useScroll } from '@/hooks/gesture/useScroll';
 
 function TapHeader() {
-  useScroll();
   const router = useRouter();
   const pathname = usePathname();
 
