@@ -22,6 +22,6 @@
   }
 
   .textarea-default {
-    @apply resize-none rounded-[12px] border-gray-200 bg-gray-200 px-[16px] py-[18px] text-body_lg text-gray-800 placeholder:text-gray-600 focus:outline-none;
+    @apply w-full resize-none whitespace-pre-wrap rounded-[12px] border-gray-200 bg-gray-200 px-[16px] py-[18px] text-body_lg text-gray-800 placeholder:text-gray-600 focus:outline-none;
   }
 }
