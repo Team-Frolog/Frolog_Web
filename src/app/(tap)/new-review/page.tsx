@@ -20,7 +20,7 @@ interface ReviewForm {
 function NewReviewPage() {
   useScroll();
   const methods = useForm<ReviewForm>({
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       rating: null,
       oneLiner: '',

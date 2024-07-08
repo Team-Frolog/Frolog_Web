@@ -13,6 +13,10 @@
     @apply border-error bg-error_bg;
   }
 
+  .input-light {
+    @apply border-gray-200 bg-gray-200;
+  }
+
   .input-code-common {
     @apply w-full rounded-[12px] border px-[16px] py-[18px] pr-[110px] text-body_lg outline-none focus:outline-none;
   }
@@ -21,7 +25,7 @@
     @apply pointer-events-none border-error bg-error_bg text-gray-500 placeholder:text-gray-500;
   }
 
-  .textarea-default {
-    @apply w-full resize-none whitespace-pre-wrap rounded-[12px] border-gray-200 bg-gray-200 px-[16px] py-[18px] text-body_lg text-gray-800 placeholder:text-gray-600 focus:outline-none;
+  .textarea-common {
+    @apply w-full resize-none whitespace-pre-wrap rounded-[12px] border px-[16px] py-[18px] text-body_lg text-gray-800 placeholder:text-gray-600 focus:outline-none;
   }
 }

@@ -1,11 +1,19 @@
 import { TextareaType } from '@/data/textareaType';
 import React from 'react';
+import { useFormContext } from 'react-hook-form';
 
 interface Props {
   option: TextareaType;
 }
 
 function Textarea({ option }: Props) {
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useFormContext();
+  const { length } = watch(option.fieldName);
+
   return (
     <div className='flex w-full flex-col gap-[8px]'>
       <span className='text-body_md text-gray-700'>{option.title}</span>
@@ -15,7 +23,7 @@ function Textarea({ option }: Props) {
         [&>textarea]:resize-none [&>textarea]:overflow-hidden [&>textarea]:[grid-area:1/1/2/2]"
       >
         <textarea
-          className='textarea-default'
+          className={`textarea-common ${errors[option.fieldName] ? 'input-error' : 'input-light'}`}
           maxLength={option.maxLength}
           placeholder={option.placeholder}
           onInput={(e) => {
@@ -24,12 +32,24 @@ function Textarea({ option }: Props) {
             parentNode.dataset.clonedVal = target.value;
           }}
           rows={option.minRow}
+          {...register(option.fieldName, {
+            minLength: {
+              value: option.minLength,
+              message: option.errorMessage,
+            },
+          })}
         />
       </div>
 
       <div className='flex justify-between'>
-        <span className='text-body_md text-error'>{option.errorMessage}</span>
-        <span className='text-body_md text-gray-700'>4/{option.maxLength}</span>
+        <span className='text-body_md text-error'>
+          {errors[option.fieldName]
+            ? String(errors[option.fieldName]!.message)
+            : ''}
+        </span>
+        <span className='text-body_md text-gray-700'>
+          {length}/{option.maxLength}
+        </span>
       </div>
     </div>
   );
