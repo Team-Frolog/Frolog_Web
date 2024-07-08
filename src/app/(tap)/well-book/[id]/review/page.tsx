@@ -9,6 +9,9 @@ import { useScroll } from '@/hooks/gesture/useScroll';
 import Textarea from '@/components/common/form/input/Textarea';
 import { textareaType } from '@/data/textareaType';
 import Button from '@/components/common/button/Button';
+import { useToastMessage } from '@/hooks/useToastMessage';
+import { AnimatePresence } from 'framer-motion';
+import ToastMessage from '@/components/common/popup/ToastMessage';
 
 interface ReviewForm {
   rating: number | null;
@@ -20,6 +23,7 @@ interface ReviewForm {
 
 function NewReviewPage() {
   useScroll();
+  const { isOpen } = useToastMessage();
   const methods = useForm<ReviewForm>({
     mode: 'onBlur',
     defaultValues: {
@@ -59,6 +63,11 @@ function NewReviewPage() {
             저장하기
           </Button>
         </div>
+        <AnimatePresence>
+          {isOpen && (
+            <ToastMessage text='키워드는 최대 5개까지 고를 수 있어요!' />
+          )}
+        </AnimatePresence>
       </form>
     </FormProvider>
   );

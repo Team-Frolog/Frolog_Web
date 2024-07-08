@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { usePopUpActions } from '@/store/popUpStore';
 import { useFormContext } from 'react-hook-form';
 
 export const useTags = (type: 'pros' | 'cons') => {
-  const [isOpenToast, setIsOpenToast] = useState(false);
+  const { changePopUpState } = usePopUpActions();
   const { watch, setValue } = useFormContext();
   const selectedTags = watch(type) || [];
 
@@ -20,17 +20,9 @@ export const useTags = (type: 'pros' | 'cons') => {
       const updatedTags = [...selectedTags, id];
       setValue(type, updatedTags);
     } else if (selectedTags.length === 5) {
-      setIsOpenToast(true);
+      changePopUpState('toastMessage', true);
     }
   };
 
-  useEffect(() => {
-    if (isOpenToast) {
-      setTimeout(() => {
-        setIsOpenToast(false);
-      }, 3000);
-    }
-  }, [isOpenToast]);
-
-  return { handleTagSelect, selectedTags, isOpenToast };
+  return { handleTagSelect, selectedTags };
 };
