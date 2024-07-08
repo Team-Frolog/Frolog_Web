@@ -10,6 +10,7 @@ function Textarea({ option }: Props) {
   const {
     register,
     watch,
+    trigger,
     formState: { errors },
   } = useFormContext();
   const { length } = watch(option.fieldName);
@@ -36,6 +37,11 @@ function Textarea({ option }: Props) {
             minLength: {
               value: option.minLength,
               message: option.errorMessage,
+            },
+            onChange: () => {
+              if (errors[option.fieldName]) {
+                trigger(option.fieldName);
+              }
             },
           })}
         />
