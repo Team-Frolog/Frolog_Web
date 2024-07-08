@@ -8,6 +8,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import Textarea from '@/components/common/form/input/Textarea';
 import { textareaType } from '@/data/textareaType';
+import Button from '@/components/common/button/Button';
 
 interface ReviewForm {
   rating: number | null;
@@ -30,6 +31,11 @@ function NewReviewPage() {
     },
   });
 
+  const {
+    watch,
+    formState: { isValid },
+  } = methods;
+
   return (
     <FormProvider {...methods}>
       <form className='flex h-fit w-full flex-1 flex-col items-center bg-white text-gray-800'>
@@ -40,7 +46,18 @@ function NewReviewPage() {
           <TagList type='cons' />
           <Textarea option={textareaType.oneLiner} />
           <Textarea option={textareaType.review} />
-          <div>완료 버튼</div>
+          <Button
+            type='submit'
+            disabled={
+              !watch('oneLiner') ||
+              !watch('review') ||
+              !watch('pros').length ||
+              !watch('cons').length ||
+              !isValid
+            }
+          >
+            저장하기
+          </Button>
         </div>
       </form>
     </FormProvider>
