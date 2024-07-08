@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 export const useTags = (type: 'pros' | 'cons') => {
+  const [isOpenToast, setIsOpenToast] = useState(false);
   const { watch, setValue } = useFormContext();
   const selectedTags = watch(type) || [];
 
@@ -17,8 +19,18 @@ export const useTags = (type: 'pros' | 'cons') => {
     else if (selectedTags.length < 5) {
       const updatedTags = [...selectedTags, id];
       setValue(type, updatedTags);
+    } else if (selectedTags.length === 5) {
+      setIsOpenToast(true);
     }
   };
 
-  return { handleTagSelect, selectedTags };
+  useEffect(() => {
+    if (isOpenToast) {
+      setTimeout(() => {
+        setIsOpenToast(false);
+      }, 3000);
+    }
+  }, [isOpenToast]);
+
+  return { handleTagSelect, selectedTags, isOpenToast };
 };

@@ -3,17 +3,18 @@
 import React, { useEffect, useState } from 'react';
 import { conTags, proTags } from '@/data/tag';
 import { useTags } from '@/hooks/useTags';
-import { motion, useAnimationControls } from 'framer-motion';
+import { AnimatePresence, motion, useAnimationControls } from 'framer-motion';
 import Image from 'next/image';
 import { ICONS } from '@/constants/icons';
 import Tag from './Tag';
+import ToastMessage from '../popup/ToastMessage';
 
 interface Props {
   type: 'pros' | 'cons';
 }
 
 function TagList({ type }: Props) {
-  const { handleTagSelect, selectedTags } = useTags(type);
+  const { handleTagSelect, selectedTags, isOpenToast } = useTags(type);
   const controls = useAnimationControls();
   const [isExpanded, setIsExpanded] = useState(false);
   const tagData = type === 'pros' ? proTags : conTags;
@@ -66,6 +67,13 @@ function TagList({ type }: Props) {
           className={`transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
         />
       </button>
+      <AnimatePresence>
+        {isOpenToast && (
+          <ToastMessage
+            text={`${type === 'pros' ? '장점' : '단점'}은 최대 5개까지 고를 수 있어요!`}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

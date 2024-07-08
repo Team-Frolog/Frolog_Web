@@ -13,7 +13,7 @@ function TapHeader() {
   return (
     <div
       id='header'
-      className='sticky left-0 top-0 z-50 block h-fit w-full gap-3 bg-gray-900 p-[24px] pb-[10px] text-white transition-all duration-200'
+      className='sticky left-0 top-0 z-30 block h-fit w-full gap-3 bg-gray-900 p-[24px] pb-[10px] text-white transition-all duration-200'
     >
       <button
         type='button'
