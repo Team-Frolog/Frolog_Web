@@ -17,6 +17,7 @@ export const PAGES = {
   FIND_PASSWORD: '/find-password',
   TEST: '/frolog-test',
   TEST_RESULT: '/frolog-test/result',
+  WELL_BOOK: '/well-book',
 } as const;
 
 export const PAGE_CONFIG: PageConfig = {
