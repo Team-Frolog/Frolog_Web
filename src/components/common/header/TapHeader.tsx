@@ -13,9 +13,13 @@ function TapHeader() {
   const id = pathname.split('/')[2];
   const { changePopUpState } = usePopUpActions();
 
-  const handleLeaveReview = (route: 'back' | 'memo') => {
-    sessionStorage.setItem(ON_LEAVE_ROUTE, route);
-    changePopUpState('isOpenAlertSheet', true);
+  const handleClick = (route: 'back' | 'memo') => {
+    if (pathname.includes('review')) {
+      sessionStorage.setItem(ON_LEAVE_ROUTE, route);
+      changePopUpState('isOpenAlertSheet', true);
+    } else if (route === 'back') {
+      router.back();
+    }
   };
 
   return (
@@ -26,8 +30,7 @@ function TapHeader() {
       <button
         type='button'
         className='cursor-pointer'
-        // onClick={() => router.back()}
-        onClick={() => handleLeaveReview('back')}
+        onClick={() => handleClick('back')}
       >
         <BackIcon id='icon' fill='#B3B6C5' />
       </button>
@@ -36,8 +39,7 @@ function TapHeader() {
           <button
             id={pathname.includes('memo') ? 'tap' : undefined}
             type='button'
-            // onClick={() => router.replace(`${PAGES.WELL_BOOK}/${id}/memo`)}
-            onClick={() => handleLeaveReview('memo')}
+            onClick={() => handleClick('memo')}
             className={`text-h_md_bold ${pathname.includes('memo') ? 'text-white' : 'text-gray-500'}`}
           >
             메모

@@ -79,7 +79,11 @@ function AlertBottomSheet({
               {buttonText}
             </Button>
             {extraButtonText && (
-              <button type='button' className='text-body_lg_bold text-gray-600'>
+              <button
+                type='button'
+                onClick={() => changePopUpState('isOpenAlertSheet', false)}
+                className='text-body_lg_bold text-gray-600'
+              >
                 {extraButtonText}
               </button>
             )}
