@@ -9,7 +9,23 @@ import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import Button from '../button/Button';
 
-function AlertBottomSheet() {
+interface Props {
+  title: React.ReactNode;
+  type: 'normal' | 'error';
+  children: React.ReactNode;
+  buttonText?: string;
+  extraButtonText?: string;
+  onClick?: () => void;
+}
+
+function AlertBottomSheet({
+  title,
+  type,
+  children,
+  buttonText,
+  extraButtonText,
+  onClick,
+}: Props) {
   const { changePopUpState } = usePopUpActions();
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -33,9 +49,9 @@ function AlertBottomSheet() {
     >
       <motion.div
         ref={ref}
-        initial={{ y: '100%' }}
+        initial={{ y: '120%' }}
         animate={{ y: '0%' }}
-        exit={{ y: '100%' }}
+        exit={{ y: '120%' }}
         transition={{ duration: 0.3 }}
         className='flex h-fit w-full flex-col items-center gap-[40px] rounded-t-[20px] bg-white px-[24px] py-[40px] text-gray-800'
       >
@@ -47,21 +63,28 @@ function AlertBottomSheet() {
           className='absolute inset-x-0 -top-[55px] mx-auto'
         />
         <div className='flex w-full flex-col items-center gap-[12px]'>
-          <h2 className='text-center text-h_md_bold'>
-            아직 작성중이에요
-            <br />
-            정말 나가시나요?
-          </h2>
-          <p className='text-body_lg'>이대로 나가면 내용이 저장되지 않아요</p>
+          <h2 className='text-center text-h_md_bold'>{title}</h2>
+          {children}
         </div>
-        <div className='flex w-full flex-col items-center gap-[20px]'>
-          <Button type='button' theme='error'>
-            나가기
-          </Button>
-          <button type='button' className='text-body_lg_bold text-gray-600'>
-            계속 작성하기
-          </button>
-        </div>
+        {buttonText && onClick && (
+          <div className='flex w-full flex-col items-center gap-[20px]'>
+            <Button
+              type='button'
+              theme={type}
+              onClick={() => {
+                changePopUpState('isOpenAlertSheet', false);
+                onClick();
+              }}
+            >
+              {buttonText}
+            </Button>
+            {extraButtonText && (
+              <button type='button' className='text-body_lg_bold text-gray-600'>
+                {extraButtonText}
+              </button>
+            )}
+          </div>
+        )}
       </motion.div>
     </motion.div>
   );

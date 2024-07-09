@@ -4,11 +4,19 @@ import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import BackIcon from 'public/icons/common/back/back.svg';
 import { PAGES } from '@/constants/page';
+import { usePopUpActions } from '@/store/popUpStore';
+import { ON_LEAVE_ROUTE } from '@/constants/storage';
 
 function TapHeader() {
   const router = useRouter();
   const pathname = usePathname();
   const id = pathname.split('/')[2];
+  const { changePopUpState } = usePopUpActions();
+
+  const handleLeaveReview = (route: 'back' | 'memo') => {
+    sessionStorage.setItem(ON_LEAVE_ROUTE, route);
+    changePopUpState('isOpenAlertSheet', true);
+  };
 
   return (
     <div
@@ -18,7 +26,8 @@ function TapHeader() {
       <button
         type='button'
         className='cursor-pointer'
-        onClick={() => router.back()}
+        // onClick={() => router.back()}
+        onClick={() => handleLeaveReview('back')}
       >
         <BackIcon id='icon' fill='#B3B6C5' />
       </button>
@@ -27,7 +36,8 @@ function TapHeader() {
           <button
             id={pathname.includes('memo') ? 'tap' : undefined}
             type='button'
-            onClick={() => router.replace(`${PAGES.WELL_BOOK}/${id}/memo`)}
+            // onClick={() => router.replace(`${PAGES.WELL_BOOK}/${id}/memo`)}
+            onClick={() => handleLeaveReview('memo')}
             className={`text-h_md_bold ${pathname.includes('memo') ? 'text-white' : 'text-gray-500'}`}
           >
             메모

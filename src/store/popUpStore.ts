@@ -12,7 +12,7 @@ interface PopUpState {
 
 const usePopUpStore = create<PopUpState>((set) => ({
   isOpenToast: false,
-  isOpenAlertSheet: true,
+  isOpenAlertSheet: false,
   actions: {
     changePopUpState: (type, value) => {
       set((state) => ({ ...state, [type]: value }));

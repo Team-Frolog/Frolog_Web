@@ -12,8 +12,7 @@ import Button from '@/components/common/button/Button';
 import { useToastMessage } from '@/hooks/useToastMessage';
 import { AnimatePresence } from 'framer-motion';
 import ToastMessage from '@/components/common/popup/ToastMessage';
-import AlertBottomSheet from '@/components/common/popup/AlertBottomSheet';
-import { useAlertSheetState } from '@/store/popUpStore';
+import ConfirmLeaveSheet from '@/components/common/popup/ConfirmLeaveSheet';
 
 interface ReviewForm {
   rating: number | null;
@@ -25,7 +24,6 @@ interface ReviewForm {
 
 function ReviewPage() {
   useScroll();
-  const isOpenAlertSheet = useAlertSheetState();
   const { isOpenToast } = useToastMessage();
   const methods = useForm<ReviewForm>({
     mode: 'onBlur',
@@ -43,6 +41,14 @@ function ReviewPage() {
     formState: { isValid },
   } = methods;
 
+  const isDisabled =
+    !watch('rating') ||
+    !watch('oneLiner') ||
+    !watch('review') ||
+    !watch('pros').length ||
+    !watch('cons').length ||
+    !isValid;
+
   return (
     <FormProvider {...methods}>
       <form className='flex h-fit w-full flex-1 flex-col items-center bg-white text-gray-800'>
@@ -53,21 +59,10 @@ function ReviewPage() {
           <TagList type='cons' />
           <Textarea option={textareaType.oneLiner} />
           <Textarea option={textareaType.review} />
-          <Button
-            type='submit'
-            disabled={
-              !watch('oneLiner') ||
-              !watch('review') ||
-              !watch('pros').length ||
-              !watch('cons').length ||
-              !isValid
-            }
-          >
+          <Button type='submit' disabled={isDisabled}>
             저장하기
           </Button>
-          <AnimatePresence>
-            {isOpenAlertSheet && <AlertBottomSheet />}
-          </AnimatePresence>
+          <ConfirmLeaveSheet />
         </div>
         <AnimatePresence>
           {isOpenToast && (
