@@ -21,9 +21,9 @@ interface ReviewForm {
   cons: number[];
 }
 
-function NewReviewPage() {
+function ReviewPage() {
   useScroll();
-  const { isOpen } = useToastMessage();
+  const { isOpenToast } = useToastMessage();
   const methods = useForm<ReviewForm>({
     mode: 'onBlur',
     defaultValues: {
@@ -64,7 +64,7 @@ function NewReviewPage() {
           </Button>
         </div>
         <AnimatePresence>
-          {isOpen && (
+          {isOpenToast && (
             <ToastMessage text='키워드는 최대 5개까지 고를 수 있어요!' />
           )}
         </AnimatePresence>
@@ -73,4 +73,4 @@ function NewReviewPage() {
   );
 }
 
-export default NewReviewPage;
+export default ReviewPage;

@@ -20,7 +20,7 @@ export const useTags = (type: 'pros' | 'cons') => {
       const updatedTags = [...selectedTags, id];
       setValue(type, updatedTags);
     } else if (selectedTags.length === 5) {
-      changePopUpState('toastMessage', true);
+      changePopUpState('isOpenToast', true);
     }
   };
 

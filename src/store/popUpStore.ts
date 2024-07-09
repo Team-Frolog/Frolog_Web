@@ -1,16 +1,18 @@
 import { create } from 'zustand';
 
-type Type = 'toastMessage';
+type Type = 'isOpenToast';
 
 interface PopUpState {
-  toastMessage: boolean;
+  isOpenToast: boolean;
+  isOpenAlertSheet: boolean;
   actions: {
     changePopUpState: (type: Type, value: boolean) => void;
   };
 }
 
 const usePopUpStore = create<PopUpState>((set) => ({
-  toastMessage: false,
+  isOpenToast: false,
+  isOpenAlertSheet: false,
   actions: {
     changePopUpState: (type, value) => {
       set((state) => ({ ...state, [type]: value }));
@@ -18,6 +20,9 @@ const usePopUpStore = create<PopUpState>((set) => ({
   },
 }));
 
+export const useToastState = () => usePopUpStore((state) => state.isOpenToast);
+export const useAlertSheetState = () =>
+  usePopUpStore((state) => state.isOpenAlertSheet);
 export const usePopUpActions = () => usePopUpStore((state) => state.actions);
 
 export default usePopUpStore;

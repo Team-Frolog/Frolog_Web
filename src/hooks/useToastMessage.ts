@@ -1,19 +1,17 @@
-import usePopUpStore from '@/store/popUpStore';
+import { usePopUpActions, useToastState } from '@/store/popUpStore';
 import { useEffect } from 'react';
 
 export const useToastMessage = () => {
-  const {
-    toastMessage,
-    actions: { changePopUpState },
-  } = usePopUpStore();
+  const isOpenToast = useToastState();
+  const { changePopUpState } = usePopUpActions();
 
   useEffect(() => {
-    if (toastMessage) {
+    if (isOpenToast) {
       setTimeout(() => {
-        changePopUpState('toastMessage', false);
+        changePopUpState('isOpenToast', false);
       }, 3000);
     }
-  }, [toastMessage, changePopUpState]);
+  }, [isOpenToast, changePopUpState]);
 
-  return { isOpen: toastMessage };
+  return { isOpenToast };
 };
