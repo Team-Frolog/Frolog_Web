@@ -12,6 +12,8 @@ import Button from '@/components/common/button/Button';
 import { useToastMessage } from '@/hooks/useToastMessage';
 import { AnimatePresence } from 'framer-motion';
 import ToastMessage from '@/components/common/popup/ToastMessage';
+import AlertBottomSheet from '@/components/common/popup/AlertBottomSheet';
+import { useAlertSheetState } from '@/store/popUpStore';
 
 interface ReviewForm {
   rating: number | null;
@@ -23,6 +25,7 @@ interface ReviewForm {
 
 function ReviewPage() {
   useScroll();
+  const isOpenAlertSheet = useAlertSheetState();
   const { isOpenToast } = useToastMessage();
   const methods = useForm<ReviewForm>({
     mode: 'onBlur',
@@ -62,6 +65,9 @@ function ReviewPage() {
           >
             저장하기
           </Button>
+          <AnimatePresence>
+            {isOpenAlertSheet && <AlertBottomSheet />}
+          </AnimatePresence>
         </div>
         <AnimatePresence>
           {isOpenToast && (

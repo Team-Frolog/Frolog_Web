@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type Type = 'isOpenToast';
+type Type = 'isOpenToast' | 'isOpenAlertSheet';
 
 interface PopUpState {
   isOpenToast: boolean;
@@ -12,7 +12,7 @@ interface PopUpState {
 
 const usePopUpStore = create<PopUpState>((set) => ({
   isOpenToast: false,
-  isOpenAlertSheet: false,
+  isOpenAlertSheet: true,
   actions: {
     changePopUpState: (type, value) => {
       set((state) => ({ ...state, [type]: value }));

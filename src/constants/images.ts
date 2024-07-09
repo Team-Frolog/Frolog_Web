@@ -8,6 +8,9 @@ export const IMAGES = {
       done: `${BASE_PATH}/frog/frog-evaluating-done.svg`,
     },
     sitting: `${BASE_PATH}/frog/frog-sitting.svg`,
+    sheet: {
+      error: `${BASE_PATH}/frog/sheet/frog-sheet-error.svg`,
+    },
   },
   test: {
     shape: {
