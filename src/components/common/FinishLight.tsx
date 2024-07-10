@@ -19,18 +19,20 @@ function FinishLight({ children }: Props) {
         className='z-0 w-full'
       />
       <div className='w-full flex-1 bg-white' />
-      <div className='absolute left-1/2 z-10 flex h-full w-full -translate-x-1/2 flex-col items-center justify-between pt-[150px] mobile:pt-[100px]'>
-        <BigTitle type='default' align='text-center'>
+      <div className='absolute left-1/2 z-10 flex h-full w-full -translate-x-1/2 flex-col items-center justify-between gap-[10px] pt-[150px] mobile:pt-[100px]'>
+        <BigTitle type='default' extraClass='text-center mobile:text-h_md_bold'>
           {children}
         </BigTitle>
 
-        <Image
-          src={IMAGES.frog.congrats}
-          alt='congrats'
-          width={319}
-          height={257}
-          className='h-[55%] justify-self-end'
-        />
+        <div className='flex flex-1 items-end justify-center'>
+          <Image
+            src={IMAGES.frog.congrats}
+            alt='frog'
+            width={319}
+            height={257}
+            className='h-full max-h-[257px] w-[95%]'
+          />
+        </div>
       </div>
     </div>
   );

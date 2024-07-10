@@ -3,13 +3,13 @@ import React from 'react';
 interface Props {
   children: React.ReactNode;
   type: 'default' | 'bright';
-  align?: 'text-start' | 'text-center';
+  extraClass?: string;
 }
 
-function BigTitle({ children, align, type }: Props) {
+function BigTitle({ children, extraClass, type }: Props) {
   return (
     <h1
-      className={`text-h_lg_bold mobile:text-h_md_bold ${align} ${type === 'default' ? 'text-main' : 'text-main_bright'}`}
+      className={`text-h_lg_bold ${extraClass} ${type === 'default' ? 'text-main' : 'text-main_bright'}`}
     >
       {children}
     </h1>

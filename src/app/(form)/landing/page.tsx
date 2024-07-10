@@ -7,7 +7,7 @@ import React from 'react';
 function LandingPage() {
   return (
     <>
-      <BigTitle type='bright'>
+      <BigTitle type='bright' extraClass='text-start'>
         이제,
         <br />
         우물 밖으로
