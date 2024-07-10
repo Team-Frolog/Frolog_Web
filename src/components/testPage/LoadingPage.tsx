@@ -32,12 +32,17 @@ function LoadingPage() {
   }, []);
 
   return (
-    <div className='flex h-full w-full flex-col items-center'>
-      <FinishLight>
+    <div className='flex h-dvh w-full flex-col items-center justify-between'>
+      <FinishLight
+        frog={
+          isDone ? IMAGES.frog.evaluation.done : IMAGES.frog.evaluation.loading
+        }
+      >
         <motion.div
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
+          className='pt-[60px]'
         >
           {isDone ? '분석 완료!' : loadingTexts[loadingTextIndex]}
           <br />
@@ -47,13 +52,11 @@ function LoadingPage() {
         </motion.div>
       </FinishLight>
       <Image
-        src={
-          isDone ? IMAGES.frog.evaluation.done : IMAGES.frog.evaluation.loading
-        }
-        alt='loading'
-        width={300}
-        height={300}
-        className='w-full bg-white'
+        src={IMAGES.ground_sm}
+        alt='ground'
+        width={390}
+        height={106}
+        className='w-full'
       />
     </div>
   );

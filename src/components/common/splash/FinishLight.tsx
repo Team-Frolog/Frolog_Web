@@ -2,13 +2,13 @@ import { ICONS } from '@/constants/icons';
 import React from 'react';
 import Image from 'next/image';
 import BigTitle from '@/components/common/text/BigTitle';
-import { IMAGES } from '@/constants/images';
 
 interface Props {
   children: React.ReactNode;
+  frog: string;
 }
 
-function FinishLight({ children }: Props) {
+function FinishLight({ children, frog }: Props) {
   return (
     <div className='relative z-0 flex h-fit w-full flex-1 flex-col bg-gray-900 pt-[30px]'>
       <Image
@@ -26,7 +26,7 @@ function FinishLight({ children }: Props) {
 
         <div className='flex flex-1 items-end justify-center'>
           <Image
-            src={IMAGES.frog.congrats}
+            src={frog}
             alt='frog'
             width={319}
             height={257}

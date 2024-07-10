@@ -13,7 +13,7 @@ function JoinFinishPage() {
         route='/'
         classes='absolute left-[24px] top-[24px] z-10 cursor-pointer'
       />
-      <FinishLight>
+      <FinishLight frog={IMAGES.frog.congrats}>
         야호!
         <br />
         가입이
