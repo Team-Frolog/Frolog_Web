@@ -32,4 +32,5 @@ export const IMAGES = {
     skin: `${BASE_PATH}/book/book-skin.svg`,
   },
   ground: `${BASE_PATH}/etc/ground.svg`,
+  ground_sm: `${BASE_PATH}/etc/ground-sm.svg`,
 };

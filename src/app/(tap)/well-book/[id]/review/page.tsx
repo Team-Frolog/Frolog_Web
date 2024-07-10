@@ -13,6 +13,8 @@ import { useToastMessage } from '@/hooks/useToastMessage';
 import { AnimatePresence } from 'framer-motion';
 import ToastMessage from '@/components/common/popup/ToastMessage';
 import ConfirmLeaveSheet from '@/components/common/popup/ConfirmLeaveSheet';
+import Splash from '@/components/common/splash/Splash';
+import useSplashStore from '@/store/splashStore';
 
 interface ReviewForm {
   rating: number | null;
@@ -24,6 +26,10 @@ interface ReviewForm {
 
 function ReviewPage() {
   useScroll();
+  const {
+    isOpen,
+    actions: { changeState },
+  } = useSplashStore();
   const { isOpenToast } = useToastMessage();
   const methods = useForm<ReviewForm>({
     mode: 'onBlur',
@@ -38,6 +44,7 @@ function ReviewPage() {
 
   const {
     watch,
+    handleSubmit,
     formState: { isValid },
   } = methods;
 
@@ -49,9 +56,17 @@ function ReviewPage() {
     !watch('cons').length ||
     !isValid;
 
+  const handleAddReview = () => {
+    // TODO: 서버 연동
+    changeState(true);
+  };
+
   return (
     <FormProvider {...methods}>
-      <form className='flex h-fit w-full flex-1 flex-col items-center bg-white text-gray-800'>
+      <form
+        onSubmit={handleSubmit(handleAddReview)}
+        className='flex h-fit w-full flex-1 flex-col items-center bg-white text-gray-800'
+      >
         <BookInfo />
         <div className='flex w-full flex-col gap-[36px] p-[24px]'>
           <RatingSelector />
@@ -69,6 +84,7 @@ function ReviewPage() {
             <ToastMessage text='키워드는 최대 5개까지 고를 수 있어요!' />
           )}
         </AnimatePresence>
+        {isOpen && <Splash type='review' />}
       </form>
     </FormProvider>
   );

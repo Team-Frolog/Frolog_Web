@@ -30,7 +30,7 @@ function FinishLight({ children }: Props) {
             alt='frog'
             width={319}
             height={257}
-            className='h-full max-h-[257px] w-[95%]'
+            className='h-full max-h-[257px] w-full mobile:w-[95%]'
           />
         </div>
       </div>

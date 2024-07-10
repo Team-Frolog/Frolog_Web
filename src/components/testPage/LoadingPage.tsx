@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { PAGES } from '@/constants/page';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import FinishLight from '../common/FinishLight';
+import FinishLight from '../common/splash/FinishLight';
 
 function LoadingPage() {
   const type = useSearchParams().get('type');

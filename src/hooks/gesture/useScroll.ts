@@ -7,11 +7,13 @@ export const useScroll = () => {
     const bar = document.getElementById('bar')!;
     const icon = document.getElementById('icon')!;
 
-    header.style.backgroundColor = '#0E0E0E';
-    bar.style.backgroundColor = '#FFFFFF';
-    icon.style.fill = '#B3B6C5';
-    foreground.classList.remove('text-gray-800');
-    foreground.classList.add('text-white');
+    if (header && foreground && bar && icon) {
+      header.style.backgroundColor = '#0E0E0E';
+      bar.style.backgroundColor = '#FFFFFF';
+      icon.style.fill = '#B3B6C5';
+      foreground.classList.remove('text-gray-800');
+      foreground.classList.add('text-white');
+    }
   };
 
   const lightmode = () => {
@@ -20,12 +22,13 @@ export const useScroll = () => {
     const bar = document.getElementById('bar')!;
     const icon = document.getElementById('icon')!;
 
-    header.style.backgroundColor = '#FFFFFF';
-    bar.style.backgroundColor = '#0E0E0E';
-    icon.style.fill = '#727484';
-
-    foreground.classList.remove('text-white');
-    foreground.classList.add('text-gray-800');
+    if (header && foreground && bar && icon) {
+      header.style.backgroundColor = '#FFFFFF';
+      bar.style.backgroundColor = '#0E0E0E';
+      icon.style.fill = '#727484';
+      foreground.classList.remove('text-white');
+      foreground.classList.add('text-gray-800');
+    }
   };
 
   useEffect(() => {
@@ -50,8 +53,8 @@ export const useScroll = () => {
     observer.observe(targetElement!);
 
     return () => {
-      observer.unobserve(targetElement!);
       darkmode();
+      observer.unobserve(targetElement!);
     };
   }, []);
 };
