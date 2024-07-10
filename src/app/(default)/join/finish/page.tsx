@@ -8,7 +8,7 @@ import { IMAGES } from '@/constants/images';
 
 function JoinFinishPage() {
   return (
-    <div className='relative flex h-full w-full flex-col justify-between overflow-hidden'>
+    <div className='relative flex h-dvh w-full flex-col justify-between overflow-hidden'>
       <QuitButton
         route='/'
         classes='absolute left-[24px] top-[24px] z-10 cursor-pointer'
@@ -20,10 +20,10 @@ function JoinFinishPage() {
         <br />
         완료되었어요
       </FinishLight>
-      <div className='flex w-full flex-1 flex-col items-center justify-end gap-[12px] bg-white'>
+      <div className='flex w-full flex-col items-center justify-end gap-[12px] bg-red-500'>
         <Image
-          src={IMAGES.frog.finish}
-          alt='congrats'
+          src={IMAGES.ground}
+          alt='ground'
           width={319}
           height={257}
           className='w-full'

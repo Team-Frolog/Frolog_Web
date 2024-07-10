@@ -9,7 +9,7 @@ interface Props {
 function BigTitle({ children, align, type }: Props) {
   return (
     <h1
-      className={`text-h_lg_bold ${align} ${type === 'default' ? 'text-main' : 'text-main_bright'}`}
+      className={`text-h_lg_bold mobile:text-h_md_bold ${align} ${type === 'default' ? 'text-main' : 'text-main_bright'}`}
     >
       {children}
     </h1>

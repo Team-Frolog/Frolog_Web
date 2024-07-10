@@ -2,7 +2,7 @@ const BASE_PATH = '/images';
 
 export const IMAGES = {
   frog: {
-    finish: `${BASE_PATH}/frog/finish.svg`,
+    congrats: `${BASE_PATH}/frog/congrats.svg`,
     evaluation: {
       loading: `${BASE_PATH}/frog/frog-evaluating.svg`,
       done: `${BASE_PATH}/frog/frog-evaluating-done.svg`,
