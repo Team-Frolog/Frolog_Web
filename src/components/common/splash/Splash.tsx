@@ -19,8 +19,11 @@ function Splash({ type }: Props) {
   useEffect(() => {
     setTimeout(() => {
       router.replace(route);
-      changeState(false);
     }, 3000);
+
+    return () => {
+      changeState(false);
+    };
   }, []);
 
   return (
