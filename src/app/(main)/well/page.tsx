@@ -1,6 +1,7 @@
 import WellHeader from '@/components/wellPage/WellHeader';
 import React from 'react';
 import FrogOnBook from '@/components/wellPage/FrogOnBook';
+import WellBook from '@/components/common/book/WellBook';
 
 function WellPage() {
   return (
@@ -8,6 +9,7 @@ function WellPage() {
       <WellHeader />
       <div className='flex w-full flex-col items-center'>
         <FrogOnBook />
+        <WellBook />
         <div className='h-[12px] w-full rounded-t-[20px] bg-gray-900' />
       </div>
     </div>

@@ -18,4 +18,7 @@ export const PAGE_THEME: {
   '/well': HALF,
   '/writing': HALF,
   '/new-review': HALF,
+  '/search': LIGHT,
+  '/feed': LIGHT,
+  '/profile': LIGHT,
 };
