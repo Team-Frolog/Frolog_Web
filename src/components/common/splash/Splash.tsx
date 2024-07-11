@@ -18,6 +18,7 @@ function Splash({ type }: Props) {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    document.body.style.pointerEvents = 'none';
     setTimeout(() => {
       router.replace(route);
     }, 3000);
@@ -25,6 +26,7 @@ function Splash({ type }: Props) {
     return () => {
       changeState(false);
       document.body.style.overflow = 'auto';
+      document.body.style.pointerEvents = 'auto';
     };
   }, []);
 
