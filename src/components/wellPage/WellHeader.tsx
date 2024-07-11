@@ -41,7 +41,7 @@ function WellHeader() {
           <h1 className='text-title_xl_bold'>소중한 나의 첫 우물</h1>
           <div className='flex flex-col items-center gap-[4px]'>
             <Link
-              href={session ? '/search' : PAGES.LANDING}
+              href={session ? '/well-book/1/review' : PAGES.LANDING}
               className='relative z-[50px] cursor-pointer'
             >
               <Image
