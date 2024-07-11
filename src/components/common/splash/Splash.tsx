@@ -17,12 +17,14 @@ function Splash({ type }: Props) {
   const { getTitle, frog, route } = splash[type];
 
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
     setTimeout(() => {
       router.replace(route);
     }, 3000);
 
     return () => {
       changeState(false);
+      document.body.style.overflow = 'auto';
     };
   }, []);
 
