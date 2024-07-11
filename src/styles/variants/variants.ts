@@ -13,18 +13,18 @@ export const staggerContainerVariants = {
   visible: {
     transition: {
       duration: 0.3,
-      staggerChildren: 1,
+      staggerChildren: 0.5,
     },
   },
 };
 
 export const staggerItemVariants = {
-  hidden: { y: -1000, opacity: 1 },
+  hidden: { y: -50, opacity: 0 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 1.7,
+      duration: 0.5,
       ease: 'easeOut',
     },
   },
