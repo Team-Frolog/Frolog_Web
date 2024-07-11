@@ -24,10 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='kr' className={`${pretendard.variable} overscroll-none`}>
+    <html lang='ko'>
       <ThemeProvider />
       <AuthProvider>
-        <body className={`${pretendard.className} text-white`}>{children}</body>
+        <body
+          className={`${pretendard.variable} ${pretendard.className} text-white`}
+        >
+          <div id='root'>{children}</div>
+        </body>
       </AuthProvider>
     </html>
   );

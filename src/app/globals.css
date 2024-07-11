@@ -37,10 +37,9 @@
 }
 
 input[type='number'] {
-  -moz-appearance: textfield; /*For FireFox*/
+  -moz-appearance: textfield;
 
   &::-webkit-inner-spin-button {
-    /*For Webkits like Chrome and Safari*/
     -webkit-appearance: none;
     margin: 0;
   }
@@ -51,6 +50,7 @@ html {
   width: 100vw;
   display: flex;
   justify-content: center;
+  overscroll-behavior: none;
 
   @media screen and (min-width: 430px) {
     overflow: hidden;
@@ -62,14 +62,8 @@ body {
   width: 100vw;
   position: relative;
 
-  /* mobile view setting */
-  height: fit-content;
-  min-height: 100dvh;
-
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-
   overscroll-behavior-y: none;
   overflow: auto;
 
@@ -78,6 +72,16 @@ body {
     width: 450px;
     height: 100vh;
   }
+}
+
+#root {
+  height: fit-content;
+  min-height: 100dvh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* type=date input icon 색상 세팅 */
