@@ -1,15 +1,13 @@
+import WellBookList from '@/components/common/book/WellBookList';
 import WellHeader from '@/components/wellPage/WellHeader';
 import React from 'react';
-import FrogOnBook from '@/components/wellPage/FrogOnBook';
-import WellBook from '@/components/common/book/WellBook';
 
 function WellPage() {
   return (
     <div className='flex h-fit w-full flex-1 flex-col items-center justify-end bg-white text-gray-800'>
       <WellHeader />
-      <div className='flex w-full flex-col items-center'>
-        <FrogOnBook />
-        <WellBook />
+      <div className='flex w-full flex-1 flex-col items-center justify-end'>
+        <WellBookList />
         <div className='h-[12px] w-full rounded-t-[20px] bg-gray-900' />
       </div>
     </div>

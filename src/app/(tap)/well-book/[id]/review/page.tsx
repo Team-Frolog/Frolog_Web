@@ -15,7 +15,7 @@ import ToastMessage from '@/components/common/popup/ToastMessage';
 import ConfirmLeaveSheet from '@/components/common/popup/ConfirmLeaveSheet';
 import Splash from '@/components/common/splash/Splash';
 import useSplashStore from '@/store/splashStore';
-import { NEW_REVIEW_ID } from '@/constants/storage';
+import { useStackMotionActions } from '@/store/stackMotionStore';
 
 interface ReviewForm {
   rating: number | null;
@@ -31,6 +31,7 @@ function ReviewPage() {
     isOpen,
     actions: { changeState },
   } = useSplashStore();
+  const { setNewReviewId } = useStackMotionActions();
   const { isOpenToast } = useToastMessage();
   const methods = useForm<ReviewForm>({
     mode: 'onBlur',
@@ -59,7 +60,7 @@ function ReviewPage() {
 
   const handleAddReview = () => {
     // TODO: 서버 연동
-    sessionStorage.setItem(NEW_REVIEW_ID, 'id');
+    setNewReviewId('id');
     changeState(true);
   };
 

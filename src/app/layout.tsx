@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='kr' className={`${pretendard.variable}`}>
+    <html lang='kr' className={`${pretendard.variable} overscroll-none`}>
       <ThemeProvider />
       <AuthProvider>
         <body className={`${pretendard.className} text-white`}>{children}</body>
