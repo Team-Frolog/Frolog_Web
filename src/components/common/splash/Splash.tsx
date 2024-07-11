@@ -51,7 +51,7 @@ function Splash({ type }: Props) {
               alt='frog'
               width={319}
               height={257}
-              className='h-full max-h-[257px] w-full mobile:w-[95%]'
+              className='h-full max-h-[257px] w-full mobile:w-[90%]'
             />
           </div>
         </div>
