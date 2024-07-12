@@ -47,7 +47,7 @@ export const useScroll = () => {
   }, [scrollY]);
 
   useEffect(() => {
-    const isSafari = window.navigator.userAgent.match(/iPhone/i);
+    const isMobileSafari = /iPhone.*Safari/i.test(window.navigator.userAgent);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -66,14 +66,14 @@ export const useScroll = () => {
     );
     const targetElement = document.getElementById('book-info');
 
-    if (isSafari) {
+    if (isMobileSafari) {
       window.addEventListener('scroll', updateScroll);
     } else {
       observer.observe(targetElement!);
     }
 
     return () => {
-      if (isSafari) {
+      if (isMobileSafari) {
         window.removeEventListener('scroll', updateScroll);
       } else {
         observer.unobserve(targetElement!);
