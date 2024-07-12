@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
+import PopperAnimation from '@/components/animation/PopperAnimation';
 import { splash, SplashKeys } from '@/data/splash';
 import { useSplashAction } from '@/store/splashStore';
 import { useRouter } from 'next/navigation';
@@ -14,7 +15,7 @@ interface Props {
 function Splash({ type }: Props) {
   const router = useRouter();
   const { changeState } = useSplashAction();
-  const { getTitle, frog, route } = splash[type];
+  const { getTitle, frog, route, hasPopper } = splash[type];
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -67,6 +68,7 @@ function Splash({ type }: Props) {
         height={106}
         className='w-full'
       />
+      {hasPopper && <PopperAnimation />}
     </div>
   );
 }

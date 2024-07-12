@@ -6,6 +6,7 @@ interface Splash {
   getTitle: () => JSX.Element;
   frog: string;
   route: string;
+  hasPopper: boolean;
 }
 
 export const splash: {
@@ -23,5 +24,6 @@ export const splash: {
     ),
     frog: IMAGES.frog.congrats,
     route: '/well',
+    hasPopper: true,
   },
 };
