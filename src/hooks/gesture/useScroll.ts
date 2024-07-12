@@ -1,6 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { throttle } from 'lodash';
 
 export const useScroll = () => {
+  const [scrollY, setScrollY] = useState(0);
+
   const darkmode = () => {
     const header = document.getElementById('header')!;
     const foreground = document.getElementById('tap')!;
@@ -31,8 +34,20 @@ export const useScroll = () => {
     }
   };
 
+  const updateScroll = throttle(() => {
+    setScrollY(window.scrollY || document.documentElement.scrollTop);
+  }, 100);
+
   useEffect(() => {
-    const targetElement = document.getElementById('book-info');
+    if (scrollY < 150) {
+      darkmode();
+    } else {
+      lightmode();
+    }
+  }, [scrollY]);
+
+  useEffect(() => {
+    const isSafari = window.navigator.userAgent.match(/iPhone/i);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -49,12 +64,21 @@ export const useScroll = () => {
         threshold: 0.9,
       }
     );
+    const targetElement = document.getElementById('book-info');
 
-    observer.observe(targetElement!);
+    if (isSafari) {
+      window.addEventListener('scroll', updateScroll);
+    } else {
+      observer.observe(targetElement!);
+    }
 
     return () => {
+      if (isSafari) {
+        window.removeEventListener('scroll', updateScroll);
+      } else {
+        observer.unobserve(targetElement!);
+      }
       darkmode();
-      observer.unobserve(targetElement!);
     };
   }, []);
 };
