@@ -12,11 +12,12 @@ interface Props {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 function Auth() {
-  const { data: session, update } = useSession();
+  const { data: session, update, status } = useSession();
   useFormReset();
 
   useEffect(() => {
     if (
+      status !== 'loading' &&
       session &&
       typeof window !== 'undefined' &&
       localStorage.getItem(REMEMBER_ME_KEY) === 'false' &&
@@ -26,7 +27,7 @@ function Auth() {
       sessionStorage.removeItem(REMEMBER_ME_KEY);
       signOut({ callbackUrl: '/', redirect: true });
     }
-  }, [session]);
+  }, [session, status]);
 
   return session && <TokenHandler session={session} update={update} />;
 }
