@@ -32,7 +32,7 @@ function Splash({ type }: Props) {
   }, []);
 
   return (
-    <div className='fixed top-0 z-50 mx-auto flex h-dvh w-[450px] flex-col justify-between overflow-hidden mobile:left-0 mobile:w-full'>
+    <div className='fixed top-0 z-50 mx-auto flex h-dvh w-[450px] flex-col justify-between overflow-hidden overscroll-none mobile:left-0 mobile:w-full'>
       <div className='relative z-0 flex h-fit w-full flex-1 flex-col bg-gray-900 pt-[30px]'>
         <Image
           src={ICONS.join.light}
