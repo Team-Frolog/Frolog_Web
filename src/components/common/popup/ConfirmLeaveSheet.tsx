@@ -1,15 +1,13 @@
 import { useAlertSheetState } from '@/store/popUpStore';
 import { AnimatePresence } from 'framer-motion';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { ON_LEAVE_ROUTE } from '@/constants/storage';
 import { PAGES } from '@/constants/page';
 import AlertBottomSheet from './AlertBottomSheet';
 
-function ConfirmLeaveSheet() {
+function ConfirmLeaveSheet({ bookId }: { bookId: string }) {
   const router = useRouter();
-  const pathname = usePathname();
-  const id = pathname.split('/')[2];
   const isOpenAlertSheet = useAlertSheetState();
   const backRoute = () => {
     return typeof window !== undefined
@@ -34,7 +32,7 @@ function ConfirmLeaveSheet() {
           onClick={() =>
             backRoute() === 'back'
               ? router.back()
-              : router.replace(`${PAGES.WELL_BOOK}/${id}/memo`)
+              : router.replace(`${PAGES.WELL_BOOK}/${bookId}/memo`)
           }
         >
           <p className='text-body_lg'>이대로 나가면 내용이 저장되지 않아요</p>

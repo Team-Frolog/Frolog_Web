@@ -3,11 +3,12 @@ import React from 'react';
 import { IMAGES } from '@/constants/images';
 import Book from './Book';
 
-function BookInfo() {
+function BookInfo({ bookId }: { bookId: string }) {
+  console.log(bookId);
   return (
     <div
       id='book-info'
-      className='relative flex w-full flex-col items-center gap-[20px] pt-[24px]'
+      className='relative flex w-full flex-col items-center gap-[20px] bg-white pt-[24px] text-gray-800'
     >
       <Image
         src={IMAGES.book.background}

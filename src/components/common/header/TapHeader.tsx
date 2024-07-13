@@ -7,10 +7,9 @@ import { PAGES } from '@/constants/page';
 import { usePopUpActions } from '@/store/popUpStore';
 import { ON_LEAVE_ROUTE } from '@/constants/storage';
 
-function TapHeader() {
+function TapHeader({ bookId }: { bookId: string }) {
   const router = useRouter();
   const pathname = usePathname();
-  const id = pathname.split('/')[2];
   const { changePopUpState } = usePopUpActions();
 
   const handleClick = (route: 'back' | 'memo') => {
@@ -47,7 +46,9 @@ function TapHeader() {
           <button
             id={pathname.includes('review') ? 'tap' : undefined}
             type='button'
-            onClick={() => router.replace(`${PAGES.WELL_BOOK}/${id}/review`)}
+            onClick={() =>
+              router.replace(`${PAGES.WELL_BOOK}/${bookId}/review`)
+            }
             className={`text-h_md_bold ${pathname.includes('review') ? 'text-white' : 'text-gray-500'}`}
           >
             리뷰
