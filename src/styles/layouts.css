@@ -4,4 +4,7 @@
   .form-layout {
     @apply flex flex-1 flex-col justify-between gap-[24px];
   }
+  .tap-content-layout {
+    @apply flex h-fit w-full flex-1 flex-col items-center gap-[36px] bg-white p-[24px] text-gray-800;
+  }
 }

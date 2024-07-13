@@ -7,7 +7,7 @@ import { AnimatePresence } from 'framer-motion';
 import { textareaType } from '@/data/textareaType';
 import RatingSelector from '../rating/RatingSelector';
 import TagList from '../tag/TagList';
-import Textarea from './input/Textarea';
+import Textarea from '../form/input/Textarea';
 import Button from '../button/Button';
 import ConfirmLeaveSheet from '../popup/ConfirmLeaveSheet';
 import ToastMessage from '../popup/ToastMessage';
@@ -62,11 +62,12 @@ function ReviewForm({ bookId }: Props) {
     setNewReviewId('id');
     changeState(true);
   };
+
   return (
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(handleAddReview)}
-        className='flex h-fit w-full flex-1 flex-col items-center gap-[36px] bg-white p-[24px] text-gray-800'
+        className='tap-content-layout'
       >
         <RatingSelector />
         <TagList type='pros' />
