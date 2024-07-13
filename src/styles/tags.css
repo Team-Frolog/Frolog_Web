@@ -2,7 +2,7 @@
 
 @layer components {
   .major-tag-common {
-    @apply w-fit rounded-[8px] border-[0.5px] px-[12px] py-[6px] text-caption_bold;
+    @apply min-w-fit rounded-[8px] border-[0.5px] px-[12px] py-[6px] text-caption_bold;
   }
   .major-default-tag {
     @apply border-gray-600 bg-gray-300 text-gray-600;
