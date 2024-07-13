@@ -3,9 +3,10 @@ import Star from './Star';
 
 interface Props {
   rating: number;
+  textClass: string;
 }
 
-function Rating({ rating }: Props) {
+function Rating({ rating, textClass = 'text-body_xl_bold' }: Props) {
   const generateRatingStars = useCallback((rate: number) => {
     const stars = [];
     let currentRating = rate;
@@ -23,9 +24,7 @@ function Rating({ rating }: Props) {
 
   return (
     <div className='flex w-full items-center gap-[8px]'>
-      <span className='text-body_xl_bold text-gray-800'>
-        {rating.toFixed(1)}
-      </span>
+      <span className={`text-gray-800 ${textClass}`}>{rating.toFixed(1)}</span>
       <div className='flex gap-[4px]'>{generateRatingStars(rating)}</div>
     </div>
   );
