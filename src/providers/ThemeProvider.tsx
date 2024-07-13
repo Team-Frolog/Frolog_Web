@@ -10,6 +10,19 @@ function ThemeProvider() {
     typeof window !== 'undefined' ? window.innerWidth : 0
   );
 
+  const getTheme = () => {
+    const pages = Object.keys(PAGE_THEME);
+    let theme = 'dark';
+
+    pages.forEach((page) => {
+      if (pathname.includes(page)) {
+        theme = PAGE_THEME[page];
+      }
+    });
+
+    return theme;
+  };
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const handleResize = () => {
@@ -27,16 +40,14 @@ function ThemeProvider() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      if (windowWidth >= 450) {
-        return;
-      }
-      const html = document.querySelector('html')!;
-      const themeClass = PAGE_THEME[pathname] || 'dark';
-      html.className = themeClass;
+      const body = document.querySelector('body')!;
+      body.classList.remove('dark');
+      body.classList.remove('light');
+      body.classList.remove('half-gradient');
+      body.classList.add(getTheme());
     }
   }, [pathname, windowWidth]);
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>;
 }
 

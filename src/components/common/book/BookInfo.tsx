@@ -8,7 +8,7 @@ function BookInfo({ bookId }: { bookId: string }) {
   return (
     <div
       id='book-info'
-      className='relative flex w-full flex-col items-center gap-[20px] bg-white pt-[24px] text-gray-800'
+      className='relative flex w-full flex-col items-center gap-[20px] bg-white py-[24px] text-gray-800'
     >
       <Image
         src={IMAGES.book.background}

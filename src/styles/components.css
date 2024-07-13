@@ -16,4 +16,8 @@
   .circle {
     @apply absolute h-[320px] w-[320px] rounded-[50%] border-2 border-main_bright bg-none;
   }
+  .tooltip-after {
+    /* 별개로 지정해야 하는 속성 - top || bottom, border-[width], border-[color]*/
+    @apply after:absolute after:left-1/2 after:h-0 after:w-0 after:-translate-x-[50%] after:rotate-45 after:border-solid;
+  }
 }

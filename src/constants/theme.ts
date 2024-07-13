@@ -5,7 +5,7 @@ const HALF = 'half-gradient';
 export const PAGE_THEME: {
   [key: string]: string;
 } = {
-  '/': DARK,
+  '': DARK,
   '/landing': DARK,
   '/join': DARK,
   '/join/finish': DARK,
@@ -21,4 +21,5 @@ export const PAGE_THEME: {
   '/search': LIGHT,
   '/feed': LIGHT,
   '/profile': LIGHT,
+  '/well-book': HALF,
 };

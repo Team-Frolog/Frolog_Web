@@ -67,7 +67,7 @@ function ReviewForm({ bookId }: Props) {
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(handleAddReview)}
-        className='tap-content-layout'
+        className='tap-content-layout gap-[36px] p-[24px] pt-0'
       >
         <RatingSelector />
         <TagList type='pros' />
