@@ -4,7 +4,7 @@ import TagSlider from './TagSlider';
 
 function ReviewListItem() {
   return (
-    <div className='flex w-full flex-col gap-[20px] rounded-[20px] bg-white px-[24px] py-[36px]'>
+    <div className='flex w-full flex-col gap-[20px] rounded-[20px] bg-white px-[24px] pt-[36px]'>
       <div className='flex w-full flex-col gap-[12px] text-gray-800'>
         <div>
           <span className='rounded-[20px] bg-gray-800 px-[10px] py-[6px] text-body_sm_bold text-white'>
@@ -20,8 +20,14 @@ function ReviewListItem() {
           <TagSlider />
         </div>
       </div>
-      <span>date</span>
-      <button type='button'>리뷰 삭제</button>
+      <span className='text-body_md text-gray-600'>2024.02.07</span>
+
+      <div className='flex w-full flex-col'>
+        <hr className='border-[0.5px] border-gray-400' />
+        <button type='button' className='py-[20px] text-body_lg text-error'>
+          리뷰 삭제
+        </button>
+      </div>
     </div>
   );
 }
