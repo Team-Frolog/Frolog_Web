@@ -7,7 +7,7 @@ import { tapVariants } from '@/styles/variants/variants';
 interface Props extends HTMLMotionProps<'button'> {
   children: React.ReactNode;
   type?: 'button' | 'submit';
-  theme?: 'normal' | 'error';
+  theme?: 'normal' | 'error' | 'gray';
 }
 
 function Button({
@@ -21,7 +21,7 @@ function Button({
     <motion.button
       type={type}
       disabled={disabled}
-      className={`button ${disabled && 'button-disabled'} ${theme === 'error' && 'bg-error'}`}
+      className={`button ${disabled && 'button-disabled'} ${theme === 'error' && 'bg-error'} ${theme === 'gray' && 'bg-gray-300 text-gray-600'}`}
       variants={tapVariants}
       whileTap='tap'
       {...props}
