@@ -1,6 +1,6 @@
 'use client';
 
-import Timer from '@/components/common/form/Timer';
+import Timer from '@/components/common/form/code/Timer';
 import { useCodeTime } from '@/store/authStore';
 import React from 'react';
 

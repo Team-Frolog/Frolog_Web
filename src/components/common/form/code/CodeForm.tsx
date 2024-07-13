@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import ErrorPopUp from '@/components/common/form/ErrorPopUp';
+import ErrorPopUp from '@/components/common/popup/ErrorPopUp';
 import { AnimatePresence } from 'framer-motion';
 import Button from '@/components/common/button/Button';
 import { useVerification } from '@/hooks/auth/useVerification';
