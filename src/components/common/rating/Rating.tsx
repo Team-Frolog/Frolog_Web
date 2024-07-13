@@ -3,7 +3,7 @@ import Star from './Star';
 
 interface Props {
   rating: number;
-  textClass: string;
+  textClass?: string;
 }
 
 function Rating({ rating, textClass = 'text-body_xl_bold' }: Props) {
