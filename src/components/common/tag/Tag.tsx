@@ -5,7 +5,7 @@ import React from 'react';
 interface Props {
   tag: TagData;
   type: TagType;
-  onClick: (id: string) => void;
+  onClick?: (id: string) => void;
   isSelected: boolean;
 }
 
@@ -17,7 +17,7 @@ function Tag({ tag, type, onClick, isSelected }: Props) {
   return (
     <button
       type='button'
-      onClick={() => onClick(tag.id)}
+      onClick={onClick ? () => onClick(tag.id) : undefined}
       className={`tag-common ${getBgColor()}`}
     >
       {tag.value}

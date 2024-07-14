@@ -1,7 +1,8 @@
+import { Tag } from '@/types/tag';
 import React from 'react';
 
 interface Props {
-  type: 'default' | 'pros' | 'cons';
+  type: 'default' | Tag;
   text?: string;
 }
 
