@@ -7,14 +7,14 @@ import { UseFormSetValue, UseFormWatch } from 'react-hook-form';
 import Star from './Star';
 
 interface Props {
-  type: 'select' | 'default';
+  type: 'form' | 'default';
   rating?: number;
   setValue?: UseFormSetValue<ReviewForm>;
   watch?: UseFormWatch<ReviewForm>;
 }
 
 function RatingSelector({ type, rating, setValue, watch }: Props) {
-  const currentRating = type === 'select' ? watch!('rating') : rating;
+  const currentRating = type === 'form' ? watch!('rating') : rating;
 
   const handleRating = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
     const star = e.currentTarget;
@@ -50,7 +50,7 @@ function RatingSelector({ type, rating, setValue, watch }: Props) {
               rating={num}
               size={40}
               onClick={
-                type === 'select' ? (e) => handleRating(e, index) : undefined
+                type === 'form' ? (e) => handleRating(e, index) : undefined
               }
             />
           );

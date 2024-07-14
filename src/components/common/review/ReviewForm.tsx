@@ -63,7 +63,7 @@ function ReviewForm({ bookId }: Props) {
         onSubmit={handleSubmit(handleAddReview)}
         className='flex-child-layout gap-[36px]'
       >
-        <RatingSelector type='select' watch={watch} setValue={setValue} />
+        <RatingSelector type='form' watch={watch} setValue={setValue} />
         <TagList type='pros' />
         <TagList type='cons' />
         <Textarea option={textareaType.oneLiner} />
