@@ -4,7 +4,7 @@ import TagSlider from './TagSlider';
 
 function ReviewListItem() {
   return (
-    <div className='flex w-full select-none flex-col gap-[20px] rounded-[20px] bg-white px-[24px] pt-[36px]'>
+    <div className='flex w-full flex-col gap-[20px] rounded-[20px] bg-white px-[24px] pt-[36px]'>
       <div className='flex w-full cursor-pointer flex-col gap-[12px] text-gray-800'>
         <div>
           <span className='rounded-[20px] bg-gray-800 px-[10px] py-[6px] text-body_sm_bold text-white'>

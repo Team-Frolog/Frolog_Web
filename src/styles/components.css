@@ -2,7 +2,7 @@
 
 @layer components {
   .button {
-    @apply box-border w-full select-none rounded-[30px] bg-main px-[30px] py-[18px] text-body_lg_bold text-white transition-all;
+    @apply box-border w-full rounded-[30px] bg-main px-[30px] py-[18px] text-body_lg_bold text-white transition-all;
   }
   .button-disabled {
     @apply pointer-events-none opacity-[0.4];
