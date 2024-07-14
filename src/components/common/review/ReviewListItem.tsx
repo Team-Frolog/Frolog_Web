@@ -15,7 +15,7 @@ function ReviewListItem() {
         <h3 className='text-title_xl_bold'>
           예측불허의 긴장된 상태로 성적표를 처음 받아보았을 때를 잊을 수가 없다.
         </h3>
-        <div className='flex flex-col gap-[4px] overflow-hidden'>
+        <div className='flex w-full flex-col gap-[4px]'>
           <TagSlider />
           <TagSlider />
         </div>
