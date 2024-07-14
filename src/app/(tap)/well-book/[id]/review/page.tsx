@@ -14,7 +14,17 @@ interface Props {
 function ReviewPage({ params: { id } }: Props) {
   useScroll();
 
-  return <>{id === '1' ? <ReviewForm bookId={id} /> : <ReviewList />}</>;
+  return (
+    <div className='w-full flex-1 bg-white'>
+      {id === '1' ? (
+        <div className='p-[24px] pt-0'>
+          <ReviewForm bookId={id} />
+        </div>
+      ) : (
+        <ReviewList />
+      )}
+    </div>
+  );
 }
 
 export default ReviewPage;
