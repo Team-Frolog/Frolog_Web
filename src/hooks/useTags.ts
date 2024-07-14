@@ -1,7 +1,8 @@
 import { usePopUpActions } from '@/store/popUpStore';
+import { Tag } from '@/types/tag';
 import { useFormContext } from 'react-hook-form';
 
-export const useTags = (type: 'pros' | 'cons') => {
+export const useTags = (type: Tag) => {
   const { changePopUpState } = usePopUpActions();
   const { watch, setValue } = useFormContext();
   const selectedTags = watch(type) || [];

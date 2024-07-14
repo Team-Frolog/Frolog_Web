@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { conTags, proTags } from '@/data/tag';
+import { Tag as TagType } from '@/types/tag';
 import { useTags } from '@/hooks/useTags';
 import { motion, useAnimationControls } from 'framer-motion';
 import Image from 'next/image';
@@ -9,7 +10,7 @@ import { ICONS } from '@/constants/icons';
 import Tag from './Tag';
 
 interface Props {
-  type: 'pros' | 'cons';
+  type: TagType;
 }
 
 function TagList({ type }: Props) {

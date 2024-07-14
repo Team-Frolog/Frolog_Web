@@ -2,6 +2,7 @@ import { useToastMessage } from '@/hooks/useToastMessage';
 import useSplashStore from '@/store/splashStore';
 import { useStackMotionActions } from '@/store/stackMotionStore';
 import React from 'react';
+import { ReviewForm as ReviewFormType } from '@/types/form';
 import { FormProvider, useForm } from 'react-hook-form';
 import { AnimatePresence } from 'framer-motion';
 import { textareaType } from '@/data/textareaType';
@@ -12,14 +13,6 @@ import Button from '../button/Button';
 import ConfirmLeaveSheet from '../popup/ConfirmLeaveSheet';
 import ToastMessage from '../popup/ToastMessage';
 import Splash from '../splash/Splash';
-
-export interface ReviewFormType {
-  rating: number | null;
-  oneLiner: string;
-  review: string;
-  pros: number[];
-  cons: number[];
-}
 
 interface Props {
   bookId: string;

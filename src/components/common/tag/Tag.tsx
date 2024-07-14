@@ -1,9 +1,10 @@
-import { Tag as TagType } from '@/data/tag';
+import { TagData } from '@/data/tag';
+import { Tag as TagType } from '@/types/tag';
 import React from 'react';
 
 interface Props {
-  tag: TagType;
-  type: 'pros' | 'cons';
+  tag: TagData;
+  type: TagType;
   onClick: (id: string) => void;
   isSelected: boolean;
 }
