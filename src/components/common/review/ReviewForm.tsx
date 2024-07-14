@@ -1,9 +1,7 @@
-import { useToastMessage } from '@/hooks/useToastMessage';
-import useSplashStore from '@/store/splashStore';
-import { useStackMotionActions } from '@/store/stackMotionStore';
 import React from 'react';
 import { ReviewForm as ReviewFormType } from '@/types/form';
-import { FormProvider, useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
+import { useToastMessage } from '@/hooks/useToastMessage';
 import { AnimatePresence } from 'framer-motion';
 import { textareaType } from '@/data/textareaType';
 import RatingSelector from '../rating/RatingSelector';
@@ -12,36 +10,21 @@ import Textarea from '../form/input/Textarea';
 import Button from '../button/Button';
 import ConfirmLeaveSheet from '../popup/ConfirmLeaveSheet';
 import ToastMessage from '../popup/ToastMessage';
-import Splash from '../splash/Splash';
 
 interface Props {
   bookId: string;
+  type: 'new' | 'edit';
+  handleSubmitForm: () => void;
 }
 
-function ReviewForm({ bookId }: Props) {
-  const {
-    isOpen,
-    actions: { changeState },
-  } = useSplashStore();
-  const { setNewReviewId } = useStackMotionActions();
-  const { isOpenToast } = useToastMessage();
-  const methods = useForm<ReviewFormType>({
-    mode: 'onBlur',
-    defaultValues: {
-      rating: null,
-      oneLiner: '',
-      review: '',
-      pros: [],
-      cons: [],
-    },
-  });
-
+function ReviewForm({ bookId, type, handleSubmitForm }: Props) {
   const {
     watch,
-    setValue,
     handleSubmit,
+    setValue,
     formState: { isValid },
-  } = methods;
+  } = useFormContext<ReviewFormType>();
+  const { isOpenToast } = useToastMessage();
 
   const isDisabled =
     !watch('rating') ||
@@ -51,16 +34,10 @@ function ReviewForm({ bookId }: Props) {
     !watch('cons').length ||
     !isValid;
 
-  const handleAddReview = () => {
-    // TODO: 서버 연동
-    setNewReviewId('id');
-    changeState(true);
-  };
-
   return (
-    <FormProvider {...methods}>
-      <form
-        onSubmit={handleSubmit(handleAddReview)}
+    <>
+      <div
+        onSubmit={handleSubmit(handleSubmitForm)}
         className='flex-child-layout gap-[36px]'
       >
         <RatingSelector type='form' watch={watch} setValue={setValue} />
@@ -68,18 +45,19 @@ function ReviewForm({ bookId }: Props) {
         <TagList type='cons' />
         <Textarea option={textareaType.oneLiner} />
         <Textarea option={textareaType.review} />
-        <Button type='submit' disabled={isDisabled}>
-          저장하기
-        </Button>
+        {type === 'new' && (
+          <Button type='submit' disabled={isDisabled}>
+            저장하기
+          </Button>
+        )}
         <ConfirmLeaveSheet bookId={bookId} />
-      </form>
+      </div>
       <AnimatePresence>
         {isOpenToast && (
           <ToastMessage text='키워드는 최대 5개까지 고를 수 있어요!' />
         )}
       </AnimatePresence>
-      {isOpen && <Splash type='review' />}
-    </FormProvider>
+    </>
   );
 }
 
