@@ -13,7 +13,7 @@ import ConfirmLeaveSheet from '../popup/ConfirmLeaveSheet';
 import ToastMessage from '../popup/ToastMessage';
 import Splash from '../splash/Splash';
 
-interface ReviewFormType {
+export interface ReviewFormType {
   rating: number | null;
   oneLiner: string;
   review: string;
@@ -45,6 +45,7 @@ function ReviewForm({ bookId }: Props) {
 
   const {
     watch,
+    setValue,
     handleSubmit,
     formState: { isValid },
   } = methods;
@@ -67,9 +68,9 @@ function ReviewForm({ bookId }: Props) {
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(handleAddReview)}
-        className='tap-content-layout gap-[36px] p-[24px] pt-0'
+        className='flex-child-layout gap-[36px]'
       >
-        <RatingSelector />
+        <RatingSelector type='select' watch={watch} setValue={setValue} />
         <TagList type='pros' />
         <TagList type='cons' />
         <Textarea option={textareaType.oneLiner} />
