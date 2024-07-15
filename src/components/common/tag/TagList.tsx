@@ -7,6 +7,7 @@ import { useTags } from '@/hooks/useTags';
 import { motion, useAnimationControls } from 'framer-motion';
 import Image from 'next/image';
 import { ICONS } from '@/constants/icons';
+import { useFormContext } from 'react-hook-form';
 import Tag from './Tag';
 
 interface Props {
@@ -16,7 +17,10 @@ interface Props {
 function TagList({ type }: Props) {
   const { handleTagSelect, selectedTags } = useTags(type);
   const controls = useAnimationControls();
-  const [isExpanded, setIsExpanded] = useState(false);
+  const { getValues } = useFormContext();
+  const [isExpanded, setIsExpanded] = useState<boolean>(
+    getValues()[type].length
+  );
   const tagData = type === 'pros' ? proTags : conTags;
 
   useEffect(() => {
@@ -33,7 +37,7 @@ function TagList({ type }: Props) {
         {type === 'pros' ? '장점' : '단점'} 키워드 (1~5개 고르세요)
       </span>
       <motion.div
-        initial={{ height: '170px' }}
+        initial={{ height: isExpanded ? 'auto' : '170px' }}
         animate={controls}
         transition={{ duration: 0.3 }}
         className='relative flex w-[90%] flex-wrap gap-[16px] overflow-hidden mobile:w-full'

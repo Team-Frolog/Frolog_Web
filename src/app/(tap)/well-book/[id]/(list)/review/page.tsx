@@ -35,6 +35,19 @@ function ReviewPage({ params: { id } }: Props) {
       cons: [],
     },
   });
+  const {
+    watch,
+    handleSubmit,
+    formState: { isValid },
+  } = methods;
+
+  const isDisabled =
+    !watch('rating') ||
+    !watch('oneLiner') ||
+    !watch('review') ||
+    !watch('pros').length ||
+    !watch('cons').length ||
+    !isValid;
 
   const handleAddReview = () => {
     // TODO: 서버 연동
@@ -46,12 +59,11 @@ function ReviewPage({ params: { id } }: Props) {
     <div className='w-full flex-1 bg-white'>
       {id === '1' ? (
         <FormProvider {...methods}>
-          <form className='p-[24px] pt-0'>
-            <ReviewForm
-              type='new'
-              bookId={id}
-              handleSubmitForm={handleAddReview}
-            />
+          <form
+            className='p-[24px] pt-0'
+            onSubmit={handleSubmit(handleAddReview)}
+          >
+            <ReviewForm type='new' bookId={id} isDisabled={isDisabled} />
           </form>
           {isOpen && <Splash type='review' />}
         </FormProvider>

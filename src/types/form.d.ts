@@ -39,6 +39,6 @@ export interface ReviewForm {
   rating: number | null;
   oneLiner: string;
   review: string;
-  pros: number[];
-  cons: number[];
+  pros: string[];
+  cons: string[];
 }

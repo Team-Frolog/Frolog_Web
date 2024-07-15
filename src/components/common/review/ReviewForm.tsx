@@ -14,32 +14,16 @@ import ToastMessage from '../popup/ToastMessage';
 interface Props {
   bookId: string;
   type: 'new' | 'edit';
-  handleSubmitForm: () => void;
+  isDisabled?: boolean;
 }
 
-function ReviewForm({ bookId, type, handleSubmitForm }: Props) {
-  const {
-    watch,
-    handleSubmit,
-    setValue,
-    formState: { isValid },
-  } = useFormContext<ReviewFormType>();
+function ReviewForm({ bookId, type, isDisabled }: Props) {
+  const { watch, setValue } = useFormContext<ReviewFormType>();
   const { isOpenToast } = useToastMessage();
-
-  const isDisabled =
-    !watch('rating') ||
-    !watch('oneLiner') ||
-    !watch('review') ||
-    !watch('pros').length ||
-    !watch('cons').length ||
-    !isValid;
 
   return (
     <>
-      <div
-        onSubmit={handleSubmit(handleSubmitForm)}
-        className='flex-child-layout gap-[36px]'
-      >
+      <div className='flex-child-layout gap-[36px]'>
         <RatingSelector type='form' watch={watch} setValue={setValue} />
         <TagList type='pros' />
         <TagList type='cons' />
