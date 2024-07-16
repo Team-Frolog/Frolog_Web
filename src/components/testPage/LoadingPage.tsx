@@ -57,6 +57,7 @@ function LoadingPage() {
         width={390}
         height={106}
         className='w-full'
+        loading='eager'
       />
     </div>
   );

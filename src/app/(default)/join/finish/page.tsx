@@ -27,6 +27,7 @@ function JoinFinishPage() {
           width={319}
           height={257}
           className='w-full'
+          loading='eager'
         />
         <TestStartButton />
       </div>
