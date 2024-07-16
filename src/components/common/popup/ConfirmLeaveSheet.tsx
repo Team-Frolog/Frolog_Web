@@ -4,15 +4,15 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { ON_LEAVE_ROUTE } from '@/constants/storage';
 import { PAGES } from '@/constants/page';
+import { AlertSheet } from '@/data/ui/bottomSheet';
 import AlertBottomSheet from './AlertBottomSheet';
 
 interface Props {
   bookId: string;
-  extraButtonText: string;
-  description: string;
+  sheetData: AlertSheet;
 }
 
-function ConfirmLeaveSheet({ bookId, extraButtonText, description }: Props) {
+function ConfirmLeaveSheet({ bookId, sheetData }: Props) {
   const router = useRouter();
   const isOpenAlertSheet = useAlertSheetState();
   const backRoute = () => {
@@ -25,24 +25,14 @@ function ConfirmLeaveSheet({ bookId, extraButtonText, description }: Props) {
     <AnimatePresence>
       {isOpenAlertSheet && (
         <AlertBottomSheet
-          title={
-            <>
-              아직 작성중이에요
-              <br />
-              정말 나가시나요?
-            </>
-          }
-          type='error'
-          buttonText='나가기'
-          extraButtonText={extraButtonText}
-          stateType='isOpenAlertSheet'
+          sheetData={sheetData}
           onClick={() =>
             backRoute() !== 'back'
               ? router.replace(`${PAGES.WELL_BOOK}/${bookId}/memo`)
               : router.back()
           }
         >
-          <p className='text-body_lg'>{description}</p>
+          <p className='text-body_lg'>{sheetData.description}</p>
         </AlertBottomSheet>
       )}
     </AnimatePresence>

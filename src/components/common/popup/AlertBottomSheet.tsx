@@ -4,30 +4,20 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { modalBackgroundVariants } from '@/styles/variants/variants';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
-import { PopUpType, usePopUpActions } from '@/store/popUpStore';
+import { usePopUpActions } from '@/store/popUpStore';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
+import { AlertSheet } from '@/data/ui/bottomSheet';
 import Button from '../button/Button';
 
 interface Props {
-  title: React.ReactNode;
-  type: 'normal' | 'error';
-  stateType: PopUpType;
+  sheetData: AlertSheet;
   children: React.ReactNode;
-  buttonText?: string;
-  extraButtonText?: string;
   onClick?: () => void;
 }
 
-function AlertBottomSheet({
-  title,
-  type,
-  children,
-  buttonText,
-  stateType,
-  extraButtonText,
-  onClick,
-}: Props) {
+function AlertBottomSheet({ sheetData, children, onClick }: Props) {
+  const { getTitle, type, stateType, buttonText, extraButtonText } = sheetData;
   const { changePopUpState } = usePopUpActions();
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -67,7 +57,7 @@ function AlertBottomSheet({
           className='absolute inset-x-0 -top-[58px] mx-auto'
         />
         <div className='flex w-full flex-col items-center gap-[12px]'>
-          <h2 className='text-center text-h_md_bold'>{title}</h2>
+          <h2 className='text-center text-h_md_bold'>{getTitle()}</h2>
           {children}
         </div>
         {buttonText && onClick && (

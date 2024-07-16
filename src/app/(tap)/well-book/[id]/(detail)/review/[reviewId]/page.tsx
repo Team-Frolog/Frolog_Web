@@ -4,6 +4,7 @@ import TitleHeader from '@/components/common/header/TitleHeader';
 import ConfirmLeaveSheet from '@/components/common/popup/ConfirmLeaveSheet';
 import ReviewDetail from '@/components/common/review/ReviewDetail';
 import ReviewForm from '@/components/common/review/ReviewForm';
+import { sheetData } from '@/data/ui/bottomSheet';
 import { ReviewForm as ReviewFormType } from '@/types/form';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react';
@@ -69,8 +70,7 @@ function WellBookReviewPage({ params: { id } }: Props) {
               <ReviewForm type='edit' />
               <ConfirmLeaveSheet
                 bookId={id}
-                extraButtonText='계속 수정하기'
-                description='수정 중에 나가면 수정된 내용이 저장되지 않아요'
+                sheetData={sheetData.leave_while_edit}
               />
             </>
           ) : (

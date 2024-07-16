@@ -10,6 +10,7 @@ import { useStackMotionActions } from '@/store/stackMotionStore';
 import { ReviewForm as ReviewFormType } from '@/types/form';
 import useSplashStore from '@/store/splashStore';
 import ConfirmLeaveSheet from '@/components/common/popup/ConfirmLeaveSheet';
+import { sheetData } from '@/data/ui/bottomSheet';
 
 interface Props {
   params: {
@@ -67,8 +68,7 @@ function ReviewPage({ params: { id } }: Props) {
             <ReviewForm type='new' isDisabled={isDisabled} />
             <ConfirmLeaveSheet
               bookId={id}
-              extraButtonText='계속 작성하기'
-              description='이대로 나가면 내용이 저장되지 않아요'
+              sheetData={sheetData.leave_while_review}
             />
           </form>
           {isOpen && <Splash type='review' />}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAlertSheetState } from '@/store/popUpStore';
 import { AnimatePresence } from 'framer-motion';
+import { sheetData } from '@/data/ui/bottomSheet';
 import ReviewListItem from './ReviewListItem';
 import FirstReviewItem from './FirstReviewItem';
 import AlertBottomSheet from '../popup/AlertBottomSheet';
@@ -19,17 +20,7 @@ function ReviewList() {
       <AnimatePresence>
         {isOpenAlertSheet && (
           <AlertBottomSheet
-            title={
-              <>
-                작성한 리뷰를
-                <br />
-                정말 삭제할까요?
-              </>
-            }
-            stateType='isOpenAlertSheet'
-            type='error'
-            buttonText='네, 삭제할게요'
-            extraButtonText='아니요, 유지할게요'
+            sheetData={sheetData.delete_review}
             onClick={handleDeleteReview}
           >
             <p className='text-body_lg'>
