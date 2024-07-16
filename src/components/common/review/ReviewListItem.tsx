@@ -1,8 +1,13 @@
+'use client';
+
 import React from 'react';
+import { usePopUpActions } from '@/store/popUpStore';
 import Rating from '../rating/Rating';
 import TagSlider from './TagSlider';
 
 function ReviewListItem() {
+  const { changePopUpState } = usePopUpActions();
+
   return (
     <div className='flex w-full flex-col gap-[20px] rounded-[20px] bg-white px-[24px] pt-[36px]'>
       <div className='flex w-full cursor-pointer flex-col gap-[12px] text-gray-800'>
@@ -24,7 +29,11 @@ function ReviewListItem() {
 
       <div className='flex w-full flex-col'>
         <hr className='border-[0.5px] border-gray-400' />
-        <button type='button' className='py-[20px] text-body_lg text-error'>
+        <button
+          type='button'
+          onClick={() => changePopUpState('isOpenAlertSheet', true)}
+          className='py-[20px] text-body_lg text-error'
+        >
           리뷰 삭제
         </button>
       </div>
