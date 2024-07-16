@@ -35,6 +35,7 @@ function ConfirmLeaveSheet({ bookId, extraButtonText, description }: Props) {
           type='error'
           buttonText='나가기'
           extraButtonText={extraButtonText}
+          stateType='isOpenAlertSheet'
           onClick={() =>
             backRoute() !== 'back'
               ? router.replace(`${PAGES.WELL_BOOK}/${bookId}/memo`)

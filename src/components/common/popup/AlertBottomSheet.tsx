@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { modalBackgroundVariants } from '@/styles/variants/variants';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
-import { usePopUpActions } from '@/store/popUpStore';
+import { PopUpType, usePopUpActions } from '@/store/popUpStore';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import Button from '../button/Button';
@@ -12,6 +12,7 @@ import Button from '../button/Button';
 interface Props {
   title: React.ReactNode;
   type: 'normal' | 'error';
+  stateType: PopUpType;
   children: React.ReactNode;
   buttonText?: string;
   extraButtonText?: string;
@@ -23,13 +24,14 @@ function AlertBottomSheet({
   type,
   children,
   buttonText,
+  stateType,
   extraButtonText,
   onClick,
 }: Props) {
   const { changePopUpState } = usePopUpActions();
   const ref = useRef<HTMLDivElement | null>(null);
 
-  useClickOutside(ref, () => changePopUpState('isOpenAlertSheet', false));
+  useClickOutside(ref, () => changePopUpState(stateType, false));
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -53,21 +55,23 @@ function AlertBottomSheet({
         animate={{ y: '0%' }}
         exit={{ y: '120%' }}
         transition={{ duration: 0.3 }}
-        className='flex h-fit w-full flex-col items-center gap-[40px] rounded-t-[20px] bg-white px-[24px] py-[40px] text-gray-800'
+        className='flex h-fit w-full flex-col items-center gap-[40px] rounded-t-[20px] bg-white px-[24px] py-[40px] pb-0 text-gray-800'
       >
         <Image
-          src={IMAGES.frog.sheet.error}
+          src={
+            type === 'error' ? IMAGES.frog.sheet.error : IMAGES.frog.sheet.book
+          }
           alt='error frog'
           width={191}
           height={70}
-          className='absolute inset-x-0 -top-[55px] mx-auto'
+          className='absolute inset-x-0 -top-[58px] mx-auto'
         />
         <div className='flex w-full flex-col items-center gap-[12px]'>
           <h2 className='text-center text-h_md_bold'>{title}</h2>
           {children}
         </div>
         {buttonText && onClick && (
-          <div className='flex w-full flex-col items-center gap-[20px]'>
+          <div className='flex w-full flex-col items-center gap-[20px] pb-[40px]'>
             <Button
               type='button'
               theme={type}

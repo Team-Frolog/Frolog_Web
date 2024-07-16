@@ -11,6 +11,7 @@ export const IMAGES = {
     sitting: `${BASE_PATH}/frog/frog-sitting.svg`,
     sheet: {
       error: `${BASE_PATH}/frog/sheet/frog-sheet-error.svg`,
+      book: `${BASE_PATH}/frog/sheet/frog-with-book.svg`,
     },
   },
   test: {

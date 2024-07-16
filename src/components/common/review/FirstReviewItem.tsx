@@ -1,9 +1,14 @@
+'use client';
+
 import Image from 'next/image';
 import React from 'react';
 import { IMAGES } from '@/constants/images';
+import { usePopUpActions } from '@/store/popUpStore';
 import Button from '../button/Button';
+import WellSelectSheet from '../popup/WellSelectSheet';
 
 function FirstReviewItem() {
+  const { changePopUpState } = usePopUpActions();
   return (
     <div className='flex w-full flex-col gap-[36px] p-[24px] text-gray-800'>
       <div className='flex w-full flex-col items-center gap-[16px] text-center'>
@@ -27,9 +32,14 @@ function FirstReviewItem() {
           <br />한 번 더 읽어보는 건 어떨까요?
         </span>
       </div>
-      <Button type='button' theme='gray'>
+      <Button
+        type='button'
+        onClick={() => changePopUpState('isOpenWellSheet', true)}
+        theme='gray'
+      >
         다회독 도전하기
       </Button>
+      <WellSelectSheet />
     </div>
   );
 }
