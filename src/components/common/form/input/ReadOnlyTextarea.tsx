@@ -1,4 +1,4 @@
-import { TextareaType } from '@/data/textareaType';
+import { TextareaType } from '@/data/ui/textareaType';
 import React from 'react';
 
 interface Props {

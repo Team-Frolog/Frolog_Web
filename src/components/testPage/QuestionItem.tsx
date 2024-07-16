@@ -1,4 +1,4 @@
-import { Answer } from '@/data/test';
+import { Answer } from '@/data/test/test';
 import React from 'react';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {

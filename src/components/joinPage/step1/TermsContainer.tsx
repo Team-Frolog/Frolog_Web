@@ -1,4 +1,4 @@
-import { terms } from '@/data/terms';
+import { terms } from '@/data/terms/terms';
 import React from 'react';
 import CheckItem from './CheckItem';
 

@@ -1,14 +1,14 @@
 'use client';
 
-import { ITerms } from '@/data/terms';
 import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { AnimatePresence } from 'framer-motion';
 import CheckButton from '@/components/common/button/CheckButton';
+import { Terms } from '@/data/terms/terms';
 import TermsPopUp from './TermsPopUp';
 
 interface Props {
-  termsData: ITerms;
+  termsData: Terms;
 }
 
 function CheckItem({ termsData }: Props) {

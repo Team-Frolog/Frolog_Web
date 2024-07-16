@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ratingMessage } from '@/data/ratingMessage';
+import { ratingMessage } from '@/data/ui/ratingMessage';
 import { ReviewForm } from '@/types/form';
 import { UseFormSetValue, UseFormWatch } from 'react-hook-form';
 import Star from './Star';

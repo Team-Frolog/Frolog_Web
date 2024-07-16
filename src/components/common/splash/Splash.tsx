@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import PopperAnimation from '@/components/animation/PopperAnimation';
-import { splash, SplashKeys } from '@/data/splash';
+import { splash, SplashKeys } from '@/data/ui/splash';
 import { useSplashAction } from '@/store/splashStore';
 import { useRouter } from 'next/navigation';
 import { ICONS } from '@/constants/icons';

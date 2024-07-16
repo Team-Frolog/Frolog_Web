@@ -1,7 +1,7 @@
 'use client';
 
 import CheckButton from '@/components/common/button/CheckButton';
-import { consentsKeys } from '@/data/joinForm';
+import { consentsKeys } from '@/data/form/joinForm';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 

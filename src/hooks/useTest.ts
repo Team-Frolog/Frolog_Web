@@ -2,7 +2,7 @@ import userAPI from '@/app/api/user.api';
 import { POST_ERROR } from '@/constants/message';
 import { PAGES } from '@/constants/page';
 import { TEST_ANSWER_KEY } from '@/constants/storage';
-import { Question, questions } from '@/data/test';
+import { Question, questions } from '@/data/test/test';
 import { useStepActions, useTestStep } from '@/store/stepStore';
 import { testEvaluator } from '@/utils/testEvaluator';
 import { getSession } from 'next-auth/react';

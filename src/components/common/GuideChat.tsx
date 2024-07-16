@@ -1,6 +1,6 @@
 'use client';
 
-import { chat } from '@/data/chat';
+import { chat } from '@/data/ui/chat';
 import { useNewReviewId } from '@/store/stackMotionStore';
 import { useSession } from 'next-auth/react';
 import React from 'react';

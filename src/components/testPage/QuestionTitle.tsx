@@ -1,4 +1,4 @@
-import { Question } from '@/data/test';
+import { Question } from '@/data/test/test';
 import React from 'react';
 
 interface Props {

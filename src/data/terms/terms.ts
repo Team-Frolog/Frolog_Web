@@ -1,8 +1,8 @@
-import { marketing } from './terms/marketing';
-import { privacyPolicy } from './terms/privacyPolicy';
-import { termsOfUse } from './terms/termsOfUse';
+import { marketing } from './marketing';
+import { privacyPolicy } from './privacyPolicy';
+import { termsOfUse } from './termsOfUse';
 
-export interface ITerms {
+export interface Terms {
   id: number;
   name: string;
   label: string;
@@ -10,7 +10,7 @@ export interface ITerms {
   view?: string;
 }
 
-export const terms: ITerms[] = [
+export const terms: Terms[] = [
   { id: 0, name: 'age', label: '[필수] 만 14세 이상입니다.' },
   {
     id: 1,

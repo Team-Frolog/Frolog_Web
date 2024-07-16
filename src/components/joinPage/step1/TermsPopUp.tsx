@@ -1,12 +1,12 @@
 'use client';
 
-import { ITerms } from '@/data/terms';
+import { Terms } from '@/data/terms/terms';
 import PopUpLayout from '@/layouts/PopUpLayout';
 import React from 'react';
 import TermsText from '../TermsText';
 
 interface Props {
-  termsData: ITerms;
+  termsData: Terms;
   closePopUp: () => void;
 }
 

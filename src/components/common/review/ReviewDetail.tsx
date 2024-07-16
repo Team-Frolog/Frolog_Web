@@ -1,6 +1,6 @@
 import React from 'react';
 import { proTags } from '@/data/tag';
-import { textareaType } from '@/data/textareaType';
+import { textareaType } from '@/data/ui/textareaType';
 import RatingSelector from '../rating/RatingSelector';
 import MajorTagList from '../tag/MajorTagList';
 import ReadOnlyTextarea from '../form/input/ReadOnlyTextarea';

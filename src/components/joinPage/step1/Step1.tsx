@@ -2,7 +2,7 @@
 
 import ButtonWithText from '@/components/common/button/ButtonWithText';
 import React from 'react';
-import { requiredConsentsKeys } from '@/data/joinForm';
+import { requiredConsentsKeys } from '@/data/form/joinForm';
 import { useFormContext } from 'react-hook-form';
 import { useStepActions } from '@/store/stepStore';
 import TermsContainer from './TermsContainer';

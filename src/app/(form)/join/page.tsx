@@ -5,7 +5,7 @@ import Step2 from '@/components/joinPage/step2/Step2';
 import CodeForm from '@/components/common/form/code/CodeForm';
 import Step4 from '@/components/joinPage/step4/Step4';
 import { JOIN_FORM_KEY } from '@/constants/storage';
-import { defaultValue } from '@/data/joinForm';
+import { defaultValue } from '@/data/form/joinForm';
 import { useJoin } from '@/hooks/auth/useJoin';
 import { JoinForm } from '@/types/form';
 import { FormProvider, useForm } from 'react-hook-form';

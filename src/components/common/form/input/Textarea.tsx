@@ -1,4 +1,4 @@
-import { TextareaType } from '@/data/textareaType';
+import { TextareaType } from '@/data/ui/textareaType';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Question as QuestionType } from '@/data/test';
+import { Question as QuestionType } from '@/data/test/test';
 import QuestionTitle from './QuestionTitle';
 import QuestionItem from './QuestionItem';
 

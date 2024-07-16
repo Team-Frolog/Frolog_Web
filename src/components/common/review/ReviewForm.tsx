@@ -3,7 +3,7 @@ import { ReviewForm as ReviewFormType } from '@/types/form';
 import { useFormContext } from 'react-hook-form';
 import { useToastMessage } from '@/hooks/useToastMessage';
 import { AnimatePresence } from 'framer-motion';
-import { textareaType } from '@/data/textareaType';
+import { textareaType } from '@/data/ui/textareaType';
 import RatingSelector from '../rating/RatingSelector';
 import TagList from '../tag/TagList';
 import Textarea from '../form/input/Textarea';
