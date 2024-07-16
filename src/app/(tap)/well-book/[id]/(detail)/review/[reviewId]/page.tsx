@@ -1,6 +1,7 @@
 'use client';
 
 import TitleHeader from '@/components/common/header/TitleHeader';
+import ConfirmLeaveSheet from '@/components/common/popup/ConfirmLeaveSheet';
 import ReviewDetail from '@/components/common/review/ReviewDetail';
 import ReviewForm from '@/components/common/review/ReviewForm';
 import { ReviewForm as ReviewFormType } from '@/types/form';
@@ -58,13 +59,20 @@ function WellBookReviewPage({ params: { id } }: Props) {
         className='flex h-fit w-full flex-1 flex-col bg-white'
       >
         <TitleHeader
-          buttonType={isEditing ? 'submit' : 'button'}
+          type={isEditing ? 'edit' : 'default'}
           isDisabled={isDisabled}
           onClick={() => router.push(`${pathname}?edit=true`)}
         />
         <div className='flex h-fit w-full flex-1 flex-col px-[24px] py-[36px]'>
           {isEditing ? (
-            <ReviewForm type='edit' bookId={id} />
+            <>
+              <ReviewForm type='edit' />
+              <ConfirmLeaveSheet
+                bookId={id}
+                extraButtonText='계속 수정하기'
+                description='수정 중에 나가면 수정된 내용이 저장되지 않아요'
+              />
+            </>
           ) : (
             <ReviewDetail />
           )}

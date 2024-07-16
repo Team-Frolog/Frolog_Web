@@ -8,16 +8,14 @@ import RatingSelector from '../rating/RatingSelector';
 import TagList from '../tag/TagList';
 import Textarea from '../form/input/Textarea';
 import Button from '../button/Button';
-import ConfirmLeaveSheet from '../popup/ConfirmLeaveSheet';
 import ToastMessage from '../popup/ToastMessage';
 
 interface Props {
-  bookId: string;
   type: 'new' | 'edit';
   isDisabled?: boolean;
 }
 
-function ReviewForm({ bookId, type, isDisabled }: Props) {
+function ReviewForm({ type, isDisabled }: Props) {
   const { watch, setValue } = useFormContext<ReviewFormType>();
   const { isOpenToast } = useToastMessage();
 
@@ -34,7 +32,6 @@ function ReviewForm({ bookId, type, isDisabled }: Props) {
             저장하기
           </Button>
         )}
-        <ConfirmLeaveSheet bookId={bookId} />
       </div>
       <AnimatePresence>
         {isOpenToast && (
