@@ -44,12 +44,21 @@ function DownloadButton({ type }: Props) {
         onClick={isDownloaded ? undefined : onClickImgLink}
         className={`${isDownloaded && 'cursor-default'}`}
       >
-        <Image
-          src={isDownloaded ? ICONS.test.download_done : ICONS.test.download}
-          alt='download'
-          width={30}
-          height={30}
-        />
+        {isDownloaded ? (
+          <Image
+            src={ICONS.test.download_done}
+            alt='download'
+            width={30}
+            height={30}
+          />
+        ) : (
+          <Image
+            src={ICONS.test.download}
+            alt='download-done'
+            width={30}
+            height={30}
+          />
+        )}
       </button>
       <AnimatePresence>
         {isOpenTooltip && (
