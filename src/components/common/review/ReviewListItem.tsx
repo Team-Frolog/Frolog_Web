@@ -31,7 +31,7 @@ function ReviewListItem() {
         <hr className='border-[0.5px] border-gray-400' />
         <button
           type='button'
-          onClick={() => changePopUpState('isOpenAlertSheet', true)}
+          onClick={() => changePopUpState('isOpenDeleteSheet', true)}
           className='py-[20px] text-body_lg text-error'
         >
           리뷰 삭제

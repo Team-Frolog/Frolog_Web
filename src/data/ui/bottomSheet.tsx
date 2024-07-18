@@ -51,7 +51,7 @@ export const sheetData: {
     type: 'error',
     buttonText: '네, 삭제할게요',
     extraButtonText: '아니요, 유지할게요',
-    stateType: 'isOpenAlertSheet',
+    stateType: 'isOpenDeleteSheet',
     description: '리뷰를 한 번 삭제하면 복구할 수 없어요.',
   },
   add_another_to_well: {

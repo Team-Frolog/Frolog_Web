@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAlertSheetState } from '@/store/popUpStore';
+import { useDeleteSheetState } from '@/store/popUpStore';
 import { AnimatePresence } from 'framer-motion';
 import { sheetData } from '@/data/ui/bottomSheet';
 import ReviewListItem from './ReviewListItem';
@@ -7,7 +7,7 @@ import FirstReviewItem from './FirstReviewItem';
 import AlertBottomSheet from '../popup/AlertBottomSheet';
 
 function ReviewList() {
-  const isOpenAlertSheet = useAlertSheetState();
+  const isOpenDeleteSheet = useDeleteSheetState();
 
   const handleDeleteReview = () => {
     // TODO: 서버 연동
@@ -18,7 +18,7 @@ function ReviewList() {
       <ReviewListItem />
       <FirstReviewItem />
       <AnimatePresence>
-        {isOpenAlertSheet && (
+        {isOpenDeleteSheet && (
           <AlertBottomSheet
             sheetData={sheetData.delete_review}
             onClick={handleDeleteReview}
