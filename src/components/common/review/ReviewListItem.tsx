@@ -21,8 +21,8 @@ function ReviewListItem() {
           예측불허의 긴장된 상태로 성적표를 처음 받아보았을 때를 잊을 수가 없다.
         </h3>
         <div className='flex w-full flex-col gap-[4px]'>
-          <TagSlider />
-          <TagSlider />
+          <TagSlider type='pros' />
+          <TagSlider type='cons' />
         </div>
       </div>
       <span className='text-body_md text-gray-600'>2024.02.07</span>

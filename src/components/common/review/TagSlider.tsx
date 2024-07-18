@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import MajorTag from '../tag/MajorTag';
 
-function TagSlider() {
+function TagSlider({ type }: { type: 'pros' | 'cons' }) {
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const motionDivRef = useRef<HTMLDivElement | null>(null);
   const [drag, setDrag] = useState<'x' | undefined>(undefined);
@@ -46,7 +46,7 @@ function TagSlider() {
         className='z-0 flex w-fit gap-[4px]'
       >
         {data.map((item) => (
-          <MajorTag key={item} type='pros' text={item} />
+          <MajorTag key={item} type={type} text={item} />
         ))}
       </motion.div>
     </div>
