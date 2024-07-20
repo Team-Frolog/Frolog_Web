@@ -31,6 +31,7 @@ const FormInput = React.forwardRef(
         <input
           type={type}
           ref={ref}
+          inputMode={type === 'email' ? 'email' : 'text'}
           placeholder={placeholder}
           style={{ imeMode: type === 'password' ? 'disabled' : 'auto' }}
           className={`input-common placeholder:text-sm ${watch(fieldName) && errorMessage ? 'input-error' : 'input-default'}`}
