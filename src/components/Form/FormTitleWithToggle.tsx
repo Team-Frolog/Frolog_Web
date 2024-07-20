@@ -1,5 +1,5 @@
 import React from 'react';
-import { InfoName } from '@/types/form';
+import { InfoName } from '@/features/Join';
 import ToggleButton from './Button/ToggleButton';
 
 interface Props {

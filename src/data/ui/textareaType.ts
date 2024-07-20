@@ -1,7 +1,7 @@
-import { ReviewForm } from '@/types/form';
+import { ReviewFormType } from '@/features/Review';
 
 export interface TextareaType {
-  fieldName: keyof ReviewForm;
+  fieldName: keyof ReviewFormType;
   title: string;
   maxLength: number;
   minLength: number;

@@ -3,8 +3,7 @@
 import TitleHeader from '@/components/Header/TitleHeader';
 import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
-import { ReviewDetail, ReviewForm } from '@/features/Review';
-import { ReviewForm as ReviewFormType } from '@/types/form';
+import { ReviewDetail, ReviewForm, ReviewFormType } from '@/features/Review';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';

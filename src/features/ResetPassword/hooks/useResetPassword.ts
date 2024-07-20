@@ -1,4 +1,3 @@
-import { FindForm } from '@/app/(form)/find-password/page';
 import { PAGES } from '@/constants/page';
 import { FIND_FORM_KEY } from '@/constants/storage';
 import { useVerifyToken } from '@/store/authStore';
@@ -6,6 +5,7 @@ import { useFindStep } from '@/store/stepStore';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { requestResetPassword } from '../api/reset.api';
+import { FindForm } from '../types/findForm';
 
 export const useResetPassword = (getValues: () => FindForm) => {
   const findStep = useFindStep();

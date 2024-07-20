@@ -2,16 +2,15 @@
 
 import CodeForm from '@/components/Form/Code/CodeForm';
 import { FIND_FORM_KEY } from '@/constants/storage';
-import { Step1, Step3, useResetPassword } from '@/features/ResetPassword';
+import {
+  FindForm,
+  Step1,
+  Step3,
+  useResetPassword,
+} from '@/features/ResetPassword';
 import { useStepActions } from '@/store/stepStore';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-
-export interface FindForm {
-  email: string;
-  password: string;
-  passwordCheck: string;
-}
 
 function FindPasswordPage() {
   const methods = useForm<FindForm>({

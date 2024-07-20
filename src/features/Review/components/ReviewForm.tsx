@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReviewForm as ReviewFormType } from '@/types/form';
 import { useFormContext } from 'react-hook-form';
 import { AnimatePresence } from 'framer-motion';
 import { textareaType } from '@/data/ui/textareaType';
@@ -9,6 +8,7 @@ import Textarea from '@/components/Form/Input/Textarea';
 import Button from '@/components/Button/Button';
 import ToastMessage from '@/components/PopUp/ToastMessage';
 import { useToastMessage } from '../hooks/useToastMessage';
+import { ReviewFormType } from '..';
 
 interface Props {
   type: 'new' | 'edit';

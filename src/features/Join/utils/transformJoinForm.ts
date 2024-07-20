@@ -1,4 +1,4 @@
-import { Consent, Info, JoinForm } from '@/types/form';
+import { Consent, Info, JoinForm } from '../types/form';
 
 export const transformJoinForm = (
   joinFormData: JoinForm,

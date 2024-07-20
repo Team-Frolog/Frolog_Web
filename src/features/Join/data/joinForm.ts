@@ -1,4 +1,4 @@
-import { JoinForm } from '@/types/form';
+import { JoinForm } from '../types/form';
 import { getToday } from '../utils/date';
 
 export const defaultValue: JoinForm = {

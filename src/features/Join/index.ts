@@ -8,6 +8,7 @@ import {
   requiredConsentsKeys,
 } from './data/joinForm';
 import { useJoin } from './hooks/useJoin';
+import { JoinForm, InfoName } from './types/form';
 
 export {
   Step1,
@@ -19,3 +20,4 @@ export {
   consentsKeys,
   requiredConsentsKeys,
 };
+export type { JoinForm, InfoName };

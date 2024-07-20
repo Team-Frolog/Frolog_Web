@@ -2,15 +2,15 @@
 
 import React from 'react';
 import { ratingMessage } from '@/data/ui/ratingMessage';
-import { ReviewForm } from '@/types/form';
 import { UseFormSetValue, UseFormWatch } from 'react-hook-form';
+import { ReviewFormType } from '@/features/Review';
 import Star from './Star';
 
 interface Props {
   type: 'form' | 'default';
   rating?: number;
-  setValue?: UseFormSetValue<ReviewForm>;
-  watch?: UseFormWatch<ReviewForm>;
+  setValue?: UseFormSetValue<ReviewFormType>;
+  watch?: UseFormWatch<ReviewFormType>;
 }
 
 function RatingSelector({ type, rating, setValue, watch }: Props) {

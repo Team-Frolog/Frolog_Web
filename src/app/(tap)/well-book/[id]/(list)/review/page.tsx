@@ -5,11 +5,10 @@ import { useScroll } from '@/hooks/gesture/useScroll';
 import { FormProvider, useForm } from 'react-hook-form';
 import Splash from '@/components/Splash/Splash';
 import { useStackMotionActions } from '@/store/stackMotionStore';
-import { ReviewForm as ReviewFormType } from '@/types/form';
 import useSplashStore from '@/store/splashStore';
 import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
-import { ReviewForm, ReviewList } from '@/features/Review';
+import { ReviewForm, ReviewFormType, ReviewList } from '@/features/Review';
 
 interface Props {
   params: {

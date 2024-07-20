@@ -5,12 +5,12 @@ import { useEffect } from 'react';
 import { PAGES } from '@/constants/page';
 import { useRouter } from 'next/navigation';
 import { useAuthActions, useVerifyToken } from '@/store/authStore';
-import { JoinForm } from '@/types/form';
 import { useJoinStep } from '@/store/stepStore';
 import { ERROR_ALERT } from '@/constants/message';
 import { useLogin } from '@/features/Login';
 import { transformJoinForm } from '../utils/transformJoinForm';
 import { signUp } from '../api/join.api';
+import { JoinForm } from '../types/form';
 
 export const useJoin = (getValues: () => JoinForm) => {
   const router = useRouter();
