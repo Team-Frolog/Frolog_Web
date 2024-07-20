@@ -1,6 +1,6 @@
 'use client';
 
-import authAPI from '@/app/api/auth.api';
+import { quit } from '@/api/auth.api';
 import Button from '@/components/Button/Button';
 import LinkButton from '@/components/Button/LinkButton';
 import { signOut, useSession } from 'next-auth/react';
@@ -28,7 +28,7 @@ function WellPage() {
 
   const handleQuit = async () => {
     if (session) {
-      const result = await authAPI.quit();
+      const result = await quit();
 
       if (result) {
         signOut({ callbackUrl: '/landing', redirect: true });

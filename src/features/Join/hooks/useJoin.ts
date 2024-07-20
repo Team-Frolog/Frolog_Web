@@ -1,6 +1,5 @@
 'use client';
 
-import authAPI from '@/app/api/auth.api';
 import { JOIN_FORM_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
 import { useEffect } from 'react';
 import { PAGES } from '@/constants/page';
@@ -11,6 +10,7 @@ import { useJoinStep } from '@/store/stepStore';
 import { ERROR_ALERT } from '@/constants/message';
 import { useLogin } from '@/features/Login';
 import { transformJoinForm } from '../utils/transformJoinForm';
+import { signUp } from '../api/join.api';
 
 export const useJoin = (getValues: () => JoinForm) => {
   const router = useRouter();
@@ -44,7 +44,7 @@ export const useJoin = (getValues: () => JoinForm) => {
 
   const joinUser = async (data: JoinForm) => {
     const formData = transformJoinForm(data, verifyToken!);
-    const signUpResult = await authAPI.signUp(formData);
+    const signUpResult = await signUp(formData);
 
     if (signUpResult?.result) {
       resetToken();

@@ -1,4 +1,4 @@
-import { baseOptions } from '@/app/api/options';
+import { baseOptions } from '@/api/options';
 import { SignIn } from '@frolog/frolog-api';
 import { NextAuthOptions } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';

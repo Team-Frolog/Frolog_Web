@@ -1,6 +1,5 @@
 'use client';
 
-import userAPI from '@/app/api/user.api';
 import { POST_ERROR } from '@/constants/message';
 import { PAGES } from '@/constants/page';
 import { TEST_ANSWER_KEY } from '@/constants/storage';
@@ -10,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { testEvaluator } from '../utils/testEvaluator';
 import { Question, questions } from '../data/test';
+import { editTestType } from '../api/test.api';
 
 export const useTest = () => {
   const testStep = useTestStep();
@@ -44,7 +44,7 @@ export const useTest = () => {
         id: session?.user.id,
         reading_preference: type,
       };
-      const result = await userAPI.editTestType(reqData);
+      const result = await editTestType(reqData);
 
       if (!result) {
         window.alert(POST_ERROR);

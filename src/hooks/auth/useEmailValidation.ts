@@ -1,4 +1,4 @@
-import authAPI from '@/app/api/auth.api';
+import { checkEmail } from '@/api/auth.api';
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -14,7 +14,7 @@ export const useEmailValidation = (type: 'signUp' | 'findPassword') => {
     const { value } = e.target;
 
     if (isVaild && value.trim() !== '') {
-      const data = await authAPI.checkEmail({
+      const data = await checkEmail({
         email: value,
       });
 

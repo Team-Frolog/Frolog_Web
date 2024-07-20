@@ -2,12 +2,12 @@
 
 import FormInput from '@/components/Form/Input/FormInput';
 import React from 'react';
-import authAPI from '@/app/api/auth.api';
 import { useFormContext } from 'react-hook-form';
 import Button from '@/components/Button/Button';
 import JobSelector from './JobSelector';
 import GenderSelector from './GenderSelector';
 import DateSelector from './DateSelector';
+import { checkNickname } from '../../api/join.api';
 
 function Step4() {
   const {
@@ -39,7 +39,7 @@ function Step4() {
               const { value } = e.target;
 
               if (isValid && value.trim() !== '') {
-                const data = await authAPI.checkNickname({
+                const data = await checkNickname({
                   username: value,
                 });
                 if (!data) {

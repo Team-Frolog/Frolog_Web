@@ -1,11 +1,11 @@
 import { FindForm } from '@/app/(form)/find-password/page';
-import authAPI from '@/app/api/auth.api';
 import { PAGES } from '@/constants/page';
 import { FIND_FORM_KEY } from '@/constants/storage';
 import { useVerifyToken } from '@/store/authStore';
 import { useFindStep } from '@/store/stepStore';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { requestResetPassword } from '../api/reset.api';
 
 export const useResetPassword = (getValues: () => FindForm) => {
   const findStep = useFindStep();
@@ -24,7 +24,7 @@ export const useResetPassword = (getValues: () => FindForm) => {
   }, [findStep, getValues]);
 
   const resetPassword = async (data: FindForm) => {
-    const result = await authAPI.resetPassword({
+    const result = await requestResetPassword({
       email: data.email,
       email_verified_token: verifyToken || '',
       password: data.password,

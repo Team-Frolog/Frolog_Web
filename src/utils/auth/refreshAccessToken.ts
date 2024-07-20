@@ -1,4 +1,4 @@
-import { baseOptions } from '@/app/api/options';
+import { baseOptions } from '@/api/options';
 import { getExpFromToken } from '@/utils/auth/decodeToken';
 import { RefreshToken } from '@frolog/frolog-api';
 import { JWT } from 'next-auth/jwt';
