@@ -1,19 +1,19 @@
 'use client';
 
-import ButtonWithText from '@/components/common/button/ButtonWithText';
-import CheckButton from '@/components/common/button/CheckButton';
-import ErrorPopUp from '@/components/common/popup/ErrorPopUp';
-import FormInput from '@/components/common/form/input/FormInput';
+import ButtonWithText from '@/components/Button/ButtonWithText';
+import CheckButton from '@/components/Button/CheckButton';
+import ErrorPopUp from '@/components/PopUp/ErrorPopUp';
+import FormInput from '@/components/Form/Input/FormInput';
 import { PAGES } from '@/constants/page';
-import { useLogin } from '@/hooks/auth/useLogin';
 import { AnimatePresence } from 'framer-motion';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useLogin } from '@/features/Login';
 
-export interface ILoginForm {
+export interface LoginForm {
   email: string;
   password: string;
 }
@@ -30,7 +30,7 @@ function LoginPage() {
 
   const { isSaved, setIsSaved, userLogin, isFaild, setIsFaild } =
     useLogin('login');
-  const methods = useForm<ILoginForm>({
+  const methods = useForm<LoginForm>({
     mode: 'onBlur',
     defaultValues: {
       email: '',

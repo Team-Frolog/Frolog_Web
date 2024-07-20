@@ -1,12 +1,8 @@
 'use client';
 
-import Step1 from '@/components/joinPage/step1/Step1';
-import Step2 from '@/components/joinPage/step2/Step2';
-import CodeForm from '@/components/common/form/code/CodeForm';
-import Step4 from '@/components/joinPage/step4/Step4';
+import { Step1, Step2, Step4, useJoin, defaultValue } from '@/features/Join';
+import CodeForm from '@/components/Form/Code/CodeForm';
 import { JOIN_FORM_KEY } from '@/constants/storage';
-import { defaultValue } from '@/data/form/joinForm';
-import { useJoin } from '@/hooks/auth/useJoin';
 import { JoinForm } from '@/types/form';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useStepActions } from '@/store/stepStore';

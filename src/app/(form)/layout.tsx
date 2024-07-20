@@ -1,4 +1,4 @@
-import FormHeader from '@/components/common/header/FormHeader';
+import FormHeader from '@/components/Header/FormHeader';
 import React from 'react';
 
 function FormLayout({ children }: { children: React.ReactNode }) {

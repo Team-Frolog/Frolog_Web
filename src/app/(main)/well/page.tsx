@@ -1,6 +1,5 @@
-import WellBookList from '@/components/common/book/WellBookList';
-import WellHeader from '@/components/wellPage/WellHeader';
 import React from 'react';
+import { WellHeader, WellBookList } from '@/features/Well';
 
 function WellPage() {
   return (

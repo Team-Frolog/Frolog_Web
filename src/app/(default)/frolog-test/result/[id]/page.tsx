@@ -1,10 +1,9 @@
-import QuitButton from '@/components/common/button/QuitButton';
-import DownloadButton from '@/components/testPage/DownloadButton';
-import StartButton from '@/components/testPage/StartButton';
+import QuitButton from '@/components/Button/QuitButton';
+import StartButton from '@/features/Test/components/StartButton';
 import { IMAGES } from '@/constants/images';
-import { testResult } from '@/data/test/testResult';
 import Image from 'next/image';
 import React from 'react';
+import { DownloadButton, testResult } from '@/features/Test';
 
 interface Props {
   params: {

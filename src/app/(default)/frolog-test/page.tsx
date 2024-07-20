@@ -1,9 +1,11 @@
 'use client';
 
-import ProgressHeader from '@/components/common/header/ProgressHeader';
-import LoadingPage from '@/components/testPage/LoadingPage';
-import Question from '@/components/testPage/Question';
-import { useTest } from '@/hooks/useTest';
+import {
+  Question,
+  useTest,
+  LoadingPage,
+  ProgressHeader,
+} from '@/features/Test';
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
 

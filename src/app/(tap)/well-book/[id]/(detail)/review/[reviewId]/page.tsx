@@ -1,10 +1,9 @@
 'use client';
 
-import TitleHeader from '@/components/common/header/TitleHeader';
-import ConfirmLeaveSheet from '@/components/common/popup/ConfirmLeaveSheet';
-import ReviewDetail from '@/components/common/review/ReviewDetail';
-import ReviewForm from '@/components/common/review/ReviewForm';
+import TitleHeader from '@/components/Header/TitleHeader';
+import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
+import { ReviewDetail, ReviewForm } from '@/features/Review';
 import { ReviewForm as ReviewFormType } from '@/types/form';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react';

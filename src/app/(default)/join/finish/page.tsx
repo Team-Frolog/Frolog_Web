@@ -1,10 +1,10 @@
 import React from 'react';
 import PopperAnimation from '@/components/animation/PopperAnimation';
-import FinishLight from '@/components/common/splash/FinishLight';
+import FinishLight from '@/components/Splash/FinishLight';
 import Image from 'next/image';
-import TestStartButton from '@/components/joinPage/TestStartButton';
-import QuitButton from '@/components/common/button/QuitButton';
+import QuitButton from '@/components/Button/QuitButton';
 import { IMAGES } from '@/constants/images';
+import { TestStartButton } from '@/features/Join';
 
 function JoinFinishPage() {
   return (

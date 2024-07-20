@@ -2,15 +2,14 @@
 
 import React from 'react';
 import { useScroll } from '@/hooks/gesture/useScroll';
-import ReviewForm from '@/components/common/review/ReviewForm';
-import ReviewList from '@/components/common/review/ReviewList';
 import { FormProvider, useForm } from 'react-hook-form';
-import Splash from '@/components/common/splash/Splash';
+import Splash from '@/components/Splash/Splash';
 import { useStackMotionActions } from '@/store/stackMotionStore';
 import { ReviewForm as ReviewFormType } from '@/types/form';
 import useSplashStore from '@/store/splashStore';
-import ConfirmLeaveSheet from '@/components/common/popup/ConfirmLeaveSheet';
+import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
+import { ReviewForm, ReviewList } from '@/features/Review';
 
 interface Props {
   params: {

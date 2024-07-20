@@ -1,5 +1,5 @@
-import BookInfo from '@/components/common/book/BookInfo';
-import TapHeader from '@/components/common/header/TapHeader';
+import BookInfo from '@/components/Book/BookInfo';
+import TapHeader from '@/components/Header/TapHeader';
 import React from 'react';
 
 interface Props {

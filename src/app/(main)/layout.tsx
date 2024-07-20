@@ -1,4 +1,4 @@
-import NavigationBar from '@/components/common/NavigationBar';
+import NavigationBar from '@/components/NavigationBar';
 import React from 'react';
 
 function MainLayout({ children }: { children: React.ReactNode }) {
