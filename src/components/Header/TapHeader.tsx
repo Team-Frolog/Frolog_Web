@@ -2,37 +2,23 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
-import BackIcon from 'public/icons/common/back/back.svg';
 import { PAGES } from '@/constants/page';
-import { usePopUpActions } from '@/store/popUpStore';
-import { ON_LEAVE_ROUTE } from '@/constants/storage';
+import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
 
 function TapHeader({ bookId }: { bookId: string }) {
   const router = useRouter();
   const pathname = usePathname();
-  const { changePopUpState } = usePopUpActions();
 
-  const handleClick = (route: 'back' | 'memo') => {
-    if (pathname.includes('review')) {
-      sessionStorage.setItem(ON_LEAVE_ROUTE, route);
-      changePopUpState('isOpenAlertSheet', true);
-    } else if (route === 'back') {
+  const handleClick = (route: 'back' | 'memo' | 'review') => {
+    if (route === 'back') {
       router.back();
+    } else {
+      router.replace(`${PAGES.WELL_BOOK}/${bookId}/${route}`);
     }
   };
 
   return (
-    <div
-      id='header'
-      className='duration-50 sticky left-0 top-0 z-30 block h-fit w-full gap-3 bg-gray-900 p-[24px] pb-[10px] text-white transition-all'
-    >
-      <button
-        type='button'
-        className='cursor-pointer'
-        onClick={() => handleClick('back')}
-      >
-        <BackIcon id='icon' fill='#B3B6C5' />
-      </button>
+    <ResponsiveHeaderLayout onClick={() => handleClick('back')}>
       <div className='relative w-fit pb-[5px]'>
         <div className='flex gap-[24px]'>
           <button
@@ -46,9 +32,7 @@ function TapHeader({ bookId }: { bookId: string }) {
           <button
             id={pathname.includes('review') ? 'tap' : undefined}
             type='button'
-            onClick={() =>
-              router.replace(`${PAGES.WELL_BOOK}/${bookId}/review`)
-            }
+            onClick={() => handleClick('review')}
             className={`text-h_md_bold ${pathname.includes('review') ? 'text-white' : 'text-gray-500'}`}
           >
             리뷰
@@ -59,7 +43,7 @@ function TapHeader({ bookId }: { bookId: string }) {
           className={`absolute bottom-0 h-[3px] w-[60px] bg-white transition-all ${pathname.includes('review') ? 'left-[84px]' : 'left-0'}`}
         />
       </div>
-    </div>
+    </ResponsiveHeaderLayout>
   );
 }
 

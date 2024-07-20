@@ -1,3 +1,5 @@
+'use client';
+
 import { usePopUpActions, useToastState } from '@/store/popUpStore';
 import { useEffect } from 'react';
 

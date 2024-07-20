@@ -10,10 +10,16 @@ export const useScroll = () => {
     const bar = document.getElementById('bar')!;
     const icon = document.getElementById('icon')!;
 
-    if (header && foreground && bar && icon) {
+    if (header) {
       header.style.backgroundColor = '#0E0E0E';
+    }
+    if (bar) {
       bar.style.backgroundColor = '#FFFFFF';
+    }
+    if (icon) {
       icon.style.fill = '#B3B6C5';
+    }
+    if (foreground) {
       foreground.classList.remove('text-gray-800');
       foreground.classList.add('text-white');
     }
@@ -25,10 +31,16 @@ export const useScroll = () => {
     const bar = document.getElementById('bar')!;
     const icon = document.getElementById('icon')!;
 
-    if (header && foreground && bar && icon) {
+    if (header) {
       header.style.backgroundColor = '#FFFFFF';
+    }
+    if (bar) {
       bar.style.backgroundColor = '#0E0E0E';
+    }
+    if (icon) {
       icon.style.fill = '#727484';
+    }
+    if (foreground) {
       foreground.classList.remove('text-white');
       foreground.classList.add('text-gray-800');
     }

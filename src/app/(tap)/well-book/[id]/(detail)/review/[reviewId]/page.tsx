@@ -15,6 +15,7 @@ interface Props {
 }
 
 function WellBookReviewPage({ params: { id } }: Props) {
+  console.log(id);
   const isEditing = !!useSearchParams().get('edit');
   const router = useRouter();
   const pathname = usePathname();
@@ -66,10 +67,7 @@ function WellBookReviewPage({ params: { id } }: Props) {
           {isEditing ? (
             <>
               <ReviewForm type='edit' />
-              <ConfirmLeaveSheet
-                bookId={id}
-                sheetData={sheetData.leave_while_edit}
-              />
+              <ConfirmLeaveSheet sheetData={sheetData.leave_while_edit} />
             </>
           ) : (
             <ReviewDetail />
