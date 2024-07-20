@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { AnimatePresence } from 'framer-motion';
 import CheckButton from '@/components/Button/CheckButton';
-import { Terms } from '@/features/Join/data/terms/terms';
 import TermsPopUp from './TermsPopUp';
+import { Terms } from '../../data/terms/terms';
 
 interface Props {
   termsData: Terms;
