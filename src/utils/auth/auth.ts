@@ -2,7 +2,7 @@ import { baseOptions } from '@/app/api/options';
 import { SignIn } from '@frolog/frolog-api';
 import { NextAuthOptions } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
-import { getExpFromToken } from '@/utils/decodeToken';
+import { getExpFromToken } from '@/utils/auth/decodeToken';
 import { refreshAccessToken } from './refreshAccessToken';
 
 const logIn = new SignIn(baseOptions);

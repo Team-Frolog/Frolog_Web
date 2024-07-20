@@ -1,10 +1,10 @@
 'use client';
 
+import { useEffect } from 'react';
 import { REMEMBER_ME_KEY } from '@/constants/storage';
 import { useFormReset } from '@/hooks/auth/useFormReset';
-import { TokenHandler } from '@/lib/TokenHandler';
 import { SessionProvider, signOut, useSession } from 'next-auth/react';
-import { useEffect } from 'react';
+import { TokenHandler } from './TokenHandler';
 
 interface Props {
   children: React.ReactNode;
