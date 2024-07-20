@@ -12,7 +12,7 @@ import { useStepActions } from '@/store/stepStore';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-function FindPasswordPage() {
+function ResetPasswordPage() {
   const methods = useForm<FindForm>({
     mode: 'onBlur',
     defaultValues:
@@ -45,4 +45,4 @@ function FindPasswordPage() {
   );
 }
 
-export default FindPasswordPage;
+export default ResetPasswordPage;

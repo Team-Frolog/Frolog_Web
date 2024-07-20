@@ -1,9 +1,7 @@
 'use client';
 
 import ButtonWithText from '@/components/Button/ButtonWithText';
-import CheckButton from '@/components/Button/CheckButton';
 import ErrorPopUp from '@/components/PopUp/ErrorPopUp';
-import FormInput from '@/components/Form/Input/FormInput';
 import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
 import { useSession } from 'next-auth/react';
@@ -11,12 +9,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useLogin } from '@/features/Login';
-
-export interface LoginForm {
-  email: string;
-  password: string;
-}
+import {
+  LoginForm,
+  LoginFormType,
+  RememberMe,
+  useLogin,
+} from '@/features/Login';
 
 function LoginPage() {
   const { data: session, status } = useSession();
@@ -30,7 +28,7 @@ function LoginPage() {
 
   const { isSaved, setIsSaved, userLogin, isFaild, setIsFaild } =
     useLogin('login');
-  const methods = useForm<LoginForm>({
+  const methods = useForm<LoginFormType>({
     mode: 'onBlur',
     defaultValues: {
       email: '',
@@ -40,16 +38,9 @@ function LoginPage() {
 
   const {
     handleSubmit,
-    register,
     watch,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = methods;
-
-  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSubmit((data) => userLogin(data))();
-    }
-  };
 
   return (
     <FormProvider {...methods}>
@@ -58,46 +49,8 @@ function LoginPage() {
         className='form-layout'
       >
         <div className='flex flex-col gap-[20px]'>
-          <div className='flex flex-col gap-[32px]'>
-            <FormInput
-              autoFocus
-              type='email'
-              onKeyDown={handleEnter}
-              placeholder='이메일을 입력하세요'
-              title='이메일'
-              fieldName='email'
-              errorMessage={errors.email && String(errors.email.message)}
-              {...register('email', {
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
-                  message: '이메일 형식을 확인해주세요.',
-                },
-                onChange: () => {
-                  setIsFaild(false);
-                },
-              })}
-            />
-            <FormInput
-              type='password'
-              placeholder='비밀번호를 입력하세요'
-              onKeyDown={handleEnter}
-              title='비밀번호'
-              fieldName='password'
-              errorMessage={errors.password && String(errors.password.message)}
-              {...register('password', {
-                onChange: () => {
-                  setIsFaild(false);
-                },
-              })}
-            />
-          </div>
-          <div
-            className='flex items-center gap-[8px]'
-            onClick={() => setIsSaved((prev) => !prev)}
-          >
-            <CheckButton isChecked={isSaved} />
-            <span className='cursor-default text-body_md'>자동 로그인</span>
-          </div>
+          <LoginForm setIsFaild={setIsFaild} userLogin={userLogin} />
+          <RememberMe isSaved={isSaved} setIsSaved={setIsSaved} />
         </div>
         <div className='flex w-full flex-col items-center gap-[12px]'>
           <AnimatePresence>
