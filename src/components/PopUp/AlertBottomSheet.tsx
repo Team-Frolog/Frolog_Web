@@ -66,8 +66,8 @@ function AlertBottomSheet({ sheetData, children, onClick }: Props) {
               type='button'
               theme={type}
               onClick={() => {
-                changePopUpState(stateType, false);
                 onClick();
+                changePopUpState(stateType, false);
               }}
             >
               {buttonText}

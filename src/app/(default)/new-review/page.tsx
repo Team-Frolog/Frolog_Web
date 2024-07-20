@@ -1,12 +1,13 @@
 'use client';
 
 import BookInfo from '@/components/Book/BookInfo';
-import BookHeader from '@/components/Header/BookHeader';
 import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
 import Splash from '@/components/Splash/Splash';
 import { sheetData } from '@/data/ui/bottomSheet';
 import { ReviewForm, ReviewFormType } from '@/features/Review';
 import { useScroll } from '@/hooks/gesture/useScroll';
+import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
+import { usePopUpActions } from '@/store/popUpStore';
 import useSplashStore from '@/store/splashStore';
 import { useStackMotionActions } from '@/store/stackMotionStore';
 import { useSearchParams } from 'next/navigation';
@@ -21,6 +22,7 @@ function NewReviewPage() {
     actions: { changeState },
   } = useSplashStore();
   const { setNewReviewId } = useStackMotionActions();
+  const { changePopUpState } = usePopUpActions();
 
   const methods = useForm<ReviewFormType>({
     mode: 'onBlur',
@@ -56,7 +58,11 @@ function NewReviewPage() {
 
   return (
     <>
-      <BookHeader />
+      <ResponsiveHeaderLayout
+        onClick={() => changePopUpState('isOpenAlertSheet', true)}
+      >
+        <></>
+      </ResponsiveHeaderLayout>
       <BookInfo bookId={bookId} />
       <FormProvider {...methods}>
         <form

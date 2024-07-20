@@ -1,5 +1,5 @@
 import BookInfo from '@/components/Book/BookInfo';
-import BookHeader from '@/components/Header/BookHeader';
+import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
 import React from 'react';
 
 interface Props {
@@ -12,7 +12,9 @@ interface Props {
 function BookLayout({ children, params: { id } }: Props) {
   return (
     <>
-      <BookHeader />
+      <ResponsiveHeaderLayout onClick={() => {}}>
+        <></>
+      </ResponsiveHeaderLayout>
       <BookInfo bookId={id} />
       {children}
     </>
