@@ -7,6 +7,7 @@ import { FirstReviewItem, ReviewListItem } from '@/features/Review';
 import { AnimatePresence } from 'framer-motion';
 import AlertBottomSheet from '@/components/PopUp/AlertBottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
+import AddButton from '@/components/Button/AddButton';
 
 interface Props {
   params: {
@@ -25,6 +26,7 @@ function ReviewPage({ params: { id } }: Props) {
 
   return (
     <>
+      <AddButton route='/new-review?id=1' text='리뷰 추가하기' />
       <ReviewListItem />
       <FirstReviewItem />
       <AnimatePresence>
