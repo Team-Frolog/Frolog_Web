@@ -12,13 +12,10 @@ function NavigationBar() {
   const pathname = usePathname();
   return (
     <div className='sticky bottom-0 left-0 flex h-[80px] w-full items-center justify-around bg-white px-[20px] pb-[15px]'>
-      <Link href='/well' className='navItem'>
-        <WellIcon
-          fill={pathname === '/well' ? '#313239' : '#B3B6C5'}
-          height={22}
-        />
+      <Link href='/' className='navItem'>
+        <WellIcon fill={pathname === '/' ? '#313239' : '#B3B6C5'} height={22} />
         <span
-          className={`text-body_sm_bold ${pathname === '/well' ? 'text-gray-800' : 'text-gray-500'}`}
+          className={`text-body_sm_bold ${pathname === '/' ? 'text-gray-800' : 'text-gray-500'}`}
         >
           우물
         </span>
