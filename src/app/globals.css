@@ -4,6 +4,7 @@
 @import url('../styles/tags.css');
 @import url('../styles/layouts.css');
 @import url('../styles/theme.css');
+@import url('../styles/buttons.css');
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';

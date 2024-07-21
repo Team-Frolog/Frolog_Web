@@ -19,7 +19,7 @@ function LinkButton({ children, route, disabled = false }: Props) {
       variants={tapVariants}
       whileTap='tap'
       href={route}
-      className={`button block text-center ${disabled && `button-disabled`}`}
+      className={`button-main block text-center ${disabled && `button-disabled`}`}
     >
       {children}
     </MotionLink>

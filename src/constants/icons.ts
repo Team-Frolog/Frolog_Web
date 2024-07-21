@@ -18,6 +18,7 @@ export const ICONS = {
       circle_checked: `${BASE_PATH}/common/check/circle-checked.svg`,
       circle_unchecked: `${BASE_PATH}/common/check/circle-uncheck.svg`,
     },
+    add: `${BASE_PATH}/common/add-icon.svg`,
   },
   expand: `${BASE_PATH}/newReviewPage/expand.svg`,
   well: {

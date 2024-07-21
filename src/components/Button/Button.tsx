@@ -21,7 +21,7 @@ function Button({
     <motion.button
       type={type}
       disabled={disabled}
-      className={`button ${disabled && 'button-disabled'} ${theme === 'error' && 'bg-error'} ${theme === 'gray' && 'bg-gray-300 text-gray-600'}`}
+      className={`button-main ${disabled && 'button-disabled'} ${theme === 'error' && 'bg-error'} ${theme === 'gray' && 'button-gray'}`}
       variants={tapVariants}
       whileTap='tap'
       {...props}

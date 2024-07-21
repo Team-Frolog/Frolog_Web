@@ -1,0 +1,19 @@
+@import 'tailwindcss/components';
+
+@layer components {
+  .button-common {
+    @apply box-border w-full rounded-[30px] px-[30px] py-[18px] text-body_lg_bold transition-all;
+  }
+  .button-main {
+    @apply button-common bg-main text-white;
+  }
+  .button-disabled {
+    @apply pointer-events-none opacity-[0.4];
+  }
+  .button-gray {
+    @apply button-common bg-gray-300 text-gray-600;
+  }
+  .button-light {
+    @apply button-common bg-white text-gray-600;
+  }
+}
