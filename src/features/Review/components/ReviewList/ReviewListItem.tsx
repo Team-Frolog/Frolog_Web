@@ -11,15 +11,15 @@ function ReviewListItem() {
   const { changePopUpState } = usePopUpActions();
 
   return (
-    <div className='flex w-full flex-col gap-[20px] rounded-[20px] bg-white px-[24px] pt-[36px]'>
-      <div className='flex w-full flex-col gap-[12px] text-gray-800'>
+    <div className='review-item pb-0'>
+      <div className='flex w-full flex-col gap-[12px]'>
         <div
           onClick={() => router.push('/well-book/2/review/1')}
           className='flex w-full cursor-pointer flex-col gap-[12px]'
         >
           <div>
             <span className='rounded-[20px] bg-gray-800 px-[10px] py-[6px] text-body_sm_bold text-white'>
-              1회차 독서
+              첫번째 리뷰
             </span>
           </div>
           <Rating rating={4.5} textClass='text-h_lg_bold' />
