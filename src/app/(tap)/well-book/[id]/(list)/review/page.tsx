@@ -17,7 +17,7 @@ interface Props {
 
 function ReviewPage({ params: { id } }: Props) {
   console.log(id);
-  useScroll('#FFDA4A');
+  useScroll('#ffda4a');
   const isOpenDeleteSheet = useDeleteSheetState();
 
   const handleDeleteReview = () => {
