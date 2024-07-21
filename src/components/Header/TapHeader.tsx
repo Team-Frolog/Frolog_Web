@@ -22,7 +22,7 @@ function TapHeader({ bookId }: { bookId: string }) {
       <div className='relative w-fit pb-[5px]'>
         <div className='flex gap-[24px]'>
           <button
-            id={pathname.includes('memo') ? 'tap' : undefined}
+            id={pathname.includes('memo') ? 'selected' : 'unselected'}
             type='button'
             onClick={() => handleClick('memo')}
             className={`text-h_md_bold ${pathname.includes('memo') ? 'text-white' : 'text-gray-500'}`}
@@ -30,7 +30,7 @@ function TapHeader({ bookId }: { bookId: string }) {
             메모
           </button>
           <button
-            id={pathname.includes('review') ? 'tap' : undefined}
+            id={pathname.includes('review') ? 'selected' : 'unselected'}
             type='button'
             onClick={() => handleClick('review')}
             className={`text-h_md_bold ${pathname.includes('review') ? 'text-white' : 'text-gray-500'}`}

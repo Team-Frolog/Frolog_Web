@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import { useScroll } from '@/hooks/gesture/useScroll';
 import { useDeleteSheetState } from '@/store/popUpStore';
 import { FirstReviewItem, ReviewListItem } from '@/features/Review';
 import { AnimatePresence } from 'framer-motion';
 import AlertBottomSheet from '@/components/PopUp/AlertBottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import AddButton from '@/components/Button/AddButton';
+import { useScroll } from '@/hooks/gesture/useScroll';
 
 interface Props {
   params: {
@@ -17,7 +17,7 @@ interface Props {
 
 function ReviewPage({ params: { id } }: Props) {
   console.log(id);
-  useScroll();
+  useScroll('#FFDA4A');
   const isOpenDeleteSheet = useDeleteSheetState();
 
   const handleDeleteReview = () => {

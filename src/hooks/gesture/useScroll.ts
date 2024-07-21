@@ -1,49 +1,18 @@
 import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
+import { setHeaderStyle } from '@/utils/setHeaderStyle';
 
-export const useScroll = () => {
+export const useScroll = (categoryColor: string) => {
   const [scrollY, setScrollY] = useState(0);
 
   const darkmode = () => {
-    const header = document.getElementById('header')!;
-    const foreground = document.getElementById('tap')!;
-    const bar = document.getElementById('bar')!;
-    const icon = document.getElementById('icon')!;
-
-    if (header) {
-      header.style.backgroundColor = '#0E0E0E';
-    }
-    if (bar) {
-      bar.style.backgroundColor = '#FFFFFF';
-    }
-    if (icon) {
-      icon.style.fill = '#B3B6C5';
-    }
-    if (foreground) {
-      foreground.classList.remove('text-gray-800');
-      foreground.classList.add('text-white');
-    }
+    setHeaderStyle('#0E0E0E', '#B3B6C5', 'text-white');
   };
-
   const lightmode = () => {
-    const header = document.getElementById('header')!;
-    const foreground = document.getElementById('tap')!;
-    const bar = document.getElementById('bar')!;
-    const icon = document.getElementById('icon')!;
-
-    if (header) {
-      header.style.backgroundColor = '#FFFFFF';
-    }
-    if (bar) {
-      bar.style.backgroundColor = '#0E0E0E';
-    }
-    if (icon) {
-      icon.style.fill = '#727484';
-    }
-    if (foreground) {
-      foreground.classList.remove('text-white');
-      foreground.classList.add('text-gray-800');
-    }
+    setHeaderStyle('#FFFFFF', '#727484', 'text-gray-800');
+  };
+  const category = () => {
+    setHeaderStyle(categoryColor, '#727484', 'text-gray-800', true);
   };
 
   const updateScroll = throttle(() => {
@@ -53,8 +22,10 @@ export const useScroll = () => {
   useEffect(() => {
     if (scrollY < 150) {
       darkmode();
-    } else {
+    } else if (scrollY < 350) {
       lightmode();
+    } else {
+      category();
     }
   }, [scrollY]);
 
@@ -64,18 +35,21 @@ export const useScroll = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.intersectionRatio >= 0.9) {
+          if (entry.intersectionRatio >= 0.8) {
             darkmode();
-          } else {
+          } else if (entry.intersectionRatio >= 0.35) {
             lightmode();
+          } else {
+            category();
           }
         });
       },
       {
         root: null,
-        threshold: 0.9,
+        threshold: [0, 0.35, 0.8, 1],
       }
     );
+
     const targetElement = document.getElementById('book-info');
 
     if (isMobileSafari) {
