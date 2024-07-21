@@ -28,7 +28,7 @@ export default function RootLayout({
       <ThemeProvider />
       <AuthProvider>
         <body
-          className={`${pretendard.variable} ${pretendard.className} text-white`}
+          className={`${pretendard.variable} ${pretendard.className} bg-white text-gray-800`}
         >
           <div id='root'>{children}</div>
         </body>
