@@ -4,7 +4,7 @@ import React from 'react';
 import { wellList } from '@/data/dummy/well';
 import { sheetData } from '@/data/ui/bottomSheet';
 import { Well } from '@/features/Well';
-import AlertBottomSheet from './AlertBottomSheet';
+import AlertBottomSheet from '../../layouts/AlertBottomSheet';
 
 function WellSelectSheet() {
   const isOpenWellSheet = useWellSheetState();

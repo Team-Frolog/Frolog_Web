@@ -28,9 +28,10 @@ export default function RootLayout({
       <ThemeProvider />
       <AuthProvider>
         <body
-          className={`${pretendard.variable} ${pretendard.className} bg-white text-gray-800`}
+          className={`${pretendard.variable} ${pretendard.className} text-gray-800`}
         >
           <div id='root'>{children}</div>
+          <div id='portal' />
         </body>
       </AuthProvider>
     </html>

@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { AlertSheet } from '@/data/ui/bottomSheet';
-import AlertBottomSheet from './AlertBottomSheet';
+import AlertBottomSheet from '../../layouts/AlertBottomSheet';
 
 interface Props {
   sheetData: AlertSheet;
