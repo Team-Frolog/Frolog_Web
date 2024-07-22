@@ -15,7 +15,7 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function NewReviewPage() {
-  useScroll();
+  useScroll(undefined);
   const bookId = useSearchParams().get('id');
   const {
     isOpen,

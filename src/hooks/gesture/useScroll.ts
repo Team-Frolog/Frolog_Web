@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
 import { setHeaderStyle } from '@/utils/setHeaderStyle';
 
-export const useScroll = (categoryColor: string) => {
+export const useScroll = (categoryColor: string | undefined) => {
   const [scrollY, setScrollY] = useState(0);
 
   const darkmode = () => {
@@ -12,7 +12,7 @@ export const useScroll = (categoryColor: string) => {
     setHeaderStyle('#FFFFFF', '#727484', 'text-gray-800');
   };
   const category = () => {
-    setHeaderStyle(categoryColor, '#727484', 'text-gray-800', true);
+    setHeaderStyle(categoryColor!, '#727484', 'text-gray-800', true);
   };
 
   const updateScroll = throttle(() => {
@@ -39,7 +39,7 @@ export const useScroll = (categoryColor: string) => {
             darkmode();
           } else if (entry.intersectionRatio >= 0.35) {
             lightmode();
-          } else {
+          } else if (categoryColor) {
             category();
           }
         });
