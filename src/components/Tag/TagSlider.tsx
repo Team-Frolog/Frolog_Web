@@ -30,20 +30,21 @@ function TagSlider({ type }: { type: 'pros' | 'cons' }) {
   }, []);
 
   return (
-    <div ref={sliderRef} className='relative flex w-full overflow-hidden'>
-      {/* <div
-        className='absolute right-0 top-[-2px] z-0 h-[30px] w-[30px] -rotate-90'
-        style={{
-          background:
-            'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 95.41%)',
-        }}
-      /> */}
+    <div ref={sliderRef} className='relative flex w-[98%] overflow-hidden'>
+      <div
+        className='absolute bottom-0 left-0 z-10 h-full w-[50px] -rotate-180 transition-all duration-300'
+        style={{ boxShadow: 'inset -30px 0px 10px -7px rgb(255, 255, 255)' }}
+      />
+      <div
+        className='absolute bottom-0 right-0 z-10 h-full w-[30px] transition-all duration-300'
+        style={{ boxShadow: 'inset -30px 0px 10px -7px rgb(255, 255, 255)' }}
+      />
       <motion.div
         ref={motionDivRef}
         drag={drag}
         dragConstraints={sliderRef}
         dragElastic={0.2}
-        className='z-0 flex w-fit gap-[4px]'
+        className='z-0 flex w-fit gap-[4px] px-[24px]'
       >
         {data.map((item) => (
           <MajorTag key={item} type={type} text={item} />

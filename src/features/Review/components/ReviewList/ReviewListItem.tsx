@@ -11,11 +11,11 @@ function ReviewListItem() {
   const { changePopUpState } = usePopUpActions();
 
   return (
-    <div className='review-item pb-0'>
+    <div className='review-item px-0 pb-0'>
       <div className='flex w-full flex-col gap-[12px]'>
         <div
           onClick={() => router.push('/well-book/2/review/1')}
-          className='flex w-full cursor-pointer flex-col gap-[12px]'
+          className='flex w-full cursor-pointer flex-col gap-[12px] px-[24px]'
         >
           <div>
             <span className='rounded-[20px] bg-gray-800 px-[10px] py-[6px] text-body_sm_bold text-white'>
@@ -29,19 +29,19 @@ function ReviewListItem() {
           </h3>
         </div>
 
-        <div className='flex w-full flex-col gap-[4px]'>
+        <div className='flex-col-center w-full gap-[4px]'>
           <TagSlider type='pros' />
           <TagSlider type='cons' />
         </div>
       </div>
-      <span className='text-body_md text-gray-600'>2024.02.07</span>
+      <span className='px-[24px] text-body_md text-gray-600'>2024.02.07</span>
 
-      <div className='flex w-full flex-col'>
+      <div className='flex w-full flex-col px-[24px]'>
         <hr className='border-[0.5px] border-gray-400' />
         <button
           type='button'
           onClick={() => changePopUpState('isOpenDeleteSheet', true)}
-          className='py-[20px] text-body_lg text-error'
+          className='py-[24px] text-body_lg text-error'
         >
           리뷰 삭제
         </button>
