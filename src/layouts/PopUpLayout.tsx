@@ -1,9 +1,10 @@
 'use client';
 
+import { useScrollFreeze } from '@/hooks/gesture/useScrollFreeze';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
 import { modalBackgroundVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 
 interface PopUpProps {
   children: React.ReactNode;
@@ -11,17 +12,13 @@ interface PopUpProps {
 }
 
 function PopUpLayout({ children, closePopUp }: PopUpProps) {
-  const ref = useRef<HTMLDivElement | null>(null); // 팝업에 대한 ref
+  useScrollFreeze();
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  /* ----- 팝업 바깥 클릭 시 닫힘 hook ----- */
   useClickOutside(ref, () => {
     document.body.style.overflow = 'auto';
     closePopUp();
   });
-
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-  }, []);
 
   return (
     <motion.div

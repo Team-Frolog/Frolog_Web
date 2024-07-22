@@ -5,7 +5,7 @@ import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import { ReviewDetail, ReviewForm, ReviewFormType } from '@/features/Review';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 interface Props {
@@ -35,10 +35,6 @@ function WellBookReviewPage({ params: { id } }: Props) {
     handleSubmit,
     formState: { isValid },
   } = methods;
-
-  useEffect(() => {
-    document.body.style.backgroundColor = '#FFFFFF';
-  }, []);
 
   const handleEditReview = () => {
     // TODO: 서버 연동

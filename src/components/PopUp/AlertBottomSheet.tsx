@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { modalBackgroundVariants } from '@/styles/variants/variants';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
@@ -8,6 +8,7 @@ import { usePopUpActions } from '@/store/popUpStore';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import { AlertSheet } from '@/data/ui/bottomSheet';
+import { useScrollFreeze } from '@/hooks/gesture/useScrollFreeze';
 import Button from '../Button/Button';
 
 interface Props {
@@ -17,19 +18,12 @@ interface Props {
 }
 
 function AlertBottomSheet({ sheetData, children, onClick }: Props) {
+  useScrollFreeze();
   const { getTitle, type, stateType, buttonText, extraButtonText } = sheetData;
   const { changePopUpState } = usePopUpActions();
   const ref = useRef<HTMLDivElement | null>(null);
 
   useClickOutside(ref, () => changePopUpState(stateType, false));
-
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, []);
 
   return (
     <motion.div
