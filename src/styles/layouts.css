@@ -7,4 +7,22 @@
   .flex-child-layout {
     @apply flex h-fit w-full flex-col items-center bg-white text-gray-800;
   }
+  .absolute-fit {
+    @apply absolute left-0 top-0;
+  }
+  .absoulte-fit-bottom {
+    @apply absolute bottom-0 left-0;
+  }
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .flex-column {
+    @apply flex flex-col;
+  }
+  .flex-col-center {
+    @apply flex flex-col items-center;
+  }
+  .header-sticky {
+    @apply sticky left-0 top-0 z-50 w-full;
+  }
 }

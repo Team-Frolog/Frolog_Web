@@ -20,7 +20,7 @@ function JoinFinishPage() {
         <br />
         완료되었어요
       </FinishLight>
-      <div className='flex w-full flex-col items-center justify-end gap-[12px]'>
+      <div className='flex-col-center w-full justify-end gap-[12px]'>
         <Image
           src={IMAGES.ground}
           alt='ground'

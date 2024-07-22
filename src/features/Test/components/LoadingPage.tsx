@@ -32,7 +32,7 @@ function LoadingPage() {
   }, []);
 
   return (
-    <div className='flex h-dvh w-full flex-col items-center justify-between'>
+    <div className='flex-col-center h-dvh w-full justify-between'>
       <FinishLight
         frog={
           isDone ? IMAGES.frog.evaluation.done : IMAGES.frog.evaluation.loading

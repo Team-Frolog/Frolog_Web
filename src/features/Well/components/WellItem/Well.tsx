@@ -11,7 +11,7 @@ interface Props {
 function Well({ wellData }: Props) {
   return (
     <div className='flex h-fit w-fit flex-col gap-[8px]'>
-      <div className='relative box-content flex h-[120px] w-[120px] items-center justify-center bg-gray-900 p-[20px]'>
+      <div className='flex-center relative box-content h-[120px] w-[120px] bg-gray-900 p-[20px]'>
         <Image
           src='/images/frog/frog-sitting.svg'
           alt='frog'

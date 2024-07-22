@@ -50,7 +50,7 @@ function CodeForm({ type, onClickNext }: Props) {
         isFailed={isSendFailed}
       />
 
-      <div className='flex w-full flex-col items-center gap-[12px]'>
+      <div className='flex-col-center w-full gap-[12px]'>
         <AnimatePresence>
           {isVerified === false && (
             <ErrorPopUp errorMsg='인증코드를 다시 확인해주세요' />

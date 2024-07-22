@@ -37,9 +37,7 @@ function ButtonWithText({
         </Button>
       )}
 
-      <div className='flex w-full flex-1 items-center justify-center'>
-        {children}
-      </div>
+      <div className='flex-center w-full flex-1'>{children}</div>
     </div>
   );
 }

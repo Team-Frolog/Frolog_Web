@@ -14,7 +14,7 @@ function FrogOnBook() {
   return (
     <motion.div
       variants={hasNewReview ? staggerItemVariants : undefined}
-      className='flex flex-col items-center'
+      className='flex-col-center'
     >
       <GuideChat />
       <Image src={IMAGES.frog.sitting} alt='frog' width={90} height={120} />

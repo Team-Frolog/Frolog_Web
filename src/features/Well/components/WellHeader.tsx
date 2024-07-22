@@ -14,13 +14,13 @@ function WellHeader() {
   const { data: session } = useSession();
 
   return (
-    <div className='absolute left-[50%] top-0 z-10 flex w-[450px] translate-x-[-50%] flex-col items-center gap-[20px] pt-[70px] mobile:left-0 mobile:w-full mobile:translate-x-0'>
+    <div className='flex-col-center absolute left-[50%] top-0 z-10 w-[450px] translate-x-[-50%] gap-[20px] pt-[70px] mobile:left-0 mobile:w-full mobile:translate-x-0'>
       <Image
         src={IMAGES.well.header}
         alt='well-header'
         width={390}
         height={144}
-        className='absolute left-0 top-0 w-full'
+        className='absolute-fit w-full'
       />
       {session && (
         <button type='button' className='absolute right-[28px] top-[28px] z-20'>
@@ -35,7 +35,7 @@ function WellHeader() {
       >
         <Pointing />
         <h1 className='text-title_xl_bold'>소중한 나의 첫 우물</h1>
-        <div className='flex flex-col items-center gap-[4px]'>
+        <div className='flex-col-center gap-[4px]'>
           <Link
             href={session ? '/well-book/1/review' : PAGES.LANDING}
             className='relative z-[50px] cursor-pointer'
