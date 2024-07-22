@@ -4,11 +4,12 @@ import BookInfo from '@/components/Book/BookInfo';
 import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
 import Splash from '@/components/Splash/Splash';
 import { sheetData } from '@/data/ui/bottomSheet';
+import { splash } from '@/data/ui/splash';
 import { ReviewForm, ReviewFormType } from '@/features/Review';
 import { useScroll } from '@/hooks/gesture/useScroll';
+import { useSplash } from '@/hooks/popup/useSplash';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
 import { usePopUpActions } from '@/store/popUpStore';
-import useSplashStore from '@/store/splashStore';
 import { useStackMotionActions } from '@/store/stackMotionStore';
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
@@ -17,10 +18,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 function NewReviewPage() {
   useScroll(undefined);
   const bookId = useSearchParams().get('id');
-  const {
-    isOpen,
-    actions: { changeState },
-  } = useSplashStore();
+  const { isOpen, setIsOpen } = useSplash(splash.review.route);
   const { setNewReviewId } = useStackMotionActions();
   const { changePopUpState } = usePopUpActions();
 
@@ -51,7 +49,7 @@ function NewReviewPage() {
   const handleAddReview = () => {
     // TODO: 서버 연동
     setNewReviewId('id');
-    changeState(true);
+    setIsOpen(true);
   };
 
   if (!bookId) return null;

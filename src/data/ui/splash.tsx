@@ -23,7 +23,7 @@ export const splash: {
       </>
     ),
     frog: IMAGES.frog.congrats,
-    route: '/well',
+    route: '/',
     hasPopper: true,
   },
 };

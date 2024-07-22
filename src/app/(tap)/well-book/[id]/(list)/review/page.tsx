@@ -4,10 +4,10 @@ import React from 'react';
 import { useDeleteSheetState } from '@/store/popUpStore';
 import { FirstReviewItem, ReviewListItem } from '@/features/Review';
 import { AnimatePresence } from 'framer-motion';
-import AlertBottomSheet from '@/components/PopUp/AlertBottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import AddButton from '@/components/Button/AddButton';
 import { useScroll } from '@/hooks/gesture/useScroll';
+import AlertBottomSheet from '@/layouts/AlertBottomSheet';
 
 interface Props {
   params: {
