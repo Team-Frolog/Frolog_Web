@@ -2,17 +2,25 @@ import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
 import { setHeaderStyle } from '@/utils/setHeaderStyle';
 
-export const useScroll = (categoryColor: string | undefined) => {
+interface Props {
+  categoryColor: string | undefined;
+  foreground?: string;
+}
+
+export const useScroll = ({
+  categoryColor,
+  foreground = 'text-gray-800',
+}: Props) => {
   const [scrollY, setScrollY] = useState(0);
 
   const darkmode = () => {
-    setHeaderStyle('#0E0E0E', '#B3B6C5', 'text-white');
+    setHeaderStyle('#0E0E0E', '#B3B6C5', '#FFFFFF', '#B3B6C5');
   };
   const lightmode = () => {
-    setHeaderStyle('#FFFFFF', '#727484', 'text-gray-800');
+    setHeaderStyle('#FFFFFF', '#727484', '#313239', '#B3B6C5');
   };
   const category = () => {
-    setHeaderStyle(categoryColor!, '#727484', 'text-gray-800', true);
+    setHeaderStyle(categoryColor!, foreground, foreground, '#FF7171');
   };
 
   const updateScroll = throttle(() => {

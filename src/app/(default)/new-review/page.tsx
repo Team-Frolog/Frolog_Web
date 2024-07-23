@@ -16,7 +16,7 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function NewReviewPage() {
-  useScroll(undefined);
+  useScroll({ categoryColor: undefined });
   const bookId = useSearchParams().get('id');
   const { isOpen, setIsOpen } = useSplash(splash.review.route);
   const { setNewReviewId } = useStackMotionActions();

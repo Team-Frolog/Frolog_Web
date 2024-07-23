@@ -17,7 +17,11 @@ interface Props {
 
 function ReviewPage({ params: { id } }: Props) {
   console.log(id);
-  useScroll('#ffda4a');
+  useScroll(
+    id === '1'
+      ? { categoryColor: '#FE2F2F', foreground: '#FABBC8' }
+      : { categoryColor: undefined }
+  );
   const isOpenDeleteSheet = useDeleteSheetState();
 
   const handleDeleteReview = () => {

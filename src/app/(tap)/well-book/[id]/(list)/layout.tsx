@@ -14,7 +14,7 @@ function ReviewMemoLayout({ children, params }: Props) {
     <>
       <TapHeader bookId={params.id} />
       <BookInfo bookId={params.id} />
-      <div className='flex-child-layout tooltip-after relative flex-1 gap-[12px] rounded-t-[20px] bg-category-bg-etc py-[20px] after:-top-[10px] after:border-[16px] after:border-category-bg-etc'>
+      <div className='flex-child-layout tooltip-after relative flex-1 gap-[12px] rounded-t-[20px] bg-category-bg-novel py-[20px] after:-top-[10px] after:border-[16px] after:border-category-bg-novel'>
         {children}
       </div>
     </>
