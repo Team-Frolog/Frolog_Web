@@ -35,7 +35,8 @@ function AlertBottomSheet({ sheetData, children, onClick }: Props) {
           animate={{ y: '0%' }}
           exit={{ y: '120%' }}
           transition={{ duration: 0.3 }}
-          className='flex-col-center h-fit w-full gap-[40px] rounded-t-[20px] bg-white px-[24px] py-[40px] pb-0 text-gray-800'
+          className='flex-col-center relative h-fit w-full gap-[40px] rounded-t-[20px] bg-white px-[24px] py-[40px] pb-0 text-gray-800'
+          style={{ paddingTop: '40px' }}
         >
           <Image
             src={
@@ -47,6 +48,7 @@ function AlertBottomSheet({ sheetData, children, onClick }: Props) {
             width={191}
             height={70}
             className='absolute inset-x-0 -top-[58px] mx-auto'
+            style={{ top: '-58px' }}
           />
           <div className='flex-col-center w-full gap-[12px]'>
             <h2 className='text-center text-h_md_bold'>{getTitle()}</h2>
