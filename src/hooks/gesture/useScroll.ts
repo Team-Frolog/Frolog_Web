@@ -32,7 +32,7 @@ export const useScroll = ({
       darkmode();
     } else if (scrollY < 350) {
       lightmode();
-    } else {
+    } else if (categoryColor) {
       category();
     }
   }, [scrollY]);
