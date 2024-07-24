@@ -1,3 +1,4 @@
+import NewReviewForm from './components/NewReviewForm';
 import ReviewDetail from './components/ReviewDetail';
 import ReviewForm from './components/ReviewForm';
 import FirstReviewItem from './components/ReviewList/FirstReviewItem';
@@ -11,5 +12,6 @@ export {
   ReviewListItem,
   FirstReviewItem,
   NoReviewItem,
+  NewReviewForm,
 };
 export type { ReviewFormType };
