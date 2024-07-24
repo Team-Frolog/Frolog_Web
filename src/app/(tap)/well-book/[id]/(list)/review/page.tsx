@@ -6,7 +6,6 @@ import { FirstReviewItem, ReviewListItem } from '@/features/Review';
 import { AnimatePresence } from 'framer-motion';
 import { sheetData } from '@/data/ui/bottomSheet';
 import AddButton from '@/components/Button/AddButton';
-import { useScroll } from '@/hooks/gesture/useScroll';
 import AlertBottomSheet from '@/layouts/AlertBottomSheet';
 
 interface Props {
@@ -17,11 +16,6 @@ interface Props {
 
 function ReviewPage({ params: { id } }: Props) {
   console.log(id);
-  useScroll(
-    id === '1'
-      ? { categoryColor: '#FE2F2F', foreground: '#FABBC8' }
-      : { categoryColor: undefined }
-  );
   const isOpenDeleteSheet = useDeleteSheetState();
 
   const handleDeleteReview = () => {

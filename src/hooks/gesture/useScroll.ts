@@ -5,11 +5,13 @@ import { setHeaderStyle } from '@/utils/setHeaderStyle';
 interface Props {
   categoryColor: string | undefined;
   foreground?: string;
+  unSelected?: string;
 }
 
 export const useScroll = ({
   categoryColor,
   foreground = 'text-gray-800',
+  unSelected = '#B3B6C5',
 }: Props) => {
   const [scrollY, setScrollY] = useState(0);
 
@@ -20,7 +22,7 @@ export const useScroll = ({
     setHeaderStyle('#FFFFFF', '#727484', '#313239', '#B3B6C5');
   };
   const category = () => {
-    setHeaderStyle(categoryColor!, foreground, foreground, '#FF7171');
+    setHeaderStyle(categoryColor!, foreground, foreground, unSelected);
   };
 
   const updateScroll = throttle(() => {
