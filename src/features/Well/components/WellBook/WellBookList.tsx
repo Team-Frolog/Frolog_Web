@@ -17,6 +17,7 @@ function WellBookList() {
       variants={staggerContainerVariants}
     >
       {hasNewReview && <WellBook />}
+      <WellBook />
       <FrogOnBook />
     </motion.div>
   );

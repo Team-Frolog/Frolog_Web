@@ -24,7 +24,7 @@ function ReviewPage({ params: { id } }: Props) {
 
   return (
     <>
-      <AddButton route='/new-review?id=1' text='리뷰 추가하기' />
+      <AddButton route='/new-review?id=9791193154250' text='리뷰 추가하기' />
       <ReviewListItem />
       <FirstReviewItem />
       <AnimatePresence>

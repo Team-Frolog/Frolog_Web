@@ -1,10 +1,11 @@
 import { authOptions } from '@/api/options';
 import { getSession } from 'next-auth/react';
 import { ERROR_ALERT } from '@/constants/message';
-import { PostReview, PostReviewReq } from '@frolog/frolog-api';
+import { GetReviewDetail, PostReview, PostReviewReq } from '@frolog/frolog-api';
 import { ReviewForm } from '../types/review';
 
 const postReview = new PostReview(authOptions);
+const getReview = new GetReviewDetail(authOptions);
 
 export const addNewReview = async (data: ReviewForm, isbn: string) => {
   const session = await getSession();
@@ -24,6 +25,15 @@ export const addNewReview = async (data: ReviewForm, isbn: string) => {
     return result;
   } catch (err) {
     console.log(err);
+    window.alert(ERROR_ALERT);
+  }
+};
+
+export const getReviewDetail = async (reviewId: string) => {
+  try {
+    const result = await getReview.fetch({ id: reviewId });
+    return result;
+  } catch (err) {
     window.alert(ERROR_ALERT);
   }
 };

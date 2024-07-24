@@ -4,6 +4,7 @@ import ReviewForm from './components/ReviewForm';
 import FirstReviewItem from './components/ReviewList/FirstReviewItem';
 import NoReviewItem from './components/ReviewList/NoReviewItem';
 import ReviewListItem from './components/ReviewList/ReviewListItem';
+import { useReviewDetail } from './hooks/useReviewDetail';
 import { ReviewForm as ReviewFormType } from './types/review';
 
 export {
@@ -13,5 +14,6 @@ export {
   FirstReviewItem,
   NoReviewItem,
   NewReviewForm,
+  useReviewDetail,
 };
 export type { ReviewFormType };

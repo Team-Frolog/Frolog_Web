@@ -14,7 +14,7 @@ function ReviewListItem() {
     <div className='review-item px-0 pb-0'>
       <div className='flex w-full flex-col gap-[12px]'>
         <div
-          onClick={() => router.push('/well-book/2/review/1')}
+          onClick={() => router.push('/well-book/9791193154250/review/82vKxJA')}
           className='flex w-full cursor-pointer flex-col gap-[12px] px-[24px]'
         >
           <div>

@@ -3,7 +3,12 @@
 import TitleHeader from '@/components/Header/TitleHeader';
 import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
-import { ReviewDetail, ReviewForm, ReviewFormType } from '@/features/Review';
+import {
+  useReviewDetail,
+  ReviewDetail,
+  ReviewForm,
+  ReviewFormType,
+} from '@/features/Review';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -11,30 +16,34 @@ import { FormProvider, useForm } from 'react-hook-form';
 interface Props {
   params: {
     id: string;
+    reviewId: string;
   };
 }
 
-function WellBookReviewPage({ params: { id } }: Props) {
+function WellBookReviewPage({ params: { id, reviewId } }: Props) {
   console.log(id);
   const isEditing = !!useSearchParams().get('edit');
   const router = useRouter();
   const pathname = usePathname();
+
   const methods = useForm<ReviewFormType>({
     mode: 'onBlur',
     defaultValues: {
-      rating: 4.5,
-      oneLiner: 'dddd',
-      review: 'ddd',
-      pros: ['easy', 'squeeze_time', 'smart'],
-      cons: ['biased', 'disarrayed', 'hard_terms'],
+      rating: 0,
+      oneLiner: '',
+      review: '',
+      pros: [],
+      cons: [],
     },
   });
-
   const {
     watch,
     handleSubmit,
+    reset,
     formState: { isValid },
   } = methods;
+
+  useReviewDetail(reviewId, reset);
 
   const handleEditReview = () => {
     // TODO: 서버 연동

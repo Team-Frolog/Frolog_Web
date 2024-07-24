@@ -15,9 +15,9 @@ interface Props {
 
 function ReviewMemoLayout({ children, params: { id } }: Props) {
   useScroll({
-    categoryColor: CATEGORY[+id].bg,
-    foreground: CATEGORY[+id].text,
-    unSelected: CATEGORY[+id].band,
+    categoryColor: CATEGORY[1].bg,
+    foreground: CATEGORY[1].text,
+    unSelected: CATEGORY[1].band,
   });
   return (
     <>
