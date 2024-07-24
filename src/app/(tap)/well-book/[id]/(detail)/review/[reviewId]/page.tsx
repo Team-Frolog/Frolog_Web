@@ -8,6 +8,7 @@ import {
   ReviewDetail,
   ReviewForm,
   ReviewFormType,
+  editReview,
 } from '@/features/Review';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
@@ -45,8 +46,12 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
 
   useReviewDetail(reviewId, reset);
 
-  const handleEditReview = () => {
-    // TODO: 서버 연동
+  const handleEditReview = async (data: ReviewFormType) => {
+    const result = await editReview(reviewId, data);
+
+    if (result) {
+      router.replace(pathname);
+    }
   };
 
   const isDisabled =
@@ -66,7 +71,7 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
         <TitleHeader
           type={isEditing ? 'edit' : 'default'}
           isDisabled={isDisabled}
-          onClick={() => router.push(`${pathname}?edit=true`)}
+          onClick={() => router.replace(`${pathname}?edit=true`)}
         />
         <div className='flex h-fit w-full flex-1 flex-col px-[24px] py-[36px]'>
           {isEditing ? (
