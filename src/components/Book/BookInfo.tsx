@@ -1,10 +1,16 @@
 import Image from 'next/image';
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { IMAGES } from '@/constants/images';
+import { getBookInfo } from '@/features/Review/api/getBookInfo.api';
 import Book from './Book';
 
 function BookInfo({ bookId }: { bookId: string }) {
-  console.log(bookId);
+  const { data } = useQuery({
+    queryKey: ['bookInfo', bookId],
+    queryFn: () => getBookInfo({ isbn: bookId }).then((res) => res),
+  });
+
   return (
     <div
       id='book-info'
@@ -19,13 +25,13 @@ function BookInfo({ bookId }: { bookId: string }) {
       />
       <Book />
       <div className='flex-col-center gap-[4px]'>
-        <h3 className='text-title_lg_bold'>메리와 메리</h3>
+        <h3 className='text-title_lg_bold'>{data?.title}</h3>
         <ul className='flex text-body_sm text-gray-600'>
           <li className="after:content-['|']">
-            <span className='px-[6px]'>샬럿 고든</span>
+            <span className='px-[6px]'>{data?.author}</span>
           </li>
           <li>
-            <span className='px-[6px]'>민음사</span>
+            <span className='px-[6px]'>{data?.publisher}</span>
           </li>
         </ul>
       </div>

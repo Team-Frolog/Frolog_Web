@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import AuthProvider from '@/providers/AuthProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
+import QueryProvider from '@/providers/QueryProvider';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -25,15 +26,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang='ko'>
-      <ThemeProvider />
-      <AuthProvider>
-        <body
-          className={`${pretendard.variable} ${pretendard.className} text-gray-800`}
-        >
-          <div id='root'>{children}</div>
-          <div id='portal' />
-        </body>
-      </AuthProvider>
+      <QueryProvider>
+        <ThemeProvider />
+        <AuthProvider>
+          <body
+            className={`${pretendard.variable} ${pretendard.className} text-gray-800`}
+          >
+            <div id='root'>{children}</div>
+            <div id='portal' />
+          </body>
+        </AuthProvider>
+      </QueryProvider>
     </html>
   );
 }
