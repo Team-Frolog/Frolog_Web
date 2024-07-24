@@ -43,7 +43,7 @@ function TagList({ type }: Props) {
         className='relative flex w-[90%] flex-wrap gap-[16px] overflow-hidden mobile:w-full'
       >
         <div
-          className={`absolute-fit-bottom h-[60px] w-full transition-all duration-300 ${isExpanded ? '-z-10 opacity-100' : 'z-10 opacity-100'}`}
+          className={`absolute bottom-0 left-0 h-[60px] w-full transition-all duration-300 ${isExpanded ? '-z-10 opacity-100' : 'z-10 opacity-100'}`}
           style={{
             boxShadow: 'inset 0px -120px 60px -70px #ffffff',
           }}

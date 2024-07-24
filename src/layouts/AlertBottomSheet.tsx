@@ -35,8 +35,8 @@ function AlertBottomSheet({ sheetData, children, onClick }: Props) {
           animate={{ y: '0%' }}
           exit={{ y: '120%' }}
           transition={{ duration: 0.3 }}
-          className='flex-col-center relative h-fit w-full gap-[40px] rounded-t-[20px] bg-white px-[24px] py-[40px] pb-0 text-gray-800'
-          style={{ paddingTop: '40px' }}
+          className='relative flex h-fit w-full flex-col items-center gap-[40px] rounded-t-[20px] bg-white px-[24px] py-[40px] pb-0 text-gray-800'
+          style={{ paddingTop: '40px', gap: '40px' }}
         >
           <Image
             src={

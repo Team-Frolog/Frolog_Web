@@ -20,7 +20,7 @@ function WellHeader() {
         alt='well-header'
         width={390}
         height={144}
-        className='absolute-fit w-full'
+        className='absolute left-0 top-0 w-full'
       />
       {session && (
         <button type='button' className='absolute right-[28px] top-[28px] z-20'>

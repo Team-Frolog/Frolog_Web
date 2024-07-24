@@ -16,7 +16,7 @@ function TestResultPage({ params: { id } }: Props) {
 
   return (
     <div className='relative flex h-fit w-full flex-col gap-[12px] whitespace-pre-wrap pt-[36px] text-gray-800'>
-      <div className='absolute-fit z-[20] flex w-full items-center justify-between p-[24px]'>
+      <div className='absolute left-0 top-0 z-[20] flex w-full items-center justify-between p-[24px]'>
         <QuitButton route='/' classes='cursor-pointer' />
         <DownloadButton type={id} />
       </div>
@@ -27,7 +27,7 @@ function TestResultPage({ params: { id } }: Props) {
             alt='shape'
             width={390}
             height={450}
-            className='absolute-fit w-full'
+            className='absolute left-0 top-0 w-full'
           />
           <h1 className='z-10 text-center text-h_lg_bold mobile:text-h_lg_bold'>
             {testData.title}
