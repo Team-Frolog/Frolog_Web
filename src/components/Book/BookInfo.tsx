@@ -9,6 +9,7 @@ function BookInfo({ bookId }: { bookId: string }) {
   const { data } = useQuery({
     queryKey: ['bookInfo', bookId],
     queryFn: () => getBookInfo({ isbn: bookId }).then((res) => res),
+    refetchOnWindowFocus: false,
   });
 
   return (
