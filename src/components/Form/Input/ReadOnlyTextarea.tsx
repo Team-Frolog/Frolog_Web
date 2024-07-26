@@ -10,7 +10,7 @@ function ReadOnlyTextarea({ option, content }: Props) {
   return (
     <div className='flex w-full flex-col gap-[8px]'>
       <span className='text-body_md text-gray-700'>{option.title}</span>
-      <div className='textarea-common input-light'>{content}</div>
+      <div className='textarea-common input-light break-words'>{content}</div>
       <span className='self-end text-body_md text-gray-700'>
         {content.length}/{option.maxLength}
       </span>

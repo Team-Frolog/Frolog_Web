@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useDeleteSheetState } from '@/store/popUpStore';
-import { FirstReviewItem, ReviewListItem } from '@/features/Review';
+import { ReviewList } from '@/features/Review';
 import { AnimatePresence } from 'framer-motion';
 import { sheetData } from '@/data/ui/bottomSheet';
 import AddButton from '@/components/Button/AddButton';
@@ -15,7 +15,6 @@ interface Props {
 }
 
 function ReviewPage({ params: { id } }: Props) {
-  console.log(id);
   const isOpenDeleteSheet = useDeleteSheetState();
 
   const handleDeleteReview = () => {
@@ -25,11 +24,7 @@ function ReviewPage({ params: { id } }: Props) {
   return (
     <>
       <AddButton route='/new-review?id=9791193154250' text='리뷰 추가하기' />
-      <div className='flex w-full flex-col gap-[12px]'>
-        <ReviewListItem />
-        <FirstReviewItem />
-      </div>
-
+      <ReviewList bookId={id} />
       <AnimatePresence>
         {isOpenDeleteSheet && (
           <AlertBottomSheet

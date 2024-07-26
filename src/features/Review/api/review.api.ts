@@ -7,18 +7,20 @@ import {
   GetReviewDetail,
   PostReview,
   PostReviewReq,
+  SearchReview,
 } from '@frolog/frolog-api';
 import { ReviewForm } from '../types/review';
 
 const postReview = new PostReview(authOptions);
 const patchEditReview = new EditReview(authOptions);
 const getReview = new GetReviewDetail(authOptions);
+const searchReview = new SearchReview(authOptions);
 
 export const addNewReview = async (data: ReviewForm, isbn: string) => {
-  const session = await getSession();
-  if (!session) return;
-
   try {
+    const session = await getSession();
+    if (!session) return;
+
     const reqData: PostReviewReq = {
       writer: session.user.id,
       isbn,
@@ -55,6 +57,21 @@ export const editReview = async (reviewId: string, data: ReviewForm) => {
       rating: data.rating!,
     };
     const result = await patchEditReview.fetch(reqData);
+    return result;
+  } catch (err) {
+    window.alert(ERROR_ALERT);
+  }
+};
+
+export const getReviewList = async (bookId: string) => {
+  try {
+    const session = await getSession();
+    if (!session) return;
+
+    const result = await searchReview.fetch({
+      isbn: bookId,
+      writer: session.user.id,
+    });
     return result;
   } catch (err) {
     window.alert(ERROR_ALERT);

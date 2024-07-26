@@ -2,20 +2,19 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { getTags } from '@/utils/getTags';
 import MajorTag from './MajorTag';
 
-function TagSlider({ type }: { type: 'pros' | 'cons' }) {
+interface Props {
+  type: 'pros' | 'cons';
+  tagKeys: string[];
+}
+
+function TagSlider({ type, tagKeys }: Props) {
+  const tagData = getTags(type, tagKeys);
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const motionDivRef = useRef<HTMLDivElement | null>(null);
   const [drag, setDrag] = useState<'x' | undefined>(undefined);
-
-  const data = [
-    '완독하기 쉬운',
-    '마음이 따듯해지는',
-    '스트레스가 싹',
-    '해석이 무궁무진',
-    '대화 소재로 딱',
-  ];
 
   useEffect(() => {
     if (
@@ -46,8 +45,8 @@ function TagSlider({ type }: { type: 'pros' | 'cons' }) {
         dragElastic={0.2}
         className='z-0 flex w-fit gap-[4px] px-[24px]'
       >
-        {data.map((item) => (
-          <MajorTag key={item} type={type} text={item} />
+        {tagData.map((item) => (
+          <MajorTag key={item.id} type={type} text={item.value} />
         ))}
       </motion.div>
     </div>

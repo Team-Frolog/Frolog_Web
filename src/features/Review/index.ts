@@ -2,17 +2,15 @@ import { editReview } from './api/review.api';
 import NewReviewForm from './components/NewReviewForm';
 import ReviewDetail from './components/ReviewDetail';
 import ReviewForm from './components/ReviewForm';
-import FirstReviewItem from './components/ReviewList/FirstReviewItem';
 import NoReviewItem from './components/ReviewList/NoReviewItem';
-import ReviewListItem from './components/ReviewList/ReviewListItem';
+import ReviewList from './components/ReviewList/ReviewList';
 import { useReviewDetail } from './hooks/useReviewDetail';
 import { ReviewForm as ReviewFormType } from './types/review';
 
 export {
+  ReviewList,
   ReviewDetail,
   ReviewForm,
-  ReviewListItem,
-  FirstReviewItem,
   NoReviewItem,
   NewReviewForm,
   useReviewDetail,

@@ -16,13 +16,11 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 interface Props {
   params: {
-    id: string;
     reviewId: string;
   };
 }
 
-function WellBookReviewPage({ params: { id, reviewId } }: Props) {
-  console.log(id);
+function WellBookReviewPage({ params: { reviewId } }: Props) {
   const isEditing = !!useSearchParams().get('edit');
   const router = useRouter();
   const pathname = usePathname();
@@ -71,7 +69,7 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
         <TitleHeader
           type={isEditing ? 'edit' : 'default'}
           isDisabled={isDisabled}
-          onClick={() => router.replace(`${pathname}?edit=true`)}
+          onClick={() => router.push(`${pathname}?edit=true`)}
         />
         <div className='flex h-fit w-full flex-1 flex-col px-[24px] py-[36px]'>
           {isEditing ? (
