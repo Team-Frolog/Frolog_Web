@@ -35,7 +35,9 @@ function ReviewList({ bookId }: Props) {
       {isFetched && (
         <>
           {data!.reviews.length === 0 && <NoReviewItem />}
-          {data!.reviews.length === 1 && <FirstReviewItem />}
+          {data!.reviews.length === 1 && data!.reviews[0].rating >= 3.5 && (
+            <FirstReviewItem />
+          )}
           {data!.reviews.length > 1 &&
             data!.reviews.map((review, i) => (
               <ReviewListItem
