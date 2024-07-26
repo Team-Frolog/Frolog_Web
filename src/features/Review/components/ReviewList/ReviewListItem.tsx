@@ -19,7 +19,7 @@ function ReviewListItem() {
         >
           <div>
             <span className='rounded-[20px] bg-gray-800 px-[10px] py-[6px] text-body_sm_bold text-white'>
-              첫번째 리뷰
+              첫 번째 리뷰
             </span>
           </div>
           <Rating rating={4.5} textClass='text-h_lg_bold' />
@@ -29,7 +29,7 @@ function ReviewListItem() {
           </h3>
         </div>
 
-        <div className='flex-col-center w-full gap-[4px]'>
+        <div className='flex-col-center w-full gap-[8px]'>
           <TagSlider type='pros' />
           <TagSlider type='cons' />
         </div>

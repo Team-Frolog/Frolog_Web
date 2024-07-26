@@ -2,7 +2,7 @@
 
 @layer components {
   .major-tag-common {
-    @apply w-fit whitespace-nowrap rounded-[8px] border-[0.5px] px-[12px] py-[6px] text-caption_bold;
+    @apply w-fit whitespace-nowrap rounded-[8px] border-[0.5px] px-[12px] py-[6px] text-body_sm_bold;
   }
   .major-default-tag {
     @apply border-gray-600 bg-gray-300 text-gray-600;
@@ -17,6 +17,6 @@
     @apply w-fit rounded-[12px] border px-[16px] py-[8px] text-body_lg_bold;
   }
   .tag-not-selected {
-    @apply border-gray-300 bg-gray-300 text-gray-600;
+    @apply border-gray-200 bg-gray-200 text-gray-600;
   }
 }
