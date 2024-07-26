@@ -36,7 +36,15 @@ function ReviewList({ bookId }: Props) {
         <>
           {data!.reviews.length === 0 && <NoReviewItem />}
           {data!.reviews.length === 1 && data!.reviews[0].rating >= 3.5 && (
-            <FirstReviewItem />
+            <>
+              <ReviewListItem
+                key={data!.reviews[0].id}
+                index={1}
+                reviewData={data!.reviews[0]}
+                setReviewId={setReviewId}
+              />
+              <FirstReviewItem />
+            </>
           )}
           {data!.reviews.length > 1 &&
             data!.reviews.map((review, i) => (
