@@ -31,7 +31,7 @@ function ReviewList({ bookId }: Props) {
   };
 
   return (
-    <div className='flex w-full flex-col gap-[12px]'>
+    <div className='flex w-full flex-1 flex-col gap-[12px]'>
       {isFetched && (
         <>
           {data!.reviews.length === 0 && <NoReviewItem />}

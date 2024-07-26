@@ -4,7 +4,7 @@ import { IMAGES } from '@/constants/images';
 
 function NoReviewItem() {
   return (
-    <div className='review-item items-center text-center'>
+    <div className='review-item flex-1 items-center justify-center bg-white text-center'>
       <h3 className='text-body_xl_bold'>
         책을 다 읽으셨으면 이제 리뷰를 써보세요!
       </h3>
