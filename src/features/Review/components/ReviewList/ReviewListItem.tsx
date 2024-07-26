@@ -11,9 +11,10 @@ import { formatDate } from '@/utils/format';
 interface Props {
   index: number;
   reviewData: GetReviewRes;
+  setReviewId: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function ReviewListItem({ reviewData, index }: Props) {
+function ReviewListItem({ reviewData, index, setReviewId }: Props) {
   const router = useRouter();
   const { changePopUpState } = usePopUpActions();
 
@@ -49,7 +50,10 @@ function ReviewListItem({ reviewData, index }: Props) {
         <hr className='border-[0.5px] border-gray-400' />
         <button
           type='button'
-          onClick={() => changePopUpState('isOpenDeleteSheet', true)}
+          onClick={() => {
+            setReviewId(reviewData.id);
+            changePopUpState('isOpenDeleteSheet', true);
+          }}
           className='py-[24px] text-body_lg text-error'
         >
           리뷰 삭제
