@@ -25,8 +25,11 @@ function ReviewPage({ params: { id } }: Props) {
   return (
     <>
       <AddButton route='/new-review?id=9791193154250' text='리뷰 추가하기' />
-      <ReviewListItem />
-      <FirstReviewItem />
+      <div className='flex w-full flex-col gap-[12px]'>
+        <ReviewListItem />
+        <FirstReviewItem />
+      </div>
+
       <AnimatePresence>
         {isOpenDeleteSheet && (
           <AlertBottomSheet

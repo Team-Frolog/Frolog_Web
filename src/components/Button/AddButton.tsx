@@ -10,7 +10,7 @@ interface Props {
 
 function AddButton({ route, text }: Props) {
   return (
-    <div className='w-full px-[24px] pb-[8px]'>
+    <div className='w-full px-[24px] py-[20px]'>
       <LinkButton route={route} theme='light'>
         <div className='flex-center gap-[8px]'>
           <Image src={ICONS.common.add} alt='add' width={25} height={24} />

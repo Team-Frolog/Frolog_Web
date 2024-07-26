@@ -15,6 +15,6 @@
     @apply after:absolute after:left-1/2 after:-z-0 after:h-0 after:w-0 after:-translate-x-[50%] after:rotate-45 after:border-solid;
   }
   .review-item {
-    @apply flex w-full flex-col gap-[20px] rounded-[20px] bg-white px-[24px] py-[36px] text-gray-800;
+    @apply flex w-full flex-col gap-[20px] rounded-[20px] bg-white px-[24px] py-[36px] text-gray-800 last:rounded-b-none;
   }
 }
