@@ -8,7 +8,6 @@ import {
   ReviewDetail,
   ReviewForm,
   ReviewFormType,
-  editReview,
 } from '@/features/Review';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
@@ -43,15 +42,11 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
     formState: { isValid },
   } = methods;
 
-  const { bookTitle } = useReviewDetail(id, reviewId, reset);
-
-  const handleEditReview = async (data: ReviewFormType) => {
-    const result = await editReview(reviewId, data);
-
-    if (result) {
-      router.replace(pathname);
-    }
-  };
+  const { bookTitle, reviewDetail, handleEditReview } = useReviewDetail(
+    id,
+    reviewId,
+    reset
+  );
 
   const isDisabled =
     !watch('rating') ||
@@ -64,7 +59,7 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={handleSubmit(handleEditReview)}
+        onSubmit={handleSubmit((data) => handleEditReview(data, pathname))}
         className='flex h-fit w-full flex-1 flex-col bg-white'
       >
         <TitleHeader
@@ -80,7 +75,7 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
               <ConfirmLeaveSheet sheetData={sheetData.leave_while_edit} />
             </>
           ) : (
-            <ReviewDetail />
+            <ReviewDetail reviewDetail={reviewDetail} />
           )}
         </div>
       </form>

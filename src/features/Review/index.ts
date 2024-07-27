@@ -1,4 +1,3 @@
-import { editReview } from './api/review.api';
 import NewReviewForm from './components/NewReviewForm';
 import ReviewDetail from './components/ReviewDetail';
 import ReviewForm from './components/ReviewForm';
@@ -14,6 +13,5 @@ export {
   NoReviewItem,
   NewReviewForm,
   useReviewDetail,
-  editReview,
 };
 export type { ReviewFormType };

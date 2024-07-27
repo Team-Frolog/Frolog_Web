@@ -61,7 +61,7 @@ function TagList({ type }: Props) {
       </motion.div>
       <button
         type='button'
-        className='flex w-full justify-center'
+        className='flex w-full justify-center py-[12px]'
         onClick={() => setIsExpanded((prev) => !prev)}
       >
         <Image
