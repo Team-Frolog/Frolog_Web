@@ -8,6 +8,14 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/styles/**/*.{js,ts,jsx,tsx}',
   ],
+  safelist: [
+    {
+      pattern: /bg-category-./,
+    },
+    {
+      pattern: /text-category-./,
+    },
+  ],
   theme: {
     extend: {
       screens: {
