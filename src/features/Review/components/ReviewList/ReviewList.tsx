@@ -21,6 +21,7 @@ function ReviewList({ bookId }: Props) {
     queryKey: ['myReviews', bookId],
     queryFn: () => getReviewList(bookId),
   });
+  const reviews = data?.reviews || [];
 
   const handleDeleteReview = async () => {
     const result = await deleteReview(reviewId);
@@ -34,20 +35,20 @@ function ReviewList({ bookId }: Props) {
     <div className='flex w-full flex-1 flex-col gap-[12px]'>
       {isFetched && (
         <>
-          {data!.reviews.length === 0 && <NoReviewItem />}
-          {data!.reviews.length === 1 && data!.reviews[0].rating >= 3.5 && (
+          {reviews.length === 0 && <NoReviewItem />}
+          {reviews.length === 1 && (
             <>
               <ReviewListItem
-                key={data!.reviews[0].id}
+                key={reviews[0].id}
                 index={1}
-                reviewData={data!.reviews[0]}
+                reviewData={reviews[0]}
                 setReviewId={setReviewId}
               />
-              <FirstReviewItem />
+              {reviews[0].rating >= 3.5 && <FirstReviewItem />}
             </>
           )}
-          {data!.reviews.length > 1 &&
-            data!.reviews.map((review, i) => (
+          {reviews.length > 1 &&
+            reviews.map((review, i) => (
               <ReviewListItem
                 key={review.id}
                 index={i + 1}

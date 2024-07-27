@@ -33,7 +33,7 @@ function ReviewListItem({ reviewData, index, setReviewId }: Props) {
             </span>
           </div>
           <Rating rating={reviewData.rating} textClass='text-h_lg_bold' />
-          <h3 className='text-title_xl_bold'>{reviewData.title}</h3>
+          <h3 className='break-all text-title_xl_bold'>{reviewData.title}</h3>
         </div>
 
         <div className='flex-col-center w-full gap-[8px]'>
