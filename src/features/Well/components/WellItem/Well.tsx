@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import Outline from 'public/images/well/outline/1.svg';
 import { Well as WellDataType } from '@/data/dummy/well';
-import { category } from '@/data/category';
+import { CATEGORY } from '@/constants/category';
 
 interface Props {
   wellData: WellDataType;
@@ -20,7 +20,7 @@ function Well({ wellData }: Props) {
           className='absolute inset-x-0 bottom-[18px] z-10 mx-auto h-[60%]'
         />
         <div className='absolute left-1/2 top-1/2 z-20 h-full w-full -translate-x-1/2 -translate-y-1/2 pt-[0px]'>
-          <Outline fill={category[wellData.category].color} />
+          <Outline fill={CATEGORY[wellData.category].bg} />
         </div>
       </div>
       <h5 className='text-center text-body_xl_bold text-gray-800'>

@@ -1,5 +1,6 @@
 import TitleHeader from '@/components/Header/TitleHeader';
 import { SearchInput } from '@/features/Search';
+import CategoryResult from '@/features/Search/components/CategoryResult';
 import React from 'react';
 
 function SearchPage() {
@@ -8,6 +9,7 @@ function SearchPage() {
       <TitleHeader title='책 검색' type='default' />
       <div className='flex flex-col gap-[16px] px-[24px]'>
         <SearchInput />
+        <CategoryResult />
       </div>
     </div>
   );
