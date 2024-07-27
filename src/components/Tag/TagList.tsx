@@ -52,8 +52,9 @@ function TagList({ type }: Props) {
           <Tag
             key={item.id}
             type={type}
-            tag={item}
-            onClick={handleTagSelect}
+            size='big'
+            tagValue={item.value}
+            onClick={() => handleTagSelect(item.id)}
             isSelected={selectedTags.includes(item.id)}
           />
         ))}

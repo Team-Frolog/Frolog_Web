@@ -1,22 +1,19 @@
 @import 'tailwindcss/components';
 
 @layer components {
-  .major-tag-common {
-    @apply w-fit whitespace-nowrap rounded-[8px] border-[0.5px] px-[12px] py-[6px] text-body_sm_bold;
-  }
-  .major-default-tag {
-    @apply border-gray-600 bg-gray-300 text-gray-600;
-  }
   .pro-tag {
     @apply border-main bg-main_bg text-main;
   }
   .con-tag {
     @apply border-error bg-error_bg_light text-error;
   }
-  .tag-common {
-    @apply w-fit rounded-[12px] border px-[16px] py-[8px] text-body_lg_bold;
+  .tag-size-big {
+    @apply w-fit whitespace-nowrap rounded-[12px] border px-[16px] py-[8px] text-body_lg_bold;
   }
-  .tag-not-selected {
+  .tag-size-small {
+    @apply w-fit whitespace-nowrap rounded-[8px] border-[0.5px] px-[12px] py-[6px] text-body_sm_bold;
+  }
+  .default-tag {
     @apply border-gray-200 bg-gray-200 text-gray-600;
   }
 }

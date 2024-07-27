@@ -18,7 +18,7 @@ function MajorTagList({ type, tagData }: Props) {
       </span>
       <div className='flex w-full flex-wrap gap-[16px] overflow-hidden'>
         {tags.map((item) => (
-          <Tag key={item.id} type={type} tag={item} isSelected />
+          <Tag key={item.id} type={type} size='big' tagValue={item.value} />
         ))}
       </div>
     </div>

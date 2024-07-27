@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { getTags } from '@/utils/getTags';
-import MajorTag from './MajorTag';
+import Tag from './Tag';
 
 interface Props {
   type: 'pros' | 'cons';
@@ -46,7 +46,7 @@ function TagSlider({ type, tagKeys }: Props) {
         className='z-0 flex w-fit gap-[4px] px-[24px]'
       >
         {tagData.map((item) => (
-          <MajorTag key={item.id} type={type} text={item.value} />
+          <Tag key={item.id} type={type} size='small' tagValue={item.value} />
         ))}
       </motion.div>
     </div>

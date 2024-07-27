@@ -1,26 +1,29 @@
-import { TagData } from '@/data/tag';
 import { Tag as TagType } from '@/types/tag';
 import React from 'react';
 
 interface Props {
-  tag: TagData;
-  type: TagType;
-  onClick?: (id: string) => void;
-  isSelected: boolean;
+  tagValue: string;
+  size: 'small' | 'big';
+  type: TagType | 'default';
+  onClick?: () => void;
+  isSelected?: boolean;
 }
 
-function Tag({ tag, type, onClick, isSelected }: Props) {
+function Tag({ tagValue, size, type, onClick, isSelected = true }: Props) {
+  const tagSize = size === 'small' ? 'tag-size-small' : 'tag-size-big';
+
   const getBgColor = () => {
-    if (!isSelected) return 'tag-not-selected';
+    if (!isSelected || type === 'default') return 'default-tag';
     return type === 'pros' ? 'pro-tag' : 'con-tag';
   };
+
   return (
     <button
       type='button'
-      onClick={onClick ? () => onClick(tag.id) : undefined}
-      className={`tag-common ${getBgColor()}`}
+      onClick={onClick || undefined}
+      className={`${tagSize} ${getBgColor()}`}
     >
-      {tag.value}
+      {tagValue}
     </button>
   );
 }
