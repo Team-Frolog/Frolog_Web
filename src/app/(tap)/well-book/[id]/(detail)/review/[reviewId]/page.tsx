@@ -16,11 +16,12 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 interface Props {
   params: {
+    id: string;
     reviewId: string;
   };
 }
 
-function WellBookReviewPage({ params: { reviewId } }: Props) {
+function WellBookReviewPage({ params: { id, reviewId } }: Props) {
   const isEditing = !!useSearchParams().get('edit');
   const router = useRouter();
   const pathname = usePathname();
@@ -42,7 +43,7 @@ function WellBookReviewPage({ params: { reviewId } }: Props) {
     formState: { isValid },
   } = methods;
 
-  useReviewDetail(reviewId, reset);
+  const { bookTitle } = useReviewDetail(id, reviewId, reset);
 
   const handleEditReview = async (data: ReviewFormType) => {
     const result = await editReview(reviewId, data);
@@ -67,6 +68,7 @@ function WellBookReviewPage({ params: { reviewId } }: Props) {
         className='flex h-fit w-full flex-1 flex-col bg-white'
       >
         <TitleHeader
+          title={bookTitle}
           type={isEditing ? 'edit' : 'default'}
           isDisabled={isDisabled}
           onClick={() => router.push(`${pathname}?edit=true`)}
