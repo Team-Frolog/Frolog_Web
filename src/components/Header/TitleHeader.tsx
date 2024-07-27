@@ -28,7 +28,7 @@ function TitleHeader({ type, isDisabled, title, onClick }: Props) {
 
   return (
     <div
-      className={`header-sticky z-40 flex justify-between bg-white px-[24px] py-[10px] text-gray-800 ${onClick ? 'border-b-[0.5px] border-gray-400' : 'border-0'}`}
+      className={`header-sticky z-40 flex justify-between bg-white px-[24px] py-[16px] text-gray-800 ${onClick ? 'border-b-[0.5px] border-gray-400' : 'border-0'}`}
     >
       <button type='button' onClick={handleClick}>
         <BackIcon fill='#727484' />
