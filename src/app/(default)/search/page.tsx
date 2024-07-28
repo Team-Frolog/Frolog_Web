@@ -1,15 +1,17 @@
 import TitleHeader from '@/components/Header/TitleHeader';
-import { SearchInput } from '@/features/Search';
-import CategoryResult from '@/features/Search/components/CategoryResult';
+import { CategoryResult, SearchInput, SearchResult } from '@/features/Search';
 import React from 'react';
 
 function SearchPage() {
   return (
     <div className='flex w-full flex-1 flex-col'>
       <TitleHeader title='책 검색' type='default' />
-      <div className='flex flex-col gap-[16px] px-[24px]'>
-        <SearchInput />
-        <CategoryResult />
+      <div className='flex flex-1 flex-col px-[24px]'>
+        <div className='sticky left-0 top-[52px] z-40 flex w-full flex-col gap-[16px] bg-white pb-[12px]'>
+          <SearchInput />
+          <CategoryResult />
+        </div>
+        <SearchResult />
       </div>
     </div>
   );

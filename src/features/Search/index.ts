@@ -1,3 +1,5 @@
+import CategoryResult from './components/CategoryResult';
 import SearchInput from './components/SearchInput';
+import SearchResult from './components/SearchResult';
 
-export { SearchInput };
+export { SearchInput, CategoryResult, SearchResult };

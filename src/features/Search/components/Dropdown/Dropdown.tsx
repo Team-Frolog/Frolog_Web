@@ -60,7 +60,7 @@ function Dropdown() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'fit-content', maxHeight: '300px', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className='absolute left-0 top-[65px] h-fit max-h-[300px] w-full overflow-auto rounded-[12px] border border-gray-400 py-[12px]'
+            className='absolute left-0 top-[65px] z-40 h-fit max-h-[300px] w-full overflow-auto rounded-[12px] border border-gray-400 bg-white py-[12px]'
           >
             {data.map((item) => (
               <CategoryItem

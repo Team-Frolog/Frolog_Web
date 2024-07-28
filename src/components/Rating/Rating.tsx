@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import Star from './Star';
 
 interface Props {
-  rating: number;
+  rating: number | null;
   textClass?: string;
 }
 
@@ -24,8 +24,12 @@ function Rating({ rating, textClass = 'text-body_xl_bold' }: Props) {
 
   return (
     <div className='flex w-full items-center gap-[8px]'>
-      <span className={`text-gray-800 ${textClass}`}>{rating.toFixed(1)}</span>
-      <div className='flex gap-[4px]'>{generateRatingStars(rating)}</div>
+      <span
+        className={`${rating ? 'text-gray-800' : 'text-gray-600'} ${textClass}`}
+      >
+        {rating ? rating.toFixed(1) : '0.0'}
+      </span>
+      <div className='flex gap-[4px]'>{generateRatingStars(rating || 0)}</div>
     </div>
   );
 }

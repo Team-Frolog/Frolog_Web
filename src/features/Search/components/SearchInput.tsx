@@ -8,7 +8,7 @@ function SearchInput() {
   const [searchValue, setSearchValue] = useState('');
 
   return (
-    <div className='relative flex w-full'>
+    <div className='relative flex w-full bg-white'>
       <SearchIcon
         fill='#8B95A1'
         className='absolute left-[16px] top-1/2 -translate-y-1/2'
