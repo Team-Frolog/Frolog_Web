@@ -13,6 +13,8 @@ export const IMAGES = {
     sheet: {
       error: `${BASE_PATH}/frog/sheet/frog-sheet-error.svg`,
       book: `${BASE_PATH}/frog/sheet/frog-with-book.svg`,
+      wink: `${BASE_PATH}/frog/sheet/wink-frog.svg`,
+      normal: `${BASE_PATH}/frog/sheet/frog-normal.svg`,
     },
     withPen: `${BASE_PATH}/frog/frog-with-pen.svg`,
   },

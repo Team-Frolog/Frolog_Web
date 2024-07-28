@@ -20,6 +20,10 @@ interface Props {
 
 function AlertBottomSheet({ sheetData, children, onClick }: Props) {
   useScrollFreeze();
+  const defaultFrog =
+    sheetData.type === 'error'
+      ? IMAGES.frog.sheet.error
+      : IMAGES.frog.sheet.normal;
   const { getTitle, type, stateType, buttonText, extraButtonText } = sheetData;
   const { changePopUpState } = usePopUpActions();
   const ref = useRef<HTMLDivElement | null>(null);
@@ -39,11 +43,7 @@ function AlertBottomSheet({ sheetData, children, onClick }: Props) {
           style={{ paddingTop: '40px', gap: '40px' }}
         >
           <Image
-            src={
-              type === 'error'
-                ? IMAGES.frog.sheet.error
-                : IMAGES.frog.sheet.book
-            }
+            src={sheetData.frog || defaultFrog}
             alt='error frog'
             width={191}
             height={70}
@@ -54,13 +54,15 @@ function AlertBottomSheet({ sheetData, children, onClick }: Props) {
             <h2 className='text-center text-h_md_bold'>{getTitle()}</h2>
             {children}
           </div>
-          {buttonText && onClick && (
+          {buttonText && (
             <div className='flex-col-center w-full gap-[20px] pb-[40px]'>
               <Button
                 type='button'
                 theme={type}
                 onClick={() => {
-                  onClick();
+                  if (onClick) {
+                    onClick();
+                  }
                   changePopUpState(stateType, false);
                 }}
               >

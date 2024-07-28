@@ -1,3 +1,4 @@
+import { IMAGES } from '@/constants/images';
 import { PopUpType } from '@/store/popUpStore';
 
 export interface AlertSheet {
@@ -7,6 +8,7 @@ export interface AlertSheet {
   buttonText?: string;
   extraButtonText?: string;
   description?: string;
+  frog?: string;
 }
 
 export const sheetData: {
@@ -64,6 +66,22 @@ export const sheetData: {
     ),
     type: 'normal',
     stateType: 'isOpenWellSheet',
+    frog: IMAGES.frog.sheet.book,
     description: '선택한 우물에 책이 자동으로 추가됩니다!',
+  },
+  need_to_login: {
+    getTitle: () => <>로그인이 필요해요!</>,
+    type: 'normal',
+    stateType: 'isOpenLoginSheet',
+    buttonText: '로그인하고 추가하기',
+    description: '로그인하고 원하는 책을 우물에 추가하세요',
+  },
+  done_register: {
+    getTitle: () => <>신청에 성공했어요!</>,
+    type: 'normal',
+    stateType: 'isOpenAlertSheet',
+    buttonText: '확인',
+    frog: IMAGES.frog.sheet.wink,
+    description: '추후에 책이 추가될 때, 알려드릴게요.',
   },
 };
