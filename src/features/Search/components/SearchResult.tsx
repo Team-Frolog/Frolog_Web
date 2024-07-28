@@ -10,6 +10,7 @@ import { sheetData } from '@/data/ui/bottomSheet';
 import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
+import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
 // import SearchResultEmpty from './SearchResultEmpty';
 
 function SearchResult() {
@@ -41,6 +42,7 @@ function SearchResult() {
       <Button type='button' theme='gray' onClick={handleNoBookClick}>
         앗! 찾는 책이 없나요?
       </Button>
+
       <AnimatePresence>
         {isOpenLogin && (
           <AlertBottomSheet
@@ -51,13 +53,7 @@ function SearchResult() {
           </AlertBottomSheet>
         )}
       </AnimatePresence>
-      <AnimatePresence>
-        {isOpenAlert && (
-          <AlertBottomSheet sheetData={sheetData.done_register}>
-            <p>{sheetData.done_register.description}</p>
-          </AlertBottomSheet>
-        )}
-      </AnimatePresence>
+      <AnimatePresence>{isOpenAlert && <BookRegisterSheet />}</AnimatePresence>
     </div>
   );
 }

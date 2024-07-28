@@ -3,18 +3,34 @@
 import React, { ForwardedRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+type FieldName =
+  | 'email'
+  | 'password'
+  | 'passwordCheck'
+  | 'username'
+  | 'title'
+  | 'author';
+
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   type: 'text' | 'email' | 'password';
   placeholder: string;
-  fieldName: 'email' | 'password' | 'passwordCheck' | 'username';
+  fieldName: FieldName;
   errorMessage?: string;
   title?: string;
+  isRequired?: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const FormInput = React.forwardRef(
   (
-    { type, placeholder, title, fieldName, errorMessage, ...props }: Props,
+    {
+      type,
+      placeholder,
+      title,
+      fieldName,
+      errorMessage,
+      isRequired = false,
+      ...props
+    }: Props,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const { watch } = useFormContext();
@@ -27,7 +43,12 @@ const FormInput = React.forwardRef(
 
     return (
       <div className='flex flex-col gap-[8px]'>
-        {title && <h6 className='mb-[4px] text-body_md text-white'>{title}</h6>}
+        {title && (
+          <h6 className='mb-[4px] text-body_md text-white'>
+            {title}{' '}
+            {isRequired && <span className='text-body_md text-main'>*</span>}
+          </h6>
+        )}
         <input
           type={type}
           ref={ref}
