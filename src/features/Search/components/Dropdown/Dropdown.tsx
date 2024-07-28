@@ -69,6 +69,9 @@ function Dropdown() {
                 onClick={() => handleClickItem(item.category)}
               />
             ))}
+            {/* <div className='flex w-full items-center px-[16px] py-[12px]'>
+              분류할 도서가 없습니다.
+            </div> */}
           </motion.div>
         )}
       </AnimatePresence>
