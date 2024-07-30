@@ -20,6 +20,9 @@ export const ICONS = {
     },
     add: `${BASE_PATH}/common/add-icon.svg`,
   },
+  feed: {
+    menu: `${BASE_PATH}/feed/feed-menu.svg`,
+  },
   expand: `${BASE_PATH}/newReviewPage/expand.svg`,
   well: {
     arrow: `${BASE_PATH}/wellPage/circle-arrow.svg`,
