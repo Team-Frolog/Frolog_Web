@@ -64,6 +64,7 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
       >
         <TitleHeader
           title={bookTitle}
+          theme='light'
           type={isEditing ? 'edit' : 'default'}
           isDisabled={isDisabled}
           onClick={() => router.push(`${pathname}?edit=true`)}
