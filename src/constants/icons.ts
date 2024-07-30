@@ -22,6 +22,10 @@ export const ICONS = {
   },
   feed: {
     menu: `${BASE_PATH}/feed/feed-menu.svg`,
+    heart: `${BASE_PATH}/feed/icon-heart.svg`,
+    chat: `${BASE_PATH}/feed/icon-chat.svg`,
+    bookmark: `${BASE_PATH}/feed/icon-bookmark.svg`,
+    send: `${BASE_PATH}/feed/icon-send.svg`,
   },
   expand: `${BASE_PATH}/newReviewPage/expand.svg`,
   well: {
