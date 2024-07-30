@@ -10,11 +10,14 @@ interface Props {
   type: 'default' | 'edit';
   isDisabled?: boolean;
   title: string;
+  theme: 'dark' | 'light';
   onClick?: () => void;
 }
 
-function TitleHeader({ type, isDisabled, title, onClick }: Props) {
+function TitleHeader({ type, isDisabled, theme, title, onClick }: Props) {
   const router = useRouter();
+  const themeColor =
+    theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-gray-800';
   const { changePopUpState } = usePopUpActions();
 
   const handleClick = () => {
@@ -28,10 +31,10 @@ function TitleHeader({ type, isDisabled, title, onClick }: Props) {
 
   return (
     <div
-      className={`header-sticky z-40 flex justify-between bg-white px-[24px] py-[16px] text-gray-800 ${onClick ? 'border-b-[0.5px] border-gray-400' : 'border-0'}`}
+      className={`header-sticky z-40 flex justify-between px-[24px] py-[20px] ${themeColor} ${onClick ? 'border-b-[0.5px] border-gray-400' : 'border-0'}`}
     >
       <button type='button' onClick={handleClick}>
-        <BackIcon fill='#727484' />
+        <BackIcon fill={theme === 'light' ? '#727484' : '#B3B6C5'} />
       </button>
       <h2 className='absolute inset-x-0 top-1/2 mx-auto w-fit -translate-y-1/2 text-body_xl_bold'>
         {title}
