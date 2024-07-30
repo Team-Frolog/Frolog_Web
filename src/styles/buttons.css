@@ -16,4 +16,10 @@
   .button-light {
     @apply button-common bg-white text-gray-600;
   }
+  .button-error {
+    @apply button-common bg-error text-white;
+  }
+  .add-button-wrapper {
+    @apply w-full px-[24px] py-[20px];
+  }
 }
