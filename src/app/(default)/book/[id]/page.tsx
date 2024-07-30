@@ -1,5 +1,6 @@
 'use client';
 
+import BookDetail from '@/components/Book/BookDetail/BookDetail';
 import BookInfo from '@/components/Book/BookInfo';
 import AddButton from '@/components/Button/AddButton';
 import TitleHeader from '@/components/Header/TitleHeader';
@@ -21,15 +22,18 @@ function BookPage({ params: { id } }: Props) {
     <>
       <TitleHeader type='default' theme='dark' title='도서 상세 페이지' />
       <BookInfo bookId={id} />
-      <div className='flex flex-col gap-[36px] p-page py-0'>
-        <RatingSelector type='default' rating={4.5} />
-        <MajorTagList type='pros' tagData={pros} />
-        <MajorTagList type='cons' tagData={cons} />
-        <AddButton
-          text='우물에 책 추가하기'
-          categoryId='novel'
-          onClick={() => {}}
-        />
+      <div className='flex w-full flex-col gap-[36px]'>
+        <div className='flex w-full flex-col gap-[36px] px-page'>
+          <RatingSelector type='default' rating={4.5} />
+          <MajorTagList type='pros' tagData={pros} />
+          <MajorTagList type='cons' tagData={cons} />
+          <AddButton
+            text='우물에 책 추가하기'
+            categoryId='novel'
+            onClick={() => {}}
+          />
+        </div>
+        <BookDetail />
       </div>
     </>
   );
