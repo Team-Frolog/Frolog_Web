@@ -14,6 +14,6 @@
     @apply w-fit whitespace-nowrap rounded-[8px] border-[0.5px] px-[12px] py-[6px] text-body_sm_bold;
   }
   .default-tag {
-    @apply border-gray-200 bg-gray-200 text-gray-600;
+    @apply border-gray-400 bg-white text-gray-600;
   }
 }

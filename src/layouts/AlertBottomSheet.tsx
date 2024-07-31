@@ -51,7 +51,7 @@ function AlertBottomSheet({ sheetData, children, onClick }: Props) {
             style={{ top: '-58px' }}
           />
           <div className='flex-col-center w-full gap-[12px]'>
-            <h2 className='text-center text-h_md_bold'>{getTitle()}</h2>
+            <h2 className='text-center text-title_xl_bold'>{getTitle()}</h2>
             {children}
           </div>
           {buttonText && (
