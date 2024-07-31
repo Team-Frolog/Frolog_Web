@@ -9,7 +9,7 @@ interface Props {
 }
 
 function MajorTagList({ type, tagData }: Props) {
-  const tags = getTags(type, tagData);
+  const tags = tagData ? getTags(type, tagData) : [];
 
   return (
     <div className='flex w-full flex-col gap-[8px]'>
@@ -17,9 +17,17 @@ function MajorTagList({ type, tagData }: Props) {
         {type === 'pros' ? '장점' : '단점'} 키워드
       </span>
       <div className='flex w-full flex-wrap gap-[16px] overflow-hidden'>
-        {tags.map((item) => (
-          <Tag key={item.id} type={type} size='big' tagValue={item.value} />
-        ))}
+        {tags.length > 0 ? (
+          tags.map((item) => (
+            <Tag key={item.id} type={type} size='big' tagValue={item.value} />
+          ))
+        ) : (
+          <Tag
+            type='default'
+            size='big'
+            tagValue='첫 리뷰 작성자가 되어보세요!'
+          />
+        )}
       </div>
     </div>
   );
