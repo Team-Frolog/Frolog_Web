@@ -17,6 +17,10 @@ export const IMAGES = {
       normal: `${BASE_PATH}/frog/sheet/frog-normal.svg`,
     },
     withPen: `${BASE_PATH}/frog/frog-with-pen.svg`,
+    add: {
+      reading: `${BASE_PATH}/frog/frog-reading.svg`,
+      done: `${BASE_PATH}/frog/frog-done.svg`,
+    },
   },
   test: {
     shape: {

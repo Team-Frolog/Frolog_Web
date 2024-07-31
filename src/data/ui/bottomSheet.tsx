@@ -84,4 +84,9 @@ export const sheetData: {
     frog: IMAGES.frog.sheet.wink,
     description: '추후에 책이 추가될 때, 알려드릴게요.',
   },
+  add_book: {
+    getTitle: () => <>책을 다 읽으셨나요?</>,
+    type: 'normal',
+    stateType: 'isOpenAlertSheet',
+  },
 };
