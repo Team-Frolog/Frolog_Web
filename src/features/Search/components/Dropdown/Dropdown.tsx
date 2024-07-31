@@ -22,7 +22,12 @@ function Dropdown() {
   ];
 
   const handleClickItem = (id: string) => {
-    setSelected(id);
+    if (isSelected === id) {
+      setSelected(null);
+    } else {
+      setSelected(id);
+    }
+
     setIsOpen(false);
   };
 
@@ -66,6 +71,7 @@ function Dropdown() {
               <CategoryItem
                 key={item.category}
                 categoryData={item}
+                isSelected={isSelected === item.category}
                 onClick={() => handleClickItem(item.category)}
               />
             ))}
