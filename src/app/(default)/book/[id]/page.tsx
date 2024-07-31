@@ -6,6 +6,7 @@ import AddButton from '@/components/Button/AddButton';
 import TitleHeader from '@/components/Header/TitleHeader';
 import RatingSelector from '@/components/Rating/RatingSelector';
 import MajorTagList from '@/components/Tag/MajorTagList';
+import { useScroll } from '@/hooks/gesture/useScroll';
 import React from 'react';
 
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
 }
 
 function BookPage({ params: { id } }: Props) {
+  useScroll({ categoryColor: undefined });
   const pros = ['easy', 'organized', 'tears', 'warm'];
   const cons = ['biased', 'no_evidence', 'background', 'issuing'];
 

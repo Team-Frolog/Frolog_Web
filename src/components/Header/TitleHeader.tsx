@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import BackIcon from 'public/icons/common/back/back.svg';
 import { useRouter } from 'next/navigation';
 import { usePopUpActions } from '@/store/popUpStore';
 import { ON_LEAVE_ROUTE } from '@/constants/storage';
+import BackButton from '../Button/BackButton';
 
 interface Props {
   type: 'default' | 'edit';
@@ -31,12 +31,17 @@ function TitleHeader({ type, isDisabled, theme, title, onClick }: Props) {
 
   return (
     <div
-      className={`header-sticky z-40 flex justify-between px-[24px] py-[20px] ${themeColor} ${onClick ? 'border-b-[0.5px] border-gray-400' : 'border-0'}`}
+      id='header'
+      className={`header-sticky duration-50 z-40 flex justify-between px-[24px] py-[20px] transition-all ${themeColor} ${onClick ? 'border-b-[0.5px] border-gray-400' : 'border-0'}`}
     >
-      <button type='button' onClick={handleClick}>
-        <BackIcon fill={theme === 'light' ? '#727484' : '#B3B6C5'} />
-      </button>
-      <h2 className='absolute inset-x-0 top-1/2 mx-auto w-fit -translate-y-1/2 text-body_xl_bold'>
+      <BackButton
+        onClick={handleClick}
+        fill={theme === 'light' ? '#727484' : '#B3B6C5'}
+      />
+      <h2
+        id='selected'
+        className='absolute inset-x-0 top-1/2 mx-auto w-fit -translate-y-1/2 text-body_xl_bold'
+      >
         {title}
       </h2>
       {onClick && (

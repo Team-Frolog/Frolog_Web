@@ -3,7 +3,9 @@ import React from 'react';
 
 function ReviewsForBook() {
   return (
-    <div className='flex w-full flex-col'>
+    <div className='flex w-full flex-col gap-[36px] py-[36px]'>
+      <FeedItem />
+      <FeedItem />
       <FeedItem />
     </div>
   );
