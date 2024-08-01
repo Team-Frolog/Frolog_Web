@@ -5,6 +5,7 @@ import NoReviewItem from './components/ReviewList/NoReviewItem';
 import ReviewList from './components/ReviewList/ReviewList';
 import { useReviewDetail } from './hooks/useReviewDetail';
 import { ReviewForm as ReviewFormType } from './types/review';
+import { getBookInfo } from './api/getBookInfo.api';
 
 export {
   ReviewList,
@@ -13,5 +14,6 @@ export {
   NoReviewItem,
   NewReviewForm,
   useReviewDetail,
+  getBookInfo,
 };
 export type { ReviewFormType };

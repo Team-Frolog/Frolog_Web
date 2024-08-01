@@ -59,7 +59,7 @@ function NewReviewForm({ isbn }: Props) {
         <ReviewForm type='new' isDisabled={isDisabled} />
         <ConfirmLeaveSheet sheetData={sheetData.leave_while_review} />
       </form>
-      {isOpen && <Splash type='review' />}
+      {isOpen && <Splash type='review' bookId={isbn} />}
     </FormProvider>
   );
 }

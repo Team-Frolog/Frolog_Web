@@ -22,7 +22,7 @@ export const splash: {
         쌓였어요!
       </>
     ),
-    frog: IMAGES.frog.congrats,
+    frog: IMAGES.frog.review_done,
     route: '/',
     hasPopper: true,
   },
