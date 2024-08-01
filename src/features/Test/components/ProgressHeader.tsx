@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useStepActions, useTestStep } from '@/store/stepStore';
 import { TEST_ANSWER_KEY } from '@/constants/storage';
-import BackIcon from 'public/icons/common/back/back.svg';
+import { BackIcon } from 'public/icons';
 
 function ProgressHeader() {
   const router = useRouter();

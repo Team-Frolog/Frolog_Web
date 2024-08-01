@@ -1,6 +1,5 @@
-import { ICONS } from '@/constants/icons';
-import Image from 'next/image';
 import Link from 'next/link';
+import { CancelIcon } from 'public/icons';
 import React from 'react';
 
 interface Props {
@@ -11,7 +10,7 @@ interface Props {
 function QuitButton({ route, classes }: Props) {
   return (
     <Link className={classes} href={route}>
-      <Image src={ICONS.common.cancel} alt='x' width={24} height={24} />
+      <CancelIcon />
     </Link>
   );
 }

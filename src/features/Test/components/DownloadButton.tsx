@@ -1,11 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import React, { useCallback } from 'react';
-import { ICONS } from '@/constants/icons';
 import { ERROR_ALERT } from '@/constants/message';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTooltip } from '@/hooks/popup/useTooltip';
+import { DownloadDoneIcon, DownloadIcon } from 'public/icons';
 
 interface Props {
   type: '1' | '2' | '3';
@@ -44,21 +43,7 @@ function DownloadButton({ type }: Props) {
         onClick={isDownloaded ? undefined : onClickImgLink}
         className={`${isDownloaded && 'cursor-default'}`}
       >
-        {isDownloaded ? (
-          <Image
-            src={ICONS.test.download_done}
-            alt='download'
-            width={30}
-            height={30}
-          />
-        ) : (
-          <Image
-            src={ICONS.test.download}
-            alt='download-done'
-            width={30}
-            height={30}
-          />
-        )}
+        {isDownloaded ? <DownloadDoneIcon /> : <DownloadIcon />}
       </button>
       <AnimatePresence>
         {isOpenTooltip && (

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import AddIcon from 'public/icons/common/add-icon.svg';
+import { AddIcon } from 'public/icons';
 import { CATEGORY } from '@/constants/category';
 import Button from './Button';
 
@@ -26,7 +26,7 @@ function AddButton({ route, text, categoryId, onClick }: Props) {
 
   const color = categoryId
     ? `bg-category-bg-${categoryId} text-category-text-${categoryId}`
-    : 'light';
+    : 'button-light';
 
   return (
     <Button onClick={handleClick} theme={color}>

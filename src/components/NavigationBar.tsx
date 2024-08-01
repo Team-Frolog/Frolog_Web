@@ -2,11 +2,8 @@
 
 import Link from 'next/link';
 import React from 'react';
-import WellIcon from 'public/icons/common/navigation/well-icon.svg';
-import FeedIcon from 'public/icons/common/navigation/feed-icon.svg';
-import SearchIcon from 'public/icons/common/navigation/search-icon.svg';
-import ProfileIcon from 'public/icons/common/navigation/profile-icon.svg';
 import { usePathname } from 'next/navigation';
+import { FeedIcon, ProfileIcon, SearchIcon, WellIcon } from 'public/icons';
 
 function NavigationBar() {
   const pathname = usePathname();

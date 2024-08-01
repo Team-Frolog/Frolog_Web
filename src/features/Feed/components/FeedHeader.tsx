@@ -1,6 +1,5 @@
-import Image from 'next/image';
 import React from 'react';
-import { ICONS } from '@/constants/icons';
+import { MenuIcon } from 'public/icons';
 
 function FeedHeader() {
   return (
@@ -20,7 +19,7 @@ function FeedHeader() {
           팔로우
         </button>
         <button type='button'>
-          <Image src={ICONS.feed.menu} alt='menu' width={24} height={24} />
+          <MenuIcon />
         </button>
       </div>
     </div>

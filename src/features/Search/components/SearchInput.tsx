@@ -1,8 +1,7 @@
 'use client';
 
+import { ClearIcon, SearchIcon } from 'public/icons';
 import React, { useState } from 'react';
-import SearchIcon from 'public/icons/common/navigation/search-icon.svg';
-import ClearIcon from 'public/icons/common/clear.svg';
 
 function SearchInput() {
   const [searchValue, setSearchValue] = useState('');

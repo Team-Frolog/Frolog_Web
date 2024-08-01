@@ -1,10 +1,10 @@
 'use client';
 
-import { ICONS } from '@/constants/icons';
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import React from 'react';
+import { ArrowIcon, EditIcon, PlusIcon } from 'public/icons';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { PAGES } from '@/constants/page';
@@ -24,7 +24,7 @@ function WellHeader() {
       />
       {session && (
         <button type='button' className='absolute right-[28px] top-[28px] z-20'>
-          <Image src={ICONS.well.edit} alt='edit' width={24} height={24} />
+          <EditIcon />
         </button>
       )}
       <motion.div
@@ -40,13 +40,11 @@ function WellHeader() {
             href={session ? '/new-review?id=9791193154250' : PAGES.LANDING}
             className='relative z-[50px] cursor-pointer'
           >
-            <Image
-              src={session ? ICONS.well.plus : ICONS.well.arrow}
-              alt='well button'
-              width={24}
-              height={24}
-              className='mb-[6px]'
-            />
+            {session ? (
+              <PlusIcon className='mb-[6px]' />
+            ) : (
+              <ArrowIcon className='mb-[6px]' />
+            )}
           </Link>
           <h3 className='text-body_xl_bold'>
             {session ? '책 추가하기' : '로그인이 필요해요'}

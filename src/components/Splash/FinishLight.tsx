@@ -1,4 +1,3 @@
-import { ICONS } from '@/constants/icons';
 import React from 'react';
 import Image from 'next/image';
 import BigTitle from '@/components/Text/BigTitle';
@@ -12,7 +11,7 @@ function FinishLight({ children, frog }: Props) {
   return (
     <div className='relative z-0 flex h-fit w-full flex-1 flex-col bg-gray-900 pt-[30px]'>
       <Image
-        src={ICONS.join.light}
+        src='/icons/light/light.svg'
         alt='light'
         width={30}
         height={30}

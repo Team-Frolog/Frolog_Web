@@ -5,8 +5,7 @@ import { conTags, proTags } from '@/data/tag';
 import { Tag as TagType } from '@/types/tag';
 import { useTags } from '@/hooks/useTags';
 import { motion, useAnimationControls } from 'framer-motion';
-import Image from 'next/image';
-import { ICONS } from '@/constants/icons';
+import { ExpandIcon } from 'public/icons';
 import { useFormContext } from 'react-hook-form';
 import Tag from './Tag';
 
@@ -64,11 +63,7 @@ function TagList({ type }: Props) {
         className='flex w-full justify-center py-[12px]'
         onClick={() => setIsExpanded((prev) => !prev)}
       >
-        <Image
-          src={ICONS.expand}
-          alt='expand'
-          width={25}
-          height={24}
+        <ExpandIcon
           className={`transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
         />
       </button>

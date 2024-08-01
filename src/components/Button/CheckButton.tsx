@@ -1,10 +1,9 @@
 'use client';
 
-import { ICONS } from '@/constants/icons';
-import Image from 'next/image';
 import React from 'react';
 import { HTMLMotionProps, motion } from 'framer-motion';
 import { tapVariants } from '@/styles/variants/variants';
+import { CircleCheckIcon, CircleUncheckIcon } from 'public/icons';
 
 interface Props extends HTMLMotionProps<'button'> {
   isChecked: boolean;
@@ -19,16 +18,7 @@ function CheckButton({ isChecked, ...props }: Props) {
       className='h-[24px] w-[24px]'
       {...props}
     >
-      <Image
-        src={
-          isChecked
-            ? ICONS.common.check.circle_checked
-            : ICONS.common.check.circle_unchecked
-        }
-        alt='check'
-        width={24}
-        height={24}
-      />
+      {isChecked ? <CircleCheckIcon /> : <CircleUncheckIcon />}
     </motion.button>
   );
 }

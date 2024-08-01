@@ -1,9 +1,8 @@
 'use client';
 
-import { ICONS } from '@/constants/icons';
-import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ErrorIcon } from 'public/icons';
 
 interface Props {
   errorMsg: string;
@@ -26,7 +25,7 @@ function ErrorPopUp({ errorMsg }: Props) {
       }}
       transition={{ duration: 0.2 }}
     >
-      <Image src={ICONS.common.form.error} alt='err' width={20} height={20} />
+      <ErrorIcon />
       <span className='text-body_md text-white'>{errorMsg}</span>
     </motion.div>
   );

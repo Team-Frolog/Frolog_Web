@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import ToggleIcon from 'public/icons/common/toggle.svg';
+import { ToggleIcon } from 'public/icons';
 import { CATEGORY } from '@/constants/category';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
 import CategoryItem from '../CategoryItem';

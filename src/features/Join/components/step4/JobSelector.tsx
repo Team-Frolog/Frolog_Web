@@ -1,9 +1,8 @@
 'use client';
 
 import FormTitleWithToggle from '@/components/Form/FormTitleWithToggle';
-import { ICONS } from '@/constants/icons';
 import { jobs } from '@/data/jobs';
-import Image from 'next/image';
+import { SelectIcon } from 'public/icons';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -26,13 +25,7 @@ function JobSelector() {
             </option>
           ))}
         </select>
-        <Image
-          src={ICONS.common.form.select}
-          alt='select'
-          width={24}
-          height={24}
-          className='absolute right-[14px] top-1/4'
-        />
+        <SelectIcon className='absolute right-[14px] top-1/4' />
       </div>
     </div>
   );

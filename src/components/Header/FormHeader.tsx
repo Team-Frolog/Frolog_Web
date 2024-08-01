@@ -5,7 +5,7 @@ import { useFormTitle } from '@/hooks/useFormTitle';
 import { usePathname, useRouter } from 'next/navigation';
 import { JOIN_FORM_KEY } from '@/constants/storage';
 import { PAGES } from '@/constants/page';
-import BackIcon from 'public/icons/common/back/back.svg';
+import { BackIcon } from 'public/icons';
 
 function FormHeader() {
   const router = useRouter();

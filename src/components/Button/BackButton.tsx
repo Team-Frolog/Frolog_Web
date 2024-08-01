@@ -1,7 +1,7 @@
 'use client';
 
+import { BackIcon } from 'public/icons';
 import React from 'react';
-import BackIcon from 'public/icons/common/back/back.svg';
 
 interface Props {
   onClick: () => void;
