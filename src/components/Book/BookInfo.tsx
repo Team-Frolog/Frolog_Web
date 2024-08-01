@@ -2,17 +2,12 @@
 
 import Image from 'next/image';
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { IMAGES } from '@/constants/images';
-import { getBookInfo } from '@/features/Review/api/getBookInfo.api';
 import Book from './Book';
+import { useBook } from '@/hooks/useBook';
 
 function BookInfo({ bookId }: { bookId: string }) {
-  const { data } = useQuery({
-    queryKey: ['bookInfo', bookId],
-    queryFn: () => getBookInfo({ isbn: bookId }).then((res) => res),
-    refetchOnWindowFocus: false,
-  });
+  const { bookData } = useBook(bookId);
 
   return (
     <div
@@ -28,13 +23,13 @@ function BookInfo({ bookId }: { bookId: string }) {
       />
       <Book />
       <div className='flex-col-center gap-[4px]'>
-        <h3 className='text-title_lg_bold'>{data?.title}</h3>
+        <h3 className='text-title_lg_bold'>{bookData?.title}</h3>
         <ul className='flex text-body_sm text-gray-600'>
           <li className="after:content-['|']">
-            <span className='px-[6px]'>{data?.author}</span>
+            <span className='px-[6px]'>{bookData?.author}</span>
           </li>
           <li>
-            <span className='px-[6px]'>{data?.publisher}</span>
+            <span className='px-[6px]'>{bookData?.publisher}</span>
           </li>
         </ul>
       </div>
