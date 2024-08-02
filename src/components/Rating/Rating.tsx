@@ -14,7 +14,9 @@ function Rating({ rating, textClass = 'text-body_xl_bold' }: Props) {
       >
         {rating ? rating.toFixed(1) : '0.0'}
       </span>
-      <div className='flex gap-[4px]'>{generateRatingStars(rating || 0)}</div>
+      <div className='flex gap-[4px]'>
+        {generateRatingStars(rating || 0, 20)}
+      </div>
     </div>
   );
 }

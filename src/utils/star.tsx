@@ -1,14 +1,14 @@
 import Star from '@/components/Rating/Star';
 import { ratingMessage } from '@/data/ui/ratingMessage';
 
-export const generateRatingStars = (curRating: number) => {
+export const generateRatingStars = (curRating: number, size: number) => {
   const stars = [];
   for (let i = 0; i < 5; i += 1) {
     if (curRating >= 1) {
-      stars.push(<Star rating={1} size={40} key={i} />);
+      stars.push(<Star rating={1} size={size} key={i} />);
       curRating -= 1;
     } else if (curRating >= 0) {
-      stars.push(<Star rating={curRating} size={40} key={i} />);
+      stars.push(<Star rating={curRating} size={size} key={i} />);
       curRating = 0;
     }
   }

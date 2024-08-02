@@ -35,7 +35,7 @@ function RatingSelector({ type, rating, setValue, watch }: Props) {
       </h4>
       <div className='flex gap-[10px]'>
         {type === 'default'
-          ? generateRatingStars(rating || 0)
+          ? generateRatingStars(rating || 0, 40)
           : Array.from({ length: 5 }, (_, index) => {
               let num;
               const cur = currentRating || 0;
