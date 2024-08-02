@@ -2,6 +2,7 @@ const BASE_PATH = '/images';
 
 export const IMAGES = {
   frog: {
+    no_review: `${BASE_PATH}/frog/no-review.svg`,
     congrats: `${BASE_PATH}/frog/congrats.svg`,
     evaluation: {
       loading: `${BASE_PATH}/frog/frog-evaluating.svg`,
@@ -41,6 +42,7 @@ export const IMAGES = {
   book: {
     background: `${BASE_PATH}/book/book-bg.svg`,
     skin: `${BASE_PATH}/book/book-skin.svg`,
+    cover: `${BASE_PATH}/book/book-cover.svg`,
   },
   ground: `${BASE_PATH}/etc/ground.svg`,
   ground_sm: `${BASE_PATH}/etc/ground-sm.svg`,
