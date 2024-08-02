@@ -5,7 +5,7 @@ import Tag from './Tag';
 
 interface Props {
   type: TagType;
-  tagData: string[];
+  tagData: string[] | undefined;
 }
 
 function MajorTagList({ type, tagData }: Props) {
