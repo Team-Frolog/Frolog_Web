@@ -8,8 +8,9 @@ function FirstReviewItem() {
   return (
     <div className='review-item items-center text-center'>
       <h4 className='text-title_xl_bold'>
-        축하해요!
-        <br />첫 회독을 해냈어요!
+        이 책에 대한 첫 리뷰 작성!
+        <br />
+        축하드려요!
       </h4>
       <Image
         src={IMAGES.frog.first_congrats}
@@ -18,9 +19,11 @@ function FirstReviewItem() {
         height={119}
       />
       <span className='text-body_lg text-gray-600'>
-        책은 읽을 때마다 새로운 발견을 선물해준다고 해요
+        우물에 소중한 한 권의 책이 더해졌어요 📚
         <br />
-        재미있게 읽었다면 한 번 더 읽어보는 건 어떨까요?
+        앞으로도 리뷰로 우물을 가득 채워주세요!
+        <br />
+        당신의 리뷰를 기다리고 있어요~ 😊
       </span>
     </div>
   );
