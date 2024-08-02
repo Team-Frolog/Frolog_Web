@@ -4,9 +4,9 @@ import React from 'react';
 import Image from 'next/image';
 import PopperAnimation from '@/components/animation/PopperAnimation';
 import { splash, SplashKeys } from '@/data/ui/splash';
+import { useBook } from '@/features/Book';
 import { IMAGES } from '@/constants/images';
 import Portal from '@/layouts/Portal';
-import { useBook } from '@/hooks/useBook';
 import BigTitle from '../Text/BigTitle';
 
 interface Props {

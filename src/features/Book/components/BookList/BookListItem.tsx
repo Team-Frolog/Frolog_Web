@@ -1,6 +1,6 @@
 import React from 'react';
-import Rating from '../Rating/Rating';
-import Tag from '../Tag/Tag';
+import Rating from '@/components/Rating/Rating';
+import Tag from '@/components/Tag/Tag';
 
 interface Props {
   type: 1 | 2;

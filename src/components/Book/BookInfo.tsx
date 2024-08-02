@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import React from 'react';
+import { useBook } from '@/features/Book';
 import { IMAGES } from '@/constants/images';
 import Book from './Book';
-import { useBook } from '@/hooks/useBook';
 
 function BookInfo({ bookId }: { bookId: string }) {
   const { bookData } = useBook(bookId);

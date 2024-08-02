@@ -1,14 +1,14 @@
 'use client';
 
-import BookDetail from '@/components/Book/BookDetail/BookDetail';
 import BookInfo from '@/components/Book/BookInfo';
 import AddButton from '@/components/Button/AddButton';
 import TitleHeader from '@/components/Header/TitleHeader';
 import AddBookSheet from '@/components/PopUp/AddBookSheet';
 import RatingSelector from '@/components/Rating/RatingSelector';
 import MajorTagList from '@/components/Tag/MajorTagList';
+import { BookDetail } from '@/features/Book';
 import { useScroll } from '@/hooks/gesture/useScroll';
-import { useBookDetail } from '@/hooks/useBookDetail';
+import { useBookDetail } from '@/features/Book/hooks/useBookDetail';
 import { usePopUpActions } from '@/store/popUpStore';
 import React from 'react';
 

@@ -1,5 +1,5 @@
-import { useBookDetail } from '@/hooks/useBookDetail';
 import React from 'react';
+import { useBookDetail } from '../../hooks/useBookDetail';
 
 interface Props {
   bookId: string;

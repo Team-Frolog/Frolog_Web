@@ -1,6 +1,6 @@
 import { GetBookDetail } from '@frolog/frolog-api';
 import { ERROR_ALERT } from '@/constants/message';
-import { baseOptions } from './options';
+import { baseOptions } from '@/api/options';
 
 const getBookDetailObj = new GetBookDetail(baseOptions);
 

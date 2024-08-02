@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import BookListItem from '@/components/Book/BookListItem';
 import Button from '@/components/Button/Button';
 import AlertBottomSheet from '@/layouts/AlertBottomSheet';
+import { BookListItem } from '@/features/Book';
 import { useSession } from 'next-auth/react';
 import usePopUpStore, { usePopUpActions } from '@/store/popUpStore';
 import { sheetData } from '@/data/ui/bottomSheet';
@@ -11,9 +11,11 @@ import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
+
 // import SearchResultEmpty from './SearchResultEmpty';
 
 function SearchResult() {
+  // const { searchResult } = useSearch();
   const router = useRouter();
   const { data: session } = useSession();
   const { isOpenLogin, isOpenAlert } = usePopUpStore((state) => ({
