@@ -30,6 +30,7 @@
   "rules": {
     "no-var": "warn",
     "no-alert": "off",
+    "no-plusplus": "off",
     "no-nested-ternary": "warn",
     "react/jsx-no-useless-fragment": "off",
     "jsx-a11y/control-has-associated-label": "off",

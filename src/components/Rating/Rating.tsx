@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import Star from './Star';
+import React from 'react';
+import { generateRatingStars } from '@/utils/star';
 
 interface Props {
   rating: number | null;
@@ -7,21 +7,6 @@ interface Props {
 }
 
 function Rating({ rating, textClass = 'text-body_xl_bold' }: Props) {
-  const generateRatingStars = useCallback((rate: number) => {
-    const stars = [];
-    let currentRating = rate;
-    for (let i = 0; i < 5; i += 1) {
-      if (currentRating >= 1) {
-        stars.push(<Star rating={1} key={i} />);
-        currentRating -= 1;
-      } else if (currentRating >= 0) {
-        stars.push(<Star rating={currentRating} key={i} />);
-        currentRating = 0;
-      }
-    }
-    return stars;
-  }, []);
-
   return (
     <div className='flex w-full items-center gap-[8px]'>
       <span
