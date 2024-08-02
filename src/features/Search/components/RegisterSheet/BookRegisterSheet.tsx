@@ -9,6 +9,7 @@ import SheetHeader from 'public/images/frog/sheet/sheet-header.svg';
 import AlertBottomSheet from '@/layouts/AlertBottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import RegisterForm, { RegisterFormType } from './RegisterForm';
+import { requestBook } from '../../api/register.api';
 
 function BookRegisterSheet() {
   const [isRegistered, setIsRegistered] = useState<boolean | null>(false);
@@ -16,12 +17,16 @@ function BookRegisterSheet() {
   const ref = useRef<HTMLDivElement | null>(null);
 
   const handleRegister = (data: RegisterFormType) => {
-    // TODO: 서버 연동
-    console.log(data);
-    setIsRegistered(null);
-    setTimeout(() => {
-      setIsRegistered(true);
-    }, 500);
+    requestBook(data).then((res) => {
+      if (res?.result) {
+        setIsRegistered(null);
+        setTimeout(() => {
+          setIsRegistered(true);
+        }, 500);
+      } else {
+        window.alert('다시 시도해주세요.');
+      }
+    });
   };
 
   return (
