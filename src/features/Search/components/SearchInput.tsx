@@ -1,10 +1,18 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { ClearIcon, SearchIcon } from 'public/icons';
-import React, { useState } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 
 function SearchInput() {
+  const router = useRouter();
   const [searchValue, setSearchValue] = useState('');
+
+  const handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && searchValue.trim() !== '') {
+      router.replace(`/search?query=${searchValue.trim()}`);
+    }
+  };
 
   return (
     <div className='relative flex w-full bg-white'>
@@ -16,6 +24,7 @@ function SearchInput() {
         type='text'
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
+        onKeyDown={handleEnter}
         className='input-common input-light flex-1 px-[48px] focus:border-main'
       />
       {searchValue && (

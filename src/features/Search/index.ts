@@ -1,5 +1,4 @@
-import CategoryResult from './components/CategoryResult';
-import SearchInput from './components/SearchInput';
+import SearchHeader from './components/SearchHeader';
 import SearchResult from './components/SearchResult';
 
-export { SearchInput, CategoryResult, SearchResult };
+export { SearchResult, SearchHeader };

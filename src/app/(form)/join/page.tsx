@@ -22,7 +22,6 @@ function JoinPage() {
         : defaultValue,
   });
   const { getValues, handleSubmit } = methods;
-
   const { goNextJoinStep } = useStepActions();
   const { joinUser, joinStep } = useJoin(getValues);
 

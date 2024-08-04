@@ -38,13 +38,13 @@ export const CATEGORY: Category = {
     text: '#6C5A84',
     band: '#D9BBFF',
   },
-  foreign_language: {
+  foreign_languages: {
     name: '외국어',
     bg: '#92666C',
     text: '#FFC5CC',
     band: '#B78E93',
   },
-  self_developement: {
+  self_development: {
     name: '자기개발',
     bg: '#FB7A35',
     text: '#FFC8AB',

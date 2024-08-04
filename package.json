@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@frolog/frolog-api": "^0.2.9",
+    "@frolog/frolog-api": "^0.2.11",
     "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query": "^5.40.1",
     "axios": "^1.7.2",
