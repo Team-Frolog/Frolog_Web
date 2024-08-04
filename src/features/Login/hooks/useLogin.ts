@@ -1,13 +1,20 @@
 import { REMEMBER_ME_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LoginForm } from '../types/login';
 
 export const useLogin = (type: 'login' | 'test') => {
   const router = useRouter();
+  const { data: session, status } = useSession();
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const [isFaild, setIsFaild] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      router.replace('/');
+    }
+  }, [router, session, status]);
 
   const userLogin = async (data: LoginForm) => {
     setIsFaild(false);
