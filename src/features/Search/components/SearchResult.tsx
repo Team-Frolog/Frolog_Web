@@ -25,11 +25,7 @@ function SearchResult() {
   const { changePopUpState } = usePopUpActions();
 
   const handleNoBookClick = () => {
-    if (session) {
-      changePopUpState('isOpenAlertSheet', true);
-    } else {
-      changePopUpState('isOpenLoginSheet', true);
-    }
+    changePopUpState(session ? 'isOpenAlertSheet' : 'isOpenLoginSheet', true);
   };
 
   return (

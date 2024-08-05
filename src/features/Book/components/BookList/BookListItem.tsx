@@ -6,6 +6,8 @@ import Tag from '@/components/Tag/Tag';
 import { GetBookRes } from '@frolog/frolog-api';
 import { getTagById } from '@/utils/getTags';
 import { useRouter } from 'next/navigation';
+import { IMAGES } from '@/constants/images';
+import Image from 'next/image';
 
 interface Props {
   bookData: GetBookRes;
@@ -15,6 +17,7 @@ function BookListItem({ bookData }: Props) {
   const router = useRouter();
   const {
     isbn,
+    image_url,
     author,
     title,
     publisher,
@@ -31,7 +34,13 @@ function BookListItem({ bookData }: Props) {
       onClick={() => router.push(`/book/${isbn}`)}
       className='flex w-full cursor-pointer gap-[20px] text-gray-800'
     >
-      <div className='h-[180px] w-[120px] bg-gray-400'>image</div>
+      <Image
+        className='h-[180px] w-[120px] bg-gray-400'
+        src={image_url || IMAGES.book.cover}
+        alt='book cover'
+        width={126}
+        height={186}
+      />
       <div className='flex flex-1 flex-col gap-[16px]'>
         <div className='flex flex-col gap-[4px]'>
           {has_review && (
