@@ -1,23 +1,11 @@
-import Step1 from './components/step1/Step1';
-import Step2 from './components/step2/Step2';
-import Step4 from './components/step4/Step4';
-import TestStartButton from './components/TestStartButton';
-import {
+export { default as Step1 } from './components/step1/Step1';
+export { default as Step2 } from './components/step2/Step2';
+export { default as Step4 } from './components/step4/Step4';
+export { default as TestStartButton } from './components/TestStartButton';
+export {
   consentsKeys,
   defaultValue,
   requiredConsentsKeys,
 } from './data/joinForm';
-import { useJoin } from './hooks/useJoin';
-import { JoinForm, InfoName } from './types/form';
-
-export {
-  Step1,
-  Step2,
-  Step4,
-  TestStartButton,
-  useJoin,
-  defaultValue,
-  consentsKeys,
-  requiredConsentsKeys,
-};
-export type { JoinForm, InfoName };
+export { useJoin } from './hooks/useJoin';
+export type { JoinForm, InfoName } from './types/form';

@@ -1,4 +1,2 @@
-import SearchHeader from './components/SearchHeader';
-import SearchResult from './components/SearchResult';
-
-export { SearchResult, SearchHeader };
+export { default as SearchHeader } from './components/SearchHeader';
+export { default as SearchResult } from './components/SearchResult';

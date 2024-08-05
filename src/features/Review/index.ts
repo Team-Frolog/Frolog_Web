@@ -1,19 +1,8 @@
-import NewReviewForm from './components/NewReviewForm';
-import ReviewDetail from './components/ReviewDetail';
-import ReviewForm from './components/ReviewForm';
-import NoReviewItem from './components/ReviewList/NoReviewItem';
-import ReviewList from './components/ReviewList/ReviewList';
-import { useReviewDetail } from './hooks/useReviewDetail';
-import { ReviewForm as ReviewFormType } from './types/review';
-import { getBookInfo } from './api/getBookInfo.api';
-
-export {
-  ReviewList,
-  ReviewDetail,
-  ReviewForm,
-  NoReviewItem,
-  NewReviewForm,
-  useReviewDetail,
-  getBookInfo,
-};
-export type { ReviewFormType };
+export { default as NewReviewForm } from './components/NewReviewForm';
+export { default as ReviewDetail } from './components/ReviewDetail';
+export { default as ReviewForm } from './components/ReviewForm';
+export { default as NoReviewItem } from './components/ReviewList/NoReviewItem';
+export { default as ReviewList } from './components/ReviewList/ReviewList';
+export { useReviewDetail } from './hooks/useReviewDetail';
+export type { ReviewForm as ReviewFormType } from './types/review';
+export { getBookInfo } from './api/getBookInfo.api';

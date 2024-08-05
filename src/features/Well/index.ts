@@ -1,5 +1,3 @@
-import WellBookList from './components/WellBook/WellBookList';
-import WellHeader from './components/WellHeader';
-import Well from './components/WellItem/Well';
-
-export { WellHeader, Well, WellBookList };
+export { default as WellBookList } from './components/WellBook/WellBookList';
+export { default as WellHeader } from './components/WellHeader';
+export { default as Well } from './components/WellItem/Well';
