@@ -9,7 +9,7 @@ export const useSearch = () => {
 
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: ['search', [searchValue, category]],
-    queryFn: ({ pageParam }) =>
+    queryFn: ({ pageParam = 0 }) =>
       searchBook({
         q: searchValue!,
         page: pageParam,
@@ -19,7 +19,7 @@ export const useSearch = () => {
     getNextPageParam: (lastPage) => {
       const isLastPage =
         Math.ceil(lastPage.count / lastPage.limit) === lastPage.page;
-      return isLastPage ? null : lastPage.page + 1;
+      return isLastPage ? undefined : lastPage.page + 1;
     },
     enabled: searchValue !== null,
   });

@@ -13,9 +13,17 @@ import { AnimatePresence } from 'framer-motion';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
 import { useSearch } from '../hooks/useSearch';
 import SearchResultEmpty from './SearchResultEmpty';
+import { useObserver } from '../hooks/useObserver';
 
 function SearchResult() {
-  const { searchResult, isEmpty, isSearched, isFetching } = useSearch();
+  const {
+    searchResult,
+    isEmpty,
+    isSearched,
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+  } = useSearch();
   const router = useRouter();
   const { data: session } = useSession();
   const { isOpenLogin, isOpenAlert } = usePopUpStore((state) => ({
@@ -23,15 +31,21 @@ function SearchResult() {
     isOpenAlert: state.isOpenAlertSheet,
   }));
   const { changePopUpState } = usePopUpActions();
+  const { setTarget } = useObserver({
+    hasNextPage,
+    fetchNextPage,
+  });
 
   const handleNoBookClick = () => {
     changePopUpState(session ? 'isOpenAlertSheet' : 'isOpenLoginSheet', true);
   };
 
+  console.log(searchResult);
+
   return (
     <div className='flex h-fit w-full flex-1 flex-col gap-[36px] pb-[36px] pt-[24px]'>
       {isSearched && isEmpty && !isFetching && <SearchResultEmpty />}
-      <div className='gap[36px] flex w-full flex-1 flex-col'>
+      <div className='flex w-full flex-1 flex-col gap-[36px]'>
         {!isEmpty &&
           searchResult.map((item) => (
             <BookListItem key={item.isbn} bookData={item} />
@@ -42,6 +56,7 @@ function SearchResult() {
           앗! 찾는 책이 없나요?
         </Button>
       )}
+      <div ref={setTarget} id='observer' className='h-[10px]' />
       <AnimatePresence>
         {isOpenLogin && (
           <AlertBottomSheet
