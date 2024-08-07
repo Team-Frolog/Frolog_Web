@@ -9,7 +9,7 @@ export const useSearch = () => {
 
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: ['search', [searchValue, category]],
-    queryFn: ({ pageParam = 0 }) =>
+    queryFn: ({ pageParam }) =>
       searchBook({
         q: searchValue!,
         page: pageParam,
@@ -21,15 +21,18 @@ export const useSearch = () => {
         Math.ceil(lastPage.count / lastPage.limit) === lastPage.page;
       return isLastPage ? undefined : lastPage.page + 1;
     },
+    select: (fetchedData) => ({
+      pages: fetchedData ? fetchedData.pages.flatMap((page) => page.books) : [],
+      pageParams: fetchedData.pageParams,
+    }),
     enabled: searchValue !== null,
   });
 
-  const searchResult = data ? data.pages.flatMap((page) => page.books) : [];
-  const isEmpty = searchResult.length === 0;
+  const isEmpty = !data;
   const isSearched = searchValue !== null;
 
   return {
-    searchResult,
+    searchResult: data ? data.pages : [],
     isEmpty,
     fetchNextPage,
     hasNextPage,
