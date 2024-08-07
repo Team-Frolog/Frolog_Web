@@ -3,7 +3,7 @@
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import SearchInput from './SearchInput';
-import CategoryResult from './CategoryResult';
+import CategoryResult from './Category/CategoryResult';
 
 function SearchHeader() {
   const searchValue = useSearchParams().get('query');

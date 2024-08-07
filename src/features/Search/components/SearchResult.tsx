@@ -40,8 +40,6 @@ function SearchResult() {
     changePopUpState(session ? 'isOpenAlertSheet' : 'isOpenLoginSheet', true);
   };
 
-  console.log(searchResult);
-
   return (
     <div className='flex h-fit w-full flex-1 flex-col gap-[36px] pb-[36px] pt-[24px]'>
       {isSearched && isEmpty && !isFetching && <SearchResultEmpty />}

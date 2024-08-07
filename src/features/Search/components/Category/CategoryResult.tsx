@@ -1,7 +1,7 @@
 import React from 'react';
-import Dropdown from './Dropdown/Dropdown';
-import { getTotalCount } from '../utils/getTotalCount';
-import { useCategory } from '../hooks/useCategory';
+import Dropdown from '../Dropdown/Dropdown';
+import { getTotalCount } from '../../utils/getTotalCount';
+import { useCategory } from '../../hooks/useCategory';
 
 function CategoryResult() {
   const { categoryData, searchValue } = useCategory();
