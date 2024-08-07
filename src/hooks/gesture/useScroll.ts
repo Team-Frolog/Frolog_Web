@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
-import { setHeaderStyle } from '@/utils/setHeaderStyle';
+import { resetHeaderStyles, setHeaderStyle } from '@/utils/setHeaderStyle';
 
 interface Props {
   categoryColor: string | undefined;
@@ -74,7 +74,7 @@ export const useScroll = ({
       } else {
         observer.unobserve(targetElement!);
       }
-      darkmode();
+      resetHeaderStyles();
     };
   }, []);
 };

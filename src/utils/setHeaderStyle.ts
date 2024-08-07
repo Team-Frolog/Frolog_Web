@@ -26,3 +26,27 @@ export const setHeaderStyle = (
     foreground.style.color = foregroundClass;
   }
 };
+
+export const resetHeaderStyles = () => {
+  const header = document.getElementById('header');
+  const foreground = document.getElementById('selected');
+  const unselected = document.getElementById('unselected');
+  const bar = document.getElementById('bar');
+  const icon = document.getElementById('icon');
+
+  if (header) {
+    header.style.backgroundColor = '';
+  }
+  if (bar) {
+    bar.style.backgroundColor = '';
+  }
+  if (icon) {
+    icon.style.fill = '';
+  }
+  if (unselected) {
+    unselected.style.color = '';
+  }
+  if (foreground) {
+    foreground.style.color = '';
+  }
+};
