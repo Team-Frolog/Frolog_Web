@@ -37,3 +37,4 @@ export { default as DownloadDoneIcon } from './test/download-done.svg';
 
 // search
 export { default as ClearIcon } from './clear.svg';
+export { default as CirclePlus } from './icon-plus-circle.svg';

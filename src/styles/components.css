@@ -21,6 +21,9 @@
       border-width: 0 13.5px 23.4px 13.5px;
     }
   }
+  .tooltip-no-book {
+    @apply absolute right-[-3px] top-[-90px] w-[100px] rounded-[20px] bg-gray-800 px-[16px] py-[12px] text-center text-body_lg text-white after:absolute after:bottom-[-7px] after:right-[17px] after:h-0 after:w-0 after:rotate-45 after:border-[8px] after:border-solid after:border-gray-800;
+  }
   .review-item {
     @apply flex w-full flex-col gap-[20px] rounded-[20px] bg-white px-[24px] py-[36px] text-gray-800 last:rounded-b-none;
   }
