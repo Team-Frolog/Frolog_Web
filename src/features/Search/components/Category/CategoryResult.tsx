@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Dropdown from '../Dropdown/Dropdown';
 import { getTotalCount } from '../../utils/getTotalCount';

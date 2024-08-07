@@ -1,5 +1,3 @@
-'use client';
-
 import TitleHeader from '@/components/Header/TitleHeader';
 import { SearchHeader, SearchResult } from '@/features/Search';
 import React from 'react';
