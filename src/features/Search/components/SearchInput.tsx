@@ -1,12 +1,13 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { ClearIcon, SearchIcon } from 'public/icons';
 import React, { useState, KeyboardEvent } from 'react';
 
 function SearchInput() {
   const router = useRouter();
-  const [searchValue, setSearchValue] = useState('');
+  const searchParams = useSearchParams().get('query');
+  const [searchValue, setSearchValue] = useState(searchParams || '');
 
   const handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchValue.trim() !== '') {
