@@ -15,7 +15,7 @@ function SearchInput() {
   };
 
   return (
-    <div className='relative flex w-full bg-white'>
+    <div className='relative flex w-full overflow-auto'>
       <SearchIcon
         fill='#8B95A1'
         className='absolute left-[16px] top-1/2 -translate-y-1/2'
@@ -25,7 +25,7 @@ function SearchInput() {
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
         onKeyDown={handleEnter}
-        className='input-common input-light flex-1 px-[48px] focus:border-main'
+        className='input-common input-light w-full px-[48px] focus:border-main'
       />
       {searchValue && (
         <button
