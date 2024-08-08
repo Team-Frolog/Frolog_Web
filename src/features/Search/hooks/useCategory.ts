@@ -9,6 +9,7 @@ export const useCategory = () => {
     queryKey: ['category', searchValue],
     queryFn: () => getCategories({ q: searchValue! }),
     enabled: searchValue !== null,
+    refetchOnWindowFocus: false,
   });
 
   return { categoryData: data, searchValue };
