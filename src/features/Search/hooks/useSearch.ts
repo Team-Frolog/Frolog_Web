@@ -18,7 +18,7 @@ export const useSearch = () => {
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const isLastPage =
-        Math.ceil(lastPage.count / lastPage.limit) === lastPage.page;
+        Math.ceil(lastPage.count / lastPage.limit) === lastPage.page + 1;
       return isLastPage ? undefined : lastPage.page + 1;
     },
     select: (fetchedData) => ({
