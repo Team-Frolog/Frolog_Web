@@ -38,12 +38,14 @@ function SearchResult() {
   return (
     <div className='flex h-fit w-full flex-1 flex-col items-end gap-[36px] pb-[36px] pt-[24px]'>
       {isSearched && isEmpty && !isFetching && <SearchResultEmpty />}
-      <div className='flex w-full flex-1 flex-col gap-[36px]'>
-        {!isEmpty &&
-          searchResult.map((item) => (
+      {!isEmpty && (
+        <div className='flex w-full flex-1 flex-col gap-[36px]'>
+          {searchResult.map((item) => (
             <BookListItem key={item.isbn} bookData={item} />
           ))}
-      </div>
+        </div>
+      )}
+
       {isSearched && <NoBookButton />}
       <div ref={setTarget} id='observer' className='h-[10px]' />
       <AnimatePresence>

@@ -28,7 +28,7 @@ export const useSearch = () => {
     enabled: searchValue !== null,
   });
 
-  const isEmpty = !data;
+  const isEmpty = !data?.pages.length;
   const isSearched = searchValue !== null;
 
   return {
