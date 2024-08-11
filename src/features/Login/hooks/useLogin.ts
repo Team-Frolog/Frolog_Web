@@ -1,18 +1,19 @@
 import { REMEMBER_ME_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
 import { signIn, useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { LoginForm } from '../types/login';
 
 export const useLogin = (type: 'login' | 'test') => {
   const router = useRouter();
+  const callbackUrl = useSearchParams().get('callbackUrl');
   const { data: session, status } = useSession();
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const [isFaild, setIsFaild] = useState<boolean>(false);
 
   useEffect(() => {
     if (status === 'authenticated') {
-      router.replace('/');
+      router.replace(callbackUrl || '/');
     }
   }, [router, session, status]);
 
@@ -33,7 +34,6 @@ export const useLogin = (type: 'login' | 'test') => {
           localStorage.setItem(REMEMBER_ME_KEY, 'false');
           sessionStorage.setItem(REMEMBER_ME_KEY, 'logged_in');
         }
-        router.push('/');
       } else {
         localStorage.removeItem(TEMP_ACCOUNT_KEY);
         localStorage.setItem(REMEMBER_ME_KEY, 'false');

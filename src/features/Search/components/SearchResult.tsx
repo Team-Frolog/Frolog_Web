@@ -5,7 +5,7 @@ import AlertBottomSheet from '@/layouts/AlertBottomSheet';
 import { BookListItem } from '@/features/Book';
 import usePopUpStore from '@/store/popUpStore';
 import { sheetData } from '@/data/ui/bottomSheet';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
@@ -24,6 +24,8 @@ function SearchResult() {
     fetchNextPage,
   } = useSearch();
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const { isOpenLogin, isOpenAlert } = usePopUpStore((state) => ({
     isOpenLogin: state.isOpenLoginSheet,
@@ -34,6 +36,13 @@ function SearchResult() {
     hasNextPage,
     fetchNextPage,
   });
+
+  const handleClickLogin = () => {
+    const callbackUrl = `${pathname}?${searchParams}`;
+    router.push(
+      `${PAGES.LOGIN}?callbackUrl=${encodeURIComponent(callbackUrl)}`
+    );
+  };
 
   return (
     <div className='flex h-fit w-full flex-1 flex-col items-end gap-[36px] pb-[36px] pt-[24px]'>
@@ -52,7 +61,7 @@ function SearchResult() {
         {isOpenLogin && (
           <AlertBottomSheet
             sheetData={sheetData.need_to_login}
-            onClick={() => router.push(PAGES.LOGIN)}
+            onClick={handleClickLogin}
           >
             <p>{sheetData.need_to_login.description}</p>
           </AlertBottomSheet>
