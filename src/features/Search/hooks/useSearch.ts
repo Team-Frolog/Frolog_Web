@@ -1,4 +1,5 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { searchBook } from '../api/search.api';
 
@@ -6,6 +7,13 @@ export const useSearch = () => {
   const queries = useSearchParams();
   const searchValue = queries.get('query');
   const category = queries.get('category');
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    queryClient.removeQueries({
+      queryKey: ['search', [searchValue, category]],
+    });
+  }, [queryClient, searchValue, category]);
 
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: ['search', [searchValue, category]],
@@ -26,6 +34,7 @@ export const useSearch = () => {
       pageParams: fetchedData.pageParams,
     }),
     enabled: searchValue !== null,
+    refetchOnWindowFocus: false,
   });
 
   const isEmpty = !data?.pages.length;
