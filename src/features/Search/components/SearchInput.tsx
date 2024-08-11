@@ -23,6 +23,7 @@ function SearchInput() {
       />
       <input
         type='text'
+        enterKeyHint='search'
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
         onKeyDown={handleEnter}
