@@ -1,4 +1,5 @@
 import { REMEMBER_ME_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
+import { PAGES } from '@/constants/page';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -38,6 +39,7 @@ export const useLogin = (type: 'login' | 'test') => {
         localStorage.removeItem(TEMP_ACCOUNT_KEY);
         localStorage.setItem(REMEMBER_ME_KEY, 'false');
         sessionStorage.setItem(REMEMBER_ME_KEY, 'logged_in');
+        router.replace(PAGES.JOIN_FINISH);
       }
     } else {
       setIsFaild(true);

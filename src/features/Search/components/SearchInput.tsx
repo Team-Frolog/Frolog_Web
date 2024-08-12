@@ -24,10 +24,11 @@ function SearchInput() {
       <input
         type='text'
         enterKeyHint='search'
+        placeholder='책 제목 또는 저자를 검색해 보세요.'
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
         onKeyDown={handleEnter}
-        className='input-common input-light w-full px-[48px] focus:border-main'
+        className='input-common input-light w-full px-[48px] placeholder:text-gray-600 focus:border-main'
       />
       {searchValue && (
         <button
