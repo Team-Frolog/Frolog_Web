@@ -2,12 +2,14 @@ import Image from 'next/image';
 import React from 'react';
 import { IMAGES } from '@/constants/images';
 
-function NoReviewItem() {
+interface Props {
+  title: string;
+}
+
+function EmptyContentFrog({ title }: Props) {
   return (
     <div className='review-item flex-1 items-center justify-center bg-white text-center'>
-      <h3 className='text-body_xl_bold'>
-        책을 다 읽으셨으면 이제 리뷰를 써보세요!
-      </h3>
+      <h3 className='text-body_xl_bold'>{title}</h3>
       <Image
         src={IMAGES.frog.withPen}
         alt='with pen'
@@ -18,4 +20,4 @@ function NoReviewItem() {
   );
 }
 
-export default NoReviewItem;
+export default EmptyContentFrog;

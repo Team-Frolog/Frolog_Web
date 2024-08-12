@@ -3,9 +3,9 @@ import { useDeleteSheetState } from '@/store/popUpStore';
 import { AnimatePresence } from 'framer-motion';
 import AlertBottomSheet from '@/layouts/AlertBottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
+import EmptyContentFrog from '@/components/EmptyContentFrog';
 import ReviewListItem from './ReviewListItem';
 import FirstReviewItem from './FirstReviewItem';
-import NoReviewItem from './NoReviewItem';
 import { useReviews } from '../../hooks/useReviews';
 
 interface Props {
@@ -20,7 +20,9 @@ function ReviewList({ bookId }: Props) {
     <div className='flex w-full flex-1 flex-col gap-[12px]'>
       {isFetched && (
         <>
-          {reviews.length === 0 && <NoReviewItem />}
+          {reviews.length === 0 && (
+            <EmptyContentFrog title='책을 다 읽으셨으면 이제 리뷰를 써보세요!' />
+          )}
           {reviews.length === 1 && (
             <>
               <ReviewListItem
