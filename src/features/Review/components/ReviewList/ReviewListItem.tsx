@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { usePopUpActions } from '@/store/popUpStore';
 import Rating from '@/components/Rating/Rating';
 import TagSlider from '@/components/Tag/TagSlider';
 import { GetReviewRes } from '@frolog/frolog-api';
 import { formatDate } from '@/utils/format';
+import DeleteButton from '@/components/ListItem/DeleteButton';
 
 interface Props {
   index: number;
@@ -16,7 +16,6 @@ interface Props {
 
 function ReviewListItem({ reviewData, index, setReviewId }: Props) {
   const router = useRouter();
-  const { changePopUpState } = usePopUpActions();
 
   return (
     <div className='review-item px-0 pb-0'>
@@ -45,20 +44,10 @@ function ReviewListItem({ reviewData, index, setReviewId }: Props) {
         {formatDate(reviewData.date)}{' '}
         {reviewData.date !== reviewData.edit && '(수정됨)'}
       </span>
-
-      <div className='flex w-full flex-col px-[24px]'>
-        <hr className='border-[0.5px] border-gray-400' />
-        <button
-          type='button'
-          onClick={() => {
-            setReviewId(reviewData.id);
-            changePopUpState('isOpenDeleteSheet', true);
-          }}
-          className='py-[24px] text-body_lg text-error'
-        >
-          리뷰 삭제
-        </button>
-      </div>
+      <DeleteButton
+        buttonText='메모 삭제'
+        onClick={() => setReviewId(reviewData.id)}
+      />
     </div>
   );
 }

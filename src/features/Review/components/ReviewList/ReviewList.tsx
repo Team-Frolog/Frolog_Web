@@ -3,7 +3,7 @@ import { useDeleteSheetState } from '@/store/popUpStore';
 import { AnimatePresence } from 'framer-motion';
 import AlertBottomSheet from '@/layouts/AlertBottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
-import EmptyContentFrog from '@/components/EmptyContentFrog';
+import EmptyContentFrog from '@/components/ListItem/EmptyContentFrog';
 import ReviewListItem from './ReviewListItem';
 import FirstReviewItem from './FirstReviewItem';
 import { useReviews } from '../../hooks/useReviews';
