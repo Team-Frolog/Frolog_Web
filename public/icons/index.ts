@@ -38,3 +38,8 @@ export { default as DownloadDoneIcon } from './test/download-done.svg';
 // search
 export { default as ClearIcon } from './clear.svg';
 export { default as CirclePlus } from './icon-plus-circle.svg';
+
+// memo
+export { default as MemoBubble } from './memo/memo-bubble.svg';
+export { default as MemoLight } from './memo/memo-light.svg';
+export { default as MemoPin } from './memo/memo-pin.svg';

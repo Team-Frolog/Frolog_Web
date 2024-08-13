@@ -4,6 +4,7 @@ import DeleteButton from '@/components/ListItem/DeleteButton';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import PageTag from '../Tag/PageTag';
+import MemoTagList from '../Tag/MemoTagList';
 
 function MemoListItem() {
   const router = useRouter();
@@ -19,6 +20,7 @@ function MemoListItem() {
             <div className='px-page'>
               <PageTag pageNum={100} />
             </div>
+            <MemoTagList />
           </div>
           <div className='flex w-full flex-col gap-[20px] px-page'>
             <div className='flex w-full gap-[20px]'>
