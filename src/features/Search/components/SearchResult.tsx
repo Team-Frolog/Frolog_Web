@@ -5,6 +5,7 @@ import AlertBottomSheet from '@/layouts/AlertBottomSheet';
 import { BookListItem } from '@/features/Book';
 import usePopUpStore from '@/store/popUpStore';
 import { sheetData } from '@/data/ui/bottomSheet';
+import { LOGIN_CALLBACK } from '@/constants/storage';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
@@ -39,9 +40,8 @@ function SearchResult() {
 
   const handleClickLogin = () => {
     const callbackUrl = `${pathname}?${searchParams}`;
-    router.push(
-      `${PAGES.LOGIN}?callbackUrl=${encodeURIComponent(callbackUrl)}`
-    );
+    sessionStorage.setItem(LOGIN_CALLBACK, callbackUrl);
+    router.push(PAGES.LANDING);
   };
 
   return (

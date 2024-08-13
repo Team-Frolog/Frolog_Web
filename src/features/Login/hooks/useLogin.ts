@@ -1,20 +1,24 @@
-import { REMEMBER_ME_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
+import {
+  LOGIN_CALLBACK,
+  REMEMBER_ME_KEY,
+  TEMP_ACCOUNT_KEY,
+} from '@/constants/storage';
 import { PAGES } from '@/constants/page';
 import { signIn, useSession } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { LoginForm } from '../types/login';
 
 export const useLogin = (type: 'login' | 'test') => {
   const router = useRouter();
-  const callbackUrl = useSearchParams().get('callbackUrl');
+  const callbackUrl = () => sessionStorage.getItem(LOGIN_CALLBACK);
   const { data: session, status } = useSession();
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const [isFaild, setIsFaild] = useState<boolean>(false);
 
   useEffect(() => {
     if (status === 'authenticated') {
-      router.replace(callbackUrl || '/');
+      router.replace(callbackUrl() || '/');
     }
   }, [router, session, status]);
 
