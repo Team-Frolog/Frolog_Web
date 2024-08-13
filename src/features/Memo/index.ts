@@ -1,1 +1,1 @@
-export { default as MemoList } from './components/MemoList';
+export { default as MemoList } from './components/MemoList/MemoList';
