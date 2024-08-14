@@ -7,14 +7,22 @@ import { ON_LEAVE_ROUTE } from '@/constants/storage';
 import BackButton from '../Button/BackButton';
 
 interface Props {
-  type: 'default' | 'edit';
+  type: 'default' | 'edit' | 'memo';
+  hasButton?: boolean;
   isDisabled?: boolean;
   title: string;
   theme: 'dark' | 'light';
   onClick?: () => void;
 }
 
-function TitleHeader({ type, isDisabled, theme, title, onClick }: Props) {
+function TitleHeader({
+  type,
+  isDisabled,
+  theme,
+  title,
+  onClick,
+  hasButton = true,
+}: Props) {
   const router = useRouter();
   const themeColor =
     theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-gray-800';
@@ -44,13 +52,13 @@ function TitleHeader({ type, isDisabled, theme, title, onClick }: Props) {
       >
         {title}
       </h2>
-      {onClick && (
+      {hasButton && (
         <button
-          type={type === 'edit' ? 'submit' : 'button'}
-          onClick={type === 'edit' ? undefined : onClick}
-          className={`text-body_lg_bold text-main ${type === 'edit' && isDisabled && 'pointer-events-none opacity-50'}`}
+          type={type === 'default' ? 'button' : 'submit'}
+          onClick={type === 'default' ? onClick : undefined}
+          className={`text-body_lg_bold text-main ${(type === 'edit' || type === 'memo') && isDisabled && 'pointer-events-none opacity-50'}`}
         >
-          {type === 'edit' ? '저장' : '수정'}
+          {type === 'default' ? '수정' : '저장'}
         </button>
       )}
     </div>
