@@ -1,5 +1,5 @@
+import { MemoFormType } from '@/features/Memo';
 import { ReviewFormType } from '@/features/Review';
-import { MemoFormType } from '../../app/(tap)/well-book/[id]/(detail)/memo/[memoId]/page';
 
 export interface TextareaType {
   fieldName: keyof ReviewFormType | keyof MemoFormType;
