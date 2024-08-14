@@ -22,7 +22,7 @@ function MemoTagList() {
   }, []);
 
   return (
-    <div ref={sliderRef} className='relative flex w-full overflow-auto'>
+    <div ref={sliderRef} className='w-full overflow-hidden'>
       <motion.div
         ref={motionDivRef}
         drag={drag}
@@ -32,9 +32,6 @@ function MemoTagList() {
       >
         <MemoTag type='phrase' />
         <MemoTag type='thought' />
-        <MemoTag type='question' />
-        <MemoTag type='question' />
-        <MemoTag type='question' />
       </motion.div>
     </div>
   );
