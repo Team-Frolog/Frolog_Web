@@ -51,7 +51,7 @@ function WellBookMemoPage() {
           isDisabled={false}
           onClick={() => router.push(`${pathname}?edit=true`)}
         />
-        <div className='flex h-fit w-full flex-1 flex-col px-[24px] py-[36px]'>
+        <div className='flex h-fit w-full flex-1 flex-col py-[36px]'>
           {isEditing ? (
             <>
               <MemoForm />

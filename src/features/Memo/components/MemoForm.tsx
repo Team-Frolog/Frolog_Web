@@ -6,10 +6,12 @@ import PublicToggle from './MemoForm/PublicToggle';
 
 function MemoForm() {
   return (
-    <div className='flex w-full flex-col justify-center gap-[36px]'>
+    <div className='flex w-full flex-col gap-[36px]'>
       <ImageForm />
-      <Textarea option={textareaType.memo} />
-      <PublicToggle />
+      <div className='flex w-full flex-col gap-[36px] px-page'>
+        <Textarea option={textareaType.memo} />
+        <PublicToggle />
+      </div>
     </div>
   );
 }
