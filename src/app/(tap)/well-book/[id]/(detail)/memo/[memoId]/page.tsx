@@ -32,7 +32,7 @@ function WellBookMemoPage() {
     },
   });
 
-  const { handleSubmit } = methods;
+  const { watch, handleSubmit } = methods;
 
   const handleEditMemo = () => {
     // TODO: 서버 연동
@@ -48,7 +48,7 @@ function WellBookMemoPage() {
           title='메리와 메리'
           theme='light'
           type={isEditing ? 'edit' : 'default'}
-          isDisabled={false}
+          isDisabled={!watch('memo')}
           onClick={() => router.push(`${pathname}?edit=true`)}
         />
         <div className='flex h-fit w-full flex-1 flex-col py-[36px]'>
