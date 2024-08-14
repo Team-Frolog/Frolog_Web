@@ -1,31 +1,20 @@
 'use client';
 
-import { InfoName } from '@/features/Join';
-import React, { useEffect, useState } from 'react';
-import { useFormContext } from 'react-hook-form';
+import React from 'react';
 
 interface Props {
-  fieldName: InfoName;
+  handleChange: () => void;
+  isPublic: boolean;
+  theme?: 'light' | 'dark';
 }
 
-function ToggleButton({ fieldName }: Props) {
-  const { watch, setValue } = useFormContext();
-  const [isPublic, setIsPublic] = useState(true);
-
-  useEffect(() => {
-    const visibility = watch(`personal_infos.${fieldName}.visibility`);
-    setIsPublic(visibility);
-  }, [watch, fieldName]);
-
-  const handleChange = () => {
-    setValue(`personal_infos.${fieldName}.visibility`, !isPublic);
-    setIsPublic(!isPublic);
-  };
-
+function ToggleButton({ isPublic, handleChange, theme = 'light' }: Props) {
   return (
     <div className='flex gap-[4px]'>
-      <span className='text-body_md text-white'>
-        {isPublic ? '프로필 공개' : '프로필 비공개'}
+      <span
+        className={`text-body_md ${theme === 'light' ? 'text-white' : 'text-gray-700'}`}
+      >
+        {isPublic ? '공개' : '비공개'}
       </span>
       <input
         type='checkbox'
