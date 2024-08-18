@@ -6,7 +6,7 @@ import { sheetData } from '@/data/ui/bottomSheet';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import WellNameInput from './WellNameInput';
-import FrogSelector from './FrogSelector';
+import FrogSelector from './Frog/FrogSelector';
 
 export interface WellFormType {
   wellName: string;
