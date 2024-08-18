@@ -23,6 +23,9 @@ const config: Config = {
           max: '430px',
         },
       },
+      boxShadow: {
+        inner: 'inset 0 0 0 1px #00CE4C',
+      },
       fontFamily: {
         pretendard: ['var(--font-pretendard)'],
       },

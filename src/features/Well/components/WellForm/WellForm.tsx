@@ -6,6 +6,7 @@ import { sheetData } from '@/data/ui/bottomSheet';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import WellNameInput from './WellNameInput';
+import FrogSelector from './FrogSelector';
 
 export interface WellFormType {
   wellName: string;
@@ -44,6 +45,7 @@ function WellForm() {
         />
         <div className='flex h-fit w-full flex-1 flex-col gap-[36px] px-page py-[32px]'>
           <WellNameInput />
+          <FrogSelector />
           <ConfirmLeaveSheet sheetData={sheetData.leave_while_edit} />
         </div>
       </form>

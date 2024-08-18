@@ -47,7 +47,7 @@ const FormInput = React.forwardRef(
       <div className='flex flex-col gap-[8px]'>
         {title && (
           <h6
-            className={`mb-[4px] text-body_md ${theme === 'dark' ? ' text-white' : 'text-gray-800'}`}
+            className={`mb-[4px] text-body_md ${theme === 'dark' ? ' text-white' : 'text-gray-700'}`}
           >
             {title}{' '}
             {isRequired && <span className='text-body_md text-main'>*</span>}
