@@ -6,8 +6,10 @@ function ShapeForm() {
   return (
     <div className='flex w-full flex-col gap-[12px]'>
       <h6 className='text-body_md text-gray-700'>우물 모양</h6>
-      <ColorSelector />
-      <ShapeSelector />
+      <div className='flex w-full flex-col rounded-[12px] border border-gray-300'>
+        <ColorSelector />
+        <ShapeSelector />
+      </div>
     </div>
   );
 }

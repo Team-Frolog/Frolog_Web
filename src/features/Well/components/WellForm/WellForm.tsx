@@ -7,6 +7,7 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import WellNameInput from './WellNameInput';
 import FrogSelector from './Frog/FrogSelector';
+import ShapeForm from './Shape/ShapeForm';
 
 export interface WellFormType {
   wellName: string;
@@ -46,6 +47,7 @@ function WellForm() {
         <div className='flex h-fit w-full flex-1 flex-col gap-[36px] px-page py-[32px]'>
           <WellNameInput />
           <FrogSelector />
+          <ShapeForm />
           <ConfirmLeaveSheet sheetData={sheetData.leave_while_edit} />
         </div>
       </form>
