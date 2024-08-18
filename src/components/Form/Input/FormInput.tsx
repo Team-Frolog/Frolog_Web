@@ -9,14 +9,15 @@ type FieldName =
   | 'passwordCheck'
   | 'username'
   | 'title'
-  | 'author';
+  | 'author'
+  | 'wellName';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   type: 'text' | 'email' | 'password';
-  placeholder: string;
   fieldName: FieldName;
   errorMessage?: string;
   title?: string;
+  theme?: 'dark' | 'light';
   isRequired?: boolean;
 }
 
@@ -28,6 +29,7 @@ const FormInput = React.forwardRef(
       title,
       fieldName,
       errorMessage,
+      theme = 'dark',
       isRequired = false,
       ...props
     }: Props,
@@ -44,7 +46,9 @@ const FormInput = React.forwardRef(
     return (
       <div className='flex flex-col gap-[8px]'>
         {title && (
-          <h6 className='mb-[4px] text-body_md text-white'>
+          <h6
+            className={`mb-[4px] text-body_md ${theme === 'dark' ? ' text-white' : 'text-gray-800'}`}
+          >
             {title}{' '}
             {isRequired && <span className='text-body_md text-main'>*</span>}
           </h6>
@@ -55,7 +59,7 @@ const FormInput = React.forwardRef(
           inputMode={type === 'email' ? 'email' : 'text'}
           placeholder={placeholder}
           style={{ imeMode: type === 'password' ? 'disabled' : 'auto' }}
-          className={`input-common placeholder:text-sm ${watch(fieldName) && errorMessage ? 'input-error' : 'input-default'}`}
+          className={`input-common placeholder:text-sm ${watch(fieldName) && errorMessage ? 'input-error' : theme === 'dark' ? 'input-default' : 'input-light'}`}
           onKeyDown={handleKeyPress}
           {...props}
         />
