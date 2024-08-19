@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { CATEGORY } from '@/constants/category';
 import { useFormContext } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import ColorButton from './ColorButton';
@@ -7,19 +8,7 @@ function ColorSelector() {
   const { watch, setValue } = useFormContext();
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const motionDivRef = useRef<HTMLDivElement | null>(null);
-
-  const dummy = [
-    { id: 1, color: 'novel' },
-    { id: 2, color: 'novel' },
-    { id: 3, color: 'novel' },
-    { id: 4, color: 'novel' },
-    { id: 5, color: 'novel' },
-    { id: 6, color: 'novel' },
-    { id: 7, color: 'novel' },
-    { id: 8, color: 'novel' },
-    { id: 9, color: 'novel' },
-    { id: 10, color: 'novel' },
-  ];
+  const categoryKeys = Object.keys(CATEGORY);
 
   return (
     <div ref={sliderRef} className='flex w-full overflow-hidden py-[18px]'>
@@ -30,11 +19,12 @@ function ColorSelector() {
         dragElastic={0.2}
         className='flex w-fit gap-[14px] px-[16px]'
       >
-        {dummy.map((item) => (
+        {categoryKeys.map((key) => (
           <ColorButton
-            key={item.id}
-            isSelected={watch('color') === item.id}
-            onClick={() => setValue('color', item.id)}
+            key={key}
+            id={key}
+            isSelected={watch('color') === key}
+            onClick={() => setValue('color', key)}
           />
         ))}
       </motion.div>
