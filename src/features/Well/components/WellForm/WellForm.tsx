@@ -13,13 +13,13 @@ export interface WellFormType {
   wellName: string;
   frogId: number | null;
   color: string | null;
-  shape: string | null;
+  shape: number | null;
 }
 
 function WellForm() {
   const methods = useForm<WellFormType>({
     mode: 'onChange',
-    defaultValues: { wellName: '', frogId: null, color: null, shape: null },
+    defaultValues: { wellName: '', frogId: 1, color: 'novel', shape: 1 },
   });
 
   const {

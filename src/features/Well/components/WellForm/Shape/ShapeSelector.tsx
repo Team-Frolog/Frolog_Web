@@ -9,6 +9,7 @@ import Outline7 from 'public/images/well/outline/7.svg';
 import Outline8 from 'public/images/well/outline/8.svg';
 import Outline9 from 'public/images/well/outline/9.svg';
 import { useFormContext } from 'react-hook-form';
+import { CATEGORY } from '@/constants/category';
 
 const outlines = [
   { id: 1, Shape: Outline1 },
@@ -34,7 +35,11 @@ function ShapeSelector() {
           className='w-full'
           onClick={() => setValue('shape', id)}
         >
-          <Shape fill={watch('shape') === id ? '#FFBA14' : '#B3B6C4'} />
+          <Shape
+            fill={
+              watch('shape') === id ? CATEGORY[watch('color')].bg : '#B3B6C4'
+            }
+          />
         </button>
       ))}
     </div>
