@@ -40,13 +40,9 @@ function WellHeader() {
             href={session ? PAGES.SEARCH : PAGES.LANDING}
             className='relative z-[50px] cursor-pointer'
           >
-            {session ? (
-              <PlusIcon className='mb-[6px]' />
-            ) : (
-              <ArrowIcon className='mb-[6px]' />
-            )}
+            {session ? <PlusIcon /> : <ArrowIcon />}
           </Link>
-          <h3 className='text-body_xl_bold'>
+          <h3 className='mt-[2px] text-body_xl_bold'>
             {session ? '책 추가하기' : '로그인이 필요해요'}
           </h3>
           <span className='text-body_md text-gray-600'>현재 높이 0cm</span>
