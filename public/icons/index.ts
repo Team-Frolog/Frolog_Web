@@ -30,6 +30,7 @@ export { default as SendIcon } from './feed/icon-send.svg';
 export { default as ArrowIcon } from './well/circle-arrow.svg';
 export { default as PlusIcon } from './well/circle-plus.svg';
 export { default as EditIcon } from './well/well-edit.svg';
+export { default as MemoBookmarkIcon } from './well/bookmark.svg';
 
 // test
 export { default as DownloadIcon } from './test/download-icon.svg';

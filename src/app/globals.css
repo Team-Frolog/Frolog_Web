@@ -47,6 +47,13 @@ input[type='number'] {
   }
 }
 
+.text-overflow-hidden {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
 html {
   width: 100vw;
   display: flex;
