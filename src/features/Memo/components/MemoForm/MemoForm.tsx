@@ -7,7 +7,7 @@ import { sheetData } from '@/data/ui/bottomSheet';
 import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
 import { FormProvider, useForm } from 'react-hook-form';
 import TitleHeader from '@/components/Header/TitleHeader';
-import ImageForm from './ImageForm';
+import ImageForm from './ImageForm/ImageForm';
 import PublicToggle from './PublicToggle';
 import { MemoFormType } from '../../types/form';
 
