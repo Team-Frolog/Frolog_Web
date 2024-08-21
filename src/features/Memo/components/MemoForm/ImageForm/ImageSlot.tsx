@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { DeleteImgIcon, ImgPlusIcon } from 'public/icons';
+import ImagePreview from './ImagePreview';
 
 interface Props {
   src: string | null;
@@ -10,6 +11,8 @@ interface Props {
 }
 
 function ImageSlot({ src, index, onChange, onDelete }: Props) {
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
   return (
     <div className='relative h-[290px] w-[290px] shrink-0 overflow-hidden'>
       {src ? (
@@ -20,6 +23,7 @@ function ImageSlot({ src, index, onChange, onDelete }: Props) {
             width={290}
             height={290}
             className='h-full w-full object-cover'
+            onClick={() => setIsPreviewOpen(true)}
           />
           <button
             type='button'
@@ -39,6 +43,12 @@ function ImageSlot({ src, index, onChange, onDelete }: Props) {
           />
           <ImgPlusIcon />
         </div>
+      )}
+      {isPreviewOpen && (
+        <ImagePreview
+          imgSrc={src!}
+          closePreview={() => setIsPreviewOpen(false)}
+        />
       )}
     </div>
   );
