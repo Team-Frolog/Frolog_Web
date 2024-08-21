@@ -35,6 +35,17 @@ function ImageSlider() {
     };
   };
 
+  const handleDeleteImg = (index: number) => {
+    if (index === 1) {
+      setImages({
+        1: images[2],
+        2: null,
+      });
+    } else {
+      setImages((prev) => ({ ...prev, [index]: null }));
+    }
+  };
+
   return (
     <div ref={sliderRef} className='flex w-full overflow-hidden'>
       <motion.div
@@ -52,6 +63,7 @@ function ImageSlider() {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleImgChange(e, index)
             }
+            onDelete={() => handleDeleteImg(index)}
           />
         ))}
       </motion.div>

@@ -45,3 +45,4 @@ export { default as MemoBubble } from './memo/memo-bubble.svg';
 export { default as MemoLight } from './memo/memo-light.svg';
 export { default as MemoPin } from './memo/memo-pin.svg';
 export { default as ImgPlusIcon } from './memo/icon-plus.svg';
+export { default as DeleteImgIcon } from './memo/x-light.svg';
