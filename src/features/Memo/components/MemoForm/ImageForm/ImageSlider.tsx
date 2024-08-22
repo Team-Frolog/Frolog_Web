@@ -27,10 +27,17 @@ function ImageSlider() {
 
     fileReader.onload = (event) => {
       if (typeof event.target?.result === 'string') {
-        setImages((prev) => ({
-          ...prev,
-          [index]: event.target?.result as string,
-        }));
+        if (index === 2 && images[1] === null) {
+          setImages((prev) => ({
+            ...prev,
+            1: event.target?.result as string,
+          }));
+        } else {
+          setImages((prev) => ({
+            ...prev,
+            [index]: event.target?.result as string,
+          }));
+        }
       }
     };
   };

@@ -8,8 +8,6 @@ function WellPage() {
       <WellHeader />
       <MainLayout extraClass='justify-end'>
         <WellBookList />
-        <WellBookList />
-        <WellBookList />
         <div className='h-[12px] w-full rounded-t-[20px] bg-gray-900' />
       </MainLayout>
     </div>
