@@ -1,21 +1,25 @@
 import TitleHeader from '@/components/Header/TitleHeader';
 import { SearchHeader, SearchResult } from '@/features/Search';
+import MainLayout from '@/layouts/MainLayout';
 import React from 'react';
 
 function SearchPage() {
   return (
-    <div className='flex w-full flex-1 flex-col'>
-      <TitleHeader
-        title='책 검색'
-        type='default'
-        theme='light'
-        hasButton={false}
-      />
-      <div className='flex flex-1 flex-col px-[24px]'>
+    <>
+      <div className='flex h-fit w-full flex-col'>
+        <TitleHeader
+          title='책 검색'
+          type='search'
+          theme='light'
+          hasButton={false}
+        />
         <SearchHeader />
-        <SearchResult />
       </div>
-    </div>
+
+      <MainLayout isCenter={false} extraClass='px-[24px]'>
+        <SearchResult />
+      </MainLayout>
+    </>
   );
 }
 

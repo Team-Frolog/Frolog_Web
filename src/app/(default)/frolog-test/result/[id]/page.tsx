@@ -15,7 +15,7 @@ function TestResultPage({ params: { id } }: Props) {
   const testData = testResult[Number(id)];
 
   return (
-    <div className='relative flex h-fit w-full flex-col gap-[12px] whitespace-pre-wrap bg-gray-900 pt-[36px] text-gray-800'>
+    <div className='relative flex h-dvh w-full flex-col gap-[12px] overflow-auto whitespace-pre-wrap bg-gray-900 pt-[36px] text-gray-800'>
       <div className='absolute left-0 top-0 z-[20] flex w-full items-center justify-between p-[24px]'>
         <QuitButton route='/' classes='cursor-pointer' />
         <DownloadButton type={id} />

@@ -7,7 +7,7 @@ import { ON_LEAVE_ROUTE } from '@/constants/storage';
 import BackButton from '../Button/BackButton';
 
 interface Props {
-  type: 'default' | 'edit' | 'memo';
+  type: 'default' | 'edit' | 'memo' | 'search';
   hasButton?: boolean;
   isDisabled?: boolean;
   title: string;
@@ -40,7 +40,7 @@ function TitleHeader({
   return (
     <div
       id='header'
-      className={`header-sticky duration-50 z-40 flex justify-between px-[24px] py-[20px] transition-all ${themeColor} ${type === 'default' ? 'border-0' : 'border-b-[0.5px] border-gray-400'}`}
+      className={`header-sticky duration-50 z-40 flex justify-between px-[24px] py-[20px] transition-all ${themeColor} ${type === 'search' ? 'border-0' : 'border-b-[0.5px] border-gray-400'}`}
     >
       <BackButton
         onClick={handleClick}

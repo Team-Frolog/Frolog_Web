@@ -39,7 +39,7 @@ function MemoForm({ id }: Props) {
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(handleEditMemo)}
-        className='flex h-fit w-full flex-1 flex-col bg-white'
+        className='flex h-dvh w-full flex-1 flex-col bg-white'
       >
         <TitleHeader
           title='메리와 메리'
@@ -47,7 +47,7 @@ function MemoForm({ id }: Props) {
           type='memo'
           isDisabled={!watch('memo')}
         />
-        <div className='flex h-fit w-full flex-1 flex-col py-[36px]'>
+        <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>
           <div className='flex w-full flex-col gap-[36px]'>
             <ImageForm />
             <div className='flex w-full flex-col gap-[36px] px-page'>

@@ -4,7 +4,7 @@
 
 @layer components {
   .form-layout {
-    @apply flex flex-1 flex-col justify-between gap-[24px];
+    @apply flex w-full flex-1 flex-col justify-between gap-[24px] overflow-hidden;
   }
   .flex-child-layout {
     @apply flex h-fit w-full flex-col items-center bg-white text-gray-800;

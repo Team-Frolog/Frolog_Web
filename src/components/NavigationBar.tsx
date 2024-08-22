@@ -8,7 +8,7 @@ import { FeedIcon, ProfileIcon, SearchIcon, WellIcon } from 'public/icons';
 function NavigationBar() {
   const pathname = usePathname();
   return (
-    <div className='sticky bottom-0 left-0 flex h-[80px] w-full items-center justify-around bg-white px-[20px]'>
+    <div className='flex h-[80px] w-full shrink-0 items-center justify-around bg-white px-[20px]'>
       <Link href='/' className='navItem'>
         <WellIcon fill={pathname === '/' ? '#313239' : '#B3B6C5'} height={22} />
         <span

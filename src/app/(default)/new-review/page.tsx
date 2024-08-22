@@ -3,6 +3,7 @@
 import BookInfo from '@/components/Book/BookInfo';
 import { NewReviewForm } from '@/features/Review';
 import { useScroll } from '@/hooks/gesture/useScroll';
+import MainLayout from '@/layouts/MainLayout';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
 import { usePopUpActions } from '@/store/popUpStore';
 import { useSearchParams } from 'next/navigation';
@@ -22,8 +23,10 @@ function NewReviewPage() {
       >
         <></>
       </ResponsiveHeaderLayout>
-      <BookInfo bookId={bookId} />
-      <NewReviewForm isbn={bookId} />
+      <MainLayout>
+        <BookInfo bookId={bookId} />
+        <NewReviewForm isbn={bookId} />
+      </MainLayout>
     </>
   );
 }

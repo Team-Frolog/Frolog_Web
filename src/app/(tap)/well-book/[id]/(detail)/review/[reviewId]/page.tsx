@@ -60,7 +60,7 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit((data) => handleEditReview(data, pathname))}
-        className='flex h-fit w-full flex-1 flex-col bg-white'
+        className='flex h-dvh w-full flex-1 flex-col bg-white'
       >
         <TitleHeader
           title={bookTitle}
@@ -69,7 +69,7 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
           isDisabled={isDisabled}
           onClick={() => router.push(`${pathname}?edit=true`)}
         />
-        <div className='flex h-fit w-full flex-1 flex-col px-[24px] py-[36px]'>
+        <div className='flex w-full flex-1 flex-col overflow-auto px-[24px] py-[36px]'>
           {isEditing ? (
             <>
               <ReviewForm type='edit' />
