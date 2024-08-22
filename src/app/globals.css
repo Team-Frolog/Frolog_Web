@@ -69,23 +69,19 @@ html {
 body {
   margin: 0;
   width: 100vw;
-  position: relative;
-
   height: 100%;
+  position: relative;
   display: flex;
-  overscroll-behavior-y: none;
   overflow: auto;
 
   /* PC view setting */
   @media screen and (min-width: 430px) {
     width: 450px;
-    height: 100vh;
   }
 }
 
 #root {
-  height: fit-content;
-  min-height: 100dvh;
+  height: 100dvh;
   width: 100%;
 
   display: flex;

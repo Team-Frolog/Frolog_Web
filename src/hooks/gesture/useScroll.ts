@@ -26,8 +26,27 @@ export const useScroll = ({
   };
 
   const updateScroll = throttle(() => {
-    setScrollY(window.scrollY || document.documentElement.scrollTop);
+    const mainElement = document.getElementById('main');
+    if (mainElement) {
+      setScrollY(mainElement.scrollTop || 0);
+    }
   }, 100);
+
+  useEffect(() => {
+    const mainElement = document.getElementById('main');
+    if (!mainElement) return;
+
+    const handleScroll = () => {
+      updateScroll();
+    };
+
+    mainElement.addEventListener('scroll', handleScroll);
+
+    return () => {
+      mainElement.removeEventListener('scroll', handleScroll);
+      resetHeaderStyles();
+    };
+  }, []);
 
   useEffect(() => {
     if (scrollY < 150) {
@@ -37,10 +56,11 @@ export const useScroll = ({
     } else if (categoryColor) {
       category();
     }
-  }, [scrollY]);
+  }, [scrollY, categoryColor, foreground, unSelected]);
 
   useEffect(() => {
     const isMobileSafari = /iPhone.*Safari/i.test(window.navigator.userAgent);
+    const mainElement = document.getElementById('main');
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -55,7 +75,7 @@ export const useScroll = ({
         });
       },
       {
-        root: null,
+        root: mainElement,
         threshold: [0, 0.35, 0.8, 1],
       }
     );
