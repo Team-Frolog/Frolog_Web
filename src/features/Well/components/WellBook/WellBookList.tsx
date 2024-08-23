@@ -19,12 +19,6 @@ function WellBookList() {
       {hasNewReview && <WellBook />}
       <WellBook />
       <FrogOnBook />
-      <FrogOnBook />
-      <FrogOnBook />
-      <FrogOnBook />
-
-      <FrogOnBook />
-      <FrogOnBook />
     </motion.div>
   );
 }

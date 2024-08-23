@@ -4,7 +4,7 @@ import MainLayout from '@/layouts/MainLayout';
 
 function WellPage() {
   return (
-    <MainLayout extraClass='justify-end'>
+    <MainLayout>
       <WellHeader />
       <WellTitle />
       <WellBookList />
