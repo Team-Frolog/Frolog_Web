@@ -1,16 +1,15 @@
 import React from 'react';
-import { WellHeader, WellBookList } from '@/features/Well';
+import { WellHeader, WellBookList, WellTitle } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
 
 function WellPage() {
   return (
-    <div className='flex-col-center w-full flex-1 justify-end overflow-hidden bg-white text-gray-800'>
+    <MainLayout extraClass='justify-end'>
       <WellHeader />
-      <MainLayout extraClass='justify-end'>
-        <WellBookList />
-        <div className='h-[12px] w-full rounded-t-[20px] bg-gray-900' />
-      </MainLayout>
-    </div>
+      <WellTitle />
+      <WellBookList />
+      <div className='h-[12px] w-full shrink-0 rounded-t-[20px] bg-gray-900' />
+    </MainLayout>
   );
 }
 
