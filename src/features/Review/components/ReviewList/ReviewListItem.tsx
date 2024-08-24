@@ -45,7 +45,7 @@ function ReviewListItem({ reviewData, index, setReviewId }: Props) {
         {reviewData.date !== reviewData.edit && '(수정됨)'}
       </span>
       <DeleteButton
-        buttonText='메모 삭제'
+        buttonText='리뷰 삭제'
         onClick={() => setReviewId(reviewData.id)}
       />
     </div>
