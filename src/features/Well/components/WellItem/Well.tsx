@@ -10,7 +10,7 @@ interface Props {
 
 function Well({ wellData }: Props) {
   return (
-    <div className='flex h-fit w-fit flex-col gap-[8px]'>
+    <div className='flex h-fit w-fit flex-col gap-[8px] place-self-center'>
       <div className='flex-center relative box-content h-[120px] w-[120px] bg-gray-900 p-[20px]'>
         <Image
           src='/images/frog/frog-sitting.svg'
@@ -23,7 +23,7 @@ function Well({ wellData }: Props) {
           <Outline fill={CATEGORY[wellData.category].bg} />
         </div>
       </div>
-      <h5 className='text-center text-body_xl_bold text-gray-800'>
+      <h5 className='text-center text-body_lg_bold text-gray-800'>
         {wellData.title}
       </h5>
     </div>
