@@ -92,6 +92,14 @@ export const sheetData: {
     frog: IMAGES.frog.sheet.wink,
     description: '추후에 책이 추가될 때, 알려드릴게요.',
   },
+  done_store_register: {
+    getTitle: () => <>신청에 성공했어요!</>,
+    type: 'normal',
+    stateType: 'isOpenAlertSheet',
+    buttonText: '확인',
+    frog: IMAGES.frog.sheet.wink,
+    description: '추후에 상점이 오픈될 때, 알려드릴게요.',
+  },
   add_book: {
     getTitle: () => <>책을 다 읽으셨나요?</>,
     type: 'normal',
