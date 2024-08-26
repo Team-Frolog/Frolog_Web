@@ -74,7 +74,7 @@ function Dropdown({ categoryData }: Props) {
             animate={{ height: 'fit-content', maxHeight: '300px', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ ease: 'linear', duration: 0.2 }}
-            className='absolute left-0 top-[65px] z-40 h-fit max-h-[300px] w-full overflow-auto rounded-[12px] border border-gray-400 bg-white py-[12px]'
+            className='z-70 absolute left-0 top-[65px] h-fit max-h-[300px] w-full overflow-auto rounded-[12px] border border-gray-400 bg-white py-[12px]'
           >
             {categoryData.length === 0 ? (
               <div className='flex w-full items-center px-[16px] py-[12px]'>

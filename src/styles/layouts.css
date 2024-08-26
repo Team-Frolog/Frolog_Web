@@ -19,6 +19,6 @@
     @apply flex flex-col items-center;
   }
   .header-sticky {
-    @apply sticky left-0 top-0 z-50 w-full;
+    @apply z-60 sticky left-0 top-0 w-full;
   }
 }

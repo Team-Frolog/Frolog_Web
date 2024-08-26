@@ -23,6 +23,13 @@ const config: Config = {
           max: '430px',
         },
       },
+      zIndex: {
+        '60': '60',
+        '70': '70',
+        '80': '80',
+        '90': '90',
+        '100': '100',
+      },
       boxShadow: {
         inner: 'inset 0 0 0 1px #00CE4C',
       },

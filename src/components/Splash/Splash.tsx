@@ -20,7 +20,7 @@ function Splash({ type, bookId }: Props) {
 
   return (
     <Portal>
-      <div className='fixed inset-x-0 left-0 top-0 z-50 mx-auto flex h-dvh w-[450px] flex-col items-center justify-between overflow-hidden overscroll-none bg-white mobile:left-0 mobile:w-full'>
+      <div className='z-100 fixed inset-x-0 left-0 top-0 mx-auto flex h-dvh w-[450px] flex-col items-center justify-between overflow-hidden overscroll-none bg-white mobile:left-0 mobile:w-full'>
         <div className='absolute z-0 flex h-fit w-full flex-1 flex-col items-center bg-gray-900 pt-[30px]'>
           <Image
             src='/icons/light/light.svg'

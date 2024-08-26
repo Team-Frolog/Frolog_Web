@@ -28,8 +28,8 @@ function PopUpLayout({ children, closePopUp }: Props) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 30 }}
           transition={{ duration: 0.2 }}
-          className='z-50 flex h-fit w-[85%] flex-col rounded-[20px] bg-white'
-          style={{ maxHeight: '70%' }}
+          className='z-100 flex h-fit w-[85%] flex-col rounded-[20px] bg-white'
+          style={{ maxHeight: '70%', zIndex: 100 }}
         >
           {children}
         </motion.div>

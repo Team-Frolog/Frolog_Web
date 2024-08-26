@@ -11,9 +11,9 @@ function SideWellHeader() {
         alt='side header'
         width={390}
         height={144}
-        className='absolute left-0 top-0 z-40 w-full'
+        className='z-60 absolute left-0 top-0 w-full'
       />
-      <button type='button' className='absolute right-[24px] top-[24px] z-40'>
+      <button type='button' className='z-70 absolute right-[24px] top-[24px]'>
         <StoreIcon />
       </button>
     </div>

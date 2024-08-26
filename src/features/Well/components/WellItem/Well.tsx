@@ -52,17 +52,17 @@ function Well({ wellData }: Props) {
           ref={shapeRef}
           initial={{ scale: 0 }}
           animate={controls}
-          className='fixed z-50'
+          className='z-100 fixed'
         >
           <Shape className='h-full w-full object-cover' />
         </motion.div>
-        <NewTag position='left-0 top-0 z-40' />
+        <NewTag position='left-0 top-0 z-50' />
         <Image
           src='/images/frog/frog-sitting.svg'
           alt='frog'
           width={80}
           height={110}
-          className='absolute inset-x-0 bottom-[18px] z-10 mx-auto h-[60%]'
+          className='absolute inset-x-0 bottom-[18px] z-10 mx-auto h-[60%] w-auto'
         />
         <div className='absolute left-1/2 top-1/2 z-20 h-full w-full -translate-x-1/2 -translate-y-1/2 pt-[0px]'>
           <Outline fill={CATEGORY[wellData.category].bg} />

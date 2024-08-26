@@ -5,7 +5,7 @@ import MainLayout from '@/layouts/MainLayout';
 function WellPage() {
   return (
     <>
-      <MainLayout extraClass='z-10'>
+      <MainLayout>
         <WellHeader />
         <WellTitle />
         <WellBookList />

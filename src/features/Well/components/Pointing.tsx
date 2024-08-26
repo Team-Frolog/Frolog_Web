@@ -4,7 +4,7 @@ import { pointing } from '@/styles/variants/variants';
 
 function Pointing() {
   return (
-    <div className='flex-center absolute left-0 top-0 z-[10px] h-full w-full'>
+    <div className='flex-center absolute left-0 top-0 z-10 h-full w-full'>
       {[0.4, 0.8, 1.2].map((delay) => (
         <motion.div
           key={delay}

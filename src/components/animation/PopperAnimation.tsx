@@ -9,7 +9,7 @@ const Lottie = dynamic(() => import('react-lottie-player'), { ssr: false });
 
 function PopperAnimation() {
   return (
-    <div className='absolute left-0 top-0 z-[100px] w-full'>
+    <div className='z-100 absolute left-0 top-0 w-full'>
       <Lottie animationData={lottieAni} play loop={false} />
     </div>
   );

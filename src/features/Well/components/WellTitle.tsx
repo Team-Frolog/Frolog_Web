@@ -34,7 +34,7 @@ function WellTitle() {
             <Pointing />
             <Link
               href={session ? PAGES.SEARCH : PAGES.LANDING}
-              className='relative z-[50px] cursor-pointer'
+              className='relative z-50 cursor-pointer'
             >
               {session ? <PlusIcon /> : <ArrowIcon />}
             </Link>
