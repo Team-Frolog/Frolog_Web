@@ -3,6 +3,7 @@ import React from 'react';
 import Outline from 'public/images/well/outline/1.svg';
 import { Well as WellDataType } from '@/data/dummy/well';
 import { CATEGORY } from '@/constants/category';
+import NewTag from '../NewTag';
 
 interface Props {
   wellData: WellDataType;
@@ -12,6 +13,7 @@ function Well({ wellData }: Props) {
   return (
     <div className='flex h-fit w-fit flex-col gap-[8px] place-self-center'>
       <div className='flex-center relative box-content h-[120px] w-[120px] bg-gray-900 p-[20px]'>
+        <NewTag position='left-0 top-0 z-40' />
         <Image
           src='/images/frog/frog-sitting.svg'
           alt='frog'

@@ -1,6 +1,7 @@
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 import React from 'react';
+import NewTag from '../../NewTag';
 
 interface Props {
   data: {
@@ -19,11 +20,7 @@ function FrogCharacter({ data, isSelected, onClick }: Props) {
       onClick={onClick}
       className={`relative flex w-full max-w-[105px] flex-col items-center gap-[12px] rounded-[12px] border bg-white pb-[16px] pt-[20px] ${isSelected ? 'border-main shadow-inner' : 'border-gray-300'}`}
     >
-      {data.isNew && (
-        <span className='absolute left-0 top-0 rounded-[20px] bg-error px-[8px] py-[4px] text-body_sm_bold text-white'>
-          NEW
-        </span>
-      )}
+      {data.isNew && <NewTag position='left-0 top-0' />}
       <Image
         src={IMAGES.frog.character}
         alt='frog-ex'
