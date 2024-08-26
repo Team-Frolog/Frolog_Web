@@ -1,9 +1,9 @@
 // common
-export { default as AddIcon } from './add-icon.svg';
-export { default as BackIcon } from './back.svg';
-export { default as CancelIcon } from './x-icon.svg';
-export { default as ExpandIcon } from './expand.svg';
-export { default as ToggleIcon } from './toggle.svg';
+export { default as AddIcon } from './common/add-icon.svg';
+export { default as BackIcon } from './common/back.svg';
+export { default as CancelIcon } from './common/x-icon.svg';
+export { default as ExpandIcon } from './common/expand.svg';
+export { default as ToggleIcon } from './common/toggle.svg';
 
 // form
 export { default as ErrorIcon } from './form/error-icon.svg';
@@ -39,8 +39,8 @@ export { default as DownloadIcon } from './test/download-icon.svg';
 export { default as DownloadDoneIcon } from './test/download-done.svg';
 
 // search
-export { default as ClearIcon } from './clear.svg';
-export { default as CirclePlus } from './icon-plus-circle.svg';
+export { default as ClearIcon } from './common/clear.svg';
+export { default as CirclePlus } from './common/icon-plus-circle.svg';
 
 // memo
 export { default as MemoBubble } from './memo/memo-bubble.svg';
