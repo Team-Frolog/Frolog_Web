@@ -62,7 +62,7 @@ html {
 
   @media screen and (min-width: 430px) {
     overflow: hidden;
-    background-color: black;
+    background-color: #0e0e0e;
   }
 }
 

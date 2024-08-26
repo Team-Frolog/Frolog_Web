@@ -4,12 +4,14 @@ import MainLayout from '@/layouts/MainLayout';
 
 function WellPage() {
   return (
-    <MainLayout>
-      <WellHeader />
-      <WellTitle />
-      <WellBookList />
-      <div className='h-[12px] w-full shrink-0 rounded-t-[20px] bg-gray-900' />
-    </MainLayout>
+    <>
+      <MainLayout extraClass='z-10'>
+        <WellHeader />
+        <WellTitle />
+        <WellBookList />
+        <div className='h-[12px] w-full shrink-0 rounded-t-[20px] bg-gray-900' />
+      </MainLayout>
+    </>
   );
 }
 

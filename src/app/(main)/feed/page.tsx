@@ -6,7 +6,7 @@ import React from 'react';
 function FeedPage() {
   return (
     <>
-      <MainLayout>
+      <MainLayout extraClass='z-20'>
         <SideWellHeader />
         <WellList />
       </MainLayout>
