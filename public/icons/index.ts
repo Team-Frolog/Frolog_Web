@@ -4,6 +4,7 @@ export { default as BackIcon } from './common/back.svg';
 export { default as CancelIcon } from './common/x-icon.svg';
 export { default as ExpandIcon } from './common/expand.svg';
 export { default as ToggleIcon } from './common/toggle.svg';
+export { default as ScrollToTopIcon } from './common/scroll-to-top.svg';
 
 // form
 export { default as ErrorIcon } from './form/error-icon.svg';
