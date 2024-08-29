@@ -25,7 +25,12 @@ function BookPage({ params: { id } }: Props) {
 
   return (
     <>
-      <TitleHeader type='default' theme='dark' title='도서 상세 페이지' hasButton={false} />
+      <TitleHeader
+        type='default'
+        theme='dark'
+        title='도서 상세 페이지'
+        hasButton={false}
+      />
       <BookInfo bookId={id} />
       <div className='flex w-full flex-col gap-[36px] bg-white'>
         <div className='flex w-full flex-col gap-[36px] px-page'>
