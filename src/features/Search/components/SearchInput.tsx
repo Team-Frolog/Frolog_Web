@@ -1,10 +1,15 @@
 'use client';
 
+import { PAGES } from '@/constants/page';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ClearIcon, SearchIcon } from 'public/icons';
 import React, { useState, KeyboardEvent } from 'react';
 
-function SearchInput() {
+interface Props {
+  isMain?: boolean;
+}
+
+function SearchInput({ isMain = false }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams().get('query');
   const [searchValue, setSearchValue] = useState(searchParams || '');
@@ -23,10 +28,12 @@ function SearchInput() {
       />
       <input
         type='text'
+        autoFocus={!isMain}
         enterKeyHint='search'
         placeholder='책 제목 또는 저자를 검색해 보세요.'
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
+        onFocus={isMain ? () => router.push(PAGES.SEARCH) : undefined}
         onKeyDown={handleEnter}
         className='input-common input-light w-full px-[48px] placeholder:text-gray-600 focus:border-main'
       />
