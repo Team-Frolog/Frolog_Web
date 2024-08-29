@@ -29,7 +29,9 @@ function NavigationBar() {
         </span>
       </Link>
       <Link href='/search' className='navItem'>
-        <SearchIcon fill={pathname === '/search' ? '#313239' : '#B3B6C5'} />
+        <SearchIcon
+          fill={pathname === '/search-main' ? '#313239' : '#B3B6C5'}
+        />
         <span
           className={`text-body_sm_bold ${pathname === '/search' ? 'text-gray-800' : 'text-gray-500'}`}
         >
