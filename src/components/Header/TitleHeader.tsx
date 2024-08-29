@@ -7,7 +7,7 @@ import { ON_LEAVE_ROUTE } from '@/constants/storage';
 import BackButton from '../Button/BackButton';
 
 interface Props {
-  type: 'default' | 'edit' | 'memo' | 'search';
+  type: 'default' | 'edit' | 'search';
   hasButton?: boolean;
   isDisabled?: boolean;
   title: string;
@@ -56,7 +56,7 @@ function TitleHeader({
         <button
           type={type === 'default' ? 'button' : 'submit'}
           onClick={type === 'default' ? onClick : undefined}
-          className={`text-body_lg_bold text-main ${(type === 'edit' || type === 'memo') && isDisabled && 'pointer-events-none opacity-50'}`}
+          className={`text-body_lg_bold text-main ${type === 'edit' && isDisabled && 'pointer-events-none opacity-50'}`}
         >
           {type === 'default' ? '수정' : '저장'}
         </button>

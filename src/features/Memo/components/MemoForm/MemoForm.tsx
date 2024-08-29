@@ -44,7 +44,7 @@ function MemoForm({ id }: Props) {
         <TitleHeader
           title='메리와 메리'
           theme='light'
-          type='memo'
+          type='edit'
           isDisabled={!watch('memo')}
         />
         <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>
