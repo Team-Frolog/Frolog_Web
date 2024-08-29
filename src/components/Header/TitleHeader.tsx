@@ -40,7 +40,7 @@ function TitleHeader({
   return (
     <div
       id='header'
-      className={`header-sticky duration-50 z-70 flex justify-between px-[24px] py-[20px] transition-all ${themeColor} ${type === 'search' ? 'border-0' : 'border-b-[0.5px] border-gray-400'}`}
+      className={`header-sticky duration-50 z-70 flex justify-between px-[24px] py-[20px] transition-all ${themeColor} ${type === 'search' || type === 'default' ? 'border-0' : 'border-b-[0.5px] border-gray-400'}`}
     >
       <BackButton
         onClick={handleClick}

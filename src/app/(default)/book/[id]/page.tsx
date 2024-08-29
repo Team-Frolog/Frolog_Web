@@ -27,16 +27,16 @@ function BookPage({ params: { id } }: Props) {
     <>
       <TitleHeader type='default' theme='dark' title='도서 상세 페이지' />
       <BookInfo bookId={id} />
-      <div className='flex w-full flex-col gap-[36px]'>
+      <div className='flex w-full flex-col gap-[36px] bg-white'>
         <div className='flex w-full flex-col gap-[36px] px-page'>
           <RatingSelector type='default' rating={bookData?.avg_rating} />
-          <MajorTagList type='pros' tagData={bookData?.tags_pos} />
-          <MajorTagList type='cons' tagData={bookData?.tags_neg} />
           <AddButton
             text='우물에 책 추가하기'
             categoryId='novel'
             onClick={() => changePopUpState('isOpenAlertSheet', true)}
           />
+          <MajorTagList type='pros' tagData={bookData?.tags_pos} />
+          <MajorTagList type='cons' tagData={bookData?.tags_neg} />
         </div>
         <BookDetail bookId={id} />
       </div>
