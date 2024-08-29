@@ -28,12 +28,12 @@ function NavigationBar() {
           피드
         </span>
       </Link>
-      <Link href='/search' className='navItem'>
+      <Link href='/search-main' className='navItem'>
         <SearchIcon
           fill={pathname === '/search-main' ? '#313239' : '#B3B6C5'}
         />
         <span
-          className={`text-body_sm_bold ${pathname === '/search' ? 'text-gray-800' : 'text-gray-500'}`}
+          className={`text-body_sm_bold ${pathname === '/search-main' ? 'text-gray-800' : 'text-gray-500'}`}
         >
           책 검색
         </span>
