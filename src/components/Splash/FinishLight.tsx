@@ -20,7 +20,10 @@ function FinishLight({ children, frog }: Props) {
       />
       <div className='w-full flex-1 bg-white' />
       <div className='flex-col-center absolute left-1/2 z-10 h-full w-full -translate-x-1/2 justify-between gap-[10px] pt-[150px] mobile:pt-[100px]'>
-        <BigTitle type='default' extraClass='text-center mobile:text-h_md_bold'>
+        <BigTitle
+          type='default'
+          extraClass='text-center mobile:text-heading-md-bold'
+        >
           {children}
         </BigTitle>
 

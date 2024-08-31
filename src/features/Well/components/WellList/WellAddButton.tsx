@@ -7,7 +7,7 @@ function WellAddButton() {
       <button type='button' className='h-[161px] w-[161px]'>
         <WellAddIcon className='h-full w-full' />
       </button>
-      <span className='text-body_lg_bold'>새 우물 파기</span>
+      <span className='text-body-lg-bold'>새 우물 파기</span>
     </div>
   );
 }

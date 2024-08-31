@@ -39,7 +39,7 @@ function CodeInput({ code, setCode, handleSendCode, isFailed }: Props) {
 
   return (
     <div className='flex w-full flex-col gap-[8px]'>
-      <h6 className='mb-[4px] text-body_md text-white'>
+      <h6 className='text-body-md mb-[4px] text-white'>
         이메일로 전송된 코드번호를 입력하세요
       </h6>
       <div className='relative w-full'>
@@ -67,7 +67,7 @@ function CodeInput({ code, setCode, handleSendCode, isFailed }: Props) {
         </div>
       </div>
       {(expiredTime === 0 || isFailed) && (
-        <span className='text-body_md text-error'>
+        <span className='text-body-md text-error'>
           {expiredTime === 0
             ? '입력 유효시간이 지났어요. 다시 인증해주세요.'
             : '다시 시도해주세요.'}

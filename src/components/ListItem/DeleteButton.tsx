@@ -20,7 +20,7 @@ function DeleteButton({ buttonText, onClick }: Props) {
           }
           changePopUpState('isOpenDeleteSheet', true);
         }}
-        className='py-[24px] text-body_lg text-error'
+        className='text-body-lg py-[24px] text-error'
       >
         {buttonText}
       </button>

@@ -14,7 +14,7 @@ function GuideChat() {
       initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 1, duration: 0.3 }}
-      className='tooltip-after relative mb-[20px] rounded-[20px] bg-gray-300 p-[20px] text-center text-body_lg text-gray-800 after:bottom-[-5px] after:border-[8px] after:border-gray-300'
+      className='tooltip-after text-body-lg relative mb-[20px] rounded-[20px] bg-gray-300 p-[20px] text-center text-gray-800 after:bottom-[-5px] after:border-[8px] after:border-gray-300'
     >
       {session && hasNewReview && chat.first_review()}
       {session && !hasNewReview && chat.loggedIn()}

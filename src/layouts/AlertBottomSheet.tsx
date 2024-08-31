@@ -51,7 +51,7 @@ function AlertBottomSheet({ sheetData, children, onClick }: Props) {
             style={{ top: '-56px' }}
           />
           <div className='flex-col-center w-full gap-[12px]'>
-            <h2 className='text-center text-title_xl_bold'>{getTitle()}</h2>
+            <h2 className='text-title-xl-bold text-center'>{getTitle()}</h2>
             {children}
           </div>
           {buttonText && (
@@ -72,7 +72,7 @@ function AlertBottomSheet({ sheetData, children, onClick }: Props) {
                 <button
                   type='button'
                   onClick={() => changePopUpState(stateType, false)}
-                  className='text-body_lg_bold text-gray-600'
+                  className='text-body-lg-bold text-gray-600'
                 >
                   {extraButtonText}
                 </button>

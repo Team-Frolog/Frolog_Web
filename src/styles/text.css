@@ -2,9 +2,9 @@
 
 @layer components {
   .book-info-title {
-    @apply text-body_lg_bold text-gray-800;
+    @apply text-body-lg-bold text-gray-800;
   }
   .book-info-sub {
-    @apply text-body_lg text-gray-600;
+    @apply text-body-lg text-gray-600;
   }
 }

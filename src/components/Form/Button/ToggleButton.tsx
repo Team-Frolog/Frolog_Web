@@ -12,7 +12,7 @@ function ToggleButton({ isPublic, handleChange, theme = 'light' }: Props) {
   return (
     <div className='flex gap-[4px]'>
       <span
-        className={`text-body_md ${theme === 'light' ? 'text-white' : 'text-gray-700'}`}
+        className={`text-body-md ${theme === 'light' ? 'text-white' : 'text-gray-700'}`}
       >
         {isPublic ? '공개' : '비공개'}
       </span>

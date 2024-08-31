@@ -14,14 +14,14 @@ function BookDetailTap({ currentTap, setCurrentTap }: Props) {
         <button
           type='button'
           onClick={() => setCurrentTap('도서 정보')}
-          className={`p-[16px] text-body_xl_bold ${currentTap === '도서 정보' ? 'text-gray-900' : 'text-gray-500'}`}
+          className={`text-body-xl-bold p-[16px] ${currentTap === '도서 정보' ? 'text-gray-900' : 'text-gray-500'}`}
         >
           도서 정보
         </button>
         <button
           type='button'
           onClick={() => setCurrentTap('리뷰 모음')}
-          className={`p-[16px] text-body_xl_bold ${currentTap === '리뷰 모음' ? 'text-gray-900' : 'text-gray-500'}`}
+          className={`text-body-xl-bold p-[16px] ${currentTap === '리뷰 모음' ? 'text-gray-900' : 'text-gray-500'}`}
         >
           리뷰 모음
         </button>

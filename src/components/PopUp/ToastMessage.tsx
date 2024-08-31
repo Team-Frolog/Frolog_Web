@@ -13,7 +13,7 @@ function ToastMessage({ text }: Props) {
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -10, opacity: 0 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className='z-80 fixed inset-x-0 top-2 mx-auto flex w-fit gap-[10px] rounded-[9px] bg-gray-700 px-[24px] py-[12px] text-body_md text-white'
+      className='text-body-md fixed inset-x-0 top-2 z-80 mx-auto flex w-fit gap-[10px] rounded-[9px] bg-gray-700 px-[24px] py-[12px] text-white'
     >
       <ErrorIcon />
       <span>{text}</span>

@@ -23,8 +23,8 @@ function BookInfo({ bookId }: { bookId: string }) {
       />
       <Book />
       <div className='flex-col-center gap-[4px]'>
-        <h3 className='text-title_lg_bold'>{bookData?.title}</h3>
-        <ul className='flex text-body_sm text-gray-600'>
+        <h3 className='text-title-lg-bold'>{bookData?.title}</h3>
+        <ul className='text-body-sm flex text-gray-600'>
           <li className="after:content-['|']">
             <span className='px-[6px]'>{bookData?.author}</span>
           </li>

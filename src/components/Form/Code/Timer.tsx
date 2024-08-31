@@ -40,7 +40,7 @@ function Timer() {
   if (remainingTime === null) return null;
 
   return (
-    <span className='w-[30px] text-start text-body_sm text-gray-500'>
+    <span className='text-body-sm w-[30px] text-start text-gray-500'>
       {Math.floor((remainingTime / (1000 * 60)) % 60)}:
       {String(Math.floor((remainingTime / 1000) % 60)).padStart(2, '0')}
     </span>

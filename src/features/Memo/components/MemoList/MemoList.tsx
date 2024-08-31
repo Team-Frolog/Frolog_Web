@@ -23,7 +23,7 @@ function MemoList() {
             sheetData={sheetData.delete_memo}
             onClick={handleDeleteMemo}
           >
-            <p className='text-body_lg'>
+            <p className='text-body-lg'>
               리뷰를 한 번 삭제하면 복구할 수 없어요.
             </p>
           </AlertBottomSheet>

@@ -9,7 +9,7 @@ interface Props {
 function EmptyContentFrog({ title }: Props) {
   return (
     <div className='review-item flex-1 items-center justify-center bg-white text-center'>
-      <h3 className='text-body_xl_bold'>{title}</h3>
+      <h3 className='text-body-xl-bold'>{title}</h3>
       <Image
         src={IMAGES.frog.withPen}
         alt='with pen'

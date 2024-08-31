@@ -27,12 +27,12 @@ function ReviewListItem({ reviewData, index, setReviewId }: Props) {
           className='flex w-full cursor-pointer flex-col gap-[12px] px-[24px]'
         >
           <div>
-            <span className='rounded-[20px] bg-gray-800 px-[10px] py-[6px] text-body_sm_bold text-white'>
+            <span className='text-body-sm-bold rounded-[20px] bg-gray-800 px-[10px] py-[6px] text-white'>
               {index}번째 리뷰
             </span>
           </div>
-          <Rating rating={reviewData.rating} textClass='text-h_lg_bold' />
-          <h3 className='break-all text-title_xl_bold'>{reviewData.title}</h3>
+          <Rating rating={reviewData.rating} textClass='text-heading-lg-bold' />
+          <h3 className='text-title-xl-bold break-all'>{reviewData.title}</h3>
         </div>
 
         <div className='flex-col-center w-full gap-[8px]'>
@@ -40,7 +40,7 @@ function ReviewListItem({ reviewData, index, setReviewId }: Props) {
           <TagSlider type='cons' tagKeys={reviewData.tags_neg} />
         </div>
       </div>
-      <span className='px-[24px] text-body_md text-gray-600'>
+      <span className='text-body-md px-[24px] text-gray-600'>
         {formatDate(reviewData.date)}{' '}
         {reviewData.date !== reviewData.edit && '(수정됨)'}
       </span>

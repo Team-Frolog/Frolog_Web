@@ -7,8 +7,8 @@ import { useFormContext } from 'react-hook-form';
 function GenderSelector() {
   const { watch, setValue } = useFormContext();
   const buttonStyle =
-    'rounded-[12px] border border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg';
-  const selected = 'border-main text-body_lg_bold';
+    'rounded-[12px] border border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body-lg';
+  const selected = 'border-main text-body-lg-bold';
 
   const handleClick = (value: string) => {
     setValue('personal_infos.gender.value', value);

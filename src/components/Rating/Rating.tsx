@@ -6,7 +6,7 @@ interface Props {
   textClass?: string;
 }
 
-function Rating({ rating, textClass = 'text-body_xl_bold' }: Props) {
+function Rating({ rating, textClass = 'text-body-xl-bold' }: Props) {
   return (
     <div className='flex w-full items-center gap-[8px]'>
       <span

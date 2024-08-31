@@ -23,7 +23,7 @@ function CategoryItem({ categoryData, isSelected, onClick }: Props) {
       <div
         className={`h-[16px] w-[16px] rounded-[50%] bg-category-bg-${categoryData.category}`}
       />
-      <span className='text-body_lg text-gray-800'>
+      <span className='text-body-lg text-gray-800'>
         {name} ({categoryData.count})
       </span>
     </div>

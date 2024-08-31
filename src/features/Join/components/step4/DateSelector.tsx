@@ -18,7 +18,7 @@ function DateSelector() {
         }
         onKeyDown={(e) => e.preventDefault()}
         onClick={(e) => e.currentTarget.showPicker()}
-        className='relative w-full cursor-pointer appearance-none rounded-[12px] border border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg outline-none focus:border-main'
+        className='text-body-lg relative w-full cursor-pointer appearance-none rounded-[12px] border border-gray-800 bg-gray-800 px-[16px] py-[18px] outline-none focus:border-main'
       />
     </div>
   );

@@ -6,7 +6,7 @@ interface Props {
 
 function PageTag({ pageNum }: Props) {
   return (
-    <div className='w-fit rounded-[15px] border border-gray-500 bg-white px-[14px] py-[5px] text-body_md_bold text-gray-700'>
+    <div className='text-body-md-bold w-fit rounded-[15px] border border-gray-500 bg-white px-[14px] py-[5px] text-gray-700'>
       P.{pageNum}
     </div>
   );

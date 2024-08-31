@@ -21,10 +21,10 @@ function MemoListItem() {
             느낀 감정을 한마디로 표현...
           </p>
           <div className='flex w-full justify-between'>
-            <span className='text-body_md text-gray-600'>
+            <span className='text-body-md text-gray-600'>
               2023.07.03 (수정됨)
             </span>
-            <span className='text-body_lg_bold text-main'>공개</span>
+            <span className='text-body-lg-bold text-main'>공개</span>
           </div>
         </div>
       </div>

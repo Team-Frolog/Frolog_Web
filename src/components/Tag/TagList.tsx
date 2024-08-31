@@ -32,7 +32,7 @@ function TagList({ type }: Props) {
 
   return (
     <div className='flex w-full flex-col gap-[8px]'>
-      <span className='text-body_md text-gray-700'>
+      <span className='text-body-md text-gray-700'>
         {type === 'pros' ? '장점' : '단점'} 키워드 (1~5개 고르세요)
       </span>
       <motion.div

@@ -54,12 +54,12 @@ function BookRegisterSheet() {
               <SheetHeader className='w-full' />
               <div className='relative flex h-fit w-full flex-col items-center gap-[20px] bg-gray-900 px-[24px] pb-[30px] text-white'>
                 <div className='flex w-full flex-col items-center gap-[12px] text-center'>
-                  <h2 className='text-h_md_bold text-main_hightlight'>
+                  <h2 className='text-heading-md-bold text-main_hightlight'>
                     새로운 책을
                     <br />
                     등록해볼까요?
                   </h2>
-                  <p className='text-body_lg'>
+                  <p className='text-body-lg'>
                     아래 책 정보를 남기시면
                     <br />
                     추후에 책이 추가될 때, 알려드릴게요! 🔔

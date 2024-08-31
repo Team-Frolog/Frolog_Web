@@ -30,7 +30,7 @@ function FormHeader() {
       >
         <BackIcon fill='#B3B6C5' />
       </button>
-      <h3 className='text-h_md_bold'>{title}</h3>
+      <h3 className='text-heading-md-bold'>{title}</h3>
     </div>
   );
 }

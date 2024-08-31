@@ -52,7 +52,7 @@ function Well({ wellData }: Props) {
           ref={shapeRef}
           initial={{ scale: 0 }}
           animate={controls}
-          className='z-100 fixed'
+          className='fixed z-100'
         >
           <Shape className='h-full w-full object-cover' />
         </motion.div>
@@ -68,7 +68,7 @@ function Well({ wellData }: Props) {
           <Outline fill={CATEGORY[wellData.category].bg} />
         </div>
       </button>
-      <h5 className='text-center text-body_lg_bold text-gray-800'>
+      <h5 className='text-body-lg-bold text-center text-gray-800'>
         {wellData.title}
       </h5>
     </div>

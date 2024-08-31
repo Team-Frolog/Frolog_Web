@@ -28,7 +28,7 @@ function WellTitle() {
         transition={{ duration: 0.5 }}
         className='flex flex-col gap-[20px] py-[50px]'
       >
-        <h1 className='text-title_xl_bold'>소중한 나의 첫 우물</h1>
+        <h1 className='text-title-xl-bold'>소중한 나의 첫 우물</h1>
         <div className='flex-col-center gap-[4px]'>
           <div className='relative'>
             <Pointing />
@@ -40,10 +40,10 @@ function WellTitle() {
             </Link>
           </div>
 
-          <h3 className='mt-[2px] text-body_xl_bold'>
+          <h3 className='text-body-xl-bold mt-[2px]'>
             {session ? '책 추가하기' : '로그인이 필요해요'}
           </h3>
-          <span className='text-body_md text-gray-600'>현재 높이 0cm</span>
+          <span className='text-body-md text-gray-600'>현재 높이 0cm</span>
         </div>
       </motion.div>
     </div>

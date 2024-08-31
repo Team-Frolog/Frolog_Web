@@ -46,7 +46,7 @@ function LoadingPage() {
         >
           {isDone ? '분석 완료!' : loadingTexts[loadingTextIndex]}
           <br />
-          <span className='text-title_xl_bold text-gray-900'>
+          <span className='text-title-xl-bold text-gray-900'>
             {isDone ? '당신의 독서 성향은...' : '조금만 기다려 주세요!'}
           </span>
         </motion.div>

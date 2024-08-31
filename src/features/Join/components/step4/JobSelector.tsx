@@ -17,7 +17,7 @@ function JobSelector() {
           onChange={(e) =>
             setValue('personal_infos.occupation.value', e.target.value)
           }
-          className='w-full cursor-pointer appearance-none rounded-[12px] border border-solid border-gray-800 bg-gray-800 px-[16px] py-[18px] text-body_lg text-white outline-none'
+          className='text-body-lg w-full cursor-pointer appearance-none rounded-[12px] border border-solid border-gray-800 bg-gray-800 px-[16px] py-[18px] text-white outline-none'
         >
           {jobs.map((item) => (
             <option key={item.id} value={item.value}>

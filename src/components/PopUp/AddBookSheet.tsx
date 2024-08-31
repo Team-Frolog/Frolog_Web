@@ -13,7 +13,7 @@ function AddBookSheet() {
     <AnimatePresence>
       {isOpenAlertSheet && (
         <AlertBottomSheet sheetData={sheetData.add_book}>
-          <div className='flex w-full flex-col gap-[20px] pb-[32px] pt-[28px] text-title_xl_bold text-gray-800'>
+          <div className='text-title-xl-bold flex w-full flex-col gap-[20px] pb-[32px] pt-[28px] text-gray-800'>
             <button
               type='button'
               className='flex h-[95px] items-center justify-between gap-[20px] rounded-[12px] bg-gray-200 pl-[30px] pr-[10px]'

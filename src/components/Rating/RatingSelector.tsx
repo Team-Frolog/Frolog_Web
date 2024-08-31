@@ -29,8 +29,10 @@ function RatingSelector({ type, rating, setValue, watch }: Props) {
 
   return (
     <div className='flex-col-center w-full justify-center gap-[8px] text-gray-800'>
-      <h1 className='text-h_xl_bold'>{currentRating?.toFixed(1) || '0.0'}</h1>
-      <h4 className='text-body_lg'>
+      <h1 className='text-heading-xl-bold'>
+        {currentRating?.toFixed(1) || '0.0'}
+      </h1>
+      <h4 className='text-body-lg'>
         {currentRating ? getRatingMsg(currentRating) : '별점을 남겨주세요'}
       </h4>
       <div className='flex gap-[10px]'>

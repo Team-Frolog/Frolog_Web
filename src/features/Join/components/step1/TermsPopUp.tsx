@@ -14,14 +14,14 @@ function TermsPopUp({ termsData, closePopUp }: Props) {
   return (
     <PopUpLayout closePopUp={() => {}}>
       <div className='flex flex-col overflow-hidden px-[16px] py-[20px] text-gray-900'>
-        <h5 className='w-full border-b border-gray-400 pb-[12px] text-center text-body_lg_bold'>
+        <h5 className='text-body-lg-bold w-full border-b border-gray-400 pb-[12px] text-center'>
           {termsData.title}
         </h5>
         <TermsText text={termsData.view!} />
         <button
           type='button'
           onClick={closePopUp}
-          className='w-full border-t border-gray-400 pt-[12px] text-body_lg_bold text-main'
+          className='text-body-lg-bold w-full border-t border-gray-400 pt-[12px] text-main'
         >
           확인
         </button>

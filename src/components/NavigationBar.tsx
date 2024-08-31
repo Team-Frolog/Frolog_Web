@@ -12,7 +12,7 @@ function NavigationBar() {
       <Link href='/' className='navItem'>
         <WellIcon fill={pathname === '/' ? '#313239' : '#B3B6C5'} height={22} />
         <span
-          className={`text-body_sm_bold ${pathname === '/' ? 'text-gray-800' : 'text-gray-500'}`}
+          className={`text-body-sm-bold ${pathname === '/' ? 'text-gray-800' : 'text-gray-500'}`}
         >
           우물
         </span>
@@ -23,7 +23,7 @@ function NavigationBar() {
           height={22}
         />
         <span
-          className={`text-body_sm_bold ${pathname === '/feed' ? 'text-gray-800' : 'text-gray-500'}`}
+          className={`text-body-sm-bold ${pathname === '/feed' ? 'text-gray-800' : 'text-gray-500'}`}
         >
           피드
         </span>
@@ -33,7 +33,7 @@ function NavigationBar() {
           fill={pathname === '/search-main' ? '#313239' : '#B3B6C5'}
         />
         <span
-          className={`text-body_sm_bold ${pathname === '/search-main' ? 'text-gray-800' : 'text-gray-500'}`}
+          className={`text-body-sm-bold ${pathname === '/search-main' ? 'text-gray-800' : 'text-gray-500'}`}
         >
           책 검색
         </span>
@@ -41,7 +41,7 @@ function NavigationBar() {
       <Link href='/profile' className='navItem'>
         <ProfileIcon fill={pathname === '/profile' ? '#313239' : '#B3B6C5'} />
         <span
-          className={`text-body_sm_bold ${pathname === '/profile' ? 'text-gray-800' : 'text-gray-500'}`}
+          className={`text-body-sm-bold ${pathname === '/profile' ? 'text-gray-800' : 'text-gray-500'}`}
         >
           내 정보
         </span>

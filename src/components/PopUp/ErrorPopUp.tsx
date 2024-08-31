@@ -26,7 +26,7 @@ function ErrorPopUp({ errorMsg }: Props) {
       transition={{ duration: 0.2 }}
     >
       <ErrorIcon />
-      <span className='text-body_md text-white'>{errorMsg}</span>
+      <span className='text-body-md text-white'>{errorMsg}</span>
     </motion.div>
   );
 }

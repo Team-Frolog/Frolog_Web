@@ -2,7 +2,7 @@
 
 @layer components {
   .input-common {
-    @apply rounded-[12px] border px-[16px] py-[18px] text-body_lg outline-none focus:outline-none;
+    @apply text-body-lg rounded-[12px] border px-[16px] py-[18px] outline-none focus:outline-none;
   }
 
   .input-default {
@@ -18,7 +18,7 @@
   }
 
   .input-code-common {
-    @apply w-full rounded-[12px] border px-[16px] py-[18px] pr-[110px] text-body_lg outline-none focus:outline-none;
+    @apply text-body-lg w-full rounded-[12px] border px-[16px] py-[18px] pr-[110px] outline-none focus:outline-none;
   }
 
   .input-code-error {
@@ -26,11 +26,11 @@
   }
 
   .textarea-common {
-    @apply w-full resize-none whitespace-pre-wrap border px-[24px] py-[28px] text-body_lg text-gray-800 placeholder:text-gray-600 focus:outline-none;
+    @apply text-body-lg w-full resize-none whitespace-pre-wrap border px-[24px] py-[28px] text-gray-800 placeholder:text-gray-600 focus:outline-none;
   }
 
   .textarea-common::placeholder {
-    @apply text-body_lg font-normal;
+    @apply text-body-lg font-normal;
   }
 
   .textarea-light {

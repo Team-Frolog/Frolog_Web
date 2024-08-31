@@ -35,7 +35,7 @@ function Splash({ type, bookId }: Props) {
         <div className='z-10 flex w-full flex-1 flex-col items-center justify-end pt-[170px] mobile:pt-[120px]'>
           <BigTitle
             type='default'
-            extraClass='text-center mobile:text-h_md_bold'
+            extraClass='text-center mobile:text-heading-md-bold'
           >
             {getTitle()}
           </BigTitle>
@@ -56,7 +56,7 @@ function Splash({ type, bookId }: Props) {
               className={`absolute left-[24px] top-0 h-full w-[12px] bg-category-band-${'novel'}`}
             />
             <span
-              className={`w-[75%] truncate text-center text-body_sm_bold text-category-text-${'novel'}`}
+              className={`text-body-sm-bold w-[75%] truncate text-center text-category-text-${'novel'}`}
             >
               {bookData?.title}
             </span>

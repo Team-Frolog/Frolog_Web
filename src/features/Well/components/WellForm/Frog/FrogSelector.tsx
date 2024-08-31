@@ -28,7 +28,7 @@ function FrogSelector() {
 
   return (
     <div className='flex w-full flex-col gap-[12px]'>
-      <h6 className='text-body_md text-gray-700'>내 캐릭터</h6>
+      <h6 className='text-body-md text-gray-700'>내 캐릭터</h6>
       <motion.div
         initial={{ height: isExpanded ? 'auto' : '280px' }}
         animate={controls}

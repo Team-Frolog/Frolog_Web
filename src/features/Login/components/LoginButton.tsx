@@ -17,7 +17,7 @@ function LoginButton() {
       disabled={!isValid || !watch('email') || !watch('password')}
       btnType='submit'
     >
-      <Link href={PAGES.FIND_PASSWORD} className='text-body_lg_bold text-white'>
+      <Link href={PAGES.FIND_PASSWORD} className='text-body-lg-bold text-white'>
         비밀번호를 잊으셨나요?
       </Link>
     </ButtonWithText>

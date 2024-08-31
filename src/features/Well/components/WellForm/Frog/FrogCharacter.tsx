@@ -27,7 +27,7 @@ function FrogCharacter({ data, isSelected, onClick }: Props) {
         width={77}
         height={108}
       />
-      <span className='text-body_md text-gray-800'>{data.name}</span>
+      <span className='text-body-md text-gray-800'>{data.name}</span>
     </button>
   );
 }

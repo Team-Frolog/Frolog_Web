@@ -41,11 +41,11 @@ function Dropdown({ categoryData }: Props) {
 
   const getClass = () => {
     if (isSelected) {
-      return `bg-category-bg-${isSelected} text-category-text-${isSelected} text-body_lg_bold`;
+      return `bg-category-bg-${isSelected} text-category-text-${isSelected} text-body-lg-bold`;
     }
     if (isOpen)
-      return 'border-gray-900 bg-gray-900 text-body_lg_bold text-white';
-    return 'border-gray-400 bg-white text-body_lg text-gray-800';
+      return 'border-gray-900 bg-gray-900 text-body-lg-bold text-white';
+    return 'border-gray-400 bg-white text-body-lg text-gray-800';
   };
 
   return (
@@ -74,7 +74,7 @@ function Dropdown({ categoryData }: Props) {
             animate={{ height: 'fit-content', maxHeight: '300px', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ ease: 'linear', duration: 0.2 }}
-            className='z-70 absolute left-0 top-[65px] h-fit max-h-[300px] w-full overflow-auto rounded-[12px] border border-gray-400 bg-white py-[12px]'
+            className='absolute left-0 top-[65px] z-70 h-fit max-h-[300px] w-full overflow-auto rounded-[12px] border border-gray-400 bg-white py-[12px]'
           >
             {categoryData.length === 0 ? (
               <div className='flex w-full items-center px-[16px] py-[12px]'>

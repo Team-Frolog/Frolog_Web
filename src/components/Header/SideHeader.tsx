@@ -20,7 +20,7 @@ function SideHeader({ children, title }: Props) {
         className='absolute left-0 top-0 z-60 w-full'
       />
       <div className='flex w-full px-page py-[20px] pt-[50px]'>
-        <h1 className='text-start text-h_md_bold'>{title}</h1>
+        <h1 className='text-heading-md-bold text-start'>{title}</h1>
       </div>
       {children}
     </div>

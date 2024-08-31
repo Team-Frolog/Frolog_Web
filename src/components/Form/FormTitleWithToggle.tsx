@@ -10,7 +10,7 @@ interface Props {
 function FormTitleWithToggle({ title, fieldName }: Props) {
   return (
     <div className='flex w-full justify-between'>
-      <h6 className='mb-[4px] text-body_md text-white'>{title}</h6>
+      <h6 className='text-body-md mb-[4px] text-white'>{title}</h6>
       <PublicToggle fieldName={fieldName} />
     </div>
   );

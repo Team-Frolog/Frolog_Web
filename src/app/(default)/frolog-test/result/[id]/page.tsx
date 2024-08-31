@@ -29,12 +29,12 @@ function TestResultPage({ params: { id } }: Props) {
             height={450}
             className='absolute left-0 top-0 w-full'
           />
-          <h1 className='z-10 text-center text-h_lg_bold mobile:text-h_lg_bold'>
+          <h1 className='text-heading-lg-bold mobile:text-heading-lg-bold z-10 text-center'>
             {testData.title}
           </h1>
         </div>
         <div className='flex-col-center z-10 w-[90%] gap-[32px] rounded-[12px] px-[24px] py-[36px] mobile:w-full mobile:pb-[36px] mobile:pt-[12px]'>
-          <h5 className='text-center text-body_xl_bold'>{testData.subTitle}</h5>
+          <h5 className='text-body-xl-bold text-center'>{testData.subTitle}</h5>
           <Image
             src={IMAGES.test.frog[id]}
             alt='frog'
@@ -43,22 +43,22 @@ function TestResultPage({ params: { id } }: Props) {
             className={`${id === '3' ? 'w-[228px]' : 'w-[188px]'}`}
           />
           <div className='flex-col-center gap-[8px]'>
-            <h5 className='text-body_lg_bold'>{testData.quote.title}</h5>
-            <span className='text-center text-body_lg'>
+            <h5 className='text-body-lg-bold'>{testData.quote.title}</h5>
+            <span className='text-body-lg text-center'>
               {testData.quote.text}
             </span>
           </div>
           <hr className='h-[1px] w-full border-gray-500' />
           <div className='flex-col-center gap-[20px]'>
             <div className='flex-col-center gap-[8px]'>
-              <h3 className='text-title_xl_bold'>{testData.type.title}</h3>
-              <span className='text-body_lg_bold text-main'>
+              <h3 className='text-title-xl-bold'>{testData.type.title}</h3>
+              <span className='text-body-lg-bold text-main'>
                 {testData.type.tag}
               </span>
             </div>
             <ul className='w-full list-inside list-disc'>
               {testData.descriptions.map((item) => (
-                <li className=' text-body_md' key={item.id}>
+                <li className=' text-body-md' key={item.id}>
                   {item.text}
                 </li>
               ))}

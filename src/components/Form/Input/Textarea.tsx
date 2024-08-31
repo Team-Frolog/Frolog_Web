@@ -18,7 +18,7 @@ function Textarea({ type = 'default', option }: Props) {
 
   return (
     <div className='flex w-full flex-col gap-[8px]'>
-      <div className='flex justify-between px-page text-body_md text-gray-700'>
+      <div className='text-body-md flex justify-between px-page text-gray-700'>
         <span>{option.title}</span>
         <span>
           {length}/{option.maxLength}
@@ -31,7 +31,7 @@ function Textarea({ type = 'default', option }: Props) {
         [&>textarea]:resize-none [&>textarea]:overflow-hidden [&>textarea]:[grid-area:1/1/2/2]"
       >
         <textarea
-          className={`textarea-common ${errors[option.fieldName] ? 'input-error' : 'textarea-light'} ${type === 'bold' ? 'text-body_lg_bold' : 'text-body_lg'}`}
+          className={`textarea-common ${errors[option.fieldName] ? 'input-error' : 'textarea-light'} ${type === 'bold' ? 'text-body-lg-bold' : 'text-body-lg'}`}
           maxLength={option.maxLength}
           placeholder={option.placeholder}
           onInput={(e) => {
@@ -54,7 +54,7 @@ function Textarea({ type = 'default', option }: Props) {
         />
       </div>
 
-      <span className='px-page text-body_md text-error'>
+      <span className='text-- px-page text-error'>
         {errors[option.fieldName]
           ? String(errors[option.fieldName]!.message)
           : ''}

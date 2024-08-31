@@ -17,7 +17,7 @@ function WellBook() {
     >
       <div className='relative flex flex-1 justify-center bg-category-bg-novel px-[18px] py-[12px]'>
         <div className='absolute left-[20px] top-0 h-full w-[12px] bg-category-band-novel' />
-        <span className='text-overflow-hidden w-[82%] text-center text-body_sm_bold'>
+        <span className='text-overflow-hidden text-body-sm-bold w-[82%] text-center'>
           메리와 메리
         </span>
       </div>

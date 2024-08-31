@@ -45,14 +45,14 @@ function BookListItem({ bookData }: Props) {
         <div className='flex flex-col gap-[4px]'>
           {has_review && (
             <div className='flex'>
-              <span className='box-border rounded-[20px] bg-main px-[8px] py-[4px] text-caption_bold text-white'>
+              <span className='text-caption-bold box-border rounded-[20px] bg-main px-[8px] py-[4px] text-white'>
                 내가 리뷰한 책
               </span>
             </div>
           )}
 
-          <h5 className='text-body_xl_bold'>{title}</h5>
-          <ul className='flex text-caption_bold text-gray-600'>
+          <h5 className='text-body-xl-bold'>{title}</h5>
+          <ul className='text-caption-bold flex text-gray-600'>
             <li className="after:content-['|']">
               <span className='pr-[6px]'>
                 {author}
@@ -88,7 +88,7 @@ function BookListItem({ bookData }: Props) {
               />
             )}
           </div>
-          <span className='text-caption_bold text-gray-600'>
+          <span className='text-caption-bold text-gray-600'>
             총 {review_cnt}개의 리뷰
           </span>
         </div>

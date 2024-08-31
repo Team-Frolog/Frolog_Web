@@ -7,11 +7,11 @@ function FeedBar() {
       <div className='flex gap-[20px]'>
         <div className='flex items-center gap-[4px]'>
           <HeartIcon />
-          <span className='text-body_md text-gray-600'>13</span>
+          <span className='text-body-md text-gray-600'>13</span>
         </div>
         <div className='flex items-center gap-[4px]'>
           <ChatIcon />
-          <span className='text-body_md text-gray-600'>13</span>
+          <span className='text-body-md text-gray-600'>13</span>
         </div>
       </div>
       <div className='flex gap-[20px]'>

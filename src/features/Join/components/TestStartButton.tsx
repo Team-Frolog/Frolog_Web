@@ -10,7 +10,7 @@ function TestStartButton() {
 
   return (
     <div className='absolute bottom-0 left-0 flex w-full flex-col gap-[12px] p-[24px]'>
-      <span className=' gap-[12px] text-center text-body_lg_bold text-gray-800'>
+      <span className=' text-body-lg-bold gap-[12px] text-center text-gray-800'>
         {username}님의
         <br />
         독서 성향에 맞는 책을 앞으로 추천할게요!

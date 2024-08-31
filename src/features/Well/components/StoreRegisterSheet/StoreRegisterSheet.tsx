@@ -44,12 +44,12 @@ function StoreRegisterSheet() {
               <SheetHeader className='w-full' />
               <div className='relative flex h-fit w-full flex-col items-center gap-[20px] bg-gray-900 px-[24px] pb-[30px] text-white'>
                 <div className='flex w-full flex-col items-center gap-[12px] text-center'>
-                  <h2 className='text-h_md_bold text-main_hightlight'>
+                  <h2 className='text-heading-md-bold text-main_hightlight'>
                     더 귀여운 개구리를
                     <br />
                     원하나요?
                   </h2>
-                  <p className='text-body_lg'>
+                  <p className='text-body-lg'>
                     다양한 개구리를 살 수 있는 상점을 준비중이에요.
                     <br />
                     상점이 오픈되면, 알려드릴게요! 🔔

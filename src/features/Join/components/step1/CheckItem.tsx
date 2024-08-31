@@ -23,7 +23,7 @@ function CheckItem({ termsData }: Props) {
         onClick={() => setValue(`consents.${termsData.name}.given`, !isChecked)}
       >
         <CheckButton isChecked={isChecked} />
-        <span className='flex-1 cursor-default text-body_lg_bold'>
+        <span className='text-body-lg-bold flex-1 cursor-default'>
           {termsData.label}
         </span>
       </div>
@@ -31,7 +31,7 @@ function CheckItem({ termsData }: Props) {
         <button
           type='button'
           onClick={() => setOpenDetail(true)}
-          className='w-[30px] text-end text-body_md text-gray-600'
+          className='text-body-md w-[30px] text-end text-gray-600'
         >
           보기
         </button>

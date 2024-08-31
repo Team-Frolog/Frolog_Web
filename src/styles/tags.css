@@ -8,10 +8,10 @@
     @apply border-error bg-error_bg_light text-error;
   }
   .tag-size-big {
-    @apply w-fit whitespace-nowrap rounded-[12px] border px-[16px] py-[8px] text-body_lg_bold;
+    @apply text-body-lg-bold w-fit whitespace-nowrap rounded-[12px] border px-[16px] py-[8px];
   }
   .tag-size-small {
-    @apply w-fit whitespace-nowrap rounded-[8px] border-[0.5px] px-[12px] py-[6px] text-body_sm_bold;
+    @apply text-body-sm-bold w-fit whitespace-nowrap rounded-[8px] border-[0.5px] px-[12px] py-[6px];
   }
   .default-tag {
     @apply border-gray-400 bg-white text-gray-600;

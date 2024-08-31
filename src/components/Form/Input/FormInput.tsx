@@ -47,10 +47,10 @@ const FormInput = React.forwardRef(
       <div className='flex flex-col gap-[8px]'>
         {title && (
           <h6
-            className={`mb-[4px] text-body_md ${theme === 'dark' ? ' text-white' : 'text-gray-700'}`}
+            className={`text-body-md mb-[4px] ${theme === 'dark' ? ' text-white' : 'text-gray-700'}`}
           >
             {title}{' '}
-            {isRequired && <span className='text-body_md text-main'>*</span>}
+            {isRequired && <span className='text-body-md text-main'>*</span>}
           </h6>
         )}
         <input
@@ -63,7 +63,7 @@ const FormInput = React.forwardRef(
           onKeyDown={handleKeyPress}
           {...props}
         />
-        <span className='text-body_md text-error'>{errorMessage}</span>
+        <span className='text-body-md text-error'>{errorMessage}</span>
       </div>
     );
   }

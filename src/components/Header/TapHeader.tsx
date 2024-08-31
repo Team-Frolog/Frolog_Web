@@ -25,7 +25,7 @@ function TapHeader({ bookId }: { bookId: string }) {
             id={pathname.includes('memo') ? 'selected' : 'unselected'}
             type='button'
             onClick={() => handleClick('memo')}
-            className='text-h_md_bold'
+            className='text-heading-md-bold'
             style={{
               color: pathname.includes('memo') ? '#FFFFFF' : '#b3b6c5',
             }}
@@ -36,7 +36,7 @@ function TapHeader({ bookId }: { bookId: string }) {
             id={pathname.includes('review') ? 'selected' : 'unselected'}
             type='button'
             onClick={() => handleClick('review')}
-            className='text-h_md_bold'
+            className='text-heading-md-bold'
             style={{
               color: pathname.includes('review') ? '#FFFFFF' : '#b3b6c5',
             }}

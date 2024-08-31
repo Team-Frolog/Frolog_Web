@@ -12,9 +12,9 @@ function CategoryResult() {
 
   return (
     <div className='flex w-full flex-col gap-[12px]'>
-      <span className='text-body_lg'>
+      <span className='text-body-lg'>
         &ldquo;{searchValue}&rdquo; 검색 결과 총{' '}
-        <strong className='text-body_lg_bold'>
+        <strong className='text-body-lg-bold'>
           {getTotalCount(categoryData)}
         </strong>
         권

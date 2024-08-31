@@ -20,8 +20,8 @@ function LandingPage() {
         disabled={false}
       >
         <div className='flex gap-[6px]'>
-          <span className='text-body_lg text-gray-400'>우리 초면인가요?</span>
-          <Link href={PAGES.JOIN} className='text-body_lg_bold text-white'>
+          <span className='text-body-lg text-gray-400'>우리 초면인가요?</span>
+          <Link href={PAGES.JOIN} className='text-body-lg-bold text-white'>
             회원가입 하기
           </Link>
         </div>

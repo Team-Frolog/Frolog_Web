@@ -48,7 +48,7 @@ function TitleHeader({
       />
       <h2
         id='selected'
-        className='absolute inset-x-0 top-1/2 mx-auto w-fit -translate-y-1/2 text-body_xl_bold'
+        className='text-body-xl-bold absolute inset-x-0 top-1/2 mx-auto w-fit -translate-y-1/2'
       >
         {title}
       </h2>
@@ -56,7 +56,7 @@ function TitleHeader({
         <button
           type={type === 'default' ? 'button' : 'submit'}
           onClick={type === 'default' ? onClick : undefined}
-          className={`text-body_lg_bold text-main ${type === 'edit' && isDisabled && 'pointer-events-none opacity-50'}`}
+          className={`text-body-lg-bold text-main ${type === 'edit' && isDisabled && 'pointer-events-none opacity-50'}`}
         >
           {type === 'default' ? '수정' : '저장'}
         </button>
