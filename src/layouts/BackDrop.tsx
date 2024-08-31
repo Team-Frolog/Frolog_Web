@@ -23,7 +23,7 @@ function BackDrop({ children, align }: Props) {
       initial='initial'
       animate='animate'
       exit='exit'
-      className={`${alignmentClass} z-90 fixed inset-x-0 left-0 top-0 mx-auto h-dvh w-[450px] mobile:inset-0 mobile:left-0 mobile:w-full`}
+      className={`${alignmentClass} fixed inset-x-0 left-0 top-0 z-90 mx-auto h-dvh w-[450px] mobile:inset-0 mobile:left-0 mobile:w-full`}
       style={{ zIndex: '90' }}
     >
       {children}

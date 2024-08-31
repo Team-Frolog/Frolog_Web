@@ -3,6 +3,4 @@ export const getTotalCount = (
     category: string;
     count: number;
   }[]
-) => {
-  return data.reduce((a, c) => a + c.count, 0);
-};
+) => data.reduce((a, c) => a + c.count, 0);

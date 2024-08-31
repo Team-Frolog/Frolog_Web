@@ -9,9 +9,7 @@ export const useCategory = () => {
     queryKey: ['category', searchValue],
     queryFn: () => getCategories({ q: searchValue! }),
     enabled: searchValue !== null,
-    select: (fetchedData) => {
-      return fetchedData.sort((a, b) => b.count - a.count);
-    },
+    select: (fetchedData) => fetchedData.sort((a, b) => b.count - a.count),
     refetchOnWindowFocus: false,
   });
 
