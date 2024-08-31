@@ -8,8 +8,8 @@ interface Category {
 }
 
 export const CATEGORY: Category = {
-  novel: {
-    name: '소설',
+  religion: {
+    name: '종교',
     bg: '#FE2F2F',
     text: '#FABBC8',
     band: '#FF7171',
@@ -32,8 +32,8 @@ export const CATEGORY: Category = {
     text: '#F3B3EE',
     band: '#D095FF',
   },
-  religion: {
-    name: '종교',
+  novel: {
+    name: '소설',
     bg: '#CAA2FF',
     text: '#6C5A84',
     band: '#D9BBFF',
