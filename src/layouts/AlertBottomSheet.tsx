@@ -77,10 +77,12 @@ function AlertBottomSheet({
               {extraButtonText && (
                 <button
                   type='button'
-                  onClick={
-                    onClickSubButton ||
-                    (() => changePopUpState(stateType, false))
-                  }
+                  onClick={() => {
+                    changePopUpState(stateType, false);
+                    if (onClickSubButton) {
+                      onClickSubButton();
+                    }
+                  }}
                   className='text-body-lg-bold text-gray-600'
                 >
                   {extraButtonText}

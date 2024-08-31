@@ -12,6 +12,7 @@ import { useBookDetail } from '@/features/Book/hooks/useBookDetail';
 import { usePopUpActions } from '@/store/popUpStore';
 import React from 'react';
 import SelectBooksSheet from '@/components/PopUp/SelectBooksSheet';
+import WellSelectSheet from '@/components/PopUp/WellSelectSheet';
 
 interface Props {
   params: {
@@ -48,6 +49,7 @@ function BookPage({ params: { id } }: Props) {
       </div>
       <AddBookSheet />
       <SelectBooksSheet />
+      <WellSelectSheet />
     </>
   );
 }

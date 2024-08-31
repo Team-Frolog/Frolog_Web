@@ -19,6 +19,7 @@ export const PAGES = {
   TEST_RESULT: '/frolog-test/result',
   WELL_BOOK: '/well-book',
   SEARCH: '/search',
+  NEW_REVIEW: '/new-review',
 } as const;
 
 export const PAGE_CONFIG: PageConfig = {

@@ -1,6 +1,6 @@
 import { sheetData } from '@/data/ui/bottomSheet';
 import AlertBottomSheet from '@/layouts/AlertBottomSheet';
-import { useAlertSheetState } from '@/store/popUpStore';
+import { useAlertSheetState, usePopUpActions } from '@/store/popUpStore';
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
@@ -8,6 +8,7 @@ import { IMAGES } from '@/constants/images';
 
 function AddBookSheet() {
   const isOpenAlertSheet = useAlertSheetState();
+  const { changePopUpState } = usePopUpActions();
 
   return (
     <AnimatePresence>
@@ -16,6 +17,10 @@ function AddBookSheet() {
           <div className='text-title-xl-bold flex w-full flex-col gap-[20px] pb-[32px] pt-[28px] text-gray-800'>
             <button
               type='button'
+              onClick={() => {
+                changePopUpState('isOpenAlertSheet', false);
+                changePopUpState('isOpenSelectBooksSheet', true);
+              }}
               className='flex h-[95px] items-center justify-between gap-[20px] rounded-[12px] bg-gray-200 pl-[30px] pr-[10px]'
             >
               <span>다 읽었어요</span>
@@ -30,6 +35,10 @@ function AddBookSheet() {
             </button>
             <button
               type='button'
+              onClick={() => {
+                changePopUpState('isOpenAlertSheet', false);
+                changePopUpState('isOpenWellSheet', true);
+              }}
               className='flex h-[95px] items-center justify-between gap-[20px] rounded-[12px] bg-gray-200 pl-[30px] pr-[10px]'
             >
               <span>읽는 중이에요</span>

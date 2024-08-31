@@ -11,10 +11,12 @@ import { CATEGORY } from '@/constants/category';
 import NewTag from '../NewTag';
 
 interface Props {
+  type?: 'default' | 'select';
   wellData: WellDataType;
+  onClick?: () => void;
 }
 
-function Well({ wellData }: Props) {
+function Well({ wellData, type = 'default', onClick }: Props) {
   const router = useRouter();
   const controls = useAnimation();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -45,7 +47,7 @@ function Well({ wellData }: Props) {
       <button
         ref={buttonRef}
         type='button'
-        onClick={handleIntoWell}
+        onClick={type === 'default' ? handleIntoWell : onClick}
         className='flex-center relative box-content h-[120px] w-[120px] bg-gray-900 p-[20px]'
       >
         <motion.div
