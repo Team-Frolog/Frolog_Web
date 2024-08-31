@@ -53,7 +53,7 @@ function NewReviewForm({ isbn }: Props) {
   return (
     <FormProvider {...methods}>
       <form
-        className='flex-1 bg-white p-[24px] pt-0'
+        className='flex-1 bg-white pt-0'
         onSubmit={handleSubmit(handleAddReview)}
       >
         <ReviewForm type='new' isDisabled={isDisabled} />

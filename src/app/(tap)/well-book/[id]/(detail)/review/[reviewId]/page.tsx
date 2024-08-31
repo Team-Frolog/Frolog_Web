@@ -69,7 +69,7 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
           isDisabled={isDisabled}
           onClick={() => router.push(`${pathname}?edit=true`)}
         />
-        <div className='flex w-full flex-1 flex-col overflow-auto px-[24px] py-[36px]'>
+        <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>
           {isEditing ? (
             <>
               <ReviewForm type='edit' />

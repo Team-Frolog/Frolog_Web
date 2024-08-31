@@ -9,10 +9,6 @@ import { TestStartButton } from '@/features/Join';
 function JoinFinishPage() {
   return (
     <div className='relative flex h-dvh w-full flex-col justify-between overflow-hidden'>
-      <QuitButton
-        route='/'
-        classes='absolute left-[24px] top-[24px] z-10 cursor-pointer'
-      />
       <FinishLight frog={IMAGES.frog.congrats}>
         야호!
         <br />
@@ -20,6 +16,10 @@ function JoinFinishPage() {
         <br />
         완료되었어요
       </FinishLight>
+      <QuitButton
+        route='/'
+        classes='absolute left-[24px] top-[24px] z-100 cursor-pointer'
+      />
       <div className='flex-col-center w-full justify-end gap-[12px]'>
         <Image
           src={IMAGES.ground}

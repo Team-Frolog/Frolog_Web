@@ -50,8 +50,8 @@ function MemoForm({ id }: Props) {
         <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>
           <div className='flex w-full flex-col gap-[36px]'>
             <ImageForm />
-            <div className='flex w-full flex-col gap-[36px] px-page'>
-              <Textarea option={textareaType.memo} />
+            <Textarea option={textareaType.memo} />
+            <div className='w-full px-page'>
               <PublicToggle />
             </div>
           </div>

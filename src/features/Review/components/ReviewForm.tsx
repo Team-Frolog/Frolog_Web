@@ -23,14 +23,18 @@ function ReviewForm({ type, isDisabled }: Props) {
     <>
       <div className='flex-child-layout gap-[36px]'>
         <RatingSelector type='form' watch={watch} setValue={setValue} />
-        <TagList type='pros' />
-        <TagList type='cons' />
-        <Textarea option={textareaType.oneLiner} />
+        <div className='flex flex-col gap-[36px] px-page'>
+          <TagList type='pros' />
+          <TagList type='cons' />
+        </div>
+        <Textarea type='bold' option={textareaType.oneLiner} />
         <Textarea option={textareaType.review} />
         {type === 'new' && (
-          <Button type='submit' disabled={isDisabled}>
-            저장하기
-          </Button>
+          <div className='w-full p-page'>
+            <Button type='submit' disabled={isDisabled}>
+              저장하기
+            </Button>
+          </div>
         )}
       </div>
       <AnimatePresence>
