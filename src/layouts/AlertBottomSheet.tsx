@@ -50,11 +50,11 @@ function AlertBottomSheet({
         >
           <Image
             src={sheetData.frog || defaultFrog}
-            alt='error frog'
+            alt='frog'
             width={191}
             height={70}
             className='absolute inset-x-0 mx-auto'
-            style={{ top: '-56px' }}
+            style={{ top: '-55px' }}
           />
           <div className='flex-col-center w-full gap-[12px]'>
             <h2 className='text-title-xl-bold text-center'>{getTitle()}</h2>

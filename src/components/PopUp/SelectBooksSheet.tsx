@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import { sheetData } from '@/data/ui/bottomSheet';
 import AlertBottomSheet from '../../layouts/AlertBottomSheet';
+import Counter from '../Counter/Counter';
 
 function SelectBooksSheet() {
   const isOpenSelectBooksSheet = useSelectSheetState();
@@ -11,10 +12,12 @@ function SelectBooksSheet() {
     <AnimatePresence>
       {!isOpenSelectBooksSheet && (
         <AlertBottomSheet sheetData={sheetData.select_books}>
-          <p className='text-body-lg text-center'>
-            {sheetData.select_books.description!(1)}
-          </p>
-          <div className='flex w-full flex-col'>ss</div>
+          <div className='flex flex-col gap-[32px]'>
+            <p className='text-body-lg text-center'>
+              {sheetData.select_books.description!(1)}
+            </p>
+            <Counter />
+          </div>
         </AlertBottomSheet>
       )}
     </AnimatePresence>
