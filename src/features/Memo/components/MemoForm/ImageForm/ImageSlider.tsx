@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import ImageSlot from './ImageSlot';
 
 interface Props {
-  isReadOnly: boolean;
+  isReadOnly?: boolean;
 }
 
-function ImageSlider({ isReadOnly }: Props) {
+function ImageSlider({ isReadOnly = false }: Props) {
   const [images, setImages] = useState<{
     [key: number]: string | null;
   }>({
