@@ -63,7 +63,7 @@ function SearchResult() {
             sheetData={sheetData.need_to_login}
             onClick={handleClickLogin}
           >
-            <p>{sheetData.need_to_login.description}</p>
+            <p>{sheetData.need_to_login.description!()}</p>
           </AlertBottomSheet>
         )}
       </AnimatePresence>

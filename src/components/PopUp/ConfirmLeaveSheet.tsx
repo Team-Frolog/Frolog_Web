@@ -17,7 +17,9 @@ function ConfirmLeaveSheet({ sheetData }: Props) {
     <AnimatePresence>
       {isOpenAlertSheet && (
         <AlertBottomSheet sheetData={sheetData} onClick={() => router.back()}>
-          <p className='text-body-lg'>{sheetData.description}</p>
+          {sheetData.description && (
+            <p className='text-body-lg'>{sheetData.description()}</p>
+          )}
         </AlertBottomSheet>
       )}
     </AnimatePresence>

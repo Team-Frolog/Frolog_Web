@@ -5,7 +5,8 @@ export type PopUpType =
   | 'isOpenAlertSheet'
   | 'isOpenWellSheet'
   | 'isOpenDeleteSheet'
-  | 'isOpenLoginSheet';
+  | 'isOpenLoginSheet'
+  | 'isOpenSelectBooksSheet';
 
 interface PopUpState {
   isOpenToast: boolean;
@@ -13,6 +14,7 @@ interface PopUpState {
   isOpenDeleteSheet: boolean;
   isOpenAlertSheet: boolean;
   isOpenLoginSheet: boolean;
+  isOpenSelectBooksSheet: boolean;
   actions: {
     changePopUpState: (type: PopUpType, value: boolean) => void;
   };
@@ -24,6 +26,7 @@ const usePopUpStore = create<PopUpState>((set) => ({
   isOpenDeleteSheet: false,
   isOpenAlertSheet: false,
   isOpenLoginSheet: false,
+  isOpenSelectBooksSheet: false,
   actions: {
     changePopUpState: (type, value) => {
       set((state) => ({ ...state, [type]: value }));
@@ -40,6 +43,8 @@ export const useDeleteSheetState = () =>
   usePopUpStore((state) => state.isOpenDeleteSheet);
 export const useLoginSheetState = () =>
   usePopUpStore((state) => state.isOpenLoginSheet);
+export const useSelectSheetState = () =>
+  usePopUpStore((state) => state.isOpenSelectBooksSheet);
 export const usePopUpActions = () => usePopUpStore((state) => state.actions);
 
 export default usePopUpStore;

@@ -16,9 +16,15 @@ interface Props {
   sheetData: AlertSheet;
   children: React.ReactNode;
   onClick?: () => void;
+  onClickSubButton?: () => void;
 }
 
-function AlertBottomSheet({ sheetData, children, onClick }: Props) {
+function AlertBottomSheet({
+  sheetData,
+  children,
+  onClick,
+  onClickSubButton,
+}: Props) {
   useScrollFreeze();
   const defaultFrog =
     sheetData.type === 'error'
@@ -71,7 +77,10 @@ function AlertBottomSheet({ sheetData, children, onClick }: Props) {
               {extraButtonText && (
                 <button
                   type='button'
-                  onClick={() => changePopUpState(stateType, false)}
+                  onClick={
+                    onClickSubButton ||
+                    (() => changePopUpState(stateType, false))
+                  }
                   className='text-body-lg-bold text-gray-600'
                 >
                   {extraButtonText}

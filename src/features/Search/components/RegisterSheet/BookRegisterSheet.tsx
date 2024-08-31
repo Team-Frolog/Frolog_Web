@@ -36,7 +36,7 @@ function BookRegisterSheet() {
     <>
       {isRegistered && (
         <AlertBottomSheet sheetData={sheetData.done_register}>
-          <p>{sheetData.done_register.description}</p>
+          <p>{sheetData.done_register.description!()}</p>
         </AlertBottomSheet>
       )}
 

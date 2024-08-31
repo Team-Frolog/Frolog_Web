@@ -26,7 +26,7 @@ function StoreRegisterSheet() {
     <>
       {isRegistered && (
         <AlertBottomSheet sheetData={sheetData.done_store_register}>
-          <p>{sheetData.done_store_register.description}</p>
+          <p>{sheetData.done_store_register.description!()}</p>
         </AlertBottomSheet>
       )}
 

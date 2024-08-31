@@ -11,6 +11,7 @@ import { useScroll } from '@/hooks/gesture/useScroll';
 import { useBookDetail } from '@/features/Book/hooks/useBookDetail';
 import { usePopUpActions } from '@/store/popUpStore';
 import React from 'react';
+import SelectBooksSheet from '@/components/PopUp/SelectBooksSheet';
 
 interface Props {
   params: {
@@ -46,6 +47,7 @@ function BookPage({ params: { id } }: Props) {
         <BookDetail bookId={id} />
       </div>
       <AddBookSheet />
+      <SelectBooksSheet />
     </>
   );
 }
