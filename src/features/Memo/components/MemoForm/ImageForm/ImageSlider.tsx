@@ -2,7 +2,11 @@ import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import ImageSlot from './ImageSlot';
 
-function ImageSlider() {
+interface Props {
+  isReadOnly: boolean;
+}
+
+function ImageSlider({ isReadOnly }: Props) {
   const [images, setImages] = useState<{
     [key: number]: string | null;
   }>({
@@ -65,6 +69,7 @@ function ImageSlider() {
         {[1, 2].map((index) => (
           <ImageSlot
             key={index}
+            isReadOnly={isReadOnly}
             src={images[index]}
             index={index}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

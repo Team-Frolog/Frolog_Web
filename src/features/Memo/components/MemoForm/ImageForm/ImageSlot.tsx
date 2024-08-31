@@ -6,15 +6,16 @@ import ImagePreview from './ImagePreview';
 interface Props {
   src: string | null;
   index: number;
+  isReadOnly: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onDelete: () => void;
 }
 
-function ImageSlot({ src, index, onChange, onDelete }: Props) {
+function ImageSlot({ src, index, isReadOnly, onChange, onDelete }: Props) {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   return (
-    <div className='relative h-[290px] w-[290px] shrink-0 overflow-hidden'>
+    <div className='relative h-[340px] w-[340px] shrink-0 overflow-hidden'>
       {src ? (
         <>
           <Image
@@ -25,16 +26,18 @@ function ImageSlot({ src, index, onChange, onDelete }: Props) {
             className='h-full w-full object-cover'
             onClick={() => setIsPreviewOpen(true)}
           />
-          <button
-            type='button'
-            onClick={onDelete}
-            className='absolute right-[8px] top-[8px] cursor-pointer'
-          >
-            <DeleteImgIcon />
-          </button>
+          {!isReadOnly && (
+            <button
+              type='button'
+              onClick={onDelete}
+              className='absolute right-[8px] top-[8px] cursor-pointer'
+            >
+              <DeleteImgIcon />
+            </button>
+          )}
         </>
       ) : (
-        <div className='relative flex h-[290px] w-[290px] items-center justify-center rounded-[8px] bg-gray-200'>
+        <div className='relative flex h-[340px] w-[340px] items-center justify-center rounded-[8px] bg-gray-200'>
           <input
             type='file'
             accept='image/*'
