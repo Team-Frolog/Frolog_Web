@@ -1,65 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useMemoImage } from '@/features/Memo/hooks/useMemoImage';
 import ImageSlot from './ImageSlot';
 
 interface Props {
-  originImages?: string[] | null[];
   isReadOnly?: boolean;
 }
 
-function ImageSlider({
-  originImages = [null, null],
-  isReadOnly = false,
-}: Props) {
-  const [images, setImages] = useState<{
-    [key: number]: string | null;
-  }>({
-    1: originImages[0],
-    2: originImages[1],
-  });
+function ImageSlider({ isReadOnly = false }: Props) {
+  const { images, handleImgChange, handleDeleteImg } = useMemoImage();
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const motionDivRef = useRef<HTMLDivElement | null>(null);
-
-  const handleImgChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const file = e.target.files?.[0];
-
-    if (!file) {
-      return;
-    }
-
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-
-    fileReader.onload = (event) => {
-      if (typeof event.target?.result === 'string') {
-        if (index === 2 && images[1] === null) {
-          setImages((prev) => ({
-            ...prev,
-            1: event.target?.result as string,
-          }));
-        } else {
-          setImages((prev) => ({
-            ...prev,
-            [index]: event.target?.result as string,
-          }));
-        }
-      }
-    };
-  };
-
-  const handleDeleteImg = (index: number) => {
-    if (index === 1) {
-      setImages({
-        1: images[2],
-        2: null,
-      });
-    } else {
-      setImages((prev) => ({ ...prev, [index]: null }));
-    }
-  };
 
   return (
     <div ref={sliderRef} className='flex w-full overflow-hidden'>
@@ -70,14 +21,18 @@ function ImageSlider({
         dragElastic={0.2}
         className='flex w-fit gap-[20px] px-[24px]'
       >
-        {[1, 2].map((index) => (
+        {[0, 1].map((index) => (
           <ImageSlot
             key={index}
             isReadOnly={isReadOnly}
-            src={images[index]}
+            src={
+              images[index]
+                ? `https://images.frolog.kr/memo/${images[index]}.webp`
+                : null
+            }
             index={index}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              handleImgChange(e, index)
+              handleImgChange(e)
             }
             onDelete={() => handleDeleteImg(index)}
           />

@@ -1,10 +1,8 @@
-'use client';
-
-import { MemoForm } from '@/features/Memo';
+import { NewMemoForm } from '@/features/Memo';
 import React from 'react';
 
 function NewMemoPage() {
-  return <MemoForm />;
+  return <NewMemoForm />;
 }
 
 export default NewMemoPage;
