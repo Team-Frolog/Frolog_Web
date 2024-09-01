@@ -6,17 +6,28 @@ import { AnimatePresence } from 'framer-motion';
 import AlertBottomSheet from '@/layouts/AlertBottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import MemoListItem from './MemoListItem';
+import { useMemos } from '../../hooks/useMemos';
+import { Memo } from '../../models/memo.model';
 
-function MemoList() {
+interface Props {
+  bookId: string;
+}
+
+function MemoList({ bookId }: Props) {
+  const { memoList } = useMemos(bookId);
   const isOpenDeleteSheet = useDeleteSheetState();
 
   const handleDeleteMemo = () => {
     // TODO: 서버 연동
   };
 
+  if (!memoList) return <></>;
+
   return (
     <div className='flex w-full flex-1 flex-col gap-[12px]'>
-      <MemoListItem />
+      {memoList?.map((item: Memo) => (
+        <MemoListItem key={item.id} memoData={item} />
+      ))}
       <AnimatePresence>
         {isOpenDeleteSheet && (
           <AlertBottomSheet

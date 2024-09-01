@@ -3,15 +3,19 @@ import { motion } from 'framer-motion';
 import ImageSlot from './ImageSlot';
 
 interface Props {
+  originImages?: string[] | null[];
   isReadOnly?: boolean;
 }
 
-function ImageSlider({ isReadOnly = false }: Props) {
+function ImageSlider({
+  originImages = [null, null],
+  isReadOnly = false,
+}: Props) {
   const [images, setImages] = useState<{
     [key: number]: string | null;
   }>({
-    1: null,
-    2: null,
+    1: originImages[0],
+    2: originImages[1],
   });
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const motionDivRef = useRef<HTMLDivElement | null>(null);
