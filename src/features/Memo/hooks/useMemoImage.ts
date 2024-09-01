@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form';
-import { uploadMemoImage } from '../api/memo.api';
+import { deleteMemoImage, uploadMemoImage } from '../api/memo.api';
 
 export const useMemoImage = () => {
   const { watch, setValue } = useFormContext();
-  const images = watch('images');
+  const images = watch('images') as string[];
 
   const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -17,7 +17,12 @@ export const useMemoImage = () => {
   };
 
   const handleDeleteImg = (index: number) => {
-    //
+    deleteMemoImage({ hash: images[index] }).then((res) => {
+      if (res?.result) {
+        const updatedImages = images.filter((_, i) => i !== index);
+        setValue('images', updatedImages);
+      }
+    });
   };
 
   return { images, handleImgChange, handleDeleteImg };
