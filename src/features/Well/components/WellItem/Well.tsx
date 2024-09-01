@@ -48,7 +48,7 @@ function Well({ wellData, type = 'default', onClick }: Props) {
         ref={buttonRef}
         type='button'
         onClick={type === 'default' ? handleIntoWell : onClick}
-        className='flex-center relative box-content h-[120px] w-[120px] bg-gray-900 p-[20px]'
+        className='flex-center relative box-content h-[120px] w-[120px] rounded-[50%] bg-gray-900 p-[20px]'
       >
         <motion.div
           ref={shapeRef}
