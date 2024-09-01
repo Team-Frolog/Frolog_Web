@@ -13,6 +13,8 @@ import {
   GetMemoReq,
   EditMemoReq,
   EditMemo,
+  DeleteMemo,
+  DeleteMemoReq,
 } from '@frolog/frolog-api';
 
 const searchMemo = new SearchMemo(authOptions);
@@ -21,6 +23,7 @@ const uploadMemoImg = new UploadMemoImage(authOptions);
 const deleteMemoImg = new DeleteMemoImage(authOptions);
 const getMemo = new GetMemo(authOptions);
 const editMemo = new EditMemo(authOptions);
+const deleteMemoObj = new DeleteMemo(authOptions);
 
 export const getMemos = async (req: SearchMemoReq) => {
   try {
@@ -73,6 +76,16 @@ export const deleteMemoImage = async (req: DeleteMemoImageReq) => {
 export const editMemoDetail = async (req: EditMemoReq) => {
   try {
     const response = await editMemo.fetch(req);
+    return response;
+  } catch (err) {
+    console.log(err);
+    window.alert(ERROR_ALERT);
+  }
+};
+
+export const deleteMemo = async (req: DeleteMemoReq) => {
+  try {
+    const response = await deleteMemoObj.fetch(req);
     return response;
   } catch (err) {
     console.log(err);
