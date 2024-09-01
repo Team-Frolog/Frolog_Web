@@ -1,7 +1,5 @@
 export interface MemoFormType {
-  tags: string[];
-  images: File[];
-  pageNum: number | null;
+  images: string[];
   memo: string;
   isPublic: boolean;
 }

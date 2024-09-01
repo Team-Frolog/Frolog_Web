@@ -1,10 +1,12 @@
 'use client';
 
 import ToggleButton from '@/components/Form/Button/ToggleButton';
-import React, { useState } from 'react';
+import React from 'react';
+import { useFormContext, useWatch } from 'react-hook-form';
 
 function PublicToggle() {
-  const [isPublic, setIsPublic] = useState(true);
+  const { setValue } = useFormContext();
+  const isPublic = useWatch({ name: 'isPublic' });
 
   return (
     <div className='flex items-center justify-between gap-[0px]'>
@@ -14,7 +16,7 @@ function PublicToggle() {
       <ToggleButton
         theme='dark'
         isPublic={isPublic}
-        handleChange={() => setIsPublic((prev) => !prev)}
+        handleChange={() => setValue('isPublic', !isPublic)}
       />
     </div>
   );
