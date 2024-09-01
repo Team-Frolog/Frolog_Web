@@ -21,7 +21,7 @@ function MemoListItem({ memoData }: Props) {
           router.push(`/well-book/${memoData.isbn}/memo/${memoData.id}`)
         }
       >
-        <ImageSlider originImages={memoData.images} isReadOnly />
+        <ImageSlider originImages={memoData.images} />
         <div className='flex w-full flex-col gap-[20px] px-page'>
           <p>{memoData.content}</p>
           <div className='flex w-full justify-between'>

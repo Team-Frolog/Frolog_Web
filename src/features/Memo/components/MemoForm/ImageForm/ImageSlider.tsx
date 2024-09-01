@@ -4,10 +4,10 @@ import { useMemoImage } from '@/features/Memo/hooks/useMemoImage';
 import ImageSlot from './ImageSlot';
 
 interface Props {
-  isReadOnly?: boolean;
+  originImages?: string[];
 }
 
-function ImageSlider({ isReadOnly = false }: Props) {
+function ImageSlider({ originImages }: Props) {
   const { images, handleImgChange, handleDeleteImg } = useMemoImage();
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const motionDivRef = useRef<HTMLDivElement | null>(null);
@@ -21,22 +21,34 @@ function ImageSlider({ isReadOnly = false }: Props) {
         dragElastic={0.2}
         className='flex w-fit gap-[20px] px-[24px]'
       >
-        {[0, 1].map((index) => (
-          <ImageSlot
-            key={index}
-            isReadOnly={isReadOnly}
-            src={
-              images[index]
-                ? `https://images.frolog.kr/memo/${images[index]}.webp`
-                : null
-            }
-            index={index}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              handleImgChange(e)
-            }
-            onDelete={() => handleDeleteImg(index)}
-          />
-        ))}
+        {originImages
+          ? originImages.map((img, index) => (
+              <ImageSlot
+                key={img}
+                isReadOnly
+                src={`https://images.frolog.kr/memo/${img}.webp`}
+                index={index}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleImgChange(e)
+                }
+                onDelete={() => handleDeleteImg(index)}
+              />
+            ))
+          : [0, 1].map((index) => (
+              <ImageSlot
+                key={index}
+                src={
+                  images[index]
+                    ? `https://images.frolog.kr/memo/${images[index]}.webp`
+                    : null
+                }
+                index={index}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleImgChange(e)
+                }
+                onDelete={() => handleDeleteImg(index)}
+              />
+            ))}
       </motion.div>
     </div>
   );

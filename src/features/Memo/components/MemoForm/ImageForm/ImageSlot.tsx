@@ -6,12 +6,18 @@ import ImagePreview from './ImagePreview';
 interface Props {
   src: string | null;
   index: number;
-  isReadOnly: boolean;
+  isReadOnly?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onDelete: () => void;
 }
 
-function ImageSlot({ src, index, isReadOnly, onChange, onDelete }: Props) {
+function ImageSlot({
+  src,
+  index,
+  isReadOnly = false,
+  onChange,
+  onDelete,
+}: Props) {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   return (
