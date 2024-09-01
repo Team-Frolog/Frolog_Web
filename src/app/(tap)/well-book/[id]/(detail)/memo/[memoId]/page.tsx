@@ -10,13 +10,8 @@ interface Props {
 }
 
 function WellBookMemoPage({ memoId }: Props) {
-  const { memoDetail } = useMemoDetail(memoId);
-
+  const { memoDetail, handleEditMemo } = useMemoDetail(memoId);
   if (!memoDetail) return <></>;
-
-  const handleEditMemo = () => {
-    //
-  };
 
   return (
     <GenericForm<MemoFormType>
