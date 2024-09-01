@@ -9,16 +9,28 @@ import {
   UploadMemoImage,
   UploadMemoImageReq,
   DeleteMemoImageReq,
+  GetMemo,
+  GetMemoReq,
 } from '@frolog/frolog-api';
 
 const searchMemo = new SearchMemo(authOptions);
 const postMemo = new PostMemo(authOptions);
 const uploadMemoImg = new UploadMemoImage(authOptions);
 const deleteMemoImg = new DeleteMemoImage(authOptions);
+const getMemo = new GetMemo(authOptions);
 
 export const getMemos = async (req: SearchMemoReq) => {
   try {
     const response = await searchMemo.fetch(req);
+    return response;
+  } catch (err) {
+    window.alert(ERROR_ALERT);
+  }
+};
+
+export const getMemoDetail = async (req: GetMemoReq) => {
+  try {
+    const response = await getMemo.fetch(req);
     return response;
   } catch (err) {
     window.alert(ERROR_ALERT);
