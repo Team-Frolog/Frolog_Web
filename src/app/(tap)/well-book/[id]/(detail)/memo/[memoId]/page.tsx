@@ -17,7 +17,7 @@ function WellBookMemoPage({ params: { memoId } }: Props) {
 
   return (
     <GenericForm<MemoFormType>
-      onSubmit={handleEditMemo}
+      onSubmit={(data) => handleEditMemo(data)}
       className='flex h-dvh w-full flex-1 flex-col bg-white'
       formOptions={{
         mode: 'onBlur',
