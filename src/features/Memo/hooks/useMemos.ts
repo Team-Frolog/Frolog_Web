@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { SearchMemoRes } from '@frolog/frolog-api';
 import { deleteMemo, getMemos } from '../api/memo.api';
 
 export const useMemos = (bookId: string) => {
+  const [memoId, setMemoId] = useState<string>('');
   const queryClient = useQueryClient();
 
   const { data } = useQuery<SearchMemoRes | undefined>({
@@ -12,8 +14,8 @@ export const useMemos = (bookId: string) => {
   });
 
   const { mutate: handleDeleteMemo } = useMutation({
-    mutationFn: (id: string) => deleteMemo({ id }),
-    onMutate: async (id: string) => {
+    mutationFn: () => deleteMemo({ id: memoId }),
+    onMutate: async () => {
       await queryClient.cancelQueries({ queryKey: ['memos'] });
 
       const previousMemos = queryClient.getQueryData([
@@ -22,7 +24,7 @@ export const useMemos = (bookId: string) => {
 
       queryClient.setQueryData(
         ['memos'],
-        previousMemos.memos.filter((memo) => memo.id !== id)
+        previousMemos.memos.filter((memo) => memo.id !== memoId)
       );
 
       return { previousMemos };
@@ -35,5 +37,5 @@ export const useMemos = (bookId: string) => {
     },
   });
 
-  return { memoList: data?.memos, handleDeleteMemo };
+  return { memoList: data?.memos, handleDeleteMemo, setMemoId };
 };

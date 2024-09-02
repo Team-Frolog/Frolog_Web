@@ -26,10 +26,6 @@ export const useMemoImage = () => {
     };
 
     reader.readAsDataURL(file);
-
-    // uploadMemoImage({ file }).then((res) => {
-    //   setValue('images', [...images, res?.hash]);
-    // });
   };
 
   const handleDeleteImg = (index: number) => {

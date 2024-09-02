@@ -8,12 +8,12 @@ import ImageSlider from '../MemoForm/ImageForm/ImageSlider';
 import { Memo } from '../../models/memo.model';
 import ImageSlot from '../MemoForm/ImageForm/ImageSlot';
 
-
 interface Props {
   memoData: Memo;
+  setMemoId: () => void;
 }
 
-function MemoListItem({ memoData }: Props) {
+function MemoListItem({ memoData, setMemoId }: Props) {
   const router = useRouter();
 
   return (
@@ -49,7 +49,7 @@ function MemoListItem({ memoData }: Props) {
           </div>
         </div>
       </div>
-      <DeleteButton buttonText='메모 삭제' />
+      <DeleteButton buttonText='메모 삭제' onClick={setMemoId} />
     </div>
   );
 }
