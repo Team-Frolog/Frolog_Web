@@ -3,11 +3,13 @@ import { useFormContext } from 'react-hook-form';
 import { deleteMemoImage, uploadMemoImage } from '../api/memo.api';
 
 export const useMemoImage = () => {
-  const [currentImgs, setCurrentImgs] = useState<string[]>([]);
   const { watch, setValue } = useFormContext();
   const images = watch('images') as string[];
+  const [currentImgs, setCurrentImgs] = useState<string[]>(images);
 
-  const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImgChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = e.target.files?.[0];
     if (!file) {
       return;
