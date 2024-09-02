@@ -1,11 +1,13 @@
 'use client';
 
+import React from 'react';
 import DeleteButton from '@/components/ListItem/DeleteButton';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import { formatDate } from '@/utils/format';
 import ImageSlider from '../MemoForm/ImageForm/ImageSlider';
 import { Memo } from '../../models/memo.model';
 import ImageSlot from '../MemoForm/ImageForm/ImageSlot';
+
 
 interface Props {
   memoData: Memo;
@@ -36,7 +38,7 @@ function MemoListItem({ memoData }: Props) {
           <p>{memoData.content}</p>
           <div className='flex w-full justify-between'>
             <span className='text-body-md text-gray-600'>
-              {memoData.date}{' '}
+              {formatDate(memoData.date)}{' '}
               {memoData.date !== memoData.edit ? '(수정됨)' : ''}
             </span>
             <span

@@ -6,10 +6,12 @@ import { MemoForm, MemoFormType } from '@/features/Memo';
 import { useMemoDetail } from '@/features/Memo/hooks/useMemoDetail';
 
 interface Props {
-  memoId: string;
+  params: {
+    memoId: string;
+  };
 }
 
-function WellBookMemoPage({ memoId }: Props) {
+function WellBookMemoPage({ params: { memoId } }: Props) {
   const { memoDetail, handleEditMemo } = useMemoDetail(memoId);
   if (!memoDetail) return <></>;
 
