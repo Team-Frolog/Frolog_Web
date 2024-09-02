@@ -6,13 +6,13 @@ import ImageSlider from './ImageSlider';
 import ImageSlot from './ImageSlot';
 
 function ImageForm() {
-  const { images, handleImgChange, handleDeleteImg } = useMemoImage();
+  const { currentImgs, handleImgChange, handleDeleteImg } = useMemoImage();
   return (
     <ImageSlider>
       {[0, 1].map((index) => (
         <ImageSlot
           key={index}
-          src={images[index] ? `data:image/webp;base64,${images[index]}` : null}
+          src={currentImgs[index]}
           index={index}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleImgChange(e)

@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { deleteMemoImage, uploadMemoImage } from '../api/memo.api';
 
 export const useMemoImage = () => {
+  const [currentImgs, setCurrentImgs] = useState<string[]>([]);
   const { watch, setValue } = useFormContext();
   const images = watch('images') as string[];
 
@@ -11,9 +13,23 @@ export const useMemoImage = () => {
       return;
     }
 
-    uploadMemoImage({ file }).then((res) => {
-      setValue('images', [...images, res?.hash]);
-    });
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      if (reader.result) {
+        setCurrentImgs((prev) => [...prev, reader.result as string]);
+
+        uploadMemoImage({ file }).then((res) => {
+          setValue('images', [...images, res?.hash]);
+        });
+      }
+    };
+
+    reader.readAsDataURL(file);
+
+    // uploadMemoImage({ file }).then((res) => {
+    //   setValue('images', [...images, res?.hash]);
+    // });
   };
 
   const handleDeleteImg = (index: number) => {
@@ -25,5 +41,5 @@ export const useMemoImage = () => {
     });
   };
 
-  return { images, handleImgChange, handleDeleteImg };
+  return { currentImgs, handleImgChange, handleDeleteImg };
 };
