@@ -1,14 +1,13 @@
+'use client';
+
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useMemoImage } from '@/features/Memo/hooks/useMemoImage';
-import ImageSlot from './ImageSlot';
 
 interface Props {
-  originImages?: string[];
+  children: React.ReactNode;
 }
 
-function ImageSlider({ originImages }: Props) {
-  const { images, handleImgChange, handleDeleteImg } = useMemoImage();
+function ImageSlider({ children }: Props) {
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const motionDivRef = useRef<HTMLDivElement | null>(null);
 
@@ -21,34 +20,7 @@ function ImageSlider({ originImages }: Props) {
         dragElastic={0.2}
         className='flex w-fit gap-[20px] px-[24px]'
       >
-        {originImages
-          ? originImages.map((img, index) => (
-              <ImageSlot
-                key={img}
-                isReadOnly
-                src={`https://images.frolog.kr/memo/${img}.webp`}
-                index={index}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  handleImgChange(e)
-                }
-                onDelete={() => handleDeleteImg(index)}
-              />
-            ))
-          : [0, 1].map((index) => (
-              <ImageSlot
-                key={index}
-                src={
-                  images[index]
-                    ? `https://images.frolog.kr/memo/${images[index]}.webp`
-                    : null
-                }
-                index={index}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  handleImgChange(e)
-                }
-                onDelete={() => handleDeleteImg(index)}
-              />
-            ))}
+        {children}
       </motion.div>
     </div>
   );

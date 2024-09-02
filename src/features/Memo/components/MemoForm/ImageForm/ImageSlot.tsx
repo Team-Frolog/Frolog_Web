@@ -7,8 +7,8 @@ interface Props {
   src: string | null;
   index: number;
   isReadOnly?: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onDelete: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onDelete?: () => void;
 }
 
 function ImageSlot({

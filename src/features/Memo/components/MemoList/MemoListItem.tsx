@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import ImageSlider from '../MemoForm/ImageForm/ImageSlider';
 import { Memo } from '../../models/memo.model';
+import ImageSlot from '../MemoForm/ImageForm/ImageSlot';
 
 interface Props {
   memoData: Memo;
@@ -21,7 +22,16 @@ function MemoListItem({ memoData }: Props) {
           router.push(`/well-book/${memoData.isbn}/memo/${memoData.id}`)
         }
       >
-        <ImageSlider originImages={memoData.images} />
+        <ImageSlider>
+          {memoData.images.map((img, index) => (
+            <ImageSlot
+              key={img}
+              isReadOnly
+              src={`https://images.frolog.kr/memo/${img}.webp`}
+              index={index}
+            />
+          ))}
+        </ImageSlider>
         <div className='flex w-full flex-col gap-[20px] px-page'>
           <p>{memoData.content}</p>
           <div className='flex w-full justify-between'>

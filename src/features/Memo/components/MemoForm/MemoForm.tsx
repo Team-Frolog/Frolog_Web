@@ -7,8 +7,8 @@ import { useFormContext } from 'react-hook-form';
 import { sheetData } from '@/data/ui/bottomSheet';
 import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
 import TitleHeader from '@/components/Header/TitleHeader';
-import ImageForm from './ImageForm/ImageForm';
 import PublicToggle from './PublicToggle';
+import ImageForm from './ImageForm/ImageForm';
 
 function MemoForm() {
   const { watch } = useFormContext();
@@ -23,7 +23,15 @@ function MemoForm() {
       />
       <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>
         <div className='flex w-full flex-col gap-[36px]'>
-          <ImageForm />
+          <div className='flex w-full flex-col gap-[12px]'>
+            <div className='flex w-full flex-col gap-[8px] px-page'>
+              <span className='text-body-md text-gray-700'>사진 [선택]</span>
+              <span className='text-body-lg text-gray-600'>
+                인상깊은 구절을 찍어 기록하세요
+              </span>
+            </div>
+            <ImageForm />
+          </div>
           <Textarea option={textareaType.memo} />
           <div className='w-full px-page'>
             <PublicToggle />

@@ -1,19 +1,26 @@
 'use client';
 
+import { useMemoImage } from '@/features/Memo/hooks/useMemoImage';
 import React from 'react';
 import ImageSlider from './ImageSlider';
+import ImageSlot from './ImageSlot';
 
 function ImageForm() {
+  const { images, handleImgChange, handleDeleteImg } = useMemoImage();
   return (
-    <div className='flex w-full flex-col gap-[12px]'>
-      <div className='flex w-full flex-col gap-[8px] px-page'>
-        <span className='text-body-md text-gray-700'>사진 [선택]</span>
-        <span className='text-body-lg text-gray-600'>
-          인상깊은 구절을 찍어 기록하세요
-        </span>
-      </div>
-      <ImageSlider />
-    </div>
+    <ImageSlider>
+      {[0, 1].map((index) => (
+        <ImageSlot
+          key={index}
+          src={images[index] ? `data:image/webp;base64,${images[index]}` : null}
+          index={index}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleImgChange(e)
+          }
+          onDelete={() => handleDeleteImg(index)}
+        />
+      ))}
+    </ImageSlider>
   );
 }
 
