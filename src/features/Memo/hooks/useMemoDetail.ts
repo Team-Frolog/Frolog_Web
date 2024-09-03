@@ -1,10 +1,11 @@
 import { useRouter } from 'next/navigation';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { editMemoDetail, getMemoDetail } from '../api/memo.api';
 import { MemoFormType } from '../types/form';
 
 export const useMemoDetail = (bookId: string, memoId: string) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const { data: memoDetail } = useQuery({
     queryKey: ['memo', memoId],
@@ -21,6 +22,7 @@ export const useMemoDetail = (bookId: string, memoId: string) => {
         images: memoDetail?.images === data.images ? undefined : data.images,
       }),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['memo', memoId] });
       router.push(`/well-book/${bookId}/memo`);
     },
   });
