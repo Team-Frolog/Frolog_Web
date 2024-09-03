@@ -7,9 +7,7 @@ export const useMemoImage = () => {
   const images = watch('images') as string[];
   const [currentImgs, setCurrentImgs] = useState<string[]>(images);
 
-  const handleImgChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) {
       return;
@@ -34,6 +32,7 @@ export const useMemoImage = () => {
     deleteMemoImage({ hash: images[index] }).then((res) => {
       if (res?.result) {
         const updatedImages = images.filter((_, i) => i !== index);
+        setCurrentImgs(updatedImages);
         setValue('images', updatedImages);
       }
     });
