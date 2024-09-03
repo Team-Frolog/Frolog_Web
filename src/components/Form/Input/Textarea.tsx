@@ -18,7 +18,7 @@ function Textarea({ type = 'default', option }: Props) {
 
   return (
     <div className='flex w-full flex-col gap-[8px]'>
-      <div className='text-body-md flex justify-between px-page text-gray-700'>
+      <div className='flex justify-between px-page text-body-md text-gray-700'>
         <span>{option.title}</span>
         <span>
           {length}/{option.maxLength}
@@ -27,7 +27,7 @@ function Textarea({ type = 'default', option }: Props) {
 
       <div
         className="grid
-        after:invisible after:w-full after:whitespace-pre-wrap after:break-all after:border after:px-[16px] after:py-[18px] after:text-inherit after:content-[attr(data-cloned-val)_'_'] after:[grid-area:1/1/2/2]
+        after:invisible after:w-full after:whitespace-pre-wrap after:break-all after:border after:px-[24px] after:py-[28px] after:text-inherit after:content-[attr(data-cloned-val)_'_'] after:[grid-area:1/1/2/2]
         [&>textarea]:resize-none [&>textarea]:overflow-hidden [&>textarea]:[grid-area:1/1/2/2]"
       >
         <textarea
