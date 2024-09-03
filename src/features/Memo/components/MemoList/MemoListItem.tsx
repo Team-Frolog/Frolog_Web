@@ -24,17 +24,20 @@ function MemoListItem({ memoData, setMemoId }: Props) {
           router.push(`/well-book/${memoData.isbn}/memo/${memoData.id}`)
         }
       >
-        <ImageSlider>
-          {memoData.images.map((img, index) => (
-            <ImageSlot
-              key={img}
-              isReadOnly
-              src={`https://images.frolog.kr/memo/${img}.webp`}
-              index={index}
-            />
-          ))}
-        </ImageSlider>
-        <div className='flex w-full flex-col gap-[20px] px-page'>
+        {memoData.images.length !== 0 && (
+          <ImageSlider>
+            {memoData.images.map((img, index) => (
+              <ImageSlot
+                key={img}
+                isReadOnly
+                src={`https://images.frolog.kr/memo/${img}.webp`}
+                index={index}
+              />
+            ))}
+          </ImageSlider>
+        )}
+
+        <div className='flex w-full flex-col gap-[20px] px-page pt-0'>
           <p>{memoData.content}</p>
           <div className='flex w-full justify-between'>
             <span className='text-body-md text-gray-600'>
