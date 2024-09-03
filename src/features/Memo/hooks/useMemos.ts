@@ -1,15 +1,18 @@
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { SearchMemoRes } from '@frolog/frolog-api';
 import { deleteMemo, getMemos } from '../api/memo.api';
 
+
 export const useMemos = (bookId: string) => {
   const [memoId, setMemoId] = useState<string>('');
   const queryClient = useQueryClient();
+  const { data: session } = useSession();
 
   const { data } = useQuery<SearchMemoRes | undefined>({
     queryKey: ['memos'],
-    queryFn: () => getMemos({ isbn: bookId }),
+    queryFn: () => getMemos({ isbn: bookId, writer: session?.user.id }),
     enabled: bookId !== undefined,
   });
 
