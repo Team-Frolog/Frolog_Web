@@ -14,7 +14,7 @@ function ReviewPage({ params: { id } }: Props) {
   return (
     <>
       <div className='add-button-wrapper'>
-        <AddButton route={`/new-memo?id=${id}`} text='리뷰 추가하기' />
+        <AddButton route={`/new-review?id=${id}`} text='리뷰 추가하기' />
       </div>
       <ReviewList bookId={id} />
     </>

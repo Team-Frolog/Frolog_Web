@@ -28,7 +28,7 @@ function BookPage({ params: { id } }: Props) {
   return (
     <>
       <TitleHeader
-        type='default'
+        type='no_border'
         theme='dark'
         title='도서 상세 페이지'
         hasButton={false}

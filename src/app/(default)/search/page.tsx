@@ -9,7 +9,7 @@ function SearchPage() {
       <div className='flex h-fit w-full flex-col'>
         <TitleHeader
           title='책 검색'
-          type='search'
+          type='no_border'
           theme='light'
           hasButton={false}
         />

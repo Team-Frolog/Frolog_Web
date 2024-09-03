@@ -14,7 +14,7 @@ export interface AlertSheet {
 export const sheetData: {
   [key: string]: AlertSheet;
 } = {
-  leave_while_review: {
+  leave_while_write: {
     getTitle: () => (
       <>
         아직 작성중이에요
@@ -31,7 +31,7 @@ export const sheetData: {
   leave_while_edit: {
     getTitle: () => (
       <>
-        아직 작성중이에요
+        아직 수정 중이에요
         <br />
         정말 나가시나요?
       </>

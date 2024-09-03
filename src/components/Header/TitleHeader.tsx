@@ -7,12 +7,13 @@ import { ON_LEAVE_ROUTE } from '@/constants/storage';
 import BackButton from '../Button/BackButton';
 
 interface Props {
-  type: 'default' | 'edit' | 'search';
+  type: 'default' | 'edit' | 'no_border';
   hasButton?: boolean;
   isDisabled?: boolean;
   title: string;
   theme: 'dark' | 'light';
   onClick?: () => void;
+  onClickBack?: () => void;
 }
 
 function TitleHeader({
@@ -21,6 +22,7 @@ function TitleHeader({
   theme,
   title,
   onClick,
+  onClickBack,
   hasButton = true,
 }: Props) {
   const router = useRouter();
@@ -40,15 +42,15 @@ function TitleHeader({
   return (
     <div
       id='header'
-      className={`header-sticky duration-50 z-70 flex justify-between px-[24px] py-[20px] transition-all ${themeColor} ${type === 'search' || type === 'default' ? 'border-0' : 'border-b-[0.5px] border-gray-400'}`}
+      className={`header-sticky duration-50 z-70 flex justify-between px-[24px] py-[20px] transition-all ${themeColor} ${type === 'no_border' ? 'border-0' : 'border-b-[0.5px] border-gray-400'}`}
     >
       <BackButton
-        onClick={handleClick}
+        onClick={onClickBack || handleClick}
         fill={theme === 'light' ? '#727484' : '#B3B6C5'}
       />
       <h2
         id='selected'
-        className='text-body-xl-bold absolute inset-x-0 top-1/2 mx-auto w-fit -translate-y-1/2'
+        className='absolute inset-x-0 top-1/2 mx-auto w-fit -translate-y-1/2 text-body-xl-bold'
       >
         {title}
       </h2>

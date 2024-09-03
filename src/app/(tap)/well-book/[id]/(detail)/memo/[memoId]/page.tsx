@@ -16,20 +16,22 @@ function WellBookMemoPage({ params: { id, memoId } }: Props) {
   const { memoDetail, handleEditMemo } = useMemoDetail(id, memoId);
   if (!memoDetail) return <></>;
 
+  const defaultValues = {
+    images: memoDetail.images,
+    memo: memoDetail.content,
+    isPublic: memoDetail.is_public,
+  };
+
   return (
     <GenericForm<MemoFormType>
       onSubmit={(data) => handleEditMemo(data)}
       className='flex h-dvh w-full flex-1 flex-col bg-white'
       formOptions={{
         mode: 'onBlur',
-        defaultValues: {
-          images: memoDetail.images,
-          memo: memoDetail.content,
-          isPublic: memoDetail.is_public,
-        },
+        defaultValues,
       }}
     >
-      <MemoForm />
+      <MemoForm defaultValues={defaultValues} />
     </GenericForm>
   );
 }

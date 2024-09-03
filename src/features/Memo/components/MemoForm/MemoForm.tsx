@@ -1,17 +1,36 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
+import isEqual from 'lodash/isEqual';
 import Textarea from '@/components/Form/Input/Textarea';
 import { textareaType } from '@/data/ui/textareaType';
+import { usePopUpActions } from '@/store/popUpStore';
 import { useFormContext } from 'react-hook-form';
 import { sheetData } from '@/data/ui/bottomSheet';
 import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
 import TitleHeader from '@/components/Header/TitleHeader';
 import PublicToggle from './PublicToggle';
 import ImageForm from './ImageForm/ImageForm';
+import { MemoFormType } from '../../types/form';
 
-function MemoForm() {
-  const { watch } = useFormContext();
+interface Props {
+  defaultValues?: MemoFormType;
+}
+
+function MemoForm({ defaultValues }: Props) {
+  const router = useRouter();
+  const { changePopUpState } = usePopUpActions();
+  const { watch, getValues } = useFormContext();
+
+  const handleClickBack = () => {
+    const formData = getValues();
+    if (!isEqual(defaultValues, formData)) {
+      changePopUpState('isOpenAlertSheet', true);
+    } else {
+      router.back();
+    }
+  };
 
   return (
     <>
@@ -20,6 +39,7 @@ function MemoForm() {
         theme='light'
         type='edit'
         isDisabled={!watch('memo')}
+        onClickBack={handleClickBack}
       />
       <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>
         <div className='flex w-full flex-col gap-[36px]'>
@@ -37,7 +57,13 @@ function MemoForm() {
             <PublicToggle />
           </div>
         </div>
-        <ConfirmLeaveSheet sheetData={sheetData.leave_while_edit} />
+        <ConfirmLeaveSheet
+          sheetData={
+            defaultValues
+              ? sheetData.leave_while_edit
+              : sheetData.leave_while_write
+          }
+        />
       </div>
     </>
   );

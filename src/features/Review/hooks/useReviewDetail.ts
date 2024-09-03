@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
+import isEqual from 'lodash/isEqual';
 import { useRouter } from 'next/navigation';
+import { usePopUpActions } from '@/store/popUpStore';
 import { useQuery } from '@tanstack/react-query';
 import { UseFormReset } from 'react-hook-form';
 import { editReview, getReviewDetail } from '../api/review.api';
@@ -12,6 +14,7 @@ export const useReviewDetail = (
   reset: UseFormReset<ReviewForm>
 ) => {
   const router = useRouter();
+  const { changePopUpState } = usePopUpActions();
 
   const { data, refetch } = useQuery({
     queryKey: ['reviewDetail', reviewId],
@@ -45,9 +48,28 @@ export const useReviewDetail = (
     }
   }, [data, reset]);
 
+  const handleClickBack = (formData: ReviewForm) => {
+    if (!data) return;
+
+    const defaultValues = {
+      rating: data.rating,
+      oneLiner: data.title,
+      review: data.content,
+      pros: data.tags_pos,
+      cons: data.tags_neg,
+    };
+
+    if (!isEqual(defaultValues, formData)) {
+      changePopUpState('isOpenAlertSheet', true);
+    } else {
+      router.back();
+    }
+  };
+
   return {
     reviewDetail: data,
     bookTitle: bookData?.title || '',
     handleEditReview,
+    handleClickBack,
   };
 };

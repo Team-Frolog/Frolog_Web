@@ -57,7 +57,7 @@ function NewReviewForm({ isbn }: Props) {
         onSubmit={handleSubmit(handleAddReview)}
       >
         <ReviewForm type='new' isDisabled={isDisabled} />
-        <ConfirmLeaveSheet sheetData={sheetData.leave_while_review} />
+        <ConfirmLeaveSheet sheetData={sheetData.leave_while_write} />
       </form>
       {isOpen && <Splash type='review' bookId={isbn} />}
     </FormProvider>

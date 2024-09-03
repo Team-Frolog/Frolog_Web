@@ -12,6 +12,12 @@ function NewMemoPage() {
   const id = useSearchParams().get('id');
   const { data: session } = useSession();
 
+  const defaultValues = {
+    images: [],
+    memo: '',
+    isPublic: true,
+  };
+
   const handleAddMemo = (data: MemoFormType) => {
     if (!session || !id) return;
 
@@ -34,14 +40,10 @@ function NewMemoPage() {
       className='flex h-dvh w-full flex-1 flex-col bg-white'
       formOptions={{
         mode: 'onBlur',
-        defaultValues: {
-          images: [],
-          memo: '',
-          isPublic: true,
-        },
+        defaultValues,
       }}
     >
-      <MemoForm />
+      <MemoForm defaultValues={defaultValues} />
     </GenericForm>
   );
 }
