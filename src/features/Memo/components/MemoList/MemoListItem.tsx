@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import uniqueId from 'lodash/uniqueId';
 import DeleteButton from '@/components/ListItem/DeleteButton';
 import { useRouter } from 'next/navigation';
 import { formatDate } from '@/utils/format';
@@ -28,7 +29,7 @@ function MemoListItem({ memoData, setMemoId }: Props) {
           <ImageSlider>
             {memoData.images.map((img, index) => (
               <ImageSlot
-                key={img}
+                key={uniqueId()}
                 isReadOnly
                 src={`https://images.frolog.kr/memo/${img}.webp`}
                 index={index}

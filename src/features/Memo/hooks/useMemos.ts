@@ -4,7 +4,6 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { SearchMemoRes } from '@frolog/frolog-api';
 import { deleteMemo, getMemos } from '../api/memo.api';
 
-
 export const useMemos = (bookId: string) => {
   const [memoId, setMemoId] = useState<string>('');
   const queryClient = useQueryClient();
@@ -12,8 +11,8 @@ export const useMemos = (bookId: string) => {
 
   const { data } = useQuery<SearchMemoRes | undefined>({
     queryKey: ['memos'],
-    queryFn: () => getMemos({ isbn: bookId, writer: session?.user.id }),
-    enabled: bookId !== undefined,
+    queryFn: () => getMemos({ isbn: bookId, writer: session!.user.id }),
+    enabled: bookId !== undefined && session !== null,
   });
 
   const { mutate: handleDeleteMemo } = useMutation({

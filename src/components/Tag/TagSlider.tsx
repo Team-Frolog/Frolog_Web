@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { getTags } from '@/utils/getTags';
+import { useSlideDrag } from '@/hooks/gesture/useSlideDrag';
 import Tag from './Tag';
 
 interface Props {
@@ -12,21 +13,7 @@ interface Props {
 
 function TagSlider({ type, tagKeys }: Props) {
   const tagData = getTags(type, tagKeys);
-  const sliderRef = useRef<HTMLDivElement | null>(null);
-  const motionDivRef = useRef<HTMLDivElement | null>(null);
-  const [drag, setDrag] = useState<'x' | undefined>(undefined);
-
-  useEffect(() => {
-    if (
-      sliderRef.current &&
-      motionDivRef.current &&
-      sliderRef.current?.offsetWidth >= motionDivRef.current?.offsetWidth
-    ) {
-      setDrag(undefined);
-    } else {
-      setDrag('x');
-    }
-  }, []);
+  const { drag, sliderRef, motionDivRef } = useSlideDrag();
 
   return (
     <div ref={sliderRef} className='relative flex w-[98%] overflow-hidden'>
