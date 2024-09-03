@@ -7,12 +7,13 @@ import { useMemoDetail } from '@/features/Memo/hooks/useMemoDetail';
 
 interface Props {
   params: {
+    id: string;
     memoId: string;
   };
 }
 
-function WellBookMemoPage({ params: { memoId } }: Props) {
-  const { memoDetail, handleEditMemo } = useMemoDetail(memoId);
+function WellBookMemoPage({ params: { id, memoId } }: Props) {
+  const { memoDetail, handleEditMemo } = useMemoDetail(id, memoId);
   if (!memoDetail) return <></>;
 
   return (

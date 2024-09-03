@@ -3,7 +3,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { editMemoDetail, getMemoDetail } from '../api/memo.api';
 import { MemoFormType } from '../types/form';
 
-export const useMemoDetail = (memoId: string) => {
+export const useMemoDetail = (bookId: string, memoId: string) => {
   const router = useRouter();
 
   const { data: memoDetail } = useQuery({
@@ -21,7 +21,7 @@ export const useMemoDetail = (memoId: string) => {
         images: memoDetail?.images === data.images ? undefined : data.images,
       }),
     onSuccess: () => {
-      router.refresh();
+      router.push(`/well-book/${bookId}/memo`);
     },
   });
 
