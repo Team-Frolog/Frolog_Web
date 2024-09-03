@@ -30,10 +30,14 @@ function ImageSlot({
             width={290}
             height={290}
             className='h-full w-full object-cover'
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsPreviewOpen(true);
-            }}
+            onClick={
+              isReadOnly
+                ? undefined
+                : (e) => {
+                    e.stopPropagation();
+                    setIsPreviewOpen(true);
+                  }
+            }
           />
           {!isReadOnly && (
             <button
