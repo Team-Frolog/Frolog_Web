@@ -1,6 +1,16 @@
+import { ErrorBoundary } from 'react-error-boundary';
 import AddButton from '@/components/Button/AddButton';
-import { MemoList } from '@/features/Memo';
+import MemoListSkeleton from '@/components/Fallback/Skeleton/MemoListSkeleton';
 import React from 'react';
+import dynamic from 'next/dynamic';
+
+const MemoList = dynamic(
+  () => import('@/features/Memo/components/MemoList/MemoList'),
+  {
+    ssr: false,
+    loading: () => <MemoListSkeleton />,
+  }
+);
 
 interface Props {
   params: {
@@ -14,7 +24,9 @@ function MemoPage({ params: { id } }: Props) {
       <div className='add-button-wrapper'>
         <AddButton route={`/new-memo?id=${id}`} text='메모 추가하기' />
       </div>
-      <MemoList bookId={id} />
+      <ErrorBoundary fallback={<></>}>
+        <MemoList bookId={id} />
+      </ErrorBoundary>
     </>
   );
 }

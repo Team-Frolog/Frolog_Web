@@ -1,18 +1,19 @@
 import { useState } from 'react';
-import { useSession } from 'next-auth/react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 import { SearchMemoRes } from '@frolog/frolog-api';
 import { deleteMemo, getMemos } from '../api/memo.api';
 
 export const useMemos = (bookId: string) => {
   const [memoId, setMemoId] = useState<string>('');
   const queryClient = useQueryClient();
-  const { data: session } = useSession();
 
-  const { data } = useQuery<SearchMemoRes | undefined>({
+  const { data } = useSuspenseQuery({
     queryKey: ['memos'],
-    queryFn: () => getMemos({ isbn: bookId, writer: session!.user.id }),
-    enabled: bookId !== undefined && session !== null,
+    queryFn: async () => getMemos(bookId),
   });
 
   const { mutate: handleDeleteMemo } = useMutation({
@@ -31,7 +32,7 @@ export const useMemos = (bookId: string) => {
 
       return { previousMemos };
     },
-    onError: (err, variable, context) => {
+    onError: (_err, _variable, context) => {
       queryClient.setQueryData(['memos'], context?.previousMemos);
     },
     onSettled: () => {
@@ -39,5 +40,9 @@ export const useMemos = (bookId: string) => {
     },
   });
 
-  return { memoList: data?.memos, handleDeleteMemo, setMemoId };
+  return {
+    memoList: data?.memos,
+    handleDeleteMemo,
+    setMemoId,
+  };
 };

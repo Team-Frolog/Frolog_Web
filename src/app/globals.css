@@ -6,6 +6,7 @@
 @import url('../styles/theme.css');
 @import url('../styles/buttons.css');
 @import url('../styles/text.css');
+@import url('../styles/skeleton.css');
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';

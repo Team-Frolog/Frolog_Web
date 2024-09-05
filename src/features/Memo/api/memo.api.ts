@@ -5,7 +5,6 @@ import {
   PostMemo,
   PostMemoReq,
   SearchMemo,
-  SearchMemoReq,
   UploadMemoImage,
   UploadMemoImageReq,
   DeleteMemoImageReq,
@@ -16,6 +15,7 @@ import {
   DeleteMemo,
   DeleteMemoReq,
 } from '@frolog/frolog-api';
+import { getSession } from 'next-auth/react';
 
 const searchMemo = new SearchMemo(authOptions);
 const postMemo = new PostMemo(authOptions);
@@ -25,13 +25,15 @@ const getMemo = new GetMemo(authOptions);
 const editMemo = new EditMemo(authOptions);
 const deleteMemoObj = new DeleteMemo(authOptions);
 
-export const getMemos = async (req: SearchMemoReq) => {
-  try {
-    const response = await searchMemo.fetch(req);
-    return response;
-  } catch (err) {
-    window.alert(ERROR_ALERT);
-  }
+export const getMemos = async (isbn: string) => {
+  const session = await getSession();
+  if (!session) return;
+
+  const response = await searchMemo.fetch({
+    isbn,
+    writer: session.user.id,
+  });
+  return response;
 };
 
 export const getMemoDetail = async (req: GetMemoReq) => {
