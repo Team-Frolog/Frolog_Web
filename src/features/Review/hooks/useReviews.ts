@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 import { SearchReviewRes } from '@frolog/frolog-api';
 import { deleteReview, getReviewList } from '../api/review.api';
 
@@ -7,7 +11,7 @@ export const useReviews = (bookId: string) => {
   const [reviewId, setReviewId] = useState<string>('');
   const queryClient = useQueryClient();
 
-  const { data, isFetched } = useQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ['myReviews'],
     queryFn: () => getReviewList(bookId),
   });
@@ -28,7 +32,7 @@ export const useReviews = (bookId: string) => {
 
       return { previousReviews };
     },
-    onError: (err, variable, context) => {
+    onError: (_err, _variable, context) => {
       queryClient.setQueryData(['myReviews'], context?.previousReviews);
     },
     onSettled: () => {
@@ -39,7 +43,6 @@ export const useReviews = (bookId: string) => {
   return {
     deleteReview: mutate,
     reviews: data?.reviews || [],
-    isFetched,
     setReviewId,
   };
 };
