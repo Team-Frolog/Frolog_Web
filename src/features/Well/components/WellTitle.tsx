@@ -30,17 +30,17 @@ function WellTitle() {
       >
         <h1 className='text-title-xl-bold'>소중한 나의 첫 우물</h1>
         <div className='flex-col-center gap-[4px]'>
-          <div className='relative'>
-            <Pointing />
+          <div className='relative h-[28px] w-[28px]'>
             <Link
               href={session ? PAGES.SEARCH : PAGES.LANDING}
-              className='relative z-50 cursor-pointer'
+              className='absolute inset-x-0 top-[50%] z-50 mx-auto -translate-y-1/2 cursor-pointer'
             >
               {session ? <PlusIcon /> : <ArrowIcon />}
             </Link>
+            <Pointing />
           </div>
 
-          <h3 className='text-body-xl-bold mt-[2px]'>
+          <h3 className='mt-[2px] text-body-xl-bold'>
             {session ? '책 추가하기' : '로그인이 필요해요'}
           </h3>
           <span className='text-body-md text-gray-600'>현재 높이 0cm</span>
