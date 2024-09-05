@@ -14,13 +14,17 @@ export const useScroll = ({
   unSelected = '#B3B6C5',
 }: Props) => {
   const [scrollY, setScrollY] = useState(0);
+  const [isTargetElementAvailable, setIsTargetElementAvailable] =
+    useState(false);
 
   const darkmode = () => {
     setHeaderStyle('#0E0E0E', '#B3B6C5', '#FFFFFF', '#B3B6C5');
   };
+
   const lightmode = () => {
     setHeaderStyle('#FFFFFF', '#727484', '#313239', '#B3B6C5');
   };
+
   const category = () => {
     setHeaderStyle(categoryColor!, foreground, foreground, unSelected);
   };
@@ -46,7 +50,7 @@ export const useScroll = ({
       mainElement.removeEventListener('scroll', handleScroll);
       resetHeaderStyles();
     };
-  }, []);
+  }, [updateScroll]);
 
   useEffect(() => {
     if (scrollY < 150) {
@@ -61,16 +65,20 @@ export const useScroll = ({
   useEffect(() => {
     const isMobileSafari = /iPhone.*Safari/i.test(window.navigator.userAgent);
     const mainElement = document.getElementById('main');
+    const targetElement = document.getElementById('book-info');
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.intersectionRatio >= 0.8) {
-            darkmode();
-          } else if (entry.intersectionRatio >= 0.35) {
-            lightmode();
-          } else if (categoryColor) {
-            category();
+          if (entry.isIntersecting) {
+            setIsTargetElementAvailable(true);
+            if (entry.intersectionRatio >= 0.8) {
+              darkmode();
+            } else if (entry.intersectionRatio >= 0.35) {
+              lightmode();
+            } else if (categoryColor) {
+              category();
+            }
           }
         });
       },
@@ -80,21 +88,29 @@ export const useScroll = ({
       }
     );
 
-    const targetElement = document.getElementById('book-info');
-
     if (isMobileSafari) {
       window.addEventListener('scroll', updateScroll);
+    }
+    if (targetElement) {
+      observer.observe(targetElement);
+      setIsTargetElementAvailable(true);
     } else {
-      observer.observe(targetElement!);
+      darkmode();
     }
 
     return () => {
       if (isMobileSafari) {
         window.removeEventListener('scroll', updateScroll);
-      } else {
-        observer.unobserve(targetElement!);
+      } else if (targetElement) {
+        observer.unobserve(targetElement);
       }
       resetHeaderStyles();
     };
-  }, []);
+  }, [updateScroll, categoryColor]);
+
+  useEffect(() => {
+    if (!isTargetElementAvailable) {
+      darkmode();
+    }
+  }, [isTargetElementAvailable]);
 };
