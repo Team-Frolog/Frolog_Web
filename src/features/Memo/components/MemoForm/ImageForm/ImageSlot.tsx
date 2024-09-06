@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { DeleteImgIcon, ImgPlusIcon } from 'public/icons';
 import ImagePreview from './ImagePreview';
@@ -19,9 +19,36 @@ function ImageSlot({
   onDelete,
 }: Props) {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 450) {
+        setDimensions({
+          width: 450 - 48,
+          height: 450 - 48,
+        });
+      } else {
+        setDimensions({
+          width: window.innerWidth - 48,
+          height: window.innerWidth - 48,
+        });
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <div className='relative h-[340px] w-[340px] shrink-0 overflow-hidden'>
+    <div
+      className='relative shrink-0 overflow-hidden rounded-[12px]'
+      style={{
+        width: `${dimensions.width}px`,
+        height: `${dimensions.height}px`,
+      }}
+    >
       {src ? (
         <>
           <Image
@@ -50,7 +77,7 @@ function ImageSlot({
           )}
         </>
       ) : (
-        <div className='relative flex h-[340px] w-[340px] items-center justify-center rounded-[8px] bg-gray-200'>
+        <div className='relative flex h-full w-full items-center justify-center rounded-[8px] bg-gray-200'>
           <input
             type='file'
             accept='image/*'

@@ -18,7 +18,7 @@ function ImageSlider({ children }: Props) {
         drag={drag}
         dragConstraints={sliderRef}
         dragElastic={0.2}
-        className='flex w-fit gap-[20px] px-[24px]'
+        className='flex h-full w-max gap-[8px] px-[24px]'
       >
         {children}
       </motion.div>
