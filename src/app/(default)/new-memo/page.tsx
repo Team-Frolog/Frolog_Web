@@ -29,7 +29,7 @@ function NewMemoPage() {
       images: data.images,
     }).then((res) => {
       if (res?.result) {
-        router.push(`/well-book/${id}/memo`);
+        router.replace(`/well-book/${id}/memo`);
       }
     });
   };
