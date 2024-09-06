@@ -14,6 +14,7 @@ export const useMemos = (bookId: string) => {
   const { data } = useSuspenseQuery({
     queryKey: ['memos'],
     queryFn: async () => getMemos(bookId),
+    refetchOnWindowFocus: false,
   });
 
   const { mutate: handleDeleteMemo } = useMutation({

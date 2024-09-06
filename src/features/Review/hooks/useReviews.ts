@@ -14,6 +14,7 @@ export const useReviews = (bookId: string) => {
   const { data } = useSuspenseQuery({
     queryKey: ['myReviews'],
     queryFn: () => getReviewList(bookId),
+    refetchOnWindowFocus: false,
   });
 
   const { mutate } = useMutation({
