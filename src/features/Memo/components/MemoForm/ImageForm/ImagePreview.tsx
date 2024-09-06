@@ -24,6 +24,7 @@ function ImagePreview({ imgSrc, closePreview }: Props) {
           width={450}
           height={450}
           className='w-full'
+          onClick={closePreview}
         />
       </BackDrop>
     </Portal>
