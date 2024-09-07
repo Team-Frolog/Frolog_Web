@@ -2,7 +2,6 @@
 
 import { useMemoImage } from '@/features/Memo/hooks/useMemoImage';
 import React from 'react';
-import uniqueId from 'lodash/uniqueId';
 import ImageSlider from './ImageSlider';
 import ImageSlot from './ImageSlot';
 
@@ -20,7 +19,7 @@ function ImageForm() {
     <ImageSlider>
       {[0, 1].map((index) => (
         <ImageSlot
-          key={uniqueId()}
+          key={index}
           src={getImageSrc(currentImgs[index])}
           index={index}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
