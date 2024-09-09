@@ -10,7 +10,7 @@ function MainLayout({ children, isCenter = true, extraClass }: Props) {
   return (
     <main
       id='main'
-      className={`flex w-full flex-1 flex-col ${isCenter ? 'items-center' : 'items-start'} overflow-auto ${extraClass}`}
+      className={`flex w-full flex-1 flex-col scrollbar-hide ${isCenter ? 'items-center' : 'items-start'} overflow-auto ${extraClass}`}
     >
       {children}
     </main>

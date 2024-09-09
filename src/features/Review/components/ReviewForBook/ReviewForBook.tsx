@@ -3,6 +3,7 @@ import TagSlider from '@/components/Tag/TagSlider';
 import FeedHeader from '@/features/Feed/components/FeedHeader';
 import { ChatIcon, HeartIcon } from 'public/icons';
 import React from 'react';
+import { motion } from 'framer-motion';
 
 function ReviewForBook() {
   const pros = ['easy', 'organized', 'tears', 'warm'];
@@ -33,14 +34,22 @@ function ReviewForBook() {
         <div className='flex justify-between px-page'>
           <span className='text-body-md text-gray-600'>2024.07.30</span>
           <div className='flex gap-[20px]'>
-            <div className='flex items-center gap-[4px]'>
+            <motion.button
+              whileTap={{ scale: 1.1 }}
+              type='button'
+              className='flex items-center gap-[4px]'
+            >
               <HeartIcon />
               <span className='text-body-md text-gray-600'>13</span>
-            </div>
-            <div className='flex items-center gap-[4px]'>
+            </motion.button>
+            <motion.button
+              whileTap={{ scale: 1.1 }}
+              type='button'
+              className='flex items-center gap-[4px]'
+            >
               <ChatIcon />
               <span className='text-body-md text-gray-600'>13</span>
-            </div>
+            </motion.button>
           </div>
         </div>
       </div>
