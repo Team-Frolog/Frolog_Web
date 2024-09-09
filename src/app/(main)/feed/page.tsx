@@ -1,15 +1,12 @@
-import { WellList, SideWellHeader } from '@/features/Well';
+import { FeedItem } from '@/features/Feed';
 import MainLayout from '@/layouts/MainLayout';
 import React from 'react';
 
 function FeedPage() {
   return (
-    <>
-      <MainLayout>
-        <SideWellHeader />
-        <WellList />
-      </MainLayout>
-    </>
+    <MainLayout>
+      <FeedItem />
+    </MainLayout>
   );
 }
 

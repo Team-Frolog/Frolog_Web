@@ -48,4 +48,5 @@ export const IMAGES = {
   ground: `${BASE_PATH}/etc/ground.svg`,
   ground_sm: `${BASE_PATH}/etc/ground-sm.svg`,
   side_header: `${BASE_PATH}/side-header.svg`,
+  default_profile: `${BASE_PATH}/etc/default-profile.svg`,
 };

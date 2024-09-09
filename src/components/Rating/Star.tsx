@@ -3,10 +3,11 @@ import React from 'react';
 interface Props {
   rating: number;
   size?: number;
+  color: string | undefined;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-function Star({ rating, size = 20, onClick }: Props) {
+function Star({ rating, color, size = 20, onClick }: Props) {
   const starWidth = `${rating * 100}%`;
   const gradientId = `starGradient-${rating}-${size}`;
   const scaleFactor = size / 20;
@@ -26,11 +27,11 @@ function Star({ rating, size = 20, onClick }: Props) {
           <linearGradient id={gradientId} x1='0%' y1='0%' x2='100%' y2='0%'>
             <stop
               offset={starWidth}
-              style={{ stopColor: '#313239', stopOpacity: 1 }}
+              style={{ stopColor: color || '#313239', stopOpacity: 1 }}
             />
             <stop
               offset={starWidth}
-              style={{ stopColor: '#EDEFF4', stopOpacity: 1 }}
+              style={{ stopColor: '#EDEFF4', stopOpacity: color ? 0 : 1 }}
             />
           </linearGradient>
         </defs>
