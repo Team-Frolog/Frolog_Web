@@ -4,7 +4,7 @@ function MemoListSkeleton() {
   return (
     <div className='flex w-full flex-col gap-[20px] rounded-[20px] bg-white px-page py-[36px] pb-0 last:rounded-b-none'>
       <div className='skeleton-animation flex w-full flex-col gap-[20px]'>
-        <div className='skeleton-box h-[340px] w-[340px]' />
+        <div className='skeleton-box w-full pb-[100%]' />
         <p className=' skeleton-line h-[40px]' />
         <div className='flex w-full justify-between'>
           <span className='skeleton-text w-[120px]' />
