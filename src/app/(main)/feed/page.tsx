@@ -4,7 +4,7 @@ import React from 'react';
 
 function FeedPage() {
   return (
-    <MainLayout>
+    <MainLayout extraClass='bg-gray-300'>
       <FeedItem />
     </MainLayout>
   );

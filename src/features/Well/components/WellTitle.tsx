@@ -35,7 +35,11 @@ function WellTitle() {
               href={session ? PAGES.SEARCH : PAGES.LANDING}
               className='absolute inset-x-0 top-[50%] z-50 mx-auto -translate-y-1/2 cursor-pointer'
             >
-              {session ? <PlusIcon /> : <ArrowIcon />}
+              {session ? (
+                <PlusIcon />
+              ) : (
+                <ArrowIcon fill='#313239' width={28} height={28} />
+              )}
             </Link>
             <Pointing />
           </div>

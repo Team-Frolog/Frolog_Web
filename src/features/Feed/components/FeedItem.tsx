@@ -8,7 +8,7 @@ function FeedItem() {
   return (
     <div className='w-full'>
       <FeedHeader />
-      <div className='flex w-full flex-col gap-[20px]'>
+      <div className='flex w-full flex-col'>
         <BookInfo />
         <FeedContent />
         <FeedBar />
