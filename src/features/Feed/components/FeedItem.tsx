@@ -9,7 +9,7 @@ function FeedItem() {
     <div className='w-full'>
       <FeedHeader />
       <div className='flex w-full flex-col'>
-        <BookInfo />
+        <BookInfo isMemo />
         <FeedContent />
         <FeedBar />
       </div>

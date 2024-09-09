@@ -24,6 +24,7 @@ export const IMAGES = {
       reading: `${BASE_PATH}/frog/frog-reading.svg`,
       done: `${BASE_PATH}/frog/frog-done.svg`,
     },
+    memo_frog: `${BASE_PATH}/frog/memo-frog.svg`,
   },
   test: {
     shape: {
