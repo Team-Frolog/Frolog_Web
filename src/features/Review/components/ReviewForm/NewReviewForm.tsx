@@ -7,8 +7,8 @@ import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import Splash from '@/components/Splash/Splash';
 import ReviewForm from './ReviewForm';
-import { ReviewForm as ReviewFormType } from '../types/review';
-import { addNewReview } from '../api/review.api';
+import { ReviewForm as ReviewFormType } from '../../types/review';
+import { addNewReview } from '../../api/review.api';
 
 interface Props {
   isbn: string;

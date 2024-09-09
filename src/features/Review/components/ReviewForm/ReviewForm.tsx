@@ -7,8 +7,8 @@ import TagList from '@/components/Tag/TagList';
 import Textarea from '@/components/Form/Input/Textarea';
 import Button from '@/components/Button/Button';
 import ToastMessage from '@/components/PopUp/ToastMessage';
-import { useToastMessage } from '../hooks/useToastMessage';
-import { ReviewFormType } from '..';
+import { useToastMessage } from '../../hooks/useToastMessage';
+import { ReviewFormType } from '../..';
 
 interface Props {
   type: 'new' | 'edit';
