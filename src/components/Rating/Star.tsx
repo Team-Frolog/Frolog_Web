@@ -3,7 +3,7 @@ import React from 'react';
 interface Props {
   rating: number;
   size?: number;
-  color: string | undefined;
+  color?: string | undefined;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
