@@ -1,6 +1,6 @@
 import Rating from '@/components/Rating/Rating';
 import TagSlider from '@/components/Tag/TagSlider';
-import FeedHeader from '@/features/Feed/components/FeedHeader';
+import { FeedHeader } from '@/features/Feed';
 import { ChatIcon, HeartIcon } from 'public/icons';
 import React from 'react';
 import { motion } from 'framer-motion';
