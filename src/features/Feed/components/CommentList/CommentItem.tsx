@@ -3,13 +3,19 @@
 import React from 'react';
 import { HeartIcon } from 'public/icons';
 import { motion } from 'framer-motion';
+import useCommentStore from '@/store/commentStore';
 import FeedHeader from '../FeedList/FeedHeader';
 
 function CommentItem() {
+  const setCommentUser = useCommentStore((state) => state.setCommentUser);
+
   return (
     <div className='flex w-full flex-col gap-[12px]'>
       <FeedHeader />
-      <p className='break-all px-page text-body-lg text-gray-800'>comment</p>
+      <p className='break-all px-page text-body-lg text-gray-800'>
+        <strong className='mr-[8px] font-normal text-main'>프롤로그</strong>
+        comment
+      </p>
       <div className='flex items-center justify-between px-page'>
         <div className='flex gap-[8px]'>
           <motion.button
@@ -24,6 +30,7 @@ function CommentItem() {
             whileTap={{ scale: 1.1 }}
             type='button'
             className='text-body-md text-gray-600'
+            onClick={() => setCommentUser({ id: '1', name: '프롤로그' })}
           >
             댓글 달기
           </motion.button>
