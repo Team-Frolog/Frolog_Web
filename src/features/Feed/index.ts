@@ -1,1 +1,1 @@
-export { default as FeedList } from './components/FeedList';
+export { default as FeedList } from './components/FeedList/FeedList';
