@@ -1,5 +1,5 @@
 import BackHeader from '@/components/Header/BackHeader';
-import CommentInput from '@/features/Feed/components/CommentList/CommentInput';
+import { CommentInput, CommentList } from '@/features/Feed';
 import MainLayout from '@/layouts/MainLayout';
 import React from 'react';
 
@@ -8,7 +8,7 @@ function CommentPage() {
     <div className='flex w-full flex-1 flex-col'>
       <BackHeader />
       <MainLayout>
-        <div>dd</div>
+        <CommentList />
       </MainLayout>
       <CommentInput />
     </div>

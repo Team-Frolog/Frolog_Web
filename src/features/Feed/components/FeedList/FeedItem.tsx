@@ -7,7 +7,7 @@ import FeedBar from './FeedBar';
 function FeedItem() {
   return (
     <div className='w-full'>
-      <FeedHeader />
+      <FeedHeader hasFollow />
       <div className='flex w-full flex-col'>
         <BookInfo />
         <FeedContent />

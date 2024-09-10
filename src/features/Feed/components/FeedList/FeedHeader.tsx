@@ -3,7 +3,11 @@ import { MenuIcon } from 'public/icons';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 
-function FeedHeader() {
+interface Props {
+  hasFollow?: boolean;
+}
+
+function FeedHeader({ hasFollow = false }: Props) {
   return (
     <div className='flex w-full justify-between px-page'>
       <div className='flex items-center gap-[8px]'>
@@ -19,12 +23,14 @@ function FeedHeader() {
         </h5>
       </div>
       <div className='flex items-center gap-[8px]'>
-        <button
-          type='button'
-          className='rounded-[12px] border border-gray-400 bg-white px-[16px] py-[8px] text-body-sm-bold text-gray-600'
-        >
-          팔로우
-        </button>
+        {hasFollow && (
+          <button
+            type='button'
+            className='rounded-[12px] border border-gray-400 bg-white px-[16px] py-[8px] text-body-sm-bold text-gray-600'
+          >
+            팔로우
+          </button>
+        )}
         <button type='button'>
           <MenuIcon />
         </button>
