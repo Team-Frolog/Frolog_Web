@@ -10,7 +10,7 @@ interface Props {
 function QuitButton({ route, classes }: Props) {
   return (
     <Link className={classes} href={route}>
-      <CancelIcon />
+      <CancelIcon fill='#B3B6C5' width={24} height={24} />
     </Link>
   );
 }

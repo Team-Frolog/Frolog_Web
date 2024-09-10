@@ -9,6 +9,7 @@ export { default as ScrollToTopIcon } from './common/scroll-to-top.svg';
 // form
 export { default as ErrorIcon } from './form/error-icon.svg';
 export { default as SelectIcon } from './form/select-icon.svg';
+export { default as EnterIcon } from './form/input-enter.svg';
 
 // check
 export { default as CircleCheckIcon } from './check/circle-checked.svg';

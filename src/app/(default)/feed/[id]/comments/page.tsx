@@ -1,4 +1,5 @@
 import BackHeader from '@/components/Header/BackHeader';
+import CommentInput from '@/features/Feed/components/CommentList/CommentInput';
 import MainLayout from '@/layouts/MainLayout';
 import React from 'react';
 
@@ -9,6 +10,7 @@ function CommentPage() {
       <MainLayout>
         <div>dd</div>
       </MainLayout>
+      <CommentInput />
     </div>
   );
 }
