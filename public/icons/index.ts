@@ -35,6 +35,7 @@ export { default as EditIcon } from './well/well-edit.svg';
 export { default as MemoBookmarkIcon } from './well/bookmark.svg';
 export { default as WellAddIcon } from './well/well-add-button.svg';
 export { default as StoreIcon } from './well/store-button.svg';
+export { default as WellBackIcon } from './well/well-back.svg';
 
 // test
 export { default as DownloadIcon } from './test/download-icon.svg';
