@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import isEqual from 'lodash/isEqual';
 import { useRouter } from 'next/navigation';
