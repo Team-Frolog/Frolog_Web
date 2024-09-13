@@ -15,11 +15,7 @@ function ReviewPage({ params: { reviewId } }: Props) {
     queryFn: () => getReviewDetail(reviewId),
   });
 
-  return (
-    <div className='flex w-full flex-1 flex-col'>
-      <ReviewDetail reviewDetail={reviewDetail} />
-    </div>
-  );
+  return <ReviewDetail reviewDetail={reviewDetail} />;
 }
 
 export default ReviewPage;

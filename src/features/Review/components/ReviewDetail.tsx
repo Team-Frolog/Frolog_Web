@@ -10,7 +10,7 @@ interface Props {
 }
 
 function ReviewDetail({ reviewDetail }: Props) {
-  if (!reviewDetail) return null;
+  if (!reviewDetail) return <></>;
 
   return (
     <div className='flex-child-layout gap-[36px]'>
