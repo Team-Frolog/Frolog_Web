@@ -11,7 +11,7 @@ interface Props {
 
 function SideHeader({ children, title }: Props) {
   return (
-    <div className='h-[122px] w-full'>
+    <div className='flex h-fit w-full'>
       <Image
         src={IMAGES.side_header}
         alt='side header'
@@ -19,8 +19,10 @@ function SideHeader({ children, title }: Props) {
         height={144}
         className='absolute left-0 top-0 z-60 w-full'
       />
-      <div className='flex w-full px-page py-[20px] pt-[50px]'>
-        <h1 className='text-heading-md-bold text-start'>{title}</h1>
+      <div className='flex h-fit w-full px-page py-[20px] pt-[50px]'>
+        <h1 className='w-fit max-w-[250px] text-start text-heading-md-bold'>
+          {title}
+        </h1>
       </div>
       {children}
     </div>
