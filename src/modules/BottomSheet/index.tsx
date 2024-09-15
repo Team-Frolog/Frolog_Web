@@ -51,4 +51,6 @@ class BottomSheet {
   }
 }
 
-export default new BottomSheet();
+const bottomSheet = new BottomSheet();
+
+export { bottomSheet };

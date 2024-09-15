@@ -7,10 +7,9 @@ import { motion } from 'framer-motion';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
 import { usePopUpActions } from '@/store/popUpStore';
 import SheetHeader from 'public/images/frog/sheet/sheet-header.svg';
-import AlertBottomSheet from '@/layouts/AlertBottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import Button from '@/components/Button/Button';
-import bottomSheet from '@/modules/BottomSheet';
+import { bottomSheet } from '@/modules/BottomSheet';
 
 function StoreRegisterSheet() {
   const { changePopUpState } = usePopUpActions();

@@ -2,7 +2,7 @@ import React from 'react';
 import { ChildArrowIcon, MenuIcon } from 'public/icons';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
-import bottomSheet from '@/modules/BottomSheet';
+import { bottomSheet } from '@/modules/BottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import { useReport } from '@/hooks/useReport';
 

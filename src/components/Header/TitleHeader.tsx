@@ -3,9 +3,9 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { usePopUpActions } from '@/store/popUpStore';
-import BackButton from '../Button/BackButton';
-import bottomSheet from '@/modules/BottomSheet';
+import { bottomSheet } from '@/modules/BottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
+import BackButton from '../Button/BackButton';
 
 interface Props {
   type: 'default' | 'edit' | 'write' | 'no_border';

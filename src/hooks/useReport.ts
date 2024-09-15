@@ -1,4 +1,4 @@
-import toast from '@/modules/Toast';
+import { toast } from '@/modules/Toast';
 
 export const useReport = () => {
   const handleReport = () => {

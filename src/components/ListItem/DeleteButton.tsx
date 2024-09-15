@@ -1,5 +1,5 @@
 import { sheetData } from '@/data/ui/bottomSheet';
-import bottomSheet from '@/modules/BottomSheet';
+import { bottomSheet } from '@/modules/BottomSheet';
 import React from 'react';
 
 interface Props {

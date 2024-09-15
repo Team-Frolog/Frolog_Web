@@ -8,7 +8,7 @@ import { IMAGES } from '@/constants/images';
 import { useScrollFreeze } from '@/hooks/gesture/useScrollFreeze';
 import Button from '@/components/Button/Button';
 import BackDrop from '@/layouts/BackDrop';
-import bottomSheet, { BottomSheetProps } from '.';
+import { bottomSheet, BottomSheetProps } from '.';
 
 function BottomSheet({
   sheetData,

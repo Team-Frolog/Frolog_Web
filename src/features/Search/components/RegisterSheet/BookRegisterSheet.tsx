@@ -7,11 +7,10 @@ import { motion } from 'framer-motion';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
 import { usePopUpActions } from '@/store/popUpStore';
 import SheetHeader from 'public/images/frog/sheet/sheet-header.svg';
-import AlertBottomSheet from '@/layouts/AlertBottomSheet';
+import { bottomSheet } from '@/modules/BottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import RegisterForm, { RegisterFormType } from './RegisterForm';
 import { requestBook } from '../../api/register.api';
-import bottomSheet from '@/modules/BottomSheet';
 
 function BookRegisterSheet() {
   const { changePopUpState } = usePopUpActions();

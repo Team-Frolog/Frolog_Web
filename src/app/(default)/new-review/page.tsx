@@ -6,7 +6,7 @@ import { NewReviewForm } from '@/features/Review';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import MainLayout from '@/layouts/MainLayout';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
-import bottomSheet from '@/modules/BottomSheet';
+import { bottomSheet } from '@/modules/BottomSheet';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 

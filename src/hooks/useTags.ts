@@ -1,4 +1,4 @@
-import toast from '@/modules/Toast';
+import { toast } from '@/modules/Toast';
 import { Tag } from '@/types/tag';
 import { useFormContext } from 'react-hook-form';
 

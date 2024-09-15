@@ -8,13 +8,13 @@ import { LOGIN_CALLBACK } from '@/constants/storage';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
-import bottomSheet from '@/modules/BottomSheet';
+import { bottomSheet } from '@/modules/BottomSheet';
+import { useSession } from 'next-auth/react';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
 import { useSearch } from '../hooks/useSearch';
 import SearchResultEmpty from './SearchResultEmpty';
 import { useObserver } from '../hooks/useObserver';
 import NoBookButton from './NoBookButton';
-import { useSession } from 'next-auth/react';
 
 function SearchResult() {
   const {

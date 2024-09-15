@@ -52,4 +52,6 @@ class Toast {
   }
 }
 
-export default new Toast();
+const toast = new Toast();
+
+export { toast };
