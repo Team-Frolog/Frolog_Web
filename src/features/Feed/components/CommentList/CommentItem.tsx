@@ -17,7 +17,7 @@ function CommentItem({ isChild = false }: Props) {
     <div
       className={`flex w-full flex-col gap-[12px] ${isChild && 'pl-[24px]'}`}
     >
-      <ProfileHeader isChildComment={isChild} />
+      <ProfileHeader type='comment' isChildComment={isChild} />
       <p className='break-all px-page text-body-lg text-gray-800'>
         <strong className='mr-[8px] font-normal text-main'>프롤로그</strong>
         comment

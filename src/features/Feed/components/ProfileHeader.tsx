@@ -2,15 +2,22 @@ import React from 'react';
 import { ChildArrowIcon, MenuIcon } from 'public/icons';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
-import { usePopUpActions } from '@/store/popUpStore';
+import bottomSheet from '@/modules/BottomSheet';
+import { sheetData } from '@/data/ui/bottomSheet';
+import { useReport } from '@/hooks/useReport';
 
 interface Props {
+  type: 'feed' | 'comment';
   hasFollow?: boolean;
   isChildComment?: boolean;
 }
 
-function ProfileHeader({ hasFollow = false, isChildComment = false }: Props) {
-  const { changePopUpState } = usePopUpActions();
+function ProfileHeader({
+  type,
+  hasFollow = false,
+  isChildComment = false,
+}: Props) {
+  const { handleReport } = useReport();
 
   return (
     <div className='flex w-full justify-between px-page'>
@@ -52,7 +59,22 @@ function ProfileHeader({ hasFollow = false, isChildComment = false }: Props) {
         {/* 본인인 경우 삭제 시트 */}
         <button
           type='button'
-          onClick={() => changePopUpState('isOpenAlertSheet', true)}
+          onClick={() =>
+            bottomSheet.open({
+              sheetData:
+                type === 'feed'
+                  ? sheetData.report_this_feed
+                  : sheetData.report_this_comment,
+              onClick: handleReport,
+              children: (
+                <p>
+                  {type === 'feed'
+                    ? sheetData.report_this_feed.description!()
+                    : sheetData.report_this_comment.description!()}
+                </p>
+              ),
+            })
+          }
         >
           <MenuIcon />
         </button>

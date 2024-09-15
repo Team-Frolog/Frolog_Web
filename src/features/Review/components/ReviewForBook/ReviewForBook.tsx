@@ -1,6 +1,6 @@
 import Rating from '@/components/Rating/Rating';
 import TagSlider from '@/components/Tag/TagSlider';
-import { FeedHeader } from '@/features/Feed';
+import { ProfileHeader } from '@/features/Feed';
 import { ChatIcon, HeartIcon } from 'public/icons';
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -11,7 +11,7 @@ function ReviewForBook() {
 
   return (
     <div className='flex w-full flex-col'>
-      <FeedHeader />
+      <ProfileHeader type='feed' />
       <div className='pt-[30px]'>
         <div className='tooltip-feed relative flex w-full rounded-t-[20px] bg-category-bg-novel px-page py-[12px] after:border-b-category-bg-novel'>
           <Rating
