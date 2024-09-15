@@ -2,25 +2,40 @@ import React from 'react';
 import { ChildArrowIcon, MenuIcon } from 'public/icons';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
+import { usePopUpActions } from '@/store/popUpStore';
 
 interface Props {
   hasFollow?: boolean;
+  isChildComment?: boolean;
 }
 
-function ChildCommentHeader({ hasFollow = false }: Props) {
+function ProfileHeader({ hasFollow = false, isChildComment = false }: Props) {
+  const { changePopUpState } = usePopUpActions();
+
   return (
     <div className='flex w-full justify-between px-page'>
       <div className='flex items-center gap-[8px]'>
-        <div className='flex items-center gap-[4px]'>
-          <ChildArrowIcon />
+        {isChildComment ? (
+          <div className='flex items-center gap-[4px]'>
+            <ChildArrowIcon />
+            <Image
+              src={IMAGES.default_profile}
+              alt='profile image'
+              width={32}
+              height={32}
+              className='rounded-[50%]'
+            />
+          </div>
+        ) : (
           <Image
             src={IMAGES.default_profile}
             alt='profile image'
-            width={32}
-            height={32}
+            width={40}
+            height={40}
             className='rounded-[50%]'
           />
-        </div>
+        )}
+
         <h5 className='text-body-lg-bold text-gray-600'>
           홍길동과고길동과도라에몽
         </h5>
@@ -34,7 +49,11 @@ function ChildCommentHeader({ hasFollow = false }: Props) {
             팔로우
           </button>
         )}
-        <button type='button'>
+        {/* 본인인 경우 삭제 시트 */}
+        <button
+          type='button'
+          onClick={() => changePopUpState('isOpenAlertSheet', true)}
+        >
           <MenuIcon />
         </button>
       </div>
@@ -42,4 +61,4 @@ function ChildCommentHeader({ hasFollow = false }: Props) {
   );
 }
 
-export default ChildCommentHeader;
+export default ProfileHeader;

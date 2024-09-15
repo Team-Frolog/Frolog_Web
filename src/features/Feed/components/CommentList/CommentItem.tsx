@@ -4,21 +4,20 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
-import FeedHeader from '../FeedList/FeedHeader';
-import ChildCommentHeader from './ChildCommentHeader';
+import ProfileHeader from '../ProfileHeader';
 
 interface Props {
   isChild?: boolean;
 }
 
-function CommentItem({ isChild }: Props) {
+function CommentItem({ isChild = false }: Props) {
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
 
   return (
     <div
       className={`flex w-full flex-col gap-[12px] ${isChild && 'pl-[24px]'}`}
     >
-      {isChild ? <ChildCommentHeader /> : <FeedHeader />}
+      <ProfileHeader isChildComment={isChild} />
       <p className='break-all px-page text-body-lg text-gray-800'>
         <strong className='mr-[8px] font-normal text-main'>프롤로그</strong>
         comment

@@ -1,5 +1,5 @@
 import React from 'react';
-import FeedHeader from './FeedHeader';
+import ProfileHeader from '../ProfileHeader';
 import BookInfo from './BookInfo';
 import FeedContent from './FeedContent';
 import FeedBar from './FeedBar';
@@ -7,7 +7,7 @@ import FeedBar from './FeedBar';
 function FeedItem() {
   return (
     <div className='w-full'>
-      <FeedHeader hasFollow />
+      <ProfileHeader hasFollow />
       <div className='flex w-full flex-col'>
         <BookInfo />
         <FeedContent />
