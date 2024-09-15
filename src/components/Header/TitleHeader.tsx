@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { usePopUpActions } from '@/store/popUpStore';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import BackButton from '../Button/BackButton';
@@ -29,7 +28,6 @@ function TitleHeader({
   const router = useRouter();
   const themeColor =
     theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-gray-800';
-  const { changePopUpState } = usePopUpActions();
 
   const handleClick = () => {
     if (type === 'edit' || type === 'write') {

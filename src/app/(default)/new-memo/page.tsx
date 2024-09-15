@@ -6,6 +6,8 @@ import { MemoForm, MemoFormType } from '@/features/Memo';
 import { addNewMemo } from '@/features/Memo/api/memo.api';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useMutation } from '@tanstack/react-query';
+import { PostMemoRes } from '@frolog/frolog-api';
 
 function NewMemoPage() {
   const router = useRouter();
@@ -18,25 +20,32 @@ function NewMemoPage() {
     isPublic: true,
   };
 
-  const handleAddMemo = (data: MemoFormType) => {
-    if (!session || !id) return;
+  const { mutate: handleAddMemo } = useMutation<
+    PostMemoRes,
+    Error,
+    MemoFormType
+  >({
+    mutationFn: async (data: MemoFormType) => {
+      const req = {
+        writer: session!.user.id,
+        isbn: id!,
+        content: data.memo,
+        is_public: data.isPublic,
+        images: data.images,
+      };
 
-    addNewMemo({
-      writer: session.user.id,
-      isbn: id,
-      content: data.memo,
-      is_public: data.isPublic,
-      images: data.images,
-    }).then((res) => {
-      if (res?.result) {
-        router.replace(`/well-book/${id}/memo`);
-      }
-    });
-  };
+      const result = await addNewMemo(req);
+      return result;
+    },
+    onSuccess: () => router.replace(`/well-book/${id}/memo`),
+  });
 
   return (
     <GenericForm<MemoFormType>
-      onSubmit={handleAddMemo}
+      onSubmit={(data) => {
+        if (!session || !id) return;
+        handleAddMemo(data);
+      }}
       className='flex h-dvh w-full flex-1 flex-col bg-white'
       formOptions={{
         mode: 'onBlur',

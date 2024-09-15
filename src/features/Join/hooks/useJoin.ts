@@ -4,6 +4,8 @@ import { JOIN_FORM_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
 import { useEffect } from 'react';
 import { PAGES } from '@/constants/page';
 import { useRouter } from 'next/navigation';
+import { useMutation } from '@tanstack/react-query';
+import { SignUpReq, SignUpRes } from '@frolog/frolog-api';
 import { useAuthActions, useVerifyToken } from '@/store/authStore';
 import { useJoinStep } from '@/store/stepStore';
 import { ERROR_ALERT } from '@/constants/message';
@@ -42,21 +44,22 @@ export const useJoin = (getValues: () => JoinForm) => {
     }
   }, [getValues, joinStep]);
 
-  const joinUser = async (data: JoinForm) => {
-    const formData = transformJoinForm(data, verifyToken!);
-    const signUpResult = await signUp(formData);
-
-    if (signUpResult?.result) {
+  const { mutate: handleSignUp } = useMutation<SignUpRes, Error, SignUpReq>({
+    mutationFn: (formData: SignUpReq) => signUp(formData),
+    onSuccess: (_result, formData) => {
       resetToken();
       localStorage.removeItem(JOIN_FORM_KEY);
       localStorage.setItem(
         TEMP_ACCOUNT_KEY,
         JSON.stringify({ email: formData.email, password: formData.password })
       );
-      handleLogin(data.username!);
-    } else {
-      window.alert(ERROR_ALERT);
-    }
+      handleLogin(formData.username!);
+    },
+  });
+
+  const joinUser = async (data: JoinForm) => {
+    const formData = transformJoinForm(data, verifyToken!);
+    handleSignUp(formData);
   };
 
   return { joinUser, joinStep };

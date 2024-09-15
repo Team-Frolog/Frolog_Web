@@ -46,51 +46,26 @@ export const getMemoDetail = async (req: GetMemoReq) => {
 };
 
 export const addNewMemo = async (req: PostMemoReq) => {
-  try {
-    const response = await postMemo.fetch(req);
-    return response;
-  } catch (err) {
-    console.log(err);
-    window.alert(ERROR_ALERT);
-  }
+  const response = await postMemo.fetch(req);
+  return response;
 };
 
 export const uploadMemoImage = async (req: UploadMemoImageReq) => {
-  try {
-    const response = await uploadMemoImg.fetch(req);
-    return response;
-  } catch (err) {
-    console.log(err);
-    window.alert(ERROR_ALERT);
-  }
+  const response = await uploadMemoImg.fetch(req);
+  return response;
 };
 
 export const deleteMemoImage = async (req: DeleteMemoImageReq) => {
-  try {
-    const response = await deleteMemoImg.fetch(req);
-    return response;
-  } catch (err) {
-    console.log(err);
-    window.alert(ERROR_ALERT);
-  }
+  const response = await deleteMemoImg.fetch(req);
+  return response;
 };
 
 export const editMemoDetail = async (req: EditMemoReq) => {
-  try {
-    const response = await editMemo.fetch(req);
-    return response;
-  } catch (err) {
-    console.log(err);
-    window.alert(ERROR_ALERT);
-  }
+  const response = await editMemo.fetch(req);
+  return response;
 };
 
 export const deleteMemo = async (req: DeleteMemoReq) => {
-  try {
-    const response = await deleteMemoObj.fetch(req);
-    return response;
-  } catch (err) {
-    console.log(err);
-    window.alert(ERROR_ALERT);
-  }
+  const response = await deleteMemoObj.fetch(req);
+  return response;
 };

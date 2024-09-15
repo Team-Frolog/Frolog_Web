@@ -11,12 +11,8 @@ const signUpObj = new SignUp(baseOptions);
 const getUserNameAvailability = new GetUsernameAvailability(baseOptions);
 
 export const signUp = async (formData: SignUpReq) => {
-  try {
-    const data = await signUpObj.fetch(formData);
-    return data;
-  } catch (err) {
-    window.alert(ERROR_ALERT);
-  }
+  const data = await signUpObj.fetch(formData);
+  return data;
 };
 
 export const checkNickname = async (req: GetUsernameAvailabilityReq) => {

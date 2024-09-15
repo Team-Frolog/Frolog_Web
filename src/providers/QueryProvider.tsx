@@ -1,5 +1,6 @@
 'use client';
 
+import { toast } from '@/modules/Toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export const queryClient = new QueryClient({
@@ -7,6 +8,9 @@ export const queryClient = new QueryClient({
     queries: {
       retry: 0,
       networkMode: 'online',
+    },
+    mutations: {
+      onError: (error: Error) => toast.error(error.message),
     },
   },
 });
