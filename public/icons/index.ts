@@ -6,8 +6,11 @@ export { default as ExpandIcon } from './common/expand.svg';
 export { default as ToggleIcon } from './common/toggle.svg';
 export { default as ScrollToTopIcon } from './common/scroll-to-top.svg';
 
+// toast
+export { default as ToastErrorIcon } from './toast/toast-error.svg';
+export { default as ToastNormalIcon } from './toast/toast-normal.svg';
+
 // form
-export { default as ErrorIcon } from './form/error-icon.svg';
 export { default as SelectIcon } from './form/select-icon.svg';
 export { default as EnterIcon } from './form/input-enter.svg';
 

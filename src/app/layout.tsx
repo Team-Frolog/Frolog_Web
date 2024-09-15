@@ -34,6 +34,7 @@ export default function RootLayout({
           >
             <div id='root'>{children}</div>
             <div id='portal' />
+            <div id='toast-root' />
           </body>
         </AuthProvider>
       </QueryProvider>

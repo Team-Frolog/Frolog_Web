@@ -32,6 +32,8 @@
     "no-alert": "off",
     "no-plusplus": "off",
     "no-nested-ternary": "warn",
+    "class-methods-use-this": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
     "import/no-extraneous-dependencies": "off",
     "react/jsx-no-useless-fragment": "off",
     "jsx-a11y/control-has-associated-label": "off",
