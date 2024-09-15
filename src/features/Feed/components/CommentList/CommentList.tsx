@@ -5,7 +5,7 @@ function CommentList() {
   return (
     <div className='flex w-full flex-col gap-[36px] py-[16px]'>
       <CommentItem />
-      <CommentItem />
+      <CommentItem isChild />
     </div>
   );
 }

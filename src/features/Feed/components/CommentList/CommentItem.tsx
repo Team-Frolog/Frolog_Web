@@ -5,13 +5,20 @@ import { HeartIcon } from 'public/icons';
 import { motion } from 'framer-motion';
 import useCommentStore from '@/store/commentStore';
 import FeedHeader from '../FeedList/FeedHeader';
+import ChildCommentHeader from './ChildCommentHeader';
 
-function CommentItem() {
+interface Props {
+  isChild?: boolean;
+}
+
+function CommentItem({ isChild }: Props) {
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
 
   return (
-    <div className='flex w-full flex-col gap-[12px]'>
-      <FeedHeader />
+    <div
+      className={`flex w-full flex-col gap-[12px] ${isChild && 'pl-[24px]'}`}
+    >
+      {isChild ? <ChildCommentHeader /> : <FeedHeader />}
       <p className='break-all px-page text-body-lg text-gray-800'>
         <strong className='mr-[8px] font-normal text-main'>프롤로그</strong>
         comment

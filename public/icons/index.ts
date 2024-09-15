@@ -27,6 +27,7 @@ export { default as HeartIcon } from './feed/icon-heart.svg';
 export { default as ChatIcon } from './feed/icon-chat.svg';
 export { default as BookmarkIcon } from './feed/icon-bookmark.svg';
 export { default as SendIcon } from './feed/icon-send.svg';
+export { default as ChildArrowIcon } from './feed/comment-child.svg';
 
 // well
 export { default as ArrowIcon } from './well/circle-arrow.svg';
