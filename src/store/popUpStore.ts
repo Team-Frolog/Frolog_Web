@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 
 export type PopUpType =
-  | 'isOpenToast'
   | 'isOpenAlertSheet'
   | 'isOpenWellSheet'
   | 'isOpenDeleteSheet'
@@ -9,7 +8,6 @@ export type PopUpType =
   | 'isOpenSelectBooksSheet';
 
 interface PopUpState {
-  isOpenToast: boolean;
   isOpenWellSheet: boolean;
   isOpenDeleteSheet: boolean;
   isOpenAlertSheet: boolean;
@@ -21,7 +19,6 @@ interface PopUpState {
 }
 
 const usePopUpStore = create<PopUpState>((set) => ({
-  isOpenToast: false,
   isOpenWellSheet: false,
   isOpenDeleteSheet: false,
   isOpenAlertSheet: false,
@@ -34,7 +31,6 @@ const usePopUpStore = create<PopUpState>((set) => ({
   },
 }));
 
-export const useToastState = () => usePopUpStore((state) => state.isOpenToast);
 export const useAlertSheetState = () =>
   usePopUpStore((state) => state.isOpenAlertSheet);
 export const useWellSheetState = () =>

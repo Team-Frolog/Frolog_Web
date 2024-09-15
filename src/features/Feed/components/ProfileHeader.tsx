@@ -66,13 +66,6 @@ function ProfileHeader({
                   ? sheetData.report_this_feed
                   : sheetData.report_this_comment,
               onClick: handleReport,
-              children: (
-                <p>
-                  {type === 'feed'
-                    ? sheetData.report_this_feed.description!()
-                    : sheetData.report_this_comment.description!()}
-                </p>
-              ),
             })
           }
         >

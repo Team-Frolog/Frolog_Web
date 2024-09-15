@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import AlertBottomSheet from '@/layouts/AlertBottomSheet';
 import { BookListItem } from '@/features/Book';
 import usePopUpStore from '@/store/popUpStore';
 import { sheetData } from '@/data/ui/bottomSheet';
@@ -9,11 +8,13 @@ import { LOGIN_CALLBACK } from '@/constants/storage';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
+import bottomSheet from '@/modules/BottomSheet';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
 import { useSearch } from '../hooks/useSearch';
 import SearchResultEmpty from './SearchResultEmpty';
 import { useObserver } from '../hooks/useObserver';
 import NoBookButton from './NoBookButton';
+import { useSession } from 'next-auth/react';
 
 function SearchResult() {
   const {
@@ -24,13 +25,14 @@ function SearchResult() {
     hasNextPage,
     fetchNextPage,
   } = useSearch();
+  const { data: session } = useSession();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const { isOpenLogin, isOpenAlert } = usePopUpStore((state) => ({
-    isOpenLogin: state.isOpenLoginSheet,
+  const { isOpenAlert, changePopUpState } = usePopUpStore((state) => ({
     isOpenAlert: state.isOpenAlertSheet,
+    changePopUpState: state.actions.changePopUpState,
   }));
 
   const { setTarget } = useObserver({
@@ -44,6 +46,17 @@ function SearchResult() {
     router.push(PAGES.LANDING);
   };
 
+  const handleNoBookClick = () => {
+    if (session) {
+      changePopUpState('isOpenAlertSheet', true);
+    } else {
+      bottomSheet.open({
+        sheetData: sheetData.need_to_login,
+        onClick: handleClickLogin,
+      });
+    }
+  };
+
   return (
     <div className='flex h-fit w-full flex-1 flex-col items-end gap-[36px] pb-[36px] pt-[24px]'>
       {isSearched && isEmpty && !isFetching && <SearchResultEmpty />}
@@ -55,18 +68,8 @@ function SearchResult() {
         </div>
       )}
 
-      {isSearched && <NoBookButton />}
+      {isSearched && <NoBookButton onClick={handleNoBookClick} />}
       <div ref={setTarget} id='observer' className='h-[10px]' />
-      <AnimatePresence>
-        {isOpenLogin && (
-          <AlertBottomSheet
-            sheetData={sheetData.need_to_login}
-            onClick={handleClickLogin}
-          >
-            <p>{sheetData.need_to_login.description!()}</p>
-          </AlertBottomSheet>
-        )}
-      </AnimatePresence>
       <AnimatePresence>{isOpenAlert && <BookRegisterSheet />}</AnimatePresence>
     </div>
   );

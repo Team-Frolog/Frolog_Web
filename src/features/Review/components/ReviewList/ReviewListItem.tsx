@@ -12,9 +12,10 @@ interface Props {
   index: number;
   reviewData: GetReviewRes;
   setReviewId: React.Dispatch<React.SetStateAction<string>>;
+  onDelete: () => void;
 }
 
-function ReviewListItem({ reviewData, index, setReviewId }: Props) {
+function ReviewListItem({ reviewData, index, setReviewId, onDelete }: Props) {
   const router = useRouter();
 
   return (
@@ -27,12 +28,12 @@ function ReviewListItem({ reviewData, index, setReviewId }: Props) {
           className='flex w-full cursor-pointer flex-col gap-[12px] px-[24px]'
         >
           <div>
-            <span className='text-body-sm-bold rounded-[20px] bg-gray-800 px-[10px] py-[6px] text-white'>
+            <span className='rounded-[20px] bg-gray-800 px-[10px] py-[6px] text-body-sm-bold text-white'>
               {index}번째 리뷰
             </span>
           </div>
           <Rating rating={reviewData.rating} textClass='text-heading-lg-bold' />
-          <h3 className='text-title-xl-bold break-all'>{reviewData.title}</h3>
+          <h3 className='break-all text-title-xl-bold'>{reviewData.title}</h3>
         </div>
 
         <div className='flex-col-center w-full gap-[8px]'>
@@ -40,12 +41,14 @@ function ReviewListItem({ reviewData, index, setReviewId }: Props) {
           <TagSlider type='cons' tagKeys={reviewData.tags_neg} />
         </div>
       </div>
-      <span className='text-body-md px-[24px] text-gray-600'>
+      <span className='px-[24px] text-body-md text-gray-600'>
         {formatDate(reviewData.date)}{' '}
         {reviewData.date !== reviewData.edit && '(수정됨)'}
       </span>
       <DeleteButton
+        type='review'
         buttonText='리뷰 삭제'
+        onDelete={onDelete}
         onClick={() => setReviewId(reviewData.id)}
       />
     </div>

@@ -1,10 +1,6 @@
 'use client';
 
 import React from 'react';
-import { useDeleteSheetState } from '@/store/popUpStore';
-import { AnimatePresence } from 'framer-motion';
-import AlertBottomSheet from '@/layouts/AlertBottomSheet';
-import { sheetData } from '@/data/ui/bottomSheet';
 import EmptyContentFrog from '@/components/ListItem/EmptyContentFrog';
 import ReviewListItem from './ReviewListItem';
 import FirstReviewItem from './FirstReviewItem';
@@ -16,7 +12,6 @@ interface Props {
 
 function ReviewList({ bookId }: Props) {
   const { reviews, setReviewId, deleteReview } = useReviews(bookId);
-  const isOpenDeleteSheet = useDeleteSheetState();
 
   return (
     <div className='flex w-full flex-1 flex-col gap-[12px]'>
@@ -29,6 +24,7 @@ function ReviewList({ bookId }: Props) {
             key={reviews[0].id}
             index={1}
             reviewData={reviews[0]}
+            onDelete={deleteReview}
             setReviewId={setReviewId}
           />
           {reviews[0].rating >= 3.5 && <FirstReviewItem />}
@@ -40,21 +36,10 @@ function ReviewList({ bookId }: Props) {
             key={review.id}
             index={i + 1}
             reviewData={review}
+            onDelete={deleteReview}
             setReviewId={setReviewId}
           />
         ))}
-      <AnimatePresence>
-        {isOpenDeleteSheet && (
-          <AlertBottomSheet
-            sheetData={sheetData.delete_review}
-            onClick={deleteReview}
-          >
-            <p className='text-body-lg'>
-              리뷰를 한 번 삭제하면 복구할 수 없어요.
-            </p>
-          </AlertBottomSheet>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

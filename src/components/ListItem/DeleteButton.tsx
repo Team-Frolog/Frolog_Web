@@ -1,14 +1,15 @@
-import { usePopUpActions } from '@/store/popUpStore';
+import { sheetData } from '@/data/ui/bottomSheet';
+import bottomSheet from '@/modules/BottomSheet';
 import React from 'react';
 
 interface Props {
+  type: 'review' | 'memo';
   buttonText: string;
+  onDelete: () => void;
   onClick?: () => void;
 }
 
-function DeleteButton({ buttonText, onClick }: Props) {
-  const { changePopUpState } = usePopUpActions();
-
+function DeleteButton({ type, buttonText, onDelete, onClick }: Props) {
   return (
     <div className='flex w-full flex-col px-[24px]'>
       <hr className='border-[0.5px] border-gray-400' />
@@ -18,9 +19,15 @@ function DeleteButton({ buttonText, onClick }: Props) {
           if (onClick) {
             onClick();
           }
-          changePopUpState('isOpenDeleteSheet', true);
+          bottomSheet.open({
+            sheetData:
+              type === 'review'
+                ? sheetData.delete_review
+                : sheetData.delete_memo,
+            onClick: onDelete,
+          });
         }}
-        className='text-body-lg py-[24px] text-error'
+        className='py-[24px] text-body-lg text-error'
       >
         {buttonText}
       </button>

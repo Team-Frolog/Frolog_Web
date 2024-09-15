@@ -18,7 +18,7 @@ function TapHeader({ bookId }: { bookId: string }) {
   };
 
   return (
-    <ResponsiveHeaderLayout onClick={() => handleClick('back')}>
+    <ResponsiveHeaderLayout display='block' onClick={() => handleClick('back')}>
       <div className='relative w-fit pb-[5px]'>
         <div className='flex gap-[24px]'>
           <button

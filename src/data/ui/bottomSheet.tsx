@@ -62,7 +62,7 @@ export const sheetData: {
     buttonText: '네, 삭제할게요',
     extraButtonText: '아니요, 유지할게요',
     stateType: 'isOpenDeleteSheet',
-    description: () => <>메모를 삭제하면 다시 되돌릴 수 없어요.</>,
+    description: () => <>메모를 한 번 삭제하면 복구할 수 없어요.</>,
   },
   add_another_to_well: {
     getTitle: () => (

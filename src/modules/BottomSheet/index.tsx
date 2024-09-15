@@ -6,7 +6,7 @@ import BottomSheetContainer from './BottomSheetContainer';
 
 export interface BottomSheetProps {
   sheetData: AlertSheet;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onClick?: () => void;
   onClickSubButton?: () => void;
 }

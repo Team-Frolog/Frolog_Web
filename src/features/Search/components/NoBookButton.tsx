@@ -1,15 +1,15 @@
 'use client';
 
-import { usePopUpActions } from '@/store/popUpStore';
-import { useSession } from 'next-auth/react';
 import { CirclePlus } from 'public/icons';
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-function NoBookButton() {
+interface Props {
+  onClick: () => void;
+}
+
+function NoBookButton({ onClick }: Props) {
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
-  const { data: session } = useSession();
-  const { changePopUpState } = usePopUpActions();
 
   useEffect(() => {
     setTimeout(() => {
@@ -20,14 +20,10 @@ function NoBookButton() {
     }, 2000);
   }, []);
 
-  const handleNoBookClick = () => {
-    changePopUpState(session ? 'isOpenAlertSheet' : 'isOpenLoginSheet', true);
-  };
-
   return (
     <button
       type='button'
-      onClick={handleNoBookClick}
+      onClick={onClick}
       className='fixed bottom-[24px] z-50 mobile:right-[24px]'
     >
       <CirclePlus />

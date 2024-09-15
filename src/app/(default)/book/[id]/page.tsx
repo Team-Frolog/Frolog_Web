@@ -3,16 +3,15 @@
 import BookInfo from '@/components/Book/BookInfo';
 import AddButton from '@/components/Button/AddButton';
 import TitleHeader from '@/components/Header/TitleHeader';
-import AddBookSheet from '@/components/PopUp/AddBookSheet';
 import RatingSelector from '@/components/Rating/RatingSelector';
 import MajorTagList from '@/components/Tag/MajorTagList';
 import { BookDetail } from '@/features/Book';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import { useBookDetail } from '@/features/Book/hooks/useBookDetail';
-import { usePopUpActions } from '@/store/popUpStore';
 import React from 'react';
-import SelectBooksSheet from '@/components/PopUp/SelectBooksSheet';
-import WellSelectSheet from '@/components/PopUp/WellSelectSheet';
+import bottomSheet from '@/modules/BottomSheet';
+import { sheetData } from '@/data/ui/bottomSheet';
+import AddBookToWell from '@/components/BottomSheet/AddBookToWell';
 
 interface Props {
   params: {
@@ -23,7 +22,6 @@ interface Props {
 function BookPage({ params: { id } }: Props) {
   const { bookData } = useBookDetail(id);
   useScroll({ categoryColor: undefined });
-  const { changePopUpState } = usePopUpActions();
 
   return (
     <>
@@ -40,16 +38,18 @@ function BookPage({ params: { id } }: Props) {
           <AddButton
             text='우물에 책 추가하기'
             categoryId='novel'
-            onClick={() => changePopUpState('isOpenAlertSheet', true)}
+            onClick={() =>
+              bottomSheet.open({
+                sheetData: sheetData.add_book,
+                children: <AddBookToWell />,
+              })
+            }
           />
           <MajorTagList type='pros' tagData={bookData?.tags_pos} />
           <MajorTagList type='cons' tagData={bookData?.tags_neg} />
         </div>
         <BookDetail bookId={id} />
       </div>
-      <AddBookSheet />
-      <SelectBooksSheet />
-      <WellSelectSheet />
     </>
   );
 }

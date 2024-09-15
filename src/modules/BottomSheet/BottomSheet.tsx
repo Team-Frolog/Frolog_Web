@@ -5,25 +5,17 @@ import { motion } from 'framer-motion';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
-import { AlertSheet } from '@/data/ui/bottomSheet';
 import { useScrollFreeze } from '@/hooks/gesture/useScrollFreeze';
 import Button from '@/components/Button/Button';
 import BackDrop from '@/layouts/BackDrop';
-import bottomSheet from '.';
-
-interface Props {
-  sheetData: AlertSheet;
-  children: React.ReactNode;
-  onClick?: () => void;
-  onClickSubButton?: () => void;
-}
+import bottomSheet, { BottomSheetProps } from '.';
 
 function BottomSheet({
   sheetData,
   children,
   onClick,
   onClickSubButton,
-}: Props) {
+}: BottomSheetProps) {
   useScrollFreeze();
 
   const defaultFrog =
@@ -31,7 +23,8 @@ function BottomSheet({
       ? IMAGES.frog.sheet.error
       : IMAGES.frog.sheet.normal;
 
-  const { getTitle, type, buttonText, extraButtonText } = sheetData;
+  const { getTitle, type, buttonText, extraButtonText, description } =
+    sheetData;
   const ref = useRef<HTMLDivElement | null>(null);
 
   useClickOutside(ref, () => bottomSheet.closeSheet());
@@ -57,6 +50,7 @@ function BottomSheet({
         />
         <div className='flex-col-center w-full gap-[12px]'>
           <h2 className='text-center text-title-xl-bold'>{getTitle()}</h2>
+          {description && <p className='text-body-lg'>{description()}</p>}
           {children}
         </div>
         {buttonText && (

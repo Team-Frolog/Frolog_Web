@@ -12,9 +12,10 @@ import ImageSlot from '../MemoForm/ImageForm/ImageSlot';
 interface Props {
   memoData: Memo;
   setMemoId: () => void;
+  onDelete: () => void;
 }
 
-function MemoListItem({ memoData, setMemoId }: Props) {
+function MemoListItem({ memoData, setMemoId, onDelete }: Props) {
   const router = useRouter();
 
   return (
@@ -53,7 +54,12 @@ function MemoListItem({ memoData, setMemoId }: Props) {
           </div>
         </div>
       </div>
-      <DeleteButton buttonText='메모 삭제' onClick={setMemoId} />
+      <DeleteButton
+        type='memo'
+        buttonText='메모 삭제'
+        onDelete={onDelete}
+        onClick={setMemoId}
+      />
     </div>
   );
 }

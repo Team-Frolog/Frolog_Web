@@ -6,13 +6,18 @@ import React from 'react';
 interface Props {
   onClick: () => void;
   children: React.ReactNode;
+  display?: 'flex' | 'block';
 }
 
-function ResponsiveHeaderLayout({ onClick, children }: Props) {
+function ResponsiveHeaderLayout({
+  onClick,
+  children,
+  display = 'flex',
+}: Props) {
   return (
     <div
       id='header'
-      className='duration-50 flex h-fit w-full gap-3 bg-gray-900 p-[24px] text-white transition-all'
+      className={`duration-50 h-fit w-full gap-3 bg-gray-900 p-[24px] text-white transition-all ${display}`}
       style={{ paddingBottom: '10px' }}
     >
       <BackButton fill='#B3B6C5' onClick={onClick} />
