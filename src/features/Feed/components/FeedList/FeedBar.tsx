@@ -1,7 +1,8 @@
 import React from 'react';
-import { ArrowIcon, ChatIcon, HeartIcon } from 'public/icons';
+import { ArrowIcon, ChatIcon } from 'public/icons';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import LikeButton from '@/components/Button/LikeButton';
 
 const MotionLink = motion(Link);
 
@@ -9,14 +10,7 @@ function FeedBar() {
   return (
     <div className='flex w-full items-center justify-between rounded-b-[20px] border-t border-t-gray-400 bg-white px-page py-[12px]'>
       <div className='flex gap-[20px]'>
-        <motion.button
-          whileTap={{ scale: 1.1 }}
-          type='button'
-          className='flex items-center gap-[4px]'
-        >
-          <HeartIcon />
-          <span className='text-body-md text-gray-600'>13</span>
-        </motion.button>
+        <LikeButton />
         <motion.button
           whileTap={{ scale: 1.1 }}
           type='button'

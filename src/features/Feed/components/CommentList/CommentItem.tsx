@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { HeartIcon } from 'public/icons';
 import { motion } from 'framer-motion';
 import useCommentStore from '@/store/commentStore';
+import LikeButton from '@/components/Button/LikeButton';
 import FeedHeader from '../FeedList/FeedHeader';
 import ChildCommentHeader from './ChildCommentHeader';
 
@@ -25,14 +25,7 @@ function CommentItem({ isChild }: Props) {
       </p>
       <div className='flex items-center justify-between px-page'>
         <div className='flex gap-[8px]'>
-          <motion.button
-            whileTap={{ scale: 1.1 }}
-            type='button'
-            className='flex items-center gap-[4px]'
-          >
-            <HeartIcon />
-            <span className='text-body-md text-gray-600'>13</span>
-          </motion.button>
+          <LikeButton />
           <motion.button
             whileTap={{ scale: 1.1 }}
             type='button'
