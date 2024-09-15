@@ -1,8 +1,6 @@
 'use client';
 
 import TitleHeader from '@/components/Header/TitleHeader';
-import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
-import { sheetData } from '@/data/ui/bottomSheet';
 import React from 'react';
 import GenericForm from '@/components/Form/GenericForm';
 import { useForm } from 'react-hook-form';
@@ -43,14 +41,13 @@ function WellForm() {
       <TitleHeader
         title='새 우물 파기'
         theme='light'
-        type='edit'
+        type='write'
         isDisabled={!watch('wellName') || !!errors.wellName}
       />
       <div className='flex w-full flex-1 flex-col gap-[36px] overflow-auto bg-white px-page py-[32px]'>
         <WellNameInput />
         <FrogSelector />
         <ShapeForm />
-        <ConfirmLeaveSheet sheetData={sheetData.leave_while_edit} />
       </div>
     </GenericForm>
   );

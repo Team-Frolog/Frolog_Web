@@ -3,12 +3,13 @@
 import { useEffect } from 'react';
 import isEqual from 'lodash/isEqual';
 import { useRouter } from 'next/navigation';
-import { usePopUpActions } from '@/store/popUpStore';
 import { useQuery } from '@tanstack/react-query';
 import { UseFormReset } from 'react-hook-form';
 import { editReview, getReviewDetail } from '../api/review.api';
 import { ReviewForm } from '../types/review';
 import { getBookInfo } from '../api/getBookInfo.api';
+import bottomSheet from '@/modules/BottomSheet';
+import { sheetData } from '@/data/ui/bottomSheet';
 
 export const useReviewDetail = (
   bookId: string,
@@ -16,7 +17,6 @@ export const useReviewDetail = (
   reset: UseFormReset<ReviewForm>
 ) => {
   const router = useRouter();
-  const { changePopUpState } = usePopUpActions();
 
   const { data, refetch } = useQuery({
     queryKey: ['reviewDetail', reviewId],
@@ -62,7 +62,14 @@ export const useReviewDetail = (
     };
 
     if (!isEqual(defaultValues, formData)) {
-      changePopUpState('isOpenAlertSheet', true);
+      bottomSheet.open({
+        sheetData: sheetData.leave_while_edit,
+        onClick: () => {
+          setTimeout(() => {
+            router.back();
+          }, 300);
+        },
+      });
     } else {
       router.back();
     }

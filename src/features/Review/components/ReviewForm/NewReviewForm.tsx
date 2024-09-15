@@ -3,8 +3,6 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useSplash } from '@/hooks/popup/useSplash';
 import { useStackMotionActions } from '@/store/stackMotionStore';
 import { splash } from '@/data/ui/splash';
-import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
-import { sheetData } from '@/data/ui/bottomSheet';
 import Splash from '@/components/Splash/Splash';
 import ReviewForm from './ReviewForm';
 import { ReviewForm as ReviewFormType } from '../../types/review';
@@ -57,7 +55,6 @@ function NewReviewForm({ isbn }: Props) {
         onSubmit={handleSubmit(handleAddReview)}
       >
         <ReviewForm type='new' isDisabled={isDisabled} />
-        <ConfirmLeaveSheet sheetData={sheetData.leave_while_write} />
       </form>
       {isOpen && <Splash type='review' bookId={isbn} />}
     </FormProvider>

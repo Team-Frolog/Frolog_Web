@@ -1,8 +1,6 @@
 'use client';
 
 import TitleHeader from '@/components/Header/TitleHeader';
-import ConfirmLeaveSheet from '@/components/PopUp/ConfirmLeaveSheet';
-import { sheetData } from '@/data/ui/bottomSheet';
 import {
   useReviewDetail,
   ReviewDetail,
@@ -70,10 +68,7 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
         />
         <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>
           {isEditing ? (
-            <>
-              <ReviewForm type='edit' />
-              <ConfirmLeaveSheet sheetData={sheetData.leave_while_edit} />
-            </>
+            <ReviewForm type='edit' />
           ) : (
             <ReviewDetail reviewDetail={reviewDetail} />
           )}

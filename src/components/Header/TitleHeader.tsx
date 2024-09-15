@@ -3,11 +3,12 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { usePopUpActions } from '@/store/popUpStore';
-import { ON_LEAVE_ROUTE } from '@/constants/storage';
 import BackButton from '../Button/BackButton';
+import bottomSheet from '@/modules/BottomSheet';
+import { sheetData } from '@/data/ui/bottomSheet';
 
 interface Props {
-  type: 'default' | 'edit' | 'no_border';
+  type: 'default' | 'edit' | 'write' | 'no_border';
   hasButton?: boolean;
   isDisabled?: boolean;
   title: string;
@@ -31,9 +32,18 @@ function TitleHeader({
   const { changePopUpState } = usePopUpActions();
 
   const handleClick = () => {
-    if (type === 'edit') {
-      sessionStorage.setItem(ON_LEAVE_ROUTE, 'back');
-      changePopUpState('isOpenAlertSheet', true);
+    if (type === 'edit' || type === 'write') {
+      bottomSheet.open({
+        sheetData:
+          type === 'edit'
+            ? sheetData.leave_while_edit
+            : sheetData.leave_while_write,
+        onClick: () => {
+          setTimeout(() => {
+            router.back();
+          }, 300);
+        },
+      });
     } else {
       router.back();
     }
@@ -58,7 +68,7 @@ function TitleHeader({
         <button
           type={type === 'default' ? 'button' : 'submit'}
           onClick={type === 'default' ? onClick : undefined}
-          className={`text-body-lg-bold text-main ${type === 'edit' && isDisabled && 'pointer-events-none opacity-50'}`}
+          className={`text-body-lg-bold text-main ${(type === 'edit' || type === 'write') && isDisabled && 'pointer-events-none opacity-50'}`}
         >
           {type === 'default' ? '수정' : '저장'}
         </button>

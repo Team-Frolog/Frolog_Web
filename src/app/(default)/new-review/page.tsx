@@ -1,25 +1,35 @@
 'use client';
 
 import BookInfo from '@/components/Book/BookInfo';
+import { sheetData } from '@/data/ui/bottomSheet';
 import { NewReviewForm } from '@/features/Review';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import MainLayout from '@/layouts/MainLayout';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
-import { usePopUpActions } from '@/store/popUpStore';
-import { useSearchParams } from 'next/navigation';
+import bottomSheet from '@/modules/BottomSheet';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 
 function NewReviewPage() {
+  const router = useRouter();
   useScroll({ categoryColor: undefined });
   const bookId = useSearchParams().get('id');
-  const { changePopUpState } = usePopUpActions();
 
   if (!bookId) return null;
 
   return (
     <>
       <ResponsiveHeaderLayout
-        onClick={() => changePopUpState('isOpenAlertSheet', true)}
+        onClick={() => {
+          bottomSheet.open({
+            sheetData: sheetData.leave_while_write,
+            onClick: () => {
+              setTimeout(() => {
+                router.back();
+              }, 300);
+            },
+          });
+        }}
       >
         <></>
       </ResponsiveHeaderLayout>
