@@ -2,7 +2,7 @@
 
 import BackDrop from '@/layouts/BackDrop';
 import Portal from '@/layouts/Portal';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
 import { usePopUpActions } from '@/store/popUpStore';
@@ -11,6 +11,7 @@ import AlertBottomSheet from '@/layouts/AlertBottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import RegisterForm, { RegisterFormType } from './RegisterForm';
 import { requestBook } from '../../api/register.api';
+import bottomSheet from '@/modules/BottomSheet';
 
 function BookRegisterSheet() {
   const { changePopUpState } = usePopUpActions();
@@ -32,14 +33,16 @@ function BookRegisterSheet() {
     });
   };
 
+  useEffect(() => {
+    if (isRegistered) {
+      bottomSheet.open({
+        sheetData: sheetData.done_register,
+      });
+    }
+  }, [isRegistered]);
+
   return (
     <>
-      {isRegistered && (
-        <AlertBottomSheet sheetData={sheetData.done_register}>
-          <p>{sheetData.done_register.description!()}</p>
-        </AlertBottomSheet>
-      )}
-
       {isRegistered === false && (
         <Portal>
           <BackDrop align='end'>

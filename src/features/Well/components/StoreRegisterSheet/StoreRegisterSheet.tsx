@@ -2,7 +2,7 @@
 
 import BackDrop from '@/layouts/BackDrop';
 import Portal from '@/layouts/Portal';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
 import { usePopUpActions } from '@/store/popUpStore';
@@ -10,6 +10,7 @@ import SheetHeader from 'public/images/frog/sheet/sheet-header.svg';
 import AlertBottomSheet from '@/layouts/AlertBottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import Button from '@/components/Button/Button';
+import bottomSheet from '@/modules/BottomSheet';
 
 function StoreRegisterSheet() {
   const { changePopUpState } = usePopUpActions();
@@ -22,14 +23,16 @@ function StoreRegisterSheet() {
     setIsRegistered(true);
   };
 
+  useEffect(() => {
+    if (isRegistered) {
+      bottomSheet.open({
+        sheetData: sheetData.done_store_register,
+      });
+    }
+  }, [isRegistered]);
+
   return (
     <>
-      {isRegistered && (
-        <AlertBottomSheet sheetData={sheetData.done_store_register}>
-          <p>{sheetData.done_store_register.description!()}</p>
-        </AlertBottomSheet>
-      )}
-
       {isRegistered === false && (
         <Portal>
           <BackDrop align='end'>
