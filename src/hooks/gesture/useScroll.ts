@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { throttle } from 'lodash';
 import { resetHeaderStyles, setHeaderStyle } from '@/utils/setHeaderStyle';
 
@@ -17,24 +17,29 @@ export const useScroll = ({
   const [isTargetElementAvailable, setIsTargetElementAvailable] =
     useState(false);
 
-  const darkmode = () => {
+  const darkmode = useCallback(() => {
     setHeaderStyle('#0E0E0E', '#B3B6C5', '#FFFFFF', '#B3B6C5');
-  };
+  }, []);
 
-  const lightmode = () => {
+  const lightmode = useCallback(() => {
     setHeaderStyle('#FFFFFF', '#727484', '#313239', '#B3B6C5');
-  };
+  }, []);
 
-  const category = () => {
-    setHeaderStyle(categoryColor!, foreground, foreground, unSelected);
-  };
-
-  const updateScroll = throttle(() => {
-    const mainElement = document.getElementById('main');
-    if (mainElement) {
-      setScrollY(mainElement.scrollTop || 0);
+  const category = useCallback(() => {
+    if (categoryColor) {
+      setHeaderStyle(categoryColor, foreground, foreground, unSelected);
     }
-  }, 100);
+  }, [categoryColor, foreground, unSelected]);
+
+  const updateScroll = useCallback(
+    throttle(() => {
+      const mainElement = document.getElementById('main');
+      if (mainElement) {
+        setScrollY(mainElement.scrollTop || 0);
+      }
+    }, 100),
+    []
+  );
 
   useEffect(() => {
     const mainElement = document.getElementById('main');
@@ -60,7 +65,7 @@ export const useScroll = ({
     } else if (categoryColor) {
       category();
     }
-  }, [scrollY, categoryColor, foreground, unSelected]);
+  }, [scrollY, categoryColor, darkmode, lightmode, category]);
 
   useEffect(() => {
     const isMobileSafari = /iPhone.*Safari/i.test(window.navigator.userAgent);
@@ -101,16 +106,17 @@ export const useScroll = ({
     return () => {
       if (isMobileSafari) {
         window.removeEventListener('scroll', updateScroll);
-      } else if (targetElement) {
+      }
+      if (targetElement) {
         observer.unobserve(targetElement);
       }
       resetHeaderStyles();
     };
-  }, [updateScroll, categoryColor]);
+  }, [updateScroll, categoryColor, darkmode, lightmode, category]);
 
   useEffect(() => {
     if (!isTargetElementAvailable) {
       darkmode();
     }
-  }, [isTargetElementAvailable]);
+  }, [isTargetElementAvailable, darkmode]);
 };
