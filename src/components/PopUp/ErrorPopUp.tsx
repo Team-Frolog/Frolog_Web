@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ErrorIcon } from 'public/icons';
+import { ToastErrorIcon } from 'public/icons';
 
 interface Props {
   errorMsg: string;
@@ -25,7 +25,7 @@ function ErrorPopUp({ errorMsg }: Props) {
       }}
       transition={{ duration: 0.2 }}
     >
-      <ErrorIcon />
+      <ToastErrorIcon />
       <span className='text-body-md text-white'>{errorMsg}</span>
     </motion.div>
   );
