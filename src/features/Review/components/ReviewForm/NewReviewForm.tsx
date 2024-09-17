@@ -4,6 +4,8 @@ import { useSplash } from '@/hooks/popup/useSplash';
 import { useStackMotionActions } from '@/store/stackMotionStore';
 import { splash } from '@/data/ui/splash';
 import Splash from '@/components/Splash/Splash';
+import { useMutation } from '@tanstack/react-query';
+import { useSession } from 'next-auth/react';
 import ReviewForm from './ReviewForm';
 import { ReviewForm as ReviewFormType } from '../../types/review';
 import { addNewReview } from '../../api/review.api';
@@ -13,6 +15,7 @@ interface Props {
 }
 
 function NewReviewForm({ isbn }: Props) {
+  const { data: session } = useSession();
   const { isOpen, setIsOpen } = useSplash(splash.review.route);
   const { setNewReviewId } = useStackMotionActions();
   const methods = useForm<ReviewFormType>({
@@ -39,20 +42,32 @@ function NewReviewForm({ isbn }: Props) {
     !watch('cons').length ||
     !isValid;
 
-  const handleAddReview = async (data: ReviewFormType) => {
-    const postResult = await addNewReview(data, isbn);
+  const { mutate: handleAddReview } = useMutation({
+    mutationFn: (data: ReviewFormType) => {
+      const reqData = {
+        writer: session!.user.id,
+        isbn,
+        tags_pos: data.pros,
+        tags_neg: data.cons,
+        title: data.oneLiner,
+        content: data.review,
+        rating: data.rating!,
+      };
 
-    if (postResult?.result) {
-      setNewReviewId(postResult!.id!);
+      const result = addNewReview(reqData);
+      return result;
+    },
+    onSuccess: (result) => {
+      setNewReviewId(result.id!);
       setIsOpen(true);
-    }
-  };
+    },
+  });
 
   return (
     <FormProvider {...methods}>
       <form
         className='flex-1 bg-white pt-0'
-        onSubmit={handleSubmit(handleAddReview)}
+        onSubmit={handleSubmit((data) => handleAddReview(data))}
       >
         <ReviewForm type='new' isDisabled={isDisabled} />
       </form>

@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import isEqual from 'lodash/isEqual';
 import { useRouter } from 'next/navigation';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { UseFormReset } from 'react-hook-form';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
@@ -14,7 +14,8 @@ import { getBookInfo } from '../api/getBookInfo.api';
 export const useReviewDetail = (
   bookId: string,
   reviewId: string,
-  reset: UseFormReset<ReviewForm>
+  reset: UseFormReset<ReviewForm>,
+  pathname: string
 ) => {
   const router = useRouter();
 
@@ -29,14 +30,24 @@ export const useReviewDetail = (
     refetchOnWindowFocus: false,
   });
 
-  const handleEditReview = async (formData: ReviewForm, pathname: string) => {
-    const result = await editReview(reviewId, formData);
-
-    if (result) {
+  const { mutate: handleEditReview } = useMutation({
+    mutationFn: (formData: ReviewForm) => {
+      const reqData = {
+        id: reviewId,
+        tags_pos: formData.pros,
+        tags_neg: formData.cons,
+        title: formData.oneLiner,
+        content: formData.review,
+        rating: formData.rating!,
+      };
+      const result = editReview(reqData);
+      return result;
+    },
+    onSuccess: () => {
       refetch();
       router.replace(pathname);
-    }
-  };
+    },
+  });
 
   useEffect(() => {
     if (data) {

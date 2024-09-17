@@ -42,7 +42,7 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
   } = methods;
 
   const { bookTitle, reviewDetail, handleEditReview, handleClickBack } =
-    useReviewDetail(id, reviewId, reset);
+    useReviewDetail(id, reviewId, reset, pathname);
 
   const isDisabled =
     !watch('rating') ||
@@ -55,7 +55,7 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={handleSubmit((data) => handleEditReview(data, pathname))}
+        onSubmit={handleSubmit((data) => handleEditReview(data))}
         className='flex h-dvh w-full flex-1 flex-col bg-white'
       >
         <TitleHeader
