@@ -2,43 +2,20 @@
 
 import BackDrop from '@/layouts/BackDrop';
 import Portal from '@/layouts/Portal';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
 import { usePopUpActions } from '@/store/popUpStore';
 import SheetHeader from 'public/images/frog/sheet/sheet-header.svg';
-import { bottomSheet } from '@/modules/BottomSheet';
-import { sheetData } from '@/data/ui/bottomSheet';
-import RegisterForm, { RegisterFormType } from './RegisterForm';
-import { requestBook } from '../../api/register.api';
+import RegisterForm from './RegisterForm';
+import { useBookRegister } from '../../hooks/useBookRegister';
 
 function BookRegisterSheet() {
+  const { isRegistered, handleRegister } = useBookRegister();
   const { changePopUpState } = usePopUpActions();
-  const [isRegistered, setIsRegistered] = useState<boolean | null>(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useClickOutside(ref, () => changePopUpState('isOpenAlertSheet', false));
-
-  const handleRegister = (data: RegisterFormType) => {
-    requestBook(data).then((res) => {
-      if (res?.result) {
-        setIsRegistered(null);
-        setTimeout(() => {
-          setIsRegistered(true);
-        }, 500);
-      } else {
-        window.alert('다시 시도해주세요.');
-      }
-    });
-  };
-
-  useEffect(() => {
-    if (isRegistered) {
-      bottomSheet.open({
-        sheetData: sheetData.done_register,
-      });
-    }
-  }, [isRegistered]);
 
   return (
     <>
