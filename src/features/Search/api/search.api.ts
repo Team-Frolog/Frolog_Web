@@ -25,7 +25,6 @@ export const searchBook = async ({
     });
     return result;
   } catch (err) {
-    console.log(err);
     window.alert(ERROR_ALERT);
     return {
       books: [],

@@ -1,12 +1,13 @@
 'use client';
 
-import { POST_ERROR } from '@/constants/message';
 import { PAGES } from '@/constants/page';
 import { TEST_ANSWER_KEY } from '@/constants/storage';
 import { useStepActions, useTestStep } from '@/store/stepStore';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { EditProfileReq } from '@frolog/frolog-api';
 import { testEvaluator } from '../utils/testEvaluator';
 import { Question, questions } from '../data/test';
 import { editTestType } from '../api/test.api';
@@ -37,6 +38,10 @@ export const useTest = () => {
     }, 500);
   };
 
+  const { mutate: editTestTypeOfUser } = useMutation({
+    mutationFn: (reqData: EditProfileReq) => editTestType(reqData),
+  });
+
   const postTestResult = async (type: string) => {
     const session = await getSession();
     if (session) {
@@ -44,11 +49,7 @@ export const useTest = () => {
         id: session?.user.id,
         reading_preference: type,
       };
-      const result = await editTestType(reqData);
-
-      if (!result) {
-        window.alert(POST_ERROR);
-      }
+      editTestTypeOfUser(reqData);
     }
   };
 
