@@ -12,6 +12,7 @@ class Toast {
   private toastRoot: HTMLElement | null = null;
   private root: any = null;
   private toast: ToastProps | null = null;
+  private isDisplaying: boolean = false;
 
   private initialize() {
     if (!this.toastRoot) {
@@ -33,8 +34,11 @@ class Toast {
       this.toast = null;
     } else {
       this.toast = { type, text: message! };
+      this.isDisplaying = true;
+
       setTimeout(() => {
         this.toast = null;
+        this.isDisplaying = false;
         this.render();
       }, 3000);
     }
@@ -43,12 +47,16 @@ class Toast {
 
   normal(message: string) {
     this.initialize();
-    this.setToast('normal', message);
+    if (!this.isDisplaying) {
+      this.setToast('normal', message);
+    }
   }
 
   error(message: string) {
     this.initialize();
-    this.setToast('error', message);
+    if (!this.isDisplaying) {
+      this.setToast('error', message);
+    }
   }
 }
 
