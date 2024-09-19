@@ -11,11 +11,11 @@ import BookInfoSkeleton from '@/components/Fallback/Skeleton/BookInfoSkeleton';
 interface Props {
   children: React.ReactNode;
   params: {
-    id: string;
+    bookId: string;
   };
 }
 
-function ReviewMemoLayout({ children, params: { id } }: Props) {
+function ReviewMemoLayout({ children, params: { bookId } }: Props) {
   useScroll({
     categoryColor: CATEGORY.novel.bg,
     foreground: CATEGORY.novel.text,
@@ -23,10 +23,10 @@ function ReviewMemoLayout({ children, params: { id } }: Props) {
   });
   return (
     <>
-      <TapHeader bookId={id} />
+      <TapHeader />
       <MainLayout>
         <Suspense fallback={<BookInfoSkeleton />}>
-          <BookInfo bookId={id} />
+          <BookInfo bookId={bookId} />
         </Suspense>
 
         <div className='flex-child-layout tooltip-after relative flex-1 rounded-t-[20px] bg-category-bg-novel after:-top-[10px] after:border-[16px] after:border-category-bg-novel'>

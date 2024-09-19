@@ -2,12 +2,18 @@ import { WellBookList, WellHeader, WellTitle } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
 import React from 'react';
 
-function UserWellDetailPage() {
+interface Props {
+  params: {
+    userId: string;
+  };
+}
+
+function UserWellDetailPage({ params: { userId } }: Props) {
   return (
     <MainLayout>
       <WellHeader />
       <WellTitle />
-      <WellBookList />
+      <WellBookList userId={userId} />
     </MainLayout>
   );
 }

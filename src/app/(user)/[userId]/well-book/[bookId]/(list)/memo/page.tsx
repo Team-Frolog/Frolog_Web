@@ -14,18 +14,18 @@ const MemoList = dynamic(
 
 interface Props {
   params: {
-    id: string;
+    bookId: string;
   };
 }
 
-function MemoPage({ params: { id } }: Props) {
+function MemoPage({ params: { bookId } }: Props) {
   return (
     <>
       <div className='add-button-wrapper'>
-        <AddButton route={`/new-memo?id=${id}`} text='메모 추가하기' />
+        <AddButton route={`/new-memo?id=${bookId}`} text='메모 추가하기' />
       </div>
       <ErrorBoundary fallback={<></>}>
-        <MemoList bookId={id} />
+        <MemoList bookId={bookId} />
       </ErrorBoundary>
     </>
   );

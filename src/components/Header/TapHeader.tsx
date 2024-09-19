@@ -2,10 +2,9 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
-import { PAGES } from '@/constants/page';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
 
-function TapHeader({ bookId }: { bookId: string }) {
+function TapHeader() {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -13,7 +12,9 @@ function TapHeader({ bookId }: { bookId: string }) {
     if (route === 'back') {
       router.back();
     } else {
-      router.replace(`${PAGES.WELL_BOOK}/${bookId}/${route}`);
+      router.replace(
+        `${pathname.replace(/memo|review/, route === 'memo' ? 'memo' : 'review')}`
+      );
     }
   };
 

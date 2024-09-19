@@ -8,7 +8,11 @@ import ScrollToTop from '@/components/Button/ScrollToTop';
 import WellBook from './WellBook';
 import FrogOnBook from '../FrogOnBook';
 
-function WellBookList() {
+interface Props {
+  userId?: string;
+}
+
+function WellBookList({ userId }: Props) {
   const hasNewReview = useNewReviewId();
   return (
     <motion.div
@@ -19,7 +23,7 @@ function WellBookList() {
     >
       <div className='h-[12px] w-full shrink-0 rounded-t-[20px] bg-gray-900' />
       {hasNewReview && <WellBook />}
-      <WellBook />
+      <WellBook userId={userId} />
       <FrogOnBook />
       <ScrollToTop />
     </motion.div>

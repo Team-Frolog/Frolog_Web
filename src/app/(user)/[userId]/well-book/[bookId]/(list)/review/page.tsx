@@ -15,18 +15,18 @@ const ReviewList = dynamic(
 
 interface Props {
   params: {
-    id: string;
+    bookId: string;
   };
 }
 
-function ReviewPage({ params: { id } }: Props) {
+function ReviewPage({ params: { bookId } }: Props) {
   return (
     <>
       <div className='add-button-wrapper'>
-        <AddButton route={`/new-review?id=${id}`} text='리뷰 추가하기' />
+        <AddButton route={`/new-review?id=${bookId}`} text='리뷰 추가하기' />
       </div>
       <Suspense fallback={<ReviewListSkeleton />}>
-        <ReviewList bookId={id} />
+        <ReviewList bookId={bookId} />
       </Suspense>
     </>
   );

@@ -13,12 +13,12 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 interface Props {
   params: {
-    id: string;
+    bookId: string;
     reviewId: string;
   };
 }
 
-function WellBookReviewPage({ params: { id, reviewId } }: Props) {
+function WellBookReviewPage({ params: { bookId, reviewId } }: Props) {
   const isEditing = !!useSearchParams().get('edit');
   const router = useRouter();
   const pathname = usePathname();
@@ -42,7 +42,7 @@ function WellBookReviewPage({ params: { id, reviewId } }: Props) {
   } = methods;
 
   const { bookTitle, reviewDetail, handleEditReview, handleClickBack } =
-    useReviewDetail(id, reviewId, reset, pathname);
+    useReviewDetail(bookId, reviewId, reset, pathname);
 
   const isDisabled =
     !watch('rating') ||
