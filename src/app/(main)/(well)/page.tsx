@@ -14,7 +14,7 @@ function WellPage() {
 
   return (
     <>
-      <MainLayout>
+      <MainLayout extraClass={`bg-[url('/well-bg.svg')] bg-gray-300`}>
         <WellHeader hasEditButton />
         <WellTitle>
           <div className='flex-col-center gap-[4px]'>
