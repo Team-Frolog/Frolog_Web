@@ -2,7 +2,7 @@
 
 @layer components {
   .button-common {
-    @apply text-body-lg-bold relative z-10 box-border w-full rounded-[30px] px-[30px] py-[18px] transition-all;
+    @apply relative z-10 box-border w-full rounded-[30px] px-[30px] py-[18px] text-body-lg-bold transition-all;
   }
   .button-main {
     @apply button-common bg-main text-white;
@@ -20,6 +20,6 @@
     @apply button-common bg-error text-white;
   }
   .add-button-wrapper {
-    @apply w-full px-[24px] py-[20px];
+    @apply w-full px-page pb-[24px];
   }
 }

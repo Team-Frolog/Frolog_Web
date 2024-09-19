@@ -7,23 +7,37 @@ import TagSlider from '@/components/Tag/TagSlider';
 import { GetReviewRes } from '@frolog/frolog-api';
 import { formatDate } from '@/utils/format';
 import DeleteButton from '@/components/ListItem/DeleteButton';
+import { useSession } from 'next-auth/react';
 
 interface Props {
   index: number;
   reviewData: GetReviewRes;
   setReviewId: React.Dispatch<React.SetStateAction<string>>;
   onDelete: () => void;
+  userId: string;
 }
 
-function ReviewListItem({ reviewData, index, setReviewId, onDelete }: Props) {
+function ReviewListItem({
+  reviewData,
+  index,
+  setReviewId,
+  onDelete,
+  userId,
+}: Props) {
   const router = useRouter();
+  const { data: session } = useSession();
+  const isRootUser = userId === session?.user.id;
 
   return (
-    <div className='review-item px-0 pb-0'>
+    <div className={`review-item px-0 ${isRootUser && 'pb-0'}`}>
       <div className='flex w-full flex-col gap-[12px]'>
         <div
           onClick={() =>
-            router.push(`/well-book/9791193154250/review/${reviewData.id}`)
+            router.push(
+              isRootUser
+                ? `/${userId}/well-book/9791193154250/review/${reviewData.id}`
+                : `/review/${reviewData.id}`
+            )
           }
           className='flex w-full cursor-pointer flex-col gap-[12px] px-[24px]'
         >
@@ -45,12 +59,14 @@ function ReviewListItem({ reviewData, index, setReviewId, onDelete }: Props) {
         {formatDate(reviewData.date)}{' '}
         {reviewData.date !== reviewData.edit && '(수정됨)'}
       </span>
-      <DeleteButton
-        type='review'
-        buttonText='리뷰 삭제'
-        onDelete={onDelete}
-        onClick={() => setReviewId(reviewData.id)}
-      />
+      {isRootUser && (
+        <DeleteButton
+          type='review'
+          buttonText='리뷰 삭제'
+          onDelete={onDelete}
+          onClick={() => setReviewId(reviewData.id)}
+        />
+      )}
     </div>
   );
 }

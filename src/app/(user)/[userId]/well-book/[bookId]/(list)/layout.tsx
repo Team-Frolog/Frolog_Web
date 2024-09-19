@@ -29,7 +29,7 @@ function ReviewMemoLayout({ children, params: { bookId } }: Props) {
           <BookInfo bookId={bookId} />
         </Suspense>
 
-        <div className='flex-child-layout tooltip-after relative flex-1 rounded-t-[20px] bg-category-bg-novel after:-top-[10px] after:border-[16px] after:border-category-bg-novel'>
+        <div className='flex-child-layout tooltip-after relative flex-1 rounded-t-[20px] bg-category-bg-novel pt-[24px] after:-top-[10px] after:z-0 after:border-[16px] after:border-category-bg-novel'>
           {children}
         </div>
       </MainLayout>

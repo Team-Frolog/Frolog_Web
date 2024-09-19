@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useSession } from 'next-auth/react';
 import uniqueId from 'lodash/uniqueId';
 import DeleteButton from '@/components/ListItem/DeleteButton';
 import { useRouter } from 'next/navigation';
@@ -13,17 +14,24 @@ interface Props {
   memoData: Memo;
   setMemoId: () => void;
   onDelete: () => void;
+  userId: string;
 }
 
-function MemoListItem({ memoData, setMemoId, onDelete }: Props) {
+function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
   const router = useRouter();
+  const { data: session } = useSession();
+  const isRootUser = userId === session?.user.id;
 
   return (
     <div className='review-item px-0 pb-0'>
       <div
         className='flex w-full flex-col gap-[20px]'
         onClick={() =>
-          router.push(`/well-book/${memoData.isbn}/memo/${memoData.id}`)
+          router.push(
+            isRootUser
+              ? `/${userId}/well-book/${memoData.isbn}/memo/${memoData.id}`
+              : `/review/${memoData.id}`
+          )
         }
       >
         {memoData.images.length !== 0 && (
@@ -54,12 +62,14 @@ function MemoListItem({ memoData, setMemoId, onDelete }: Props) {
           </div>
         </div>
       </div>
-      <DeleteButton
-        type='memo'
-        buttonText='메모 삭제'
-        onDelete={onDelete}
-        onClick={setMemoId}
-      />
+      {isRootUser && (
+        <DeleteButton
+          type='memo'
+          buttonText='메모 삭제'
+          onDelete={onDelete}
+          onClick={setMemoId}
+        />
+      )}
     </div>
   );
 }

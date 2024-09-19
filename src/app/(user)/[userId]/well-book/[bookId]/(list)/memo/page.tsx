@@ -3,6 +3,8 @@ import AddButton from '@/components/Button/AddButton';
 import MemoListSkeleton from '@/components/Fallback/Skeleton/MemoListSkeleton';
 import React from 'react';
 import dynamic from 'next/dynamic';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/utils/auth/auth';
 
 const MemoList = dynamic(
   () => import('@/features/Memo/components/MemoList/MemoList'),
@@ -14,18 +16,23 @@ const MemoList = dynamic(
 
 interface Props {
   params: {
+    userId: string;
     bookId: string;
   };
 }
 
-function MemoPage({ params: { bookId } }: Props) {
+async function MemoPage({ params: { userId, bookId } }: Props) {
+  const session = await getServerSession(authOptions);
+
   return (
     <>
-      <div className='add-button-wrapper'>
-        <AddButton route={`/new-memo?id=${bookId}`} text='메모 추가하기' />
-      </div>
+      {userId === session?.user.id && (
+        <div className='add-button-wrapper'>
+          <AddButton route={`/new-memo?id=${bookId}`} text='메모 추가하기' />
+        </div>
+      )}
       <ErrorBoundary fallback={<></>}>
-        <MemoList bookId={bookId} />
+        <MemoList bookId={bookId} userId={userId} />
       </ErrorBoundary>
     </>
   );

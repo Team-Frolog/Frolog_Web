@@ -2,7 +2,7 @@ import React from 'react';
 
 function ReviewListSkeleton() {
   return (
-    <div className='review-item px-0 pb-0'>
+    <div className='review-item z-10 px-0 pb-0'>
       <div className='skeleton-animation flex w-full flex-col gap-[12px] px-[24px]'>
         <div className='flex w-full cursor-pointer flex-col gap-[12px]'>
           <div>
