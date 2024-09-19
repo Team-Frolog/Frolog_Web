@@ -2,7 +2,7 @@ import { SideWellHeader, WellList } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
 import React from 'react';
 
-function WellPage() {
+function WellListPage() {
   return (
     <>
       <MainLayout>
@@ -13,4 +13,4 @@ function WellPage() {
   );
 }
 
-export default WellPage;
+export default WellListPage;
