@@ -136,4 +136,12 @@ export const sheetData: {
     stateType: 'isOpenAlertSheet',
     description: () => <>댓글을 신고하면 다시 되돌릴 수 없어요</>,
   },
+  logout: {
+    getTitle: () => <>로그아웃 하나요?</>,
+    type: 'error',
+    buttonText: '로그아웃 하기',
+    extraButtonText: '취소',
+    stateType: 'isOpenAlertSheet',
+    description: () => <>잠시만 안녕.. 그치만 곧 다시 돌아올거죠?</>,
+  },
 };
