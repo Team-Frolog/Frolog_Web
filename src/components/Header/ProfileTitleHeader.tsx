@@ -8,7 +8,7 @@ function ProfileTitleHeader() {
   const pathname = usePathname();
 
   return (
-    <div className='block w-full gap-[12px] px-page pb-0 pt-[50px]'>
+    <div className='block w-full gap-[12px] px-page pb-[20px] pt-[50px]'>
       <button type='button' className='cursor-pointer' onClick={() => {}}>
         <BackIcon fill='#727384' />
       </button>

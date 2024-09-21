@@ -7,9 +7,10 @@ import { CircleCheckIcon, CircleUncheckIcon } from 'public/icons';
 
 interface Props extends HTMLMotionProps<'button'> {
   isChecked: boolean;
+  theme?: 'dark' | 'light';
 }
 
-function CheckButton({ isChecked, ...props }: Props) {
+function CheckButton({ isChecked, theme = 'dark', ...props }: Props) {
   return (
     <motion.button
       variants={tapVariants}
@@ -18,7 +19,11 @@ function CheckButton({ isChecked, ...props }: Props) {
       className='h-[24px] w-[24px]'
       {...props}
     >
-      {isChecked ? <CircleCheckIcon /> : <CircleUncheckIcon />}
+      {isChecked ? (
+        <CircleCheckIcon />
+      ) : (
+        <CircleUncheckIcon fill={theme === 'dark' ? '#727484' : '#E0E1E9'} />
+      )}
     </motion.button>
   );
 }
