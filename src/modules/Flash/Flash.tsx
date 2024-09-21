@@ -16,12 +16,13 @@ function Flash({ flash }: Props) {
     <div className='fixed inset-x-0 left-0 top-0 z-100 mx-auto flex h-dvh w-[450px] flex-col items-center justify-between overflow-hidden overscroll-none bg-white mobile:left-0 mobile:w-full'>
       <div className='absolute z-0 flex h-fit w-full flex-1 flex-col items-center bg-gray-900 pt-[30px]'>
         <Image
-          src='/icons/light/light.svg'
+          src='/images/flash/light.svg'
           alt='light'
-          width={30}
-          height={30}
+          width={481}
+          height={476}
           className='z-0 w-full'
           loading='eager'
+          priority
         />
         <div className='w-full flex-1 bg-white' />
       </div>
@@ -40,6 +41,7 @@ function Flash({ flash }: Props) {
             height={257}
             className='h-full max-h-[257px] w-full mobile:w-[90%]'
             loading='eager'
+            priority
           />
         </div>
         {flash.flashType === 'review' && (
@@ -56,7 +58,14 @@ function Flash({ flash }: Props) {
             </span>
           </div>
         )}
-        {ground()}
+        <Image
+          src={ground}
+          alt='ground'
+          width={390}
+          height={182}
+          className='w-full'
+          priority
+        />
       </div>
       <PopperAnimation />
     </div>

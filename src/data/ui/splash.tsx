@@ -1,12 +1,11 @@
 import { IMAGES } from '@/constants/images';
-import { Ground, GroundSmall } from 'public/images';
 
 export type SplashKeys = 'review';
 
 interface Splash {
   getTitle: () => JSX.Element;
   frog: string;
-  ground: () => JSX.Element;
+  ground: string;
   hasPopper: boolean;
 }
 
@@ -24,7 +23,7 @@ export const splash: {
       </>
     ),
     frog: IMAGES.frog.review_done,
-    ground: () => <GroundSmall className='w-full' />,
+    ground: IMAGES.ground_sm,
     hasPopper: true,
   },
   well: {
@@ -38,7 +37,7 @@ export const splash: {
       </>
     ),
     frog: IMAGES.frog.review_done,
-    ground: () => <Ground className='w-full' />,
+    ground: IMAGES.ground,
     hasPopper: true,
   },
 };

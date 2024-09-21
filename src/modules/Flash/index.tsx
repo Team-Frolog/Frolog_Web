@@ -44,9 +44,11 @@ class Flash {
       this.flash = props;
 
       setTimeout(() => {
-        this.flash = null;
         window.location.replace(props.callbackUrl);
-        this.render();
+        setTimeout(() => {
+          this.flash = null;
+          this.render();
+        }, 500);
       }, 2500);
     }
     this.render();
