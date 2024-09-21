@@ -26,8 +26,12 @@ class Flash {
   private render() {
     if (this.root) {
       if (this.flash) {
+        document.body.style.overflow = 'hidden';
+        document.body.style.pointerEvents = 'none';
         this.root.render(<FlashPage flash={this.flash} />);
       } else {
+        document.body.style.overflow = 'auto';
+        document.body.style.pointerEvents = 'auto';
         this.root.render(null);
       }
     }
@@ -43,7 +47,7 @@ class Flash {
         this.flash = null;
         window.location.replace(props.callbackUrl);
         this.render();
-      }, 3000);
+      }, 2500);
     }
     this.render();
   }

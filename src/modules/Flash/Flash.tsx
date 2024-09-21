@@ -42,18 +42,20 @@ function Flash({ flash }: Props) {
             loading='eager'
           />
         </div>
-        <div
-          className={`relative flex h-[50px] w-[80%] items-center justify-center rounded-[3px] bg-category-bg-${'novel'}`}
-        >
+        {flash.flashType === 'review' && (
           <div
-            className={`absolute left-[24px] top-0 h-full w-[12px] bg-category-band-${'novel'}`}
-          />
-          <span
-            className={`w-[75%] truncate text-center text-body-sm-bold text-category-text-${'novel'}`}
+            className={`relative flex h-[50px] w-[80%] items-center justify-center rounded-[3px] bg-category-bg-${'novel'}`}
           >
-            {flash.bookTitle}
-          </span>
-        </div>
+            <div
+              className={`absolute left-[24px] top-0 h-full w-[12px] bg-category-band-${'novel'}`}
+            />
+            <span
+              className={`w-[75%] truncate text-center text-body-sm-bold text-category-text-${'novel'}`}
+            >
+              {flash.bookTitle}
+            </span>
+          </div>
+        )}
         {ground()}
       </div>
       <PopperAnimation />
