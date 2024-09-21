@@ -3,7 +3,7 @@ import React from 'react';
 
 function QuitPage() {
   return (
-    <div className='flex w-full px-page py-[12px]'>
+    <div className='flex w-full flex-1 px-page pb-[30px] pt-[12px]'>
       <QuitForm />
     </div>
   );

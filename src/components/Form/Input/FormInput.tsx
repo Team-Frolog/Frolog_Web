@@ -11,7 +11,8 @@ type FieldName =
   | 'title'
   | 'author'
   | 'wellName'
-  | 'intro';
+  | 'intro'
+  | 'description';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   type: 'text' | 'email' | 'password';
