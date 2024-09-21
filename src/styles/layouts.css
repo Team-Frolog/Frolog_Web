@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .form-layout {
+    @apply flex w-full flex-1 flex-col justify-between gap-[24px] overflow-hidden;
+  }
+  .flex-child-layout {
+    @apply flex h-fit w-full flex-col items-center bg-white text-gray-800;
+  }
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .flex-column {
+    @apply flex flex-col;
+  }
+  .flex-col-center {
+    @apply flex flex-col items-center;
+  }
+  .header-sticky {
+    @apply z-60 sticky left-0 top-0 w-full;
+  }
+}

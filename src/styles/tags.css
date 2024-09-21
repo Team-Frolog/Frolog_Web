@@ -1,0 +1,19 @@
+@import 'tailwindcss/components';
+
+@layer components {
+  .pro-tag {
+    @apply border-main bg-main_bg text-main;
+  }
+  .con-tag {
+    @apply border-error bg-error_bg_light text-error;
+  }
+  .tag-size-big {
+    @apply text-body-lg-bold w-fit whitespace-nowrap rounded-[12px] border px-[16px] py-[8px];
+  }
+  .tag-size-small {
+    @apply text-body-sm-bold w-fit whitespace-nowrap rounded-[8px] border-[0.5px] px-[12px] py-[6px];
+  }
+  .default-tag {
+    @apply border-gray-400 bg-white text-gray-600;
+  }
+}

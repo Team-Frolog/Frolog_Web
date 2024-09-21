@@ -1,0 +1,37 @@
+.prose {
+  color: #0e0e0e;
+
+  gap: 0;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  ol {
+    margin: 0;
+    padding: 0 0 0 18px;
+
+    li {
+      margin: 0;
+      padding: 0;
+
+      &::marker {
+        color: #0e0e0e;
+      }
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0 0 0 18px;
+
+    li {
+      margin: 0;
+      padding: 0;
+
+      &::marker {
+        color: #0e0e0e;
+      }
+    }
+  }
+}

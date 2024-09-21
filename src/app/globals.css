@@ -1,11 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('../styles/components.css');
+@import url('../styles/inputs.css');
+@import url('../styles/markdown.css');
+@import url('../styles/tags.css');
+@import url('../styles/layouts.css');
+@import url('../styles/theme.css');
+@import url('../styles/buttons.css');
+@import url('../styles/text.css');
+@import url('../styles/skeleton.css');
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 255, 255, 255;
-}
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -17,7 +22,7 @@
 @layer base {
   * {
     box-sizing: border-box;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
   }
   a {
     text-decoration: none;
@@ -29,26 +34,91 @@
     -o-user-drag: none;
   }
   button {
-    background: none;
-    border: none;
     box-sizing: content-box;
     cursor: pointer;
   }
 }
 
-body {
-  /* basic setting */
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+input {
+  outline: none;
+}
 
-  margin: 0;
+input[type='number'] {
+  -moz-appearance: textfield;
+
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.text-overflow-hidden {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+html {
   width: 100vw;
-  height: fit-content;
-
   display: flex;
   justify-content: center;
-  align-items: center;
+  overscroll-behavior: none;
 
-  overscroll-behavior-y: none;
+  @media screen and (min-width: 430px) {
+    overflow: hidden;
+    background-color: #0e0e0e;
+  }
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100%;
+  position: relative;
+  display: flex;
   overflow: auto;
+
+  /* PC view setting */
+  @media screen and (min-width: 430px) {
+    width: 450px;
+  }
+}
+
+#root {
+  height: 100dvh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* type=date input icon 색상 세팅 */
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(74%) sepia(6%) saturate(146%) hue-rotate(184deg)
+    brightness(94%) contrast(88%);
+  cursor: pointer;
+}
+
+input[type='date']::-moz-calendar-picker-indicator {
+  filter: invert(74%) sepia(6%) saturate(146%) hue-rotate(184deg)
+    brightness(94%) contrast(88%);
+  cursor: pointer;
+}
+
+input[type='date']::-ms-clear {
+  display: none;
+}
+
+input[type='date']::-ms-expand {
+  filter: invert(74%) sepia(6%) saturate(146%) hue-rotate(184deg)
+    brightness(94%) contrast(88%);
+  cursor: pointer;
 }

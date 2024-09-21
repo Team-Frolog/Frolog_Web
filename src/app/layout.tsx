@@ -1,12 +1,15 @@
 import type { Metadata } from 'next';
-import { Noto_Sans_KR } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
+import AuthProvider from '@/providers/AuthProvider';
+import ThemeProvider from '@/providers/ThemeProvider';
+import QueryProvider from '@/providers/QueryProvider';
 
-const notoSansKR = Noto_Sans_KR({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+const pretendard = localFont({
+  src: '../../public/fonts/PretendardVariable.woff2',
   display: 'swap',
-  adjustFontFallback: false,
+  weight: '45 920',
+  variable: '--font-pretendard',
 });
 
 export const metadata: Metadata = {
@@ -14,7 +17,6 @@ export const metadata: Metadata = {
   description: 'Web site created with Next.js.',
   viewport:
     'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
-  themeColor: '#ffffff',
 };
 
 export default function RootLayout({
@@ -24,7 +26,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang='ko'>
-      <body className={notoSansKR.className}>{children}</body>
+      <QueryProvider>
+        <ThemeProvider />
+        <AuthProvider>
+          <body
+            className={`${pretendard.variable} ${pretendard.className} text-gray-800`}
+          >
+            <div id='root'>{children}</div>
+            <div id='portal' />
+            <div id='toast-root' />
+          </body>
+        </AuthProvider>
+      </QueryProvider>
     </html>
   );
 }

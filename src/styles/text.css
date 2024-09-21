@@ -1,0 +1,10 @@
+@import 'tailwindcss/components';
+
+@layer components {
+  .book-info-title {
+    @apply text-body-lg-bold text-gray-800;
+  }
+  .book-info-sub {
+    @apply text-body-lg text-gray-600;
+  }
+}

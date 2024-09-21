@@ -11,18 +11,45 @@
     "node": true,
     "es6": true
   },
-  "ignorePatterns": ["public"], // eslint 미적용될 폴더나 파일
+  "ignorePatterns": [
+    "public",
+    "src/middleware.ts",
+    "src/types",
+    "tailwind.config.ts",
+    "next.config.js"
+  ], // eslint 미적용될 폴더나 파일
   "extends": [
     "next/core-web-vitals",
     "airbnb",
     "airbnb-typescript",
     "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
+    // "plugin:prettier/recommended",
     "prettier"
   ],
   "rules": {
+    "no-var": "warn",
+    "no-alert": "off",
+    "no-plusplus": "off",
+    "no-nested-ternary": "warn",
+    "class-methods-use-this": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "jsx-a11y/no-static-element-interactions": "warn",
+    "no-param-reassign": "off",
+    "jsx-a11y/no-autofocus": "off",
+    "import/prefer-default-export": "off",
+    "react/require-default-props": "off",
+    "consistent-return": "off",
+    "import/no-cycle": "off",
+    "react/jsx-props-no-spreading": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "off",
     "react/react-in-jsx-scope": "off", // React import 불필요
+    "react-hooks/exhaustive-deps": "warn",
     "react/jsx-key": "warn", // 반복문으로 생성하는 요소에 key 강제
     "react/jsx-filename-extension": [
       // 파일 확장자 .jx, .ts, .tsx 허용
@@ -41,17 +68,15 @@
       "warn",
       {
         "selector": "typeAlias", // 타입 선언
-        "format": ["PascalCase"],
-        "prefix": ["T"] // T로 시작
+        "format": ["PascalCase"]
       },
       {
         "selector": "interface", // 인터페이스 선언
-        "format": ["PascalCase"],
-        "prefix": ["I"] // I로 시작
+        "format": ["PascalCase"]
       },
       {
         "selector": "variable",
-        "format": ["camelCase", "UPPER_CASE"]
+        "format": ["camelCase", "UPPER_CASE", "snake_case"]
       },
       {
         "selector": "function", // exported function (컴포넌트 명)
