@@ -43,7 +43,7 @@ function NavigationBar() {
         <span
           className={`text-body-sm-bold ${pathname === '/search-main' ? 'text-gray-800' : 'text-gray-500'}`}
         >
-          책 검색
+          책검색
         </span>
       </MotionLink>
       <MotionLink whileTap={{ scale: 1.2 }} href='/profile' className='navItem'>
@@ -51,7 +51,7 @@ function NavigationBar() {
         <span
           className={`text-body-sm-bold ${pathname === '/profile' ? 'text-gray-800' : 'text-gray-500'}`}
         >
-          내 정보
+          프로필
         </span>
       </MotionLink>
     </div>
