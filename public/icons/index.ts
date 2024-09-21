@@ -5,6 +5,7 @@ export { default as CancelIcon } from './common/x-icon.svg';
 export { default as ExpandIcon } from './common/expand.svg';
 export { default as ToggleIcon } from './common/toggle.svg';
 export { default as ScrollToTopIcon } from './common/scroll-to-top.svg';
+export { default as MenuArrowIcon } from './common/menu-arrow.svg';
 
 // toast
 export { default as ToastErrorIcon } from './toast/toast-error.svg';
