@@ -1,7 +1,8 @@
+import ProfileEditForm from '@/features/Profile/components/Profile/ProfileEditForm';
 import React from 'react';
 
 function ProfileEditPage() {
-  return <div>ProfileEditPage</div>;
+  return <ProfileEditForm />;
 }
 
 export default ProfileEditPage;

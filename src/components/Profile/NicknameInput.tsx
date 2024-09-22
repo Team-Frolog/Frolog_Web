@@ -3,7 +3,11 @@ import { useFormContext } from 'react-hook-form';
 import { checkNickname } from '@/features/Join/api/join.api';
 import FormInput from '../Form/Input/FormInput';
 
-function NicknameInput() {
+interface Props {
+  theme: 'dark' | 'light';
+}
+
+function NicknameInput({ theme }: Props) {
   const {
     register,
     trigger,
@@ -14,6 +18,7 @@ function NicknameInput() {
     <FormInput
       autoFocus
       hasCount
+      theme={theme}
       maxCount={12}
       title='닉네임'
       type='text'

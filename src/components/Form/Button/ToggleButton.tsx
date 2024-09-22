@@ -20,7 +20,7 @@ function ToggleButton({ isPublic, handleChange, theme = 'light' }: Props) {
         type='checkbox'
         checked={isPublic}
         onChange={handleChange}
-        className='relative h-[20px] w-[40px] cursor-pointer appearance-none rounded-[20px] bg-gray-700 outline-none before:absolute before:left-[2px] before:top-[2px] before:h-[16px] before:w-[16px] before:rounded-[50%] before:bg-white before:transition-transform before:duration-200 checked:bg-main checked:before:translate-x-[20px]'
+        className={`relative h-[20px] w-[40px] cursor-pointer appearance-none rounded-[20px] ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-400'} outline-none before:absolute before:left-[2px] before:top-[2px] before:h-[16px] before:w-[16px] before:rounded-[50%] before:bg-white before:transition-transform before:duration-200 checked:bg-main checked:before:translate-x-[20px]`}
       />
     </div>
   );
