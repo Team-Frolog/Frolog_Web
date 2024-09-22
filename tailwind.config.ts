@@ -15,6 +15,9 @@ const config: Config = {
     {
       pattern: /text-category-./,
     },
+    {
+      pattern: /button-./,
+    }
   ],
   theme: {
     extend: {
