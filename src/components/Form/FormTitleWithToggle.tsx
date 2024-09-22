@@ -1,6 +1,6 @@
 import React from 'react';
 import { InfoName } from '@/features/Join';
-import PublicToggle from '@/features/Join/components/step4/PublicToggle';
+import PublicToggle from '@/components/Profile/PublicToggle';
 
 interface Props {
   title: string;
@@ -10,7 +10,7 @@ interface Props {
 function FormTitleWithToggle({ title, fieldName }: Props) {
   return (
     <div className='flex w-full justify-between'>
-      <h6 className='text-body-md mb-[4px] text-white'>{title}</h6>
+      <h6 className='mb-[4px] text-body-md text-white'>{title}</h6>
       <PublicToggle fieldName={fieldName} />
     </div>
   );

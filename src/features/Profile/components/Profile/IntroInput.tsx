@@ -19,6 +19,7 @@ function IntroInput() {
           title='자기소개'
           placeholder='소개 글이 아직 없어요.'
           hasCount
+          maxCount={50}
           {...methods.register('intro')}
         />
       </FormProvider>
