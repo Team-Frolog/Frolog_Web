@@ -20,7 +20,7 @@ function ProfileHeader({
   const { handleReport } = useReport();
 
   return (
-    <div className='flex w-full justify-between px-page'>
+    <div className='flex w-full items-center justify-between px-page'>
       <div className='flex items-center gap-[8px]'>
         {isChildComment ? (
           <div className='flex items-center gap-[4px]'>
