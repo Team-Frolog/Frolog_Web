@@ -49,22 +49,25 @@ function ImageSlot({
       <div className='relative flex h-full w-full items-center justify-center rounded-[8px] bg-gray-200'>
         {src ? (
           <>
-            <Image
-              src={src}
-              alt={`memo-img-${index}`}
-              width={290}
-              height={290}
-              className='h-full w-full object-cover'
-              priority
-              onClick={
-                isReadOnly
-                  ? undefined
-                  : (e) => {
-                      e.stopPropagation();
-                      setIsPreviewOpen(true);
-                    }
-              }
-            />
+            <div className='h-full w-full'>
+              <Image
+                src={src}
+                alt={`memo-img-${index}`}
+                layout='fill'
+                priority
+                loading='eager'
+                className='object-cover'
+                onClick={
+                  isReadOnly
+                    ? undefined
+                    : (e) => {
+                        e.stopPropagation();
+                        setIsPreviewOpen(true);
+                      }
+                }
+              />
+            </div>
+
             {!isReadOnly && (
               <button
                 type='button'
