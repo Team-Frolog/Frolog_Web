@@ -1,6 +1,6 @@
-import { terms } from '@/data/terms/terms';
-import TermsText from '@/features/Join/components/TermsText';
 import React from 'react';
+import { terms } from '@/data/terms/terms';
+import TermsText from '@/components/Markdown/TermsText';
 
 interface Props {
   params: {

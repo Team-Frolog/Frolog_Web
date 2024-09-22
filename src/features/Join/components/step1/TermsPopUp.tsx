@@ -3,7 +3,7 @@
 import PopUpLayout from '@/layouts/PopUpLayout';
 import React from 'react';
 import { Terms } from '@/data/terms/terms';
-import TermsText from '../TermsText';
+import TermsText from '@/components/Markdown/TermsText';
 
 interface Props {
   termsData: Terms;
