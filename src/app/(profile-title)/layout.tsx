@@ -4,10 +4,10 @@ import ProfileTitleHeader from '@/components/Header/ProfileTitleHeader';
 
 function ProfileTitleLayout({ children }: { children: React.ReactNode }) {
   return (
-    <MainLayout>
+    <>
       <ProfileTitleHeader />
-      {children}
-    </MainLayout>
+      <MainLayout>{children}</MainLayout>
+    </>
   );
 }
 
