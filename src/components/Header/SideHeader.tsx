@@ -1,17 +1,25 @@
 'use client';
 
 import { IMAGES } from '@/constants/images';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import React from 'react';
+import BackButton from '../Button/BackButton';
 
 interface Props {
   children?: React.ReactNode;
   title: string;
+  hasBackButton?: boolean;
 }
 
-function SideHeader({ children, title }: Props) {
+function SideHeader({ children, title, hasBackButton = false }: Props) {
+  const router = useRouter();
+
   return (
     <div className='flex h-fit w-full'>
+      {hasBackButton && (
+        <BackButton type='green' onClick={() => router.back()} />
+      )}
       <Image
         src={IMAGES.side_header}
         alt='side header'

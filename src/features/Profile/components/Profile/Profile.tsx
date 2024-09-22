@@ -6,15 +6,28 @@ import UserStatistics from './UserStatistics';
 import UserType from './UserType';
 import IntroInput from './IntroInput';
 
-function Profile() {
+interface Props {
+  userId?: string;
+}
+
+function Profile({ userId }: Props) {
   return (
-    <div className='flex w-full flex-col gap-[28px] px-page'>
+    <div className='flex w-full flex-col gap-[28px]'>
       <UserStatistics />
       <UserType />
-      <IntroInput />
-      <LinkButton route='/profile/edit' theme='gray'>
-        프로필 편집
-      </LinkButton>
+      {userId ? (
+        <div className='flex flex-col gap-[8px]'>
+          <h6 className='mb-[4px] text-body-md text-gray-700'>자기소개</h6>
+          <div className='input-common input-light'>자기소개</div>
+        </div>
+      ) : (
+        <IntroInput />
+      )}
+      {!userId && (
+        <LinkButton route='/profile/edit' theme='gray'>
+          프로필 편집
+        </LinkButton>
+      )}
     </div>
   );
 }

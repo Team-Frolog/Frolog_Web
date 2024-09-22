@@ -21,12 +21,14 @@ function LinkButton({
   disabled = false,
   theme = 'normal',
 }: Props) {
+  const buttonType = getButtonColor(theme);
+
   return (
     <MotionLink
       variants={tapVariants}
       whileTap='tap'
       href={route}
-      className={`block text-center ${disabled && `button-disabled`} ${getButtonColor(theme)}`}
+      className={`block text-center ${buttonType} ${disabled && `button-disabled`}`}
     >
       {children}
     </MotionLink>

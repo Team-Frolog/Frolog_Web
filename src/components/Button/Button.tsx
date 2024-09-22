@@ -18,11 +18,13 @@ function Button({
   theme = 'normal',
   ...props
 }: Props) {
+  const buttonType = getButtonColor(theme);
+
   return (
     <motion.button
       type={type}
       disabled={disabled}
-      className={`${disabled && 'button-disabled'} ${getButtonColor(theme)}`}
+      className={`${disabled && 'button-disabled'} ${buttonType}`}
       variants={tapVariants}
       whileTap='tap'
       {...props}
