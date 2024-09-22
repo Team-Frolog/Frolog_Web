@@ -1,6 +1,6 @@
 import React from 'react';
+import { terms } from '@/data/terms/terms';
 import CheckItem from './CheckItem';
-import { terms } from '../../data/terms/terms';
 
 function TermsContainer() {
   return (

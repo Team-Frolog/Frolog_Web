@@ -33,5 +33,9 @@ export const terms: Terms[] = [
     title: '마케팅 목적의 개인정보 수집 및 이용동의',
     view: marketing,
   },
-  { id: 4, name: 'ads', label: '[선택] 광고성 정보 수신 동의' },
+  {
+    id: 4,
+    name: 'ads',
+    label: '[선택] 광고성 정보 수신 동의',
+  },
 ];
