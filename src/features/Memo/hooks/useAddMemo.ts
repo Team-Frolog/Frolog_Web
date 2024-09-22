@@ -22,7 +22,7 @@ export const useAddMemo = () => {
       const result = addNewMemo(req);
       return result;
     },
-    onSuccess: () => router.replace(`${session.user}/well-book/${id}/memo`),
+    onSuccess: () => router.replace(`${session!.user.id}/well-book/${id}/memo`),
   });
 
   return { handleAddMemo };
