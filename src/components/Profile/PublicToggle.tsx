@@ -7,9 +7,10 @@ import { useFormContext } from 'react-hook-form';
 
 interface Props {
   fieldName: InfoName;
+  theme: 'dark' | 'light';
 }
 
-function PublicToggle({ fieldName }: Props) {
+function PublicToggle({ fieldName, theme }: Props) {
   const { watch, setValue } = useFormContext();
   const [isPublic, setIsPublic] = useState(true);
 
@@ -23,7 +24,13 @@ function PublicToggle({ fieldName }: Props) {
     setIsPublic(!isPublic);
   };
 
-  return <ToggleButton isPublic={isPublic} handleChange={handleChange} />;
+  return (
+    <ToggleButton
+      isPublic={isPublic}
+      handleChange={handleChange}
+      theme={theme}
+    />
+  );
 }
 
 export default PublicToggle;

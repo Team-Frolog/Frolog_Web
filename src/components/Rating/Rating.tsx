@@ -30,7 +30,7 @@ function Rating({
           {generateRatingStars(
             rating || 0,
             20,
-            CATEGORY[category || 'novel'].text
+            category ? CATEGORY[category || 'novel'].text : undefined
           )}
         </div>
       </div>

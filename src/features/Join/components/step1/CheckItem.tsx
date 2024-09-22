@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { AnimatePresence } from 'framer-motion';
 import CheckButton from '@/components/Button/CheckButton';
+import { Terms } from '@/data/terms/terms';
 import TermsPopUp from './TermsPopUp';
-import { Terms } from '../../data/terms/terms';
 
 interface Props {
   termsData: Terms;
@@ -23,7 +23,7 @@ function CheckItem({ termsData }: Props) {
         onClick={() => setValue(`consents.${termsData.name}.given`, !isChecked)}
       >
         <CheckButton isChecked={isChecked} />
-        <span className='text-body-lg-bold flex-1 cursor-default'>
+        <span className='flex-1 cursor-default text-body-lg-bold'>
           {termsData.label}
         </span>
       </div>
@@ -31,7 +31,7 @@ function CheckItem({ termsData }: Props) {
         <button
           type='button'
           onClick={() => setOpenDetail(true)}
-          className='text-body-md w-[30px] text-end text-gray-600'
+          className='w-[30px] text-end text-body-md text-gray-600'
         >
           보기
         </button>

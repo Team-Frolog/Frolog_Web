@@ -39,6 +39,7 @@ function BookInfo({ isMemo = false }: Props) {
               <Rating
                 rating={3.5}
                 textClass='text-heading-lg-bold text-category-text-novel'
+                category='novel'
               />
             )}
           </div>

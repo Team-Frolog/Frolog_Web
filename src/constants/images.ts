@@ -20,6 +20,7 @@ export const IMAGES = {
     },
     withPen: `${BASE_PATH}/frog/frog-with-pen.svg`,
     review_done: `${BASE_PATH}/frog/review-done.svg`,
+    well_done: `${BASE_PATH}/frog/well-done-frog.svg`,
     add: {
       reading: `${BASE_PATH}/frog/frog-reading.svg`,
       done: `${BASE_PATH}/frog/frog-done.svg`,

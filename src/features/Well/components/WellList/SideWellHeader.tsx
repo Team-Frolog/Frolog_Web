@@ -3,9 +3,10 @@
 import SideHeader from '@/components/Header/SideHeader';
 import { usePopUpActions } from '@/store/popUpStore';
 import { useRouter } from 'next/navigation';
-import { StoreIcon, WellBackIcon } from 'public/icons';
+import { StoreIcon } from 'public/icons';
 import React from 'react';
 import { motion } from 'framer-motion';
+import BackButton from '@/components/Button/BackButton';
 
 interface Props {
   username?: string;
@@ -18,14 +19,7 @@ function SideWellHeader({ username }: Props) {
   return (
     <SideHeader title={username ? `${username}의 우물` : '우물'}>
       {username ? (
-        <motion.button
-          type='button'
-          whileTap={{ scale: 0.9 }}
-          onClick={() => router.back()}
-          className='absolute left-[12px] top-[12px] z-70'
-        >
-          <WellBackIcon />
-        </motion.button>
+        <BackButton type='green' onClick={() => router.back()} />
       ) : (
         <motion.button
           type='button'

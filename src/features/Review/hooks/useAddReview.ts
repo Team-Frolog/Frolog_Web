@@ -1,11 +1,14 @@
 import { useMutation } from '@tanstack/react-query';
+import { useBook } from '@/features/Book';
 import { useStackMotionActions } from '@/store/stackMotionStore';
 import { useSession } from 'next-auth/react';
+import { flash } from '@/modules/Flash';
 import { ReviewFormType } from '..';
 import { addNewReview } from '../api/review.api';
 
-export const useAddReview = (isbn: string, openSplash: () => void) => {
+export const useAddReview = (isbn: string) => {
   const { data: session } = useSession();
+  const { bookData } = useBook(isbn);
   const { setNewReviewId } = useStackMotionActions();
 
   const { mutate: handleAddReview } = useMutation({
@@ -25,7 +28,11 @@ export const useAddReview = (isbn: string, openSplash: () => void) => {
     },
     onSuccess: (result) => {
       setNewReviewId(result.id!);
-      openSplash();
+      flash.open({
+        flashType: 'review',
+        bookTitle: bookData?.title,
+        callbackUrl: `/`,
+      }); // TODO: 우물 id 가져와서 적용
     },
   });
 

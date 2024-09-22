@@ -10,7 +10,9 @@ type FieldName =
   | 'username'
   | 'title'
   | 'author'
-  | 'wellName';
+  | 'wellName'
+  | 'intro'
+  | 'description';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   type: 'text' | 'email' | 'password';
@@ -19,6 +21,8 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   theme?: 'dark' | 'light';
   isRequired?: boolean;
+  hasCount?: boolean;
+  maxCount?: number;
 }
 
 const FormInput = React.forwardRef(
@@ -29,8 +33,10 @@ const FormInput = React.forwardRef(
       title,
       fieldName,
       errorMessage,
+      maxCount,
       theme = 'dark',
       isRequired = false,
+      hasCount = false,
       ...props
     }: Props,
     ref: ForwardedRef<HTMLInputElement>
@@ -46,12 +52,19 @@ const FormInput = React.forwardRef(
     return (
       <div className='flex flex-col gap-[8px]'>
         {title && (
-          <h6
-            className={`text-body-md mb-[4px] ${theme === 'dark' ? ' text-white' : 'text-gray-700'}`}
-          >
-            {title}{' '}
-            {isRequired && <span className='text-body-md text-main'>*</span>}
-          </h6>
+          <div className='flex w-full justify-between'>
+            <h6
+              className={`mb-[4px] text-body-md ${theme === 'dark' ? ' text-white' : 'text-gray-700'}`}
+            >
+              {title}{' '}
+              {isRequired && <span className='text-body-md text-main'>*</span>}
+            </h6>
+            {hasCount && (
+              <span className='text-body-md text-gray-700'>
+                {watch(fieldName).length}/{maxCount}
+              </span>
+            )}
+          </div>
         )}
         <input
           type={type}
@@ -61,6 +74,7 @@ const FormInput = React.forwardRef(
           style={{ imeMode: type === 'password' ? 'disabled' : 'auto' }}
           className={`input-common placeholder:text-sm ${watch(fieldName) && errorMessage ? 'input-error' : theme === 'dark' ? 'input-default' : 'input-light'}`}
           onKeyDown={handleKeyPress}
+          maxLength={maxCount}
           {...props}
         />
         <span className='text-body-md text-error'>{errorMessage}</span>

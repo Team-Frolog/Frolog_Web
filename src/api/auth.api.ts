@@ -39,14 +39,10 @@ export const signOut = async () => {
 };
 
 export const quit = async () => {
-  try {
-    const session = await getSession();
-    if (session) {
-      const data = await quitInstance.fetch({ id: session?.user.id });
-      return data.result;
-    }
-  } catch (err) {
-    window.alert(ERROR_ALERT);
+  const session = await getSession();
+  if (session) {
+    const data = await quitInstance.fetch({ id: session?.user.id });
+    return data.result;
   }
 };
 
