@@ -12,7 +12,7 @@ function NavigationBar() {
   const pathname = usePathname();
 
   return (
-    <div className='flex h-[80px] w-full shrink-0 items-center justify-around bg-white px-[20px]'>
+    <div className='flex h-[80px] w-full shrink-0 items-center justify-around border-t border-gray-300 bg-white px-[20px]'>
       <MotionLink whileTap={{ scale: 1.2 }} href='/' className='navItem'>
         <WellIcon fill={pathname === '/' ? '#313239' : '#B3B6C5'} height={22} />
         <span
