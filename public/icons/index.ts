@@ -14,6 +14,7 @@ export { default as ToastNormalIcon } from './toast/toast-normal.svg';
 // form
 export { default as SelectIcon } from './form/select-icon.svg';
 export { default as EnterIcon } from './form/input-enter.svg';
+export { default as ImageEditIcon } from './form/image-edit.svg';
 
 // check
 export { default as CircleCheckIcon } from './check/circle-checked.svg';

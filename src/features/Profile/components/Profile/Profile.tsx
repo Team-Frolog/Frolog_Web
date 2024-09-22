@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Button from '@/components/Button/Button';
+import LinkButton from '@/components/Button/LinkButton';
 import UserStatistics from './UserStatistics';
 import UserType from './UserType';
 import IntroInput from './IntroInput';
@@ -12,9 +12,9 @@ function Profile() {
       <UserStatistics />
       <UserType />
       <IntroInput />
-      <Button type='button' theme='gray'>
+      <LinkButton route='/profile/edit' theme='gray'>
         프로필 편집
-      </Button>
+      </LinkButton>
     </div>
   );
 }

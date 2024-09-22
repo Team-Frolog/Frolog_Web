@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
 import { tapVariants } from '@/styles/variants/variants';
+import { getButtonColor } from '@/utils/getButtonColor';
 
 interface Props extends HTMLMotionProps<'button'> {
   children: React.ReactNode;
@@ -17,24 +18,11 @@ function Button({
   theme = 'normal',
   ...props
 }: Props) {
-  const getColor = () => {
-    switch (theme) {
-      case 'normal':
-        return 'button-main';
-      case 'error':
-        return 'button-error';
-      case 'gray':
-        return 'button-gray';
-      default:
-        return `button-common ${theme}`;
-    }
-  };
-
   return (
     <motion.button
       type={type}
       disabled={disabled}
-      className={`${disabled && 'button-disabled'} ${getColor()}`}
+      className={`${disabled && 'button-disabled'} ${getButtonColor(theme)}`}
       variants={tapVariants}
       whileTap='tap'
       {...props}

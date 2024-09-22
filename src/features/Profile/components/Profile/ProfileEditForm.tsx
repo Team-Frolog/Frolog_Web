@@ -6,6 +6,7 @@ import { Info } from '@/features/Join/types/form';
 import { getToday } from '@/features/Join/utils/date';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import ImageEditor from './ImageEditor';
 
 interface EditForm {
   username: string;
@@ -45,7 +46,8 @@ function ProfileEditForm() {
   return (
     <FormProvider {...methods}>
       <TitleHeader title='' theme='light' type='edit' isDisabled={false} />
-      <form className='flex w-full flex-1 flex-col overflow-auto px-page'>
+      <form className='flex w-full flex-1 flex-col items-center gap-[16px] overflow-auto px-page py-[16px]'>
+        <ImageEditor />
         <ProfileForm theme='light' />
       </form>
     </FormProvider>
