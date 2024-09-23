@@ -10,7 +10,7 @@ function IntroInput() {
   });
 
   return (
-    <form>
+    <form className='flex w-full px-page'>
       <FormProvider {...methods}>
         <FormInput
           type='text'

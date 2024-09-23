@@ -9,10 +9,17 @@ interface Props {
   sliderClass?: string;
   slideClass?: string;
   hasFade?: boolean;
+  isBetween?: boolean;
 }
 
-function Slider({ children, sliderClass, slideClass, hasFade }: Props) {
-  const { sliderRef, motionDivRef, drag } = useSlideDrag();
+function Slider({
+  children,
+  sliderClass,
+  slideClass,
+  hasFade = false,
+  isBetween = false,
+}: Props) {
+  const { sliderRef, motionDivRef, drag, widthClass } = useSlideDrag(isBetween);
 
   return (
     <div ref={sliderRef} className={sliderClass}>
@@ -37,7 +44,7 @@ function Slider({ children, sliderClass, slideClass, hasFade }: Props) {
         drag={drag}
         dragConstraints={sliderRef}
         dragElastic={0.2}
-        className={`flex h-full w-max px-[24px] ${slideClass}`}
+        className={`flex h-full px-[24px] ${widthClass} ${slideClass}`}
       >
         {children}
       </motion.div>

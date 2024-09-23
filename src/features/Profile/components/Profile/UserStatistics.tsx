@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import React from 'react';
-import { IMAGES } from '../../../../constants/images';
+import { IMAGES } from '@/constants/images';
 
 function UserStatistics() {
   return (
-    <div className='flex w-full flex-col gap-[8px]'>
+    <div className='flex w-full flex-col gap-[8px] px-page'>
       <div className='flex w-full items-center gap-[28px]'>
         <Image
           src={IMAGES.default_profile}

@@ -50,7 +50,7 @@ const FormInput = React.forwardRef(
     };
 
     return (
-      <div className='flex flex-col gap-[8px]'>
+      <div className='flex w-full flex-col gap-[8px]'>
         {title && (
           <div className='flex w-full justify-between'>
             <h6

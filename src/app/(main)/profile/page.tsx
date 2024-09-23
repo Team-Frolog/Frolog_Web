@@ -7,7 +7,7 @@ function ProfilePage() {
   return (
     <MainLayout>
       <SideHeader title='프로필' />
-      <div className='flex w-full flex-col gap-[32px] px-page pb-[32px]'>
+      <div className='flex w-full flex-col gap-[32px] pb-[32px]'>
         <Profile />
         <Menu />
       </div>

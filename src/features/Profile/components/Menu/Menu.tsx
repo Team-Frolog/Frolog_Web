@@ -11,7 +11,7 @@ function Menu() {
   const router = useRouter();
 
   return (
-    <div className='flex w-full flex-col gap-[28px]'>
+    <div className='flex w-full flex-col gap-[28px] px-page'>
       <div className='flex w-full flex-col gap-[20px] border-b border-gray-300 pb-[16px]'>
         <h5 className='text-body-lg text-gray-700'>지원</h5>
         <div className='flex flex-col gap-[32px]'>

@@ -14,9 +14,11 @@ function UserProfilePage({ params: { userId } }: Props) {
   return (
     <MainLayout>
       <SideHeader title='프로필' hasBackButton />
-      <div className='flex w-full flex-1 flex-col justify-between gap-[30px] px-page pb-[30px]'>
+      <div className='flex w-full flex-1 flex-col justify-between gap-[30px] pb-[30px]'>
         <Profile userId={userId} />
-        <LinkButton route={`/${userId}/well`}>우물 놀러가기</LinkButton>
+        <div className='flex px-page'>
+          <LinkButton route={`/${userId}/well`}>우물 놀러가기</LinkButton>
+        </div>
       </div>
     </MainLayout>
   );
