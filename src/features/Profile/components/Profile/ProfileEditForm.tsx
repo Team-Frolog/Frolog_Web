@@ -48,7 +48,7 @@ function ProfileEditForm() {
       <TitleHeader title='' theme='light' type='edit' isDisabled={false} />
       <form className='flex w-full flex-1 flex-col items-center gap-[16px] overflow-auto px-page py-[16px]'>
         <ImageEditor />
-        <ProfileForm theme='light' />
+        <ProfileForm type='profile' theme='light' />
       </form>
     </FormProvider>
   );
