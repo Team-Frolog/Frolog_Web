@@ -11,6 +11,7 @@ import ImageEditor from './ImageEditor';
 interface EditForm {
   username: string;
   image: string | null;
+  testType: string;
   personal_infos: {
     occupation: Info;
     birth_date: Info;
@@ -21,6 +22,7 @@ interface EditForm {
 export const defaultValue: EditForm = {
   username: '',
   image: null,
+  testType: '',
   personal_infos: {
     occupation: {
       value: '무직',
