@@ -9,6 +9,7 @@ import { CATEGORY } from '@/constants/category';
 import NewTag from '../NewTag';
 import { sizeOfBg } from '../../data/wellSize';
 import WellOutline from './WellOutline';
+import WellShape from './WellShape';
 
 interface Props {
   type?: 'default' | 'select';
@@ -33,8 +34,8 @@ function Well({ wellData, type = 'default', onClick }: Props) {
       shapeRef.current.style.height = `${buttonRect.height}px`;
 
       controls.start({
-        scale: 15,
-        transition: { duration: 1.5, ease: 'easeInOut' },
+        scale: 18,
+        transition: { duration: 1.2, ease: 'easeInOut' },
       });
 
       setTimeout(() => {
@@ -53,18 +54,11 @@ function Well({ wellData, type = 'default', onClick }: Props) {
       >
         <motion.div
           ref={shapeRef}
-          initial={{ scale: 0.5 }}
+          initial={{ scale: 0 }}
           animate={controls}
           className='fixed z-100'
         >
-          <Image
-            src={`/images/well/shape/${welltype}.svg`}
-            alt='shape'
-            width={100}
-            height={100}
-            loading='eager'
-            className='h-full w-full object-cover'
-          />
+          <WellShape welltype={welltype} />
         </motion.div>
         <NewTag position='left-0 top-0 z-50' />
         <Image
@@ -84,7 +78,6 @@ function Well({ wellData, type = 'default', onClick }: Props) {
           className='absolute inset-x-0 bottom-[18px] z-10 mx-auto h-[60%] w-auto'
         />
         <div className='absolute left-1/2 top-1/2 z-20 h-full w-full -translate-x-1/2 -translate-y-1/2 pt-[0px]'>
-          {/* <Outline fill={CATEGORY[wellData.category].bg} /> */}
           <WellOutline welltype={welltype} fill={CATEGORY[category].bg} />
         </div>
       </button>
