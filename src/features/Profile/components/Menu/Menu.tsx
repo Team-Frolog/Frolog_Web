@@ -15,7 +15,12 @@ function Menu() {
       <div className='flex w-full flex-col gap-[20px] border-b border-gray-300 pb-[16px]'>
         <h5 className='text-body-lg text-gray-700'>지원</h5>
         <div className='flex flex-col gap-[32px]'>
-          <MenuItem name='건의하기' onClick={() => {}} />
+          <MenuItem
+            name='건의하기'
+            onClick={() => {
+              window.open(process.env.NEXT_PUBLIC_FORM_URL!);
+            }}
+          />
           <MenuItem name='이용약관' onClick={() => router.push('/terms')} />
         </div>
       </div>
