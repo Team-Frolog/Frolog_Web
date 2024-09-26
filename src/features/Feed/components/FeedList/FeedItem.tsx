@@ -17,7 +17,7 @@ function FeedItem({ isMemo, feedData }: Props) {
       <div className='flex w-full flex-col'>
         <BookInfo isMemo={isMemo} feedData={feedData} />
         <FeedContent feedData={feedData} />
-        <FeedBar />
+        <FeedBar feedData={feedData} />
       </div>
     </div>
   );

@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HeartFilledIcon, HeartIcon } from 'public/icons';
 
-function LikeButton() {
+interface Props {
+  likeCount: number;
+}
+
+function LikeButton({ likeCount }: Props) {
   const [like, setLike] = useState(false);
 
   return (
@@ -13,7 +17,9 @@ function LikeButton() {
       onClick={() => setLike((prev) => !prev)}
     >
       {like ? <HeartFilledIcon /> : <HeartIcon />}
-      <span className='text-body-md text-gray-600'>{like ? 14 : 13}</span>
+      <span className='text-body-md text-gray-600'>
+        {like ? likeCount + 1 : likeCount}
+      </span>
     </motion.button>
   );
 }
