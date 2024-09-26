@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ChildArrowIcon, MenuIcon } from 'public/icons';
 import Image from 'next/image';
@@ -5,18 +7,24 @@ import { IMAGES } from '@/constants/images';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import { useReport } from '@/hooks/useReport';
+import { useProfile } from '@/hooks/useProfile';
+import { useSession } from 'next-auth/react';
 
 interface Props {
   type: 'feed' | 'comment';
+  userId: string;
   hasFollow?: boolean;
   isChildComment?: boolean;
 }
 
 function ProfileHeader({
   type,
+  userId,
   hasFollow = false,
   isChildComment = false,
 }: Props) {
+  const { data: session } = useSession();
+  const { profile } = useProfile(userId);
   const { handleReport } = useReport();
 
   return (
@@ -43,35 +51,34 @@ function ProfileHeader({
           />
         )}
 
-        <h5 className='text-body-lg-bold text-gray-600'>
-          홍길동과고길동과도라에몽
-        </h5>
+        <h5 className='text-body-lg-bold text-gray-600'>{profile?.username}</h5>
       </div>
-      <div className='flex items-center gap-[8px]'>
-        {hasFollow && (
+      {session?.user.id !== profile?.id && (
+        <div className='flex items-center gap-[8px]'>
+          {hasFollow && (
+            <button
+              type='button'
+              className='rounded-[12px] border border-gray-400 bg-white px-[16px] py-[8px] text-body-sm-bold text-gray-600'
+            >
+              팔로우
+            </button>
+          )}
           <button
             type='button'
-            className='rounded-[12px] border border-gray-400 bg-white px-[16px] py-[8px] text-body-sm-bold text-gray-600'
+            onClick={() =>
+              bottomSheet.open({
+                sheetData:
+                  type === 'feed'
+                    ? sheetData.report_this_feed
+                    : sheetData.report_this_comment,
+                onClick: handleReport,
+              })
+            }
           >
-            팔로우
+            <MenuIcon />
           </button>
-        )}
-        {/* 본인인 경우 삭제 시트 */}
-        <button
-          type='button'
-          onClick={() =>
-            bottomSheet.open({
-              sheetData:
-                type === 'feed'
-                  ? sheetData.report_this_feed
-                  : sheetData.report_this_comment,
-              onClick: handleReport,
-            })
-          }
-        >
-          <MenuIcon />
-        </button>
-      </div>
+        </div>
+      )}
     </div>
   );
 }

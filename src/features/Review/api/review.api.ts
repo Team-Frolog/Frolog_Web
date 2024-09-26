@@ -5,7 +5,7 @@ import {
   DeleteReview,
   EditReview,
   EditReviewReq,
-  GetReviewDetail,
+  GetReview,
   PostReview,
   PostReviewReq,
   SearchReview,
@@ -13,7 +13,7 @@ import {
 
 const postReview = new PostReview(authOptions);
 const patchEditReview = new EditReview(authOptions);
-const getReview = new GetReviewDetail(authOptions);
+const getReview = new GetReview(authOptions);
 const searchReview = new SearchReview(authOptions);
 const deleteMyReview = new DeleteReview(authOptions);
 

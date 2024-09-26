@@ -2,6 +2,7 @@ import { ERROR_ALERT } from '@/constants/message';
 import {
   GetEmailAvailability,
   GetEmailAvailabilityReq,
+  GetProfile,
   Quit,
   RequestEmailCode,
   RequestEmailCodeReq,
@@ -18,6 +19,7 @@ const requestEmailCode = new RequestEmailCode(baseOptions);
 const verifyEmailCode = new VerifyEmailCode(baseOptions);
 const signOutInstance = new SignOut(authOptions);
 const quitInstance = new Quit(authOptions);
+const getProfileInstance = new GetProfile(authOptions);
 
 export const signOut = async () => {
   try {
@@ -67,6 +69,15 @@ export const requestCode = async (req: RequestEmailCodeReq) => {
 export const verifyCode = async (req: VerifyEmailCodeReq) => {
   try {
     const data = await verifyEmailCode.fetch(req);
+    return data;
+  } catch (err) {
+    window.alert(ERROR_ALERT);
+  }
+};
+
+export const getProfile = async (id: string) => {
+  try {
+    const data = await getProfileInstance.fetch({ id });
     return data;
   } catch (err) {
     window.alert(ERROR_ALERT);
