@@ -9,9 +9,17 @@ import ProfileHeader from '../ProfileHeader';
 
 interface Props {
   childCommentData: GetReviewCommentRes | GetMemoCommentRes;
+  moreCount?: number;
+  onClickMore?: () => void;
+  hasMoreButton?: boolean;
 }
 
-function ChildCommentItem({ childCommentData }: Props) {
+function ChildCommentItem({
+  childCommentData,
+  moreCount,
+  onClickMore,
+  hasMoreButton,
+}: Props) {
   const { writer, mention, content, like_count, date } = childCommentData;
   const { profile } = useProfile(writer);
   const { profile: memtionProfile } = useProfile(mention);
@@ -47,6 +55,16 @@ function ChildCommentItem({ childCommentData }: Props) {
         </div>
         <span className='text-body-md text-gray-600'>{formatDate(date)}</span>
       </div>
+      {hasMoreButton && (
+        <motion.button
+          type='button'
+          whileTap={{ scale: 1.1 }}
+          onClick={onClickMore}
+          className='text-body-md text-gray-600'
+        >
+          댓글 {moreCount}개 더보기
+        </motion.button>
+      )}
     </div>
   );
 }

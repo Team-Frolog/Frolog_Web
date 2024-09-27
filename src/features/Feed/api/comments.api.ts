@@ -7,11 +7,11 @@ import { SearchMemoComment, SearchReviewComment } from '@frolog/frolog-api';
 const searchReviewComments = new SearchReviewComment(baseOptions);
 const searchMemoComments = new SearchMemoComment(baseOptions);
 
-export const getReviewComments = async (reviewId: string, page: number) => {
+export const getReviewComments = async (reviewId: string, page?: number) => {
   try {
     const result = await searchReviewComments.fetch({
       review_id: reviewId,
-      limit: LIMIT,
+      limit: page ? LIMIT : undefined,
       page,
     });
     return result;
@@ -26,11 +26,11 @@ export const getReviewComments = async (reviewId: string, page: number) => {
   }
 };
 
-export const getMemoComments = async (memoId: string, page: number) => {
+export const getMemoComments = async (memoId: string, page?: number) => {
   try {
     const result = await searchMemoComments.fetch({
       memo_id: memoId,
-      limit: LIMIT,
+      limit: page ? LIMIT : undefined,
       page,
     });
     return result;
