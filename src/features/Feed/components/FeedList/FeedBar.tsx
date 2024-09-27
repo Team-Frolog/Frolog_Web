@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import LikeButton from '@/components/Button/LikeButton';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
+import { useRouter } from 'next/navigation';
+import { isGetMemoRes } from '../../utils/typeGuard';
 
 const MotionLink = motion(Link);
 
@@ -14,6 +16,7 @@ interface Props {
 }
 
 function FeedBar({ feedData }: Props) {
+  const router = useRouter();
   return (
     <div className='flex w-full items-center justify-between rounded-b-[20px] border-t border-t-gray-400 bg-white px-page py-[12px]'>
       <div className='flex gap-[20px]'>
@@ -22,6 +25,11 @@ function FeedBar({ feedData }: Props) {
           whileTap={{ scale: 1.1 }}
           type='button'
           className='flex items-center gap-[4px]'
+          onClick={() =>
+            router.push(
+              `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}`
+            )
+          }
         >
           <ChatIcon />
           <span className='text-body-md text-gray-600'>
