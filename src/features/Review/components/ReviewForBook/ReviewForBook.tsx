@@ -11,7 +11,7 @@ function ReviewForBook() {
 
   return (
     <div className='flex w-full flex-col'>
-      <ProfileHeader type='feed' />
+      <ProfileHeader type='feed' userId='' />
       <div className='pt-[30px]'>
         <div className='tooltip-feed relative flex w-full rounded-t-[20px] bg-category-bg-novel px-page py-[12px] after:border-b-category-bg-novel'>
           <Rating
