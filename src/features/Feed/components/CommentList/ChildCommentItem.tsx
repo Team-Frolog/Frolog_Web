@@ -1,29 +1,33 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
+import { useProfile } from '@/hooks/useProfile';
 import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
 import { GetMemoCommentRes, GetReviewCommentRes } from '@frolog/frolog-api';
-import { useProfile } from '@/hooks/useProfile';
+import { motion } from 'framer-motion';
 import { formatDate } from '@/utils/format';
 import ProfileHeader from '../ProfileHeader';
 
 interface Props {
-  commentData: GetReviewCommentRes | GetMemoCommentRes;
+  childCommentData: GetReviewCommentRes | GetMemoCommentRes;
 }
 
-function CommentItem({ commentData }: Props) {
-  const { writer, content, like_count, date } = commentData;
+function ChildCommentItem({ childCommentData }: Props) {
+  const { writer, mention, content, like_count, date } = childCommentData;
   const { profile } = useProfile(writer);
+  const { profile: memtionProfile } = useProfile(mention);
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
 
-  if (!profile || !commentData) return <></>;
+  if (!profile || !childCommentData) return <></>;
 
   return (
-    <div className='flex w-full flex-col gap-[12px]'>
-      <ProfileHeader type='comment' userId={writer} />
-      <p className='break-all px-page text-body-lg text-gray-800'>{content}</p>
+    <div className='flex w-full flex-col gap-[12px] pl-[24px]'>
+      <ProfileHeader type='comment' userId={writer} isChildComment />
+      <p className='break-all px-page text-body-lg text-gray-800'>
+        <strong className='mr-[8px] font-normal text-main'>
+          {memtionProfile?.username}
+        </strong>
+        {content}
+      </p>
       <div className='flex items-center justify-between px-page'>
         <div className='flex gap-[8px]'>
           <LikeButton likeCount={like_count || 0} />
@@ -47,4 +51,4 @@ function CommentItem({ commentData }: Props) {
   );
 }
 
-export default CommentItem;
+export default ChildCommentItem;
