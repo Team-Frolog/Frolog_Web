@@ -4,16 +4,16 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
-import { GetMemoCommentRes, GetReviewCommentRes } from '@frolog/frolog-api';
 import { useProfile } from '@/hooks/useProfile';
 import { formatDate } from '@/utils/format';
 import ProfileHeader from '../ProfileHeader';
 import ChildCommentItem from './ChildCommentItem';
 import { useChildComments } from '../../hooks/useChildComments';
 import { isGetMemoRes } from '../../utils/typeGuard';
+import { Comments } from '../../types/comment';
 
 interface Props {
-  commentData: GetReviewCommentRes | GetMemoCommentRes;
+  commentData: Comments;
 }
 
 function CommentItem({ commentData }: Props) {

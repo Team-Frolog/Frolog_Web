@@ -1,18 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  SearchMemoCommentRes,
-  SearchReviewCommentRes,
-} from '@frolog/frolog-api';
 import { getMemoComments, getReviewComments } from '../api/comments.api';
+import { GetCommentsRes } from '../types/comment';
 
 export const useChildComments = (
   isReview: boolean,
   parentId: string,
   more: boolean
 ) => {
-  const { data, isFetched } = useQuery<
-    SearchMemoCommentRes | SearchReviewCommentRes
-  >({
+  const { data, isFetched } = useQuery<GetCommentsRes>({
     queryKey: ['childComments', parentId],
     queryFn: () =>
       isReview ? getReviewComments(parentId) : getMemoComments(parentId),

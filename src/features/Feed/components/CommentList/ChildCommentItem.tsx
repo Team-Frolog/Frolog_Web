@@ -2,13 +2,13 @@ import React from 'react';
 import { useProfile } from '@/hooks/useProfile';
 import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
-import { GetMemoCommentRes, GetReviewCommentRes } from '@frolog/frolog-api';
 import { motion } from 'framer-motion';
 import { formatDate } from '@/utils/format';
 import ProfileHeader from '../ProfileHeader';
+import { Comments } from '../../types/comment';
 
 interface Props {
-  childCommentData: GetReviewCommentRes | GetMemoCommentRes;
+  childCommentData: Comments;
   moreCount?: number;
   onClickMore?: () => void;
   hasMoreButton?: boolean;
