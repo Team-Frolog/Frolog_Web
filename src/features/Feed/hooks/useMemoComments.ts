@@ -3,11 +3,13 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
+import useCommentStore from '@/store/commentStore';
 import { PostMemoCommentReq } from '@frolog/frolog-api';
 import { addMemoComment, getMemoComments } from '../api/comments.api';
 
 export const useMemoComments = (id: string) => {
   const queryClient = useQueryClient();
+  const setCommentUser = useCommentStore((state) => state.setCommentUser);
 
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: ['comments', id],
@@ -32,6 +34,7 @@ export const useMemoComments = (id: string) => {
   const { mutate: handleAddComment } = useMutation({
     mutationFn: (req: PostMemoCommentReq) => addMemoComment(req),
     onSuccess: () => {
+      setCommentUser(undefined);
       queryClient.invalidateQueries({ queryKey: ['comments', id] });
     },
   });
