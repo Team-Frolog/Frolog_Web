@@ -20,7 +20,7 @@ function ChildCommentItem({
   onClickMore,
   hasMoreButton,
 }: Props) {
-  const { writer, mention, content, like_count, date, deleted } =
+  const { writer, mention, content, like_count, date, deleted, parent } =
     childCommentData;
   const { profile } = useProfile(writer);
   const { profile: memtionProfile } = useProfile(mention);
@@ -58,6 +58,7 @@ function ChildCommentItem({
               onClick={() =>
                 setCommentUser({
                   id: writer,
+                  parentId: parent!,
                   name: profile.username,
                 })
               }

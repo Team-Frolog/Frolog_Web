@@ -22,7 +22,7 @@ function CommentList({ itemId }: Props) {
       <MainLayout>
         <div className='flex w-full flex-col gap-[36px] py-[16px]'>
           {comments.map((item) => (
-            <CommentItem key={item.id} commentData={item} />
+            <CommentItem key={item.id} itemId={itemId} commentData={item} />
           ))}
         </div>
       </MainLayout>

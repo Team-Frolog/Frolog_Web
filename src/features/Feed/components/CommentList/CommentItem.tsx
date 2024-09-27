@@ -14,18 +14,20 @@ import { Comments } from '../../types/comment';
 
 interface Props {
   commentData: Comments;
+  itemId: string;
 }
 
-function CommentItem({ commentData }: Props) {
+function CommentItem({ commentData, itemId }: Props) {
   const [more, setMore] = useState(false);
   const { writer, content, like_count, date, replies, reply_count, deleted } =
     commentData;
   const { profile } = useProfile(writer);
-  const { childComments, isFetched } = useChildComments(
-    !isGetMemoRes(commentData),
-    commentData.id,
-    more
-  );
+  const { childComments, isFetched } = useChildComments({
+    more,
+    itemId,
+    parentId: commentData.id,
+    isReview: !isGetMemoRes(commentData),
+  });
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
 
   if (!profile || !commentData) return <></>;

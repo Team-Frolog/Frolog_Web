@@ -13,7 +13,8 @@ export const useReviewComments = (id: string) => {
 
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: ['comments', id],
-    queryFn: ({ pageParam }) => getReviewComments(id, pageParam),
+    queryFn: ({ pageParam }) =>
+      getReviewComments({ reviewId: id, page: pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const isLastPage =

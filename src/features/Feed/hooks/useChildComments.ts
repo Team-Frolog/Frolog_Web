@@ -2,15 +2,25 @@ import { useQuery } from '@tanstack/react-query';
 import { getMemoComments, getReviewComments } from '../api/comments.api';
 import { GetCommentsRes } from '../types/comment';
 
-export const useChildComments = (
-  isReview: boolean,
-  parentId: string,
-  more: boolean
-) => {
+interface Props {
+  isReview: boolean;
+  itemId: string;
+  parentId: string;
+  more: boolean;
+}
+
+export const useChildComments = ({
+  isReview,
+  itemId,
+  parentId,
+  more,
+}: Props) => {
   const { data, isFetched } = useQuery<GetCommentsRes>({
     queryKey: ['childComments', parentId],
     queryFn: () =>
-      isReview ? getReviewComments(parentId) : getMemoComments(parentId),
+      isReview
+        ? getReviewComments({ reviewId: itemId, depth: 1, parentId })
+        : getMemoComments({ memoId: itemId, depth: 1, parentId }),
     enabled: more,
   });
 

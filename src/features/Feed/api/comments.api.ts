@@ -16,12 +16,33 @@ const searchMemoComments = new SearchMemoComment(baseOptions);
 const postReviewComment = new PostReviewComment(authOptions);
 const postMemoComment = new PostMemoComment(authOptions);
 
-export const getReviewComments = async (reviewId: string, page?: number) => {
+interface GetReviewComments {
+  reviewId: string;
+  page?: number;
+  depth?: number;
+  parentId?: string;
+}
+
+interface GetMemoComments {
+  memoId: string;
+  page?: number;
+  depth?: number;
+  parentId?: string;
+}
+
+export const getReviewComments = async ({
+  reviewId,
+  page,
+  depth,
+  parentId,
+}: GetReviewComments) => {
   try {
     const result = await searchReviewComments.fetch({
       review_id: reviewId,
       limit: page ? LIMIT : undefined,
       page,
+      depth,
+      parent: parentId,
     });
     return result;
   } catch (err) {
@@ -35,12 +56,19 @@ export const getReviewComments = async (reviewId: string, page?: number) => {
   }
 };
 
-export const getMemoComments = async (memoId: string, page?: number) => {
+export const getMemoComments = async ({
+  memoId,
+  page,
+  depth,
+  parentId,
+}: GetMemoComments) => {
   try {
     const result = await searchMemoComments.fetch({
       memo_id: memoId,
       limit: page ? LIMIT : undefined,
       page,
+      depth,
+      parent: parentId,
     });
     return result;
   } catch (err) {
