@@ -22,7 +22,7 @@ function CommentInput({ itemId, isReview, handleAddComment }: Props) {
   const handleAdd = (value: string) => {
     const req: any = {
       writer: session?.user.id,
-      parent: commentUser?.id,
+      parent: commentUser?.parentId,
       mention: commentUser?.id,
       content: value,
     };

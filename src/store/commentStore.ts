@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 interface User {
+  parentId: string;
   id: string;
   name: string;
 }

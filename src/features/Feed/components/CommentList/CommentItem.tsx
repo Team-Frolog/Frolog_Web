@@ -51,6 +51,7 @@ function CommentItem({ commentData }: Props) {
                 className='text-body-md text-gray-600'
                 onClick={() =>
                   setCommentUser({
+                    parentId: commentData.parent || writer,
                     id: writer,
                     name: profile.username,
                   })
