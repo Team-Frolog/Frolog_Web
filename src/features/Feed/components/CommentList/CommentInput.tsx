@@ -34,6 +34,7 @@ function CommentInput({ itemId, isReview, handleAddComment }: Props) {
     if (event.key === 'Enter') {
       event.currentTarget.blur();
       setIsFocusing(false);
+      handleAdd(comment);
     }
   };
 
