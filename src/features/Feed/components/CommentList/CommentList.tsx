@@ -15,7 +15,7 @@ interface Props {
 function CommentList({ itemId }: Props) {
   const isReview = useSearchParams().get('type') === 'memo';
   const useComment = isReview ? useReviewComments : useMemoComments;
-  const { comments } = useComment(itemId);
+  const { comments, handleAddComment } = useComment(itemId);
 
   return (
     <>
@@ -26,7 +26,11 @@ function CommentList({ itemId }: Props) {
           ))}
         </div>
       </MainLayout>
-      <CommentInput />
+      <CommentInput
+        itemId={itemId}
+        isReview={isReview}
+        handleAddComment={handleAddComment}
+      />
     </>
   );
 }

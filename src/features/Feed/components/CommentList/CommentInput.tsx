@@ -1,13 +1,34 @@
 'use client';
 
+import { useSession } from 'next-auth/react';
 import useCommentStore from '@/store/commentStore';
 import { CancelIcon, EnterIcon } from 'public/icons';
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { PostCommentMutation } from '../../types/comment';
 
-function CommentInput() {
+interface Props {
+  itemId: string;
+  isReview: boolean;
+  handleAddComment: PostCommentMutation;
+}
+
+function CommentInput({ itemId, isReview, handleAddComment }: Props) {
+  const [comment, setComment] = useState('');
   const { commentUser, setCommentUser } = useCommentStore();
+  const { data: session } = useSession();
   const [isFocusing, setIsFocusing] = useState(false);
+
+  const handleAdd = (value: string) => {
+    const req: any = {
+      writer: session?.user.id,
+      parent: commentUser?.id,
+      mention: commentUser?.id,
+      content: value,
+    };
+    req[isReview ? 'review_id' : 'memo_id'] = itemId;
+    handleAddComment(req);
+  };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -34,16 +55,21 @@ function CommentInput() {
         <div className='relative flex w-full'>
           <input
             type='text'
+            value={comment}
             placeholder='댓글을 입력해주세요'
+            maxLength={400}
             className='input-common input-light flex-1 pr-[60px] placeholder:text-sm'
+            onChange={(e) => setComment(e.target.value)}
             onFocus={() => setIsFocusing(true)}
             onBlur={() => setIsFocusing(false)}
             onKeyDown={handleKeyPress}
           />
-          <EnterIcon
-            fill={isFocusing ? '#00CE4C' : '#E0E1E9'}
-            className='absolute right-[16px] top-1/2 -translate-y-1/2'
-          />
+          <button type='button' onClick={() => handleAdd(comment)}>
+            <EnterIcon
+              fill={isFocusing ? '#00CE4C' : '#E0E1E9'}
+              className='absolute right-[16px] top-1/2 -translate-y-1/2'
+            />
+          </button>
         </div>
       </div>
     </div>

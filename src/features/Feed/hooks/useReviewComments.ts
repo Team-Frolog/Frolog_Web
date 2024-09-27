@@ -1,7 +1,14 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { getReviewComments } from '../api/comments.api';
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
+import { PostReviewCommentReq } from '@frolog/frolog-api';
+import { addReviewComment, getReviewComments } from '../api/comments.api';
 
 export const useReviewComments = (id: string) => {
+  const queryClient = useQueryClient();
+
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: ['comments', id],
     queryFn: ({ pageParam }) => getReviewComments(id, pageParam),
@@ -22,8 +29,16 @@ export const useReviewComments = (id: string) => {
 
   const isEmpty = !data?.pages.length;
 
+  const { mutate: handleAddComment } = useMutation({
+    mutationFn: (req: PostReviewCommentReq) => addReviewComment(req),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments', id] });
+    },
+  });
+
   return {
     comments: data ? data?.pages : [],
+    handleAddComment,
     fetchNextPage,
     hasNextPage,
     isFetching,
