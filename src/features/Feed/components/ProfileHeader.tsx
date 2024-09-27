@@ -25,7 +25,7 @@ function ProfileHeader({
 }: Props) {
   const { data: session } = useSession();
   const { profile } = useProfile(userId);
-  const { handleReport } = useReport();
+  const { handleReport } = useReport(userId);
 
   return (
     <div className='flex w-full items-center justify-between px-page'>
@@ -63,6 +63,7 @@ function ProfileHeader({
               팔로우
             </button>
           )}
+          {/* 피드이고, 본인인 경우 삭제 시트 */}
           <button
             type='button'
             onClick={() =>
