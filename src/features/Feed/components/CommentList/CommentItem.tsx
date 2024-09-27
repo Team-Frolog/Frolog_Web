@@ -18,7 +18,7 @@ interface Props {
 
 function CommentItem({ commentData }: Props) {
   const [more, setMore] = useState(false);
-  const { writer, content, like_count, date, replies, reply_count } =
+  const { writer, content, like_count, date, replies, reply_count, deleted } =
     commentData;
   const { profile } = useProfile(writer);
   const { childComments, isFetched } = useChildComments(
@@ -34,26 +34,32 @@ function CommentItem({ commentData }: Props) {
     <>
       <div className='flex w-full flex-col gap-[12px]'>
         <ProfileHeader type='comment' userId={writer} />
-        <p className='break-all px-page text-body-lg text-gray-800'>
-          {content}
+        <p
+          className={`break-all px-page text-body-lg ${deleted ? 'text-gray-500' : 'text-gray-800'}`}
+        >
+          {deleted ? '삭제된 댓글입니다.' : content}
         </p>
-        <div className='flex items-center justify-between px-page'>
-          <div className='flex gap-[8px]'>
-            <LikeButton likeCount={like_count || 0} />
-            <motion.button
-              whileTap={{ scale: 1.1 }}
-              type='button'
-              className='text-body-md text-gray-600'
-              onClick={() =>
-                setCommentUser({
-                  id: writer,
-                  name: profile.username,
-                })
-              }
-            >
-              댓글 달기
-            </motion.button>
-          </div>
+        <div
+          className={`flex items-center px-page ${deleted ? 'justify-end' : 'justify-between'}`}
+        >
+          {!deleted && (
+            <div className='flex gap-[8px]'>
+              <LikeButton likeCount={like_count || 0} />
+              <motion.button
+                whileTap={{ scale: 1.1 }}
+                type='button'
+                className='text-body-md text-gray-600'
+                onClick={() =>
+                  setCommentUser({
+                    id: writer,
+                    name: profile.username,
+                  })
+                }
+              >
+                댓글 달기
+              </motion.button>
+            </div>
+          )}
           <span className='text-body-md text-gray-600'>{formatDate(date)}</span>
         </div>
       </div>
