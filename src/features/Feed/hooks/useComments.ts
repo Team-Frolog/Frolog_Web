@@ -11,7 +11,7 @@ export const useComments = (id: string, isReview: boolean) => {
   const queryClient = useQueryClient();
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
 
-  const { data, fetchNextPage, hasNextPage, isFetching } =
+  const { data, fetchNextPage, hasNextPage, isFetching, isFetched } =
     useInfiniteQuery<GetCommentsRes>({
       queryKey: ['comments', id],
       queryFn: ({ pageParam }) =>
@@ -48,5 +48,6 @@ export const useComments = (id: string, isReview: boolean) => {
     hasNextPage,
     isFetching,
     isEmpty,
+    isFetched,
   };
 };
