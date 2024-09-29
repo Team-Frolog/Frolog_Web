@@ -8,8 +8,14 @@ import FeedItem from './FeedItem';
 import { useFeed } from '../../hooks/useFeed';
 
 function FeedList() {
-  const { feedData, fetchNextPage, hasNextPage, isFetching, isEmpty } =
-    useFeed();
+  const {
+    feedData,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isLoading,
+    isEmpty,
+  } = useFeed();
   const { setTarget } = useObserver({
     hasNextPage,
     fetchNextPage,
@@ -30,13 +36,15 @@ function FeedList() {
       </div>
 
       <div ref={setTarget} id='observer' className='h-[10px]' />
-      <Image
-        src={IMAGES.frog.more_feed}
-        alt='more feed'
-        width={254}
-        height={172}
-        className='mx-auto'
-      />
+      {feedData && !isLoading && (
+        <Image
+          src={IMAGES.frog.more_feed}
+          alt='more feed'
+          width={254}
+          height={172}
+          className='mx-auto'
+        />
+      )}
     </div>
   );
 }

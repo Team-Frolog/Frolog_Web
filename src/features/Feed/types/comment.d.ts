@@ -15,3 +15,4 @@ export type PostCommentMutation =
       PostReviewCommentReq,
       unknown
     >;
+export type PostComments = PostReviewCommentReq | PostMemoCommentReq;

@@ -14,7 +14,7 @@ export const useMemoComments = (id: string) => {
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: ['comments', id],
     queryFn: ({ pageParam }) =>
-      getMemoComments({ memoId: id, page: pageParam }),
+      getMemoComments({ id, page: pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const isLastPage =

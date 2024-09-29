@@ -66,7 +66,7 @@ function CommentItem({ commentData, itemId }: Props) {
           <span className='text-body-md text-gray-600'>{formatDate(date)}</span>
         </div>
       </div>
-      {replies && !more && !isFetched && (
+      {replies !== undefined && replies.length > 0 && !more && !isFetched && (
         <ChildCommentItem
           hasMoreButton={!!reply_count}
           moreCount={reply_count}

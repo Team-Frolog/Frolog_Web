@@ -1,4 +1,5 @@
 import { ERROR_ALERT } from '@/constants/message';
+import { toast } from '@/modules/Toast';
 import {
   GetEmailAvailability,
   GetEmailAvailabilityReq,
@@ -36,7 +37,7 @@ export const signOut = async () => {
     }
     throw new Error();
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
   }
 };
 
@@ -53,7 +54,7 @@ export const checkEmail = async (req: GetEmailAvailabilityReq) => {
     const data = await getEmailAvailability.fetch(req);
     return data.result;
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
   }
 };
 
@@ -62,7 +63,7 @@ export const requestCode = async (req: RequestEmailCodeReq) => {
     const data = await requestEmailCode.fetch(req);
     return data;
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
   }
 };
 
@@ -71,7 +72,7 @@ export const verifyCode = async (req: VerifyEmailCodeReq) => {
     const data = await verifyEmailCode.fetch(req);
     return data;
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
   }
 };
 
@@ -80,6 +81,6 @@ export const getProfile = async (id: string) => {
     const data = await getProfileInstance.fetch({ id });
     return data;
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
   }
 };
