@@ -15,17 +15,29 @@ interface Props {
   userId: string;
   hasFollow?: boolean;
   isChildComment?: boolean;
+  onDelete?: () => void;
 }
 
 function ProfileHeader({
   type,
   userId,
+  onDelete,
   hasFollow = false,
   isChildComment = false,
 }: Props) {
   const { data: session } = useSession();
+  const isMe = session?.user.id === userId;
   const { profile } = useProfile(userId);
   const { handleReport } = useReport(userId);
+
+  const getSheetData = () => {
+    if (isMe) {
+      return sheetData.delete_this_comment;
+    }
+    return type === 'feed'
+      ? sheetData.report_this_feed
+      : sheetData.report_this_comment;
+  };
 
   return (
     <div className='flex w-full items-center justify-between px-page'>
@@ -63,16 +75,12 @@ function ProfileHeader({
               팔로우
             </button>
           )}
-          {/* 피드이고, 본인인 경우 삭제 시트 */}
           <button
             type='button'
             onClick={() =>
               bottomSheet.open({
-                sheetData:
-                  type === 'feed'
-                    ? sheetData.report_this_feed
-                    : sheetData.report_this_comment,
-                onClick: handleReport,
+                sheetData: getSheetData(),
+                onClick: type === 'comment' && isMe ? onDelete : handleReport,
               })
             }
           >

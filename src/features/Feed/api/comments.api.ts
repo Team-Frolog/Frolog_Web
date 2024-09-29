@@ -3,6 +3,8 @@ import { ERROR_ALERT } from '@/constants/message';
 import { LIMIT } from '@/features/Search/constants/query';
 import { toast } from '@/modules/Toast';
 import {
+  DeleteMemoComment,
+  DeleteReviewComment,
   PostMemoComment,
   PostMemoCommentReq,
   PostReviewComment,
@@ -15,6 +17,8 @@ const searchReviewComments = new SearchReviewComment(baseOptions);
 const searchMemoComments = new SearchMemoComment(baseOptions);
 const postReviewComment = new PostReviewComment(authOptions);
 const postMemoComment = new PostMemoComment(authOptions);
+const deleteMemoComment = new DeleteMemoComment(authOptions);
+const deleteReviewComment = new DeleteReviewComment(authOptions);
 
 interface GetComments {
   id: string;
@@ -73,6 +77,25 @@ export const addNewComment = async (
     result = await postReviewComment.fetch(req as PostReviewCommentReq);
   } else {
     result = await postMemoComment.fetch(req as PostMemoCommentReq);
+  }
+  return result;
+};
+
+export const deleteComment = async (
+  req: { id: string; commentId: string },
+  isReview: boolean
+) => {
+  let result;
+  if (isReview) {
+    result = await deleteReviewComment.fetch({
+      review_id: req.id,
+      id: req.commentId,
+    });
+  } else {
+    result = await deleteMemoComment.fetch({
+      memo_id: req.id,
+      id: req.commentId,
+    });
   }
   return result;
 };

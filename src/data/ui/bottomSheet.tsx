@@ -136,6 +136,14 @@ export const sheetData: {
     stateType: 'isOpenAlertSheet',
     description: () => <>댓글을 신고하면 다시 되돌릴 수 없어요</>,
   },
+  delete_this_comment: {
+    getTitle: () => <>이 댓글을 삭제할까요?</>,
+    type: 'error',
+    buttonText: '네, 삭제할게요',
+    extraButtonText: '아니요, 유지할게요',
+    stateType: 'isOpenAlertSheet',
+    description: () => <>댓글을 삭재하면 다시 되돌릴 수 없어요</>,
+  },
   logout: {
     getTitle: () => <>로그아웃 하나요?</>,
     type: 'error',

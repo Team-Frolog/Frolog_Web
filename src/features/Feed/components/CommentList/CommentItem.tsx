@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { motion } from 'framer-motion';
 import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
@@ -11,6 +12,7 @@ import ChildCommentItem from './ChildCommentItem';
 import { useChildComments } from '../../hooks/useChildComments';
 import { isGetMemoRes } from '../../utils/typeGuard';
 import { Comments } from '../../types/comment';
+import { useDeleteComment } from '../../hooks/useDeleteComment';
 
 interface Props {
   commentData: Comments;
@@ -19,15 +21,18 @@ interface Props {
 
 function CommentItem({ commentData, itemId }: Props) {
   const [more, setMore] = useState(false);
+  const { data: session } = useSession();
   const { writer, content, like_count, date, replies, reply_count, deleted } =
     commentData;
   const { profile } = useProfile(writer);
+  const isReview = !isGetMemoRes(commentData);
   const { childComments, isFetched } = useChildComments({
     more,
     itemId,
     parentId: commentData.id,
-    isReview: !isGetMemoRes(commentData),
+    isReview,
   });
+  const { handleDeleteComment } = useDeleteComment(isReview);
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
 
   if (!profile || !commentData) return <></>;
@@ -35,7 +40,16 @@ function CommentItem({ commentData, itemId }: Props) {
   return (
     <>
       <div className='flex w-full flex-col gap-[12px]'>
-        <ProfileHeader type='comment' userId={writer} />
+        <ProfileHeader
+          type='comment'
+          userId={writer}
+          onDelete={
+            session?.user.id === writer
+              ? () =>
+                  handleDeleteComment({ id: itemId, commentId: commentData.id })
+              : undefined
+          }
+        />
         <p
           className={`break-all px-page text-body-lg ${deleted ? 'text-gray-500' : 'text-gray-800'}`}
         >

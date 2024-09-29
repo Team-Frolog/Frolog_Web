@@ -1,4 +1,6 @@
 import {
+  DeleteMemoCommentReq,
+  DeleteReviewCommentReq,
   GetMemoCommentRes,
   GetReviewCommentRes,
   PostMemoCommentRes,
@@ -16,3 +18,4 @@ export type PostCommentMutation =
       unknown
     >;
 export type PostComments = PostReviewCommentReq | PostMemoCommentReq;
+export type DeleteCommentReq = DeleteMemoCommentReq | DeleteReviewCommentReq;
