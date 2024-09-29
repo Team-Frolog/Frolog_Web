@@ -5,17 +5,15 @@ import { useSearchParams } from 'next/navigation';
 import MainLayout from '@/layouts/MainLayout';
 import CommentItem from './CommentItem';
 import CommentInput from './CommentInput';
-import { useReviewComments } from '../../hooks/useReviewComments';
-import { useMemoComments } from '../../hooks/useMemoComments';
+import { useComments } from '../../hooks/useComments';
 
 interface Props {
   itemId: string;
 }
 
 function CommentList({ itemId }: Props) {
-  const isReview = useSearchParams().get('type') === 'memo';
-  const useComment = isReview ? useReviewComments : useMemoComments;
-  const { comments, handleAddComment } = useComment(itemId);
+  const isReview = useSearchParams().get('type') === 'review';
+  const { comments, handleAddComment } = useComments(itemId, isReview);
 
   return (
     <>
