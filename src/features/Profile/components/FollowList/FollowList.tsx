@@ -2,6 +2,7 @@
 
 import Tap from '@/components/Tap/Tap';
 import React, { useState } from 'react';
+import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import FollowItem from './FollowItem';
 
 function FollowList() {
@@ -17,11 +18,17 @@ function FollowList() {
         currentTap={followType}
         setCurrentTap={setFollowType}
       />
-      <div className='flex flex-1 flex-col gap-[28px] overflow-auto px-page py-[36px]'>
-        <FollowItem />
-        <FollowItem isFollowing />
-        <FollowItem isFollowing />
-      </div>
+      {followType === 1 ? (
+        <div className='flex flex-1 flex-col gap-[28px] overflow-auto px-page py-[36px]'>
+          <FollowItem />
+          <FollowItem isFollowing />
+          <FollowItem isFollowing />
+        </div>
+      ) : (
+        <div className='flex flex-1 items-center justify-center'>
+          <EmptyContentFrog title='팔로우하는 사람을 만들어보세요!' />
+        </div>
+      )}
     </div>
   );
 }

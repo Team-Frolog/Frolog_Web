@@ -3,7 +3,7 @@
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import MainLayout from '@/layouts/MainLayout';
-import EmptyContentFrog from '@/components/ListItem/EmptyContentFrog';
+import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import CommentItem from './CommentItem';
 import CommentInput from './CommentInput';
 import { useComments } from '../../hooks/useComments';
