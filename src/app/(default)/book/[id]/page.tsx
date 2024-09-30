@@ -12,6 +12,7 @@ import React from 'react';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import AddBookToWell from '@/components/BottomSheet/AddBookToWell';
+import MainLayout from '@/layouts/MainLayout';
 
 interface Props {
   params: {
@@ -31,25 +32,27 @@ function BookPage({ params: { id } }: Props) {
         title='도서 상세 페이지'
         hasButton={false}
       />
-      <BookInfo bookId={id} />
-      <div className='flex w-full flex-col gap-[36px] bg-white'>
-        <div className='flex w-full flex-col gap-[36px] px-page'>
-          <RatingSelector type='default' rating={bookData?.avg_rating} />
-          <AddButton
-            text='우물에 책 추가하기'
-            categoryId='novel'
-            onClick={() =>
-              bottomSheet.open({
-                sheetData: sheetData.add_book,
-                children: <AddBookToWell />,
-              })
-            }
-          />
-          <MajorTagList type='pros' tagData={bookData?.tags_pos} />
-          <MajorTagList type='cons' tagData={bookData?.tags_neg} />
+      <MainLayout>
+        <BookInfo bookId={id} />
+        <div className='flex w-full flex-col gap-[36px] bg-white'>
+          <div className='flex w-full flex-col gap-[36px] px-page'>
+            <RatingSelector type='default' rating={bookData?.avg_rating} />
+            <AddButton
+              text='우물에 책 추가하기'
+              categoryId='novel'
+              onClick={() =>
+                bottomSheet.open({
+                  sheetData: sheetData.add_book,
+                  children: <AddBookToWell />,
+                })
+              }
+            />
+            <MajorTagList type='pros' tagData={bookData?.tags_pos} />
+            <MajorTagList type='cons' tagData={bookData?.tags_neg} />
+          </div>
+          <BookDetail bookId={id} />
         </div>
-        <BookDetail bookId={id} />
-      </div>
+      </MainLayout>
     </>
   );
 }
