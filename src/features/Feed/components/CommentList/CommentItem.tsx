@@ -13,6 +13,7 @@ import { useChildComments } from '../../hooks/useChildComments';
 import { isGetMemoRes } from '../../utils/typeGuard';
 import { Comments } from '../../types/comment';
 import { useDeleteComment } from '../../hooks/useDeleteComment';
+import { useLikeComment } from '../../hooks/useLikeComment';
 
 interface Props {
   commentData: Comments;
@@ -22,8 +23,17 @@ interface Props {
 function CommentItem({ commentData, itemId }: Props) {
   const [more, setMore] = useState(false);
   const { data: session } = useSession();
-  const { writer, content, like_count, date, replies, reply_count, deleted } =
-    commentData;
+  const {
+    id,
+    writer,
+    content,
+    like,
+    like_count,
+    date,
+    replies,
+    reply_count,
+    deleted,
+  } = commentData;
   const { profile } = useProfile(writer);
   const isReview = !isGetMemoRes(commentData);
   const { childComments, isFetched } = useChildComments({
@@ -33,6 +43,7 @@ function CommentItem({ commentData, itemId }: Props) {
     isReview,
   });
   const { handleDeleteComment } = useDeleteComment(isReview);
+  const { handleChangeLike } = useLikeComment(itemId, isReview);
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
 
   if (!profile || !commentData) return <></>;
@@ -60,7 +71,11 @@ function CommentItem({ commentData, itemId }: Props) {
         >
           {!deleted && (
             <div className='flex gap-[8px]'>
-              <LikeButton likeCount={like_count || 0} />
+              <LikeButton
+                isLiked={like ?? false}
+                onClickLike={() => handleChangeLike({ id, value: !like })}
+                likeCount={like_count || 0}
+              />
               <motion.button
                 whileTap={{ scale: 1.1 }}
                 type='button'
