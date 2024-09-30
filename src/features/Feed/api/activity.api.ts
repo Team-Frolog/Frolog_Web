@@ -1,5 +1,7 @@
 import { authOptions } from '@/api/options';
 import {
+  FollowUser,
+  FollowUserReq,
   LikeMemo,
   LikeMemoComment,
   LikeReview,
@@ -11,6 +13,7 @@ const likeReview = new LikeReview(authOptions);
 const likeMemo = new LikeMemo(authOptions);
 const likeReviewComment = new LikeReviewComment(authOptions);
 const likeMemoComment = new LikeMemoComment(authOptions);
+const followUser = new FollowUser(authOptions);
 
 export const changeLikeThisFeed = async (
   req: LikeFeedReq,
@@ -46,5 +49,10 @@ export const changeLikeThisComment = async (
     result = await likeMemoComment.fetch({ memo_id: itemId, id, value });
   }
 
+  return result;
+};
+
+export const changeFollowUser = async (req: FollowUserReq) => {
+  const result = await followUser.fetch(req);
   return result;
 };

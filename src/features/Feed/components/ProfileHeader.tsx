@@ -9,6 +9,7 @@ import { sheetData } from '@/data/ui/bottomSheet';
 import { useReport } from '@/hooks/useReport';
 import { useProfile } from '@/hooks/useProfile';
 import { useSession } from 'next-auth/react';
+import { useFollowUser } from '../hooks/useFollowUser';
 
 interface Props {
   type: 'feed' | 'comment';
@@ -31,6 +32,11 @@ function ProfileHeader({
   const isMe = session?.user.id === userId;
   const { profile } = useProfile(userId);
   const { handleReport } = useReport(userId);
+  const { handleFollow } = useFollowUser();
+
+  if (!profile) return <></>;
+
+  const { username, image, follow } = profile;
 
   const getSheetData = () => {
     if (isMe) {
@@ -48,7 +54,7 @@ function ProfileHeader({
           <div className='flex items-center gap-[4px]'>
             <ChildArrowIcon />
             <Image
-              src={IMAGES.default_profile}
+              src={image || IMAGES.default_profile}
               alt='profile image'
               width={32}
               height={32}
@@ -57,7 +63,7 @@ function ProfileHeader({
           </div>
         ) : (
           <Image
-            src={IMAGES.default_profile}
+            src={image || IMAGES.default_profile}
             alt='profile image'
             width={40}
             height={40}
@@ -65,13 +71,14 @@ function ProfileHeader({
           />
         )}
 
-        <h5 className='text-body-lg-bold text-gray-600'>{profile?.username}</h5>
+        <h5 className='text-body-lg-bold text-gray-600'>{username}</h5>
       </div>
       <div className='flex items-center gap-[8px]'>
         {hasFollow && !isMe && (
           <button
             type='button'
-            className='rounded-[12px] border border-gray-400 bg-white px-[16px] py-[8px] text-body-sm-bold text-gray-600'
+            onClick={() => handleFollow({ id: userId, value: !follow })}
+            className={follow ? 'following-tag' : 'not-following-tag'}
           >
             팔로우
           </button>
