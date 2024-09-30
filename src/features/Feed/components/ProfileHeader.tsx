@@ -13,6 +13,7 @@ import { useSession } from 'next-auth/react';
 interface Props {
   type: 'feed' | 'comment';
   userId: string;
+  isDeleted?: boolean;
   hasFollow?: boolean;
   isChildComment?: boolean;
   onDelete?: () => void;
@@ -22,6 +23,7 @@ function ProfileHeader({
   type,
   userId,
   onDelete,
+  isDeleted = false,
   hasFollow = false,
   isChildComment = false,
 }: Props) {
@@ -65,16 +67,16 @@ function ProfileHeader({
 
         <h5 className='text-body-lg-bold text-gray-600'>{profile?.username}</h5>
       </div>
-      {session?.user.id !== profile?.id && (
-        <div className='flex items-center gap-[8px]'>
-          {hasFollow && (
-            <button
-              type='button'
-              className='rounded-[12px] border border-gray-400 bg-white px-[16px] py-[8px] text-body-sm-bold text-gray-600'
-            >
-              팔로우
-            </button>
-          )}
+      <div className='flex items-center gap-[8px]'>
+        {hasFollow && !isMe && (
+          <button
+            type='button'
+            className='rounded-[12px] border border-gray-400 bg-white px-[16px] py-[8px] text-body-sm-bold text-gray-600'
+          >
+            팔로우
+          </button>
+        )}
+        {!(isDeleted && isMe) && (
           <button
             type='button'
             onClick={() =>
@@ -86,8 +88,8 @@ function ProfileHeader({
           >
             <MenuIcon />
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

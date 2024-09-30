@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useSession } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
@@ -10,7 +11,6 @@ import { formatDate } from '@/utils/format';
 import ProfileHeader from '../ProfileHeader';
 import ChildCommentItem from './ChildCommentItem';
 import { useChildComments } from '../../hooks/useChildComments';
-import { isGetMemoRes } from '../../utils/typeGuard';
 import { Comments } from '../../types/comment';
 import { useDeleteComment } from '../../hooks/useDeleteComment';
 import { useLikeComment } from '../../hooks/useLikeComment';
@@ -35,14 +35,14 @@ function CommentItem({ commentData, itemId }: Props) {
     deleted,
   } = commentData;
   const { profile } = useProfile(writer);
-  const isReview = !isGetMemoRes(commentData);
+  const isReview = useSearchParams().get('type') === 'review';
   const { childComments, isFetched } = useChildComments({
     more,
     itemId,
     parentId: commentData.id,
     isReview,
   });
-  const { handleDeleteComment } = useDeleteComment(isReview);
+  const { handleDeleteComment } = useDeleteComment(itemId, isReview);
   const { handleChangeLike } = useLikeComment(itemId, isReview);
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
 
@@ -54,6 +54,7 @@ function CommentItem({ commentData, itemId }: Props) {
         <ProfileHeader
           type='comment'
           userId={writer}
+          isDeleted={deleted}
           onDelete={
             session?.user.id === writer
               ? () =>

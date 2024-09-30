@@ -23,7 +23,7 @@ function CommentList({ itemId }: Props) {
     <>
       <MainLayout>
         {isEmpty && isFetched && (
-          <div className='flex items-center justify-center'>
+          <div className='flex flex-1 items-center justify-center'>
             <EmptyContentFrog title='첫 댓글을 남겨보세요!' />
           </div>
         )}
