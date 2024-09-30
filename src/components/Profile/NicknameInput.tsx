@@ -19,7 +19,7 @@ function NicknameInput({ theme }: Props) {
       autoFocus
       hasCount
       theme={theme}
-      maxCount={12}
+      maxCount={15}
       title='닉네임'
       type='text'
       fieldName='username'
