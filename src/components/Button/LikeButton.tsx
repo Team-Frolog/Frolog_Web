@@ -1,25 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { HeartFilledIcon, HeartIcon } from 'public/icons';
 
 interface Props {
+  isLiked: boolean;
   likeCount: number;
+  onClickLike: () => void;
 }
 
-function LikeButton({ likeCount }: Props) {
-  const [like, setLike] = useState(false);
-
+function LikeButton({ isLiked, likeCount, onClickLike }: Props) {
   return (
     <motion.button
       whileTap={{ scale: 1.1 }}
       type='button'
       className='flex items-center gap-[4px]'
-      onClick={() => setLike((prev) => !prev)}
+      onClick={onClickLike}
     >
-      {like ? <HeartFilledIcon /> : <HeartIcon />}
-      <span className='text-body-md text-gray-600'>
-        {like ? likeCount + 1 : likeCount}
-      </span>
+      {isLiked ? <HeartFilledIcon /> : <HeartIcon />}
+      <span className='text-body-md text-gray-600'>{likeCount}</span>
     </motion.button>
   );
 }

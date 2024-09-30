@@ -13,7 +13,7 @@ function FeedList() {
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isLoading,
+    isFetched,
     isEmpty,
   } = useFeed();
   const { setTarget } = useObserver({
@@ -36,7 +36,7 @@ function FeedList() {
       </div>
 
       <div ref={setTarget} id='observer' className='h-[10px]' />
-      {feedData && !isLoading && (
+      {feedData && isFetched && (
         <Image
           src={IMAGES.frog.more_feed}
           alt='more feed'

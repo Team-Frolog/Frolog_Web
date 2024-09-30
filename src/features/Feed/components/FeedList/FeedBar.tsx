@@ -13,14 +13,19 @@ const MotionLink = motion(Link);
 
 interface Props {
   feedData: GetReviewRes | GetMemoRes;
+  onClickLike: () => void;
 }
 
-function FeedBar({ feedData }: Props) {
+function FeedBar({ feedData, onClickLike }: Props) {
   const router = useRouter();
   return (
     <div className='flex w-full items-center justify-between rounded-b-[20px] border-t border-t-gray-400 bg-white px-page py-[12px]'>
       <div className='flex gap-[20px]'>
-        <LikeButton likeCount={feedData.like_count || 0} />
+        <LikeButton
+          isLiked={feedData.like ?? false}
+          likeCount={feedData.like_count || 0}
+          onClickLike={onClickLike}
+        />
         <motion.button
           whileTap={{ scale: 1.1 }}
           type='button'
