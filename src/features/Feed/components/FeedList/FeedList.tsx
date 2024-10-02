@@ -8,14 +8,8 @@ import FeedItem from './FeedItem';
 import { useFeed } from '../../hooks/useFeed';
 
 function FeedList() {
-  const {
-    feedData,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetched,
-    isEmpty,
-  } = useFeed();
+  const { feedData, fetchNextPage, hasNextPage, isFetched, isEmpty } =
+    useFeed();
   const { setTarget } = useObserver({
     hasNextPage,
     fetchNextPage,
@@ -23,17 +17,17 @@ function FeedList() {
 
   return (
     <div className='flex h-fit w-full flex-col justify-between gap-[36px]'>
-      <div className='flex flex-col gap-[36px]'>
-        {!isEmpty &&
-          !isFetching &&
-          feedData.map((feed) => (
+      {!isEmpty && (
+        <div className='flex flex-col gap-[36px]'>
+          {feedData.map((feed) => (
             <FeedItem
               key={feed.memo ? feed.memo.id : feed.review?.id}
               isMemo={!!feed.memo}
               feedData={feed.memo ? feed.memo : feed.review!}
             />
           ))}
-      </div>
+        </div>
+      )}
 
       <div ref={setTarget} id='observer' className='h-[10px]' />
       {feedData && isFetched && (
