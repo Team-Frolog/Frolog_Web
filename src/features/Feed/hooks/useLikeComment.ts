@@ -25,11 +25,9 @@ export const useLikeComment = (itemId: string, isReview: boolean) => {
   const { mutate: handleChangeLike } = useMutation({
     mutationFn: (req: { id: string; value: boolean }) =>
       changeLikeThisComment({ ...req, itemId }, isReview),
-    onMutate: async (variables) => {
+    onMutate: async ({ id }) => {
       await queryClient.cancelQueries({ queryKey: ['comments', itemId] });
       const prevComments = queryClient.getQueryData(['comments', itemId]);
-
-      console.log(prevComments);
 
       if (!prevComments) return;
 
@@ -39,14 +37,9 @@ export const useLikeComment = (itemId: string, isReview: boolean) => {
           ...oldData,
           pages: oldData.pages.map((page) => ({
             ...page,
-            contents: page.comments.map((item) => {
-              if (
-                isReview
-                  ? item.review?.id === variables.id
-                  : item.memo?.id === variables.id
-              ) {
-                const targetItem = isReview ? item.review : item.memo;
-                toggleLike(targetItem!);
+            comments: page.comments.map((item) => {
+              if (item.id === id) {
+                toggleLike(item);
               }
               return item;
             }),
