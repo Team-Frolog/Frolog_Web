@@ -16,17 +16,18 @@ export const useFollowUser = () => {
 
       if (!prevProfile) return;
 
-      prevProfile.follow = !prevProfile.follow;
-
-      queryClient.setQueryData(['profile', id], prevProfile);
+      const updatedProfile = { ...prevProfile, follow: !prevProfile.follow };
+      queryClient.setQueryData(['profile', id], updatedProfile);
 
       return { prevProfile };
     },
     onError: (_err, variable, context) => {
       queryClient.setQueryData(['profile', variable.id], context?.prevProfile);
     },
-    onSuccess: (_, req) => {
-      queryClient.invalidateQueries({ queryKey: ['profile', req.id] });
+    onSuccess: (_res, _req, prev) => {
+      queryClient.invalidateQueries({
+        queryKey: ['profile', prev.prevProfile.id],
+      });
     },
   });
 
