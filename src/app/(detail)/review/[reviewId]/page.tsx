@@ -41,7 +41,7 @@ function ReviewPage({ params: { reviewId } }: Props) {
       </ResponsiveHeaderLayout>
       <MainLayout>
         <div className='flex w-full flex-col gap-[36px] bg-gray-900'>
-          <h1 className='w-fit max-w-[300px] px-page text-heading-md-bold text-white'>
+          <h1 className='w-fit max-w-[350px] px-page text-heading-md-bold text-white'>
             {profile?.username}의 메모
           </h1>
           <BookInfo bookId={reviewDetail.isbn} />
