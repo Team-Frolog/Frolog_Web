@@ -13,14 +13,14 @@ import {
   VerifyEmailCodeReq,
 } from '@frolog/frolog-api';
 import { getSession } from 'next-auth/react';
-import { authOptions, baseOptions } from './options';
+import { baseOptions } from './options';
 
 const getEmailAvailability = new GetEmailAvailability(baseOptions);
 const requestEmailCode = new RequestEmailCode(baseOptions);
 const verifyEmailCode = new VerifyEmailCode(baseOptions);
-const signOutInstance = new SignOut(authOptions);
-const quitInstance = new Quit(authOptions);
-const getProfileInstance = new GetProfile(authOptions);
+const signOutInstance = new SignOut(baseOptions);
+const quitInstance = new Quit(baseOptions);
+const getProfileInstance = new GetProfile(baseOptions);
 
 export const signOut = async () => {
   try {

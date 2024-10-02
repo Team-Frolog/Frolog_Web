@@ -1,4 +1,4 @@
-import { authOptions } from '@/api/options';
+import { baseOptions } from '@/api/options';
 import {
   FollowUser,
   FollowUserReq,
@@ -9,11 +9,11 @@ import {
 } from '@frolog/frolog-api';
 import { LikeFeedReq } from '../types/like';
 
-const likeReview = new LikeReview(authOptions);
-const likeMemo = new LikeMemo(authOptions);
-const likeReviewComment = new LikeReviewComment(authOptions);
-const likeMemoComment = new LikeMemoComment(authOptions);
-const followUser = new FollowUser(authOptions);
+const likeReview = new LikeReview(baseOptions);
+const likeMemo = new LikeMemo(baseOptions);
+const likeReviewComment = new LikeReviewComment(baseOptions);
+const likeMemoComment = new LikeMemoComment(baseOptions);
+const followUser = new FollowUser(baseOptions);
 
 export const changeLikeThisFeed = async (
   req: LikeFeedReq,

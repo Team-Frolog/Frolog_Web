@@ -1,4 +1,4 @@
-import { authOptions } from '@/api/options';
+import { baseOptions } from '@/api/options';
 import { ERROR_ALERT } from '@/constants/message';
 import {
   DeleteMemoImage,
@@ -17,13 +17,13 @@ import {
 } from '@frolog/frolog-api';
 import { getSession } from 'next-auth/react';
 
-const searchMemo = new SearchMemo(authOptions);
-const postMemo = new PostMemo(authOptions);
-const uploadMemoImg = new UploadMemoImage(authOptions);
-const deleteMemoImg = new DeleteMemoImage(authOptions);
-const getMemo = new GetMemo(authOptions);
-const editMemo = new EditMemo(authOptions);
-const deleteMemoObj = new DeleteMemo(authOptions);
+const searchMemo = new SearchMemo(baseOptions);
+const postMemo = new PostMemo(baseOptions);
+const uploadMemoImg = new UploadMemoImage(baseOptions);
+const deleteMemoImg = new DeleteMemoImage(baseOptions);
+const getMemo = new GetMemo(baseOptions);
+const editMemo = new EditMemo(baseOptions);
+const deleteMemoObj = new DeleteMemo(baseOptions);
 
 export const getMemos = async (isbn: string) => {
   const session = await getSession();

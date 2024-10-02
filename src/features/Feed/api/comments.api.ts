@@ -1,4 +1,4 @@
-import { authOptions, baseOptions } from '@/api/options';
+import { baseOptions } from '@/api/options';
 import { ERROR_ALERT } from '@/constants/message';
 import { LIMIT } from '@/features/Search/constants/query';
 import { toast } from '@/modules/Toast';
@@ -15,10 +15,10 @@ import {
 
 const searchReviewComments = new SearchReviewComment(baseOptions);
 const searchMemoComments = new SearchMemoComment(baseOptions);
-const postReviewComment = new PostReviewComment(authOptions);
-const postMemoComment = new PostMemoComment(authOptions);
-const deleteMemoComment = new DeleteMemoComment(authOptions);
-const deleteReviewComment = new DeleteReviewComment(authOptions);
+const postReviewComment = new PostReviewComment(baseOptions);
+const postMemoComment = new PostMemoComment(baseOptions);
+const deleteMemoComment = new DeleteMemoComment(baseOptions);
+const deleteReviewComment = new DeleteReviewComment(baseOptions);
 
 interface GetComments {
   id: string;
