@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
 import ProfileHeader from '../ProfileHeader';
 import BookInfo from './BookInfo';
@@ -18,8 +19,14 @@ function FeedItem({ isMemo, feedData }: Props) {
     <div className='w-full'>
       <ProfileHeader type='feed' userId={feedData.writer} hasFollow />
       <div className='flex w-full flex-col'>
-        <BookInfo isMemo={isMemo} feedData={feedData} />
-        <FeedContent feedData={feedData} />
+        <Link
+          href={isMemo ? `/memo/${feedData.id}` : `/review/${feedData.id}`}
+          className='flex w-full flex-col'
+        >
+          <BookInfo isMemo={isMemo} feedData={feedData} />
+          <FeedContent feedData={feedData} />
+        </Link>
+
         <FeedBar
           feedData={feedData}
           onClickLike={() =>
