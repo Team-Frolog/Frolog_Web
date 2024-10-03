@@ -10,7 +10,7 @@ interface Props {
 
 function CommentPage({ params: { itemId } }: Props) {
   return (
-    <div className='flex w-full flex-1 flex-col'>
+    <div className='flex w-full flex-1 flex-col overflow-hidden'>
       <BackHeader />
       <CommentList itemId={itemId} />
     </div>
