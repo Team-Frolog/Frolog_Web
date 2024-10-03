@@ -9,12 +9,19 @@ import { PostCommentMutation } from '../../types/comment';
 
 interface Props {
   itemId: string;
+  comment: string;
+  setComment: React.Dispatch<React.SetStateAction<string>>;
   isReview: boolean;
   handleAddComment: PostCommentMutation;
 }
 
-function CommentInput({ itemId, isReview, handleAddComment }: Props) {
-  const [comment, setComment] = useState('');
+function CommentInput({
+  itemId,
+  isReview,
+  handleAddComment,
+  comment,
+  setComment,
+}: Props) {
   const { commentUser, setCommentUser } = useCommentStore();
   const { data: session } = useSession();
   const [isFocusing, setIsFocusing] = useState(false);

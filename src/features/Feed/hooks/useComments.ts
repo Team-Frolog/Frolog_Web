@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   useInfiniteQuery,
   useMutation,
@@ -8,6 +9,7 @@ import { addNewComment, getComments } from '../api/comments.api';
 import { GetCommentsRes, PostComments } from '../types/comment';
 
 export const useComments = (id: string, isReview: boolean) => {
+  const [comment, setComment] = useState('');
   const queryClient = useQueryClient();
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
 
@@ -37,12 +39,15 @@ export const useComments = (id: string, isReview: boolean) => {
     mutationFn: (req: PostComments) => addNewComment(req, isReview),
     onSuccess: () => {
       setCommentUser(undefined);
+      setComment('');
       queryClient.invalidateQueries({ queryKey: ['comments', id] });
     },
   });
 
   return {
     comments: data ? data?.pages : [],
+    comment,
+    setComment,
     handleAddComment,
     fetchNextPage,
     hasNextPage,
