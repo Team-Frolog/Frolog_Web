@@ -83,7 +83,7 @@ function ProfileHeader({
             팔로우
           </button>
         )}
-        {!(isDeleted && isMe) && (
+        {!(!isDeleted && isMe) && (
           <button
             type='button'
             onClick={() =>
