@@ -106,10 +106,10 @@ function CommentItem({ commentData, itemId }: Props) {
       )}
       {more &&
         isFetched &&
-        childComments.map((comment: Comments) => (
+        childComments.map((comment: Comments, i: number) => (
           <ChildCommentItem
             key={comment.id}
-            hasMoreButton={!!reply_count}
+            hasMoreButton={reply_count === i + 1 && !more}
             moreCount={reply_count}
             onClickMore={() => setMore(true)}
             childCommentData={comment}

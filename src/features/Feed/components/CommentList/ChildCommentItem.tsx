@@ -20,7 +20,7 @@ function ChildCommentItem({
   onClickMore,
   hasMoreButton,
 }: Props) {
-  const { writer, mention, content, like_count, date, deleted, parent } =
+  const { writer, mention, content, like, like_count, date, deleted, parent } =
     childCommentData;
   const { profile } = useProfile(writer);
   const { profile: memtionProfile } = useProfile(mention);
@@ -50,7 +50,11 @@ function ChildCommentItem({
       >
         {!deleted && (
           <div className='flex gap-[8px]'>
-            <LikeButton likeCount={like_count || 0} />
+            <LikeButton
+              isLiked={like ?? false}
+              likeCount={like_count || 0}
+              onClickLike={() => {}}
+            />
             <motion.button
               whileTap={{ scale: 1.1 }}
               type='button'
