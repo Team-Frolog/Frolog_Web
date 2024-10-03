@@ -1,12 +1,23 @@
+'use client';
+
 import { SideWellHeader, WellList } from '@/features/Well';
+import { useProfile } from '@/hooks/useProfile';
 import MainLayout from '@/layouts/MainLayout';
 import React from 'react';
 
-function UserWellListPage() {
+interface Props {
+  params: {
+    userId: string;
+  };
+}
+
+function UserWellListPage({ params: { userId } }: Props) {
+  const { profile } = useProfile(userId);
+  
   return (
     <>
       <MainLayout>
-        <SideWellHeader username='홍길동과고길동과도라에몽' />
+        <SideWellHeader username={profile?.username} />
         <WellList />
       </MainLayout>
     </>
