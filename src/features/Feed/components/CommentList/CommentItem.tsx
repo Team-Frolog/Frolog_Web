@@ -83,7 +83,7 @@ function CommentItem({ commentData, itemId }: Props) {
                 className='text-body-md text-gray-600'
                 onClick={() =>
                   setCommentUser({
-                    parentId: commentData.parent || writer,
+                    parentId: commentData.parent || commentData.id,
                     id: writer,
                     name: profile.username,
                   })
@@ -98,7 +98,7 @@ function CommentItem({ commentData, itemId }: Props) {
       </div>
       {replies !== undefined && replies.length > 0 && !more && !isFetched && (
         <ChildCommentItem
-          hasMoreButton={!!reply_count}
+          hasMoreButton={reply_count ? reply_count > 1 : false}
           moreCount={reply_count}
           onClickMore={() => setMore(true)}
           childCommentData={replies[0]}
