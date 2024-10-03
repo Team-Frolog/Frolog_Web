@@ -13,7 +13,7 @@ function LikeButton({ isLiked, likeCount, onClickLike }: Props) {
     <motion.button
       whileTap={{ scale: 1.1 }}
       type='button'
-      className='flex items-center gap-[4px]'
+      className='flex w-max min-w-[38px] items-center gap-[4px]'
       onClick={onClickLike}
     >
       {isLiked ? <HeartFilledIcon /> : <HeartIcon />}
