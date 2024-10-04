@@ -16,8 +16,12 @@ function BookInfo({ feedData, isMemo }: Props) {
   return (
     <div className='pt-[30px]'>
       <div className='tooltip-feed relative flex w-full gap-[16px] rounded-t-[20px] bg-category-bg-novel px-page pt-[24px] after:border-b-category-bg-novel'>
-        <div className='h-[110px] w-[74px] bg-gray-500'>book</div>
-        <div className={`flex flex-col ${isMemo && 'justify-end gap-[8px]'}`}>
+        <div className='h-[110px] w-[74px] shrink-0 self-end bg-gray-500'>
+          book
+        </div>
+        <div
+          className={`flex w-full flex-col ${isMemo && 'justify-end gap-[8px]'}`}
+        >
           <div className='flex flex-col gap-[4px]'>
             <h5 className='text-body-lg-bold text-category-text-novel'>
               {bookData?.title}
