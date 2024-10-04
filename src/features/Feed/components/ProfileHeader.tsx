@@ -33,6 +33,8 @@ function ProfileHeader({
   const { profile } = useProfile(userId);
   const { handleReport } = useReport(userId);
   const { handleFollow } = useFollowUser();
+  const isFeed = type === 'feed';
+  const canShowButton = (isFeed && !isMe) || (!isFeed && !(isDeleted && isMe));
 
   if (!profile) return <></>;
 
@@ -42,7 +44,7 @@ function ProfileHeader({
     if (isMe) {
       return sheetData.delete_this_comment;
     }
-    return type === 'feed'
+    return isFeed
       ? sheetData.report_this_feed
       : sheetData.report_this_comment;
   };
@@ -83,13 +85,13 @@ function ProfileHeader({
             팔로우
           </button>
         )}
-        {!(!isDeleted && isMe) && (
+        {canShowButton && (
           <button
             type='button'
             onClick={() =>
               bottomSheet.open({
                 sheetData: getSheetData(),
-                onClick: type === 'comment' && isMe ? onDelete : handleReport,
+                onClick: !isFeed && isMe ? onDelete : handleReport,
               })
             }
           >

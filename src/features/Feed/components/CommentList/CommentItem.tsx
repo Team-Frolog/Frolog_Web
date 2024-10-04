@@ -96,21 +96,19 @@ function CommentItem({ commentData, itemId }: Props) {
           <span className='text-body-md text-gray-600'>{formatDate(date)}</span>
         </div>
       </div>
-      {replies !== undefined && replies.length > 0 && !more && !isFetched && (
+      {replies !== undefined && replies.length > 0 && !isFetched && (
         <ChildCommentItem
           hasMoreButton={reply_count ? reply_count > 1 : false}
-          moreCount={reply_count}
+          moreCount={reply_count ? reply_count - 1 : 0}
           onClickMore={() => setMore(true)}
           childCommentData={replies[0]}
         />
       )}
       {more &&
         isFetched &&
-        childComments.map((comment: Comments, i: number) => (
+        childComments.map((comment: Comments) => (
           <ChildCommentItem
             key={comment.id}
-            hasMoreButton={reply_count === i + 1 && !more}
-            moreCount={reply_count}
             onClickMore={() => setMore(true)}
             childCommentData={comment}
           />
