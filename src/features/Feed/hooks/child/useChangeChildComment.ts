@@ -1,29 +1,20 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { getComments } from '../../api/comments.api';
-import { Comments, GetCommentsRes } from '../../types/comment';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { changeLikeThisComment } from '../../api/activity.api';
+import { Comments, GetCommentsRes } from '../../types/comment';
 import { toggleLike } from '../../utils/toggleLike';
 
 interface Props {
   isReview: boolean;
   itemId: string;
   parentId: string;
-  more: boolean;
 }
 
-export const useChildComments = ({
+export const useChangeChildComment = ({
   isReview,
   itemId,
   parentId,
-  more,
 }: Props) => {
   const queryClient = useQueryClient();
-
-  const { data, isFetched } = useQuery<GetCommentsRes>({
-    queryKey: ['childComments', parentId],
-    queryFn: () => getComments({ id: itemId, isReview, depth: 1, parentId }),
-    enabled: more,
-  });
 
   const { mutate: handleChangeLikeChild } = useMutation({
     mutationFn: (req: { id: string; value: boolean }) =>
@@ -62,9 +53,5 @@ export const useChildComments = ({
     },
   });
 
-  return {
-    childComments: data ? data.comments : [],
-    isFetched,
-    handleChangeLikeChild,
-  };
+  return { handleChangeLikeChild };
 };

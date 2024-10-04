@@ -1,38 +1,30 @@
+'use client';
+
 import React from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useProfile } from '@/hooks/useProfile';
-import { UseMutateFunction } from '@tanstack/react-query';
-import { LikeReviewCommentRes } from '@frolog/frolog-api';
 import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
 import { motion } from 'framer-motion';
 import { formatDate } from '@/utils/format';
 import ProfileHeader from '../ProfileHeader';
 import { Comments } from '../../types/comment';
+import { useChangeChildComment } from '../../hooks/child/useChangeChildComment';
 
 interface Props {
+  itemId: string;
   childCommentData: Comments;
   moreCount?: number;
   onClickMore?: () => void;
   hasMoreButton?: boolean;
-  onClickLike: UseMutateFunction<
-    LikeReviewCommentRes,
-    Error,
-    {
-      id: string;
-      value: boolean;
-    },
-    {
-      prevComments: object;
-    }
-  >;
 }
 
 function ChildCommentItem({
+  itemId,
   childCommentData,
   moreCount,
   onClickMore,
   hasMoreButton,
-  onClickLike,
 }: Props) {
   const {
     id,
@@ -47,7 +39,13 @@ function ChildCommentItem({
   } = childCommentData;
   const { profile } = useProfile(writer);
   const { profile: memtionProfile } = useProfile(mention);
+  const isReview = useSearchParams().get('type') === 'review';
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
+  const { handleChangeLikeChild } = useChangeChildComment({
+    isReview,
+    itemId,
+    parentId: childCommentData.parent || '',
+  });
 
   if (!profile || !childCommentData) return <></>;
 
@@ -81,7 +79,7 @@ function ChildCommentItem({
             <LikeButton
               isLiked={like ?? false}
               likeCount={like_count || 0}
-              onClickLike={() => onClickLike({ id, value: !like })}
+              onClickLike={() => handleChangeLikeChild({ id, value: !like })}
             />
             <motion.button
               whileTap={{ scale: 1.1 }}

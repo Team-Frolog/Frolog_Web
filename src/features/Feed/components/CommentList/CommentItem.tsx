@@ -10,10 +10,9 @@ import { useProfile } from '@/hooks/useProfile';
 import { formatDate } from '@/utils/format';
 import ProfileHeader from '../ProfileHeader';
 import ChildCommentItem from './ChildCommentItem';
-import { useChildComments } from '../../hooks/comment/useChildComments';
+import { useChildComments } from '../../hooks/child/useChildComments';
 import { Comments } from '../../types/comment';
-import { useDeleteComment } from '../../hooks/comment/useDeleteComment';
-import { useLikeComment } from '../../hooks/comment/useLikeComment';
+import { useChangeComment } from '../../hooks/comment/useChangeComment';
 
 interface Props {
   commentData: Comments;
@@ -36,14 +35,16 @@ function CommentItem({ commentData, itemId }: Props) {
   } = commentData;
   const { profile } = useProfile(writer);
   const isReview = useSearchParams().get('type') === 'review';
-  const { childComments, isFetched, handleChangeLikeChild } = useChildComments({
+  const { childComments, isFetched } = useChildComments({
     more,
     itemId,
     parentId: commentData.id,
     isReview,
   });
-  const { handleDeleteComment } = useDeleteComment(itemId, isReview);
-  const { handleChangeLike } = useLikeComment(itemId, isReview);
+  const { handleChangeLike, handleDeleteComment } = useChangeComment(
+    itemId,
+    isReview
+  );
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
 
   if (!profile || !commentData) return <></>;
@@ -98,21 +99,21 @@ function CommentItem({ commentData, itemId }: Props) {
       </div>
       {replies !== undefined && replies.length > 0 && (!more || !isFetched) && (
         <ChildCommentItem
+          itemId={itemId}
           hasMoreButton={reply_count ? reply_count > 1 : false}
           moreCount={reply_count ? reply_count - 1 : 0}
           onClickMore={() => setMore(true)}
           childCommentData={replies[0]}
-          onClickLike={handleChangeLikeChild}
         />
       )}
       {more &&
         isFetched &&
         childComments.map((comment: Comments) => (
           <ChildCommentItem
+            itemId={itemId}
             key={comment.id}
             onClickMore={() => setMore(true)}
             childCommentData={comment}
-            onClickLike={handleChangeLikeChild}
           />
         ))}
     </>

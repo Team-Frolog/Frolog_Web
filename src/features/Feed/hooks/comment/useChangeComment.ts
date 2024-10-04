@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { changeLikeThisComment } from '../../api/activity.api';
 import { GetCommentsRes } from '../../types/comment';
 import { toggleLike } from '../../utils/toggleLike';
+import { deleteComment } from '../../api/comments.api';
 
 interface CommentData {
   pages: {
@@ -13,7 +14,7 @@ interface CommentData {
   pageParams: number[];
 }
 
-export const useLikeComment = (itemId: string, isReview: boolean) => {
+export const useChangeComment = (itemId: string, isReview: boolean) => {
   const queryClient = useQueryClient();
 
   const { mutate: handleChangeLike } = useMutation({
@@ -48,5 +49,13 @@ export const useLikeComment = (itemId: string, isReview: boolean) => {
     },
   });
 
-  return { handleChangeLike };
+  const { mutate: handleDeleteComment } = useMutation({
+    mutationFn: (req: { id: string; commentId: string }) =>
+      deleteComment(req, isReview),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments', itemId] });
+    },
+  });
+
+  return { handleChangeLike, handleDeleteComment };
 };
