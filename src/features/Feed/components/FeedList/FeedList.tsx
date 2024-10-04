@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
-import { useObserver } from '@/features/Search/hooks/useObserver';
+import { useObserver } from '@/hooks/gesture/useObserver';
 import FeedItem from './FeedItem';
 import { useFeed } from '../../hooks/useFeed';
 

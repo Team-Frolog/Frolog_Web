@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useObserver } from '@/hooks/gesture/useObserver';
 import MainLayout from '@/layouts/MainLayout';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import CommentItem from './CommentItem';
@@ -21,7 +22,14 @@ function CommentList({ itemId }: Props) {
     handleAddComment,
     comment,
     setComment,
+    hasNextPage,
+    fetchNextPage,
   } = useComments(itemId, isReview);
+
+  const { setTarget } = useObserver({
+    hasNextPage,
+    fetchNextPage,
+  });
 
   return (
     <>
@@ -38,6 +46,7 @@ function CommentList({ itemId }: Props) {
             ))}
           </div>
         )}
+        <div ref={setTarget} id='observer' className='h-[10px]' />
       </MainLayout>
       <CommentInput
         itemId={itemId}
