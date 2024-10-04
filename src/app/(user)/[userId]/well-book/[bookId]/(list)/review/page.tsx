@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import AddButton from '@/components/Button/AddButton';
 import ReviewListSkeleton from '@/components/Fallback/Skeleton/ReviewListSkeleton';
 import dynamic from 'next/dynamic';
@@ -30,9 +30,7 @@ async function ReviewPage({ params: { userId, bookId } }: Props) {
           <AddButton route={`/new-review?id=${bookId}`} text='리뷰 추가하기' />
         </div>
       )}
-      <Suspense fallback={<ReviewListSkeleton />}>
-        <ReviewList bookId={bookId} userId={userId} />
-      </Suspense>
+      <ReviewList bookId={bookId} userId={userId} />
     </>
   );
 }
