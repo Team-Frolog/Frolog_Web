@@ -1,21 +1,21 @@
-import { authOptions } from '@/api/options';
+import { baseOptions } from '@/api/options';
 import { getSession } from 'next-auth/react';
 import { ERROR_ALERT } from '@/constants/message';
 import {
   DeleteReview,
   EditReview,
   EditReviewReq,
-  GetReviewDetail,
+  GetReview,
   PostReview,
   PostReviewReq,
   SearchReview,
 } from '@frolog/frolog-api';
 
-const postReview = new PostReview(authOptions);
-const patchEditReview = new EditReview(authOptions);
-const getReview = new GetReviewDetail(authOptions);
-const searchReview = new SearchReview(authOptions);
-const deleteMyReview = new DeleteReview(authOptions);
+const postReview = new PostReview(baseOptions);
+const patchEditReview = new EditReview(baseOptions);
+const getReview = new GetReview(baseOptions);
+const searchReview = new SearchReview(baseOptions);
+const deleteMyReview = new DeleteReview(baseOptions);
 
 export const addNewReview = async (req: PostReviewReq) => {
   const result = await postReview.fetch(req);

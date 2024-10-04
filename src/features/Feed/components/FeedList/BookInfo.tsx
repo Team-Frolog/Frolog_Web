@@ -1,28 +1,42 @@
 import Rating from '@/components/Rating/Rating';
 import { IMAGES } from '@/constants/images';
+import { useBook } from '@/features/Book';
+import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
 import Image from 'next/image';
 import React from 'react';
 
 interface Props {
-  isMemo?: boolean;
+  isMemo: boolean;
+  feedData: GetReviewRes | GetMemoRes;
 }
 
-function BookInfo({ isMemo = false }: Props) {
+function BookInfo({ feedData, isMemo }: Props) {
+  const { bookData } = useBook(feedData.isbn);
+
   return (
     <div className='pt-[30px]'>
       <div className='tooltip-feed relative flex w-full gap-[16px] rounded-t-[20px] bg-category-bg-novel px-page pt-[24px] after:border-b-category-bg-novel'>
-        <div className='h-[110px] w-[74px] bg-gray-500'>book</div>
-        <div className={`flex flex-col ${isMemo && 'justify-end gap-[8px]'}`}>
+        <div className='h-[110px] w-[74px] shrink-0 self-end bg-gray-500'>
+          book
+        </div>
+        <div
+          className={`flex w-full flex-col ${isMemo && 'justify-end gap-[8px]'}`}
+        >
           <div className='flex flex-col gap-[4px]'>
             <h5 className='text-body-lg-bold text-category-text-novel'>
-              해변의 카프카(상)
+              {bookData?.title}
             </h5>
             <ul className='flex text-caption-bold text-category-text-novel'>
               <li className="after:content-['|']">
-                <span className='pr-[6px]'>무라카미 하루키</span>
+                <span className='pr-[6px]'>
+                  {bookData?.author}{' '}
+                  {(bookData?.author_cnt === undefined ||
+                    bookData.author_cnt > 0) &&
+                    `외 ${bookData?.author_cnt}명`}
+                </span>
               </li>
               <li>
-                <span className='pl-[6px]'>민음사</span>
+                <span className='pl-[6px]'>{bookData?.publisher}</span>
               </li>
             </ul>
           </div>

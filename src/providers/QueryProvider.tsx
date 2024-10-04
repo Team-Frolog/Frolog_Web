@@ -8,6 +8,7 @@ export const queryClient = new QueryClient({
     queries: {
       retry: 0,
       networkMode: 'online',
+      refetchOnWindowFocus: false,
     },
     mutations: {
       onError: (error: Error) => toast.error(error.message),

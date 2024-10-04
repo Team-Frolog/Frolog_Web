@@ -11,6 +11,8 @@ import ImageEditor from './ImageEditor';
 interface EditForm {
   username: string;
   image: string | null;
+  testType: string;
+  intro: string;
   personal_infos: {
     occupation: Info;
     birth_date: Info;
@@ -21,6 +23,8 @@ interface EditForm {
 export const defaultValue: EditForm = {
   username: '',
   image: null,
+  testType: '',
+  intro: '',
   personal_infos: {
     occupation: {
       value: '무직',
@@ -46,9 +50,9 @@ function ProfileEditForm() {
   return (
     <FormProvider {...methods}>
       <TitleHeader title='' theme='light' type='edit' isDisabled={false} />
-      <form className='flex w-full flex-1 flex-col items-center gap-[16px] overflow-auto px-page py-[16px]'>
+      <form className='flex w-full flex-1 flex-col items-center gap-[16px] overflow-auto py-[16px]'>
         <ImageEditor />
-        <ProfileForm theme='light' />
+        <ProfileForm type='profile' theme='light' />
       </form>
     </FormProvider>
   );

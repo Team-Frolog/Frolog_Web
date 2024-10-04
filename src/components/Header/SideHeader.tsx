@@ -25,6 +25,7 @@ function SideHeader({ children, title, hasBackButton = false }: Props) {
         alt='side header'
         width={390}
         height={144}
+        loading='eager'
         className='absolute left-0 top-0 z-60 w-full'
       />
       <div className='flex h-fit w-full px-page py-[20px] pt-[50px]'>

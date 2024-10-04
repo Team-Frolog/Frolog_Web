@@ -52,3 +52,16 @@ export const testEvaluator = (answers: number[]) => {
 
   return resultType;
 };
+
+export const getTestTypeById = (type: string) => {
+  switch (type) {
+    case '1':
+      return '감정형';
+    case '2':
+      return '사고형';
+    case '3':
+      return '성취형';
+    default:
+      return '감정형';
+  }
+};

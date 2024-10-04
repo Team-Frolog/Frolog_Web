@@ -88,6 +88,7 @@ body {
 #root {
   height: 100dvh;
   width: 100%;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;

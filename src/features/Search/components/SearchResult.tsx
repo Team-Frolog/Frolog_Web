@@ -13,7 +13,7 @@ import { useSession } from 'next-auth/react';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
 import { useSearch } from '../hooks/useSearch';
 import SearchResultEmpty from './SearchResultEmpty';
-import { useObserver } from '../hooks/useObserver';
+import { useObserver } from '../../../hooks/gesture/useObserver';
 import NoBookButton from './NoBookButton';
 
 function SearchResult() {

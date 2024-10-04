@@ -27,7 +27,6 @@ export const useReviewDetail = (
   const { data: bookData } = useQuery({
     queryKey: ['bookInfo', bookId],
     queryFn: () => getBookInfo({ isbn: bookId }).then((res) => res),
-    refetchOnWindowFocus: false,
   });
 
   const { mutate: handleEditReview } = useMutation({

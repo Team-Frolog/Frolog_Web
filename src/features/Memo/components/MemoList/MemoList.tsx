@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import EmptyContentFrog from '@/components/ListItem/EmptyContentFrog';
+import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import MemoListItem from './MemoListItem';
 import { useMemos } from '../../hooks/useMemos';
 import { Memo } from '../../models/memo.model';

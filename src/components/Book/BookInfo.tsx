@@ -12,7 +12,7 @@ function BookInfo({ bookId }: { bookId: string }) {
   return (
     <div
       id='book-info'
-      className='flex-col-center relative w-full gap-[20px] bg-white py-[24px] text-gray-800'
+      className='flex-col-center relative w-full gap-[20px] bg-white pb-[24px] pt-[48px] text-gray-800'
     >
       <Image
         src={IMAGES.book.background}
@@ -24,7 +24,7 @@ function BookInfo({ bookId }: { bookId: string }) {
       <Book />
       <div className='flex-col-center gap-[4px]'>
         <h3 className='text-title-lg-bold'>{bookData?.title}</h3>
-        <ul className='text-body-sm flex text-gray-600'>
+        <ul className='flex text-body-sm text-gray-600'>
           <li className="after:content-['|']">
             <span className='px-[6px]'>{bookData?.author}</span>
           </li>

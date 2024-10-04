@@ -1,7 +1,11 @@
 'use client';
 
 import { PAGES } from '@/constants/page';
-import { TEST_ANSWER_KEY } from '@/constants/storage';
+import {
+  TEST_ANSWER_KEY,
+  TEST_CALLBACK,
+  TEST_RESULT_FOR_EDIT,
+} from '@/constants/storage';
 import { useStepActions, useTestStep } from '@/store/stepStore';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -43,6 +47,13 @@ export const useTest = () => {
   });
 
   const postTestResult = async (type: string) => {
+    const hasCallback = sessionStorage.getItem(TEST_CALLBACK);
+
+    if (hasCallback) {
+      sessionStorage.setItem(TEST_RESULT_FOR_EDIT, type);
+      return;
+    }
+
     const session = await getSession();
     if (session) {
       const reqData = {

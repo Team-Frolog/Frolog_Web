@@ -1,7 +1,9 @@
 import { ERROR_ALERT } from '@/constants/message';
+import { toast } from '@/modules/Toast';
 import {
   GetEmailAvailability,
   GetEmailAvailabilityReq,
+  GetProfile,
   Quit,
   RequestEmailCode,
   RequestEmailCodeReq,
@@ -11,13 +13,14 @@ import {
   VerifyEmailCodeReq,
 } from '@frolog/frolog-api';
 import { getSession } from 'next-auth/react';
-import { authOptions, baseOptions } from './options';
+import { baseOptions } from './options';
 
 const getEmailAvailability = new GetEmailAvailability(baseOptions);
 const requestEmailCode = new RequestEmailCode(baseOptions);
 const verifyEmailCode = new VerifyEmailCode(baseOptions);
-const signOutInstance = new SignOut(authOptions);
-const quitInstance = new Quit(authOptions);
+const signOutInstance = new SignOut(baseOptions);
+const quitInstance = new Quit(baseOptions);
+const getProfileInstance = new GetProfile(baseOptions);
 
 export const signOut = async () => {
   try {
@@ -34,7 +37,7 @@ export const signOut = async () => {
     }
     throw new Error();
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
   }
 };
 
@@ -51,7 +54,7 @@ export const checkEmail = async (req: GetEmailAvailabilityReq) => {
     const data = await getEmailAvailability.fetch(req);
     return data.result;
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
   }
 };
 
@@ -60,7 +63,7 @@ export const requestCode = async (req: RequestEmailCodeReq) => {
     const data = await requestEmailCode.fetch(req);
     return data;
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
   }
 };
 
@@ -69,6 +72,15 @@ export const verifyCode = async (req: VerifyEmailCodeReq) => {
     const data = await verifyEmailCode.fetch(req);
     return data;
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
+  }
+};
+
+export const getProfile = async (id: string) => {
+  try {
+    const data = await getProfileInstance.fetch({ id });
+    return data;
+  } catch (err) {
+    toast.error(ERROR_ALERT);
   }
 };

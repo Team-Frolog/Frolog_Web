@@ -27,17 +27,13 @@ export const IMAGES = {
     },
     memo_frog: `${BASE_PATH}/frog/memo-frog.svg`,
     more_feed: `${BASE_PATH}/frog/morefeed-frog.svg`,
+    empty_dot: `${BASE_PATH}/frog/frog-empty-dot.svg`,
   },
   test: {
-    shape: {
-      '1': `${BASE_PATH}/test/shape/type1.svg`,
-      '2': `${BASE_PATH}/test/shape/type2.svg`,
-      '3': `${BASE_PATH}/test/shape/type3.svg`,
-    },
-    frog: {
-      '1': `${BASE_PATH}/test/frog/type1.svg`,
-      '2': `${BASE_PATH}/test/frog/type2.svg`,
-      '3': `${BASE_PATH}/test/frog/type3.svg`,
+    result: {
+      '1': `${BASE_PATH}/test/type1.svg`,
+      '2': `${BASE_PATH}/test/type2.svg`,
+      '3': `${BASE_PATH}/test/type3.svg`,
     },
   },
   well: {

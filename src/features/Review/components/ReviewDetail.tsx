@@ -3,10 +3,10 @@ import { textareaType } from '@/data/ui/textareaType';
 import ReadOnlyTextarea from '@/components/Form/Input/ReadOnlyTextarea';
 import MajorTagList from '@/components/Tag/MajorTagList';
 import RatingSelector from '@/components/Rating/RatingSelector';
-import { GetReviewDetailRes } from '@frolog/frolog-api';
+import { GetReviewRes } from '@frolog/frolog-api';
 
 interface Props {
-  reviewDetail: GetReviewDetailRes | undefined;
+  reviewDetail: GetReviewRes | undefined;
 }
 
 function ReviewDetail({ reviewDetail }: Props) {

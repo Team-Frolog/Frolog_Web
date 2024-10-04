@@ -1,32 +1,69 @@
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
+import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { ChildArrowIcon, MenuIcon } from 'public/icons';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import { useReport } from '@/hooks/useReport';
+import { useProfile } from '@/hooks/useProfile';
+import { useSession } from 'next-auth/react';
+import { useFollowUser } from '../hooks/feed/useFollowUser';
 
 interface Props {
   type: 'feed' | 'comment';
+  userId: string;
+  isDeleted?: boolean;
   hasFollow?: boolean;
   isChildComment?: boolean;
+  onDelete?: () => void;
 }
 
 function ProfileHeader({
   type,
+  userId,
+  onDelete,
+  isDeleted = false,
   hasFollow = false,
   isChildComment = false,
 }: Props) {
-  const { handleReport } = useReport();
+  const { data: session } = useSession();
+  const router = useRouter();
+  const isMe = session?.user.id === userId;
+  const { profile } = useProfile(userId);
+  const { handleReport } = useReport(userId);
+  const { handleFollow } = useFollowUser();
+  const isFeed = type === 'feed';
+  const canShowButton = (isFeed && !isMe) || (!isFeed && !(isDeleted && isMe));
+
+  if (!profile) return <></>;
+
+  const { username, image, follow } = profile;
+
+  const getSheetData = () => {
+    if (isMe) {
+      return sheetData.delete_this_comment;
+    }
+    return isFeed ? sheetData.report_this_feed : sheetData.report_this_comment;
+  };
 
   return (
     <div className='flex w-full items-center justify-between px-page'>
-      <div className='flex items-center gap-[8px]'>
+      <button
+        type='button'
+        onClick={() =>
+          runWhenLoggedIn(() => router.push(`/${profile.id}/profile`))
+        }
+        className='flex items-center gap-[8px]'
+      >
         {isChildComment ? (
           <div className='flex items-center gap-[4px]'>
             <ChildArrowIcon />
             <Image
-              src={IMAGES.default_profile}
+              src={image || IMAGES.default_profile}
               alt='profile image'
               width={32}
               height={32}
@@ -35,7 +72,7 @@ function ProfileHeader({
           </div>
         ) : (
           <Image
-            src={IMAGES.default_profile}
+            src={image || IMAGES.default_profile}
             alt='profile image'
             width={40}
             height={40}
@@ -43,34 +80,37 @@ function ProfileHeader({
           />
         )}
 
-        <h5 className='text-body-lg-bold text-gray-600'>
-          홍길동과고길동과도라에몽
-        </h5>
-      </div>
+        <h5 className='text-body-lg-bold text-gray-600'>{username}</h5>
+      </button>
       <div className='flex items-center gap-[8px]'>
-        {hasFollow && (
+        {hasFollow && !isMe && (
           <button
             type='button'
-            className='rounded-[12px] border border-gray-400 bg-white px-[16px] py-[8px] text-body-sm-bold text-gray-600'
+            onClick={() =>
+              runWhenLoggedIn(() =>
+                handleFollow({ id: userId, value: !follow })
+              )
+            }
+            className={follow ? 'following-tag' : 'not-following-tag'}
           >
             팔로우
           </button>
         )}
-        {/* 본인인 경우 삭제 시트 */}
-        <button
-          type='button'
-          onClick={() =>
-            bottomSheet.open({
-              sheetData:
-                type === 'feed'
-                  ? sheetData.report_this_feed
-                  : sheetData.report_this_comment,
-              onClick: handleReport,
-            })
-          }
-        >
-          <MenuIcon />
-        </button>
+        {canShowButton && (
+          <button
+            type='button'
+            onClick={() =>
+              runWhenLoggedIn(() =>
+                bottomSheet.open({
+                  sheetData: getSheetData(),
+                  onClick: !isFeed && isMe ? onDelete : handleReport,
+                })
+              )
+            }
+          >
+            <MenuIcon />
+          </button>
+        )}
       </div>
     </div>
   );

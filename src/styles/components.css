@@ -27,4 +27,16 @@
   .review-item {
     @apply flex w-full flex-col gap-[20px] rounded-[20px] bg-white px-[24px] py-[36px] text-gray-800 last:rounded-b-none;
   }
+  .user-type-chip {
+    @apply w-fit whitespace-nowrap rounded-[12px] bg-gray-200 px-[22px] py-[8px] text-body-lg-bold text-gray-800;
+  }
+  .user-type-chip-disabled {
+    @apply w-fit whitespace-nowrap rounded-[12px] bg-gray-200 px-[22px] py-[8px] text-body-lg-bold text-gray-500;
+  }
+  .not-following-tag {
+    @apply rounded-[12px] border border-gray-400 bg-white px-[16px] py-[8px] text-body-sm-bold text-gray-600;
+  }
+  .following-tag {
+    @apply rounded-[12px] border border-main bg-white px-[16px] py-[8px] text-body-sm-bold text-main;
+  }
 }

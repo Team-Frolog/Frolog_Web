@@ -17,6 +17,7 @@ function WellTitle({ children }: Props) {
         alt='well-header'
         width={390}
         height={144}
+        loading='eager'
         className='absolute left-0 top-0 w-full'
       />
       <motion.div

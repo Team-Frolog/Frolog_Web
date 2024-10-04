@@ -22,7 +22,8 @@ function WellBookList({ userId }: Props) {
       variants={staggerContainerVariants}
     >
       <div className='h-[12px] w-full shrink-0 rounded-t-[20px] bg-gray-900' />
-      {hasNewReview && <WellBook />}
+      {hasNewReview && <WellBook isReading />}
+      <WellBook isReading />
       <WellBook userId={userId} />
       <FrogOnBook />
       <ScrollToTop />

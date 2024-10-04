@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import EmptyContentFrog from '@/components/ListItem/EmptyContentFrog';
+import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import ReviewListItem from './ReviewListItem';
 import FirstReviewItem from './FirstReviewItem';
 import { useReviews } from '../../hooks/useReviews';
