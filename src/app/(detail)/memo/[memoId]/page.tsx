@@ -9,6 +9,8 @@ import MainLayout from '@/layouts/MainLayout';
 import BookInfo from '@/components/Book/BookInfo';
 import { useProfile } from '@/hooks/useProfile';
 import { useRouter } from 'next/navigation';
+import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
+import { useScroll } from '@/hooks/gesture/useScroll';
 
 interface Props {
   params: {
@@ -17,6 +19,7 @@ interface Props {
 }
 
 function MemoPage({ params: { memoId } }: Props) {
+  useScroll({ categoryColor: undefined });
   const router = useRouter();
   const { data: memoDetail } = useQuery({
     queryKey: ['memo', memoId],
@@ -32,7 +35,9 @@ function MemoPage({ params: { memoId } }: Props) {
         <div className='flex flex-1 justify-end'>
           <button
             type='button'
-            onClick={() => router.push(`/${profile.id}/well`)}
+            onClick={() =>
+              runWhenLoggedIn(() => router.push(`/${profile.id}/well`))
+            }
             className='text-body-lg-bold text-main'
           >
             우물에 놀러가기

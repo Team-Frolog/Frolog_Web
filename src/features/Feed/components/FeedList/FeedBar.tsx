@@ -2,14 +2,12 @@
 
 import React from 'react';
 import { ArrowIcon, ChatIcon } from 'public/icons';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import LikeButton from '@/components/Button/LikeButton';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
 import { useRouter } from 'next/navigation';
 import { isGetMemoRes } from '../../utils/typeGuard';
-
-const MotionLink = motion(Link);
 
 interface Props {
   feedData: GetReviewRes | GetMemoRes;
@@ -18,21 +16,24 @@ interface Props {
 
 function FeedBar({ feedData, onClickLike }: Props) {
   const router = useRouter();
+
   return (
     <div className='flex w-full items-center justify-between rounded-b-[20px] border-t border-t-gray-400 bg-white px-page py-[12px]'>
       <div className='flex gap-[20px]'>
         <LikeButton
           isLiked={feedData.like ?? false}
           likeCount={feedData.like_count || 0}
-          onClickLike={onClickLike}
+          onClickLike={() => runWhenLoggedIn(onClickLike)}
         />
         <motion.button
           whileTap={{ scale: 1.1 }}
           type='button'
           className='flex items-center gap-[4px]'
           onClick={() =>
-            router.push(
-              `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}`
+            runWhenLoggedIn(() =>
+              router.push(
+                `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}`
+              )
             )
           }
         >
@@ -42,13 +43,16 @@ function FeedBar({ feedData, onClickLike }: Props) {
           </span>
         </motion.button>
       </div>
-      <MotionLink
+      <motion.button
+        type='button'
         whileTap={{ scale: 1.1 }}
-        href={`/book/${feedData.isbn}`}
+        onClick={() =>
+          runWhenLoggedIn(() => router.push(`/book/${feedData.isbn}`))
+        }
         className='flex items-center gap-[4px] text-body-md text-gray-600'
       >
         우물에 담기 <ArrowIcon fill='#727384' width={24} height={24} />
-      </MotionLink>
+      </motion.button>
     </div>
   );
 }

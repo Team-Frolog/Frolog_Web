@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
+import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { ChildArrowIcon, MenuIcon } from 'public/icons';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
@@ -29,6 +31,7 @@ function ProfileHeader({
   isChildComment = false,
 }: Props) {
   const { data: session } = useSession();
+  const router = useRouter();
   const isMe = session?.user.id === userId;
   const { profile } = useProfile(userId);
   const { handleReport } = useReport(userId);
@@ -49,7 +52,13 @@ function ProfileHeader({
 
   return (
     <div className='flex w-full items-center justify-between px-page'>
-      <div className='flex items-center gap-[8px]'>
+      <button
+        type='button'
+        onClick={() =>
+          runWhenLoggedIn(() => router.push(`/${profile.id}/profile`))
+        }
+        className='flex items-center gap-[8px]'
+      >
         {isChildComment ? (
           <div className='flex items-center gap-[4px]'>
             <ChildArrowIcon />
@@ -72,12 +81,16 @@ function ProfileHeader({
         )}
 
         <h5 className='text-body-lg-bold text-gray-600'>{username}</h5>
-      </div>
+      </button>
       <div className='flex items-center gap-[8px]'>
         {hasFollow && !isMe && (
           <button
             type='button'
-            onClick={() => handleFollow({ id: userId, value: !follow })}
+            onClick={() =>
+              runWhenLoggedIn(() =>
+                handleFollow({ id: userId, value: !follow })
+              )
+            }
             className={follow ? 'following-tag' : 'not-following-tag'}
           >
             팔로우
@@ -87,10 +100,12 @@ function ProfileHeader({
           <button
             type='button'
             onClick={() =>
-              bottomSheet.open({
-                sheetData: getSheetData(),
-                onClick: !isFeed && isMe ? onDelete : handleReport,
-              })
+              runWhenLoggedIn(() =>
+                bottomSheet.open({
+                  sheetData: getSheetData(),
+                  onClick: !isFeed && isMe ? onDelete : handleReport,
+                })
+              )
             }
           >
             <MenuIcon />

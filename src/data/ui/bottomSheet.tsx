@@ -84,6 +84,19 @@ export const sheetData: {
     buttonText: '로그인하고 추가하기',
     description: () => <>로그인하고 원하는 책을 우물에 추가하세요</>,
   },
+  need_to_login_feed: {
+    getTitle: () => (
+      <>
+        로그인하고
+        <br />
+        무제한으로 리뷰를 보세요!
+      </>
+    ),
+    type: 'normal',
+    stateType: 'isOpenLoginSheet',
+    buttonText: '로그인하기',
+    description: () => <>TIP. 나의 독서 성향에 맞는 책도 추천해줘요!</>,
+  },
   done_register: {
     getTitle: () => <>신청에 성공했어요!</>,
     type: 'normal',
