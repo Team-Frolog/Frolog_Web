@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
-import { changeLikeThisFeed } from '../api/activity.api';
-import { LikeFeedReq } from '../types/like';
+import { changeLikeThisFeed } from '../../api/activity.api';
+import { LikeFeedReq } from '../../types/like';
 
 interface FeedData {
   pages: {

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FollowUserReq, GetProfileRes } from '@frolog/frolog-api';
-import { changeFollowUser } from '../api/activity.api';
+import { changeFollowUser } from '../../api/activity.api';
 
 export const useFollowUser = () => {
   const queryClient = useQueryClient();

@@ -10,10 +10,10 @@ import { useProfile } from '@/hooks/useProfile';
 import { formatDate } from '@/utils/format';
 import ProfileHeader from '../ProfileHeader';
 import ChildCommentItem from './ChildCommentItem';
-import { useChildComments } from '../../hooks/useChildComments';
+import { useChildComments } from '../../hooks/comment/useChildComments';
 import { Comments } from '../../types/comment';
-import { useDeleteComment } from '../../hooks/useDeleteComment';
-import { useLikeComment } from '../../hooks/useLikeComment';
+import { useDeleteComment } from '../../hooks/comment/useDeleteComment';
+import { useLikeComment } from '../../hooks/comment/useLikeComment';
 
 interface Props {
   commentData: Comments;

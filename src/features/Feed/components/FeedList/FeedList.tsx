@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import FeedItem from './FeedItem';
-import { useFeed } from '../../hooks/useFeed';
+import { useFeed } from '../../hooks/feed/useFeed';
 
 function FeedList() {
   const { feedData, fetchNextPage, hasNextPage, isFetched, isEmpty } =

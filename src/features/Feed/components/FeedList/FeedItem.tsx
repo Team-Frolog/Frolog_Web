@@ -5,7 +5,7 @@ import ProfileHeader from '../ProfileHeader';
 import BookInfo from './BookInfo';
 import FeedContent from './FeedContent';
 import FeedBar from './FeedBar';
-import { useLikeFeed } from '../../hooks/useLikeFeed';
+import { useLikeFeed } from '../../hooks/feed/useLikeFeed';
 
 interface Props {
   isMemo: boolean;

@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getFeed } from '../api/feed.api';
+import { getFeed } from '../../api/feed.api';
 
 export const useFeed = () => {
   const { data, fetchNextPage, hasNextPage, isFetching, isFetched, isLoading } =

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { changeLikeThisComment } from '../api/activity.api';
-import { GetCommentsRes } from '../types/comment';
+import { changeLikeThisComment } from '../../api/activity.api';
+import { GetCommentsRes } from '../../types/comment';
 
 interface CommentData {
   pages: {

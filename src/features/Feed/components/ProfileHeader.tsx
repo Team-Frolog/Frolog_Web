@@ -9,7 +9,7 @@ import { sheetData } from '@/data/ui/bottomSheet';
 import { useReport } from '@/hooks/useReport';
 import { useProfile } from '@/hooks/useProfile';
 import { useSession } from 'next-auth/react';
-import { useFollowUser } from '../hooks/useFollowUser';
+import { useFollowUser } from '../hooks/feed/useFollowUser';
 
 interface Props {
   type: 'feed' | 'comment';
@@ -44,9 +44,7 @@ function ProfileHeader({
     if (isMe) {
       return sheetData.delete_this_comment;
     }
-    return isFeed
-      ? sheetData.report_this_feed
-      : sheetData.report_this_comment;
+    return isFeed ? sheetData.report_this_feed : sheetData.report_this_comment;
   };
 
   return (

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteComment } from '../api/comments.api';
+import { deleteComment } from '../../api/comments.api';
 
 export const useDeleteComment = (id: string, isReview: boolean) => {
   const queryClient = useQueryClient();
