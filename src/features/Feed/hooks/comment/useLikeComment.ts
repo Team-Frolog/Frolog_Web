@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { changeLikeThisComment } from '../../api/activity.api';
 import { GetCommentsRes } from '../../types/comment';
+import { toggleLike } from '../../utils/toggleLike';
 
 interface CommentData {
   pages: {
@@ -14,13 +15,6 @@ interface CommentData {
 
 export const useLikeComment = (itemId: string, isReview: boolean) => {
   const queryClient = useQueryClient();
-
-  const toggleLike = (item: GetCommentsRes) => {
-    item.like = !item.like;
-    item.like_count = item.like_count
-      ? item.like_count + (item.like ? 1 : -1)
-      : 1;
-  };
 
   const { mutate: handleChangeLike } = useMutation({
     mutationFn: (req: { id: string; value: boolean }) =>

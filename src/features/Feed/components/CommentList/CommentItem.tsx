@@ -36,7 +36,7 @@ function CommentItem({ commentData, itemId }: Props) {
   } = commentData;
   const { profile } = useProfile(writer);
   const isReview = useSearchParams().get('type') === 'review';
-  const { childComments, isFetched } = useChildComments({
+  const { childComments, isFetched, handleChangeLikeChild } = useChildComments({
     more,
     itemId,
     parentId: commentData.id,
@@ -102,6 +102,7 @@ function CommentItem({ commentData, itemId }: Props) {
           moreCount={reply_count ? reply_count - 1 : 0}
           onClickMore={() => setMore(true)}
           childCommentData={replies[0]}
+          onClickLike={handleChangeLikeChild}
         />
       )}
       {more &&
@@ -111,6 +112,7 @@ function CommentItem({ commentData, itemId }: Props) {
             key={comment.id}
             onClickMore={() => setMore(true)}
             childCommentData={comment}
+            onClickLike={handleChangeLikeChild}
           />
         ))}
     </>

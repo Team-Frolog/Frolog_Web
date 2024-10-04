@@ -1,5 +1,7 @@
 import React from 'react';
 import { useProfile } from '@/hooks/useProfile';
+import { UseMutateFunction } from '@tanstack/react-query';
+import { LikeReviewCommentRes } from '@frolog/frolog-api';
 import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
 import { motion } from 'framer-motion';
@@ -12,6 +14,17 @@ interface Props {
   moreCount?: number;
   onClickMore?: () => void;
   hasMoreButton?: boolean;
+  onClickLike: UseMutateFunction<
+    LikeReviewCommentRes,
+    Error,
+    {
+      id: string;
+      value: boolean;
+    },
+    {
+      prevComments: object;
+    }
+  >;
 }
 
 function ChildCommentItem({
@@ -19,9 +32,19 @@ function ChildCommentItem({
   moreCount,
   onClickMore,
   hasMoreButton,
+  onClickLike,
 }: Props) {
-  const { writer, mention, content, like, like_count, date, deleted, parent } =
-    childCommentData;
+  const {
+    id,
+    writer,
+    mention,
+    content,
+    like,
+    like_count,
+    date,
+    deleted,
+    parent,
+  } = childCommentData;
   const { profile } = useProfile(writer);
   const { profile: memtionProfile } = useProfile(mention);
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
@@ -58,7 +81,7 @@ function ChildCommentItem({
             <LikeButton
               isLiked={like ?? false}
               likeCount={like_count || 0}
-              onClickLike={() => {}}
+              onClickLike={() => onClickLike({ id, value: !like })}
             />
             <motion.button
               whileTap={{ scale: 1.1 }}
