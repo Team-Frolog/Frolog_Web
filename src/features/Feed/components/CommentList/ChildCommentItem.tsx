@@ -41,7 +41,7 @@ function ChildCommentItem({
   const { profile: memtionProfile } = useProfile(mention);
   const isReview = useSearchParams().get('type') === 'review';
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
-  const { handleChangeLikeChild } = useChangeChildComment({
+  const { handleChangeLikeChild, handleDeleteComment } = useChangeChildComment({
     isReview,
     itemId,
     parentId: childCommentData.parent || '',
@@ -56,6 +56,7 @@ function ChildCommentItem({
         userId={writer}
         isDeleted={deleted}
         isChildComment
+        onDelete={() => handleDeleteComment({ id: itemId, commentId: id })}
       />
       <p
         className={`break-all px-page text-body-lg ${deleted ? 'text-gray-500' : 'text-gray-800'}`}

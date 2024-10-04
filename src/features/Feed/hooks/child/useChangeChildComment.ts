@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { changeLikeThisComment } from '../../api/activity.api';
 import { Comments, GetCommentsRes } from '../../types/comment';
 import { toggleLike } from '../../utils/toggleLike';
+import { deleteComment } from '../../api/comments.api';
 
 interface Props {
   isReview: boolean;
@@ -53,5 +54,13 @@ export const useChangeChildComment = ({
     },
   });
 
-  return { handleChangeLikeChild };
+  const { mutate: handleDeleteComment } = useMutation({
+    mutationFn: (req: { id: string; commentId: string }) =>
+      deleteComment(req, isReview),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['childComments', parentId] });
+    },
+  });
+
+  return { handleChangeLikeChild, handleDeleteComment };
 };
