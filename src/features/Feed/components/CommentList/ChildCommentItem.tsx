@@ -30,7 +30,12 @@ function ChildCommentItem({
 
   return (
     <div className='flex w-full flex-col gap-[12px] pl-[24px]'>
-      <ProfileHeader type='comment' userId={writer} isChildComment />
+      <ProfileHeader
+        type='comment'
+        userId={writer}
+        isDeleted={deleted}
+        isChildComment
+      />
       <p
         className={`break-all px-page text-body-lg ${deleted ? 'text-gray-500' : 'text-gray-800'}`}
       >

@@ -18,7 +18,6 @@ export const useFeed = () => {
           : [],
         pageParams: fetchedData.pageParams,
       }),
-      refetchOnWindowFocus: false,
     });
 
   const isEmpty = !data?.pages.length;

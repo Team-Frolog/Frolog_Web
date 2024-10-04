@@ -34,7 +34,6 @@ export const useSearch = () => {
       pageParams: fetchedData.pageParams,
     }),
     enabled: searchValue !== null,
-    refetchOnWindowFocus: false,
   });
 
   const isEmpty = !data?.pages.length;

@@ -17,7 +17,7 @@ export const useComments = (id: string, isReview: boolean) => {
     useInfiniteQuery<GetCommentsRes>({
       queryKey: ['comments', id],
       queryFn: ({ pageParam }) =>
-        getComments({ id, isReview, page: pageParam as number }),
+        getComments({ id, isReview, page: pageParam as number, depth: 0 }),
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {
         const isLastPage =
@@ -30,7 +30,6 @@ export const useComments = (id: string, isReview: boolean) => {
           : [],
         pageParams: fetchedData.pageParams,
       }),
-      refetchOnWindowFocus: false,
     });
 
   const isEmpty = !data?.pages.length;
