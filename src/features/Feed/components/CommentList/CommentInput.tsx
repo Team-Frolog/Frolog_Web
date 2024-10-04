@@ -66,7 +66,7 @@ function CommentInput({
             value={comment}
             placeholder='댓글을 입력해주세요'
             maxLength={400}
-            className='input-common input-light flex-1 pr-[60px] placeholder:text-sm'
+            className='input-common input-light flex-1 pr-[60px] placeholder:text-body-lg'
             onChange={(e) => setComment(e.target.value)}
             onFocus={() => setIsFocusing(true)}
             onBlur={() => setIsFocusing(false)}
