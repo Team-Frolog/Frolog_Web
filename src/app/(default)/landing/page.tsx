@@ -7,7 +7,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 
 function LandingPage() {
-  const [activeSlide, setActiveSlide] = useState<number>(0);
+  const [activeSlide, setActiveSlide] = useState<number>(1);
 
   return (
     <div className='flex h-dvh w-full flex-col'>

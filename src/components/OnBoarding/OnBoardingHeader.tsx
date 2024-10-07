@@ -1,25 +1,24 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 
-function OnBoardingHeader() {
+interface Props {
+  activeSlide: number;
+}
+
+function OnBoardingHeader({ activeSlide }: Props) {
   return (
     <div className='flex w-full flex-col gap-[20px] bg-gray-900 px-page py-page pb-0'>
       <div className='flex gap-[8px]'>
-        <button
-          type='button'
-          className='h-[8px] w-[8px] rounded-[50%] border-[1.2px] border-gray-600'
-        />
-        <button
-          type='button'
-          className='h-[8px] w-[8px] rounded-[50%] border-[1.2px] border-gray-600'
-        />
-        <button
-          type='button'
-          className='h-[8px] w-[8px] rounded-[50%] bg-main'
-        />
-        <button
-          type='button'
-          className='h-[8px] w-[8px] rounded-[50%] border-[1.2px] border-gray-600'
-        />
+        {Array(4)
+          .fill(0)
+          .map((_, i) => (
+            <div
+              key={i}
+              className={
+                activeSlide === i + 1 ? 'active-circle' : 'non-active-circle'
+              }
+            />
+          ))}
       </div>
       <h2 className='text-heading-md-bold text-main_hightlight'>
         우물에 책을 쌓아

@@ -20,11 +20,9 @@ function OnBoardingSlide({ activeSlide, setActiveSlide }: Props) {
     },
   };
 
-  console.log(activeSlide);
-
   return (
     <div className='flex flex-1 flex-col gap-[60px]'>
-      <OnBoardingHeader />
+      <OnBoardingHeader activeSlide={activeSlide} />
       <Slider {...settings} className='flex flex-1'>
         <div className='flex h-full w-full items-end bg-green-50'>1</div>
         <div className='h-full w-full bg-green-100'>2</div>
