@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { onBoarding } from '@/data/ui/onBoarding';
 import Slider, { Settings } from 'react-slick';
 import OnBoardingHeader from './OnBoardingHeader';
 
@@ -23,7 +24,7 @@ function OnBoardingSlide({ activeSlide, setActiveSlide }: Props) {
 
   return (
     <div
-      className={`flex flex-1 shrink flex-col gap-[60px] bg-gray-300 bg-[url('/well-bg.svg')] mobile:gap-[30px]`}
+      className={`flex flex-1 shrink flex-col gap-[60px] transition-all duration-200 mobile:gap-[30px] ${onBoarding[activeSlide].bg}`}
     >
       <OnBoardingHeader activeSlide={activeSlide} />
       <Slider {...settings} className='flex flex-1'>
