@@ -100,6 +100,7 @@ function CommentItem({ commentData, itemId }: Props) {
       {replies !== undefined && replies.length > 0 && (!more || !isFetched) && (
         <ChildCommentItem
           itemId={itemId}
+          isFirstChild
           hasMoreButton={reply_count ? reply_count > 1 : false}
           moreCount={reply_count ? reply_count - 1 : 0}
           onClickMore={() => setMore(true)}

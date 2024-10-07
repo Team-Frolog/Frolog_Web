@@ -4,7 +4,7 @@ import { GetCommentsRes } from '../../types/comment';
 import { toggleLike } from '../../utils/toggleLike';
 import { deleteComment } from '../../api/comments.api';
 
-interface CommentData {
+export interface CommentData {
   pages: {
     comments: GetCommentsRes[];
     count: number;

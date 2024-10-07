@@ -13,6 +13,7 @@ import { useChangeChildComment } from '../../hooks/child/useChangeChildComment';
 
 interface Props {
   itemId: string;
+  isFirstChild?: boolean;
   childCommentData: Comments;
   moreCount?: number;
   onClickMore?: () => void;
@@ -25,6 +26,7 @@ function ChildCommentItem({
   moreCount,
   onClickMore,
   hasMoreButton,
+  isFirstChild = false,
 }: Props) {
   const {
     id,
@@ -45,6 +47,7 @@ function ChildCommentItem({
     isReview,
     itemId,
     parentId: childCommentData.parent || '',
+    isFirst: isFirstChild,
   });
 
   if (!profile || !childCommentData) return <></>;
