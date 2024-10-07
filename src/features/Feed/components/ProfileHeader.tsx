@@ -93,7 +93,7 @@ function ProfileHeader({
             }
             className={follow ? 'following-tag' : 'not-following-tag'}
           >
-            팔로우
+            {follow ? '팔로잉' : '팔로우'}
           </button>
         )}
         {canShowButton && (
