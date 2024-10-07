@@ -15,7 +15,7 @@ function LandingPage() {
         activeSlide={activeSlide}
         setActiveSlide={setActiveSlide}
       />
-      <div className='flex w-full flex-col gap-[20px] bg-gray-300 px-page py-[32px]'>
+      <div className='flex w-full shrink-0 flex-col gap-[20px] bg-gray-300 px-page py-[32px]'>
         <LinkButton disabled={false} route={PAGES.LOGIN}>
           로그인 하기
         </LinkButton>
