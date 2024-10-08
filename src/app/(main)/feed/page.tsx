@@ -1,8 +1,11 @@
+'use client';
+
+import PullToRefresh from '@/components/Gesture/PullToRefresh';
 import FeedSkeleton from '@/components/Fallback/Skeleton/FeedSkeleton';
 import SideHeader from '@/components/Header/SideHeader';
 import MainLayout from '@/layouts/MainLayout';
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { useRef } from 'react';
 
 const FeedList = dynamic(
   () => import('@/features/Feed/components/FeedList/FeedList'),
@@ -18,11 +21,21 @@ const FeedList = dynamic(
 );
 
 function FeedPage() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
   return (
-    <MainLayout extraClass='bg-gray-300'>
-      <SideHeader title='피드' />
-      <FeedList />
-    </MainLayout>
+    <>
+      <SideHeader />
+      <MainLayout ref={containerRef} extraClass='bg-gray-300'>
+        <PullToRefresh element={containerRef} />
+        <div className='flex h-fit w-full px-page py-[20px] pt-[50px]'>
+          <h1 className='w-fit max-w-[250px] text-start text-heading-md-bold'>
+            피드
+          </h1>
+        </div>
+        <FeedList />
+      </MainLayout>
+    </>
   );
 }
 

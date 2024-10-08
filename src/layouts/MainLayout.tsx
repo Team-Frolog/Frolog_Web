@@ -6,15 +6,16 @@ interface Props {
   extraClass?: string;
 }
 
-function MainLayout({ children, isCenter = true, extraClass }: Props) {
-  return (
+const MainLayout = React.forwardRef<HTMLElement, Props>(
+  ({ children, isCenter = true, extraClass }, ref) => (
     <main
       id='main'
+      ref={ref}
       className={`flex w-full flex-1 flex-col scrollbar-hide ${isCenter ? 'items-center' : 'items-start'} overflow-auto ${extraClass}`}
     >
       {children}
     </main>
-  );
-}
+  )
+);
 
 export default MainLayout;

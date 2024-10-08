@@ -5,7 +5,7 @@ import React from 'react';
 
 function ProfilePage() {
   return (
-    <MainLayout>
+    <MainLayout extraClass='bg-white'>
       <SideHeader title='프로필' />
       <div className='flex w-full flex-col gap-[32px] pb-[32px]'>
         <Profile />
