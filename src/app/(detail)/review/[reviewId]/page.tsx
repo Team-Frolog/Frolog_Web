@@ -11,6 +11,7 @@ import { useProfile } from '@/hooks/useProfile';
 import { useRouter } from 'next/navigation';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { useScroll } from '@/hooks/gesture/useScroll';
+import { useSession } from 'next-auth/react';
 
 interface Props {
   params: {
@@ -25,24 +26,28 @@ function ReviewPage({ params: { reviewId } }: Props) {
     queryKey: ['reviewDetail', reviewId],
     queryFn: () => getReviewDetail(reviewId),
   });
+  const { data: session } = useSession();
   const { profile } = useProfile(reviewDetail?.writer);
+  const isMe = session?.user.id === profile?.id;
 
   if (!reviewDetail || !profile) return <></>;
 
   return (
     <>
       <ResponsiveHeaderLayout onClick={() => router.back()}>
-        <div className='flex flex-1 justify-end'>
-          <button
-            type='button'
-            onClick={() =>
-              runWhenLoggedIn(() => router.push(`/${profile.id}/well`))
-            }
-            className='text-body-lg-bold text-main'
-          >
-            우물에 놀러가기
-          </button>
-        </div>
+        {!isMe && (
+          <div className='flex flex-1 justify-end'>
+            <button
+              type='button'
+              onClick={() =>
+                runWhenLoggedIn(() => router.push(`/${profile.id}/well`))
+              }
+              className='text-body-lg-bold text-main'
+            >
+              우물에 놀러가기
+            </button>
+          </div>
+        )}
       </ResponsiveHeaderLayout>
       <MainLayout>
         <div className='flex w-full flex-col gap-[36px] bg-gray-900'>
