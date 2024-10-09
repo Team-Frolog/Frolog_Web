@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { onBoarding } from '@/data/ui/onBoarding';
 import Slider, { Settings } from 'react-slick';
 import Slide1 from 'public/images/onBoarding/slide-1.svg';
