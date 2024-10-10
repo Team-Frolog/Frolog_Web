@@ -22,8 +22,8 @@ function Followers({ userId }: Props) {
           {followers.map((follower) => (
             <FollowItem
               key={follower.id}
-              follower={follower}
-              isFollowing={follower.follow}
+              userId={userId}
+              targetUser={follower}
             />
           ))}
         </div>

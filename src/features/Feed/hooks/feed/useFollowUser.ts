@@ -1,14 +1,19 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { FollowUserReq, GetProfileRes } from '@frolog/frolog-api';
+import {
+  FollowUserReq,
+  GetProfileDetailRes,
+  GetProfileRes,
+} from '@frolog/frolog-api';
 import { changeFollowUser } from '../../api/activity.api';
 
-export const useFollowUser = () => {
+export const useFollowUser = (userId?: string | undefined) => {
   const queryClient = useQueryClient();
 
   const { mutate: handleFollow } = useMutation({
     mutationFn: (req: FollowUserReq) => changeFollowUser(req),
     onMutate: async ({ id }) => {
       await queryClient.cancelQueries({ queryKey: ['profile', id] });
+
       const prevProfile = queryClient.getQueryData([
         'profile',
         id,
@@ -16,7 +21,9 @@ export const useFollowUser = () => {
 
       if (!prevProfile) return;
 
-      const updatedProfile = { ...prevProfile, follow: !prevProfile.follow };
+      const isFollowing = !prevProfile.follow;
+
+      const updatedProfile = { ...prevProfile, follow: isFollowing };
       queryClient.setQueryData(['profile', id], updatedProfile);
 
       return { prevProfile };
@@ -25,9 +32,21 @@ export const useFollowUser = () => {
       queryClient.setQueryData(['profile', variable.id], context?.prevProfile);
     },
     onSuccess: (_res, _req, prev) => {
-      queryClient.invalidateQueries({
-        queryKey: ['profile', prev.prevProfile.id],
-      });
+      if (userId) {
+        queryClient.invalidateQueries({
+          queryKey: ['followings', userId],
+        });
+        queryClient.invalidateQueries({
+          queryKey: ['followers', userId],
+        });
+        queryClient.invalidateQueries({
+          queryKey: ['profileDetail', userId],
+        });
+      } else {
+        queryClient.invalidateQueries({
+          queryKey: ['profile', prev.prevProfile.id],
+        });
+      }
     },
   });
 
