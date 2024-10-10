@@ -2,19 +2,17 @@
 
 import React from 'react';
 import LinkButton from '@/components/Button/LinkButton';
-
-import { useSession } from 'next-auth/react';
 import UserStatistics from './UserStatistics';
 import UserType from './UserType';
 import { useProfileDetail } from '../../hooks/useProfileDetail';
 
 interface Props {
-  userId?: string;
+  userId: string;
+  isMe?: boolean;
 }
 
-function Profile({ userId }: Props) {
-  const { data: session } = useSession();
-  const { profileDetail } = useProfileDetail(userId || session?.user.id);
+function Profile({ userId, isMe = false }: Props) {
+  const { profileDetail } = useProfileDetail(userId);
 
   if (!profileDetail) return <></>;
 
@@ -22,7 +20,7 @@ function Profile({ userId }: Props) {
     <div className='flex w-full flex-col gap-[28px]'>
       <UserStatistics profileDetail={profileDetail} />
       <UserType profileDetail={profileDetail} />
-      {!userId && (
+      {isMe && (
         <div className='flex px-page'>
           <LinkButton route='/profile/edit' theme='gray'>
             프로필 편집
