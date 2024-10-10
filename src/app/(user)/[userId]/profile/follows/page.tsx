@@ -1,16 +1,30 @@
+'use client';
+
 import TitleHeader from '@/components/Header/TitleHeader';
 import { FollowList } from '@/features/Profile';
+import { useProfile } from '@/hooks/useProfile';
 import React from 'react';
 
-function FollowsPage() {
+interface Props {
+  params: {
+    userId: string;
+  };
+}
+
+function FollowsPage({ params: { userId } }: Props) {
+  const { profile } = useProfile(userId);
+
+  if (!profile) return <></>;
+
   return (
     <>
       <TitleHeader
         type='default'
         theme='light'
-        title='홍길동과고길동과도라에몽'
+        hasButton={false}
+        title={profile?.username}
       />
-      <FollowList />
+      <FollowList userId={userId} />
     </>
   );
 }

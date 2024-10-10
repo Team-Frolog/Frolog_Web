@@ -1,33 +1,43 @@
 'use client';
 
+import React from 'react';
 import Tap from '@/components/Tap/Tap';
-import React, { useState } from 'react';
-import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
-import FollowItem from './FollowItem';
+import { useSearchParams } from 'next/navigation';
+import Followers from './Followers';
+import Followings from './Followings';
+import { useProfileDetail } from '../../hooks/useProfileDetail';
 
-function FollowList() {
-  const [followType, setFollowType] = useState(1);
+interface Props {
+  userId: string;
+}
+
+function FollowList({ userId }: Props) {
+  const { profileDetail } = useProfileDetail(userId);
+  const tap = useSearchParams().get('tap') || 'followers';
+
+  if (!profileDetail) return <></>;
 
   return (
     <div className='flex w-full flex-1 flex-col overflow-hidden py-[16px]'>
       <Tap
         taps={[
-          { id: 1, name: '팔로워' },
-          { id: 2, name: '팔로잉' },
+          {
+            id: 1,
+            label: 'followers',
+            name: `팔로워 ${profileDetail.follower_cnt}`,
+          },
+          {
+            id: 2,
+            label: 'followings',
+            name: `팔로잉 ${profileDetail.following_cnt}`,
+          },
         ]}
-        currentTap={followType}
-        setCurrentTap={setFollowType}
+        currentTap={tap}
       />
-      {followType === 1 ? (
-        <div className='flex flex-1 flex-col gap-[28px] overflow-auto px-page py-[36px]'>
-          <FollowItem />
-          <FollowItem isFollowing />
-          <FollowItem isFollowing />
-        </div>
+      {tap === 'followings' ? (
+        <Followings userId={userId} />
       ) : (
-        <div className='flex flex-1 items-center justify-center'>
-          <EmptyContentFrog title='팔로우하는 사람을 만들어보세요!' />
-        </div>
+        <Followers userId={userId} />
       )}
     </div>
   );

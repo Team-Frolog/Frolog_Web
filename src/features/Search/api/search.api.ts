@@ -1,4 +1,5 @@
 import { baseOptions } from '@/api/options';
+import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
 import {
   SearchBook,
@@ -6,7 +7,6 @@ import {
   SearchBookCountByCategoryReq,
   SearchBookReq,
 } from '@frolog/frolog-api';
-import { LIMIT } from '../constants/query';
 
 const searchBookObj = new SearchBook(baseOptions);
 const countByCategory = new SearchBookCountByCategory(baseOptions);
@@ -20,7 +20,7 @@ export const searchBook = async ({
     const result = await searchBookObj.fetch({
       q,
       category,
-      limit: LIMIT,
+      limit: DEFAULT_LIMIT,
       page,
     });
     return result;

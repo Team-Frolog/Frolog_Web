@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { IMAGES } from '@/constants/images';
 import { GetProfileDetailRes } from '@frolog/frolog-api';
@@ -26,18 +27,24 @@ function UserStatistics({ profileDetail }: Props) {
             <h3 className='text-title-xl-bold text-gray-800'>{max_height}</h3>
             <span className='text-body-sm text-gray-600'>최고높이</span>
           </div>
-          <div className='flex flex-col items-center justify-center'>
+          <Link
+            href={`/${profileDetail.id}/profile/follows?tap=followers`}
+            className='flex flex-col items-center justify-center'
+          >
             <h3 className='text-title-xl-bold text-gray-800'>
               {formatUnit(follower_cnt)}
             </h3>
             <span className='text-body-sm text-gray-600'>팔로워</span>
-          </div>
-          <div className='flex flex-col items-center justify-center'>
+          </Link>
+          <Link
+            href={`/${profileDetail.id}/profile/follows?tap=followings`}
+            className='flex flex-col items-center justify-center'
+          >
             <h3 className='text-title-xl-bold text-gray-800'>
               {formatUnit(following_cnt)}
             </h3>
             <span className='text-body-sm text-gray-600'>팔로잉</span>
-          </div>
+          </Link>
         </div>
       </div>
       <div className='flex w-full flex-col gap-[4px] text-gray-800'>
