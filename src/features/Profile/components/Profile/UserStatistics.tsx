@@ -25,7 +25,7 @@ function UserStatistics({ profileDetail }: Props) {
         <div className='flex flex-1 justify-around'>
           <div className='flex flex-col items-center justify-center'>
             <h3 className='text-title-xl-bold text-gray-800'>{max_height}</h3>
-            <span className='text-body-sm text-gray-600'>최고높이</span>
+            <span className='text-body-sm text-gray-600'>최고높이(cm)</span>
           </div>
           <Link
             href={`/${profileDetail.id}/profile/follows?tap=followers`}

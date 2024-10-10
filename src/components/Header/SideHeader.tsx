@@ -16,7 +16,7 @@ function SideHeader({ children, title, hasBackButton = false }: Props) {
   const router = useRouter();
 
   return (
-    <div className='flex h-fit w-full'>
+    <div className='flex h-fit w-full bg-white'>
       {hasBackButton && (
         <BackButton type='green' onClick={() => router.back()} />
       )}

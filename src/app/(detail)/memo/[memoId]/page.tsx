@@ -49,7 +49,7 @@ function MemoPage({ params: { memoId } }: Props) {
           </div>
         )}
       </ResponsiveHeaderLayout>
-      <MainLayout>
+      <MainLayout extraClass='bg-white'>
         <div className='flex w-full flex-col gap-[36px] bg-gray-900'>
           <h1 className='w-fit max-w-[350px] px-page text-heading-md-bold text-white'>
             {profile.username}의 메모
