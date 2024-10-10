@@ -10,19 +10,19 @@ interface Props {
 }
 
 function BookDetail({ bookId }: Props) {
-  const [currentTap, setCurrentTap] = useState(1);
+  const [currentTap, setCurrentTap] = useState('bookInfo');
   return (
     <div className='w-full'>
       <Tap
         taps={[
-          { id: 1, name: '도서 정보' },
-          { id: 2, name: '리뷰 모음' },
+          { id: 1, label: 'bookInfo', name: '도서 정보' },
+          { id: 2, label: 'reviews', name: '리뷰 모음' },
         ]}
         currentTap={currentTap}
-        setCurrentTap={setCurrentTap}
+        onChangeTap={(label: string) => setCurrentTap(label)}
       />
-      {currentTap === 1 && <BookInfo bookId={bookId} />}
-      {currentTap === 2 && <ReviewsForBook />}
+      {currentTap === 'bookInfo' && <BookInfo bookId={bookId} />}
+      {currentTap === 'reviews' && <ReviewsForBook />}
     </div>
   );
 }

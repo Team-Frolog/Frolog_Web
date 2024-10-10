@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Tap from '@/components/Tap/Tap';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Followers from './Followers';
 import Followings from './Followings';
 import { useProfileDetail } from '../../hooks/useProfileDetail';
@@ -12,6 +12,8 @@ interface Props {
 }
 
 function FollowList({ userId }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
   const { profileDetail } = useProfileDetail(userId);
   const tap = useSearchParams().get('tap') || 'followers';
 
@@ -33,6 +35,9 @@ function FollowList({ userId }: Props) {
           },
         ]}
         currentTap={tap}
+        onChangeTap={(label: string) =>
+          router.replace(`${pathname}?tap=${label}`)
+        }
       />
       {tap === 'followings' ? (
         <Followings userId={userId} />

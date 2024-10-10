@@ -1,6 +1,5 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 
 interface Props {
@@ -10,12 +9,10 @@ interface Props {
     name: string;
   }[];
   currentTap: string;
+  onChangeTap: (label: string) => void;
 }
 
-function Tap({ taps, currentTap }: Props) {
-  const pathname = usePathname();
-  const router = useRouter();
-
+function Tap({ taps, currentTap, onChangeTap }: Props) {
   return (
     <div className='flex w-full flex-col'>
       <div className='grid w-full grid-cols-2 pb-[2px]'>
@@ -23,7 +20,7 @@ function Tap({ taps, currentTap }: Props) {
           <button
             key={tap.id}
             type='button'
-            onClick={() => router.replace(`${pathname}?tap=${tap.label}`)}
+            onClick={() => onChangeTap(tap.label)}
             className={`p-[16px] text-body-xl-bold ${currentTap === tap.label ? 'text-gray-900' : 'text-gray-500'}`}
           >
             {tap.name}
