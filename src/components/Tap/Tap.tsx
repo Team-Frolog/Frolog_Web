@@ -9,10 +9,11 @@ interface Props {
     name: string;
   }[];
   currentTap: string;
+  defaultTap: string;
   onChangeTap: (label: string) => void;
 }
 
-function Tap({ taps, currentTap, onChangeTap }: Props) {
+function Tap({ taps, currentTap, defaultTap, onChangeTap }: Props) {
   return (
     <div className='flex w-full flex-col'>
       <div className='grid w-full grid-cols-2 pb-[2px]'>
@@ -29,7 +30,7 @@ function Tap({ taps, currentTap, onChangeTap }: Props) {
       </div>
       <div className='relative h-[2px] w-full bg-gray-500'>
         <div
-          className={`absolute bottom-0 h-full w-1/2 bg-gray-900 transition-all ${currentTap === 'followers' ? 'left-0' : 'left-1/2'}`}
+          className={`absolute bottom-0 h-full w-1/2 bg-gray-900 transition-all ${currentTap === defaultTap ? 'left-0' : 'left-1/2'}`}
         />
       </div>
     </div>

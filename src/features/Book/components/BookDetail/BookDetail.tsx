@@ -19,6 +19,7 @@ function BookDetail({ bookId }: Props) {
           { id: 2, label: 'reviews', name: '리뷰 모음' },
         ]}
         currentTap={currentTap}
+        defaultTap="bookInfo"
         onChangeTap={(label: string) => setCurrentTap(label)}
       />
       {currentTap === 'bookInfo' && <BookInfo bookId={bookId} />}

@@ -35,6 +35,7 @@ function FollowList({ userId }: Props) {
           },
         ]}
         currentTap={tap}
+        defaultTap='followers'
         onChangeTap={(label: string) =>
           router.replace(`${pathname}?tap=${label}`)
         }
