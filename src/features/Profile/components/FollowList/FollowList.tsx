@@ -1,11 +1,27 @@
 'use client';
 
 import React from 'react';
+import dynamic from 'next/dynamic';
+import FollowListSkeleton from '@/components/Fallback/Skeleton/FollowListSkeleton';
 import Tap from '@/components/Tap/Tap';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import Followers from './Followers';
-import Followings from './Followings';
 import { useProfileDetail } from '../../hooks/useProfileDetail';
+
+const Followers = dynamic(
+  () => import('@/features/Profile/components/FollowList/Followers'),
+  {
+    ssr: false,
+    loading: () => <FollowListSkeleton />,
+  }
+);
+
+const Followings = dynamic(
+  () => import('@/features/Profile/components/FollowList/Followings'),
+  {
+    ssr: false,
+    loading: () => <FollowListSkeleton />,
+  }
+);
 
 interface Props {
   userId: string;
