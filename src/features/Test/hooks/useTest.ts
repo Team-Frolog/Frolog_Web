@@ -7,6 +7,7 @@ import {
   TEST_RESULT_FOR_EDIT,
 } from '@/constants/storage';
 import { useStepActions, useTestStep } from '@/store/stepStore';
+import { editProfile } from '@/api/profile.api';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -14,7 +15,6 @@ import { useMutation } from '@tanstack/react-query';
 import { EditProfileReq } from '@frolog/frolog-api';
 import { testEvaluator } from '../utils/testEvaluator';
 import { Question, questions } from '../data/test';
-import { editTestType } from '../api/test.api';
 
 export const useTest = () => {
   const testStep = useTestStep();
@@ -43,7 +43,7 @@ export const useTest = () => {
   };
 
   const { mutate: editTestTypeOfUser } = useMutation({
-    mutationFn: (reqData: EditProfileReq) => editTestType(reqData),
+    mutationFn: (reqData: EditProfileReq) => editProfile(reqData),
   });
 
   const postTestResult = async (type: string) => {
