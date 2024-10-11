@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getFollowings } from '../api/profile.api';
+import { getFollowings } from '../api/follow.api';
 
 export const useFollowings = (userId: string) => {
   const {

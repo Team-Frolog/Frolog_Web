@@ -1,4 +1,5 @@
-import { Consent, Info, JoinForm } from '../types/form';
+import { transformeInfoToArray } from '@/utils/transformInfo';
+import { Consent, JoinForm } from '../types/form';
 
 export const transformJoinForm = (
   joinFormData: JoinForm,
@@ -12,20 +13,12 @@ export const transformJoinForm = (
     })
   );
 
-  const transformedPersonalInfos = Object.entries(
-    joinFormData.personal_infos
-  ).map(([type, info]) => ({
-    type,
-    value: (info as Info).value,
-    visibility: (info as Info).visibility,
-  }));
-
   return {
     email: joinFormData.email,
     email_verified_token,
     password: joinFormData.password,
     username: joinFormData.username!,
     consents: transformedConsents,
-    personal_infos: transformedPersonalInfos,
+    personal_infos: transformeInfoToArray(joinFormData.personal_infos),
   };
 };

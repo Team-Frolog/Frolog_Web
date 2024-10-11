@@ -10,9 +10,10 @@ import Textarea from '../Form/Input/Textarea';
 interface Props {
   type?: 'join' | 'profile';
   theme?: 'dark' | 'light';
+  username?: string;
 }
 
-function ProfileForm({ type = 'join', theme = 'dark' }: Props) {
+function ProfileForm({ type = 'join', theme = 'dark', username }: Props) {
   return (
     <div className='flex w-full flex-col gap-[36px]'>
       {type === 'join' && (
@@ -26,7 +27,7 @@ function ProfileForm({ type = 'join', theme = 'dark' }: Props) {
       {type === 'profile' && (
         <>
           <div className='flex w-full flex-col gap-[36px] px-page'>
-            <NicknameInput theme={theme} />
+            <NicknameInput theme={theme} originUsername={username} />
             <FrologTestButton />
             <DateSelector theme={theme} />
             <GenderSelector theme={theme} />

@@ -5,9 +5,10 @@ import FormInput from '../Form/Input/FormInput';
 
 interface Props {
   theme: 'dark' | 'light';
+  originUsername?: string;
 }
 
-function NicknameInput({ theme }: Props) {
+function NicknameInput({ theme, originUsername = '' }: Props) {
   const {
     register,
     trigger,
@@ -34,7 +35,7 @@ function NicknameInput({ theme }: Props) {
           const isValid = await trigger('username');
           const { value } = e.target;
 
-          if (isValid && value.trim() !== '') {
+          if (isValid && value.trim() !== originUsername) {
             const data = await checkNickname({
               username: value,
             });

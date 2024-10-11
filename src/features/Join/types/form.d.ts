@@ -1,3 +1,5 @@
+import { InfoObject } from '@/utils/transformInfo';
+
 type TermsName =
   | 'age'
   | 'terms_of_use'
@@ -29,8 +31,5 @@ export interface JoinForm {
   };
 
   // 개인 식별 정보 리스트(Array)
-  personal_infos: {
-    [key: InfoName]: Info;
-  };
-  [];
+  personal_infos: InfoObject;
 }
