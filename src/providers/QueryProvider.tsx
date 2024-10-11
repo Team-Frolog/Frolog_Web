@@ -1,5 +1,6 @@
 'use client';
 
+import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -11,7 +12,7 @@ export const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
     },
     mutations: {
-      onError: (error: Error) => toast.error(error.message),
+      onError: () => toast.error(ERROR_ALERT),
     },
   },
 });

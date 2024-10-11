@@ -4,7 +4,6 @@ import {
   GetEmailAvailability,
   GetEmailAvailabilityReq,
   GetProfile,
-  Quit,
   RequestEmailCode,
   RequestEmailCodeReq,
   SignOut,
@@ -19,7 +18,7 @@ const getEmailAvailability = new GetEmailAvailability(baseOptions);
 const requestEmailCode = new RequestEmailCode(baseOptions);
 const verifyEmailCode = new VerifyEmailCode(baseOptions);
 const signOutInstance = new SignOut(baseOptions);
-const quitInstance = new Quit(baseOptions);
+
 const getProfileInstance = new GetProfile(baseOptions);
 
 export const signOut = async () => {
@@ -38,14 +37,6 @@ export const signOut = async () => {
     throw new Error();
   } catch (err) {
     toast.error(ERROR_ALERT);
-  }
-};
-
-export const quit = async () => {
-  const session = await getSession();
-  if (session) {
-    const data = await quitInstance.fetch({ id: session?.user.id });
-    return data.result;
   }
 };
 
