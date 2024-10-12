@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
 import { useProfile } from '@/hooks/useProfile';
-import { formatDate } from '@/utils/format';
+import { formatDate } from '@/utils/date';
 import ProfileHeader from '../ProfileHeader';
 import ChildCommentItem from './ChildCommentItem';
 import { useChildComments } from '../../hooks/child/useChildComments';

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Rating from '@/components/Rating/Rating';
 import TagSlider from '@/components/Tag/TagSlider';
 import { GetReviewRes } from '@frolog/frolog-api';
-import { formatDate } from '@/utils/format';
+import { formatDate } from '@/utils/date';
 import DeleteButton from '@/components/ListItem/DeleteButton';
 import { useSession } from 'next-auth/react';
 
