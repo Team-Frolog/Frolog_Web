@@ -13,6 +13,7 @@ import { bottomSheet } from '@/modules/BottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import AddBookToWell from '@/components/BottomSheet/AddBookToWell';
 import MainLayout from '@/layouts/MainLayout';
+import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 
 interface Props {
   params: {
@@ -41,10 +42,12 @@ function BookPage({ params: { id } }: Props) {
               text='우물에 책 추가하기'
               categoryId='novel'
               onClick={() =>
-                bottomSheet.open({
-                  sheetData: sheetData.add_book,
-                  children: <AddBookToWell />,
-                })
+                runWhenLoggedIn(() =>
+                  bottomSheet.open({
+                    sheetData: sheetData.add_book,
+                    children: <AddBookToWell />,
+                  })
+                )
               }
             />
             <MajorTagList type='pros' tagData={bookData?.tags_pos} />

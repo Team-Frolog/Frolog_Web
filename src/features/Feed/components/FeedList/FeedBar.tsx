@@ -23,17 +23,19 @@ function FeedBar({ feedData, onClickLike }: Props) {
         <LikeButton
           isLiked={feedData.like ?? false}
           likeCount={feedData.like_count || 0}
-          onClickLike={() => runWhenLoggedIn(onClickLike)}
+          onClickLike={() => runWhenLoggedIn(onClickLike, 'feed')}
         />
         <motion.button
           whileTap={{ scale: 1.1 }}
           type='button'
           className='flex items-center gap-[4px]'
           onClick={() =>
-            runWhenLoggedIn(() =>
-              router.push(
-                `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}`
-              )
+            runWhenLoggedIn(
+              () =>
+                router.push(
+                  `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}`
+                ),
+              'feed'
             )
           }
         >
@@ -47,7 +49,7 @@ function FeedBar({ feedData, onClickLike }: Props) {
         type='button'
         whileTap={{ scale: 1.1 }}
         onClick={() =>
-          runWhenLoggedIn(() => router.push(`/book/${feedData.isbn}`))
+          runWhenLoggedIn(() => router.push(`/book/${feedData.isbn}`), 'feed')
         }
         className='flex items-center gap-[4px] text-body-md text-gray-600'
       >

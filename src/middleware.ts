@@ -2,7 +2,7 @@ import { getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const protectedRoutes: string[] = ['/frolog-test']; // 로그인이 필요한 페이지 목록
+const protectedRoutes: string[] = ['/frolog-test', '/profile', '/well-book']; // 로그인이 필요한 페이지 목록
 const publicRoutes: string[] = [
   '/landing',
   '/login',
@@ -14,8 +14,8 @@ export async function middleware(req: NextRequest) {
   const token = await getToken({
     req,
     secret: process.env.NEXTAUTH_SECRET,
-    // cookieName: '__Secure-next-auth.session-token',
-  }); // 로그인 유무 판단
+    cookieName: '__Secure-next-auth.session-token',
+  });
   const { pathname } = req.nextUrl;
 
   // pathname이 어느 routes에 속하는지 확인

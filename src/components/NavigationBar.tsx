@@ -2,13 +2,15 @@
 
 import Link from 'next/link';
 import React from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { FeedIcon, ProfileIcon, SearchIcon, WellIcon } from 'public/icons';
 import { motion } from 'framer-motion';
+import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 
 const MotionLink = motion(Link);
 
 function NavigationBar() {
+  const router = useRouter();
   const pathname = usePathname();
 
   return (
@@ -46,14 +48,20 @@ function NavigationBar() {
           책검색
         </span>
       </MotionLink>
-      <MotionLink whileTap={{ scale: 1.2 }} href='/profile' className='navItem'>
+      <motion.button
+        whileTap={{ scale: 1.2 }}
+        onClick={() =>
+          runWhenLoggedIn(() => router.push('/profile'))
+        }
+        className='navItem'
+      >
         <ProfileIcon fill={pathname === '/profile' ? '#313239' : '#B3B6C5'} />
         <span
           className={`text-body-sm-bold ${pathname === '/profile' ? 'text-gray-800' : 'text-gray-500'}`}
         >
           프로필
         </span>
-      </MotionLink>
+      </motion.button>
     </div>
   );
 }

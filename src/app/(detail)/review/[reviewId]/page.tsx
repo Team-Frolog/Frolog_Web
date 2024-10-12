@@ -40,7 +40,10 @@ function ReviewPage({ params: { reviewId } }: Props) {
             <button
               type='button'
               onClick={() =>
-                runWhenLoggedIn(() => router.push(`/${profile.id}/well`))
+                runWhenLoggedIn(
+                  () => router.push(`/${profile.id}/well`),
+                  'feed'
+                )
               }
               className='text-body-lg-bold text-main'
             >
