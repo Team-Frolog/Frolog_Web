@@ -12,6 +12,7 @@ import { useReport } from '@/hooks/useReport';
 import { useProfile } from '@/hooks/useProfile';
 import { useSession } from 'next-auth/react';
 import { useFollowUser } from '../hooks/feed/useFollowUser';
+import { getImageSrc } from '@/utils/getImageSrc';
 
 interface Props {
   type: 'feed' | 'comment';
@@ -63,7 +64,9 @@ function ProfileHeader({
           <div className='flex items-center gap-[4px]'>
             <ChildArrowIcon />
             <Image
-              src={image || IMAGES.default_profile}
+              src={
+                image ? getImageSrc(image, 'profile')! : IMAGES.default_profile
+              }
               alt='profile image'
               width={32}
               height={32}
@@ -72,7 +75,9 @@ function ProfileHeader({
           </div>
         ) : (
           <Image
-            src={image || IMAGES.default_profile}
+            src={
+              image ? getImageSrc(image, 'profile')! : IMAGES.default_profile
+            }
             alt='profile image'
             width={40}
             height={40}
