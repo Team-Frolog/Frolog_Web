@@ -10,6 +10,7 @@ import FinishLight from '@/components/Splash/FinishLight';
 
 function LoadingPage() {
   const type = useSearchParams().get('type');
+  const callback = useSearchParams().get('callbackUrl');
   const [isDone, setIsDone] = useState<boolean>(false);
   const [loadingTextIndex, setLoadingTextIndex] = useState<number>(0);
   const loadingTexts = ['분석 중', '분석 중.', '분석 중..'];
@@ -24,7 +25,9 @@ function LoadingPage() {
       clearInterval(loadingInterval);
 
       setTimeout(() => {
-        window.location.replace(`${PAGES.TEST_RESULT}/${type}`);
+        window.location.replace(
+          `${PAGES.TEST_RESULT}/${type}?callbackUrl=${callback}`
+        );
       }, 1500);
     }, 4000);
 

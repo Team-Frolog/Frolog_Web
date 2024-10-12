@@ -2,15 +2,15 @@
 
 import QuitButton from '@/components/Button/QuitButton';
 import React from 'react';
-import { TEST_CALLBACK } from '@/constants/storage';
 import DownloadButton from './DownloadButton';
+import { useSearchParams } from 'next/navigation';
 
 interface Props {
   id: '1' | '2' | '3';
 }
 
 function HeaderButtons({ id }: Props) {
-  const hasCallback = sessionStorage.getItem(TEST_CALLBACK);
+  const hasCallback = !!useSearchParams().get('callbackUrl');
 
   return (
     <div

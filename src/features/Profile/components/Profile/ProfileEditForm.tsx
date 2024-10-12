@@ -17,7 +17,7 @@ export const defaultValue: ProfileEditFormType = {
   self_intro: '',
   personal_infos: {
     occupation: {
-      value: '무직',
+      value: '학생',
       visibility: true,
     },
     birth_date: {

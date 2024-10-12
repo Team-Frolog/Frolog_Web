@@ -2,13 +2,12 @@
 
 import React from 'react';
 import LinkButton from '@/components/Button/LinkButton';
-import { TEST_CALLBACK } from '@/constants/storage';
 import Button from '@/components/Button/Button';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 function StartButton() {
   const router = useRouter();
-  const callback = sessionStorage.getItem(TEST_CALLBACK);
+  const callback = useSearchParams().get('callbackUrl');
 
   return (
     <div className='fixed bottom-[24px] left-[50%] z-10 w-[390px] -translate-x-1/2 mobile:w-[90%]'>
@@ -16,8 +15,8 @@ function StartButton() {
         <Button
           type='button'
           onClick={() => {
-            sessionStorage.removeItem(TEST_CALLBACK);
             router.replace(callback);
+            router.back();
           }}
         >
           프로필 편집 이어하기

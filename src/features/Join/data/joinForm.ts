@@ -32,7 +32,7 @@ export const defaultValue: JoinForm = {
 
   personal_infos: {
     occupation: {
-      value: '무직',
+      value: '학생',
       visibility: true,
     },
     birth_date: {

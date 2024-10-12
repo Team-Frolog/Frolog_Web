@@ -1,22 +1,16 @@
 import { MenuArrowIcon } from 'public/icons';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { PAGES } from '@/constants/page';
 import { usePathname, useRouter } from 'next/navigation';
-import { TEST_CALLBACK, TEST_RESULT_FOR_EDIT } from '@/constants/storage';
-import { useFormContext } from 'react-hook-form';
+import { PROFILE_EDIT_FORM_KEY, TEST_CALLBACK } from '@/constants/storage';
+import { useFormContext, useWatch } from 'react-hook-form';
+import { getTestTypeById } from '@/features/Test/utils/testEvaluator';
 
 function FrologTestButton() {
   const router = useRouter();
   const pathname = usePathname();
-  const { setValue } = useFormContext();
-
-  useEffect(() => {
-    const testType = sessionStorage.getItem(TEST_RESULT_FOR_EDIT);
-    if (testType) {
-      setValue('testType', testType);
-      sessionStorage.removeItem(TEST_RESULT_FOR_EDIT);
-    }
-  }, []);
+  const { getValues } = useFormContext();
+  const reading_preference = useWatch({ name: 'reading_preference' });
 
   return (
     <div className='flex w-full flex-col gap-[8px]'>
@@ -24,14 +18,21 @@ function FrologTestButton() {
       <button
         type='button'
         onClick={() => {
-          router.push(PAGES.TEST);
-          sessionStorage.setItem(TEST_CALLBACK, pathname);
+          router.push(`${PAGES.TEST}?callbackUrl=${pathname}`);
+          sessionStorage.setItem(
+            PROFILE_EDIT_FORM_KEY,
+            JSON.stringify(getValues())
+          );
         }}
         className='input-common input-light box-border flex w-full items-center justify-between'
       >
-        <span className='text-body-lg-bold text-gray-800'>감정형</span>
+        <span className='text-body-lg-bold text-gray-800'>
+          {getTestTypeById(reading_preference)}
+        </span>
         <div className='flex items-center gap-[4px]'>
-          <span className='text-body-lg text-gray-700'>다시 진단하기</span>
+          <span className='text-body-lg text-gray-700'>
+            {reading_preference ? '다시' : '독서 성향'} 진단하기
+          </span>
           <MenuArrowIcon />
         </div>
       </button>
