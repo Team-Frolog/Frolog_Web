@@ -38,13 +38,12 @@ function ProfileEditForm() {
   });
   const {
     reset,
-    getValues,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = methods;
   const { handleClickBack, handleEditProfile, original_username } =
-    useProfileEdit(reset);
+    useProfileEdit(reset, isDirty);
 
   return (
     <FormProvider {...methods}>
@@ -57,7 +56,7 @@ function ProfileEditForm() {
           theme='light'
           type='edit'
           isDisabled={!watch('username') || !!errors.username}
-          onClickBack={() => handleClickBack(getValues())}
+          onClickBack={() => handleClickBack()}
         />
         <MainLayout isCenter extraClass='pt-[16px] gap-[16px]'>
           <ImageEditor />

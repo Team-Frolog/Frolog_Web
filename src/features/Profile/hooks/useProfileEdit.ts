@@ -11,7 +11,6 @@ import {
   TEST_RESULT_FOR_EDIT,
 } from '@/constants/storage';
 import { editProfile } from '@/api/profile.api';
-import { isEqual } from 'lodash';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import { useRouter } from 'next/navigation';
@@ -20,7 +19,10 @@ import { compareForm } from '../utils/compareForm';
 import { ProfileEditFormType } from '../types/editForm';
 import { getRandomIntro } from '../utils/randomIntro';
 
-export const useProfileEdit = (reset: UseFormReset<ProfileEditFormType>) => {
+export const useProfileEdit = (
+  reset: UseFormReset<ProfileEditFormType>,
+  isDirty: boolean
+) => {
   const [isEdited, setIsEdited] = useState(false);
   const router = useRouter();
   const { data: session } = useSession();
@@ -86,7 +88,7 @@ export const useProfileEdit = (reset: UseFormReset<ProfileEditFormType>) => {
     }
   }, [profileDetail, reset]);
 
-  const handleClickBack = (formData: ProfileEditFormType) => {
+  const handleClickBack = () => {
     if (isEdited) {
       bottomSheet.open({
         sheetData: sheetData.leave_while_edit,
@@ -96,22 +98,7 @@ export const useProfileEdit = (reset: UseFormReset<ProfileEditFormType>) => {
           }, 300);
         },
       });
-    }
-
-    if (!profileDetail) return;
-
-    const { username, image, reading_preference, self_intro, personal_infos } =
-      profileDetail;
-
-    const defaultValues = {
-      username,
-      image,
-      reading_preference,
-      self_intro,
-      personal_infos: transformInfoToObject(personal_infos),
-    };
-
-    if (!isEqual(defaultValues, formData)) {
+    } else if (isDirty) {
       bottomSheet.open({
         sheetData: sheetData.leave_while_edit,
         onClick: () => {

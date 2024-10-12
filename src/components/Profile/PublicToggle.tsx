@@ -15,7 +15,9 @@ function PublicToggle({ fieldName, theme }: Props) {
   const visibility = watch(`personal_infos.${fieldName}.visibility`);
 
   const handleChange = () => {
-    setValue(`personal_infos.${fieldName}.visibility`, !visibility);
+    setValue(`personal_infos.${fieldName}.visibility`, !visibility, {
+      shouldDirty: true,
+    });
   };
 
   return (

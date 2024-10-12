@@ -22,7 +22,9 @@ function DateSelector({ theme }: Props) {
         type='date'
         value={watch('personal_infos.birth_date.value')}
         onChange={(e) =>
-          setValue('personal_infos.birth_date.value', e.target.value)
+          setValue('personal_infos.birth_date.value', e.target.value, {
+            shouldDirty: true,
+          })
         }
         onKeyDown={(e) => e.preventDefault()}
         onClick={(e) => e.currentTarget.showPicker()}
