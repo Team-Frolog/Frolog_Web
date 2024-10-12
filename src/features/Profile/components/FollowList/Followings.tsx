@@ -1,5 +1,7 @@
 import React from 'react';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
+import { useObserver } from '@/hooks/gesture/useObserver';
+import FollowListSkeleton from '@/components/Fallback/Skeleton/FollowListSkeleton';
 import { useFollowings } from '../../hooks/useFollowings';
 import FollowItem from './FollowItem';
 
@@ -8,7 +10,18 @@ interface Props {
 }
 
 function Followings({ userId }: Props) {
-  const { followings, isEmpty, isFetched } = useFollowings(userId);
+  const {
+    followings,
+    isEmpty,
+    isFetched,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useFollowings(userId);
+  const { setTarget } = useObserver({
+    hasNextPage,
+    fetchNextPage,
+  });
 
   return (
     <>
@@ -18,15 +31,21 @@ function Followings({ userId }: Props) {
         </div>
       )}
       {!isEmpty && isFetched && (
-        <div className='flex flex-1 flex-col gap-[28px] overflow-auto px-page py-[36px]'>
-          {followings.map((following) => (
-            <FollowItem
-              key={following.id}
-              userId={userId}
-              targetUser={following}
-            />
-          ))}
-        </div>
+        <>
+          <div className='flex flex-1 flex-col gap-[28px] overflow-auto px-page py-[36px]'>
+            {followings.map((following) => (
+              <FollowItem
+                key={following.id}
+                userId={userId}
+                targetUser={following}
+              />
+            ))}
+            {isFetchingNextPage && <FollowListSkeleton />}
+          </div>
+          {!isFetchingNextPage && (
+            <div ref={setTarget} id='observer' className='h-[10px]' />
+          )}
+        </>
       )}
     </>
   );

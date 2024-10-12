@@ -3,6 +3,7 @@ import { useFollowUser } from '@/features/Feed/hooks/feed/useFollowUser';
 import { getImageSrc } from '@/utils/getImageSrc';
 import { GetProfileRes } from '@frolog/frolog-api';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 interface Props {
@@ -16,8 +17,11 @@ function FollowItem({ userId, targetUser }: Props) {
 
   return (
     <div className='flex w-full items-center justify-between'>
-      <div className='flex items-center gap-[8px]'>
-        <div className='flex h-[40px] w-[40px] relative'>
+      <Link
+        href={`/${targetUser.id}/profile`}
+        className='flex items-center gap-[8px]'
+      >
+        <div className='relative flex h-[40px] w-[40px]'>
           <Image
             src={
               targetUser.image
@@ -33,7 +37,7 @@ function FollowItem({ userId, targetUser }: Props) {
         <h5 className='text-body-lg-bold text-gray-600'>
           {targetUser.username}
         </h5>
-      </div>
+      </Link>
       <button
         type='button'
         onClick={() => handleFollow({ id: targetUser.id, value: !isFollowing })}

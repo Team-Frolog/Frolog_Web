@@ -15,8 +15,8 @@ export const useFeed = () => {
     queryFn: ({ pageParam }) => getFeed(pageParam),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
-      const isLastPage =
-        Math.ceil(lastPage.count / lastPage.limit) === lastPage.page + 1;
+      const totalPages = Math.ceil(lastPage.count / lastPage.limit);
+      const isLastPage = totalPages === lastPage.page + 1 || totalPages === 0;
       return isLastPage ? undefined : lastPage.page + 1;
     },
     select: (fetchedData) => ({

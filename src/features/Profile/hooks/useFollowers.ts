@@ -7,13 +7,14 @@ export const useFollowers = (userId: string) => {
     fetchNextPage,
     hasNextPage,
     isFetched,
+    isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: ['followers', userId],
     queryFn: ({ pageParam }) => getFollowers(userId, pageParam),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
-      const isLastPage =
-        Math.ceil(lastPage.count / lastPage.limit) === lastPage.page + 1;
+      const totalPages = Math.ceil(lastPage.count / lastPage.limit);
+      const isLastPage = totalPages === lastPage.page + 1 || totalPages === 0;
       return isLastPage ? undefined : lastPage.page + 1;
     },
     select: (fetchedData) => ({
@@ -24,7 +25,7 @@ export const useFollowers = (userId: string) => {
     }),
   });
 
-  const isEmpty = !followers?.pages;
+  const isEmpty = followers?.pages.length === 0;
 
   return {
     followers: followers ? followers.pages : [],
@@ -32,5 +33,6 @@ export const useFollowers = (userId: string) => {
     hasNextPage,
     isFetched,
     isEmpty,
+    isFetchingNextPage,
   };
 };
