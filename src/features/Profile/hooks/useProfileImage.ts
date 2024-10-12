@@ -1,16 +1,30 @@
 import { useMutation } from '@tanstack/react-query';
 import { editProfileImage } from '../api/profile.api';
 import { useFormContext } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getImageSrc } from '@/utils/getImageSrc';
+import { IMAGES } from '@/constants/images';
 
 export const useProfileImage = () => {
-  const { setValue, watch } = useFormContext();
+  const {
+    setValue,
+    watch,
+    formState: { dirtyFields },
+  } = useFormContext();
   const originalImage = watch('image');
-  const [profileImage, setProfileImage] = useState(originalImage);
+  const [profileImage, setProfileImage] = useState<string>(
+    IMAGES.default_profile
+  );
+
+  useEffect(() => {
+    if (originalImage && !dirtyFields['image']) {
+      setProfileImage(getImageSrc(originalImage, 'profile')!);
+    }
+  }, [originalImage]);
 
   const { mutate: uploadImage } = useMutation({
     mutationFn: (file: File | Blob | Buffer) => editProfileImage(file),
-    onSuccess: (res) => setValue('image', res?.hash),
+    onSuccess: (res) => setValue('image', res?.hash, { shouldDirty: true }),
   });
 
   const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +37,7 @@ export const useProfileImage = () => {
 
     reader.onloadend = () => {
       if (reader.result) {
-        setProfileImage(reader.result);
+        setProfileImage(reader.result as string);
         uploadImage(file);
       }
     };

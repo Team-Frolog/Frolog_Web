@@ -2,7 +2,7 @@ import React from 'react';
 
 function FollowListSkeleton() {
   return (
-    <div className='flex flex-col gap-[28px] px-page py-[36px]'>
+    <div className='flex flex-1 flex-col gap-[28px] bg-white px-page py-[36px]'>
       <div className='flex justify-between'>
         <div className='flex items-center gap-[8px]'>
           <div className='skeleton-box h-[40px] w-[40px] rounded-[50%]' />

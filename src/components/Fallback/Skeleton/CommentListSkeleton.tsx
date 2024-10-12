@@ -6,12 +6,12 @@ import CommentSkeleton from './CommentSkeleton';
 function CommentListSkeleton() {
   return (
     <>
-      <MainLayout extraClass='gap-[36px] py-[12px]'>
+      <MainLayout extraClass='gap-[36px] py-[12px] flex-1 bg-white'>
         <CommentSkeleton />
         <CommentSkeleton />
         <CommentSkeleton />
       </MainLayout>
-      <div className='z-70 flex h-max w-full shrink-0 flex-col'>
+      <div className='z-70 flex h-max w-full shrink-0 flex-col bg-white'>
         <div className='flex bg-white px-page py-[20px]'>
           <div className='relative flex w-full'>
             <input

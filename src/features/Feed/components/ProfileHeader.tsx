@@ -63,26 +63,30 @@ function ProfileHeader({
         {isChildComment ? (
           <div className='flex items-center gap-[4px]'>
             <ChildArrowIcon />
+            <div className='flex h-[32px] w-[32px] relative'>
+              <Image
+                src={
+                  image
+                    ? getImageSrc(image, 'profile')!
+                    : IMAGES.default_profile
+                }
+                alt='profile image'
+                layout='fill'
+                className='rounded-[50%] object-cover'
+              />
+            </div>
+          </div>
+        ) : (
+          <div className='flex h-[40px] w-[40px] relative'>
             <Image
               src={
                 image ? getImageSrc(image, 'profile')! : IMAGES.default_profile
               }
               alt='profile image'
-              width={32}
-              height={32}
-              className='rounded-[50%]'
+              layout='fill'
+              className='rounded-[50%] object-cover'
             />
           </div>
-        ) : (
-          <Image
-            src={
-              image ? getImageSrc(image, 'profile')! : IMAGES.default_profile
-            }
-            alt='profile image'
-            width={40}
-            height={40}
-            className='rounded-[50%]'
-          />
         )}
 
         <h5 className='text-body-lg-bold text-gray-600'>{username}</h5>

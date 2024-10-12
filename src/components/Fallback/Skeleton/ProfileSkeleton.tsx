@@ -2,7 +2,7 @@ import React from 'react';
 
 function ProfileSkeleton() {
   return (
-    <div className='flex w-full flex-col gap-[28px] px-page'>
+    <div className='flex w-full flex-1 flex-col gap-[28px] bg-white px-page'>
       <div className='skeleton-animation flex w-full flex-col gap-[16px]'>
         <div className='flex w-full items-center gap-[30px]'>
           <div className='skeleton-box h-[76px] w-[76px] shrink-0 rounded-[50%]' />
