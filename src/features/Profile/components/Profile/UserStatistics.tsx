@@ -3,8 +3,8 @@ import Link from 'next/link';
 import React from 'react';
 import { IMAGES } from '@/constants/images';
 import { GetProfileDetailRes } from '@frolog/frolog-api';
-import { formatUnit } from '../../utils/formatUnit';
 import { getImageSrc } from '@/utils/getImageSrc';
+import { formatUnit } from '../../utils/formatUnit';
 
 interface Props {
   profileDetail: GetProfileDetailRes;

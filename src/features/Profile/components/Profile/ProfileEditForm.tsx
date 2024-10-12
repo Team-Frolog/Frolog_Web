@@ -5,10 +5,10 @@ import TitleHeader from '@/components/Header/TitleHeader';
 import MainLayout from '@/layouts/MainLayout';
 import ProfileForm from '@/components/Profile/ProfileForm';
 import { FormProvider, useForm } from 'react-hook-form';
+import { getToday } from '@/utils/date';
 import ImageEditor from './ImageEditor';
 import { useProfileEdit } from '../../hooks/useProfileEdit';
 import { ProfileEditFormType } from '../../types/editForm';
-import { getToday } from '@/utils/date';
 
 export const defaultValue: ProfileEditFormType = {
   username: '',

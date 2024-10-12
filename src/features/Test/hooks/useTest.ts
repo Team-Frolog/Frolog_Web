@@ -1,11 +1,7 @@
 'use client';
 
 import { PAGES } from '@/constants/page';
-import {
-  TEST_ANSWER_KEY,
-  TEST_CALLBACK,
-  TEST_RESULT_FOR_EDIT,
-} from '@/constants/storage';
+import { TEST_ANSWER_KEY, TEST_RESULT_FOR_EDIT } from '@/constants/storage';
 import { useStepActions, useTestStep } from '@/store/stepStore';
 import { editProfile } from '@/api/profile.api';
 import { getSession } from 'next-auth/react';

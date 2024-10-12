@@ -1,9 +1,9 @@
 'use client';
 
-import QuitButton from '@/components/Button/QuitButton';
 import React from 'react';
-import DownloadButton from './DownloadButton';
 import { useSearchParams } from 'next/navigation';
+import QuitButton from '@/components/Button/QuitButton';
+import DownloadButton from './DownloadButton';
 
 interface Props {
   id: '1' | '2' | '3';

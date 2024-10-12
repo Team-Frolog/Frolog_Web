@@ -13,7 +13,7 @@ function ProfileSkeleton() {
           </div>
         </div>
         <div className='flex w-full flex-col gap-[4px]'>
-          <h5 className='skeleton-text h-[24px] w-[150px]' />
+          <span className='skeleton-text h-[24px] w-[150px]' />
           <p className='skeleton-line' />
         </div>
       </div>

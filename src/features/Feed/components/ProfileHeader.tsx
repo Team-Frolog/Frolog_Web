@@ -11,8 +11,8 @@ import { sheetData } from '@/data/ui/bottomSheet';
 import { useReport } from '@/hooks/useReport';
 import { useProfile } from '@/hooks/useProfile';
 import { useSession } from 'next-auth/react';
-import { useFollowUser } from '../hooks/feed/useFollowUser';
 import { getImageSrc } from '@/utils/getImageSrc';
+import { useFollowUser } from '../hooks/feed/useFollowUser';
 
 interface Props {
   type: 'feed' | 'comment';
@@ -63,7 +63,7 @@ function ProfileHeader({
         {isChildComment ? (
           <div className='flex items-center gap-[4px]'>
             <ChildArrowIcon />
-            <div className='flex h-[32px] w-[32px] relative'>
+            <div className='relative flex h-[32px] w-[32px]'>
               <Image
                 src={
                   image
@@ -77,7 +77,7 @@ function ProfileHeader({
             </div>
           </div>
         ) : (
-          <div className='flex h-[40px] w-[40px] relative'>
+          <div className='relative flex h-[40px] w-[40px]'>
             <Image
               src={
                 image ? getImageSrc(image, 'profile')! : IMAGES.default_profile

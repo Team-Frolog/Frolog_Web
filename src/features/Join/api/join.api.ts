@@ -1,5 +1,4 @@
 import { baseOptions } from '@/api/options';
-import { ERROR_ALERT } from '@/constants/message';
 import {
   GetUsernameAvailability,
   GetUsernameAvailabilityReq,

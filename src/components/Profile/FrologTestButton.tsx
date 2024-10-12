@@ -2,7 +2,7 @@ import { MenuArrowIcon } from 'public/icons';
 import React from 'react';
 import { PAGES } from '@/constants/page';
 import { usePathname, useRouter } from 'next/navigation';
-import { PROFILE_EDIT_FORM_KEY, TEST_CALLBACK } from '@/constants/storage';
+import { PROFILE_EDIT_FORM_KEY } from '@/constants/storage';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { getTestTypeById } from '@/features/Test/utils/testEvaluator';
 

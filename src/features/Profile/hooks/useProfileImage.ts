@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
-import { editProfileImage } from '../api/profile.api';
 import { useFormContext } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { getImageSrc } from '@/utils/getImageSrc';
 import { IMAGES } from '@/constants/images';
+import { editProfileImage } from '../api/profile.api';
 
 export const useProfileImage = () => {
   const {
@@ -17,7 +17,7 @@ export const useProfileImage = () => {
   );
 
   useEffect(() => {
-    if (originalImage && !dirtyFields['image']) {
+    if (originalImage && !dirtyFields.image) {
       setProfileImage(getImageSrc(originalImage, 'profile')!);
     }
   }, [originalImage]);

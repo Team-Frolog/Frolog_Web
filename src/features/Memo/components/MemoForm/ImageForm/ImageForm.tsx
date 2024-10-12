@@ -2,9 +2,9 @@
 
 import { useMemoImage } from '@/features/Memo/hooks/useMemoImage';
 import React from 'react';
+import { getImageSrc } from '@/utils/getImageSrc';
 import ImageSlider from './ImageSlider';
 import ImageSlot from './ImageSlot';
-import { getImageSrc } from '@/utils/getImageSrc';
 
 function ImageForm() {
   const { currentImgs, handleImgChange, handleDeleteImg } = useMemoImage();
