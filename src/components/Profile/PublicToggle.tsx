@@ -2,7 +2,7 @@
 
 import ToggleButton from '@/components/Form/Button/ToggleButton';
 import { InfoName } from '@/features/Join';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
 interface Props {
@@ -12,21 +12,15 @@ interface Props {
 
 function PublicToggle({ fieldName, theme }: Props) {
   const { watch, setValue } = useFormContext();
-  const [isPublic, setIsPublic] = useState(true);
-
-  useEffect(() => {
-    const visibility = watch(`personal_infos.${fieldName}.visibility`);
-    setIsPublic(visibility);
-  }, [watch, fieldName]);
+  const visibility = watch(`personal_infos.${fieldName}.visibility`);
 
   const handleChange = () => {
-    setValue(`personal_infos.${fieldName}.visibility`, !isPublic);
-    setIsPublic(!isPublic);
+    setValue(`personal_infos.${fieldName}.visibility`, !visibility);
   };
 
   return (
     <ToggleButton
-      isPublic={isPublic}
+      isPublic={visibility}
       handleChange={handleChange}
       theme={theme}
     />

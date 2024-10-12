@@ -3,20 +3,12 @@
 import TitleHeader from '@/components/Header/TitleHeader';
 import MainLayout from '@/layouts/MainLayout';
 import ProfileForm from '@/components/Profile/ProfileForm';
-import { InfoObject } from '@/utils/transformInfo';
 import { getToday } from '@/features/Join/utils/date';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import ImageEditor from './ImageEditor';
 import { useProfileEdit } from '../../hooks/useProfileEdit';
-
-export interface ProfileEditFormType {
-  username: string;
-  image: string | null;
-  reading_preference: string | null;
-  self_intro: string;
-  personal_infos: InfoObject;
-}
+import { ProfileEditFormType } from '../../types/editForm';
 
 export const defaultValue: ProfileEditFormType = {
   username: '',

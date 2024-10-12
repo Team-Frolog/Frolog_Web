@@ -11,8 +11,9 @@ import { isEqual } from 'lodash';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import { useRouter } from 'next/navigation';
-import { ProfileEditFormType } from '../components/Profile/ProfileEditForm';
 import { getProfileDetail } from '../api/profile.api';
+import { compareForm } from '../utils/compareForm';
+import { ProfileEditFormType } from '../types/editForm';
 
 export const useProfileEdit = (reset: UseFormReset<ProfileEditFormType>) => {
   const router = useRouter();
@@ -32,9 +33,16 @@ export const useProfileEdit = (reset: UseFormReset<ProfileEditFormType>) => {
         ...editForm,
         personal_infos: transformeInfoToArray(editForm.personal_infos),
       };
+      const processedReq = compareForm(profileDetail!, editReq);
 
-      const result = await editProfile(editReq);
+      const result = await editProfile({
+        id: session!.user.id,
+        ...processedReq,
+      });
       return result;
+    },
+    onSuccess: () => {
+      router.replace('/profile');
     },
   });
 

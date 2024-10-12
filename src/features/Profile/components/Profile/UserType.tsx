@@ -70,7 +70,9 @@ function UserType({ profileDetail }: Props) {
         <span className='text-body-sm text-gray-600'>성별</span>
       </div>
       <div className='flex flex-col items-center gap-[4px]'>
-        <div className='user-type-chip'>
+        <div className={
+            occupation?.visibility ? 'user-type-chip' : 'user-type-chip-disabled'
+          }>
           {occupation?.visibility ? occupation.value : '비공개'}
         </div>
         <span className='text-body-sm text-gray-600'>직업</span>
