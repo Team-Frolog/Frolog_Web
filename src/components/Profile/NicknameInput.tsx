@@ -35,7 +35,11 @@ function NicknameInput({ theme, originUsername = '' }: Props) {
           const isValid = await trigger('username');
           const { value } = e.target;
 
-          if (isValid && value.trim() !== originUsername) {
+          if (
+            isValid &&
+            value.trim() !== originUsername &&
+            value.trim() !== ''
+          ) {
             const data = await checkNickname({
               username: value,
             });

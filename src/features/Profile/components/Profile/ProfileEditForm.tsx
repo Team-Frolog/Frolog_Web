@@ -36,7 +36,13 @@ function ProfileEditForm() {
     mode: 'onBlur',
     defaultValues: defaultValue,
   });
-  const { reset, getValues, handleSubmit } = methods;
+  const {
+    reset,
+    getValues,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = methods;
   const { handleClickBack, handleEditProfile, original_username } =
     useProfileEdit(reset);
 
@@ -50,7 +56,7 @@ function ProfileEditForm() {
           title=''
           theme='light'
           type='edit'
-          isDisabled={false}
+          isDisabled={!watch('username') || !!errors.username}
           onClickBack={() => handleClickBack(getValues())}
         />
         <MainLayout isCenter extraClass='pt-[16px] gap-[16px]'>

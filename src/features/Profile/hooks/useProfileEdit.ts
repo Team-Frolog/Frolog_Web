@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation';
 import { getProfileDetail } from '../api/profile.api';
 import { compareForm } from '../utils/compareForm';
 import { ProfileEditFormType } from '../types/editForm';
+import { getRandomIntro } from '../utils/randomIntro';
 
 export const useProfileEdit = (reset: UseFormReset<ProfileEditFormType>) => {
   const [isEdited, setIsEdited] = useState(false);
@@ -36,6 +37,7 @@ export const useProfileEdit = (reset: UseFormReset<ProfileEditFormType>) => {
       const editReq = {
         id: profileDetail!.id,
         ...editForm,
+        self_intro: editForm.self_intro || getRandomIntro(),
         personal_infos: transformeInfoToArray(editForm.personal_infos),
       };
       const processedReq = compareForm(profileDetail!, editReq);
