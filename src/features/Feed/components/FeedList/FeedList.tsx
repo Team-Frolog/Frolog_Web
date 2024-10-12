@@ -3,13 +3,20 @@
 import React from 'react';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
+import FeedSkeleton from '@/components/Fallback/Skeleton/FeedSkeleton';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import FeedItem from './FeedItem';
 import { useFeed } from '../../hooks/feed/useFeed';
 
 function FeedList() {
-  const { feedData, fetchNextPage, hasNextPage, isFetched, isEmpty } =
-    useFeed();
+  const {
+    feedData,
+    fetchNextPage,
+    hasNextPage,
+    isFetched,
+    isEmpty,
+    isFetchingNextPage,
+  } = useFeed();
   const { setTarget } = useObserver({
     hasNextPage,
     fetchNextPage,
@@ -29,7 +36,11 @@ function FeedList() {
         </div>
       )}
 
-      <div ref={setTarget} id='observer' className='h-[10px]' />
+      {isFetchingNextPage ? (
+        <FeedSkeleton />
+      ) : (
+        <div ref={setTarget} id='observer' className='h-[10px]' />
+      )}
       {feedData && isFetched && (
         <Image
           src={IMAGES.frog.more_feed}
