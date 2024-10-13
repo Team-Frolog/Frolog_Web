@@ -165,4 +165,12 @@ export const sheetData: {
     stateType: 'isOpenAlertSheet',
     description: () => <>잠시만 안녕.. 그치만 곧 다시 돌아올거죠?</>,
   },
+  quit: {
+    getTitle: () => <>정말 탈퇴 하시겠어요?</>,
+    type: 'error',
+    buttonText: '탈퇴하기',
+    extraButtonText: '취소',
+    stateType: 'isOpenAlertSheet',
+    description: () => <>잠시만 안녕.. 그치만 곧 다시 돌아올거죠?</>,
+  },
 };

@@ -5,11 +5,7 @@ import { motion } from 'framer-motion';
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 
-interface Props {
-  children?: React.ReactNode;
-}
-
-function WellTitle({ children }: Props) {
+function WellTitle() {
   return (
     <div className='flex-col-center relative flex w-full shrink-0'>
       <Image
@@ -27,7 +23,6 @@ function WellTitle({ children }: Props) {
         className='flex flex-col gap-[20px] py-[50px]'
       >
         <h1 className='text-title-xl-bold'>소중한 나의 첫 우물</h1>
-        {children}
       </motion.div>
     </div>
   );
