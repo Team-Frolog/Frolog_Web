@@ -33,7 +33,7 @@ export const config = {
 
 function withAuth(req: NextRequest, isLoggedIn: boolean) {
   if (!isLoggedIn) {
-    return NextResponse.redirect(new URL('/login', req.url));
+    return NextResponse.redirect(new URL('/landing', req.url));
   }
   return NextResponse.next();
 }
