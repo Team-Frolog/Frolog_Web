@@ -14,20 +14,22 @@ function PullToRefresh({ element }: Props) {
 
   useEffect(() => {
     function handleTouchStart(event: TouchEvent) {
-      setStartY(event.touches[0].clientY);
+      if (element.current && element.current.scrollTop <= 0) {
+        setStartY(event.touches[0].clientY);
+      }
     }
 
     function handleTouchMove(event: TouchEvent) {
-      const moveY = event.touches[0].clientY;
-      const pullDistance = moveY - startY;
+      if (element.current && element.current.scrollTop <= 0) {
+        const moveY = event.touches[0].clientY;
+        const pullDistance = moveY - startY;
 
-      if (pullDistance > 0) {
-        event.preventDefault();
-
-        if (pullDistance > 80 && element.current) {
-          element.current.style.transform = 'translate(0, 60px)';
-          element.current.style.transition = '0.2s';
-          setRefreshing(true);
+        if (pullDistance > 0) {
+          if (pullDistance > 80 && element.current) {
+            element.current.style.transform = 'translate(0, 60px)';
+            element.current.style.transition = '0.2s';
+            setRefreshing(true);
+          }
         }
       }
     }
