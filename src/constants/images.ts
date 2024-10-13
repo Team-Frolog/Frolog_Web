@@ -36,9 +36,6 @@ export const IMAGES = {
       '3': `${BASE_PATH}/test/type3.svg`,
     },
   },
-  well: {
-    header: `${BASE_PATH}/well/well-header.svg`,
-  },
   book: {
     background: `${BASE_PATH}/book/book-bg.svg`,
     skin: `${BASE_PATH}/book/book-skin.svg`,
@@ -46,6 +43,5 @@ export const IMAGES = {
   },
   ground: `${BASE_PATH}/etc/ground.svg`,
   ground_sm: `${BASE_PATH}/etc/ground-sm.svg`,
-  side_header: `${BASE_PATH}/side-header.svg`,
   default_profile: `${BASE_PATH}/etc/default-profile.svg`,
 };

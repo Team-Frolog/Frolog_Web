@@ -1,0 +1,49 @@
+@import 'tailwindcss/components';
+
+@layer components {
+  .side-header-right {
+    border-top: 105px solid #0e0e0e;
+    border-left: 240px solid transparent;
+    pointer-events: none;
+
+    @media screen and (min-width: 430px) {
+      width: 60%;
+      border-top: 115px solid #0e0e0e;
+      border-left: 290px solid transparent;
+    }
+  }
+
+  .side-header-left {
+    border-top: 59px solid #0e0e0e;
+    border-right: 62px solid transparent;
+    pointer-events: none;
+
+    @media screen and (min-width: 430px) {
+      width: 10%;
+      border-top: 59px solid #0e0e0e;
+      border-right: 72px solid transparent;
+    }
+  }
+
+  .well-header-left {
+    border-top: 144px solid #0e0e0e;
+    border-right: 122px solid transparent;
+    pointer-events: none;
+
+    @media screen and (min-width: 430px) {
+      border-top: 164px solid #0e0e0e;
+      border-right: 142px solid transparent;
+    }
+  }
+
+  .well-header-right {
+    border-top: 144px solid #0e0e0e;
+    border-left: 122px solid transparent;
+    pointer-events: none;
+
+    @media screen and (min-width: 430px) {
+      border-top: 164px solid #0e0e0e;
+      border-left: 142px solid transparent;
+    }
+  }
+}

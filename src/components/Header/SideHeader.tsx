@@ -1,8 +1,6 @@
 'use client';
 
-import { IMAGES } from '@/constants/images';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import React from 'react';
 import BackButton from '../Button/BackButton';
 
@@ -20,14 +18,10 @@ function SideHeader({ children, title, hasBackButton = false }: Props) {
       {hasBackButton && (
         <BackButton type='green' onClick={() => router.back()} />
       )}
-      <Image
-        src={IMAGES.side_header}
-        alt='side header'
-        width={390}
-        height={144}
-        loading='eager'
-        className='absolute left-0 top-0 z-60 w-full'
-      />
+      <div className='pointer-events-none absolute left-0 top-0 z-60 flex w-full justify-between gap-[80px]'>
+        <div className='side-header-left' />
+        <div className='side-header-right' />
+      </div>
       {title && (
         <div className='flex h-fit w-full px-page py-[20px] pt-[50px]'>
           <h1 className='w-fit max-w-[250px] text-start text-heading-md-bold'>
