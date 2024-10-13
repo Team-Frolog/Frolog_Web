@@ -63,7 +63,7 @@ function ProfileHeader({
         {isChildComment ? (
           <div className='flex items-center gap-[4px]'>
             <ChildArrowIcon />
-            <div className='relative flex h-[32px] w-[32px]'>
+            <div className='relative flex h-[32px] w-[32px] shrink-0'>
               <Image
                 src={
                   image
@@ -77,7 +77,7 @@ function ProfileHeader({
             </div>
           </div>
         ) : (
-          <div className='relative flex h-[40px] w-[40px]'>
+          <div className='relative flex h-[40px] w-[40px] shrink-0'>
             <Image
               src={
                 image ? getImageSrc(image, 'profile')! : IMAGES.default_profile

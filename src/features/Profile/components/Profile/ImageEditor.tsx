@@ -7,7 +7,7 @@ function ImageEditor() {
   const { profileImage, handleImgChange } = useProfileImage();
 
   return (
-    <div className='relative h-[76px] w-[76px]'>
+    <div className='relative h-[76px] w-[76px] shrink-0'>
       <input
         type='file'
         accept='image/*'
