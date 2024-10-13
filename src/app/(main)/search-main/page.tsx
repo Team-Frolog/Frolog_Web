@@ -5,7 +5,7 @@ import SearchInput from '@/features/Search/components/SearchInput';
 
 function SearchMainPage() {
   return (
-    <MainLayout>
+    <MainLayout extraClass='bg-white'>
       <SideHeader title='책 검색' />
       <div className='w-full bg-white px-[24px]'>
         <SearchInput isMain />

@@ -1,5 +1,5 @@
+import { getToday } from '@/utils/date';
 import { JoinForm } from '../types/form';
-import { getToday } from '../utils/date';
 
 export const defaultValue: JoinForm = {
   email: '',
@@ -32,7 +32,7 @@ export const defaultValue: JoinForm = {
 
   personal_infos: {
     occupation: {
-      value: '무직',
+      value: '학생',
       visibility: true,
     },
     birth_date: {

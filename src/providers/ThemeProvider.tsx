@@ -43,6 +43,7 @@ function ThemeProvider() {
       const body = document.querySelector('body')!;
       body.classList.remove('dark');
       body.classList.remove('light');
+      body.classList.remove('gray');
       body.classList.remove('half-gradient');
       body.classList.add(getTheme());
     }

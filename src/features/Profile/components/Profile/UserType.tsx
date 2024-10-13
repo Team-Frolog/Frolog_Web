@@ -1,7 +1,34 @@
 import Slider from '@/components/Slider/Slider';
+import { getTestTypeById } from '@/features/Test/utils/testEvaluator';
+import { GetProfileDetailRes } from '@frolog/frolog-api';
 import React from 'react';
+import { getAgeCategory } from '../../utils/getAge';
 
-function UserType() {
+interface Props {
+  profileDetail: GetProfileDetailRes;
+}
+
+type InfoType = 'occupation' | 'birth_date' | 'gender';
+
+interface Info {
+  type: string;
+  value?: string;
+  visibility: boolean;
+}
+
+function UserType({ profileDetail }: Props) {
+  const { reading_preference, personal_infos } = profileDetail;
+
+  const infoMap = personal_infos.reduce(
+    (acc, info) => {
+      acc[info.type as InfoType] = info;
+      return acc;
+    },
+    {} as Record<InfoType, Info | undefined>
+  );
+
+  const { occupation, birth_date, gender } = infoMap;
+
   return (
     <Slider
       isBetween
@@ -9,19 +36,45 @@ function UserType() {
       slideClass='gap-[8px]'
     >
       <div className='flex flex-col items-center gap-[4px]'>
-        <div className='user-type-chip'>감정형</div>
+        <div
+          className={
+            reading_preference ? 'user-type-chip' : 'user-type-chip-disabled'
+          }
+        >
+          {reading_preference ? getTestTypeById(reading_preference) : '?'}
+        </div>
         <span className='text-body-sm text-gray-600'>독서성향</span>
       </div>
       <div className='flex flex-col items-center gap-[4px]'>
-        <div className='user-type-chip-disabled'>비공개</div>
+        <div
+          className={
+            birth_date?.visibility
+              ? 'user-type-chip'
+              : 'user-type-chip-disabled'
+          }
+        >
+          {birth_date?.visibility
+            ? getAgeCategory(birth_date.value!)
+            : '비공개'}
+        </div>
         <span className='text-body-sm text-gray-600'>연령대</span>
       </div>
       <div className='flex flex-col items-center gap-[4px]'>
-        <div className='user-type-chip'>남자</div>
+        <div
+          className={
+            gender?.visibility ? 'user-type-chip' : 'user-type-chip-disabled'
+          }
+        >
+          {gender?.visibility ? gender.value : '비공개'}
+        </div>
         <span className='text-body-sm text-gray-600'>성별</span>
       </div>
       <div className='flex flex-col items-center gap-[4px]'>
-        <div className='user-type-chip'>디자인/크리에이티브</div>
+        <div className={
+            occupation?.visibility ? 'user-type-chip' : 'user-type-chip-disabled'
+          }>
+          {occupation?.visibility ? occupation.value : '비공개'}
+        </div>
         <span className='text-body-sm text-gray-600'>직업</span>
       </div>
     </Slider>

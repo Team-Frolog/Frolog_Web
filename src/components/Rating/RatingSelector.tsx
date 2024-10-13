@@ -24,7 +24,9 @@ function RatingSelector({ type, rating, setValue, watch }: Props) {
 
     const newRating = clickPosition < starHalf ? index + 0.5 : index + 1;
 
-    setValue!('rating', newRating === 0.5 ? 1 : newRating);
+    setValue!('rating', newRating === 0.5 ? 1 : newRating, {
+      shouldDirty: true,
+    });
   };
 
   return (

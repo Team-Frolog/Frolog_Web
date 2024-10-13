@@ -1,6 +1,7 @@
 import { baseOptions } from '@/api/options';
+import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
-import { LIMIT } from '@/features/Search/constants/query';
+
 import { toast } from '@/modules/Toast';
 import {
   DeleteMemoComment,
@@ -41,7 +42,7 @@ export const getComments = async ({
     if (isReview) {
       result = await searchReviewComments.fetch({
         review_id: id,
-        limit: page !== undefined ? LIMIT : undefined,
+        limit: page !== undefined ? DEFAULT_LIMIT : undefined,
         page,
         depth,
         parent: parentId,
@@ -49,7 +50,7 @@ export const getComments = async ({
     } else {
       result = await searchMemoComments.fetch({
         memo_id: id,
-        limit: page !== undefined ? LIMIT : undefined,
+        limit: page !== undefined ? DEFAULT_LIMIT : undefined,
         page,
         depth,
         parent: parentId,

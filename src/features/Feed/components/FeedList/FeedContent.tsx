@@ -1,7 +1,7 @@
 import TagSlider from '@/components/Tag/TagSlider';
 import ImageSlider from '@/features/Memo/components/MemoForm/ImageForm/ImageSlider';
 import ImageSlot from '@/features/Memo/components/MemoForm/ImageForm/ImageSlot';
-import { formatDate } from '@/utils/format';
+import { formatDate } from '@/utils/date';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
 import { uniqueId } from 'lodash';
 import React from 'react';

@@ -2,7 +2,7 @@ import { MemoFormType } from '@/features/Memo';
 import { ReviewFormType } from '@/features/Review';
 
 export interface TextareaType {
-  fieldName: keyof ReviewFormType | keyof MemoFormType | 'intro';
+  fieldName: keyof ReviewFormType | keyof MemoFormType | 'self_intro';
   title: string;
   maxLength: number;
   minLength: number;
@@ -43,7 +43,7 @@ export const textareaType: {
     placeholder: '인상깊은 구절을 메모하세요',
   },
   intro: {
-    fieldName: 'intro',
+    fieldName: 'self_intro',
     title: '자기소개',
     maxLength: 50,
     minLength: 0,

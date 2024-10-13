@@ -6,6 +6,10 @@
   background-color: #ffffff;
 }
 
+.gray {
+  background-color: #edeff4;
+}
+
 .half-gradient {
   /* background-color: #0e0e0e; */
   background-image: linear-gradient(to bottom, #0e0e0e 10%, white 10%);

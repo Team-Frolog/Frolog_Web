@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import uniqueId from 'lodash/uniqueId';
 import DeleteButton from '@/components/ListItem/DeleteButton';
 import { useRouter } from 'next/navigation';
-import { formatDate } from '@/utils/format';
+import { formatDate } from '@/utils/date';
 import ImageSlider from '../MemoForm/ImageForm/ImageSlider';
 import { Memo } from '../../models/memo.model';
 import ImageSlot from '../MemoForm/ImageForm/ImageSlot';

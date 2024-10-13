@@ -30,8 +30,8 @@ function BookInfo({ feedData, isMemo }: Props) {
               <li className="after:content-['|']">
                 <span className='pr-[6px]'>
                   {bookData?.author}{' '}
-                  {(bookData?.author_cnt === undefined ||
-                    bookData.author_cnt > 0) &&
+                  {bookData?.author_cnt !== undefined &&
+                    bookData.author_cnt > 1 &&
                     `외 ${bookData?.author_cnt}명`}
                 </span>
               </li>

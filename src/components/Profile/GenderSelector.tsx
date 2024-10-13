@@ -14,7 +14,7 @@ function GenderSelector({ theme }: Props) {
   const selected = 'border-main text-body-lg-bold';
 
   const handleClick = (value: string) => {
-    setValue('personal_infos.gender.value', value);
+    setValue('personal_infos.gender.value', value, { shouldDirty: true });
   };
 
   return (

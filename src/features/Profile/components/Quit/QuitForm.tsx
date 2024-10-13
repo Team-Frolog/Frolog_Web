@@ -2,39 +2,44 @@
 
 import CheckButton from '@/components/Button/CheckButton';
 import React from 'react';
-import { signOut } from 'next-auth/react';
 import FormInput from '@/components/Form/Input/FormInput';
 import { FormProvider, useForm } from 'react-hook-form';
 import Button from '@/components/Button/Button';
 import { useRouter } from 'next/navigation';
-import { useMutation } from '@tanstack/react-query';
-import { quit } from '@/api/auth.api';
 import { quitReasons } from '../../data/quitForm';
+import { useQuit } from '../../hooks/useQuit';
 
-interface QuitFormType {
-  reason: number;
+export interface QuitFormType {
+  reason: number[];
   description?: string;
 }
 
 function QuitForm() {
   const router = useRouter();
+  const { handleQuit } = useQuit();
   const methods = useForm<QuitFormType>({
     mode: 'onChange',
-    defaultValues: { reason: 1, description: '' },
+    defaultValues: { reason: [1], description: '' },
   });
   const { watch, setValue, register, handleSubmit } = methods;
+  const reasons = watch('reason');
 
-  const { mutate: handleQuit } = useMutation({
-    mutationFn: () => quit(),
-    onSuccess: () => {
-      signOut({ callbackUrl: '/landing', redirect: true });
-    },
-  });
+  const handleClickOption = (optionId: number) => {
+    let newReasons;
+
+    if (reasons.includes(optionId) && reasons.length > 1) {
+      newReasons = reasons.filter((reason) => reason !== optionId);
+    } else {
+      newReasons = [...reasons, optionId];
+    }
+
+    setValue('reason', newReasons);
+  };
 
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={handleSubmit(() => handleQuit())}
+        onSubmit={handleSubmit(handleQuit)}
         className='flex w-full flex-1 flex-col justify-between gap-[40px]'
       >
         <div className='flex w-full flex-col gap-[20px]'>
@@ -47,11 +52,11 @@ function QuitForm() {
               <div
                 key={item.id}
                 className='flex items-center gap-[12px]'
-                onClick={() => setValue('reason', item.id)}
+                onClick={() => handleClickOption(item.id)}
               >
                 <CheckButton
                   theme='light'
-                  isChecked={watch('reason') === item.id}
+                  isChecked={reasons.includes(item.id)}
                 />
                 <span className='cursor-default text-body-lg-bold text-gray-800'>
                   {item.content}

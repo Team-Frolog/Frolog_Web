@@ -68,7 +68,7 @@ function ImageSlot({
               />
             </div>
 
-            {!isReadOnly && (
+            {onDelete && (
               <button
                 type='button'
                 onClick={onDelete}

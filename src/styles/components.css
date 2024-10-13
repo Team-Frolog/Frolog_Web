@@ -39,4 +39,23 @@
   .following-tag {
     @apply rounded-[12px] border border-main bg-white px-[16px] py-[8px] text-body-sm-bold text-main;
   }
+  .active-circle {
+    @apply h-[8px] w-[8px] rounded-[50%] bg-main;
+  }
+  .non-active-circle {
+    @apply h-[8px] w-[8px] rounded-[50%] border-[1.2px] border-gray-600;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .spinner {
+    animation: spin 1s linear infinite;
+  }
 }

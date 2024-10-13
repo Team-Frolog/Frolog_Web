@@ -1,5 +1,4 @@
 import { baseOptions } from '@/api/options';
-import { ERROR_ALERT } from '@/constants/message';
 import {
   GetUsernameAvailability,
   GetUsernameAvailabilityReq,
@@ -16,10 +15,6 @@ export const signUp = async (formData: SignUpReq) => {
 };
 
 export const checkNickname = async (req: GetUsernameAvailabilityReq) => {
-  try {
-    const data = await getUserNameAvailability.fetch(req);
-    return data.result;
-  } catch (err) {
-    window.alert(ERROR_ALERT);
-  }
+  const data = await getUserNameAvailability.fetch(req);
+  return data.result;
 };

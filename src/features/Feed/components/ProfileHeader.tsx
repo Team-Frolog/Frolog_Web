@@ -11,6 +11,7 @@ import { sheetData } from '@/data/ui/bottomSheet';
 import { useReport } from '@/hooks/useReport';
 import { useProfile } from '@/hooks/useProfile';
 import { useSession } from 'next-auth/react';
+import { getImageSrc } from '@/utils/getImageSrc';
 import { useFollowUser } from '../hooks/feed/useFollowUser';
 
 interface Props {
@@ -62,22 +63,30 @@ function ProfileHeader({
         {isChildComment ? (
           <div className='flex items-center gap-[4px]'>
             <ChildArrowIcon />
-            <Image
-              src={image || IMAGES.default_profile}
-              alt='profile image'
-              width={32}
-              height={32}
-              className='rounded-[50%]'
-            />
+            <div className='relative flex h-[32px] w-[32px]'>
+              <Image
+                src={
+                  image
+                    ? getImageSrc(image, 'profile')!
+                    : IMAGES.default_profile
+                }
+                alt='profile image'
+                layout='fill'
+                className='rounded-[50%] object-cover'
+              />
+            </div>
           </div>
         ) : (
-          <Image
-            src={image || IMAGES.default_profile}
-            alt='profile image'
-            width={40}
-            height={40}
-            className='rounded-[50%]'
-          />
+          <div className='relative flex h-[40px] w-[40px]'>
+            <Image
+              src={
+                image ? getImageSrc(image, 'profile')! : IMAGES.default_profile
+              }
+              alt='profile image'
+              layout='fill'
+              className='rounded-[50%] object-cover'
+            />
+          </div>
         )}
 
         <h5 className='text-body-lg-bold text-gray-600'>{username}</h5>
@@ -93,7 +102,7 @@ function ProfileHeader({
             }
             className={follow ? 'following-tag' : 'not-following-tag'}
           >
-            팔로우
+            {follow ? '팔로잉' : '팔로우'}
           </button>
         )}
         {canShowButton && (

@@ -8,7 +8,7 @@ import BackButton from '../Button/BackButton';
 
 interface Props {
   children?: React.ReactNode;
-  title: string;
+  title?: string;
   hasBackButton?: boolean;
 }
 
@@ -16,7 +16,7 @@ function SideHeader({ children, title, hasBackButton = false }: Props) {
   const router = useRouter();
 
   return (
-    <div className='flex h-fit w-full'>
+    <div className='flex h-fit w-full bg-white'>
       {hasBackButton && (
         <BackButton type='green' onClick={() => router.back()} />
       )}
@@ -28,11 +28,13 @@ function SideHeader({ children, title, hasBackButton = false }: Props) {
         loading='eager'
         className='absolute left-0 top-0 z-60 w-full'
       />
-      <div className='flex h-fit w-full px-page py-[20px] pt-[50px]'>
-        <h1 className='w-fit max-w-[250px] text-start text-heading-md-bold'>
-          {title}
-        </h1>
-      </div>
+      {title && (
+        <div className='flex h-fit w-full px-page py-[20px] pt-[50px]'>
+          <h1 className='w-fit max-w-[250px] text-start text-heading-md-bold'>
+            {title}
+          </h1>
+        </div>
+      )}
       {children}
     </div>
   );

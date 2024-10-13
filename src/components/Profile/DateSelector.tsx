@@ -1,6 +1,7 @@
 'use client';
 
 import FormTitleWithToggle from '@/components/Form/FormTitleWithToggle';
+import { getMinDate } from '@/utils/date';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -20,9 +21,12 @@ function DateSelector({ theme }: Props) {
       />
       <input
         type='date'
+        max={getMinDate()}
         value={watch('personal_infos.birth_date.value')}
         onChange={(e) =>
-          setValue('personal_infos.birth_date.value', e.target.value)
+          setValue('personal_infos.birth_date.value', e.target.value, {
+            shouldDirty: true,
+          })
         }
         onKeyDown={(e) => e.preventDefault()}
         onClick={(e) => e.currentTarget.showPicker()}

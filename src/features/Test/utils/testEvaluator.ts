@@ -62,6 +62,6 @@ export const getTestTypeById = (type: string) => {
     case '3':
       return '성취형';
     default:
-      return '감정형';
+      return '?';
   }
 };

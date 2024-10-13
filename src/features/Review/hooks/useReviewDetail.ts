@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import isEqual from 'lodash/isEqual';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { UseFormReset } from 'react-hook-form';
@@ -11,12 +10,21 @@ import { editReview, getReviewDetail } from '../api/review.api';
 import { ReviewForm } from '../types/review';
 import { getBookInfo } from '../api/getBookInfo.api';
 
-export const useReviewDetail = (
-  bookId: string,
-  reviewId: string,
-  reset: UseFormReset<ReviewForm>,
-  pathname: string
-) => {
+interface Props {
+  bookId: string;
+  reviewId: string;
+  reset: UseFormReset<ReviewForm>;
+  pathname: string;
+  isDirty: boolean;
+}
+
+export const useReviewDetail = ({
+  bookId,
+  reviewId,
+  reset,
+  pathname,
+  isDirty,
+}: Props) => {
   const router = useRouter();
 
   const { data, refetch } = useQuery({
@@ -60,18 +68,8 @@ export const useReviewDetail = (
     }
   }, [data, reset]);
 
-  const handleClickBack = (formData: ReviewForm) => {
-    if (!data) return;
-
-    const defaultValues = {
-      rating: data.rating,
-      oneLiner: data.title,
-      review: data.content,
-      pros: data.tags_pos,
-      cons: data.tags_neg,
-    };
-
-    if (!isEqual(defaultValues, formData)) {
+  const handleClickBack = () => {
+    if (isDirty) {
       bottomSheet.open({
         sheetData: sheetData.leave_while_edit,
         onClick: () => {

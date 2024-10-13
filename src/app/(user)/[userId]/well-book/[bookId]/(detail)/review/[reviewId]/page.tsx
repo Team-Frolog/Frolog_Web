@@ -37,12 +37,11 @@ function WellBookReviewPage({ params: { bookId, reviewId } }: Props) {
     watch,
     handleSubmit,
     reset,
-    getValues,
-    formState: { isValid },
+    formState: { isValid, isDirty },
   } = methods;
 
   const { bookTitle, reviewDetail, handleEditReview, handleClickBack } =
-    useReviewDetail(bookId, reviewId, reset, pathname);
+    useReviewDetail({ bookId, reviewId, reset, pathname, isDirty });
 
   const isDisabled =
     !watch('rating') ||
@@ -64,7 +63,7 @@ function WellBookReviewPage({ params: { bookId, reviewId } }: Props) {
           type={isEditing ? 'edit' : 'default'}
           isDisabled={isDisabled}
           onClick={() => router.push(`${pathname}?edit=true`)}
-          onClickBack={() => handleClickBack(getValues())}
+          onClickBack={() => handleClickBack()}
         />
         <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>
           {isEditing ? (

@@ -1,6 +1,6 @@
 import { baseOptions } from '@/api/options';
+import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
-import { LIMIT } from '@/features/Search/constants/query';
 import { toast } from '@/modules/Toast';
 import { GetFeed } from '@frolog/frolog-api';
 
@@ -10,7 +10,7 @@ export const getFeed = async (page: number) => {
   try {
     const result = await getFeedObj.fetch({
       type: 'latest',
-      limit: LIMIT,
+      limit: DEFAULT_LIMIT,
       page,
     });
     return result;

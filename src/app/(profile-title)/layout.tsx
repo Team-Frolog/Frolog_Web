@@ -6,7 +6,7 @@ function ProfileTitleLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <ProfileTitleHeader />
-      <MainLayout>{children}</MainLayout>
+      <MainLayout extraClass='bg-white'>{children}</MainLayout>
     </>
   );
 }

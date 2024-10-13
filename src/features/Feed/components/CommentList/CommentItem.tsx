@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
 import { useProfile } from '@/hooks/useProfile';
-import { formatDate } from '@/utils/format';
+import { formatDate } from '@/utils/date';
 import ProfileHeader from '../ProfileHeader';
 import ChildCommentItem from './ChildCommentItem';
 import { useChildComments } from '../../hooks/child/useChildComments';
@@ -100,6 +100,7 @@ function CommentItem({ commentData, itemId }: Props) {
       {replies !== undefined && replies.length > 0 && (!more || !isFetched) && (
         <ChildCommentItem
           itemId={itemId}
+          isFirstChild
           hasMoreButton={reply_count ? reply_count > 1 : false}
           moreCount={reply_count ? reply_count - 1 : 0}
           onClickMore={() => setMore(true)}

@@ -1,33 +1,23 @@
 'use client';
 
-import TitleHeader from '@/components/Header/TitleHeader';
-import ProfileForm from '@/components/Profile/ProfileForm';
-import { Info } from '@/features/Join/types/form';
-import { getToday } from '@/features/Join/utils/date';
 import React from 'react';
+import TitleHeader from '@/components/Header/TitleHeader';
+import MainLayout from '@/layouts/MainLayout';
+import ProfileForm from '@/components/Profile/ProfileForm';
 import { FormProvider, useForm } from 'react-hook-form';
+import { getToday } from '@/utils/date';
 import ImageEditor from './ImageEditor';
+import { useProfileEdit } from '../../hooks/useProfileEdit';
+import { ProfileEditFormType } from '../../types/editForm';
 
-interface EditForm {
-  username: string;
-  image: string | null;
-  testType: string;
-  intro: string;
-  personal_infos: {
-    occupation: Info;
-    birth_date: Info;
-    gender: Info;
-  };
-}
-
-export const defaultValue: EditForm = {
+export const defaultValue: ProfileEditFormType = {
   username: '',
   image: null,
-  testType: '',
-  intro: '',
+  reading_preference: null,
+  self_intro: '',
   personal_infos: {
     occupation: {
-      value: '무직',
+      value: '학생',
       visibility: true,
     },
     birth_date: {
@@ -42,17 +32,40 @@ export const defaultValue: EditForm = {
 };
 
 function ProfileEditForm() {
-  const methods = useForm<EditForm>({
+  const methods = useForm<ProfileEditFormType>({
     mode: 'onBlur',
     defaultValues: defaultValue,
   });
+  const {
+    reset,
+    handleSubmit,
+    watch,
+    formState: { errors, isDirty },
+  } = methods;
+  const { handleClickBack, handleEditProfile, original_username } =
+    useProfileEdit(reset, isDirty);
 
   return (
     <FormProvider {...methods}>
-      <TitleHeader title='' theme='light' type='edit' isDisabled={false} />
-      <form className='flex w-full flex-1 flex-col items-center gap-[16px] overflow-auto py-[16px]'>
-        <ImageEditor />
-        <ProfileForm type='profile' theme='light' />
+      <form
+        onSubmit={handleSubmit((data) => handleEditProfile(data))}
+        className='flex w-full flex-1 flex-col overflow-hidden bg-white'
+      >
+        <TitleHeader
+          title=''
+          theme='light'
+          type='edit'
+          isDisabled={!watch('username') || !!errors.username}
+          onClickBack={() => handleClickBack()}
+        />
+        <MainLayout isCenter extraClass='pt-[16px] gap-[16px]'>
+          <ImageEditor />
+          <ProfileForm
+            type='profile'
+            theme='light'
+            username={original_username}
+          />
+        </MainLayout>
       </form>
     </FormProvider>
   );

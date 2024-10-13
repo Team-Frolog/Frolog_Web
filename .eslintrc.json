@@ -31,6 +31,7 @@
     "no-var": "warn",
     "no-alert": "off",
     "no-plusplus": "off",
+    "no-else-return": "off",
     "no-nested-ternary": "warn",
     "class-methods-use-this": "off",
     "@typescript-eslint/ban-types": "off",

@@ -1,33 +1,65 @@
 'use client';
 
+import React from 'react';
+import dynamic from 'next/dynamic';
+import FollowListSkeleton from '@/components/Fallback/Skeleton/FollowListSkeleton';
 import Tap from '@/components/Tap/Tap';
-import React, { useState } from 'react';
-import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
-import FollowItem from './FollowItem';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useProfileDetail } from '../../hooks/useProfileDetail';
 
-function FollowList() {
-  const [followType, setFollowType] = useState(1);
+const Followers = dynamic(
+  () => import('@/features/Profile/components/FollowList/Followers'),
+  {
+    ssr: false,
+    loading: () => <FollowListSkeleton />,
+  }
+);
+
+const Followings = dynamic(
+  () => import('@/features/Profile/components/FollowList/Followings'),
+  {
+    ssr: false,
+    loading: () => <FollowListSkeleton />,
+  }
+);
+
+interface Props {
+  userId: string;
+}
+
+function FollowList({ userId }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const { profileDetail } = useProfileDetail(userId);
+  const tap = useSearchParams().get('tap') || 'followers';
+
+  if (!profileDetail) return <></>;
 
   return (
     <div className='flex w-full flex-1 flex-col overflow-hidden py-[16px]'>
       <Tap
         taps={[
-          { id: 1, name: '팔로워' },
-          { id: 2, name: '팔로잉' },
+          {
+            id: 1,
+            label: 'followers',
+            name: `팔로워 ${profileDetail.follower_cnt}`,
+          },
+          {
+            id: 2,
+            label: 'followings',
+            name: `팔로잉 ${profileDetail.following_cnt}`,
+          },
         ]}
-        currentTap={followType}
-        setCurrentTap={setFollowType}
+        currentTap={tap}
+        defaultTap='followers'
+        onChangeTap={(label: string) =>
+          router.replace(`${pathname}?tap=${label}`)
+        }
       />
-      {followType === 1 ? (
-        <div className='flex flex-1 flex-col gap-[28px] overflow-auto px-page py-[36px]'>
-          <FollowItem />
-          <FollowItem isFollowing />
-          <FollowItem isFollowing />
-        </div>
+      {tap === 'followings' ? (
+        <Followings userId={userId} />
       ) : (
-        <div className='flex flex-1 items-center justify-center'>
-          <EmptyContentFrog title='팔로우하는 사람을 만들어보세요!' />
-        </div>
+        <Followers userId={userId} />
       )}
     </div>
   );

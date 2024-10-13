@@ -6,13 +6,14 @@ import { useProfile } from '@/hooks/useProfile';
 import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
 import { motion } from 'framer-motion';
-import { formatDate } from '@/utils/format';
+import { formatDate } from '@/utils/date';
 import ProfileHeader from '../ProfileHeader';
 import { Comments } from '../../types/comment';
 import { useChangeChildComment } from '../../hooks/child/useChangeChildComment';
 
 interface Props {
   itemId: string;
+  isFirstChild?: boolean;
   childCommentData: Comments;
   moreCount?: number;
   onClickMore?: () => void;
@@ -25,6 +26,7 @@ function ChildCommentItem({
   moreCount,
   onClickMore,
   hasMoreButton,
+  isFirstChild = false,
 }: Props) {
   const {
     id,
@@ -45,6 +47,7 @@ function ChildCommentItem({
     isReview,
     itemId,
     parentId: childCommentData.parent || '',
+    isFirst: isFirstChild,
   });
 
   if (!profile || !childCommentData) return <></>;

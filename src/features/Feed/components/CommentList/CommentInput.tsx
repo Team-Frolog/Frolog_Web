@@ -66,7 +66,7 @@ function CommentInput({
             value={comment}
             placeholder='댓글을 입력해주세요'
             maxLength={400}
-            className='input-common input-light flex-1 pr-[60px] placeholder:text-body-lg'
+            className={`input-common input-light flex-1 pr-[60px] placeholder:text-body-lg ${comment ? 'border-main' : 'border-gray-200'}`}
             onChange={(e) => setComment(e.target.value)}
             onFocus={() => setIsFocusing(true)}
             onBlur={() => setIsFocusing(false)}
@@ -74,7 +74,7 @@ function CommentInput({
           />
           <button type='button' onClick={() => handleAdd(comment)}>
             <EnterIcon
-              fill={isFocusing ? '#00CE4C' : '#E0E1E9'}
+              fill={isFocusing || comment ? '#00CE4C' : '#E0E1E9'}
               className='absolute right-[16px] top-1/2 -translate-y-1/2'
             />
           </button>

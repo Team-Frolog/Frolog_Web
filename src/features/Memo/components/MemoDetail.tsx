@@ -14,13 +14,12 @@ function MemoDetail({ memoData }: Props) {
   if (!memoData) return <></>;
 
   return (
-    <div className='flex w-full flex-col gap-[36px]'>
+    <div className='flex w-full flex-col gap-[36px] bg-white'>
       {memoData.images.length !== 0 && (
         <ImageSlider>
           {memoData.images.map((img, index) => (
             <ImageSlot
               key={uniqueId()}
-              isReadOnly
               src={`https://images.frolog.kr/memo/${img}.webp`}
               index={index}
             />
