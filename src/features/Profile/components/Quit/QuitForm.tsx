@@ -16,7 +16,7 @@ export interface QuitFormType {
 
 function QuitForm() {
   const router = useRouter();
-  const { handleQuit } = useQuit();
+  const { reconfirmQuit } = useQuit();
   const methods = useForm<QuitFormType>({
     mode: 'onChange',
     defaultValues: { reason: [], description: '' },
@@ -39,7 +39,7 @@ function QuitForm() {
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={handleSubmit(handleQuit)}
+        onSubmit={handleSubmit(reconfirmQuit)}
         className='flex w-full flex-1 flex-col justify-between gap-[40px]'
       >
         <div className='flex w-full flex-col gap-[20px]'>

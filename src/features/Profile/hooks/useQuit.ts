@@ -1,6 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { signOut } from 'next-auth/react';
 import { PAGES } from '@/constants/page';
+import { bottomSheet } from '@/modules/BottomSheet';
+import { sheetData } from '@/data/ui/bottomSheet';
 import { quit } from '../api/quit.api';
 import { QuitFormType } from '../components/Quit/QuitForm';
 import { quitReasons } from '../data/quitForm';
@@ -28,5 +30,12 @@ export const useQuit = () => {
     quitUser(survey);
   };
 
-  return { handleQuit };
+  const reconfirmQuit = (data: QuitFormType) => {
+    bottomSheet.open({
+      sheetData: sheetData.quit,
+      onClick: () => handleQuit(data),
+    });
+  };
+
+  return { reconfirmQuit };
 };
