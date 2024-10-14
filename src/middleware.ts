@@ -14,9 +14,12 @@ export async function middleware(req: NextRequest) {
   const token = await getToken({
     req,
     secret: process.env.NEXTAUTH_SECRET,
-    cookieName: '__Secure-next-auth.session-token',
+    secureCookie: true,
+    // cookieName: '__Secure-next-auth.session-token',
   });
   const { pathname } = req.nextUrl;
+
+  console.log('token:', token);
 
   // pathname이 어느 routes에 속하는지 확인
   const isWithAuth = protectedRoutes.includes(pathname);
