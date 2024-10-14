@@ -30,25 +30,25 @@ function OnBoardingSlide({ activeSlide, setActiveSlide }: Props) {
       className={`flex flex-1 shrink flex-col gap-[60px] transition-all duration-200 mobile:gap-0 ${onBoarding[activeSlide].bg}`}
     >
       <OnBoardingHeader activeSlide={activeSlide} />
-      <Slider {...settings} className='flex flex-1'>
-        <div className='flex h-full w-full'>
-          <div className='flex h-full items-end justify-center'>
-            <Slide1 className='w-full mobile:h-[350px] mobile:w-auto' />
+      <Slider {...settings} className='flex flex-1 shrink'>
+        <div className='flex h-full w-full shrink'>
+          <div className='flex h-full shrink items-end justify-center'>
+            <Slide1 className='h-[50dvh] w-auto' />
           </div>
         </div>
         <div className='flex h-full w-full'>
           <div className='flex h-full items-end justify-start'>
-            <Slide2 className='h-auto w-[90%] mobile:h-[320px] mobile:w-auto' />
+            <Slide2 className='h-[45dvh] w-auto' />
           </div>
         </div>
         <div className='flex h-full w-full'>
           <div className='flex h-full items-end justify-center'>
-            <Slide3 className='h-auto w-full mobile:w-[90%]' />
+            <Slide3 className='h-[50dvh] w-auto' />
           </div>
         </div>
         <div className='flex h-full w-full'>
           <div className='flex h-full items-end justify-center'>
-            <Slide4 className='h-auto w-full mobile:w-[90%]' />
+            <Slide4 className='h-[50dvh] w-auto' />
           </div>
         </div>
       </Slider>
