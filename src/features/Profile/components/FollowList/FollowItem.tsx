@@ -1,7 +1,9 @@
 import { IMAGES } from '@/constants/images';
+import { PAGES } from '@/constants/page';
 import { useFollowUser } from '@/features/Feed/hooks/feed/useFollowUser';
 import { getImageSrc } from '@/utils/getImageSrc';
 import { GetProfileRes } from '@frolog/frolog-api';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -12,13 +14,14 @@ interface Props {
 }
 
 function FollowItem({ userId, targetUser }: Props) {
+  const { data: session } = useSession();
   const { handleFollow } = useFollowUser(userId);
   const isFollowing = !!targetUser.follow;
 
   return (
     <div className='flex w-full items-center justify-between'>
       <Link
-        href={`/${targetUser.id}/profile`}
+        href={session ? PAGES.PROFILE : `/${targetUser.id}/profile`}
         className='flex items-center gap-[8px]'
       >
         <div className='relative flex h-[40px] w-[40px]'>
