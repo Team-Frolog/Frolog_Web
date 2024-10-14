@@ -20,6 +20,7 @@ export const PAGES = {
   WELL_BOOK: '/well-book',
   SEARCH: '/search',
   NEW_REVIEW: '/new-review',
+  PROFILE: '/profile',
 } as const;
 
 export const PAGE_CONFIG: PageConfig = {

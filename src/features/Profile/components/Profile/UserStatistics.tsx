@@ -23,13 +23,17 @@ function UserStatistics({ profileDetail }: Props) {
   return (
     <div className='flex w-full flex-col gap-[16px] px-page'>
       <div className='flex w-full items-center gap-[28px]'>
-        <Image
-          src={image ? getImageSrc(image, 'profile')! : IMAGES.default_profile}
-          alt='profile image'
-          width={76}
-          height={76}
-          className='rounded-[50%]'
-        />
+        <div className='relative h-[76px] w-[76px] shrink-0'>
+          <Image
+            src={
+              image ? getImageSrc(image, 'profile')! : IMAGES.default_profile
+            }
+            alt='profile image'
+            layout='fill'
+            className='rounded-[50%] object-cover'
+            loading='eager'
+          />
+        </div>
         <div className='flex flex-1 justify-around'>
           <div className='flex flex-col items-center justify-center'>
             <h3 className='text-title-xl-bold text-gray-800'>{max_height}</h3>

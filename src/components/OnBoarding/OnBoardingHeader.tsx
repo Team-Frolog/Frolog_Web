@@ -1,13 +1,16 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { onBoarding } from '@/data/ui/onBoarding';
+import BackButton from '../Button/BackButton';
 
 interface Props {
   activeSlide: number;
 }
 
 function OnBoardingHeader({ activeSlide }: Props) {
+  const router = useRouter();
   const [show, setShow] = useState(false);
   const [before, setBefore] = useState(1);
 
@@ -32,6 +35,15 @@ function OnBoardingHeader({ activeSlide }: Props) {
         />
       )}
       <div className='z-10 flex w-full shrink-0 flex-col gap-[20px] px-page py-page pb-0'>
+        <BackButton
+          fill={activeSlide === 4 ? '#727384' : '#B3B6C4'}
+          onClick={() => router.back()}
+        />
+        <h1
+          className={`text-heading-md-bold mobile:text-title-xl-bold ${onBoarding[activeSlide].titleColor}`}
+        >
+          {onBoarding[activeSlide].title()}
+        </h1>
         <div className='flex gap-[8px]'>
           {Array(4)
             .fill(0)
@@ -44,11 +56,6 @@ function OnBoardingHeader({ activeSlide }: Props) {
               />
             ))}
         </div>
-        <h2
-          className={`text-heading-md-bold mobile:text-title-xl-bold ${onBoarding[activeSlide].titleColor}`}
-        >
-          {onBoarding[activeSlide].title()}
-        </h2>
       </div>
     </>
   );

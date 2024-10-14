@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { sheetData } from '@/data/ui/bottomSheet';
 import { signOut } from 'next-auth/react';
+import { PAGES } from '@/constants/page';
 import MenuItem from './MenuItem';
 
 function Menu() {
@@ -33,7 +34,7 @@ function Menu() {
               bottomSheet.open({
                 sheetData: sheetData.logout,
                 onClick: () =>
-                  signOut({ callbackUrl: '/feed', redirect: true }),
+                  signOut({ callbackUrl: PAGES.HOME, redirect: true }),
               })
             }
           />

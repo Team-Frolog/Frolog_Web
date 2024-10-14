@@ -6,7 +6,7 @@ import { useNewReviewId } from '@/store/stackMotionStore';
 import { motion } from 'framer-motion';
 import ScrollToTop from '@/components/Button/ScrollToTop';
 import WellBook from './WellBook';
-import FrogOnBook from '../FrogOnBook';
+import FrogOnBook from '../Well/FrogOnBook';
 
 interface Props {
   userId?: string;

@@ -16,10 +16,10 @@ export interface QuitFormType {
 
 function QuitForm() {
   const router = useRouter();
-  const { handleQuit } = useQuit();
+  const { reconfirmQuit } = useQuit();
   const methods = useForm<QuitFormType>({
     mode: 'onChange',
-    defaultValues: { reason: [1], description: '' },
+    defaultValues: { reason: [], description: '' },
   });
   const { watch, setValue, register, handleSubmit } = methods;
   const reasons = watch('reason');
@@ -27,7 +27,7 @@ function QuitForm() {
   const handleClickOption = (optionId: number) => {
     let newReasons;
 
-    if (reasons.includes(optionId) && reasons.length > 1) {
+    if (reasons.includes(optionId)) {
       newReasons = reasons.filter((reason) => reason !== optionId);
     } else {
       newReasons = [...reasons, optionId];
@@ -39,7 +39,7 @@ function QuitForm() {
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={handleSubmit(handleQuit)}
+        onSubmit={handleSubmit(reconfirmQuit)}
         className='flex w-full flex-1 flex-col justify-between gap-[40px]'
       >
         <div className='flex w-full flex-col gap-[20px]'>
@@ -78,7 +78,7 @@ function QuitForm() {
             탈퇴하면, 메모 / 리뷰 / 캐릭터 / 팔로워 등 프롤로그와 함께한 추억이
             깃든 모든 데이터가 삭제되고 복구가 불가능합니다.
           </p>
-          <Button type='submit' theme='error'>
+          <Button type='submit' disabled={!reasons.length} theme='error'>
             탈퇴하기
           </Button>
           <button

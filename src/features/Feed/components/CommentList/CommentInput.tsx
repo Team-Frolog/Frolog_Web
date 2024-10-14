@@ -41,7 +41,9 @@ function CommentInput({
     if (event.key === 'Enter') {
       event.currentTarget.blur();
       setIsFocusing(false);
-      handleAdd(comment);
+      if (comment.trim() !== '') {
+        handleAdd(comment);
+      }
     }
   };
 

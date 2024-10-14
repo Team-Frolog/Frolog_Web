@@ -1,5 +1,6 @@
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
+import { PAGES } from '@/constants/page';
 import {
   transformeInfoToArray,
   transformInfoToObject,
@@ -17,7 +18,6 @@ import { useRouter } from 'next/navigation';
 import { getProfileDetail } from '../api/profile.api';
 import { compareForm } from '../utils/compareForm';
 import { ProfileEditFormType } from '../types/editForm';
-import { getRandomIntro } from '../utils/randomIntro';
 
 export const useProfileEdit = (
   reset: UseFormReset<ProfileEditFormType>,
@@ -39,7 +39,6 @@ export const useProfileEdit = (
       const editReq = {
         id: profileDetail!.id,
         ...editForm,
-        self_intro: editForm.self_intro || getRandomIntro(),
         personal_infos: transformeInfoToArray(editForm.personal_infos),
       };
       const processedReq = compareForm(profileDetail!, editReq);
@@ -51,7 +50,7 @@ export const useProfileEdit = (
       return result;
     },
     onSuccess: () => {
-      router.replace('/profile');
+      router.replace(PAGES.PROFILE);
     },
   });
 
@@ -60,16 +59,20 @@ export const useProfileEdit = (
       const originData = sessionStorage.getItem(PROFILE_EDIT_FORM_KEY);
       const testType = sessionStorage.getItem(TEST_RESULT_FOR_EDIT);
 
+      // 성향 테스트 다녀 온 뒤
       if (originData) {
         const originValues = {
           ...JSON.parse(originData!),
-          reading_preference: testType,
+          reading_preference:
+            testType || JSON.parse(originData!).reading_preference,
         };
         reset(originValues);
         sessionStorage.removeItem(PROFILE_EDIT_FORM_KEY);
         sessionStorage.removeItem(TEST_RESULT_FOR_EDIT);
         setIsEdited(true);
-      } else if (!isEdited && profileDetail) {
+      }
+      // 성향 테스트 안함, 기존 프로필 데이터 있는 경우
+      else if (!isEdited && profileDetail) {
         const {
           username,
           image,
@@ -89,16 +92,7 @@ export const useProfileEdit = (
   }, [profileDetail, reset]);
 
   const handleClickBack = () => {
-    if (isEdited) {
-      bottomSheet.open({
-        sheetData: sheetData.leave_while_edit,
-        onClick: () => {
-          setTimeout(() => {
-            router.back();
-          }, 300);
-        },
-      });
-    } else if (isDirty) {
+    if (isEdited || isDirty) {
       bottomSheet.open({
         sheetData: sheetData.leave_while_edit,
         onClick: () => {

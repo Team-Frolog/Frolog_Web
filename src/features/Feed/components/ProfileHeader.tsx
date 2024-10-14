@@ -4,6 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { ChildArrowIcon, MenuIcon } from 'public/icons';
+import { PAGES } from '@/constants/page';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import { bottomSheet } from '@/modules/BottomSheet';
@@ -56,14 +57,16 @@ function ProfileHeader({
       <button
         type='button'
         onClick={() =>
-          runWhenLoggedIn(() => router.push(`/${profile.id}/profile`))
+          runWhenLoggedIn(() =>
+            router.push(isMe ? PAGES.PROFILE : `/${profile.id}/profile`)
+          )
         }
         className='flex items-center gap-[8px]'
       >
         {isChildComment ? (
           <div className='flex items-center gap-[4px]'>
             <ChildArrowIcon />
-            <div className='relative flex h-[32px] w-[32px]'>
+            <div className='relative flex h-[32px] w-[32px] shrink-0'>
               <Image
                 src={
                   image
@@ -77,7 +80,7 @@ function ProfileHeader({
             </div>
           </div>
         ) : (
-          <div className='relative flex h-[40px] w-[40px]'>
+          <div className='relative flex h-[40px] w-[40px] shrink-0'>
             <Image
               src={
                 image ? getImageSrc(image, 'profile')! : IMAGES.default_profile
