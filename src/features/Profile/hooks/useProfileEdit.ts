@@ -63,7 +63,8 @@ export const useProfileEdit = (
       if (originData) {
         const originValues = {
           ...JSON.parse(originData!),
-          reading_preference: testType,
+          reading_preference:
+            testType || JSON.parse(originData!).reading_preference,
         };
         reset(originValues);
         sessionStorage.removeItem(PROFILE_EDIT_FORM_KEY);
