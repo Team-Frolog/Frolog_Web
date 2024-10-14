@@ -1,3 +1,4 @@
+import { PAGES } from '@/constants/page';
 import { Session } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import { useEffect, useRef } from 'react';
@@ -18,7 +19,7 @@ export function TokenHandler({ session, update }: Props) {
     }
 
     if (session?.user.error === 'RefreshAccessTokenError') {
-      signOut({ callbackUrl: '/', redirect: true });
+      signOut({ callbackUrl: PAGES.HOME, redirect: true });
     }
 
     const watchAndUpdateIfExpire = () => {

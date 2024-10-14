@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { REMEMBER_ME_KEY } from '@/constants/storage';
 import { useFormReset } from '@/hooks/auth/useFormReset';
 import { SessionProvider, signOut, useSession } from 'next-auth/react';
+import { PAGES } from '@/constants/page';
 import { TokenHandler } from './TokenHandler';
 
 interface Props {
@@ -25,7 +26,7 @@ function Auth() {
     ) {
       localStorage.removeItem(REMEMBER_ME_KEY);
       sessionStorage.removeItem(REMEMBER_ME_KEY);
-      signOut({ callbackUrl: '/', redirect: true });
+      signOut({ callbackUrl: PAGES.HOME, redirect: true });
     }
   }, [session, status]);
 
