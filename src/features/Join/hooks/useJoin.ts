@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { SignUpReq, SignUpRes } from '@frolog/frolog-api';
 import { useAuthActions, useVerifyToken } from '@/store/authStore';
+import { toast } from '@/modules/Toast';
 import { useJoinStep } from '@/store/stepStore';
 import { ERROR_ALERT } from '@/constants/message';
 import { useLogin } from '@/features/Login';
@@ -21,17 +22,23 @@ export const useJoin = (getValues: () => JoinForm) => {
   const { resetToken } = useAuthActions();
   const { userLogin } = useLogin('test');
 
-  const handleLogin = async (username: string) => {
-    const account = localStorage.getItem(TEMP_ACCOUNT_KEY);
+  const { mutate: handleLogin } = useMutation({
+    mutationFn: async (username: string) => {
+      const account = localStorage.getItem(TEMP_ACCOUNT_KEY);
 
-    if (account) {
-      await userLogin(JSON.parse(account));
-      window.location.replace(`${PAGES.JOIN_FINISH}?username=${username}`);
-    } else {
-      window.alert(ERROR_ALERT);
+      if (account) {
+        const res = await userLogin(JSON.parse(account));
+        window.location.replace(`${PAGES.JOIN_FINISH}?username=${username}`);
+        return res;
+      } else {
+        throw new Error();
+      }
+    },
+    onError: () => {
+      toast.error(ERROR_ALERT);
       router.back();
-    }
-  };
+    },
+  });
 
   // step별 폼 상태 저장
   useEffect(() => {

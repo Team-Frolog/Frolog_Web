@@ -46,9 +46,9 @@ export const textareaType: {
     fieldName: 'self_intro',
     title: '자기소개',
     maxLength: 50,
-    minLength: 0,
+    minLength: 1,
     minRow: 1,
-    errorMessage: '',
+    errorMessage: '1-50자로 입력하세요.',
     placeholder: '자기소개를 입력해주세요',
   },
 };
