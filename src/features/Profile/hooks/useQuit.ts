@@ -12,7 +12,7 @@ export const useQuit = () => {
   const { mutate: quitUser } = useMutation({
     mutationFn: (survey: Survey) => quit(survey),
     onSuccess: () => {
-      signOut({ callbackUrl: PAGES.LANDING, redirect: true });
+      signOut({ callbackUrl: PAGES.HOME, redirect: true });
     },
   });
 
