@@ -17,7 +17,7 @@ const config: Config = {
     },
     {
       pattern: /button-./,
-    }
+    },
   ],
   theme: {
     extend: {
