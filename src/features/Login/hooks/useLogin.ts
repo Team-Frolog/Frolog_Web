@@ -18,6 +18,7 @@ export const useLogin = (type: 'login' | 'test') => {
   useEffect(() => {
     if (status === 'authenticated' && type === 'login') {
       router.replace(callbackUrl() || '/');
+      router.refresh();
     }
   }, [router, session, status, type]);
 
