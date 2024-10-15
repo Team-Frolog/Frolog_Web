@@ -74,7 +74,11 @@ function CommentInput({
             onBlur={() => setIsFocusing(false)}
             onKeyDown={handleKeyPress}
           />
-          <button type='button' onClick={() => handleAdd(comment)}>
+          <button type='button' onClick={() => {
+              if (comment.trim() !== '') {
+                handleAdd(comment)
+              }
+            }}>
             <EnterIcon
               fill={isFocusing || comment ? '#00CE4C' : '#E0E1E9'}
               className='absolute right-[16px] top-1/2 -translate-y-1/2'
