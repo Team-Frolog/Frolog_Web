@@ -8,7 +8,7 @@
     @apply absolute bottom-[-52px] right-[-10px] rounded-[12px] bg-gray-300 p-[12px] text-center text-body-sm text-gray-800 after:absolute after:right-[15px] after:top-[-5px] after:h-0 after:w-0 after:rotate-45 after:border-[8px] after:border-solid after:border-gray-300;
   }
   .circle {
-    @apply absolute h-[320px] w-[320px] rounded-[50%] border-2 border-main bg-none;
+    @apply absolute h-[320px] w-[320px] rounded-[50%] border-[5px] border-white bg-none;
   }
   .tooltip-after {
     /* 별개로 지정해야 하는 속성 - top || bottom, border-[width], border-[color]*/
