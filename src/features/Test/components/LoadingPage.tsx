@@ -26,7 +26,7 @@ function LoadingPage() {
 
       setTimeout(() => {
         window.location.replace(
-          `${PAGES.TEST_RESULT}/${type}?callbackUrl=${callback}`
+          `${PAGES.TEST_RESULT}/${type}${callback ? `?callbackUrl=${callback}` : ''}`
         );
       }, 1500);
     }, 4000);

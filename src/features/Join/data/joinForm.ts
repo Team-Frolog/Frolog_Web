@@ -1,4 +1,4 @@
-import { getToday } from '@/utils/date';
+import { getMinDate } from '@/utils/date';
 import { JoinForm } from '../types/form';
 
 export const defaultValue: JoinForm = {
@@ -36,7 +36,7 @@ export const defaultValue: JoinForm = {
       visibility: true,
     },
     birth_date: {
-      value: getToday(),
+      value: getMinDate(),
       visibility: true,
     },
     gender: {
