@@ -1,12 +1,20 @@
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { WellAddIcon } from 'public/icons';
 import React from 'react';
+
+const MotionLink = motion(Link);
 
 function WellAddButton() {
   return (
     <div className='flex h-fit w-fit flex-col items-center gap-[8px] place-self-center'>
-      <button type='button' className='h-[161px] w-[161px]'>
+      <MotionLink
+        whileTap={{ scale: 0.95 }}
+        href='/new-well'
+        className='h-[161px] w-[161px]'
+      >
         <WellAddIcon className='h-full w-full' />
-      </button>
+      </MotionLink>
       <span className='text-body-lg-bold'>새 우물 파기</span>
     </div>
   );

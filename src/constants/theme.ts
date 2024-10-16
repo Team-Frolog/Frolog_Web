@@ -23,4 +23,5 @@ export const PAGE_THEME: {
   '/feed': GRAY,
   '/profile': LIGHT,
   '/well-book': HALF,
+  '/new-well': LIGHT,
 };

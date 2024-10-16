@@ -37,6 +37,7 @@ function WellForm() {
         mode: 'onChange',
         defaultValues: { wellName: '', frogId: 1, color: 'novel', shape: 1 },
       }}
+      className='form-layout gap-0'
     >
       <TitleHeader
         title='새 우물 파기'
