@@ -11,13 +11,15 @@ function FrogSelector() {
   const controls = useAnimationControls();
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const isNoExpansion = frogs ? frogs.length < 3 : true;
+
   useEffect(() => {
-    if (isExpanded) {
+    if (isExpanded || isNoExpansion) {
       controls.start({ height: 'auto' });
     } else {
       controls.start({ height: '280px' });
     }
-  }, [isExpanded, controls]);
+  }, [isExpanded, controls, isNoExpansion]);
 
   if (!frogs) return <></>;
 
@@ -25,19 +27,21 @@ function FrogSelector() {
     <div className='flex w-full flex-col gap-[12px]'>
       <h6 className='text-body-md text-gray-700'>내 캐릭터</h6>
       <motion.div
-        initial={{ height: isExpanded || frogs.length > 3 ? 'auto' : '280px' }}
+        initial={{ height: isExpanded || isNoExpansion ? 'auto' : '280px' }}
         animate={controls}
         transition={{ duration: 0.3 }}
         className='relative flex flex-wrap gap-[9px] overflow-hidden'
       >
-        <div
-          className={`absolute bottom-0 left-0 h-[90px] w-full transition-all duration-300 ${isExpanded ? '-z-10 opacity-100' : 'z-10 opacity-100'}`}
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 95.41%)',
-          }}
-        />
-        {frogs?.map((frog) => (
+        {!isNoExpansion && (
+          <div
+            className={`absolute bottom-0 left-0 h-[90px] w-full transition-all duration-300 ${isExpanded ? '-z-10 opacity-100' : 'z-10 opacity-100'}`}
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 95.41%)',
+            }}
+          />
+        )}
+        {frogs.map((frog) => (
           <FrogCharacter
             key={frog.id}
             data={frog}
@@ -46,7 +50,7 @@ function FrogSelector() {
           />
         ))}
       </motion.div>
-      {frogs.length > 3 && (
+      {!isNoExpansion && (
         <button
           type='button'
           className='flex w-full justify-center bg-white'
