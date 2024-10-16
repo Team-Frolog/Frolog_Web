@@ -19,7 +19,7 @@ export const onBoarding: OnBoarding = {
       </>
     ),
     titleColor: 'text-main_hightlight',
-    bg: `bg-gray-300 bg-[url('/well-bg.svg')]`,
+    bg: `bg-gray-300 bg-[url('/images/well/bg/well-bg-1.svg')]`,
     groundColor: 'bg-gray-300',
     textColor: 'text-gray-600',
     boldColor: 'text-gray-800',
@@ -32,7 +32,7 @@ export const onBoarding: OnBoarding = {
       </>
     ),
     titleColor: 'text-main_hightlight',
-    bg: `bg-gray-300 bg-[url('/well-bg.svg')]`,
+    bg: `bg-gray-300 bg-[url('/images/well/bg/well-bg-1.svg')]`,
     groundColor: 'bg-gray-300',
     textColor: 'text-gray-600',
     boldColor: 'text-gray-800',

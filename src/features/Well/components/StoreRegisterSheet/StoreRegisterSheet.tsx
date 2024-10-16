@@ -24,6 +24,7 @@ function StoreRegisterSheet() {
 
   useEffect(() => {
     if (isRegistered) {
+      changePopUpState('isOpenAlertSheet', false);
       bottomSheet.open({
         sheetData: sheetData.done_store_register,
       });
