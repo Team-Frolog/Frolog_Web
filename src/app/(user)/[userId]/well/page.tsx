@@ -13,11 +13,15 @@ interface Props {
 
 function UserWellListPage({ params: { userId } }: Props) {
   const { profile } = useProfile(userId);
-  
+
   return (
     <>
       <MainLayout>
-        <SideWellHeader username={profile?.username} />
+        <SideWellHeader
+          username={profile?.username}
+          hasBackButton
+          bgColor='bg-gray-300'
+        />
         <WellList />
       </MainLayout>
     </>

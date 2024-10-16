@@ -12,7 +12,7 @@ function WellList() {
   const isOpenAlertSheet = usePopUpStore((state) => state.isOpenAlertSheet);
 
   return (
-    <div className='relative flex w-full flex-col pb-[30px] text-gray-800'>
+    <div className='relative flex w-full flex-col pb-[30px] text-gray-800 bg-gray-300'>
       <div className='grid grid-cols-2 gap-[24px] px-page py-[12px]'>
         <WellAddButton />
         {wellList.map((well) => (

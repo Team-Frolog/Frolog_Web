@@ -10,17 +10,29 @@ import BackButton from '@/components/Button/BackButton';
 
 interface Props {
   username?: string;
+  hasStoreButton?: boolean;
+  hasBackButton?: boolean;
+  bgColor?: string;
 }
 
-function SideWellHeader({ username }: Props) {
+function SideWellHeader({
+  username,
+  bgColor,
+  hasStoreButton = false,
+  hasBackButton = false,
+}: Props) {
   const router = useRouter();
   const { changePopUpState } = usePopUpActions();
 
   return (
-    <SideHeader title={username ? `${username}의 우물` : '우물'}>
-      {username ? (
+    <SideHeader
+      title={username ? `${username}의 우물` : '우물'}
+      bgColor={bgColor}
+    >
+      {hasBackButton && (
         <BackButton type='green' onClick={() => router.back()} />
-      ) : (
+      )}
+      {hasStoreButton && (
         <motion.button
           type='button'
           whileTap={{ scale: 0.9 }}
