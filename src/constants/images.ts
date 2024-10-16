@@ -11,7 +11,10 @@ export const IMAGES = {
     first_congrats: `${BASE_PATH}/frog/first-review-congrats.svg`,
     sitting: `${BASE_PATH}/frog/frog-sitting.svg`,
     character: {
-      default: `${BASE_PATH}/frog/frog-character-ex.svg`,
+      default: `${BASE_PATH}/frog/character/default.svg`,
+      fro: `${BASE_PATH}/frog/character/fro.svg`,
+      roro: `${BASE_PATH}/frog/character/roro.svg`,
+      rogy: `${BASE_PATH}/frog/character/rogy.svg`,
     },
     search: `${BASE_PATH}/frog/search-frog.svg`,
     sheet: {
