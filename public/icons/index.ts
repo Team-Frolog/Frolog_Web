@@ -10,6 +10,7 @@ export { default as MenuArrowIcon } from './common/menu-arrow.svg';
 // toast
 export { default as ToastErrorIcon } from './toast/toast-error.svg';
 export { default as ToastNormalIcon } from './toast/toast-normal.svg';
+export { default as ToastPlus } from './toast/toast-plus.svg';
 
 // form
 export { default as SelectIcon } from './form/select-icon.svg';
