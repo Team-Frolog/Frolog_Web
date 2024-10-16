@@ -1,4 +1,4 @@
-import { IMAGES } from '@/constants/images';
+import { FROGS } from '@/constants/frogs';
 import Image from 'next/image';
 import React from 'react';
 import { getIsNew } from '@/features/Well/utils/getIsNew';
@@ -22,12 +22,12 @@ function FrogCharacter({ data, isSelected, onClick }: Props) {
     >
       {getIsNew(data.date) && <NewTag position='left-0 top-0' />}
       <Image
-        src={IMAGES.frog.character.default}
+        src={FROGS[data.id].src}
         alt='frog character'
         width={77}
         height={108}
       />
-      <span className='text-body-md text-gray-800'>개구리 이름</span>
+      <span className='text-body-md text-gray-800'>{FROGS[data.id].name}</span>
     </button>
   );
 }

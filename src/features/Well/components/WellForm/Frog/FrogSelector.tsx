@@ -19,11 +19,13 @@ function FrogSelector() {
     }
   }, [isExpanded, controls]);
 
+  if (!frogs) return <></>;
+
   return (
     <div className='flex w-full flex-col gap-[12px]'>
       <h6 className='text-body-md text-gray-700'>내 캐릭터</h6>
       <motion.div
-        initial={{ height: isExpanded ? 'auto' : '280px' }}
+        initial={{ height: isExpanded || frogs.length > 3 ? 'auto' : '280px' }}
         animate={controls}
         transition={{ duration: 0.3 }}
         className='relative flex flex-wrap gap-[9px] overflow-hidden'
@@ -44,15 +46,17 @@ function FrogSelector() {
           />
         ))}
       </motion.div>
-      <button
-        type='button'
-        className='flex w-full justify-center bg-white'
-        onClick={() => setIsExpanded((prev) => !prev)}
-      >
-        <ExpandIcon
-          className={`transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
-        />
-      </button>
+      {frogs.length > 3 && (
+        <button
+          type='button'
+          className='flex w-full justify-center bg-white'
+          onClick={() => setIsExpanded((prev) => !prev)}
+        >
+          <ExpandIcon
+            className={`transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
+          />
+        </button>
+      )}
     </div>
   );
 }
