@@ -46,7 +46,7 @@ function MemoList({ bookId, userId }: Props) {
               userId={userId}
             />
           ))}
-          <div ref={setTarget} id='observer' className='h-[10px]' />
+          {!isFetchingNextPage && <div ref={setTarget} id='observer' className='h-[10px]' />}
         </>
       )}
       {isFetchingNextPage && <MemoListSkeleton />}
