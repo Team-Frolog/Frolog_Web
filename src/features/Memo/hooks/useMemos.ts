@@ -21,7 +21,7 @@ export const useMemos = (bookId: string) => {
   const [memoId, setMemoId] = useState<string>('');
   const queryClient = useQueryClient();
 
-  const { data, hasNextPage, fetchNextPage, isFetched } =
+  const { data, hasNextPage, fetchNextPage, isFetched, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
       queryKey: ['memos', bookId],
       queryFn: async ({ pageParam }) => getMemos(bookId, pageParam),
@@ -78,5 +78,6 @@ export const useMemos = (bookId: string) => {
     hasNextPage,
     fetchNextPage,
     isFetched,
+    isFetchingNextPage,
   };
 };

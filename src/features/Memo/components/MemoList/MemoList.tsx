@@ -3,6 +3,7 @@
 import React from 'react';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import { useObserver } from '@/hooks/gesture/useObserver';
+import MemoListSkeleton from '@/components/Fallback/Skeleton/MemoListSkeleton';
 import MemoListItem from './MemoListItem';
 import { useMemos } from '../../hooks/useMemos';
 import { Memo } from '../../models/memo.model';
@@ -21,6 +22,7 @@ function MemoList({ bookId, userId }: Props) {
     hasNextPage,
     fetchNextPage,
     isFetched,
+    isFetchingNextPage,
   } = useMemos(bookId);
 
   const { setTarget } = useObserver({
@@ -47,6 +49,7 @@ function MemoList({ bookId, userId }: Props) {
           <div ref={setTarget} id='observer' className='h-[10px]' />
         </>
       )}
+      {isFetchingNextPage && <MemoListSkeleton />}
     </div>
   );
 }
