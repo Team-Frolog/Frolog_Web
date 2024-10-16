@@ -16,7 +16,7 @@ interface Props {
 function FollowItem({ userId, targetUser }: Props) {
   const { data: session } = useSession();
   const { handleFollow } = useFollowUser(userId);
-  const isMe = session.user.id === targetUser.id;
+  const isMe = session?.user.id === targetUser.id;
   const isFollowing = !!targetUser.follow;
 
   return (
@@ -42,13 +42,17 @@ function FollowItem({ userId, targetUser }: Props) {
           {targetUser.username}
         </h5>
       </Link>
-      {!isMe && <button
-        type='button'
-        onClick={() => handleFollow({ id: targetUser.id, value: !isFollowing })}
-        className={`h-fit rounded-[12px] border border-main px-[16px] py-[8px] text-body-sm-bold ${isFollowing ? 'bg-main text-white' : 'bg-white text-gray-600'}`}
-      >
-        {isFollowing ? '팔로잉' : '팔로우'}
-      </button>}
+      {!isMe && (
+        <button
+          type='button'
+          onClick={() =>
+            handleFollow({ id: targetUser.id, value: !isFollowing })
+          }
+          className={`h-fit rounded-[12px] border border-main px-[16px] py-[8px] text-body-sm-bold ${isFollowing ? 'bg-main text-white' : 'bg-white text-gray-600'}`}
+        >
+          {isFollowing ? '팔로잉' : '팔로우'}
+        </button>
+      )}
     </div>
   );
 }

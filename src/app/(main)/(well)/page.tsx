@@ -10,7 +10,9 @@ import MainLayout from '@/layouts/MainLayout';
 function WellPage() {
   return (
     <>
-      <MainLayout extraClass={`bg-[url('/well-bg.svg')] bg-gray-300`}>
+      <MainLayout
+        extraClass={`bg-[url('/images/well/bg/well-bg-1.svg')] bg-gray-300`}
+      >
         <WellHeader hasEditButton />
         <WellTitle />
         <PointingButton />

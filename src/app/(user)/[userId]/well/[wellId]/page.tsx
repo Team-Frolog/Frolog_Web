@@ -10,7 +10,9 @@ interface Props {
 
 function UserWellDetailPage({ params: { userId } }: Props) {
   return (
-    <MainLayout>
+    <MainLayout
+      extraClass={`bg-[url('/images/well/bg/well-bg-1.svg')] bg-gray-300`}
+    >
       <WellHeader />
       <WellTitle />
       <WellBookList userId={userId} />
