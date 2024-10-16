@@ -12,7 +12,7 @@ function WellNameInput() {
     <FormInput
       type='text'
       title='우물 이름'
-      fieldName='wellName'
+      fieldName='name'
       theme='light'
       placeholder='12자 이내로 입력하세요.'
       errorMessage={errors.wellName && String(errors.wellName.message)}

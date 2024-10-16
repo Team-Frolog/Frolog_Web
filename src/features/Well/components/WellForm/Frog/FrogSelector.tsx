@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { motion, useAnimationControls } from 'framer-motion';
+import { useFrogs } from '@/features/Well/hooks/useFrogs';
 import { ExpandIcon } from 'public/icons';
 import FrogCharacter from './FrogCharacter';
 
 function FrogSelector() {
   const { watch, setValue } = useFormContext();
+  const { frogs } = useFrogs();
   const controls = useAnimationControls();
   const [isExpanded, setIsExpanded] = useState(false);
-
-  const dummy = [
-    { id: 1, name: '개구리 1', isNew: true },
-    { id: 2, name: '개구리 2', isNew: false },
-    { id: 3, name: '개구리 3', isNew: false },
-    { id: 4, name: '개구리 4', isNew: false },
-    { id: 5, name: '개구리 5', isNew: false },
-    { id: 6, name: '개구리 6', isNew: false },
-  ];
 
   useEffect(() => {
     if (isExpanded) {
@@ -42,12 +35,12 @@ function FrogSelector() {
               'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 95.41%)',
           }}
         />
-        {dummy.map((item) => (
+        {frogs?.map((frog) => (
           <FrogCharacter
-            key={item.id}
-            data={item}
-            isSelected={item.id === watch('frogId')}
-            onClick={() => setValue('frogId', item.id)}
+            key={frog.id}
+            data={frog}
+            isSelected={frog.id === watch('frog')}
+            onClick={() => setValue('frog', frog.id)}
           />
         ))}
       </motion.div>

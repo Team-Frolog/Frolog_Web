@@ -9,8 +9,8 @@ import FrogSelector from './Frog/FrogSelector';
 import ShapeForm from './Shape/ShapeForm';
 
 export interface WellFormType {
-  wellName: string;
-  frogId: number | null;
+  name: string;
+  frog: number | null;
   color: string | null;
   shape: number | null;
 }
@@ -18,7 +18,7 @@ export interface WellFormType {
 function WellForm() {
   const methods = useForm<WellFormType>({
     mode: 'onChange',
-    defaultValues: { wellName: '', frogId: 1, color: 'novel', shape: 1 },
+    defaultValues: { name: '', frog: 1, color: 'novel', shape: 1 },
   });
 
   const {
@@ -35,7 +35,7 @@ function WellForm() {
       onSubmit={handleAddNewWell}
       formOptions={{
         mode: 'onChange',
-        defaultValues: { wellName: '', frogId: 1, color: 'novel', shape: 1 },
+        defaultValues: { name: '', frog: 1, color: 'novel', shape: 1 },
       }}
       className='form-layout gap-0'
     >
@@ -43,7 +43,7 @@ function WellForm() {
         title='새 우물 파기'
         theme='light'
         type='write'
-        isDisabled={!watch('wellName') || !!errors.wellName}
+        isDisabled={!watch('name') || !!errors.name}
       />
       <div className='flex w-full flex-1 flex-col gap-[36px] overflow-auto bg-white px-page py-[32px]'>
         <WellNameInput />
