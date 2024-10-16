@@ -14,6 +14,7 @@ export const useReviews = (bookId: string) => {
   const { data } = useSuspenseQuery({
     queryKey: ['myReviews'],
     queryFn: () => getReviewList(bookId),
+    refetchOnWindowFocus: false,
   });
 
   const { mutate } = useMutation({
@@ -40,9 +41,12 @@ export const useReviews = (bookId: string) => {
     },
   });
 
+  const isEmpty = data?.reviews.length === 0;
+
   return {
     deleteReview: mutate,
     reviews: data?.reviews || [],
     setReviewId,
+    isEmpty,
   };
 };

@@ -12,11 +12,11 @@ interface Props {
 }
 
 function ReviewList({ bookId, userId }: Props) {
-  const { reviews, setReviewId, deleteReview } = useReviews(bookId);
+  const { reviews, setReviewId, deleteReview, isEmpty } = useReviews(bookId);
 
   return (
     <div className='z-10 flex w-full flex-1 flex-col gap-[12px]'>
-      {reviews.length === 0 && (
+      {isEmpty && (
         <EmptyContentFrog title='책을 다 읽으셨으면 이제 리뷰를 써보세요!' />
       )}
       {reviews.length === 1 && (

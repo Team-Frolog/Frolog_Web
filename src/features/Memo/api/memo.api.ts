@@ -1,5 +1,7 @@
 import { baseOptions } from '@/api/options';
+import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
+import { toast } from '@/modules/Toast';
 import {
   DeleteMemoImage,
   PostMemo,
@@ -25,15 +27,27 @@ const getMemo = new GetMemo(baseOptions);
 const editMemo = new EditMemo(baseOptions);
 const deleteMemoObj = new DeleteMemo(baseOptions);
 
-export const getMemos = async (isbn: string) => {
-  const session = await getSession();
-  if (!session) return;
+export const getMemos = async (isbn: string, page: number) => {
+  try {
+    const session = await getSession();
+    if (!session) throw new Error();
 
-  const response = await searchMemo.fetch({
-    isbn,
-    writer: session.user.id,
-  });
-  return response;
+    const response = await searchMemo.fetch({
+      isbn,
+      writer: session.user.id,
+      limit: DEFAULT_LIMIT,
+      page,
+    });
+    return response;
+  } catch (err) {
+    toast.error(ERROR_ALERT);
+    return {
+      memos: [],
+      count: 0,
+      limit: DEFAULT_LIMIT,
+      page: 0,
+    };
+  }
 };
 
 export const getMemoDetail = async (req: GetMemoReq) => {
