@@ -15,8 +15,8 @@ function WellNameInput() {
       fieldName='name'
       theme='light'
       placeholder='12자 이내로 입력하세요.'
-      errorMessage={errors.wellName && String(errors.wellName.message)}
-      {...register('wellName', {
+      errorMessage={errors.name && String(errors.name.message)}
+      {...register('name', {
         maxLength: {
           value: 12,
           message: '12자 이내로 입력하세요.',

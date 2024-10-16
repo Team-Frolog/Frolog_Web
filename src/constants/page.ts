@@ -21,6 +21,7 @@ export const PAGES = {
   SEARCH: '/search',
   NEW_REVIEW: '/new-review',
   PROFILE: '/profile',
+  WELL: '/well',
 } as const;
 
 export const PAGE_CONFIG: PageConfig = {
