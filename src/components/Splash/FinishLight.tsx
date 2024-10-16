@@ -17,6 +17,7 @@ function FinishLight({ children, frog }: Props) {
         height={30}
         className='z-0 w-full'
         loading='eager'
+        priority
       />
       <div className='w-full flex-1 bg-white' />
       <div className='flex-col-center absolute left-1/2 z-10 h-full w-full -translate-x-1/2 justify-between gap-[10px] pt-[150px] mobile:pt-[100px]'>
@@ -35,6 +36,7 @@ function FinishLight({ children, frog }: Props) {
             height={257}
             className='h-full max-h-[257px] w-full mobile:w-[90%]'
             loading='eager'
+            priority
           />
         </div>
       </div>

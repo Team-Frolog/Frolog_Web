@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useNewReviewId } from '@/store/stackMotionStore';
 import { staggerItemVariants } from '@/styles/variants/variants';
 import React from 'react';
-import GuideChat from '@/components/GuideChat';
+import GuideChat from './GuideChat';
 
 function FrogOnBook() {
   const hasNewReview = useNewReviewId();

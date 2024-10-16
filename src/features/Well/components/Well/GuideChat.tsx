@@ -1,14 +1,16 @@
 'use client';
 
-import { chat } from '@/data/ui/chat';
 import { useNewReviewId } from '@/store/stackMotionStore';
 import { useSession } from 'next-auth/react';
 import React from 'react';
 import { motion } from 'framer-motion';
+import { chat } from '../../data/chat';
+import { getRandomMessage } from '../../utils/getRandommessage';
 
 function GuideChat() {
   const { data: session } = useSession();
   const hasNewReview = useNewReviewId();
+
   return (
     <motion.div
       initial={{ y: -10, opacity: 0 }}
@@ -17,7 +19,7 @@ function GuideChat() {
       className='tooltip-after relative mb-[20px] rounded-[20px] bg-white p-[20px] text-center text-body-lg text-gray-800 after:bottom-[-5px] after:border-[8px] after:border-white'
     >
       {session && hasNewReview && chat.first_review()}
-      {session && !hasNewReview && chat.loggedIn()}
+      {session && !hasNewReview && getRandomMessage()}
       {!session && chat.not_loggedIn()}
     </motion.div>
   );
