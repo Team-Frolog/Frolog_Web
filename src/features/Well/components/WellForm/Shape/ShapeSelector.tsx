@@ -33,7 +33,7 @@ function ShapeSelector() {
           type='button'
           key={id}
           className='w-full'
-          onClick={() => setValue('shape', id)}
+          onClick={() => setValue('shape', id, { shouldDirty: true })}
         >
           <Shape
             fill={

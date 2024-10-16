@@ -16,7 +16,7 @@ export interface WellFormType {
 }
 
 function WellForm() {
-  const { handleAddWell } = useWellForm();
+  const { handleAddWell, handleClickBack } = useWellForm('write');
   const methods = useForm<WellFormType>({
     mode: 'onChange',
     defaultValues: { name: '', frog: 'default', color: 'novel', shape: 1 },
@@ -25,7 +25,7 @@ function WellForm() {
   const {
     watch,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = methods;
 
   return (
@@ -38,6 +38,7 @@ function WellForm() {
           title='새 우물 파기'
           theme='light'
           type='write'
+          onClickBack={() => handleClickBack(isDirty)}
           isDisabled={!watch('name') || !!errors.name}
         />
         <div className='flex w-full flex-1 flex-col gap-[36px] overflow-auto bg-white px-page py-[32px]'>

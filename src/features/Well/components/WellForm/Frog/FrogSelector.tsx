@@ -46,7 +46,7 @@ function FrogSelector() {
             key={frog.id}
             data={frog}
             isSelected={frog.id === watch('frog')}
-            onClick={() => setValue('frog', frog.id)}
+            onClick={() => setValue('frog', frog.id, { shouldDirty: true })}
           />
         ))}
       </motion.div>

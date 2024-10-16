@@ -24,7 +24,7 @@ function ColorSelector() {
             key={key}
             id={key}
             isSelected={watch('color') === key}
-            onClick={() => setValue('color', key)}
+            onClick={() => setValue('color', key, { shouldDirty: true })}
           />
         ))}
       </motion.div>
