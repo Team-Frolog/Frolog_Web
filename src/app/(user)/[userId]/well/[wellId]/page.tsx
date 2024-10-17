@@ -24,7 +24,7 @@ function UserWellDetailPage({ params: { userId, wellId } }: Props) {
   return (
     <>
       <MainLayout
-        extraClass={`bg-[url('/images/well/bg/well-bg-1.svg')] bg-gray-300`}
+        extraClass={`bg-shape-${well.shape} bg-gray-300`}
       >
         <WellHeader hasEditButton={isRootUser} />
         <WellTitle title={well.name} />

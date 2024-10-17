@@ -18,6 +18,9 @@ const config: Config = {
     {
       pattern: /button-./,
     },
+    {
+      pattern: /shape-./,
+    },
   ],
   theme: {
     extend: {
@@ -25,6 +28,17 @@ const config: Config = {
         mobile: {
           max: '430px',
         },
+      },
+      backgroundImage: {
+        'shape-1': "url('/images/well/bg/well-bg-1.svg')",
+        'shape-2': "url('/images/well/bg/well-bg-2.svg')",
+        'shape-3': "url('/images/well/bg/well-bg-3.svg')",
+        'shape-4': "url('/images/well/bg/well-bg-4.svg')",
+        'shape-5': "url('/images/well/bg/well-bg-5.svg')",
+        'shape-6': "url('/images/well/bg/well-bg-6.svg')",
+        'shape-7': "url('/images/well/bg/well-bg-7.svg')",
+        'shape-8': "url('/images/well/bg/well-bg-8.svg')",
+        'shape-9': "url('/images/well/bg/well-bg-9.svg')",
       },
       zIndex: {
         '60': '60',
