@@ -1,9 +1,8 @@
-'use client';
-
-import { SideWellHeader, WellList } from '@/features/Well';
-import { useProfile } from '@/hooks/useProfile';
-import MainLayout from '@/layouts/MainLayout';
 import React from 'react';
+import { SideWellHeader, WellList } from '@/features/Well';
+import MainLayout from '@/layouts/MainLayout';
+import { authOptions } from '@/utils/auth/auth';
+import { getServerSession } from 'next-auth';
 
 interface Props {
   params: {
@@ -11,18 +10,20 @@ interface Props {
   };
 }
 
-function UserWellListPage({ params: { userId } }: Props) {
-  const { profile } = useProfile(userId);
-
+async function UserWellListPage({ params: { userId } }: Props) {
+  const session = await getServerSession(authOptions);
+  const isRootUser = userId === session?.user.id;
+  
   return (
     <>
       <MainLayout extraClass='bg-gray-300'>
         <SideWellHeader
-          username={profile?.username}
-          hasBackButton
+          userId={userId}
+          hasBackButton={!isRootUser}
+          hasStoreButton={isRootUser}
           bgColor='bg-gray-300'
         />
-        <WellList userId={userId} />
+        <WellList userId={userId} isRootUser={isRootUser} />
       </MainLayout>
     </>
   );

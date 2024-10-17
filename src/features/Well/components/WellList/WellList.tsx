@@ -11,22 +11,25 @@ import { useWells } from '../../hooks/useWells';
 
 interface Props {
   userId: string;
+  isRootUser: boolean;
 }
 
-function WellList({ userId }: Props) {
+function WellList({ userId, isRootUser }: Props) {
   const { wells } = useWells(userId);
   const isOpenAlertSheet = usePopUpStore((state) => state.isOpenAlertSheet);
 
   return (
     <div className='relative flex w-full flex-col bg-gray-300 pb-[30px] text-gray-800'>
       <div className='grid grid-cols-2 gap-[24px] px-page py-[12px]'>
-        <WellAddButton />
+        {isRootUser && <WellAddButton />}
         {wells?.map((well) => <Well key={well.id} wellData={well} />)}
       </div>
-      <MessageToast />
-      <AnimatePresence>
-        {isOpenAlertSheet && <StoreRegisterSheet />}
-      </AnimatePresence>
+      {isRootUser && <MessageToast />}
+      {isRootUser && (
+        <AnimatePresence>
+          {isOpenAlertSheet && <StoreRegisterSheet />}
+        </AnimatePresence>
+      )}
     </div>
   );
 }

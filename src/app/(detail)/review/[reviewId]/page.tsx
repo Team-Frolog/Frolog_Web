@@ -28,14 +28,14 @@ function ReviewPage({ params: { reviewId } }: Props) {
   });
   const { data: session } = useSession();
   const { profile } = useProfile(reviewDetail?.writer);
-  const isMe = session?.user.id === profile?.id;
+  const isRootUser = session?.user.id === profile?.id;
 
   if (!reviewDetail || !profile) return <></>;
 
   return (
     <>
       <ResponsiveHeaderLayout onClick={() => router.back()}>
-        {!isMe && (
+        {!isRootUser && (
           <div className='flex flex-1 justify-end'>
             <button
               type='button'

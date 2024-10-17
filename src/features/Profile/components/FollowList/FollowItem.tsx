@@ -16,13 +16,13 @@ interface Props {
 function FollowItem({ userId, targetUser }: Props) {
   const { data: session } = useSession();
   const { handleFollow } = useFollowUser(userId);
-  const isMe = session?.user.id === targetUser.id;
+  const isRootUser = session?.user.id === targetUser.id;
   const isFollowing = !!targetUser.follow;
 
   return (
     <div className='flex w-full items-center justify-between'>
       <Link
-        href={isMe ? PAGES.PROFILE : `/${targetUser.id}/profile`}
+        href={isRootUser ? PAGES.PROFILE : `/${targetUser.id}/profile`}
         className='flex items-center gap-[8px]'
       >
         <div className='relative flex h-[40px] w-[40px]'>
@@ -42,7 +42,7 @@ function FollowItem({ userId, targetUser }: Props) {
           {targetUser.username}
         </h5>
       </Link>
-      {!isMe && (
+      {!isRootUser && (
         <button
           type='button'
           onClick={() =>

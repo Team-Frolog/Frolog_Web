@@ -34,19 +34,20 @@ function ProfileHeader({
 }: Props) {
   const { data: session } = useSession();
   const router = useRouter();
-  const isMe = session?.user.id === userId;
+  const isRootUser = session?.user.id === userId;
   const { profile } = useProfile(userId);
   const { handleReport } = useReport(userId);
   const { handleFollow } = useFollowUser();
   const isFeed = type === 'feed';
-  const canShowButton = (isFeed && !isMe) || (!isFeed && !(isDeleted && isMe));
+  const canShowButton =
+    (isFeed && !isRootUser) || (!isFeed && !(isDeleted && isRootUser));
 
   if (!profile) return <></>;
 
   const { username, image, follow } = profile;
 
   const getSheetData = () => {
-    if (isMe) {
+    if (isRootUser) {
       return sheetData.delete_this_comment;
     }
     return isFeed ? sheetData.report_this_feed : sheetData.report_this_comment;
@@ -58,7 +59,7 @@ function ProfileHeader({
         type='button'
         onClick={() =>
           runWhenLoggedIn(() =>
-            router.push(isMe ? PAGES.PROFILE : `/${profile.id}/profile`)
+            router.push(isRootUser ? PAGES.PROFILE : `/${profile.id}/profile`)
           )
         }
         className='flex items-center gap-[8px]'
@@ -95,7 +96,7 @@ function ProfileHeader({
         <h5 className='text-body-lg-bold text-gray-600'>{username}</h5>
       </button>
       <div className='flex items-center gap-[8px]'>
-        {hasFollow && !isMe && (
+        {hasFollow && !isRootUser && (
           <button
             type='button'
             onClick={() =>
@@ -115,7 +116,7 @@ function ProfileHeader({
               runWhenLoggedIn(() =>
                 bottomSheet.open({
                   sheetData: getSheetData(),
-                  onClick: !isFeed && isMe ? onDelete : handleReport,
+                  onClick: !isFeed && isRootUser ? onDelete : handleReport,
                 })
               )
             }

@@ -28,14 +28,14 @@ function MemoPage({ params: { memoId } }: Props) {
   });
   const { data: session } = useSession();
   const { profile } = useProfile(memoDetail?.writer);
-  const isMe = session?.user.id === profile?.id;
+  const isRootUser = session?.user.id === profile?.id;
 
   if (!memoDetail || !profile) return <></>;
 
   return (
     <>
       <ResponsiveHeaderLayout onClick={() => router.back()}>
-        {!isMe && (
+        {!isRootUser && (
           <div className='flex flex-1 justify-end'>
             <button
               type='button'

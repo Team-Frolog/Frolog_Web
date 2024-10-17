@@ -23,7 +23,11 @@ function ProfilePage() {
     <MainLayout extraClass='bg-white'>
       <SideHeader title='프로필' />
       <div className='flex w-full flex-col gap-[32px] pb-[32px]'>
-        {session ? <Profile userId={session.user.id} isMe /> : <ProfileSkeleton />}
+        {session ? (
+          <Profile userId={session.user.id} isRootUser />
+        ) : (
+          <ProfileSkeleton />
+        )}
         <Menu />
       </div>
     </MainLayout>

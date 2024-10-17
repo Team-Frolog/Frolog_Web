@@ -7,26 +7,28 @@ import { StoreIcon } from 'public/icons';
 import React from 'react';
 import { motion } from 'framer-motion';
 import BackButton from '@/components/Button/BackButton';
+import { useProfile } from '@/hooks/useProfile';
 
 interface Props {
-  username?: string;
+  userId?: string;
   hasStoreButton?: boolean;
   hasBackButton?: boolean;
   bgColor?: string;
 }
 
 function SideWellHeader({
-  username,
+  userId,
   bgColor,
   hasStoreButton = false,
   hasBackButton = false,
 }: Props) {
   const router = useRouter();
+  const { profile } = useProfile(userId);
   const { changePopUpState } = usePopUpActions();
 
   return (
     <SideHeader
-      title={username ? `${username}의 우물` : '우물'}
+      title={profile ? `${profile.username}의 우물` : '우물'}
       bgColor={bgColor}
     >
       {hasBackButton && (
