@@ -1,6 +1,5 @@
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-import { PAGES } from '@/constants/page';
 import {
   transformeInfoToArray,
   transformInfoToObject,
@@ -50,7 +49,7 @@ export const useProfileEdit = (
       return result;
     },
     onSuccess: () => {
-      router.replace(PAGES.PROFILE);
+      router.replace(`/${session!.user.id}/profile`);
     },
   });
 

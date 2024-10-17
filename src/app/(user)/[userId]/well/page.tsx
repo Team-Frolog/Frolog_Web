@@ -1,8 +1,7 @@
 import React from 'react';
 import { SideWellHeader, WellList } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
-import { authOptions } from '@/utils/auth/auth';
-import { getServerSession } from 'next-auth';
+import { getIsRootUser } from '@/utils/auth/getIsRootUser';
 
 interface Props {
   params: {
@@ -11,9 +10,8 @@ interface Props {
 }
 
 async function UserWellListPage({ params: { userId } }: Props) {
-  const session = await getServerSession(authOptions);
-  const isRootUser = userId === session?.user.id;
-  
+  const { isRootUser } = await getIsRootUser(userId);
+
   return (
     <>
       <MainLayout extraClass='bg-gray-300'>

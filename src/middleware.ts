@@ -19,8 +19,8 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // pathname이 어느 routes에 속하는지 확인
-  const isWithAuth = protectedRoutes.includes(pathname);
-  const isWithOutAuth = publicRoutes.includes(pathname);
+  const isWithAuth = protectedRoutes.some((route) => pathname.includes(route));
+  const isWithOutAuth = publicRoutes.some((route) => pathname.includes(route));
 
   // 로그인 여부에 따라 redirect
   if (isWithAuth) return withAuth(req, !!token);

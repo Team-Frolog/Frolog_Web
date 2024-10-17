@@ -1,5 +1,4 @@
 import { IMAGES } from '@/constants/images';
-import { PAGES } from '@/constants/page';
 import { useFollowUser } from '@/features/Feed/hooks/feed/useFollowUser';
 import { getImageSrc } from '@/utils/getImageSrc';
 import { GetProfileRes } from '@frolog/frolog-api';
@@ -22,7 +21,7 @@ function FollowItem({ userId, targetUser }: Props) {
   return (
     <div className='flex w-full items-center justify-between'>
       <Link
-        href={isRootUser ? PAGES.PROFILE : `/${targetUser.id}/profile`}
+        href={`/${targetUser.id}/profile`}
         className='flex items-center gap-[8px]'
       >
         <div className='relative flex h-[40px] w-[40px]'>

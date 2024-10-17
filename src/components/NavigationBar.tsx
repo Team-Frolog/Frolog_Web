@@ -5,10 +5,12 @@ import React from 'react';
 import { usePathname } from 'next/navigation';
 import { FeedIcon, ProfileIcon, SearchIcon, WellIcon } from 'public/icons';
 import { motion } from 'framer-motion';
+import { useSession } from 'next-auth/react';
 
 const MotionLink = motion(Link);
 
 function NavigationBar() {
+  const { data: session } = useSession();
   const pathname = usePathname();
 
   return (
@@ -48,12 +50,14 @@ function NavigationBar() {
       </MotionLink>
       <MotionLink
         whileTap={{ scale: 1.2 }}
-        href='/profile'
+        href={`/${session?.user.id}/profile`}
         className='navItem'
       >
-        <ProfileIcon fill={pathname === '/profile' ? '#313239' : '#B3B6C5'} />
+        <ProfileIcon
+          fill={pathname.includes('profile') ? '#313239' : '#B3B6C5'}
+        />
         <span
-          className={`text-body-sm-bold ${pathname === '/profile' ? 'text-gray-800' : 'text-gray-500'}`}
+          className={`text-body-sm-bold ${pathname.includes('profile') ? 'text-gray-800' : 'text-gray-500'}`}
         >
           프로필
         </span>
