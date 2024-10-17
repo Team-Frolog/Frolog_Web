@@ -11,12 +11,6 @@ export const IMAGES = {
     first_congrats: `${BASE_PATH}/frog/first-review-congrats.svg`,
     sitting: `${BASE_PATH}/frog/frog-sitting.svg`,
     search: `${BASE_PATH}/frog/search-frog.svg`,
-    sheet: {
-      error: `${BASE_PATH}/frog/sheet/frog-sheet-error.svg`,
-      book: `${BASE_PATH}/frog/sheet/frog-with-book.svg`,
-      wink: `${BASE_PATH}/frog/sheet/wink-frog.svg`,
-      normal: `${BASE_PATH}/frog/sheet/frog-normal.svg`,
-    },
     withPen: `${BASE_PATH}/frog/frog-with-pen.svg`,
     review_done: `${BASE_PATH}/frog/review-done.svg`,
     new_well: `${BASE_PATH}/frog/new-well-congrats.svg`,

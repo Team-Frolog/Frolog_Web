@@ -2,6 +2,7 @@ import React from 'react';
 import { SideWellHeader, WellList } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
+import NavigationBar from '@/components/NavigationBar';
 
 interface Props {
   params: {
@@ -23,6 +24,7 @@ async function UserWellListPage({ params: { userId } }: Props) {
         />
         <WellList userId={userId} isRootUser={isRootUser} />
       </MainLayout>
+      {isRootUser && <NavigationBar />}
     </>
   );
 }

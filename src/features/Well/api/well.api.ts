@@ -2,10 +2,11 @@ import { baseOptions } from '@/api/options';
 import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
-import { PostWell, PostWellReq, SearchWell } from '@frolog/frolog-api';
+import { GetWell, PostWell, PostWellReq, SearchWell } from '@frolog/frolog-api';
 
 const postWell = new PostWell(baseOptions);
 const searchWell = new SearchWell(baseOptions);
+const fetchWell = new GetWell(baseOptions);
 
 export const addNewWell = async (req: PostWellReq) => {
   const response = await postWell.fetch(req);
@@ -28,5 +29,14 @@ export const getWellList = async (owner: string, page: number) => {
       limit: DEFAULT_LIMIT,
       page: 0,
     };
+  }
+};
+
+export const getWell = async (id: string) => {
+  try {
+    const response = await fetchWell.fetch({ id });
+    return response;
+  } catch (err) {
+    toast.error(ERROR_ALERT);
   }
 };

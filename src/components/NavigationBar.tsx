@@ -16,9 +16,16 @@ function NavigationBar() {
   return (
     <div className='z-50 flex h-[80px] w-full shrink-0 items-center justify-around border-t border-gray-300 bg-white px-[20px]'>
       <MotionLink whileTap={{ scale: 1.2 }} href='/' className='navItem'>
-        <WellIcon fill={pathname === '/' ? '#313239' : '#B3B6C5'} height={22} />
+        <WellIcon
+          fill={
+            pathname === '/' || pathname.includes('/well')
+              ? '#313239'
+              : '#B3B6C5'
+          }
+          height={22}
+        />
         <span
-          className={`text-body-sm-bold ${pathname === '/' ? 'text-gray-800' : 'text-gray-500'}`}
+          className={`text-body-sm-bold ${pathname === '/' || pathname.includes('/well') ? 'text-gray-800' : 'text-gray-500'}`}
         >
           우물
         </span>
