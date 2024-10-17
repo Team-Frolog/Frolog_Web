@@ -2,12 +2,13 @@
 
 import React from 'react';
 import { staggerContainerVariants } from '@/styles/variants/variants';
-import { useNewReviewId } from '@/store/stackMotionStore';
+// import { useNewReviewId } from '@/store/stackMotionStore';
 import { motion } from 'framer-motion';
 import { GetWellRes } from '@frolog/frolog-api';
 import ScrollToTop from '@/components/Button/ScrollToTop';
 import WellBook from './WellBook';
 import FrogOnBook from '../Well/FrogOnBook';
+import { useWellItems } from '../../hooks/useWellItems';
 
 interface Props {
   userId?: string;
@@ -15,8 +16,10 @@ interface Props {
 }
 
 function WellBookList({ userId, wellData }: Props) {
-  const hasNewReview = useNewReviewId();
-  console.log(wellData);
+  // const hasNewReview = useNewReviewId();
+  const { wellItems } = useWellItems(wellData.id);
+
+  if (!wellItems) return <></>;
 
   return (
     <motion.div
@@ -26,9 +29,9 @@ function WellBookList({ userId, wellData }: Props) {
       variants={staggerContainerVariants}
     >
       <div className='h-[12px] w-full shrink-0 rounded-t-[20px] bg-gray-900' />
-      {hasNewReview && <WellBook isReading />}
-      <WellBook isReading />
-      <WellBook userId={userId} />
+      {wellItems?.map((item) => (
+        <WellBook key={item.id} userId={userId} wellBook={item} />
+      ))}
       <FrogOnBook />
       <ScrollToTop />
     </motion.div>
