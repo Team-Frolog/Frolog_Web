@@ -10,7 +10,8 @@ interface Props {
 }
 
 function Flash({ flash }: Props) {
-  const { getTitle, frog, ground } = splash[flash.flashType];
+  const { getTitle, frog, ground, width, height, max_height } =
+    splash[flash.flashType];
 
   return (
     <div className='fixed inset-x-0 left-0 top-0 z-100 mx-auto flex h-dvh w-[450px] flex-col items-center justify-between overflow-hidden overscroll-none bg-white mobile:left-0 mobile:w-full'>
@@ -37,11 +38,12 @@ function Flash({ flash }: Props) {
           <Image
             src={frog}
             alt='frog'
-            width={319}
-            height={257}
-            className='h-full max-h-[257px] w-full mobile:w-[90%]'
+            width={width}
+            height={height}
+            className='h-full w-full'
             loading='eager'
             priority
+            style={{ maxHeight: `${max_height}px`, marginBottom: '-5px' }}
           />
         </div>
         {flash.flashType === 'review' && (

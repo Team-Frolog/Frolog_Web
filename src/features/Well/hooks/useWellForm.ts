@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { PAGES } from '@/constants/page';
 import { sheetData } from '@/data/ui/bottomSheet';
+import { flash } from '@/modules/Flash';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
@@ -15,7 +16,10 @@ export const useWellForm = (type: 'write' | 'edit') => {
     mutationFn: (data: WellFormType) =>
       addNewWell({ ...data, owner: session!.user.id }),
     onSuccess: () => {
-      router.replace(PAGES.WELL);
+      flash.open({
+        flashType: 'new_well',
+        callbackUrl: PAGES.WELL,
+      });
     },
   });
 

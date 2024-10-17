@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import FlashPage from './Flash';
 
 export interface FlashProps {
-  flashType: 'review' | 'well';
+  flashType: 'review' | 'new_well';
   callbackUrl: string;
   bookTitle?: string;
 }
