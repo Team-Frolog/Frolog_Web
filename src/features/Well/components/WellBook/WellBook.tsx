@@ -11,11 +11,10 @@ import { getMargin } from '../../utils/getMargin';
 
 interface Props {
   userId?: string;
-  index: number;
   wellBook: GetWellItemRes;
 }
 
-function WellBook({ userId, index, wellBook }: Props) {
+function WellBook({ userId, wellBook }: Props) {
   const router = useRouter();
   const newReviewId = useNewReviewId();
   const { status, memo_cnt, title, page, category, isbn } = wellBook;
