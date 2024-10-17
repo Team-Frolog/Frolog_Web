@@ -16,13 +16,13 @@ function UserWellListPage({ params: { userId } }: Props) {
 
   return (
     <>
-      <MainLayout>
+      <MainLayout extraClass='bg-gray-300'>
         <SideWellHeader
           username={profile?.username}
           hasBackButton
           bgColor='bg-gray-300'
         />
-        <WellList />
+        <WellList userId={userId} />
       </MainLayout>
     </>
   );
