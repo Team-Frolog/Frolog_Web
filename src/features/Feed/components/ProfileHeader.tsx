@@ -7,7 +7,6 @@ import { ChildArrowIcon, MenuIcon } from 'public/icons';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import { bottomSheet } from '@/modules/BottomSheet';
-import { sheetData } from '@/data/ui/bottomSheet';
 import { useReport } from '@/hooks/useReport';
 import { useProfile } from '@/hooks/useProfile';
 import { useSession } from 'next-auth/react';
@@ -45,11 +44,11 @@ function ProfileHeader({
 
   const { username, image, follow } = profile;
 
-  const getSheetData = () => {
+  const getSheetKey = () => {
     if (isRootUser) {
-      return sheetData.delete_this_comment;
+      return 'delete_this_comment';
     }
-    return isFeed ? sheetData.report_this_feed : sheetData.report_this_comment;
+    return isFeed ? 'report_this_feed' : 'report_this_comment';
   };
 
   return (
@@ -112,7 +111,7 @@ function ProfileHeader({
             onClick={() =>
               runWhenLoggedIn(() =>
                 bottomSheet.open({
-                  sheetData: getSheetData(),
+                  sheetKey: getSheetKey(),
                   onClick: !isFeed && isRootUser ? onDelete : handleReport,
                 })
               )

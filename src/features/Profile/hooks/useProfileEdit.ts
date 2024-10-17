@@ -12,7 +12,6 @@ import {
 } from '@/constants/storage';
 import { editProfile } from '@/api/profile.api';
 import { bottomSheet } from '@/modules/BottomSheet';
-import { sheetData } from '@/data/ui/bottomSheet';
 import { useRouter } from 'next/navigation';
 import { getProfileDetail } from '../api/profile.api';
 import { compareForm } from '../utils/compareForm';
@@ -93,7 +92,7 @@ export const useProfileEdit = (
   const handleClickBack = () => {
     if (isEdited || isDirty) {
       bottomSheet.open({
-        sheetData: sheetData.leave_while_edit,
+        sheetKey: 'leave_while_edit',
         onClick: () => {
           setTimeout(() => {
             router.back();

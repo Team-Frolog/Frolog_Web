@@ -6,7 +6,6 @@ import isEqual from 'lodash/isEqual';
 import Textarea from '@/components/Form/Input/Textarea';
 import { textareaType } from '@/data/ui/textareaType';
 import { useFormContext } from 'react-hook-form';
-import { sheetData } from '@/data/ui/bottomSheet';
 import TitleHeader from '@/components/Header/TitleHeader';
 import { bottomSheet } from '@/modules/BottomSheet';
 import PublicToggle from './PublicToggle';
@@ -25,9 +24,7 @@ function MemoForm({ defaultValues }: Props) {
     const formData = getValues();
     if (!isEqual(defaultValues, formData)) {
       bottomSheet.open({
-        sheetData: defaultValues
-          ? sheetData.leave_while_edit
-          : sheetData.leave_while_write,
+        sheetKey: defaultValues ? 'leave_while_edit' : 'leave_while_write',
         onClick: () => {
           setTimeout(() => {
             router.back();

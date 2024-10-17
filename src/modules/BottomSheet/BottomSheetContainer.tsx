@@ -13,7 +13,7 @@ function BottomSheetContainer({ bottomSheet }: Props) {
       <AnimatePresence>
         {bottomSheet && (
           <BottomSheet
-            sheetData={bottomSheet.sheetData}
+            sheetKey={bottomSheet.sheetKey}
             onClick={bottomSheet.onClick}
             onClickSubButton={bottomSheet.onClickSubButton}
           >

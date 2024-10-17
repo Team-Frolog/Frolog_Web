@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
 import { PAGES } from '@/constants/page';
-import { sheetData } from '@/data/ui/bottomSheet';
 import { flash } from '@/modules/Flash';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useRouter } from 'next/navigation';
@@ -26,10 +25,7 @@ export const useWellForm = (type: 'write' | 'edit') => {
   const handleClickBack = (isDirty: boolean) => {
     if (isDirty) {
       bottomSheet.open({
-        sheetData:
-          type === 'edit'
-            ? sheetData.leave_while_edit
-            : sheetData.leave_while_write,
+        sheetKey: type === 'edit' ? 'leave_while_edit' : 'leave_while_write',
         onClick: () => {
           setTimeout(() => {
             router.back();

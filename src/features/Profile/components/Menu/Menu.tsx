@@ -3,7 +3,6 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { bottomSheet } from '@/modules/BottomSheet';
-import { sheetData } from '@/data/ui/bottomSheet';
 import { signOut } from 'next-auth/react';
 import { PAGES } from '@/constants/page';
 import MenuItem from './MenuItem';
@@ -32,7 +31,7 @@ function Menu() {
             name='로그아웃'
             onClick={() =>
               bottomSheet.open({
-                sheetData: sheetData.logout,
+                sheetKey: 'logout',
                 onClick: () =>
                   signOut({ callbackUrl: PAGES.HOME, redirect: true }),
               })

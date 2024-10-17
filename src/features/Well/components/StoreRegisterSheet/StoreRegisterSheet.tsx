@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
 import { usePopUpActions } from '@/store/popUpStore';
 import SheetHeader from 'public/images/frog/sheet/sheet-header.svg';
-import { sheetData } from '@/data/ui/bottomSheet';
 import Button from '@/components/Button/Button';
 import { bottomSheet } from '@/modules/BottomSheet';
 
@@ -26,7 +25,7 @@ function StoreRegisterSheet() {
     if (isRegistered) {
       changePopUpState('isOpenAlertSheet', false);
       bottomSheet.open({
-        sheetData: sheetData.done_store_register,
+        sheetKey: 'done_store_register',
       });
     }
   }, [isRegistered]);

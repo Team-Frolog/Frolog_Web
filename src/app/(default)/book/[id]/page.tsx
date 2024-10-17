@@ -10,7 +10,6 @@ import { useScroll } from '@/hooks/gesture/useScroll';
 import { useBookDetail } from '@/features/Book/hooks/useBookDetail';
 import React from 'react';
 import { bottomSheet } from '@/modules/BottomSheet';
-import { sheetData } from '@/data/ui/bottomSheet';
 import AddBookToWell from '@/components/BottomSheet/AddBookToWell';
 import MainLayout from '@/layouts/MainLayout';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
@@ -44,7 +43,7 @@ function BookPage({ params: { id } }: Props) {
               onClick={() =>
                 runWhenLoggedIn(() =>
                   bottomSheet.open({
-                    sheetData: sheetData.add_book,
+                    sheetKey: 'add_key',
                     children: <AddBookToWell />,
                   })
                 )

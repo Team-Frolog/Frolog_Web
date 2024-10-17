@@ -1,7 +1,6 @@
 'use client';
 
 import BookInfo from '@/components/Book/BookInfo';
-import { sheetData } from '@/data/ui/bottomSheet';
 import { NewReviewForm } from '@/features/Review';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import MainLayout from '@/layouts/MainLayout';
@@ -22,7 +21,7 @@ function NewReviewPage() {
       <ResponsiveHeaderLayout
         onClick={() => {
           bottomSheet.open({
-            sheetData: sheetData.leave_while_write,
+            sheetKey: 'leave_while_write',
             onClick: () => {
               setTimeout(() => {
                 router.back();

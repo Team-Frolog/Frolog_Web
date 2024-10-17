@@ -3,7 +3,6 @@
 import React from 'react';
 import { BookListItem } from '@/features/Book';
 import usePopUpStore from '@/store/popUpStore';
-import { sheetData } from '@/data/ui/bottomSheet';
 import { LOGIN_CALLBACK } from '@/constants/storage';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { PAGES } from '@/constants/page';
@@ -51,7 +50,7 @@ function SearchResult() {
       changePopUpState('isOpenAlertSheet', true);
     } else {
       bottomSheet.open({
-        sheetData: sheetData.need_to_login,
+        sheetKey: 'need_to_login',
         onClick: handleClickLogin,
       });
     }

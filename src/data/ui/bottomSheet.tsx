@@ -11,6 +11,8 @@ export interface AlertSheet {
   frog?: string;
 }
 
+export type BottomSheetKeys = keyof typeof sheetData;
+
 export const sheetData: {
   [key: string]: AlertSheet;
 } = {

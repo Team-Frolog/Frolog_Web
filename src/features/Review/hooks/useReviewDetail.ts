@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { UseFormReset } from 'react-hook-form';
 import { bottomSheet } from '@/modules/BottomSheet';
-import { sheetData } from '@/data/ui/bottomSheet';
 import { editReview, getReviewDetail } from '../api/review.api';
 import { ReviewForm } from '../types/review';
 import { getBookInfo } from '../api/getBookInfo.api';
@@ -71,7 +70,7 @@ export const useReviewDetail = ({
   const handleClickBack = () => {
     if (isDirty) {
       bottomSheet.open({
-        sheetData: sheetData.leave_while_edit,
+        sheetKey: 'leave_while_edit',
         onClick: () => {
           setTimeout(() => {
             router.back();
