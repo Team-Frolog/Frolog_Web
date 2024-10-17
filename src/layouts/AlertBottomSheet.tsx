@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
 import { usePopUpActions } from '@/store/popUpStore';
 import Image from 'next/image';
-import { IMAGES } from '@/constants/images';
+import { SHEET_FROG } from '@/constants/frogs';
 import { AlertSheet } from '@/data/ui/bottomSheet';
 import { useScrollFreeze } from '@/hooks/gesture/useScrollFreeze';
 import Button from '../components/Button/Button';
@@ -27,9 +27,7 @@ function AlertBottomSheet({
 }: Props) {
   useScrollFreeze();
   const defaultFrog =
-    sheetData.type === 'error'
-      ? IMAGES.frog.sheet.error
-      : IMAGES.frog.sheet.normal;
+    sheetData.type === 'error' ? SHEET_FROG.error : SHEET_FROG.normal;
   const { getTitle, type, stateType, buttonText, extraButtonText } = sheetData;
   const { changePopUpState } = usePopUpActions();
   const ref = useRef<HTMLDivElement | null>(null);
@@ -57,7 +55,7 @@ function AlertBottomSheet({
             style={{ top: '-55px' }}
           />
           <div className='flex-col-center w-full gap-[12px]'>
-            <h2 className='text-title-xl-bold text-center'>{getTitle()}</h2>
+            <h2 className='text-center text-title-xl-bold'>{getTitle()}</h2>
             {children}
           </div>
           {buttonText && (

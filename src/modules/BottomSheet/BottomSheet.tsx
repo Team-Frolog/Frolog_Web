@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
 import Image from 'next/image';
 import { sheetData } from '@/data/ui/bottomSheet';
-import { IMAGES } from '@/constants/images';
+import { SHEET_FROG } from '@/constants/frogs';
 import { useScrollFreeze } from '@/hooks/gesture/useScrollFreeze';
 import Button from '@/components/Button/Button';
 import BackDrop from '@/layouts/BackDrop';
@@ -21,8 +21,7 @@ function BottomSheet({
   const { getTitle, type, frog, buttonText, extraButtonText, description } =
     sheetData[sheetKey];
 
-  const defaultFrog =
-    type === 'error' ? IMAGES.frog.sheet.error : IMAGES.frog.sheet.normal;
+  const defaultFrog = type === 'error' ? SHEET_FROG.error : SHEET_FROG.normal;
 
   const ref = useRef<HTMLDivElement | null>(null);
 

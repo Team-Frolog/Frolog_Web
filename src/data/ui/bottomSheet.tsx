@@ -1,4 +1,4 @@
-import { IMAGES } from '@/constants/images';
+import { SHEET_FROG } from '@/constants/frogs';
 import { PopUpType } from '@/store/popUpStore';
 
 export interface AlertSheet {
@@ -76,7 +76,7 @@ export const sheetData: {
     ),
     type: 'normal',
     stateType: 'isOpenWellSheet',
-    frog: IMAGES.frog.sheet.book,
+    frog: SHEET_FROG.book,
     description: () => <>선택한 우물에 책이 자동으로 추가됩니다!</>,
   },
   need_to_login: {
@@ -104,7 +104,7 @@ export const sheetData: {
     type: 'normal',
     stateType: 'isOpenAlertSheet',
     buttonText: '확인',
-    frog: IMAGES.frog.sheet.wink,
+    frog: SHEET_FROG.wink,
     description: () => <>추후에 책이 추가될 때, 알려드릴게요.</>,
   },
   done_store_register: {
@@ -112,7 +112,7 @@ export const sheetData: {
     type: 'normal',
     stateType: 'isOpenAlertSheet',
     buttonText: '확인',
-    frog: IMAGES.frog.sheet.wink,
+    frog: SHEET_FROG.wink,
     description: () => <>추후에 상점이 오픈될 때, 알려드릴게요.</>,
   },
   add_book: {
@@ -126,7 +126,7 @@ export const sheetData: {
     buttonText: '이렇게 추가할게요!',
     extraButtonText: '아니요, 새로운 리뷰를 쓸게요!',
     stateType: 'isOpenSelectBooksSheet',
-    frog: IMAGES.frog.sheet.book,
+    frog: SHEET_FROG.book,
     description: (n: number) => (
       <>
         이 책에 대한 리뷰가 {n}개 있습니다.
