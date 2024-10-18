@@ -23,11 +23,9 @@ function UserWellDetailPage({ params: { userId, wellId } }: Props) {
 
   return (
     <>
-      <MainLayout
-        extraClass={`bg-shape-${well.shape} bg-gray-300`}
-      >
+      <MainLayout extraClass={`bg-shape-${well.shape} bg-gray-300`}>
         <WellHeader hasEditButton={isRootUser} />
-        <WellTitle title={well.name} />
+        <WellTitle title={well.name} wellHeight={well.height} />
         <WellBookList userId={userId} wellData={well} />
       </MainLayout>
       {isRootUser && <NavigationBar />}

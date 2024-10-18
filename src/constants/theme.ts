@@ -16,7 +16,7 @@ export const PAGE_THEME: {
   '/frolog-test/result/1': DARK,
   '/frolog-test/result/2': DARK,
   '/frolog-test/result/3': DARK,
-  '/well': HALF,
+  '/well': DARK,
   '/writing': HALF,
   '/new-review': HALF,
   '/search': LIGHT,

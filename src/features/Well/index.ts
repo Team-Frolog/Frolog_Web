@@ -1,4 +1,4 @@
-export { default as PointingButton } from './components/Well/Pointing/PointingButton';
+export { default as WellActionButton } from './components/Well/Pointing/WellActionButton';
 export { default as SideWellHeader } from './components/WellList/SideWellHeader';
 export { default as WellForm } from './components/WellForm/WellForm';
 export { default as WellBookList } from './components/WellBook/WellBookList';
