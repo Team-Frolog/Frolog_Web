@@ -1,6 +1,6 @@
 'use client';
 
-import { IMAGES } from '@/constants/images';
+import { FROG_SITTING } from '@/constants/frogs';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useNewReviewId } from '@/store/stackMotionStore';
@@ -8,7 +8,11 @@ import { staggerItemVariants } from '@/styles/variants/variants';
 import React from 'react';
 import GuideChat from './GuideChat';
 
-function FrogOnBook() {
+interface Props {
+  frogId?: string;
+}
+
+function FrogOnBook({ frogId = 'default' }: Props) {
   const hasNewReview = useNewReviewId();
 
   return (
@@ -17,7 +21,7 @@ function FrogOnBook() {
       className='flex-col-center'
     >
       <GuideChat />
-      <Image src={IMAGES.frog.sitting} alt='frog' width={90} height={120} />
+      <Image src={FROG_SITTING[frogId]} alt='frog' width={90} height={120} />
     </motion.div>
   );
 }

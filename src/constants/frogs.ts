@@ -26,6 +26,15 @@ export const FROGS: Frog = {
   },
 };
 
+export const FROG_SITTING: {
+  [key: string]: string;
+} = {
+  default: `${BASE_PATH}/frog/character/sitting/default-sitting.svg`,
+  fro: `${BASE_PATH}/frog/character/sitting/fro-sitting.svg`,
+  roro: `${BASE_PATH}/frog/character/sitting/roro-sitting.svg`,
+  rogy: `${BASE_PATH}/frog/character/sitting/rogy-sitting.svg`,
+};
+
 export const SHEET_FROG = {
   error: `${BASE_PATH}/frog/sheet/frog-sheet-error.svg`,
   book: `${BASE_PATH}/frog/sheet/frog-with-book.svg`,

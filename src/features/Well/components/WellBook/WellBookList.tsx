@@ -30,7 +30,7 @@ function WellBookList({ userId, wellData }: Props) {
       {wellItems?.map((item) => (
         <WellBook key={item.id} userId={userId} wellBook={item} />
       ))}
-      <FrogOnBook />
+      <FrogOnBook frogId={wellData.frog} />
       <ScrollToTop />
     </motion.div>
   );
