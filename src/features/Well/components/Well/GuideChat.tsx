@@ -34,10 +34,7 @@ function GuideChat({ isRootUser }: Props) {
     >
       {session &&
         (isRootUser ? (
-          <>
-            {session && hasNewReview && chat.first_review()}
-            {session && !hasNewReview && getRandomMessage()}
-          </>
+          <>{hasNewReview ? chat.first_review() : getRandomMessage()}</>
         ) : (
           <>{getRandomMessage()}</>
         ))}

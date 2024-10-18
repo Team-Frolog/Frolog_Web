@@ -2,24 +2,21 @@
 
 import BackDrop from '@/layouts/BackDrop';
 import Portal from '@/layouts/Portal';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
 import { usePopUpActions } from '@/store/popUpStore';
 import SheetHeader from 'public/images/frog/sheet/sheet-header.svg';
 import Button from '@/components/Button/Button';
 import { bottomSheet } from '@/modules/BottomSheet';
+import { useRegisterStore } from '../../hooks/useRegisterStore';
 
 function StoreRegisterSheet() {
   const { changePopUpState } = usePopUpActions();
-  const [isRegistered, setIsRegistered] = useState<boolean | null>(false);
+  const { isRegistered, handleRegisterStore } = useRegisterStore();
   const ref = useRef<HTMLDivElement | null>(null);
 
   useClickOutside(ref, () => changePopUpState('isOpenAlertSheet', false));
-
-  const handleRegister = () => {
-    setIsRegistered(true);
-  };
 
   useEffect(() => {
     if (isRegistered) {
@@ -57,7 +54,7 @@ function StoreRegisterSheet() {
                     상점이 오픈되면, 알려드릴게요! 🔔
                   </p>
                 </div>
-                <Button type='button' onClick={handleRegister}>
+                <Button type='button' onClick={() => handleRegisterStore()}>
                   상점 오픈 알림 받기
                 </Button>
               </div>
