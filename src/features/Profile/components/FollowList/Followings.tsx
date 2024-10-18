@@ -1,4 +1,6 @@
 import React from 'react';
+import LinkButton from '@/components/Button/LinkButton';
+import { PAGES } from '@/constants/page';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import FollowListSkeleton from '@/components/Fallback/Skeleton/FollowListSkeleton';
@@ -26,8 +28,11 @@ function Followings({ userId }: Props) {
   return (
     <>
       {isEmpty && isFetched && (
-        <div className='flex flex-1 items-center justify-center'>
-          <EmptyContentFrog title='팔로우하는 사람을 만들어보세요!' />
+        <div className='flex flex-1 flex-col items-center justify-center px-page pb-[24px]'>
+          <div className='flex flex-1 items-center justify-center'>
+            <EmptyContentFrog title='팔로우하는 사람을 만들어보세요!' />
+          </div>
+          <LinkButton route={PAGES.FEED}>피드 구경하기</LinkButton>
         </div>
       )}
       {!isEmpty && isFetched && (
