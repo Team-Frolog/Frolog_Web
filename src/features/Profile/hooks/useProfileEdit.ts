@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import {
   transformeInfoToArray,
@@ -18,17 +17,16 @@ import { compareForm } from '../utils/compareForm';
 import { ProfileEditFormType } from '../types/editForm';
 
 export const useProfileEdit = (
+  userId: string,
   reset: UseFormReset<ProfileEditFormType>,
   isDirty: boolean
 ) => {
   const [isEdited, setIsEdited] = useState(false);
   const router = useRouter();
-  const { data: session } = useSession();
 
   const { data: profileDetail } = useQuery({
-    queryKey: ['profileDetail', session?.user.id],
-    queryFn: () => getProfileDetail(session!.user.id),
-    enabled: session !== undefined,
+    queryKey: ['profileDetail', userId],
+    queryFn: () => getProfileDetail(userId),
   });
   const original_username = profileDetail?.username;
 
@@ -42,13 +40,13 @@ export const useProfileEdit = (
       const processedReq = compareForm(profileDetail!, editReq);
 
       const result = await editProfile({
-        id: session!.user.id,
+        id: userId,
         ...processedReq,
       });
       return result;
     },
     onSuccess: () => {
-      router.replace(`/${session!.user.id}/profile`);
+      router.replace(`/${userId}/profile`);
     },
   });
 
