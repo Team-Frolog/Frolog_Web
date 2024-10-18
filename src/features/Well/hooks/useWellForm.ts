@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import { PAGES } from '@/constants/page';
 import { flash } from '@/modules/Flash';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useRouter } from 'next/navigation';
@@ -17,7 +16,7 @@ export const useWellForm = (type: 'write' | 'edit') => {
     onSuccess: () => {
       flash.open({
         flashType: 'new_well',
-        callbackUrl: PAGES.WELL,
+        callbackUrl: `/${session!.user.id}/well`,
       });
     },
   });
