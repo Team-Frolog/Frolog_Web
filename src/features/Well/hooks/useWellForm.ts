@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
 import { UseFormReset } from 'react-hook-form';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { GetWellRes } from '@frolog/frolog-api';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { flash } from '@/modules/Flash';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import { addNewWell, editWell } from '../api/well.api';
+import { addNewWell, editWell, getWell } from '../api/well.api';
 import { WellFormType } from '../components/WellForm/WellForm';
 
 export const useWellForm = (
@@ -16,11 +15,15 @@ export const useWellForm = (
 ) => {
   const router = useRouter();
   const { data: session } = useSession();
-  const queryClient = useQueryClient();
+
+  const { data: wellData } = useQuery({
+    queryKey: ['well', wellId],
+    queryFn: () => getWell(wellId!),
+    enabled: type === 'edit' && !!wellId,
+  });
 
   useEffect(() => {
-    if (wellId) {
-      const wellData = queryClient.getQueryData(['well', wellId]) as GetWellRes;
+    if (wellData) {
       const { name, frog, color, shape } = wellData;
 
       reset({
@@ -30,7 +33,7 @@ export const useWellForm = (
         shape,
       });
     }
-  }, [wellId]);
+  }, [wellData]);
 
   const { mutate: handleAddWell } = useMutation({
     mutationFn: (data: WellFormType) =>

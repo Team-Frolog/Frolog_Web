@@ -46,7 +46,7 @@ async function WellPage() {
             <MemoBookmarkIcon />
           </div>
 
-          <FrogOnBook />
+          <FrogOnBook isRootUser />
         </div>
       </MainLayout>
     </>
