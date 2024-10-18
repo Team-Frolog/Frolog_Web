@@ -4,7 +4,7 @@ import React from 'react';
 import { staggerContainerVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
 import { GetWellRes } from '@frolog/frolog-api';
-import ScrollToTop from '@/components/Button/ScrollToTop';
+// import ScrollToTop from '@/components/Button/ScrollToTop';
 import WellBook from './WellBook';
 import FrogOnBook from '../Well/FrogOnBook';
 import { useWellItems } from '../../hooks/useWellItems';
@@ -12,9 +12,10 @@ import { useWellItems } from '../../hooks/useWellItems';
 interface Props {
   userId?: string;
   wellData: GetWellRes;
+  isRootUser: boolean;
 }
 
-function WellBookList({ userId, wellData }: Props) {
+function WellBookList({ userId, wellData, isRootUser }: Props) {
   const { wellItems } = useWellItems(wellData.id);
 
   if (!wellItems) return <></>;
@@ -30,8 +31,8 @@ function WellBookList({ userId, wellData }: Props) {
       {wellItems?.map((item) => (
         <WellBook key={item.id} userId={userId} wellBook={item} />
       ))}
-      <FrogOnBook frogId={wellData.frog} />
-      <ScrollToTop />
+      <FrogOnBook frogId={wellData.frog} isRootUser={isRootUser} />
+      {/* <ScrollToTop /> */}
     </motion.div>
   );
 }

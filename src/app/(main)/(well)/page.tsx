@@ -14,7 +14,7 @@ async function WellPage() {
     <>
       <MainLayout extraClass='bg-shape-1 bg-gray-300 justify-between'>
         <WellHeader />
-        <WellTitle title='소중한 나의 첫 우물' hasButton={!!session} />
+        <WellTitle title='소중한 나의 첫 우물' />
         {!session && (
           <WellActionButton
             btnName='로그인이 필요해요'

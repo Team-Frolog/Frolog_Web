@@ -7,7 +7,11 @@ import { motion } from 'framer-motion';
 import { chat } from '../../data/chat';
 import { getRandomMessage } from '../../utils/getRandomMessage';
 
-function GuideChat() {
+interface Props {
+  isRootUser: boolean;
+}
+
+function GuideChat({ isRootUser }: Props) {
   const [isVisible, setIsVisible] = useState(true);
   const { data: session } = useSession();
   const hasNewReview = useNewReviewId();
@@ -28,8 +32,15 @@ function GuideChat() {
       transition={{ delay: 1, duration: 0.3 }}
       className='tooltip-after relative mx-[24px] mb-[20px] w-max whitespace-pre-wrap rounded-[20px] bg-white p-[20px] text-center text-body-lg text-gray-800 after:bottom-[-5px] after:border-[8px] after:border-white'
     >
-      {session && hasNewReview && chat.first_review()}
-      {session && !hasNewReview && getRandomMessage()}
+      {session &&
+        (isRootUser ? (
+          <>
+            {session && hasNewReview && chat.first_review()}
+            {session && !hasNewReview && getRandomMessage()}
+          </>
+        ) : (
+          <>{getRandomMessage()}</>
+        ))}
       {!session && chat.not_loggedIn()}
     </motion.div>
   );

@@ -9,14 +9,14 @@ interface Props {
   title: string;
   wellHeight?: number;
   isPointing?: boolean;
-  hasButton?: boolean;
+  isRootUser?: boolean;
 }
 
 function WellTitle({
   title,
   wellHeight,
   isPointing = false,
-  hasButton = true,
+  isRootUser = false,
 }: Props) {
   return (
     <div className='flex-col-center relative flex w-full shrink-0'>
@@ -31,7 +31,7 @@ function WellTitle({
         className='flex flex-col items-center gap-[20px] py-[50px]'
       >
         <h1 className='text-title-xl-bold'>{title}</h1>
-        {hasButton && (
+        {isRootUser && (
           <WellActionButton
             btnName='책 추가하기'
             href={PAGES.SEARCH}

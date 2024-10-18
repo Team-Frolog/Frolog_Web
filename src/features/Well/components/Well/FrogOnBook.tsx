@@ -10,9 +10,10 @@ import GuideChat from './GuideChat';
 
 interface Props {
   frogId?: string;
+  isRootUser: boolean;
 }
 
-function FrogOnBook({ frogId = 'default' }: Props) {
+function FrogOnBook({ frogId = 'default', isRootUser }: Props) {
   const hasNewReview = useNewReviewId();
 
   return (
@@ -20,7 +21,7 @@ function FrogOnBook({ frogId = 'default' }: Props) {
       variants={hasNewReview ? staggerItemVariants : undefined}
       className='flex-col-center'
     >
-      <GuideChat />
+      <GuideChat isRootUser={isRootUser} />
       <Image src={FROG_SITTING[frogId]} alt='frog' width={90} height={120} />
     </motion.div>
   );
