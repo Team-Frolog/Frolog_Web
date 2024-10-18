@@ -1,8 +1,18 @@
 import React from 'react';
-import { SideWellHeader, WellList } from '@/features/Well';
+import { SideWellHeader } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
 import NavigationBar from '@/components/NavigationBar';
+import dynamic from 'next/dynamic';
+import WellListSkeleton from '@/components/Fallback/Skeleton/WellListSkeleton';
+
+const WellList = dynamic(
+  () => import('@/features/Well/components/WellList/WellList'),
+  {
+    ssr: false,
+    loading: () => <WellListSkeleton />,
+  }
+);
 
 interface Props {
   params: {

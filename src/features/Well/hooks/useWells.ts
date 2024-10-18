@@ -1,9 +1,9 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { getWellList } from '../api/well.api';
 
 export const useWells = (userId: string) => {
   const { data, hasNextPage, fetchNextPage, isFetched, isFetchingNextPage } =
-    useInfiniteQuery({
+    useSuspenseInfiniteQuery({
       queryKey: ['wells'],
       queryFn: ({ pageParam }) => getWellList(userId, pageParam),
       initialPageParam: 0,
