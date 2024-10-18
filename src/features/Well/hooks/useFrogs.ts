@@ -1,14 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
-import { useSession } from 'next-auth/react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { getFrogList } from '../api/frog.api';
 
-export const useFrogs = () => {
-  const { data: session } = useSession();
-
-  const { data } = useQuery({
-    queryKey: ['frogs', session?.user.id],
-    queryFn: () => getFrogList(session!.user.id),
-    enabled: !!session,
+export const useFrogs = (userId: string) => {
+  const { data } = useSuspenseQuery({
+    queryKey: ['frogs', userId],
+    queryFn: () => getFrogList(userId),
   });
 
   return { frogs: data };

@@ -43,7 +43,7 @@ function BookPage({ params: { id } }: Props) {
               onClick={() =>
                 runWhenLoggedIn(() =>
                   bottomSheet.open({
-                    sheetKey: 'add_key',
+                    sheetKey: 'add_book',
                     children: <AddBookToWell />,
                   })
                 )

@@ -5,9 +5,13 @@ import { useFrogs } from '@/features/Well/hooks/useFrogs';
 import { ExpandIcon } from 'public/icons';
 import FrogCharacter from './FrogCharacter';
 
-function FrogSelector() {
+interface Props {
+  userId: string;
+}
+
+function FrogSelector({ userId }: Props) {
   const { watch, setValue } = useFormContext();
-  const { frogs } = useFrogs();
+  const { frogs } = useFrogs(userId);
   const controls = useAnimationControls();
   const [isExpanded, setIsExpanded] = useState(false);
 
