@@ -30,7 +30,7 @@ async function UserProfilePage({ params: { userId } }: Props) {
       <MainLayout>
         <SideHeader title='프로필' hasBackButton={!isRootUser} />
         <div className='flex w-full flex-1 flex-col justify-between gap-[32px] pb-[32px]'>
-          <Profile userId={userId} isRootUser />
+          <Profile userId={userId} isRootUser={isRootUser} />
           {isRootUser && <Menu />}
           {!isRootUser && (
             <div className='flex px-page'>
