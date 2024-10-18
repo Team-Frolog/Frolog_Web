@@ -3,6 +3,8 @@ import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
 import {
+  EditWell,
+  EditWellReq,
   GetWell,
   PostWell,
   PostWellReq,
@@ -14,6 +16,7 @@ const postWell = new PostWell(baseOptions);
 const searchWell = new SearchWell(baseOptions);
 const fetchWell = new GetWell(baseOptions);
 const searchWellItem = new SearchWellItem(baseOptions);
+const editWellObj = new EditWell(baseOptions);
 
 export const addNewWell = async (req: PostWellReq) => {
   const response = await postWell.fetch(req);
@@ -55,4 +58,9 @@ export const getWellItems = async (well_id: string) => {
   } catch (err) {
     toast.error(ERROR_ALERT);
   }
+};
+
+export const editWell = async (req: EditWellReq) => {
+  const response = await editWellObj.fetch(req);
+  return response;
 };

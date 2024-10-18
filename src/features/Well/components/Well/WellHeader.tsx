@@ -4,12 +4,15 @@ import React from 'react';
 import { EditIcon } from 'public/icons';
 import BackButton from '@/components/Button/BackButton';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface Props {
+  userId?: string;
+  wellId?: string;
   hasEditButton?: boolean;
 }
 
-function WellHeader({ hasEditButton = false }: Props) {
+function WellHeader({ userId, wellId, hasEditButton = false }: Props) {
   const router = useRouter();
 
   return (
@@ -19,10 +22,13 @@ function WellHeader({ hasEditButton = false }: Props) {
         fill='#B3B6C5'
         extraClass='absolute top-[28px] left-[28px] z-20'
       />
-      {hasEditButton && (
-        <button type='button' className='absolute right-[28px] top-[28px] z-20'>
+      {userId && hasEditButton && (
+        <Link
+          href={`/${userId}/well/${wellId}/edit`}
+          className='absolute right-[28px] top-[28px] z-20'
+        >
           <EditIcon />
-        </button>
+        </Link>
       )}
     </div>
   );

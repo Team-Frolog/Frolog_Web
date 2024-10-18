@@ -15,8 +15,12 @@ export interface WellFormType {
   shape: number;
 }
 
-function WellForm() {
-  const { handleAddWell, handleClickBack } = useWellForm('write');
+interface Props {
+  type: 'write' | 'edit';
+  wellId?: string;
+}
+
+function WellForm({ type, wellId }: Props) {
   const methods = useForm<WellFormType>({
     mode: 'onChange',
     defaultValues: { name: '', frog: 'default', color: 'novel', shape: 1 },
@@ -24,20 +28,29 @@ function WellForm() {
 
   const {
     watch,
+    reset,
     handleSubmit,
     formState: { errors, isDirty },
   } = methods;
+
+  const { handleAddWell, handleClickBack, handleEditWell } = useWellForm(
+    type,
+    reset,
+    wellId
+  );
 
   return (
     <FormProvider {...methods}>
       <form
         className='form-layout gap-0'
-        onSubmit={handleSubmit((data) => handleAddWell(data))}
+        onSubmit={handleSubmit((data) =>
+          type === 'write' ? handleAddWell(data) : handleEditWell(data)
+        )}
       >
         <TitleHeader
-          title='새 우물 파기'
+          title={type === 'write' ? '새 우물 파기' : '우물 고치기'}
           theme='light'
-          type='write'
+          type={type}
           onClickBack={() => handleClickBack(isDirty)}
           isDisabled={!watch('name') || !!errors.name}
         />

@@ -13,7 +13,7 @@ async function WellPage() {
   return (
     <>
       <MainLayout extraClass='bg-shape-1 bg-gray-300 justify-between'>
-        <WellHeader hasEditButton />
+        <WellHeader />
         <WellTitle title='소중한 나의 첫 우물' hasButton={!!session} />
         {!session && (
           <WellActionButton
