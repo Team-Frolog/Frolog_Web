@@ -1,10 +1,9 @@
-import Link from 'next/link';
 import { ArrowIcon, PlusIcon } from 'public/icons';
 import { PAGES } from '@/constants/page';
 import React from 'react';
-import Pointing from './Pointing';
 import { useRouter } from 'next/navigation';
 import { CURRENT_WELL_ID } from '@/constants/storage';
+import Pointing from './Pointing';
 
 interface Props {
   type?: 'arrow' | 'plus';

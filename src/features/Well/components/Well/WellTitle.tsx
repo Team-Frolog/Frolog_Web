@@ -7,7 +7,7 @@ import WellActionButton from './Pointing/WellActionButton';
 
 interface Props {
   title: string;
-  wellId: string;
+  wellId?: string;
   wellHeight?: number;
   isPointing?: boolean;
   isRootUser?: boolean;

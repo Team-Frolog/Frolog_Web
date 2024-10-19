@@ -36,7 +36,7 @@ function StateSelectSheet({
         type='button'
         disabled={!!reviewCount}
         onClick={handleAddReadingBook}
-        className={`flex h-[95px] items-center justify-between gap-[20px] rounded-[12px] bg-gray-200 pl-[30px] pr-[10px] ${!!reviewCount ? 'opacity-10' : ''}`}
+        className={`flex h-[95px] items-center justify-between gap-[20px] rounded-[12px] bg-gray-200 pl-[30px] pr-[10px] ${reviewCount ? 'opacity-10' : ''}`}
       >
         <span>읽는 중이에요</span>
         <div className='flex h-full items-end'>
