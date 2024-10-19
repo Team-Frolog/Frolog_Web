@@ -7,6 +7,7 @@ import WellActionButton from './Pointing/WellActionButton';
 
 interface Props {
   title: string;
+  wellId: string;
   wellHeight?: number;
   isPointing?: boolean;
   isRootUser?: boolean;
@@ -14,6 +15,7 @@ interface Props {
 
 function WellTitle({
   title,
+  wellId,
   wellHeight,
   isPointing = false,
   isRootUser = false,
@@ -34,7 +36,7 @@ function WellTitle({
         {isRootUser && (
           <WellActionButton
             btnName='책 추가하기'
-            href={PAGES.SEARCH}
+            href={`${PAGES.SEARCH}?wellId=${wellId}`}
             isPointing={isPointing}
             wellHeight={wellHeight}
           />

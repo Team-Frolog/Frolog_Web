@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import { sheetData } from '@/data/ui/bottomSheet';
 // import { Well } from '@/features/Well';
-import AlertBottomSheet from '../../layouts/AlertBottomSheet';
+import AlertBottomSheet from '../../../../layouts/AlertBottomSheet';
 
 function WellSelectSheet() {
   const isOpenWellSheet = useWellSheetState();

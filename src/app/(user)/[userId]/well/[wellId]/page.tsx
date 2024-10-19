@@ -31,6 +31,7 @@ function UserWellDetailPage({ params: { userId, wellId } }: Props) {
         />
         <WellTitle
           title={well.name}
+          wellId={wellId}
           wellHeight={well.height}
           isRootUser={isRootUser}
         />
