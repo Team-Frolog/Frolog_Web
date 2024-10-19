@@ -1,13 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { getReviewCount } from '../api/book.api';
 import { useSession } from 'next-auth/react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { useState } from 'react';
+import { PAGES } from '@/constants/page';
 
 export const useAddBookToWell = (isbn: string) => {
   const [step, setStep] = useState<string | null>('state');
   const [callback, setCallback] = useState<(value?: any) => void>(() => {});
+  const router = useRouter();
   const wellId = useSearchParams().get('wellId');
   const { data: session } = useSession();
   const userId = session?.user.id;
@@ -19,45 +21,52 @@ export const useAddBookToWell = (isbn: string) => {
     enabled: !!userId,
   });
 
-  // 다 읽었어요
+  /* ----- 다 읽었어요 ----- */
   const handleAddReadBook = () => {
-    // 우물에서 접근
+    // case 1. 우물에서 접근
     if (wellId) {
+      // 1-1. 기존 리뷰가 있는 경우 - 우물에 쌓기
       if (reviewCount) {
         handleAddWellItem({ well_id: wellId, isbn, status: 'done' });
-      } else {
-        // 리뷰 작성
+      }
+      // 1-2. 리뷰가 없는 경우 - 리뷰 작성 후 쌓기
+      else {
+        router.push(`${PAGES.NEW_REVIEW}?id=${isbn}&wellId=${wellId}`);
       }
     }
-    // 검색에서 접근
+    // case 2. 검색에서 접근
     else {
+      // 2-1. 기존 리뷰가 있는 경우 - 우물 선택 후 쌓기
       if (reviewCount) {
-        // 우물 선택 -> 쌓기
         setStep('select-well');
         setCallback(
-          () => (wellId: string) =>
-            handleAddWellItem({ well_id: wellId, isbn, status: 'done' })
+          () => (id: string) =>
+            handleAddWellItem({ well_id: id, isbn, status: 'done' })
         );
-      } else {
-        // 우물 선택 -> 리뷰 작성
+      }
+      // 2-2. 리뷰가 없는 경우 - 우물 선택 및 리뷰 작성 후 쌓임
+      else {
         setStep('select-well');
+        setCallback(
+          () => (id: string) =>
+            router.push(`${PAGES.NEW_REVIEW}?id=${isbn}&wellId=${id}`)
+        );
       }
     }
   };
 
-  // 읽는 중이에요
+  /* ----- 읽는 중이에요 ----- */
   const handleAddReadingBook = () => {
-    // 우물에서 접근
+    // case 1. 우물에서 접근 - 우물에 쌓기
     if (wellId) {
       handleAddWellItem({ well_id: wellId, isbn, status: 'reading' });
     }
-    // 검색에서 접근
+    // case 2. 검색에서 접근 - 우물 선택 후 쌓기
     else {
-      // 우물 선택 -> 쌓기
       setStep('select-well');
       setCallback(
-        () => (wellId: string) =>
-          handleAddWellItem({ well_id: wellId, isbn, status: 'reading' })
+        () => (id: string) =>
+          handleAddWellItem({ well_id: id, isbn, status: 'reading' })
       );
     }
   };
