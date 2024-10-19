@@ -12,11 +12,14 @@ interface Props {
 function SearchInput({ isMain = false }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams().get('query');
+  const wellId = useSearchParams().get('wellId');
   const [searchValue, setSearchValue] = useState(searchParams || '');
 
   const handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchValue.trim() !== '') {
-      router.replace(`/search?query=${searchValue.trim()}`);
+      router.replace(
+        `/search?query=${searchValue.trim()}${wellId ? `&wellId=${wellId}` : ''}`
+      );
     }
   };
 

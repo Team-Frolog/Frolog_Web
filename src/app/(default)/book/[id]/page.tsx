@@ -8,11 +8,12 @@ import MajorTagList from '@/components/Tag/MajorTagList';
 import { BookDetail } from '@/features/Book';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import { useBookDetail } from '@/features/Book/hooks/useBookDetail';
-import React from 'react';
-import { bottomSheet } from '@/modules/BottomSheet';
+import React, { useState } from 'react';
 import AddBookToWell from '@/features/Book/components/BottomSheet/AddBookToWell';
 import MainLayout from '@/layouts/MainLayout';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
+import { AnimatePresence } from 'framer-motion';
+import BottomSheet from '@/modules/BottomSheet/BottomSheet';
 
 interface Props {
   params: {
@@ -22,6 +23,7 @@ interface Props {
 
 function BookPage({ params: { id } }: Props) {
   const { bookData } = useBookDetail(id);
+  const [open, setOpen] = useState(false);
   useScroll({ categoryColor: undefined });
 
   return (
@@ -40,14 +42,7 @@ function BookPage({ params: { id } }: Props) {
             <AddButton
               text='우물에 책 추가하기'
               categoryId='novel'
-              onClick={() =>
-                runWhenLoggedIn(() =>
-                  bottomSheet.open({
-                    sheetKey: 'add_book',
-                    children: <AddBookToWell bookId={id} />,
-                  })
-                )
-              }
+              onClick={() => runWhenLoggedIn(() => setOpen(true))}
             />
             <MajorTagList type='pros' tagData={bookData?.tags_pos} />
             <MajorTagList type='cons' tagData={bookData?.tags_neg} />
@@ -55,6 +50,13 @@ function BookPage({ params: { id } }: Props) {
           <BookDetail bookId={id} />
         </div>
       </MainLayout>
+      <AnimatePresence>
+        {open && (
+          <BottomSheet sheetKey='add_book'>
+            <AddBookToWell bookId={id} />
+          </BottomSheet>
+        )}
+      </AnimatePresence>
     </>
   );
 }

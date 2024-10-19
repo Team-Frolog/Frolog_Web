@@ -5,7 +5,7 @@ import Rating from '@/components/Rating/Rating';
 import Tag from '@/components/Tag/Tag';
 import { GetBookRes } from '@frolog/frolog-api';
 import { getTagById } from '@/utils/getTags';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 
@@ -15,6 +15,7 @@ interface Props {
 
 function BookListItem({ bookData }: Props) {
   const router = useRouter();
+  const wellId = useSearchParams().get('wellId');
   const {
     isbn,
     image_url,
@@ -31,7 +32,9 @@ function BookListItem({ bookData }: Props) {
 
   return (
     <div
-      onClick={() => router.push(`/book/${isbn}`)}
+      onClick={() =>
+        router.push(`/book/${isbn}${wellId ? `?wellId=${wellId}` : ''}`)
+      }
       className='flex w-full cursor-pointer gap-[20px] text-gray-800'
     >
       <Image
@@ -45,14 +48,14 @@ function BookListItem({ bookData }: Props) {
         <div className='flex flex-col gap-[4px]'>
           {has_review && (
             <div className='flex'>
-              <span className='text-caption-bold box-border rounded-[20px] bg-main px-[8px] py-[4px] text-white'>
+              <span className='box-border rounded-[20px] bg-main px-[8px] py-[4px] text-caption-bold text-white'>
                 내가 리뷰한 책
               </span>
             </div>
           )}
 
           <h5 className='text-body-xl-bold'>{title}</h5>
-          <ul className='text-caption-bold flex text-gray-600'>
+          <ul className='flex text-caption-bold text-gray-600'>
             <li className="after:content-['|']">
               <span className='pr-[6px]'>
                 {author}

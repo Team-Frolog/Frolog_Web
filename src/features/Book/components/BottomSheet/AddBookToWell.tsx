@@ -1,8 +1,9 @@
+'use client';
+
+import React from 'react';
 import { IMAGES } from '@/constants/images';
 import { bottomSheet } from '@/modules/BottomSheet';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
-import React from 'react';
 import { useAddBookToWell } from '../../hooks/useAddBookToWell';
 
 interface Props {
@@ -10,8 +11,8 @@ interface Props {
 }
 
 function AddBookToWell({ bookId }: Props) {
-  const wellId = useSearchParams().get('wellId');
-  const { reviewCount } = useAddBookToWell(bookId, wellId);
+  const { reviewCount, handleAddReadBook, handleAddReadingBook } =
+    useAddBookToWell(bookId);
 
   return (
     <div className='flex w-full flex-col gap-[20px] pb-[32px] pt-[28px] text-title-xl-bold text-gray-800'>
@@ -19,6 +20,7 @@ function AddBookToWell({ bookId }: Props) {
         type='button'
         onClick={() => {
           bottomSheet.closeSheet();
+          handleAddReadBook();
         }}
         className='flex h-[95px] items-center justify-between gap-[20px] rounded-[12px] bg-gray-200 pl-[30px] pr-[10px]'
       >
@@ -37,6 +39,7 @@ function AddBookToWell({ bookId }: Props) {
         disabled={!!reviewCount}
         onClick={() => {
           bottomSheet.closeSheet();
+          handleAddReadingBook();
         }}
         className={`flex h-[95px] items-center justify-between gap-[20px] rounded-[12px] bg-gray-200 pl-[30px] pr-[10px] ${!!reviewCount ? 'opacity-10' : ''}`}
       >
