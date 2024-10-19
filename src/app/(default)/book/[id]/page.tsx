@@ -50,13 +50,7 @@ function BookPage({ params: { id } }: Props) {
           <BookDetail bookId={id} />
         </div>
       </MainLayout>
-      <AnimatePresence>
-        {open && (
-          <BottomSheet sheetKey='add_book'>
-            <AddBookToWell bookId={id} />
-          </BottomSheet>
-        )}
-      </AnimatePresence>
+      <AnimatePresence>{open && <AddBookToWell bookId={id} />}</AnimatePresence>
     </>
   );
 }

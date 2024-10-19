@@ -1,39 +1,37 @@
-import { useWellSheetState } from '@/store/popUpStore';
-import { AnimatePresence } from 'framer-motion';
+'use client';
+
 import React from 'react';
-import { sheetData } from '@/data/ui/bottomSheet';
-// import { Well } from '@/features/Well';
-import AlertBottomSheet from '../../../../layouts/AlertBottomSheet';
+import { Well } from '@/features/Well';
+import { useWells } from '@/features/Well/hooks/useWells';
+import { useObserver } from '@/hooks/gesture/useObserver';
+import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton';
 
-function WellSelectSheet() {
-  const isOpenWellSheet = useWellSheetState();
-  // const { changePopUpState } = usePopUpActions();
+interface Props {
+  userId: string;
+  callback: (value?: any) => void;
+}
 
-  // const handleSelectWell = () => {
-  //   changePopUpState('isOpenWellSheet', false);
-  //   changePopUpState('isOpenSelectBooksSheet', true);
-  // };
+function WellSelectSheet({ callback, userId }: Props) {
+  const { wells, hasNextPage, fetchNextPage, isFetchingNextPage, isFetched } =
+    useWells(userId);
+  const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
 
   return (
-    <AnimatePresence>
-      {isOpenWellSheet && (
-        <AlertBottomSheet sheetData={sheetData.add_another_to_well}>
-          <p className='text-body-lg'>
-            {sheetData.add_another_to_well.description!()}
-          </p>
-          <div className='grid max-h-[400px] w-full grid-cols-2 justify-center justify-items-center gap-[20px] overflow-y-auto py-[20px] pb-[40px] scrollbar-hide'>
-            {/* {wellList.map((well) => (
-              <Well
-                type='select'
-                key={well.id}
-                wellData={well}
-                onClick={handleSelectWell}
-              />
-            ))} */}
-          </div>
-        </AlertBottomSheet>
+    <div className='grid max-h-[400px] w-full grid-cols-2 justify-center justify-items-center gap-[20px] overflow-y-auto py-[20px] pb-[40px] scrollbar-hide'>
+      {!isFetched && <WellItemsSkeleton />}
+      {isFetched &&
+        wells.map((well) => (
+          <Well
+            type='select'
+            key={well.id}
+            wellData={well}
+            onClick={() => callback(well.id)}
+          />
+        ))}
+      {!isFetchingNextPage && (
+        <div ref={setTarget} id='observer' className='h-[10px]' />
       )}
-    </AnimatePresence>
+    </div>
   );
 }
 

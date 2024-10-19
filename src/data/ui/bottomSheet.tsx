@@ -66,7 +66,7 @@ export const sheetData: {
     stateType: 'isOpenDeleteSheet',
     description: () => <>메모를 한 번 삭제하면 복구할 수 없어요.</>,
   },
-  add_another_to_well: {
+  select_well: {
     getTitle: () => (
       <>
         이 책을 어떤 우물에

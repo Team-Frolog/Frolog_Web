@@ -3,16 +3,20 @@ import { getReviewCount } from '../api/book.api';
 import { useSession } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
+import { useState } from 'react';
 
 export const useAddBookToWell = (isbn: string) => {
+  const [step, setStep] = useState('state');
+  const [callback, setCallback] = useState<(value?: any) => void>(() => {});
   const wellId = useSearchParams().get('wellId');
   const { data: session } = useSession();
-  const { handleAddWellItem } = useAddWellItem(wellId || '', session?.user.id);
+  const userId = session?.user.id;
+  const { handleAddWellItem } = useAddWellItem(wellId || '', userId);
 
   const { data: reviewCount } = useQuery({
     queryKey: ['reviewCount', isbn],
-    queryFn: () => getReviewCount({ isbn, writer: session!.user.id }),
-    enabled: !!session,
+    queryFn: () => getReviewCount({ isbn, writer: userId }),
+    enabled: !!userId,
   });
 
   // 다 읽었어요
@@ -29,8 +33,14 @@ export const useAddBookToWell = (isbn: string) => {
     else {
       if (reviewCount) {
         // 우물 선택 -> 쌓기
+        setStep('select-well');
+        setCallback(
+          () => (wellId: string) =>
+            handleAddWellItem({ well_id: wellId, isbn, status: 'done' })
+        );
       } else {
         // 우물 선택 -> 리뷰 작성
+        setStep('select-well');
       }
     }
   };
@@ -44,8 +54,20 @@ export const useAddBookToWell = (isbn: string) => {
     // 검색에서 접근
     else {
       // 우물 선택 -> 쌓기
+      setStep('select-well');
+      setCallback(
+        () => (wellId: string) =>
+          handleAddWellItem({ well_id: wellId, isbn, status: 'reading' })
+      );
     }
   };
 
-  return { reviewCount, handleAddReadBook, handleAddReadingBook };
+  return {
+    step,
+    userId,
+    callback,
+    reviewCount,
+    handleAddReadBook,
+    handleAddReadingBook,
+  };
 };
