@@ -36,7 +36,8 @@ function WellTitle({
         {isRootUser && (
           <WellActionButton
             btnName='책 추가하기'
-            href={`${PAGES.SEARCH}?wellId=${wellId}`}
+            wellId={wellId}
+            href={PAGES.SEARCH}
             isPointing={isPointing}
             wellHeight={wellHeight}
           />

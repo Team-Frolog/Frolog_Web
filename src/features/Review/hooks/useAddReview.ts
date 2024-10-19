@@ -4,13 +4,13 @@ import { useSession } from 'next-auth/react';
 import { flash } from '@/modules/Flash';
 import { ReviewFormType } from '..';
 import { addNewReview } from '../api/review.api';
-import { useSearchParams } from 'next/navigation';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
+import { CURRENT_WELL_ID } from '@/constants/storage';
 
 export const useAddReview = (isbn: string) => {
   const { data: session } = useSession();
   const { bookData } = useBook(isbn);
-  const wellId = useSearchParams().get('wellId');
+  const wellId = localStorage.getItem(CURRENT_WELL_ID);
   const userId = session?.user.id;
   const { handleAddWellItem } = useAddWellItem(wellId, userId);
 
@@ -31,13 +31,15 @@ export const useAddReview = (isbn: string) => {
     },
     onSuccess: (res) => {
       if (res.result) {
-        handleAddWellItem({ well_id: wellId!, isbn, status: 'reading' });
-
-        flash.open({
-          flashType: 'review',
-          bookTitle: bookData?.title,
-          callbackUrl: `/${userId}/well/${wellId}`,
-        });
+        if (wellId) {
+          handleAddWellItem({ well_id: wellId!, isbn, status: 'reading' });
+        } else {
+          flash.open({
+            flashType: 'review',
+            bookTitle: bookData?.title,
+            callbackUrl: `${userId}/well-book/${isbn}/review`,
+          });
+        }
       }
     },
   });

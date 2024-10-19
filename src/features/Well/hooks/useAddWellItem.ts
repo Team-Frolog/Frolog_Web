@@ -5,6 +5,7 @@ import { useStackMotionActions } from '@/store/stackMotionStore';
 import { usePathname, useRouter } from 'next/navigation';
 import { toast } from '@/modules/Toast';
 import { PAGES } from '@/constants/page';
+import { CURRENT_WELL_ID } from '@/constants/storage';
 
 export const useAddWellItem = (
   wellId: string | null,
@@ -20,6 +21,7 @@ export const useAddWellItem = (
       if (res.result) {
         const itemId = res.id!;
         setNewReviewId(itemId);
+        localStorage.removeItem(CURRENT_WELL_ID);
 
         if (!pathname.includes(PAGES.NEW_REVIEW)) {
           router.push(`/${userId}/well/${wellId}`);

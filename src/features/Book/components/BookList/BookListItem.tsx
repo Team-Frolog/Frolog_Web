@@ -5,7 +5,7 @@ import Rating from '@/components/Rating/Rating';
 import Tag from '@/components/Tag/Tag';
 import { GetBookRes } from '@frolog/frolog-api';
 import { getTagById } from '@/utils/getTags';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 
@@ -15,7 +15,6 @@ interface Props {
 
 function BookListItem({ bookData }: Props) {
   const router = useRouter();
-  const wellId = useSearchParams().get('wellId');
   const {
     isbn,
     image_url,
@@ -32,9 +31,7 @@ function BookListItem({ bookData }: Props) {
 
   return (
     <div
-      onClick={() =>
-        router.push(`/book/${isbn}${wellId ? `?wellId=${wellId}` : ''}`)
-      }
+      onClick={() => router.push(`/book/${isbn}$`)}
       className='flex w-full cursor-pointer gap-[20px] text-gray-800'
     >
       <Image

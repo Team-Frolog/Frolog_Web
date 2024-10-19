@@ -5,12 +5,13 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { useState } from 'react';
 import { PAGES } from '@/constants/page';
+import { CURRENT_WELL_ID } from '@/constants/storage';
 
 export const useAddBookToWell = (isbn: string) => {
   const [step, setStep] = useState<string | null>('state');
   const [callback, setCallback] = useState<(value?: any) => void>(() => {});
   const router = useRouter();
-  const wellId = useSearchParams().get('wellId');
+  const wellId = localStorage.getItem(CURRENT_WELL_ID);
   const { data: session } = useSession();
   const userId = session?.user.id;
   const { handleAddWellItem } = useAddWellItem(wellId || '', userId);
@@ -31,7 +32,8 @@ export const useAddBookToWell = (isbn: string) => {
       }
       // 1-2. 리뷰가 없는 경우 - 리뷰 작성 후 쌓기
       else {
-        router.push(`${PAGES.NEW_REVIEW}?id=${isbn}&wellId=${wellId}`);
+        localStorage.setItem(CURRENT_WELL_ID, wellId);
+        router.push(`${PAGES.NEW_REVIEW}?id=${isbn}`);
       }
     }
     // case 2. 검색에서 접근
@@ -47,10 +49,10 @@ export const useAddBookToWell = (isbn: string) => {
       // 2-2. 리뷰가 없는 경우 - 우물 선택 및 리뷰 작성 후 쌓임
       else {
         setStep('select-well');
-        setCallback(
-          () => (id: string) =>
-            router.push(`${PAGES.NEW_REVIEW}?id=${isbn}&wellId=${id}`)
-        );
+        setCallback(() => (id: string) => {
+          localStorage.setItem(CURRENT_WELL_ID, id);
+          router.push(`${PAGES.NEW_REVIEW}?id=${isbn}&wellId=${id}`);
+        });
       }
     }
   };
