@@ -6,7 +6,7 @@ import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { useState } from 'react';
 
 export const useAddBookToWell = (isbn: string) => {
-  const [step, setStep] = useState('state');
+  const [step, setStep] = useState<string | null>('state');
   const [callback, setCallback] = useState<(value?: any) => void>(() => {});
   const wellId = useSearchParams().get('wellId');
   const { data: session } = useSession();
@@ -64,6 +64,7 @@ export const useAddBookToWell = (isbn: string) => {
 
   return {
     step,
+    setStep,
     userId,
     callback,
     reviewCount,

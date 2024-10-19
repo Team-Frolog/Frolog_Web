@@ -9,6 +9,7 @@ export interface BottomSheetProps {
   children?: React.ReactNode;
   onClick?: () => void;
   onClickSubButton?: () => void;
+  onClose?: () => void;
 }
 
 class BottomSheet {

@@ -16,6 +16,7 @@ function BottomSheet({
   children,
   onClick,
   onClickSubButton,
+  onClose,
 }: BottomSheetProps) {
   useScrollFreeze();
   const { getTitle, type, frog, buttonText, extraButtonText, description } =
@@ -25,7 +26,10 @@ function BottomSheet({
 
   const ref = useRef<HTMLDivElement | null>(null);
 
-  useClickOutside(ref, () => bottomSheet.closeSheet());
+  useClickOutside(
+    ref,
+    onClose ? () => onClose() : () => bottomSheet.closeSheet()
+  );
 
   return (
     <BackDrop align='end'>

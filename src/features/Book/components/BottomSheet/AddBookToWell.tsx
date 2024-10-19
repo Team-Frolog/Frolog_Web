@@ -9,11 +9,13 @@ import { useAddBookToWell } from '../../hooks/useAddBookToWell';
 
 interface Props {
   bookId: string;
+  closeSheet: () => void;
 }
 
-function AddBookToWell({ bookId }: Props) {
+function AddBookToWell({ bookId, closeSheet }: Props) {
   const {
     step,
+    setStep,
     userId,
     callback,
     reviewCount,
@@ -21,11 +23,18 @@ function AddBookToWell({ bookId }: Props) {
     handleAddReadingBook,
   } = useAddBookToWell(bookId);
 
+  const handleClose = () => {
+    setStep(null);
+    setTimeout(() => {
+      closeSheet();
+    }, 500);
+  };
+
   return (
     <>
       <AnimatePresence>
         {step === 'state' && (
-          <BottomSheet sheetKey='add_book'>
+          <BottomSheet sheetKey='add_book' onClose={handleClose}>
             <StateSelectSheet
               reviewCount={reviewCount}
               handleAddReadBook={handleAddReadBook}
@@ -36,7 +45,7 @@ function AddBookToWell({ bookId }: Props) {
       </AnimatePresence>
       <AnimatePresence>
         {step === 'select-well' && (
-          <BottomSheet sheetKey='select_well'>
+          <BottomSheet sheetKey='select_well' onClose={handleClose}>
             {userId && <WellSelectSheet userId={userId} callback={callback} />}
           </BottomSheet>
         )}

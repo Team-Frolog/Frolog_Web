@@ -13,7 +13,6 @@ import AddBookToWell from '@/features/Book/components/BottomSheet/AddBookToWell'
 import MainLayout from '@/layouts/MainLayout';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { AnimatePresence } from 'framer-motion';
-import BottomSheet from '@/modules/BottomSheet/BottomSheet';
 
 interface Props {
   params: {
@@ -50,7 +49,11 @@ function BookPage({ params: { id } }: Props) {
           <BookDetail bookId={id} />
         </div>
       </MainLayout>
-      <AnimatePresence>{open && <AddBookToWell bookId={id} />}</AnimatePresence>
+      <AnimatePresence>
+        {open && (
+          <AddBookToWell bookId={id} closeSheet={() => setOpen(false)} />
+        )}
+      </AnimatePresence>
     </>
   );
 }
