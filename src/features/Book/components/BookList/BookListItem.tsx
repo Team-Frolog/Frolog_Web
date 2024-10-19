@@ -31,7 +31,7 @@ function BookListItem({ bookData }: Props) {
 
   return (
     <div
-      onClick={() => router.push(`/book/${isbn}$`)}
+      onClick={() => router.push(`/book/${isbn}`)}
       className='flex w-full cursor-pointer gap-[20px] text-gray-800'
     >
       <Image

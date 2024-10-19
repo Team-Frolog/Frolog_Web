@@ -41,7 +41,7 @@ export const useReviews = (bookId: string) => {
     },
   });
 
-  const isEmpty = data?.reviews.length === 0;
+  const isEmpty = data?.reviews?.length === 0;
 
   return {
     deleteReview: mutate,

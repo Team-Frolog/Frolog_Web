@@ -1,3 +1,5 @@
+'use client';
+
 import { ArrowIcon, PlusIcon } from 'public/icons';
 import { PAGES } from '@/constants/page';
 import React from 'react';
