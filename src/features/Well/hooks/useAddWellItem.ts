@@ -2,11 +2,16 @@ import { PostWellItemReq } from '@frolog/frolog-api';
 import { useMutation } from '@tanstack/react-query';
 import { addWellItem } from '../api/well.api';
 import { useStackMotionActions } from '@/store/stackMotionStore';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { toast } from '@/modules/Toast';
+import { PAGES } from '@/constants/page';
 
-export const useAddWellItem = (wellId: string, userId: string | undefined) => {
+export const useAddWellItem = (
+  wellId: string | null,
+  userId: string | undefined
+) => {
   const router = useRouter();
+  const pathname = usePathname();
   const { setNewReviewId } = useStackMotionActions();
 
   const { mutate: handleAddWellItem } = useMutation({
@@ -15,7 +20,10 @@ export const useAddWellItem = (wellId: string, userId: string | undefined) => {
       if (res.result) {
         const itemId = res.id!;
         setNewReviewId(itemId);
-        router.push(`/${userId}/well/${wellId}`);
+
+        if (!pathname.includes(PAGES.NEW_REVIEW)) {
+          router.push(`/${userId}/well/${wellId}`);
+        }
       } else {
         toast.error('아이템 추가에 실패했습니다.');
       }

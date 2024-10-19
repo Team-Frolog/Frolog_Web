@@ -1,20 +1,23 @@
 import { useMutation } from '@tanstack/react-query';
 import { useBook } from '@/features/Book';
-import { useStackMotionActions } from '@/store/stackMotionStore';
 import { useSession } from 'next-auth/react';
 import { flash } from '@/modules/Flash';
 import { ReviewFormType } from '..';
 import { addNewReview } from '../api/review.api';
+import { useSearchParams } from 'next/navigation';
+import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 
 export const useAddReview = (isbn: string) => {
   const { data: session } = useSession();
   const { bookData } = useBook(isbn);
-  const { setNewReviewId } = useStackMotionActions();
+  const wellId = useSearchParams().get('wellId');
+  const userId = session?.user.id;
+  const { handleAddWellItem } = useAddWellItem(wellId, userId);
 
   const { mutate: handleAddReview } = useMutation({
     mutationFn: (data: ReviewFormType) => {
       const reqData = {
-        writer: session!.user.id,
+        writer: userId!,
         isbn,
         tags_pos: data.pros,
         tags_neg: data.cons,
@@ -26,13 +29,16 @@ export const useAddReview = (isbn: string) => {
       const result = addNewReview(reqData);
       return result;
     },
-    onSuccess: (result) => {
-      setNewReviewId(result.id!);
-      flash.open({
-        flashType: 'review',
-        bookTitle: bookData?.title,
-        callbackUrl: `/`,
-      }); // TODO: 우물 id 가져와서 적용
+    onSuccess: (res) => {
+      if (res.result) {
+        handleAddWellItem({ well_id: wellId!, isbn, status: 'reading' });
+
+        flash.open({
+          flashType: 'review',
+          bookTitle: bookData?.title,
+          callbackUrl: `/${userId}/well/${wellId}`,
+        });
+      }
     },
   });
 
