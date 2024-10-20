@@ -1,21 +1,16 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { getCategories } from '../api/search.api';
 
 export const useCategory = () => {
   const searchValue = useSearchParams().get('query');
 
-  const { data } = useSuspenseQuery({
+  const { data, isLoading, isFetched } = useQuery({
     queryKey: ['category', searchValue],
-    queryFn: async () => {
-      if (searchValue === null) {
-        return [];
-      }
-      const res = await getCategories({ q: searchValue! });
-      return res;
-    },
+    queryFn: () => getCategories({ q: searchValue! }),
+    enabled: searchValue !== null,
     select: (fetchedData) => fetchedData.sort((a, b) => b.count - a.count),
   });
 
-  return { categoryData: data, searchValue };
+  return { categoryData: data, searchValue, isLoading, isFetched };
 };
