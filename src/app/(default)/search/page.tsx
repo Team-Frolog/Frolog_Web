@@ -1,7 +1,17 @@
+import SearchResultSkeleton from '@/components/Fallback/Skeleton/SearchResultSkeleton';
 import TitleHeader from '@/components/Header/TitleHeader';
-import { SearchHeader, SearchResult } from '@/features/Search';
+import { SearchHeader } from '@/features/Search';
 import MainLayout from '@/layouts/MainLayout';
+import dynamic from 'next/dynamic';
 import React from 'react';
+
+const SearchResult = dynamic(
+  () => import('@/features/Search/components/SearchResult'),
+  {
+    ssr: false,
+    loading: () => <SearchResultSkeleton />,
+  }
+);
 
 function SearchPage() {
   return (
@@ -16,7 +26,7 @@ function SearchPage() {
         <SearchHeader />
       </div>
 
-      <MainLayout isCenter={false} extraClass='px-[24px]'>
+      <MainLayout isCenter={false} extraClass='px-[24px] bg-white'>
         <SearchResult />
       </MainLayout>
     </>

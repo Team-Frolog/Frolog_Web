@@ -36,17 +36,13 @@ function SearchResult() {
     fetchNextPage,
   });
 
-  const handleClickLogin = () => {
-    router.push(PAGES.LANDING);
-  };
-
   const handleNoBookClick = () => {
     if (session) {
       changePopUpState('isOpenAlertSheet', true);
     } else {
       bottomSheet.open({
         sheetKey: 'need_to_login',
-        onClick: handleClickLogin,
+        onClick: () => router.push(PAGES.LANDING),
       });
     }
   };
