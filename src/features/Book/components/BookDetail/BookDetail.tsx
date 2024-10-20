@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Tap from '@/components/Tap/Tap';
 import BookInfo from './BookInfo';
-import ReviewsForBook from './ReviewsForBook';
+import ReviewsForBook from '../ReviewsForBook/ReviewsForBook';
 
 interface Props {
   bookId: string;

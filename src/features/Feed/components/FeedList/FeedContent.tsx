@@ -8,10 +8,11 @@ import React from 'react';
 import { isGetMemoRes } from '../../utils/typeGuard';
 
 interface Props {
+  isFeed?: boolean;
   feedData: GetReviewRes | GetMemoRes;
 }
 
-function FeedContent({ feedData }: Props) {
+function FeedContent({ feedData, isFeed = true }: Props) {
   return (
     <div className='flex flex-col gap-[20px] bg-white py-[20px]'>
       {isGetMemoRes(feedData) ? (
@@ -50,9 +51,11 @@ function FeedContent({ feedData }: Props) {
           </div>
         </>
       )}
-      <span className='px-page text-body-md text-gray-600'>
-        {formatDate(feedData.date)}
-      </span>
+      {isFeed && (
+        <span className='px-page text-body-md text-gray-600'>
+          {formatDate(feedData.date)}
+        </span>
+      )}
     </div>
   );
 }
