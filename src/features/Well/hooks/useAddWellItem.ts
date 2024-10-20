@@ -6,28 +6,40 @@ import { toast } from '@/modules/Toast';
 import { PAGES } from '@/constants/page';
 import { CURRENT_WELL_ID } from '@/constants/storage';
 import { addWellItem } from '../api/well.api';
+import { useState } from 'react';
 
 export const useAddWellItem = (
   wellId: string | null,
   userId: string | undefined
 ) => {
   const router = useRouter();
+  const [well, setWell] = useState(wellId);
   const pathname = usePathname();
   const { setNewReviewId } = useStackMotionActions();
 
   const { mutate: handleAddWellItem } = useMutation({
-    mutationFn: (req: PostWellItemReq) => addWellItem(req),
+    mutationFn: async (req: PostWellItemReq) => {
+      setWell(req.well_id);
+      return await addWellItem(req);
+    },
     onSuccess: (res) => {
-      if (res.result) {
-        const itemId = res.id!;
-        setNewReviewId(itemId);
-        localStorage.removeItem(CURRENT_WELL_ID);
+      if (!res.result) {
+        toast.error('아이템 추가에 실패했습니다.');
+        return;
+      }
 
-        if (!pathname.includes(PAGES.NEW_REVIEW)) {
-          router.push(`/${userId}/well/${wellId}`);
+      const itemId = res.id!;
+      const isAfterReview = pathname.includes(PAGES.NEW_REVIEW);
+      const isExisting = res.existing;
+
+      if (isExisting) {
+        if (!isAfterReview) {
+          toast.error('이미 해당 우물에 쌓인 책이에요!');
         }
       } else {
-        toast.error('아이템 추가에 실패했습니다.');
+        setNewReviewId(itemId);
+        localStorage.removeItem(CURRENT_WELL_ID);
+        router.push(`/${userId}/well/${well}`);
       }
     },
   });

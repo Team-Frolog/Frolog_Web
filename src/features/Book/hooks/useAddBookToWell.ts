@@ -51,7 +51,7 @@ export const useAddBookToWell = (isbn: string) => {
         setStep('select-well');
         setCallback(() => (id: string) => {
           localStorage.setItem(CURRENT_WELL_ID, id);
-          router.push(`${PAGES.NEW_REVIEW}?id=${isbn}&wellId=${id}`);
+          router.push(`${PAGES.NEW_REVIEW}?id=${isbn}`);
         });
       }
     }

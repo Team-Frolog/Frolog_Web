@@ -32,14 +32,16 @@ export const useAddReview = (isbn: string) => {
     onSuccess: (res) => {
       if (res.result) {
         if (wellId) {
-          handleAddWellItem({ well_id: wellId!, isbn, status: 'reading' });
-        } else {
-          flash.open({
-            flashType: 'review',
-            bookTitle: bookData?.title,
-            callbackUrl: `${userId}/well-book/${isbn}/review`,
-          });
+          handleAddWellItem({ well_id: wellId, isbn, status: 'done' });
         }
+        flash.open({
+          flashType: 'review',
+          bookTitle: bookData?.title,
+          callbackUrl: wellId
+            ? `/${userId}/well/${wellId}`
+            : `${userId}/well-book/${isbn}/review`,
+        });
+        localStorage.removeItem(CURRENT_WELL_ID);
       }
     },
   });
