@@ -56,7 +56,7 @@ export const sheetData: {
     buttonText: '네, 삭제할게요',
     extraButtonText: '아니요, 유지할게요',
     stateType: 'isOpenDeleteSheet',
-    description: () => <>리뷰를 한 번 삭제하면 복구할 수 없어요.</>,
+    description: () => <>리뷰를 삭제하면, 메모도 같이 삭제돼요.</>,
   },
   delete_memo: {
     getTitle: () => <>이 메모를 삭제할까요?</>,
