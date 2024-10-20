@@ -23,7 +23,7 @@ function WellList({ userId, isRootUser }: Props) {
   const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
 
   return (
-    <div className='relative flex w-full flex-col bg-gray-300 pb-[30px] text-gray-800'>
+    <div className='relative flex w-full flex-col bg-gray-300 pb-[36px] text-gray-800'>
       <div className='grid grid-cols-2 gap-[24px] px-page py-[12px]'>
         {isRootUser && <WellAddButton />}
         {wells?.map((well) => <Well key={well.id} wellData={well} />)}

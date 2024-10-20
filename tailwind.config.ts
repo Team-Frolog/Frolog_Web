@@ -16,6 +16,9 @@ const config: Config = {
       pattern: /text-category-./,
     },
     {
+      pattern: /border-category-./,
+    },
+    {
       pattern: /button-./,
     },
     {
