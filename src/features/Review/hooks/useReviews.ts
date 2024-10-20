@@ -7,13 +7,17 @@ import {
 import { SearchReviewRes } from '@frolog/frolog-api';
 import { deleteReview, getReviewList } from '../api/review.api';
 
-export const useReviews = (bookId: string) => {
+export const useReviews = (bookId: string, userId: string) => {
   const [reviewId, setReviewId] = useState<string>('');
   const queryClient = useQueryClient();
 
   const { data, isFetched } = useSuspenseQuery({
     queryKey: ['myReviews', bookId],
-    queryFn: () => getReviewList(bookId),
+    queryFn: () =>
+      getReviewList({
+        isbn: bookId,
+        writer: userId,
+      }),
     refetchOnWindowFocus: false,
   });
 

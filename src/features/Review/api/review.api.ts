@@ -1,6 +1,7 @@
 import { baseOptions } from '@/api/options';
-import { getSession } from 'next-auth/react';
+import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
+import { toast } from '@/modules/Toast';
 import {
   DeleteReview,
   EditReview,
@@ -9,6 +10,7 @@ import {
   PostReview,
   PostReviewReq,
   SearchReview,
+  SearchReviewReq,
 } from '@frolog/frolog-api';
 
 const postReview = new PostReview(baseOptions);
@@ -27,7 +29,7 @@ export const getReviewDetail = async (reviewId: string) => {
     const result = await getReview.fetch({ id: reviewId });
     return result;
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
   }
 };
 
@@ -36,18 +38,18 @@ export const editReview = async (req: EditReviewReq) => {
   return result;
 };
 
-export const getReviewList = async (bookId: string) => {
+export const getReviewList = async (req: SearchReviewReq) => {
   try {
-    const session = await getSession();
-    if (!session) return;
-
-    const result = await searchReview.fetch({
-      isbn: bookId,
-      writer: session.user.id,
-    });
+    const result = await searchReview.fetch(req);
     return result;
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
+    return {
+      reviews: [],
+      count: 0,
+      limit: DEFAULT_LIMIT,
+      page: 0,
+    };
   }
 };
 

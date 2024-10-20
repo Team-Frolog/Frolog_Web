@@ -12,8 +12,10 @@ interface Props {
 }
 
 function ReviewList({ bookId, userId }: Props) {
-  const { reviews, setReviewId, deleteReview, isEmpty, isFetched } =
-    useReviews(bookId);
+  const { reviews, setReviewId, deleteReview, isEmpty, isFetched } = useReviews(
+    bookId,
+    userId
+  );
 
   return (
     <div className='z-10 flex w-full flex-1 flex-col gap-[12px]'>
