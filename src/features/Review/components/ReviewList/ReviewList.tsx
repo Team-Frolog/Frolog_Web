@@ -20,7 +20,7 @@ function ReviewList({ bookId, userId }: Props) {
       {isEmpty && isFetched && (
         <EmptyContentFrog title='책을 다 읽으셨으면 이제 리뷰를 써보세요!' />
       )}
-      {!isEmpty && (
+      {!isEmpty && isFetched && (
         <>
           <ReviewListItem
             key={reviews[0].id}
