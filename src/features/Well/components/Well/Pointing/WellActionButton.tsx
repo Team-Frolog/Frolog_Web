@@ -4,8 +4,8 @@ import { ArrowIcon, PlusIcon } from 'public/icons';
 import { PAGES } from '@/constants/page';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import Pointing from './Pointing';
 import useAddBookStore from '@/store/addBookStore';
+import Pointing from './Pointing';
 
 interface Props {
   type?: 'arrow' | 'plus';
