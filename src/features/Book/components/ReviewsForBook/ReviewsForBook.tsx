@@ -8,6 +8,7 @@ import NoReviewForBook from './NoReviewForBook';
 import ReviewItem from './ReviewItem';
 import { useBookDetail } from '../../hooks/useBookDetail';
 import NeedToLoginBlur from './NeedToLoginBlur';
+import { useLikeReview } from '../../hooks/useLikeReview';
 
 interface Props {
   bookId: string;
@@ -25,6 +26,7 @@ function ReviewsForBook({ bookId }: Props) {
   } = useReviewForBook(bookId);
   const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
   const { bookData } = useBookDetail(bookId);
+  const { handleChangeLike } = useLikeReview(bookId);
 
   if (!bookData) return <></>;
 
@@ -37,6 +39,7 @@ function ReviewsForBook({ bookId }: Props) {
             key={reviews[0].id}
             reviewData={reviews[0]}
             category={bookData?.category}
+            onClickLike={() => {}}
           />
           <NeedToLoginBlur />
         </>
@@ -47,6 +50,9 @@ function ReviewsForBook({ bookId }: Props) {
             key={review.id}
             reviewData={review}
             category={bookData?.category}
+            onClickLike={() =>
+              handleChangeLike({ id: review.id, value: !review.like })
+            }
           />
         ))}
       {!isFetchingNextPage && session && (

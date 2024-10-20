@@ -14,9 +14,10 @@ import ReviewItemHeader from './ReviewItemHeader';
 interface Props {
   reviewData: GetReviewRes;
   category: string;
+  onClickLike: () => void;
 }
 
-function ReviewItem({ reviewData, category }: Props) {
+function ReviewItem({ reviewData, category, onClickLike }: Props) {
   const router = useRouter();
 
   return (
@@ -39,7 +40,7 @@ function ReviewItem({ reviewData, category }: Props) {
             <LikeButton
               isLiked={reviewData.like ?? false}
               likeCount={reviewData.like_count || 0}
-              onClickLike={() => runWhenLoggedIn(() => {}, 'feed')}
+              onClickLike={() => runWhenLoggedIn(onClickLike, 'feed')}
             />
             <motion.button
               whileTap={{ scale: 1.1 }}
