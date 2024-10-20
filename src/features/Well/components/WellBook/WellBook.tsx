@@ -26,8 +26,8 @@ function WellBook({ userId, wellBook }: Props) {
       onClick={() =>
         router.push(
           isReading
-            ? `${userId}/well-book/${isbn}/memo`
-            : `${userId}/well-book/${isbn}/review`
+            ? `/${userId}/well-book/${isbn}/memo`
+            : `/${userId}/well-book/${isbn}/review`
         )
       }
       variants={newReviewId ? staggerItemVariants : undefined}

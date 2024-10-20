@@ -10,20 +10,13 @@ import DeleteButton from '@/components/ListItem/DeleteButton';
 import { useSession } from 'next-auth/react';
 
 interface Props {
-  index: number;
   reviewData: GetReviewRes;
   setReviewId: React.Dispatch<React.SetStateAction<string>>;
   onDelete: () => void;
   userId: string;
 }
 
-function ReviewListItem({
-  reviewData,
-  index,
-  setReviewId,
-  onDelete,
-  userId,
-}: Props) {
+function ReviewListItem({ reviewData, setReviewId, onDelete, userId }: Props) {
   const router = useRouter();
   const { data: session } = useSession();
   const isRootUser = userId === session?.user.id;
@@ -41,11 +34,6 @@ function ReviewListItem({
           }
           className='flex w-full cursor-pointer flex-col gap-[12px] px-[24px]'
         >
-          <div>
-            <span className='rounded-[20px] bg-gray-800 px-[10px] py-[6px] text-body-sm-bold text-white'>
-              {index}번째 리뷰
-            </span>
-          </div>
           <Rating rating={reviewData.rating} textClass='text-heading-lg-bold' />
           <h3 className='break-all text-title-xl-bold'>{reviewData.title}</h3>
         </div>

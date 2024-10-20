@@ -20,10 +20,6 @@ function FirstReviewItem() {
       />
       <span className='text-body-lg text-gray-600'>
         우물에 소중한 한 권의 책이 더해졌어요 📚
-        <br />
-        앞으로도 리뷰로 우물을 가득 채워주세요!
-        <br />
-        당신의 리뷰를 기다리고 있어요~ 😊
       </span>
     </div>
   );

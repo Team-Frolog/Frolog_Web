@@ -11,8 +11,8 @@ export const useReviews = (bookId: string) => {
   const [reviewId, setReviewId] = useState<string>('');
   const queryClient = useQueryClient();
 
-  const { data } = useSuspenseQuery({
-    queryKey: ['myReviews'],
+  const { data, isFetched } = useSuspenseQuery({
+    queryKey: ['myReviews', bookId],
     queryFn: () => getReviewList(bookId),
     refetchOnWindowFocus: false,
   });
@@ -20,24 +20,25 @@ export const useReviews = (bookId: string) => {
   const { mutate } = useMutation({
     mutationFn: () => deleteReview(reviewId),
     onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey: ['myReviews'] });
+      await queryClient.cancelQueries({ queryKey: ['myReviews', bookId] });
 
       const previousReviews = queryClient.getQueryData([
         'myReviews',
+        bookId,
       ]) as SearchReviewRes;
 
       queryClient.setQueryData(
-        ['myReviews'],
+        ['myReviews', bookId],
         previousReviews.reviews.filter((review) => review.id !== reviewId)
       );
 
       return { previousReviews };
     },
     onError: (_err, _variable, context) => {
-      queryClient.setQueryData(['myReviews'], context?.previousReviews);
+      queryClient.setQueryData(['myReviews', bookId], context?.previousReviews);
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['myReviews'] });
+      queryClient.invalidateQueries({ queryKey: ['myReviews', bookId] });
     },
   });
 
@@ -48,5 +49,6 @@ export const useReviews = (bookId: string) => {
     reviews: data?.reviews || [],
     setReviewId,
     isEmpty,
+    isFetched,
   };
 };

@@ -23,7 +23,7 @@ export const useMemos = (bookId: string) => {
 
   const { data, hasNextPage, fetchNextPage, isFetched, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
-      queryKey: ['memos', bookId],
+      queryKey: ['myMemos', bookId],
       queryFn: async ({ pageParam }) => getMemos(bookId, pageParam),
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {
@@ -43,14 +43,14 @@ export const useMemos = (bookId: string) => {
   const { mutate: handleDeleteMemo } = useMutation({
     mutationFn: () => deleteMemo({ id: memoId }),
     onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey: ['memos', bookId] });
+      await queryClient.cancelQueries({ queryKey: ['myMemos', bookId] });
 
       const previousMemos = queryClient.getQueryData([
-        'memos',
+        'myMemos',
         bookId,
       ]) as SearchMemoRes;
 
-      queryClient.setQueryData(['memos', bookId], (oldData: MemoData) => ({
+      queryClient.setQueryData(['myMemos', bookId], (oldData: MemoData) => ({
         ...oldData,
         pages: oldData.pages.map((page) => ({
           ...page,
@@ -61,10 +61,10 @@ export const useMemos = (bookId: string) => {
       return { previousMemos };
     },
     onError: (_err, _variable, context) => {
-      queryClient.setQueryData(['memos', bookId], context?.previousMemos);
+      queryClient.setQueryData(['myMemos', bookId], context?.previousMemos);
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['memos', bookId] });
+      queryClient.invalidateQueries({ queryKey: ['myMemos', bookId] });
     },
   });
 
