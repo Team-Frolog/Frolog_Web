@@ -1,6 +1,12 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
+import CategoryResultSkeleton from '@/components/Fallback/Skeleton/CategoryResultSkeleton';
 import SearchInput from './SearchInput';
-import CategoryResult from './Category/CategoryResult';
+
+const CategoryResult = dynamic(() => import('./Category/CategoryResult'), {
+  ssr: false,
+  loading: () => <CategoryResultSkeleton />,
+});
 
 function SearchHeader() {
   return (

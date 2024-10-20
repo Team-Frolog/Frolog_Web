@@ -8,6 +8,7 @@ import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useSession } from 'next-auth/react';
+import BookListItemSkeleton from '@/components/Fallback/Skeleton/BookListItemSkeleton';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
 import { useSearch } from '../hooks/useSearch';
 import SearchResultEmpty from './SearchResultEmpty';
@@ -22,6 +23,7 @@ function SearchResult() {
     isFetching,
     hasNextPage,
     fetchNextPage,
+    isFetchingNextPage,
   } = useSearch();
   const { data: session } = useSession();
   const router = useRouter();
@@ -59,7 +61,16 @@ function SearchResult() {
       )}
 
       {isSearched && <NoBookButton onClick={handleNoBookClick} />}
-      <div ref={setTarget} id='observer' className='h-[10px]' />
+      {isFetchingNextPage && (
+        <>
+          <BookListItemSkeleton />
+          <BookListItemSkeleton />
+          <BookListItemSkeleton />
+        </>
+      )}
+      {!isFetchingNextPage && (
+        <div ref={setTarget} id='observer' className='h-[10px]' />
+      )}
       <AnimatePresence>{isOpenAlert && <BookRegisterSheet />}</AnimatePresence>
     </div>
   );

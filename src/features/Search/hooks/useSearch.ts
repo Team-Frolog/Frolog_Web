@@ -18,7 +18,7 @@ export const useSearch = () => {
     });
   }, [queryClient, searchValue, category]);
 
-  const { data, fetchNextPage, hasNextPage, isFetching } =
+  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
       queryKey: ['search', [searchValue, category]],
       queryFn: async ({ pageParam }) => {
@@ -61,5 +61,6 @@ export const useSearch = () => {
     hasNextPage,
     isFetching,
     isSearched,
+    isFetchingNextPage,
   };
 };
