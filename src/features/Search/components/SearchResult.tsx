@@ -3,8 +3,7 @@
 import React from 'react';
 import { BookListItem } from '@/features/Book';
 import usePopUpStore from '@/store/popUpStore';
-import { LOGIN_CALLBACK } from '@/constants/storage';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
 import { bottomSheet } from '@/modules/BottomSheet';
@@ -26,8 +25,6 @@ function SearchResult() {
   } = useSearch();
   const { data: session } = useSession();
   const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const { isOpenAlert, changePopUpState } = usePopUpStore((state) => ({
     isOpenAlert: state.isOpenAlertSheet,
@@ -40,8 +37,6 @@ function SearchResult() {
   });
 
   const handleClickLogin = () => {
-    const callbackUrl = `${pathname}?${searchParams}`;
-    sessionStorage.setItem(LOGIN_CALLBACK, callbackUrl);
     router.push(PAGES.LANDING);
   };
 
