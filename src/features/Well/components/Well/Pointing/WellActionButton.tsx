@@ -4,8 +4,8 @@ import { ArrowIcon, PlusIcon } from 'public/icons';
 import { PAGES } from '@/constants/page';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { CURRENT_WELL_ID } from '@/constants/storage';
 import Pointing from './Pointing';
+import useAddBookStore from '@/store/addBookStore';
 
 interface Props {
   type?: 'arrow' | 'plus';
@@ -25,6 +25,7 @@ function WellActionButton({
   isPointing = false,
 }: Props) {
   const router = useRouter();
+  const { setWellId } = useAddBookStore((state) => state.actions);
 
   return (
     <div className='flex flex-col items-center gap-[6px]'>
@@ -33,7 +34,7 @@ function WellActionButton({
           type='button'
           onClick={() => {
             if (wellId) {
-              localStorage.setItem(CURRENT_WELL_ID, wellId);
+              setWellId(wellId);
             }
             router.push(href);
           }}

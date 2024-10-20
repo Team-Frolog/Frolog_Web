@@ -4,27 +4,29 @@ import { useStackMotionActions } from '@/store/stackMotionStore';
 import { usePathname, useRouter } from 'next/navigation';
 import { toast } from '@/modules/Toast';
 import { PAGES } from '@/constants/page';
-import { CURRENT_WELL_ID } from '@/constants/storage';
 import { addWellItem } from '../api/well.api';
+import useAddBookStore from '@/store/addBookStore';
 import { useState } from 'react';
 
-export const useAddWellItem = (
-  wellId: string | null,
-  userId: string | undefined
-) => {
+export const useAddWellItem = (userId: string | undefined) => {
+  const [isThroughSearch, setIsThroughSearch] = useState(false);
   const router = useRouter();
-  const [well, setWell] = useState(wellId);
+  const {
+    wellId,
+    actions: { resetWellId, setWellId },
+  } = useAddBookStore();
   const pathname = usePathname();
   const { setNewReviewId } = useStackMotionActions();
 
   const { mutate: handleAddWellItem } = useMutation({
-    mutationFn: async (req: PostWellItemReq) => {
-      setWell(req.well_id);
-      return await addWellItem(req);
-    },
+    mutationFn: (req: PostWellItemReq) => addWellItem(req),
     onSuccess: (res) => {
       if (!res.result) {
         toast.error('아이템 추가에 실패했습니다.');
+
+        if (isThroughSearch) {
+          resetWellId();
+        }
         return;
       }
 
@@ -36,13 +38,22 @@ export const useAddWellItem = (
         if (!isAfterReview) {
           toast.error('이미 해당 우물에 쌓인 책이에요!');
         }
+        if (isThroughSearch) {
+          resetWellId();
+        }
       } else {
         setNewReviewId(itemId);
-        localStorage.removeItem(CURRENT_WELL_ID);
-        router.push(`/${userId}/well/${well}`);
+        resetWellId();
+        router.push(`/${userId}/well/${wellId}`);
       }
     },
   });
 
-  return { handleAddWellItem };
+  return {
+    wellId,
+    handleAddWellItem,
+    resetWellId,
+    setWellId,
+    setIsThroughSearch,
+  };
 };

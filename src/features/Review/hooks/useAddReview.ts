@@ -3,19 +3,17 @@ import { useBook } from '@/features/Book';
 import { useSession } from 'next-auth/react';
 import { flash } from '@/modules/Flash';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
-import { CURRENT_WELL_ID } from '@/constants/storage';
 import { addNewReview } from '../api/review.api';
 import { ReviewFormType } from '..';
 
 export const useAddReview = (isbn: string) => {
   const { data: session } = useSession();
   const { bookData } = useBook(isbn);
-  const wellId = localStorage.getItem(CURRENT_WELL_ID);
   const userId = session?.user.id;
-  const { handleAddWellItem } = useAddWellItem(wellId, userId);
+  const { handleAddWellItem, wellId, resetWellId } = useAddWellItem(userId);
 
   const { mutate: handleAddReview } = useMutation({
-    mutationFn: (data: ReviewFormType) => {
+    mutationFn: async (data: ReviewFormType) => {
       const reqData = {
         writer: userId!,
         isbn,
@@ -26,7 +24,7 @@ export const useAddReview = (isbn: string) => {
         rating: data.rating!,
       };
 
-      const result = addNewReview(reqData);
+      const result = await addNewReview(reqData);
       return result;
     },
     onSuccess: (res) => {
@@ -41,7 +39,7 @@ export const useAddReview = (isbn: string) => {
             ? `/${userId}/well/${wellId}`
             : `${userId}/well-book/${isbn}/review`,
         });
-        localStorage.removeItem(CURRENT_WELL_ID);
+        resetWellId();
       }
     },
   });

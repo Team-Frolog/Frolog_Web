@@ -4,17 +4,16 @@ import { useRouter } from 'next/navigation';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { useState } from 'react';
 import { PAGES } from '@/constants/page';
-import { CURRENT_WELL_ID } from '@/constants/storage';
 import { getReviewCount } from '../api/book.api';
 
 export const useAddBookToWell = (isbn: string) => {
   const [step, setStep] = useState<string | null>('state');
   const [callback, setCallback] = useState<(value?: any) => void>(() => {});
   const router = useRouter();
-  const wellId = localStorage.getItem(CURRENT_WELL_ID);
   const { data: session } = useSession();
   const userId = session?.user.id;
-  const { handleAddWellItem } = useAddWellItem(wellId || '', userId);
+  const { handleAddWellItem, wellId, setWellId, setIsThroughSearch } =
+    useAddWellItem(userId);
 
   const { data: reviewCount } = useQuery({
     queryKey: ['reviewCount', isbn],
@@ -32,25 +31,25 @@ export const useAddBookToWell = (isbn: string) => {
       }
       // 1-2. 리뷰가 없는 경우 - 리뷰 작성 후 쌓기
       else {
-        localStorage.setItem(CURRENT_WELL_ID, wellId);
         router.push(`${PAGES.NEW_REVIEW}?id=${isbn}`);
       }
     }
     // case 2. 검색에서 접근
     else {
+      setIsThroughSearch(true);
       // 2-1. 기존 리뷰가 있는 경우 - 우물 선택 후 쌓기
       if (reviewCount) {
         setStep('select-well');
-        setCallback(
-          () => (id: string) =>
-            handleAddWellItem({ well_id: id, isbn, status: 'done' })
-        );
+        setCallback(() => (id: string) => {
+          setWellId(id);
+          handleAddWellItem({ well_id: id, isbn, status: 'done' });
+        });
       }
       // 2-2. 리뷰가 없는 경우 - 우물 선택 및 리뷰 작성 후 쌓임
       else {
         setStep('select-well');
         setCallback(() => (id: string) => {
-          localStorage.setItem(CURRENT_WELL_ID, id);
+          setWellId(id);
           router.push(`${PAGES.NEW_REVIEW}?id=${isbn}`);
         });
       }
@@ -65,11 +64,12 @@ export const useAddBookToWell = (isbn: string) => {
     }
     // case 2. 검색에서 접근 - 우물 선택 후 쌓기
     else {
+      setIsThroughSearch(true);
       setStep('select-well');
-      setCallback(
-        () => (id: string) =>
-          handleAddWellItem({ well_id: id, isbn, status: 'reading' })
-      );
+      setCallback(() => (id: string) => {
+        setWellId(id);
+        handleAddWellItem({ well_id: id, isbn, status: 'reading' });
+      });
     }
   };
 
