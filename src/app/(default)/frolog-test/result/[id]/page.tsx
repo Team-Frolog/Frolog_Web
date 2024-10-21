@@ -1,9 +1,7 @@
-import StartButton from '@/features/Test/components/StartButton';
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 import React from 'react';
-import { testResult } from '@/features/Test';
-import HeaderButtons from '@/features/Test/components/HeaderButtons';
+import { testResult, HeaderButtons, StartButton } from '@/features/Test';
 
 interface Props {
   params: {

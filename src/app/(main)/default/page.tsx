@@ -1,6 +1,10 @@
 import { PAGES } from '@/constants/page';
-import { WellActionButton, WellHeader, WellTitle } from '@/features/Well';
-import FrogOnBook from '@/features/Well/components/Well/FrogOnBook';
+import {
+  WellActionButton,
+  WellHeader,
+  WellTitle,
+  FrogOnBook,
+} from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
 import { MemoBookmarkIcon } from 'public/icons';
 import React from 'react';

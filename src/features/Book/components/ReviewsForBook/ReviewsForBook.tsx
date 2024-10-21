@@ -3,7 +3,7 @@
 import React from 'react';
 import { useSession } from 'next-auth/react';
 import { useObserver } from '@/hooks/gesture/useObserver';
-import { useReviewForBook } from '@/features/Review/hooks/useReviewForBook';
+import { useReviewForBook } from '@/features/Review';
 import NoReviewForBook from './NoReviewForBook';
 import ReviewItem from './ReviewItem';
 import { useBookDetail } from '../../hooks/useBookDetail';

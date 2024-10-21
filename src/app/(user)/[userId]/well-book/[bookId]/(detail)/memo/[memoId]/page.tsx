@@ -2,8 +2,7 @@
 
 import React from 'react';
 import GenericForm from '@/components/Form/GenericForm';
-import { MemoForm, MemoFormType } from '@/features/Memo';
-import { useMemoDetail } from '@/features/Memo/hooks/useMemoDetail';
+import { MemoForm, MemoFormType, useMemoDetail } from '@/features/Memo';
 
 interface Props {
   params: {

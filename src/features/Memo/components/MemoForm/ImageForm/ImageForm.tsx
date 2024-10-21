@@ -1,8 +1,8 @@
 'use client';
 
-import { useMemoImage } from '@/features/Memo/hooks/useMemoImage';
 import React from 'react';
 import { getImageSrc } from '@/utils/getImageSrc';
+import { useMemoImage } from '../../../hooks/useMemoImage';
 import ImageSlider from './ImageSlider';
 import ImageSlot from './ImageSlot';
 

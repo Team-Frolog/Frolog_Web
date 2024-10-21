@@ -3,8 +3,8 @@
 import React, { useEffect } from 'react';
 import MainLayout from '@/layouts/MainLayout';
 import SideHeader from '@/components/Header/SideHeader';
-import SearchInput from '@/features/Search/components/SearchInput';
 import useAddBookStore from '@/store/addBookStore';
+import { SearchInput } from '@/features/Search';
 
 function SearchMainPage() {
   const {

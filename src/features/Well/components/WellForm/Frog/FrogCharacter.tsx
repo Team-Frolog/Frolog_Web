@@ -1,7 +1,7 @@
 import { FROGS } from '@/constants/frogs';
 import Image from 'next/image';
 import React from 'react';
-import { getIsNew } from '@/features/Well/utils/getIsNew';
+import { getIsNew } from '../../../utils/getIsNew';
 import NewTag from '../../NewTag';
 
 interface Props {

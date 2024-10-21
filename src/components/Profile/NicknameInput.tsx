@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { checkNickname } from '@/features/Join/api/join.api';
+import { checkNickname } from '@/features/Join';
 import FormInput from '../Form/Input/FormInput';
 
 interface Props {

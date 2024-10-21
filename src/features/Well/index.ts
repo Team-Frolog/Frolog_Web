@@ -1,3 +1,5 @@
+export { useWells } from './hooks/useWells';
+export { default as FrogOnBook } from './components/Well/FrogOnBook';
 export { default as WellActionButton } from './components/Well/Pointing/WellActionButton';
 export { default as SideWellHeader } from './components/WellList/SideWellHeader';
 export { default as WellForm } from './components/WellForm/WellForm';

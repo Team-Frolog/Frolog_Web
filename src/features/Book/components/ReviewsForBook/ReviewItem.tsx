@@ -1,8 +1,7 @@
-import { ProfileHeader } from '@/features/Feed';
+import { ProfileHeader, FeedContent } from '@/features/Feed';
 import { GetReviewRes } from '@frolog/frolog-api';
 import Link from 'next/link';
 import React from 'react';
-import FeedContent from '@/features/Feed/components/FeedList/FeedContent';
 import LikeButton from '@/components/Button/LikeButton';
 import { motion } from 'framer-motion';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useFeed } from '@/features/Feed/hooks/feed/useFeed';
+import { useFeed } from '@/features/Feed';
 import Spinner from '../Spinner/Spinner';
 
 interface Props {

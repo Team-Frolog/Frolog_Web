@@ -1,11 +1,11 @@
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { IMAGES } from '@/constants/images';
-import { useFollowUser } from '@/features/Feed/hooks/feed/useFollowUser';
+import { useFollowUser } from '@/features/Feed';
 import { getImageSrc } from '@/utils/getImageSrc';
 import { GetProfileRes } from '@frolog/frolog-api';
 import { useSession } from 'next-auth/react';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
 
 interface Props {
   userId: string;

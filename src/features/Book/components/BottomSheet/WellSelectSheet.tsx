@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Well } from '@/features/Well';
-import { useWells } from '@/features/Well/hooks/useWells';
+import { Well, useWells } from '@/features/Well';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton';
 

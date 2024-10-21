@@ -1,15 +1,13 @@
 'use client';
 
+import React, { useState } from 'react';
 import BookInfo from '@/components/Book/BookInfo';
 import AddButton from '@/components/Button/AddButton';
 import TitleHeader from '@/components/Header/TitleHeader';
 import RatingSelector from '@/components/Rating/RatingSelector';
 import MajorTagList from '@/components/Tag/MajorTagList';
-import { BookDetail } from '@/features/Book';
+import { BookDetail, useBookDetail, AddBookToWell } from '@/features/Book';
 import { useScroll } from '@/hooks/gesture/useScroll';
-import { useBookDetail } from '@/features/Book/hooks/useBookDetail';
-import React, { useState } from 'react';
-import AddBookToWell from '@/features/Book/components/BottomSheet/AddBookToWell';
 import MainLayout from '@/layouts/MainLayout';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { AnimatePresence } from 'framer-motion';

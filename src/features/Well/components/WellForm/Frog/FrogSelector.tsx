@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { motion, useAnimationControls } from 'framer-motion';
-import { useFrogs } from '@/features/Well/hooks/useFrogs';
 import { ExpandIcon } from 'public/icons';
+import { useFrogs } from '../../../hooks/useFrogs';
 import FrogCharacter from './FrogCharacter';
 
 interface Props {

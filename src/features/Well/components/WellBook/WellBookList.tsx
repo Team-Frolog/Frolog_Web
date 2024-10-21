@@ -39,12 +39,12 @@ function WellBookList({ userId, wellData, isRootUser, isDefaultWell }: Props) {
         animate='visible'
         variants={staggerContainerVariants}
       >
+        {/* <ScrollToTop /> */}
         <div className='h-[12px] w-full shrink-0 rounded-t-[20px] bg-gray-900' />
         {wellItems?.map((item) => (
           <WellBook key={item.id} userId={userId} wellBook={item} />
         ))}
         <FrogOnBook frogId={wellData.frog} isRootUser={isRootUser} />
-        {/* <ScrollToTop /> */}
         {isDefaultWell && wellItems.length === 2 && (
           <WellActionButton
             btnName='새로운 우물 파기'
