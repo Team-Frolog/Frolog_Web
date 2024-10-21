@@ -3,6 +3,7 @@ import { UseFormReset } from 'react-hook-form';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { flash } from '@/modules/Flash';
 import { bottomSheet } from '@/modules/BottomSheet';
+import { PAGES } from '@/constants/page';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { addNewWell, editWell, getWell } from '../api/well.api';
@@ -41,14 +42,14 @@ export const useWellForm = (
     onSuccess: () => {
       flash.open({
         flashType: 'new_well',
-        callbackUrl: `/${session!.user.id}/well`,
+        callbackUrl: PAGES.HOME,
       });
     },
   });
 
   const { mutate: handleEditWell } = useMutation({
     mutationFn: (data: WellFormType) => editWell({ ...data, id: wellId! }),
-    onSuccess: () => router.replace(`/${session!.user.id}/well`),
+    onSuccess: () => router.replace(PAGES.HOME),
   });
 
   const handleClickBack = (isDirty: boolean) => {
