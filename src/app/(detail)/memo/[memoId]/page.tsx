@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-import { MemoDetail } from '@/features/Memo';
-import { getMemoDetail } from '@/features/Memo/api/memo.api';
-import { useQuery } from '@tanstack/react-query';
+import { MemoDetail, useMemoDetailPage } from '@/features/Memo';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
 import MainLayout from '@/layouts/MainLayout';
 import BookInfo from '@/components/Book/BookInfo';
@@ -20,13 +18,10 @@ interface Props {
 }
 
 function MemoPage({ params: { memoId } }: Props) {
-  useScroll({ categoryColor: undefined });
   const router = useRouter();
-  const { data: memoDetail } = useQuery({
-    queryKey: ['memo', memoId],
-    queryFn: () => getMemoDetail({ id: memoId }),
-  });
   const { data: session } = useSession();
+  useScroll({ categoryColor: undefined });
+  const { memoDetail } = useMemoDetailPage(memoId);
   const { profile } = useProfile(memoDetail?.writer);
   const isRootUser = session?.user.id === profile?.id;
 
