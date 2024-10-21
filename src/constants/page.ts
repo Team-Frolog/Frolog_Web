@@ -24,6 +24,7 @@ export const PAGES = {
   NEW_REVIEW: '/new-review',
   PROFILE: '/profile',
   WELL: '/well',
+  DEFAULT: '/default',
 } as const;
 
 export const PAGE_CONFIG: PageConfig = {

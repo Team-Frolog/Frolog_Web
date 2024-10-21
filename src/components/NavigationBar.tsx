@@ -23,14 +23,14 @@ function NavigationBar() {
       >
         <WellIcon
           fill={
-            pathname === PAGES.HOME || pathname.includes(PAGES.WELL)
+            pathname === PAGES.HOME || pathname === PAGES.DEFAULT || pathname.includes(PAGES.WELL)
               ? '#313239'
               : '#B3B6C5'
           }
           height={22}
         />
         <span
-          className={`text-body-sm-bold ${pathname === PAGES.HOME || pathname.includes(PAGES.WELL) ? 'text-gray-800' : 'text-gray-500'}`}
+          className={`text-body-sm-bold ${pathname === PAGES.HOME || pathname === PAGES.DEFAULT || pathname.includes(PAGES.WELL) ? 'text-gray-800' : 'text-gray-500'}`}
         >
           우물
         </span>
