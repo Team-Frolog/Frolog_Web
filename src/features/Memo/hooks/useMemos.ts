@@ -9,7 +9,7 @@ import { deleteMemo, getMemos } from '../api/memo.api';
 
 export interface MemoData {
   pages: {
-    comments: GetMemoRes[];
+    memos: GetMemoRes[];
     count: number;
     limit: number;
     page: number;
@@ -61,7 +61,6 @@ export const useMemos = (bookId: string) => {
       return { previousMemos };
     },
     onError: (_err, _variable, context) => {
-      console.log(_err);
       queryClient.setQueryData(['myMemos', bookId], context?.previousMemos);
     },
     onSettled: () => {
