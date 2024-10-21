@@ -58,7 +58,7 @@ export const getWell = async (id: string) => {
 
 export const getWellItems = async (well_id: string) => {
   try {
-    const response = await searchWellItem.fetch({ well_id });
+    const response = await searchWellItem.fetch({ well_id, sort: 'oldest' });
     return response;
   } catch (err) {
     toast.error(ERROR_ALERT);
