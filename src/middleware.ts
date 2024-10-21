@@ -8,6 +8,7 @@ const publicRoutes: string[] = [
   '/login',
   '/join',
   '/find-password',
+  '/default',
 ]; // 로그인이 되면 접근할 수 없는 페이지 목록
 
 export async function middleware(req: NextRequest) {
@@ -17,6 +18,10 @@ export async function middleware(req: NextRequest) {
     secureCookie: true,
   });
   const { pathname } = req.nextUrl;
+
+  if (pathname === '/' && !token) {
+    return NextResponse.redirect(new URL('/default', req.url));
+  }
 
   // pathname이 어느 routes에 속하는지 확인
   const isWithAuth = protectedRoutes.some((route) => pathname.includes(route));
@@ -28,7 +33,7 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images|$).*)'],
 };
 
 function withAuth(req: NextRequest, isLoggedIn: boolean) {

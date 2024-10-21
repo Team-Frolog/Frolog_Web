@@ -18,7 +18,7 @@ function WellBook({ userId, wellBook }: Props) {
   const router = useRouter();
   const newReviewId = useNewReviewId();
   const { status, memo_cnt, title, page, category, isbn } = wellBook;
-  const bookHeight = page >= 400 ? page * 0.12 : 42;
+  const bookHeight = page > 420 ? page * 0.1 : 42;
   const isReading = status === 'reading';
 
   return (
