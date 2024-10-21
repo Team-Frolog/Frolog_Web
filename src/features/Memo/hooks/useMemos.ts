@@ -54,13 +54,14 @@ export const useMemos = (bookId: string) => {
         ...oldData,
         pages: oldData.pages.map((page) => ({
           ...page,
-          memos: page.comments.filter((item) => item.id !== memoId),
+          memos: page.memos.filter((item) => item.id !== memoId),
         })),
       }));
 
       return { previousMemos };
     },
     onError: (_err, _variable, context) => {
+      console.log(_err);
       queryClient.setQueryData(['myMemos', bookId], context?.previousMemos);
     },
     onSettled: () => {

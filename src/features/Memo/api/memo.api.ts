@@ -80,6 +80,8 @@ export const editMemoDetail = async (req: EditMemoReq) => {
 };
 
 export const deleteMemo = async (req: DeleteMemoReq) => {
+  console.log("good!", req);
   const response = await deleteMemoObj.fetch(req);
   return response;
 };
+ 
