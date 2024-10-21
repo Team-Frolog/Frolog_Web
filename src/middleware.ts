@@ -18,9 +18,16 @@ export async function middleware(req: NextRequest) {
     secureCookie: true,
   });
   const { pathname } = req.nextUrl;
+  const defaultWellId = token ? token.defaultWellId : undefined;
 
-  if (pathname === '/' && !token) {
-    return NextResponse.redirect(new URL('/default', req.url));
+  if (pathname === '/') {
+    if (!token) {
+      return NextResponse.redirect(new URL('/default', req.url));
+    } else if (defaultWellId) {
+      return NextResponse.redirect(
+        new URL(`/${token.id}/well/${defaultWellId}`, req.url)
+      );
+    }
   }
 
   // pathname이 어느 routes에 속하는지 확인

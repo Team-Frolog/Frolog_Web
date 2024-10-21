@@ -25,6 +25,7 @@ export const authOptions: NextAuthOptions = {
         if (data.result) {
           const user = {
             id: data.id || '',
+            defaultWellId: undefined,
             accessToken: data.access_token!,
             refreshToken: data.refresh_token!,
           };
@@ -39,6 +40,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         // 최초 로그인 시에만 실행
         token.id = user.id;
+        token.defaultWellId = undefined;
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
         token.accessTokenExpires = getExpFromToken(user.accessToken);
@@ -58,6 +60,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (token) {
         session.user.id = token.id;
+        session.user.defaultWellId = token.defaultWellId;
         session.user.accessToken = token.accessToken;
         session.user.refreshToken = token.refreshToken;
         session.user.accessTokenExpires = token.accessTokenExpires;
