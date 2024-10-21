@@ -1,7 +1,7 @@
 'use client';
 
 import NavigationBar from '@/components/NavigationBar';
-import { WellBookList, WellHeader, WellTitle } from '@/features/Well';
+import { WellBookList, WellHeader } from '@/features/Well';
 import { useWell } from '@/features/Well/hooks/useWell';
 import MainLayout from '@/layouts/MainLayout';
 import { useSession } from 'next-auth/react';
@@ -17,6 +17,7 @@ interface Props {
 function UserWellDetailPage({ params: { userId, wellId } }: Props) {
   const { data: session } = useSession();
   const isRootUser = userId === session?.user.id;
+  const isDefaultWell = session?.user.defaultWellId === wellId;
   const { well } = useWell(wellId);
 
   if (!well) return <></>;
@@ -29,13 +30,12 @@ function UserWellDetailPage({ params: { userId, wellId } }: Props) {
           wellId={wellId}
           hasEditButton={isRootUser}
         />
-        <WellTitle
-          title={well.name}
-          wellId={wellId}
-          wellHeight={well.height}
+        <WellBookList
+          userId={userId}
           isRootUser={isRootUser}
+          wellData={well}
+          isDefaultWell={isDefaultWell}
         />
-        <WellBookList userId={userId} isRootUser={isRootUser} wellData={well} />
       </MainLayout>
       {isRootUser && <NavigationBar />}
     </>
