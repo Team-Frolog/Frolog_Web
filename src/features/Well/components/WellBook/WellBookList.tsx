@@ -4,7 +4,6 @@ import React from 'react';
 import { staggerContainerVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
 import { GetWellRes } from '@frolog/frolog-api';
-// import ScrollToTop from '@/components/Button/ScrollToTop';
 import WellBook from './WellBook';
 import FrogOnBook from '../Well/FrogOnBook';
 import { useWellItems } from '../../hooks/useWellItems';
@@ -39,7 +38,6 @@ function WellBookList({ userId, wellData, isRootUser, isDefaultWell }: Props) {
         animate='visible'
         variants={staggerContainerVariants}
       >
-        {/* <ScrollToTop /> */}
         <div className='h-[12px] w-full shrink-0 rounded-t-[20px] bg-gray-900' />
         {wellItems?.map((item) => (
           <WellBook key={item.id} userId={userId} wellBook={item} />

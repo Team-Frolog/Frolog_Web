@@ -2,6 +2,7 @@
 
 import { ScrollToTopIcon } from 'public/icons';
 import React from 'react';
+import { motion } from 'framer-motion';
 
 function ScrollToTop() {
   const handleScroll = () => {
@@ -11,13 +12,14 @@ function ScrollToTop() {
     });
   };
   return (
-    <button
+    <motion.button
       type='button'
+      whileTap={{ scale: 0.95 }}
       onClick={handleScroll}
-      className='absolute bottom-[104px] right-[24px]'
+      className='absolute bottom-[104px] right-[24px] z-50'
     >
       <ScrollToTopIcon />
-    </button>
+    </motion.button>
   );
 }
 

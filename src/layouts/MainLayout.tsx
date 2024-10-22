@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 interface Props {
   children: React.ReactNode;
@@ -6,7 +6,7 @@ interface Props {
   extraClass?: string;
 }
 
-const MainLayout = React.forwardRef<HTMLElement, Props>(
+const MainLayout = forwardRef<HTMLElement, Props>(
   ({ children, isCenter = true, extraClass }, ref) => (
     <main
       id='main'
