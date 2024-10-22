@@ -4,7 +4,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { flash } from '@/modules/Flash';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { PAGES } from '@/constants/page';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { addNewWell, editWell, getWell } from '../api/well.api';
 import { WellFormType } from '../components/WellForm/WellForm';
@@ -15,7 +15,8 @@ export const useWellForm = (
   wellId?: string
 ) => {
   const router = useRouter();
-  const { data: session } = useSession();
+  const isSecond = useSearchParams().get('isSecond');
+  const { data: session, update } = useSession();
 
   const { data: wellData } = useQuery({
     queryKey: ['well', wellId],
@@ -40,6 +41,10 @@ export const useWellForm = (
     mutationFn: (data: WellFormType) =>
       addNewWell({ ...data, owner: session!.user.id }),
     onSuccess: () => {
+      if (isSecond) {
+        update({ defaultWellId: undefined });
+        router.refresh();
+      }
       flash.open({
         flashType: 'new_well',
         callbackUrl: PAGES.HOME,

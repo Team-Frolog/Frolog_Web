@@ -48,7 +48,7 @@ function WellBookList({ userId, wellData, isRootUser, isDefaultWell }: Props) {
         {isDefaultWell && wellItems.length === 2 && (
           <WellActionButton
             btnName='새로운 우물 파기'
-            href={`/${userId}/well/create`}
+            href={`/${userId}/well/create?isSecond=true`}
           />
         )}
       </motion.div>
