@@ -40,7 +40,7 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images|$).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images|$).*)', '/'],
 };
 
 function withAuth(req: NextRequest, isLoggedIn: boolean) {
