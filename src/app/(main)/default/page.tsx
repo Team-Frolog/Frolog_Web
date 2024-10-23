@@ -45,7 +45,7 @@ function DefaultWellPage() {
             <MemoBookmarkIcon />
           </div>
 
-          <FrogOnBook isRootUser />
+          <FrogOnBook />
         </div>
       </MainLayout>
     </>

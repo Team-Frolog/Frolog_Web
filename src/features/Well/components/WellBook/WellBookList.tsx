@@ -42,11 +42,12 @@ function WellBookList({ userId, wellData, isRootUser, isDefaultWell }: Props) {
         {wellItems?.map((item) => (
           <WellBook key={item.id} userId={userId} wellBook={item} />
         ))}
-        <FrogOnBook frogId={wellData.frog} isRootUser={isRootUser} />
+        <FrogOnBook frogId={wellData.frog} />
         {isDefaultWell && wellItems.length === 2 && (
           <WellActionButton
             btnName='새로운 우물 파기'
             href={`/${userId}/well/create?isSecond=true`}
+            isPointing
           />
         )}
       </motion.div>

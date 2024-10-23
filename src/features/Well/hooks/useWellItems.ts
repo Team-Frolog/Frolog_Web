@@ -7,5 +7,5 @@ export const useWellItems = (wellId: string) => {
     queryFn: () => getWellItems(wellId),
   });
 
-  return { wellItems: data?.items };
+  return { wellItems: data?.items, count: data?.length };
 };

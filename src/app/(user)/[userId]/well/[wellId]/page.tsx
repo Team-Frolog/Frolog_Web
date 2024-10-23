@@ -33,6 +33,7 @@ function UserWellDetailPage({ params: { userId, wellId } }: Props) {
           userId={userId}
           wellId={wellId}
           hasEditButton={isRootUser}
+          hasBackButton={!isDefaultWell}
         />
         {well && <WellBookList
           userId={userId}

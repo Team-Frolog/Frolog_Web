@@ -40,9 +40,9 @@ export const useWellForm = (
   const { mutate: handleAddWell } = useMutation({
     mutationFn: (data: WellFormType) =>
       addNewWell({ ...data, owner: session!.user.id }),
-    onSuccess: () => {
+    onSuccess: async () => {
       if (isSecond) {
-        update({ defaultWellId: undefined });
+        await update({ defaultWellId: undefined });
         router.refresh();
       }
       flash.open({
