@@ -1,11 +1,9 @@
 export const chat = {
   not_loggedIn: '로그인을 해야\n책을 쌓을 수 있어요',
-  loggedIn: '높이높이 올라가고 싶어요!\n책을 추가해 쌓아올려주세요',
-  first_review:
-    '🚨특급 정보 입수!🚨\n리뷰 하나만 더 쓰면\n새로운 개구리가 나온대요!',
-  second_book: '새로운 개구리가 왔나봐요..!',
-  congrats_5cm: '5cm 달성을 축하 드려요🎉\n새로운 개구리로 바꿔보세요🐸',
-  congrats_10cm: '10cm 달성을 축하 드려요🎉\n새로운 개구리로 바꿔보세요🐸',
+  empty: '높이높이 올라가고 싶어요!\n책을 추가해 쌓아올려주세요',
+  first_book:
+    '🚨특급 정보 입수!🚨\n책을 하나만 더 쌓으면\n새로운 개구리가 나온대요!',
+  second_book: '새로운 개구리가 왔나봐요!\n또 다른 우물을 파볼까요?',
 };
 
 export const defaultMessage = [
