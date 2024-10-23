@@ -13,7 +13,7 @@ function DefaultWellPage() {
   return (
     <>
       <MainLayout extraClass='bg-shape-1 bg-gray-300 justify-between'>
-        <WellHeader />
+        <WellHeader hasBackButton={false} />
         <WellTitle title='소중한 나의 첫 우물' />
         <WellActionButton
           btnName='로그인이 필요해요'
