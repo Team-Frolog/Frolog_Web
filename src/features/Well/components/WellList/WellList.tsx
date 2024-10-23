@@ -5,7 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import usePopUpStore from '@/store/popUpStore';
 import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton';
 import { useObserver } from '@/hooks/gesture/useObserver';
-import MessageToast from '@/components/PopUp/MessageToast';
+import MessageToast from '@/components/Toast/MessageToast';
 import WellAddButton from './WellAddButton';
 import Well from '../WellItem/Well';
 import StoreRegisterSheet from '../StoreRegisterSheet/StoreRegisterSheet';

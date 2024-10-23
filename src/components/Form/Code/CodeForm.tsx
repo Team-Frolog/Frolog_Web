@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import ErrorPopUp from '@/components/PopUp/ErrorPopUp';
+import ErrorToast from '@/components/Toast/ErrorToast';
 import { AnimatePresence } from 'framer-motion';
 import Button from '@/components/Button/Button';
 import { useVerification } from '@/hooks/auth/useVerification';
@@ -53,7 +53,7 @@ function CodeForm({ type, onClickNext }: Props) {
       <div className='flex-col-center w-full gap-[12px]'>
         <AnimatePresence>
           {isVerified === false && (
-            <ErrorPopUp errorMsg='인증코드를 다시 확인해주세요' />
+            <ErrorToast errorMsg='인증코드를 다시 확인해주세요' />
           )}
         </AnimatePresence>
         <Button

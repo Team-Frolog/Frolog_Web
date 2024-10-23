@@ -1,6 +1,6 @@
 'use client';
 
-import ErrorPopUp from '@/components/PopUp/ErrorPopUp';
+import ErrorToast from '@/components/Toast/ErrorToast';
 import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import {
@@ -33,7 +33,7 @@ function LoginPage() {
       </div>
       <div className='flex-col-center w-full gap-[12px]'>
         <AnimatePresence>
-          {isFaild && <ErrorPopUp errorMsg='로그인 정보를 다시 확인해주세요' />}
+          {isFaild && <ErrorToast errorMsg='로그인 정보를 다시 확인해주세요' />}
         </AnimatePresence>
         <LoginButton />
       </div>

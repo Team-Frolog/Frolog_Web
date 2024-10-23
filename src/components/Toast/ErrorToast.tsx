@@ -8,7 +8,7 @@ interface Props {
   errorMsg: string;
 }
 
-function ErrorPopUp({ errorMsg }: Props) {
+function ErrorToast({ errorMsg }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -31,4 +31,4 @@ function ErrorPopUp({ errorMsg }: Props) {
   );
 }
 
-export default ErrorPopUp;
+export default ErrorToast;
