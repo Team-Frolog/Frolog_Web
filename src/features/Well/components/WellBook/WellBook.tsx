@@ -1,7 +1,8 @@
-import React from 'react';
+/* eslint-disable arrow-body-style */
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { staggerItemVariants } from '@/styles/variants/variants';
-import { useNewReviewId } from '@/store/stackMotionStore';
+import useStackMotionStore from '@/store/stackMotionStore';
 import { useRouter } from 'next/navigation';
 import { MemoBookmarkIcon } from 'public/icons';
 import { GetWellItemRes } from '@frolog/frolog-api';
@@ -16,10 +17,19 @@ interface Props {
 
 function WellBook({ userId, wellBook }: Props) {
   const router = useRouter();
-  const newReviewId = useNewReviewId();
+  const {
+    newReviewId,
+    actions: { setNewReviewId },
+  } = useStackMotionStore();
   const { status, memo_cnt, title, page, category, isbn } = wellBook;
   const bookHeight = page > 420 ? page * 0.1 : 42;
   const isReading = status === 'reading';
+
+  useEffect(() => {
+    return () => {
+      setNewReviewId(null);
+    };
+  }, []);
 
   return (
     <motion.div

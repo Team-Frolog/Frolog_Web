@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { staggerContainerVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
 import { GetWellRes } from '@frolog/frolog-api';
@@ -22,8 +22,7 @@ const WellBookList = React.memo(
   ({ userId, wellData, isRootUser, isDefaultWell }: Props) => {
     const { wellItems } = useWellItems(wellData.id);
     const { id, name, item_cnt } = wellData;
-
-    if (!wellItems) return null;
+    const [message, setMessage] = useState<string | undefined>(undefined);
 
     const getMessage = (count: number) => {
       if (isDefaultWell) {
@@ -41,6 +40,15 @@ const WellBookList = React.memo(
       }
       return undefined;
     };
+
+    useEffect(() => {
+      if (wellItems) {
+        const count = wellItems.length;
+        setMessage(getMessage(count));
+      }
+    }, [wellItems]);
+
+    if (!wellItems) return null;
 
     return (
       <>
@@ -61,11 +69,8 @@ const WellBookList = React.memo(
           {wellItems.map((item) => (
             <WellBook key={item.id} userId={userId} wellBook={item} />
           ))}
-          <FrogOnBook
-            frogId={wellData.frog}
-            message={getMessage(wellItems.length)}
-          />
-          {isDefaultWell && wellItems.length === 2 && (
+          <FrogOnBook frogId={wellData.frog} message={message} />
+          {isDefaultWell && wellItems.length >= 2 && (
             <WellActionButton
               btnName='새로운 우물 파기'
               href={`/${userId}/well/create?isSecond=true`}

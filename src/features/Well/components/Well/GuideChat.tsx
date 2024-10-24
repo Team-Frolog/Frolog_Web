@@ -19,11 +19,13 @@ function GuideChat({ message }: Props) {
     if (session) {
       if (!message) {
         setMsg(getRandomMessage());
+      } else {
+        setMsg(message);
       }
     } else {
       setMsg(chat.not_loggedIn);
     }
-  }, [session]);
+  }, [session, message]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
