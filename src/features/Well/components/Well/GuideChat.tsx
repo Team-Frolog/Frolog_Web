@@ -7,20 +7,21 @@ import { chat } from '../../data/chat';
 import { getRandomMessage } from '../../utils/getRandomMessage';
 
 interface Props {
-  isRootUser: boolean;
+  message?: string;
 }
 
-function GuideChat({ isRootUser }: Props) {
+function GuideChat({ message }: Props) {
   const [isVisible, setIsVisible] = useState(true);
-  const [message, setMessage] = useState('');
+  const [msg, setMsg] = useState(message);
   const { data: session } = useSession();
-  console.log(isRootUser);
 
   useEffect(() => {
     if (session) {
-      setMessage(getRandomMessage());
+      if (!message) {
+        setMsg(getRandomMessage());
+      }
     } else {
-      setMessage(chat.not_loggedIn);
+      setMsg(chat.not_loggedIn);
     }
   }, [session]);
 
@@ -40,7 +41,7 @@ function GuideChat({ isRootUser }: Props) {
       transition={{ delay: 1, duration: 0.3 }}
       className='tooltip-after relative mx-[24px] mb-[20px] w-max whitespace-pre-wrap rounded-[20px] bg-white p-[20px] text-center text-body-lg text-gray-800 after:bottom-[-5px] after:border-[8px] after:border-white'
     >
-      {message}
+      {msg}
     </motion.div>
   );
 }
