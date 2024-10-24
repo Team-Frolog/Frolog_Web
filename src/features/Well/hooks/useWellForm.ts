@@ -42,7 +42,7 @@ export const useWellForm = (
       addNewWell({ ...data, owner: session!.user.id }),
     onSuccess: async () => {
       if (isSecond) {
-        await update({ defaultWellId: undefined });
+        await update({ defaultWellId: null });
         router.refresh();
       }
       flash.open({

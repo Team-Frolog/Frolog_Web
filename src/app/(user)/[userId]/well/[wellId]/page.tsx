@@ -35,12 +35,14 @@ function UserWellDetailPage({ params: { userId, wellId } }: Props) {
           hasEditButton={isRootUser}
           hasBackButton={!isDefaultWell}
         />
-        {well && <WellBookList
-          userId={userId}
-          isRootUser={isRootUser}
-          wellData={well}
-          isDefaultWell={isDefaultWell}
-        />}
+        {well && (
+          <WellBookList
+            userId={userId}
+            isRootUser={isRootUser}
+            wellData={well}
+            isDefaultWell={isDefaultWell}
+          />
+        )}
         {isRendering && <ScrollToTop />}
       </MainLayout>
       {isRootUser && <NavigationBar />}
