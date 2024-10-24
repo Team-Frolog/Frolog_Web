@@ -1,10 +1,13 @@
+
+import React from 'react';
+import Image from 'next/image';
 import Rating from '@/components/Rating/Rating';
 import { IMAGES } from '@/constants/images';
 import { useBook } from '@/features/Book';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
-import Image from 'next/image';
-import React from 'react';
+import { getImageSrc } from '@/utils/getImageSrc';
 import { isGetMemoRes } from '../../utils/typeGuard';
+
 
 interface Props {
   isMemo: boolean;
@@ -15,16 +18,20 @@ function BookInfo({ feedData, isMemo }: Props) {
   const { bookData } = useBook(feedData.isbn);
   if (!bookData) return <></>;
 
-  const { title, author, author_cnt, publisher, category } = bookData;
+  const { isbn, title, author, author_cnt, publisher, category } = bookData;
 
   return (
     <div className='pt-[30px]'>
       <div
         className={`tooltip-feed relative flex w-full gap-[16px] rounded-t-[20px] bg-category-bg-${category} px-page pt-[24px] after:border-b-category-bg-${category}`}
       >
-        <div className='h-[110px] w-[74px] shrink-0 self-end bg-gray-500'>
-          book
-        </div>
+        <Image
+          src={getImageSrc(isbn, 'book') || IMAGES.book.cover}
+          alt='book cover'
+          width={74}
+          height={110}
+          className='h-[110px] w-auto shrink-0 self-end bg-gray-400'
+        />
         <div
           className={`flex w-full flex-col ${isMemo && 'justify-end gap-[8px]'}`}
         >
