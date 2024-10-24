@@ -30,6 +30,19 @@ export const staggerItemVariants = {
   },
 };
 
+export const frogVariants = {
+  hidden: { y: -50, opacity: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut',
+      delay: 1,
+    },
+  },
+};
+
 export const tapVariants = {
   tap: {
     scale: 0.95,

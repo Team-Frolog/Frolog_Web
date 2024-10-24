@@ -4,7 +4,7 @@ import { FROG_SITTING } from '@/constants/frogs';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useNewReviewId } from '@/store/stackMotionStore';
-import { staggerItemVariants } from '@/styles/variants/variants';
+import { frogVariants } from '@/styles/variants/variants';
 import React from 'react';
 import GuideChat from './GuideChat';
 
@@ -18,8 +18,7 @@ function FrogOnBook({ message, frogId = 'default' }: Props) {
 
   return (
     <motion.div
-      variants={hasNewReview ? staggerItemVariants : undefined}
-      transition={{ delay: 0.5 }}
+      variants={hasNewReview ? frogVariants : undefined}
       className='flex-col-center pt-[20px]'
     >
       <GuideChat message={message} />

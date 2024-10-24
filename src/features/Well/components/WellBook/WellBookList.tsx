@@ -25,6 +25,7 @@ function WellBookList({ userId, wellData, isRootUser, isDefaultWell }: Props) {
   if (!wellItems) return <></>;
 
   const getMessage = (count: number) => {
+    console.log(count);
     if (isDefaultWell) {
       if (count === 0) {
         return chat.empty;
@@ -62,7 +63,7 @@ function WellBookList({ userId, wellData, isRootUser, isDefaultWell }: Props) {
         ))}
         <FrogOnBook
           frogId={wellData.frog}
-          message={isDefaultWell ? getMessage(wellItems.length) : undefined}
+          message={getMessage(wellItems.length)}
         />
         {isDefaultWell && wellItems.length === 2 && (
           <WellActionButton
