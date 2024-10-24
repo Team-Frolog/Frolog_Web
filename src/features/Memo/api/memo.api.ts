@@ -55,7 +55,7 @@ export const getMemoDetail = async (req: GetMemoReq) => {
     const response = await getMemo.fetch(req);
     return response;
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
   }
 };
 

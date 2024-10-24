@@ -5,6 +5,7 @@ import { ERROR_ALERT } from '@/constants/message';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTooltip } from '@/hooks/popup/useTooltip';
 import { DownloadDoneIcon, DownloadIcon } from 'public/icons';
+import { toast } from '@/modules/Toast';
 
 interface Props {
   type: '1' | '2' | '3';
@@ -32,7 +33,7 @@ function DownloadButton({ type }: Props) {
         setIsDownloaded(true);
       })
       .catch(() => {
-        window.alert(ERROR_ALERT);
+        toast.error(ERROR_ALERT);
       });
   }, [type]);
 

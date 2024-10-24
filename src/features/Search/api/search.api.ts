@@ -1,6 +1,7 @@
 import { baseOptions } from '@/api/options';
 import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
+import { toast } from '@/modules/Toast';
 import {
   SearchBook,
   SearchBookCountByCategory,
@@ -25,7 +26,7 @@ export const searchBook = async ({
     });
     return result;
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
     return {
       books: [],
       count: 0,
@@ -40,7 +41,7 @@ export const getCategories = async (req: SearchBookCountByCategoryReq) => {
     const result = await countByCategory.fetch(req);
     return result.counts;
   } catch (err) {
-    window.alert(ERROR_ALERT);
+    toast.error(ERROR_ALERT);
     return [];
   }
 };
