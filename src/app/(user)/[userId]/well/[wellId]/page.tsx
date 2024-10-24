@@ -20,8 +20,8 @@ function UserWellDetailPage({ params: { userId, wellId } }: Props) {
   const { data: session } = useSession();
   const isRootUser = userId === session?.user.id;
   const isDefaultWell = session?.user.defaultWellId === wellId;
-  const { isRendering, containerRef } = useScrollToTop();
   const { well } = useWell(wellId);
+  const { isRendering, containerRef } = useScrollToTop();
 
   return (
     <>
