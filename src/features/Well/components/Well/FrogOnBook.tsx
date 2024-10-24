@@ -19,6 +19,7 @@ function FrogOnBook({ message, frogId = 'default' }: Props) {
   return (
     <motion.div
       variants={hasNewReview ? staggerItemVariants : undefined}
+      transition={{ delay: 0.5 }}
       className='flex-col-center pt-[20px]'
     >
       <GuideChat message={message} />

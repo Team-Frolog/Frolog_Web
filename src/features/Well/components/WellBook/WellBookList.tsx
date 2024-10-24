@@ -26,7 +26,9 @@ function WellBookList({ userId, wellData, isRootUser, isDefaultWell }: Props) {
 
   const getMessage = (count: number) => {
     if (isDefaultWell) {
-      if (count === 1) {
+      if (count === 0) {
+        return chat.empty;
+      } else if (count === 1) {
         return chat.first_book;
       } else if (count === 2) {
         return chat.second_book;

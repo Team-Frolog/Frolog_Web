@@ -30,7 +30,7 @@ function WellBook({ userId, wellBook }: Props) {
             : `/${userId}/well-book/${isbn}/review`
         )
       }
-      variants={newReviewId ? staggerItemVariants : undefined}
+      variants={newReviewId === wellBook.id ? staggerItemVariants : undefined}
       className='flex w-[80%] items-center justify-center'
       style={{ margin: getMargin() }}
     >
