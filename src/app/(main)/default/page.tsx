@@ -20,7 +20,7 @@ function DefaultWellPage() {
           type='arrow'
           isPointing
           href={PAGES.LANDING}
-          wellHeight={5}
+          itemCount={2}
         />
         <div className='flex w-full flex-col-reverse items-center'>
           <div
