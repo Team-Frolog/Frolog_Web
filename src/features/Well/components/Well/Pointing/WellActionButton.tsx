@@ -13,13 +13,13 @@ interface Props {
   href?: string;
   isPointing?: boolean;
   btnName: string;
-  wellHeight?: number;
+  itemCount?: number;
 }
 
 function WellActionButton({
   btnName,
   wellId,
-  wellHeight,
+  itemCount,
   type = 'plus',
   href = PAGES.SEARCH,
   isPointing = false,
@@ -49,10 +49,8 @@ function WellActionButton({
         {isPointing && <Pointing />}
       </div>
       <h3 className='mt-[2px] text-body-xl-bold'>{btnName}</h3>
-      {wellHeight !== undefined && (
-        <span className='text-body-md text-gray-600'>
-          현재 높이 {wellHeight}cm
-        </span>
+      {itemCount !== undefined && (
+        <span className='text-body-md text-gray-600'>현재 {itemCount}권</span>
       )}
     </div>
   );

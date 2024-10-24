@@ -8,7 +8,7 @@ import WellActionButton from './Pointing/WellActionButton';
 interface Props {
   title: string;
   wellId?: string;
-  wellHeight?: number;
+  itemCount?: number;
   isPointing?: boolean;
   isRootUser?: boolean;
 }
@@ -16,7 +16,7 @@ interface Props {
 function WellTitle({
   title,
   wellId,
-  wellHeight,
+  itemCount,
   isPointing = false,
   isRootUser = false,
 }: Props) {
@@ -39,7 +39,7 @@ function WellTitle({
             wellId={wellId}
             href={PAGES.SEARCH}
             isPointing={isPointing}
-            wellHeight={wellHeight}
+            itemCount={itemCount}
           />
         )}
       </motion.div>

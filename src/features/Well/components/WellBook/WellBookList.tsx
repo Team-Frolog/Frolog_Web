@@ -20,7 +20,7 @@ interface Props {
 
 function WellBookList({ userId, wellData, isRootUser, isDefaultWell }: Props) {
   const { wellItems } = useWellItems(wellData.id);
-  const { id, name, height } = wellData;
+  const { id, name, item_cnt } = wellData;
 
   if (!wellItems) return <></>;
 
@@ -44,7 +44,7 @@ function WellBookList({ userId, wellData, isRootUser, isDefaultWell }: Props) {
       <WellTitle
         title={name}
         wellId={id}
-        wellHeight={height}
+        itemCount={item_cnt}
         isRootUser={isRootUser}
         isPointing={isDefaultWell && wellItems.length < 2}
       />
