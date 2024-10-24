@@ -21,7 +21,7 @@ function BookInfo({ bookId }: { bookId: string }) {
         height={182}
         className='absolute left-0 top-0 z-0 w-full'
       />
-      <Book />
+      <Book imageSrc={bookData?.isbn} />
       <div className='flex-col-center gap-[4px]'>
         <h3 className='text-title-lg-bold'>{bookData?.title}</h3>
         <ul className='flex text-body-sm text-gray-600'>

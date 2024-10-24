@@ -8,6 +8,7 @@ import { getTagById } from '@/utils/getTags';
 import { useRouter } from 'next/navigation';
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
+import { getImageSrc } from '@/utils/getImageSrc';
 
 interface Props {
   bookData: GetBookRes;
@@ -17,7 +18,6 @@ function BookListItem({ bookData }: Props) {
   const router = useRouter();
   const {
     isbn,
-    image_url,
     author,
     title,
     publisher,
@@ -36,7 +36,7 @@ function BookListItem({ bookData }: Props) {
     >
       <Image
         className='h-[180px] w-[120px] bg-gray-400'
-        src={image_url || IMAGES.book.cover}
+        src={isbn ? getImageSrc(isbn, 'book')! : IMAGES.book.cover}
         alt='book cover'
         width={126}
         height={186}

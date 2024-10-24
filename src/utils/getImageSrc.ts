@@ -1,4 +1,7 @@
-export const getImageSrc = (image: string, type: 'memo' | 'profile') => {
+export const getImageSrc = (
+  image: string,
+  type: 'memo' | 'profile' | 'book'
+) => {
   if (!image) return null;
   return image.startsWith('data:')
     ? image
