@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 import { getImageSrc } from '@/utils/getImageSrc';
+import { useBookImage } from '../../hooks/useBookImage';
 
 interface Props {
   bookData: GetBookRes;
@@ -28,6 +29,7 @@ function BookListItem({ bookData }: Props) {
     tags_pos,
     review_cnt,
   } = bookData;
+  const { bookCover, setDefault } = useBookImage(getImageSrc(isbn, 'book'));
 
   return (
     <div
@@ -36,8 +38,9 @@ function BookListItem({ bookData }: Props) {
     >
       <Image
         className='h-[180px] w-[120px] bg-gray-400'
-        src={isbn ? getImageSrc(isbn, 'book')! : IMAGES.book.cover}
+        src={bookCover || IMAGES.book.cover}
         alt='book cover'
+        onError={() => setDefault()}
         width={126}
         height={186}
       />

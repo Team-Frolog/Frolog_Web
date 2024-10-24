@@ -1,13 +1,12 @@
-
 import React from 'react';
 import Image from 'next/image';
 import Rating from '@/components/Rating/Rating';
 import { IMAGES } from '@/constants/images';
 import { useBook } from '@/features/Book';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
+import { useBookImage } from '@/features/Book/hooks/useBookImage';
 import { getImageSrc } from '@/utils/getImageSrc';
 import { isGetMemoRes } from '../../utils/typeGuard';
-
 
 interface Props {
   isMemo: boolean;
@@ -16,9 +15,13 @@ interface Props {
 
 function BookInfo({ feedData, isMemo }: Props) {
   const { bookData } = useBook(feedData.isbn);
+  const { bookCover, setDefault } = useBookImage(
+    getImageSrc(bookData?.isbn, 'book')
+  );
+
   if (!bookData) return <></>;
 
-  const { isbn, title, author, author_cnt, publisher, category } = bookData;
+  const { title, author, author_cnt, publisher, category } = bookData;
 
   return (
     <div className='pt-[30px]'>
@@ -26,8 +29,9 @@ function BookInfo({ feedData, isMemo }: Props) {
         className={`tooltip-feed relative flex w-full gap-[16px] rounded-t-[20px] bg-category-bg-${category} px-page pt-[24px] after:border-b-category-bg-${category}`}
       >
         <Image
-          src={getImageSrc(isbn, 'book') || IMAGES.book.cover}
+          src={bookCover || IMAGES.book.cover}
           alt='book cover'
+          onError={() => setDefault()}
           width={74}
           height={110}
           className='h-[110px] w-auto shrink-0 self-end bg-gray-400'
@@ -62,7 +66,7 @@ function BookInfo({ feedData, isMemo }: Props) {
                 alt='memo frog'
                 width={252}
                 height={56}
-                className='w-full'
+                className='w-full max-w-[95%]'
               />
             ) : (
               <Rating

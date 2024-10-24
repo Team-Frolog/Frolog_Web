@@ -1,5 +1,5 @@
 export const getImageSrc = (
-  image: string,
+  image: string | undefined,
   type: 'memo' | 'profile' | 'book'
 ) => {
   if (!image) return null;
