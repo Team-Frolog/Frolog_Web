@@ -6,7 +6,7 @@ function FormLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className='flex h-dvh w-full flex-col bg-gray-900 text-white'>
       <FormHeader />
-      <MainLayout isCenter={false} extraClass='justify-between p-page'>
+      <MainLayout isCenter={false} extraClass='justify-between px-page'>
         {children}
       </MainLayout>
     </div>
