@@ -43,8 +43,10 @@ export const useAddWellItem = (userId: string | undefined) => {
         }
       } else {
         setNewReviewId(itemId);
-        resetWellId();
-        router.push(`/${userId}/well/${wellId}`);
+        if (!isAfterReview) {
+          router.push(`/${userId}/well/${wellId}`);
+          resetWellId();
+        }
       }
     },
   });

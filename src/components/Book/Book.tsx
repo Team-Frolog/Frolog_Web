@@ -26,7 +26,7 @@ function Book({ isbn }: Props) {
         onError={() => setDefault()}
         width={160}
         height={230}
-        className='h-[230px] w-auto bg-main'
+        className='h-[230px] w-auto'
       />
     </div>
   );
