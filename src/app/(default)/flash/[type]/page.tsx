@@ -1,20 +1,26 @@
-import React from 'react';
-import Image from 'next/image';
-import BigTitle from '@/components/Text/BigTitle';
 import PopperAnimation from '@/components/animation/PopperAnimation';
-import { splash } from '@/data/ui/splash';
-import { FlashProps } from '.';
+import FlashHandler from '@/components/Gesture/FlashHandler';
+import BigTitle from '@/components/Text/BigTitle';
+import { flash } from '@/data/ui/flash';
+import Image from 'next/image';
+import React from 'react';
 
 interface Props {
-  flash: FlashProps;
+  params: {
+    type: 'review' | 'new_well';
+  };
 }
 
-function Flash({ flash }: Props) {
-  const { getTitle, frog, ground, width, height, max_height } =
-    splash[flash.flashType];
+export async function generateStaticParams() {
+  return [{type: 'review'}, {type: 'new_well'}];
+}
+
+function FlashPage({ params: { type } }: Props) {
+  const { getTitle, frog, ground, width, height, max_height } = flash[type];
 
   return (
     <div className='fixed inset-x-0 left-0 top-0 z-100 mx-auto flex h-dvh w-[450px] flex-col items-center justify-between overflow-hidden overscroll-none bg-white mobile:left-0 mobile:w-full'>
+      <FlashHandler type={type} />
       <div className='absolute z-0 flex h-fit w-full flex-1 flex-col items-center bg-gray-900 pt-[30px]'>
         <Image
           src='/images/flash/light.svg'
@@ -46,26 +52,13 @@ function Flash({ flash }: Props) {
             style={{ maxHeight: `${max_height}px`, marginBottom: '-5px' }}
           />
         </div>
-        {flash.flashType === 'review' && (
-          <div
-            className={`relative flex h-[50px] w-[80%] items-center justify-center rounded-[3px] bg-category-bg-${'novel'}`}
-          >
-            <div
-              className={`absolute left-[24px] top-0 h-full w-[12px] bg-category-band-${'novel'}`}
-            />
-            <span
-              className={`w-[75%] truncate text-center text-body-sm-bold text-category-text-${'novel'}`}
-            >
-              {flash.bookTitle}
-            </span>
-          </div>
-        )}
         <Image
           src={ground}
           alt='ground'
           width={390}
           height={182}
           className='w-full'
+          loading='eager'
           priority
         />
       </div>
@@ -74,4 +67,4 @@ function Flash({ flash }: Props) {
   );
 }
 
-export default Flash;
+export default FlashPage;

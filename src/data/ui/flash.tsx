@@ -1,8 +1,8 @@
 import { IMAGES } from '@/constants/images';
 
-export type SplashKeys = 'review';
+export type FlashKeys = 'review';
 
-interface Splash {
+interface Flash {
   getTitle: () => JSX.Element;
   frog: string;
   ground: string;
@@ -12,8 +12,8 @@ interface Splash {
   max_height: number;
 }
 
-export const splash: {
-  [key: string]: Splash;
+export const flash: {
+  [key: string]: Flash;
 } = {
   review: {
     getTitle: () => (

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { UseFormReset } from 'react-hook-form';
+import { useFlash } from '@/hooks/useFlash';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { flash } from '@/modules/Flash';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { PAGES } from '@/constants/page';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -17,6 +17,7 @@ export const useWellForm = (
   const router = useRouter();
   const isSecond = useSearchParams().get('isSecond');
   const { data: session, update } = useSession();
+  const { openFlash } = useFlash();
 
   const { data: wellData } = useQuery({
     queryKey: ['well', wellId],
@@ -45,10 +46,7 @@ export const useWellForm = (
         await update({ defaultWellId: null });
         router.refresh();
       }
-      flash.open({
-        flashType: 'new_well',
-        callbackUrl: PAGES.HOME,
-      });
+      openFlash({ type: 'new_well', callbackUrl: PAGES.HOME });
     },
   });
 

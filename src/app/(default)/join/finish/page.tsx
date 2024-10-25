@@ -1,6 +1,6 @@
 import React from 'react';
 import PopperAnimation from '@/components/animation/PopperAnimation';
-import FinishLight from '@/components/Splash/FinishLight';
+import FinishLight from '@/components/Light/FinishLight';
 import Image from 'next/image';
 import QuitButton from '@/components/Button/QuitButton';
 import { IMAGES } from '@/constants/images';
