@@ -12,7 +12,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return [{type: 'review'}, {type: 'new_well'}];
+  return [{ type: 'review' }, { type: 'new_well' }];
 }
 
 function FlashPage({ params: { type } }: Props) {

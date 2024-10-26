@@ -7,6 +7,7 @@ import { CATEGORY } from '@/constants/category';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import React, { Suspense } from 'react';
 import BookInfoSkeleton from '@/components/Fallback/Skeleton/BookInfoSkeleton';
+import { useBook } from '@/features/Book';
 
 interface Props {
   children: React.ReactNode;
@@ -16,11 +17,15 @@ interface Props {
 }
 
 function ReviewMemoLayout({ children, params: { bookId } }: Props) {
+  const { bookData } = useBook(bookId);
+  const category = bookData?.category || 'novel';
+
   useScroll({
-    categoryColor: CATEGORY.novel.bg,
-    foreground: CATEGORY.novel.text,
-    unSelected: CATEGORY.novel.band,
+    categoryColor: CATEGORY[category].bg,
+    foreground: CATEGORY[category].text,
+    unSelected: CATEGORY[category].band,
   });
+
   return (
     <>
       <TapHeader />
@@ -29,7 +34,9 @@ function ReviewMemoLayout({ children, params: { bookId } }: Props) {
           <BookInfo bookId={bookId} />
         </Suspense>
 
-        <div className='flex-child-layout tooltip-after relative flex-1 rounded-t-[20px] bg-category-bg-novel pt-[24px] after:-top-[10px] after:z-0 after:border-[16px] after:border-category-bg-novel'>
+        <div
+          className={`flex-child-layout tooltip-after relative flex-1 rounded-t-[20px] bg-category-bg-${category} pt-[24px] after:-top-[10px] after:z-0 after:border-[16px] after:border-category-bg-${category}`}
+        >
           {children}
         </div>
       </MainLayout>
