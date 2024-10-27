@@ -25,7 +25,7 @@ export const useMemoDetail = (bookId: string, memoId: string) => {
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['memo', memoId] });
-      router.replace(`${session!.user.id}}/well-book/${bookId}/memo`);
+      router.replace(`/${session!.user.id}/well-book/${bookId}/memo`);
     },
   });
 
