@@ -14,13 +14,17 @@ function BookInfo({ bookId }: { bookId: string }) {
       id='book-info'
       className='flex-col-center relative w-full gap-[20px] bg-white pb-[24px] pt-[48px] text-gray-800'
     >
-      <Image
-        src={IMAGES.book.background}
-        alt='bg'
-        width={390}
-        height={182}
-        className='absolute left-0 top-0 z-0 w-full'
-      />
+      <div className='absolute left-0 top-0 z-0 h-[230px] w-full mobile:h-[200px]'>
+        <Image
+          src={IMAGES.book.background}
+          alt='bg'
+          layout='fill'
+          className='object-cover'
+          loading='eager'
+          priority
+        />
+      </div>
+
       <Book isbn={bookData?.isbn} />
       <div className='flex-col-center gap-[4px]'>
         <h3 className='text-title-lg-bold'>{bookData?.title}</h3>
