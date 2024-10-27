@@ -29,14 +29,17 @@ function ReviewMemoLayout({ children, params: { bookId } }: Props) {
   return (
     <>
       <TapHeader />
-      <MainLayout>
+      <MainLayout extraClass='bg-white'>
         <Suspense fallback={<BookInfoSkeleton />}>
           <BookInfo bookId={bookId} />
         </Suspense>
 
         <div
-          className={`flex-child-layout tooltip-after relative flex-1 rounded-t-[20px] bg-category-bg-${category} pt-[24px] after:-top-[10px] after:z-0 after:border-[16px] after:border-category-bg-${category}`}
+          className={`flex-child-layout tooltip-after relative flex-1 rounded-t-[20px] bg-category-bg-${category} pt-[24px]`}
         >
+          <div
+            className={`absolute left-1/2 top-[-10px] h-0 w-0 -translate-x-1/2 rotate-45 transform border-[16px] border-solid border-category-bg-${category} z-0`}
+          />
           {children}
         </div>
       </MainLayout>
