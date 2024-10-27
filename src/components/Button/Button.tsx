@@ -8,7 +8,7 @@ import { getButtonColor } from '@/utils/getButtonColor';
 interface Props extends HTMLMotionProps<'button'> {
   children: React.ReactNode;
   type?: 'button' | 'submit';
-  theme?: 'normal' | 'error' | 'gray' | string;
+  theme?: 'normal' | 'error' | 'gray' | 'light' | string;
 }
 
 function Button({

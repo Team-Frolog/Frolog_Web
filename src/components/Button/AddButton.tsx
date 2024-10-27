@@ -26,7 +26,7 @@ function AddButton({ route, text, categoryId, onClick }: Props) {
 
   const color = categoryId
     ? `bg-category-bg-${categoryId} text-category-text-${categoryId}`
-    : 'button-light';
+    : 'light';
 
   return (
     <Button onClick={handleClick} theme={color}>

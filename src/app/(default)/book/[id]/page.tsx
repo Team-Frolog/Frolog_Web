@@ -38,7 +38,7 @@ function BookPage({ params: { id } }: Props) {
             <RatingSelector type='default' rating={bookData?.avg_rating} />
             <AddButton
               text='우물에 책 추가하기'
-              categoryId='novel'
+              categoryId={bookData?.category}
               onClick={() => runWhenLoggedIn(() => setOpen(true))}
             />
             <MajorTagList type='pros' tagData={bookData?.tags_pos} />
