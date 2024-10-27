@@ -29,7 +29,9 @@ async function UserProfilePage({ params: { userId } }: Props) {
     <>
       <MainLayout>
         <SideHeader title='프로필' hasBackButton={!isRootUser} />
-        <div className='flex w-full flex-1 flex-col justify-between gap-[32px] pb-[32px]'>
+        <div
+          className={`flex w-full flex-1 flex-col gap-[32px] pb-[32px] ${isRootUser ? 'justify-start' : 'justify-between'}`}
+        >
           <Profile userId={userId} isRootUser={isRootUser} />
           {isRootUser && <Menu />}
           {!isRootUser && (
