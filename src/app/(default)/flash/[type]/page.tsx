@@ -33,13 +33,16 @@ function FlashPage({ params: { type } }: Props) {
         />
         <div className='w-full flex-1 bg-white' />
       </div>
-      <div className='z-10 flex w-full flex-1 flex-col items-center justify-end pt-[170px] mobile:pt-[120px]'>
-        <BigTitle
-          type='default'
-          extraClass='text-center mobile:text-heading-md-bold'
-        >
-          {getTitle()}
-        </BigTitle>
+      <div className='z-10 flex h-fit w-full flex-1 flex-col items-center justify-end pt-[170px] mobile:pt-[120px]'>
+        <div className='flex min-h-[240px] w-fit items-end mobile:min-h-[180px]'>
+          <BigTitle
+            type='default'
+            extraClass='text-center mobile:text-heading-md-bold'
+          >
+            {getTitle()}
+          </BigTitle>
+        </div>
+
         <div className='flex flex-1 items-end justify-center'>
           <Image
             src={frog}

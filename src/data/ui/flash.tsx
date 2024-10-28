@@ -18,14 +18,14 @@ export const flash: {
   review: {
     getTitle: () => (
       <>
-        우물에
+        야호!
         <br />
-        책 1권이
+        완독을
         <br />
-        쌓였어요!
+        축하해요!
       </>
     ),
-    frog: IMAGES.frog.review_done,
+    frog: IMAGES.frog.congrats,
     ground: IMAGES.ground_sm,
     hasPopper: true,
     width: 166,
