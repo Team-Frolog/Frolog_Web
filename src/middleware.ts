@@ -7,6 +7,13 @@ const protectedRoutes: string[] = [
   '/profile',
   '/well-book',
   '/join/finish',
+  '/flash',
+  '/well',
+  '/comments',
+  '/new-memo',
+  '/new-review',
+  '/quit',
+  '/terms',
 ]; // 로그인이 필요한 페이지 목록
 const publicRoutes: string[] = [
   '/landing',
@@ -20,7 +27,7 @@ export async function middleware(req: NextRequest) {
   const token = await getToken({
     req,
     secret: process.env.NEXTAUTH_SECRET,
-    secureCookie: true,
+    // secureCookie: true,
   });
   const { pathname } = req.nextUrl;
   const defaultWellId = token ? token.defaultWellId : undefined;

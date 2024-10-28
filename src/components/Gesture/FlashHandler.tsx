@@ -18,7 +18,7 @@ function FlashHandler({ type }: Props) {
       if (type === 'review') {
         resetWellId();
       }
-      // window.location.replace(callbackUrl || PAGES.HOME);
+      window.location.replace(callbackUrl || PAGES.HOME);
     }, 2500);
   }, []);
 
