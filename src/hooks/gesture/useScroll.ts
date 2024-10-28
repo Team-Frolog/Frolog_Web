@@ -30,6 +30,8 @@ export const useScroll = ({
             setHeaderStyle(categoryColor, foreground, foreground, unSelected);
           }
           break;
+        default:
+          break;
       }
     },
     [categoryColor, foreground, unSelected]
@@ -90,7 +92,12 @@ export const useScroll = ({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const mode = entry.intersectionRatio >= 0.8 ? 'dark' : entry.intersectionRatio >= 0.35 ? 'light' : 'category';
+            const mode =
+              entry.intersectionRatio >= 0.8
+                ? 'dark'
+                : entry.intersectionRatio >= 0.35
+                  ? 'light'
+                  : 'category';
             setMode(mode);
           }
         });
