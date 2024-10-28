@@ -32,7 +32,9 @@ function WellList({ userId, isRootUser }: Props) {
           <div ref={setTarget} id='observer' className='h-[10px]' />
         )}
       </div>
-      {isRootUser && <MessageToast />}
+      {isRootUser && (
+        <MessageToast message='우상단의 상점에서 내 포인트를 확인하세요' />
+      )}
       {isRootUser && (
         <AnimatePresence>
           {isOpenAlertSheet && <StoreRegisterSheet />}

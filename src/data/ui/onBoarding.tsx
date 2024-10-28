@@ -13,7 +13,7 @@ export const onBoarding: OnBoarding = {
   1: {
     title: () => (
       <>
-        우물에 책을 쌓아
+        우물에 책을 추가해
         <br />
         탈출하세요!
       </>
@@ -27,8 +27,9 @@ export const onBoarding: OnBoarding = {
   2: {
     title: () => (
       <>
-        책을 많이 읽으면
-        <br />새 캐릭터 등장!
+        다양한 캐릭터로
+        <br />
+        우물을 꾸며요!
       </>
     ),
     titleColor: 'text-main_hightlight',

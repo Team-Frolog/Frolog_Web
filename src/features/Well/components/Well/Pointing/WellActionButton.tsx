@@ -50,7 +50,9 @@ function WellActionButton({
       </div>
       <h3 className='mt-[2px] text-body-xl-bold'>{btnName}</h3>
       {itemCount !== undefined && (
-        <span className='text-body-md text-gray-600'>현재 {itemCount}권</span>
+        <span className='text-body-md text-gray-600'>
+          현재 높이 {itemCount}권
+        </span>
       )}
     </div>
   );
