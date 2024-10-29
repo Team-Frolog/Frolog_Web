@@ -5,7 +5,7 @@ import GenericForm from '@/components/Form/GenericForm';
 import { MemoForm, MemoFormType, useAddMemo } from '@/features/Memo';
 
 function NewMemoPage() {
-  const { handleAddMemo } = useAddMemo();
+  const { handleAddMemo, isPending } = useAddMemo();
 
   const defaultValues = {
     images: [],
@@ -22,7 +22,7 @@ function NewMemoPage() {
         defaultValues,
       }}
     >
-      <MemoForm defaultValues={defaultValues} />
+      <MemoForm defaultValues={defaultValues} isPending={isPending} />
     </GenericForm>
   );
 }

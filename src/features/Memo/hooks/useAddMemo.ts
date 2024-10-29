@@ -9,7 +9,7 @@ export const useAddMemo = () => {
   const id = useSearchParams().get('id');
   const { data: session } = useSession();
 
-  const { mutate: handleAddMemo } = useMutation({
+  const { mutate: handleAddMemo, isPending } = useMutation({
     mutationFn: async (data: MemoFormType) => {
       const req = {
         writer: session!.user.id,
@@ -25,5 +25,5 @@ export const useAddMemo = () => {
     onSuccess: () => router.replace(`${session!.user.id}/well-book/${id}/memo`),
   });
 
-  return { handleAddMemo };
+  return { handleAddMemo, isPending };
 };
