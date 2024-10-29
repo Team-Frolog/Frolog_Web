@@ -30,7 +30,7 @@ async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
       {userId === session?.user.id && (
         <div className='add-button-wrapper'>
           <AddButton
-            route={`${userId}/well/${wellId}/new-memo/${bookId}`}
+            route={`/${userId}/well/${wellId}/new-memo/${bookId}`}
             text='메모 추가하기'
           />
         </div>
