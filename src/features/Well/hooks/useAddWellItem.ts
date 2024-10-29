@@ -41,9 +41,7 @@ export const useAddWellItem = (userId: string | undefined) => {
           resetWellId();
         }
       } else {
-        if (!isAfterReview || isThroughSearch) {
-          setNewReviewId(itemId);
-        }
+        setNewReviewId(itemId);
         if (!isAfterReview) {
           router.push(`/${userId}/well/${wellId}`);
           resetAll();

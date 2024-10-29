@@ -65,8 +65,8 @@ const WellBookList = React.memo(
           variants={staggerContainerVariants}
         >
           <div className='h-[12px] w-full shrink-0 rounded-t-[20px] bg-gray-900' />
-          {wellItems.map((item) => (
-            <WellBook key={item.id} wellBook={item} wellId={wellData.id} />
+          {wellItems.map((item, i) => (
+            <WellBook key={item.id} wellBook={item} wellId={wellData.id} isLastItem={item_cnt === i+1} />
           ))}
           <FrogOnBook frogId={wellData.frog} message={message} />
           {isDefaultWell && wellItems.length >= 2 && (

@@ -13,15 +13,16 @@ import { getMargin } from '../../utils/getMargin';
 interface Props {
   wellBook: GetWellItemRes;
   wellId: string;
+  isLastItem: boolean;
 }
 
-function WellBook({ wellId, wellBook }: Props) {
+function WellBook({ wellId, wellBook, isLastItem }: Props) {
   const router = useRouter();
   const {
     newReviewId,
     actions: { setNewReviewId },
   } = useStackMotionStore();
-  const { status, memo_cnt, title, page, category, isbn } = wellBook;
+  const { id, status, memo_cnt, title, page, category, isbn } = wellBook;
   const bookHeight = page > 420 ? page * 0.1 : 42;
   const isReading = status === 'reading';
 
@@ -40,7 +41,9 @@ function WellBook({ wellId, wellBook }: Props) {
             : `${wellId}/book/${isbn}/review`
         )
       }
-      variants={newReviewId === wellBook.id ? staggerItemVariants : undefined}
+      variants={
+        newReviewId === id && isLastItem ? staggerItemVariants : undefined
+      }
       className='flex w-[80%] items-center justify-center'
       style={{ margin: getMargin() }}
     >
