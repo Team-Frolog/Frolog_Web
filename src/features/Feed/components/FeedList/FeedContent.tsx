@@ -52,7 +52,8 @@ function FeedContent({ feedData, isFeed = true }: Props) {
       )}
       {isFeed && (
         <span className='px-page text-body-md text-gray-600'>
-          {formatDate(feedData.date)}
+          {formatDate(feedData.date)}{' '}
+          {feedData.date !== feedData.edit && '(수정됨)'}
         </span>
       )}
     </div>
