@@ -37,9 +37,7 @@ function UserStatistics({ profileDetail }: Props) {
         <div className='flex flex-1 justify-around'>
           <div className='flex flex-col items-center justify-center'>
             <h3 className='text-title-xl-bold text-gray-800'>{max_item_cnt}</h3>
-            <span className='text-body-sm text-gray-600'>
-              우물 최대 높이(권)
-            </span>
+            <span className='text-body-sm text-gray-600'>최대 높이(권)</span>
           </div>
           <Link
             href={`/${profileDetail.id}/profile/follows?tap=followers`}
