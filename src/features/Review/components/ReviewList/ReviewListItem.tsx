@@ -28,7 +28,7 @@ function ReviewListItem({ reviewData, setReviewId, onDelete, userId }: Props) {
           onClick={() =>
             router.push(
               isRootUser
-                ? `/${userId}/well-book/9791193154250/review/${reviewData.id}`
+                ? `review/${reviewData.id}`
                 : `/review/${reviewData.id}`
             )
           }

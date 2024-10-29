@@ -29,7 +29,7 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
         onClick={() =>
           router.push(
             isRootUser
-              ? `/${userId}/well-book/${memoData.isbn}/memo/${memoData.id}`
+              ? `memo/${memoData.id}`
               : `/memo/${memoData.id}`
           )
         }
