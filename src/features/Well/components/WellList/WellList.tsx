@@ -27,8 +27,9 @@ function WellList({ userId, isRootUser }: Props) {
       <div className='grid grid-cols-2 gap-[24px] px-page py-[12px]'>
         {isRootUser && <WellAddButton userId={userId} />}
         {wells?.map((well) => <Well key={well.id} wellData={well} />)}
-        {isFetchingNextPage && <WellItemsSkeleton />}
-        {!isFetchingNextPage && (
+        {isFetchingNextPage ? (
+          <WellItemsSkeleton />
+        ) : (
           <div ref={setTarget} id='observer' className='h-[10px]' />
         )}
       </div>

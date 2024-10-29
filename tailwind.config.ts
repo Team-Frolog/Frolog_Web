@@ -42,6 +42,7 @@ const config: Config = {
         'shape-7': "url('/images/well/bg/well-bg-7.svg')",
         'shape-8': "url('/images/well/bg/well-bg-8.svg')",
         'shape-9': "url('/images/well/bg/well-bg-9.svg')",
+        wall: "url('/images/well/well-wall.svg')",
       },
       zIndex: {
         '60': '60',

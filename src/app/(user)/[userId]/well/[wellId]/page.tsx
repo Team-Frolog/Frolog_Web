@@ -3,6 +3,7 @@
 import ScrollToTop from '@/components/Button/ScrollToTop';
 import NavigationBar from '@/components/NavigationBar';
 import { WellBookList, WellHeader } from '@/features/Well';
+import Wall from '@/features/Well/components/Well/Wall';
 import { useWell } from '@/features/Well/hooks/useWell';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import MainLayout from '@/layouts/MainLayout';
@@ -29,6 +30,8 @@ function UserWellDetailPage({ params: { userId, wellId } }: Props) {
         ref={containerRef}
         extraClass={`bg-shape-${well?.shape} bg-gray-300`}
       >
+        <Wall direction='left' />
+        <Wall direction='right' />
         <WellHeader
           userId={userId}
           wellId={wellId}

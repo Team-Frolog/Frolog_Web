@@ -22,7 +22,7 @@ function WellTitle({
 }: Props) {
   return (
     <div className='flex-col-center relative flex w-full shrink-0'>
-      <div className='pointer-events-none absolute left-0 top-0 flex w-full justify-between'>
+      <div className='pointer-events-none absolute left-0 top-0 z-10 flex w-full justify-between'>
         <div className='well-header-left' />
         <div className='well-header-right' />
       </div>
