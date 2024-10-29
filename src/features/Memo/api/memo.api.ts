@@ -17,7 +17,6 @@ import {
   DeleteMemo,
   DeleteMemoReq,
 } from '@frolog/frolog-api';
-import { getSession } from 'next-auth/react';
 
 const searchMemo = new SearchMemo(baseOptions);
 const postMemo = new PostMemo(baseOptions);
