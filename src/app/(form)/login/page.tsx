@@ -11,9 +11,10 @@ import {
   LoginButton,
 } from '@/features/Login';
 import GenericForm from '@/components/Form/GenericForm';
+import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 
 function LoginPage() {
-  const { isSaved, setIsSaved, userLogin, isFaild, setIsFaild } =
+  const { isSaved, setIsSaved, userLogin, isFaild, setIsFaild, isLoading } =
     useLogin('login');
 
   return (
@@ -27,6 +28,7 @@ function LoginPage() {
         },
       }}
     >
+      {isLoading && <LoadingOverlay />}
       <div className='flex flex-col gap-[20px]'>
         <LoginForm setIsFaild={setIsFaild} userLogin={userLogin} />
         <RememberMe isSaved={isSaved} setIsSaved={setIsSaved} />

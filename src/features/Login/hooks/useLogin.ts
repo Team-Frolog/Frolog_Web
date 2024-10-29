@@ -12,10 +12,12 @@ export const useLogin = (type: 'login' | 'test') => {
   const router = useRouter();
   const callbackUrl = () => sessionStorage.getItem(LOGIN_CALLBACK);
   const [isSaved, setIsSaved] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isFaild, setIsFaild] = useState<boolean>(false);
 
   const userLogin = async (data: LoginForm) => {
     setIsFaild(false);
+    setIsLoading(true);
 
     const result = await signIn('credentials', {
       redirect: false,
@@ -43,5 +45,5 @@ export const useLogin = (type: 'login' | 'test') => {
     }
   };
 
-  return { isSaved, setIsSaved, isFaild, userLogin, setIsFaild };
+  return { isSaved, setIsSaved, isFaild, userLogin, setIsFaild, isLoading };
 };
