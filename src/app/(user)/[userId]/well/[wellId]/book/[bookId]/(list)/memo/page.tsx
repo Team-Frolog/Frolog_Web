@@ -5,7 +5,6 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/auth';
-import { PAGES } from '@/constants/page';
 
 const MemoList = dynamic(
   () => import('@/features/Memo/components/MemoList/MemoList'),
@@ -17,12 +16,13 @@ const MemoList = dynamic(
 
 interface Props {
   params: {
+    wellId: string;
     userId: string;
     bookId: string;
   };
 }
 
-async function MemoPage({ params: { userId, bookId } }: Props) {
+async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
   const session = await getServerSession(authOptions);
 
   return (
@@ -30,7 +30,7 @@ async function MemoPage({ params: { userId, bookId } }: Props) {
       {userId === session?.user.id && (
         <div className='add-button-wrapper'>
           <AddButton
-            route={`${PAGES.NEW_MEMO}/${bookId}`}
+            route={`${userId}/well/${wellId}/new-memo/${bookId}`}
             text='메모 추가하기'
           />
         </div>

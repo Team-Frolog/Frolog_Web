@@ -39,7 +39,7 @@ export const useAddReview = (isbn: string) => {
           type: 'review',
           callbackUrl: wellId
             ? `/${userId}/well/${wellId}`
-            : `/${userId}/well-book/${isbn}/review`,
+            : `/${userId}/well/${wellId}/book/${isbn}/review`,
         });
       }
     },

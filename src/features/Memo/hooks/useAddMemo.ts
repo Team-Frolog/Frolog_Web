@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import { addNewMemo } from '../api/memo.api';
 import { MemoFormType } from '../types/form';
 
-export const useAddMemo = (bookId: string) => {
+export const useAddMemo = (wellId: string, bookId: string) => {
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -26,7 +26,7 @@ export const useAddMemo = (bookId: string) => {
       return result;
     },
     onSuccess: () =>
-      router.replace(`${session!.user.id}/well-book/${bookId}/memo`),
+      router.replace(`/${session!.user.id}/well/${wellId}/book/${bookId}/memo`),
   });
 
   return { handleAddMemo, isPending, isSuccess };

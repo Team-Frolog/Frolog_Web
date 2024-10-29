@@ -6,12 +6,13 @@ import { MemoForm, MemoFormType, useAddMemo } from '@/features/Memo';
 
 interface Props {
   params: {
+    wellId: string;
     bookId: string;
   };
 }
 
-function NewMemoPage({ params: { bookId } }: Props) {
-  const { handleAddMemo, isPending, isSuccess } = useAddMemo(bookId);
+function NewMemoPage({ params: { wellId, bookId } }: Props) {
+  const { handleAddMemo, isPending, isSuccess } = useAddMemo(wellId, bookId);
 
   const defaultValues = {
     images: [],
