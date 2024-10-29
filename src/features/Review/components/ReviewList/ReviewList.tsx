@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { PAGES } from '@/constants/page';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import AddButton from '@/components/Button/AddButton';
 import ReviewListItem from './ReviewListItem';
@@ -23,7 +24,10 @@ function ReviewList({ bookId, userId, isRootUser }: Props) {
     <>
       {isRootUser && isEmpty && (
         <div className='add-button-wrapper'>
-          <AddButton route={`/new-review?id=${bookId}`} text='리뷰 추가하기' />
+          <AddButton
+            route={`${PAGES.NEW_REVIEW}/${bookId}`}
+            text='리뷰 추가하기'
+          />
         </div>
       )}
       <div className='z-10 flex w-full flex-1 flex-col gap-[12px]'>

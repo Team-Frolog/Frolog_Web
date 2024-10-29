@@ -31,7 +31,7 @@ export const useAddBookToWell = (isbn: string) => {
       }
       // 1-2. 리뷰가 없는 경우 - 리뷰 작성 후 쌓기
       else {
-        router.push(`${PAGES.NEW_REVIEW}?id=${isbn}`);
+        router.push(`${PAGES.NEW_REVIEW}/${isbn}`);
       }
     }
     // case 2. 검색에서 접근
@@ -50,7 +50,7 @@ export const useAddBookToWell = (isbn: string) => {
         setStep('select-well');
         setCallback(() => (id: string) => {
           setWellId(id);
-          router.push(`${PAGES.NEW_REVIEW}?id=${isbn}`);
+          router.push(`${PAGES.NEW_REVIEW}/${isbn}`);
         });
       }
     }

@@ -22,6 +22,7 @@ export const PAGES = {
   SEARCH: '/search',
   FEED: '/feed',
   NEW_REVIEW: '/new-review',
+  NEW_MEMO: '/new-memo',
   PROFILE: '/profile',
   WELL: '/well',
   DEFAULT: '/default',

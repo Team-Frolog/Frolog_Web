@@ -1,20 +1,23 @@
 'use client';
 
+import React from 'react';
 import BookInfo from '@/components/Book/BookInfo';
 import { NewReviewForm } from '@/features/Review';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import MainLayout from '@/layouts/MainLayout';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
 import { bottomSheet } from '@/modules/BottomSheet';
-import { useRouter, useSearchParams } from 'next/navigation';
-import React from 'react';
+import { useRouter } from 'next/navigation';
 
-function NewReviewPage() {
+interface Props {
+  params: {
+    bookId: string;
+  };
+}
+
+function NewReviewPage({ params: { bookId } }: Props) {
   const router = useRouter();
   useScroll({ categoryColor: undefined });
-  const bookId = useSearchParams().get('id');
-
-  if (!bookId) return null;
 
   return (
     <>

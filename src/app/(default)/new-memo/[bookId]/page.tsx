@@ -3,19 +3,21 @@
 import React from 'react';
 import GenericForm from '@/components/Form/GenericForm';
 import { MemoForm, MemoFormType, useAddMemo } from '@/features/Memo';
-import { useSearchParams } from 'next/navigation';
 
-function NewMemoPage() {
-  const { handleAddMemo, isPending, isSuccess } = useAddMemo();
-  const bookId = useSearchParams().get('id');
+interface Props {
+  params: {
+    bookId: string;
+  };
+}
+
+function NewMemoPage({ params: { bookId } }: Props) {
+  const { handleAddMemo, isPending, isSuccess } = useAddMemo(bookId);
 
   const defaultValues = {
     images: [],
     memo: '',
     isPublic: true,
   };
-
-  if (!bookId) return <></>;
 
   return (
     <GenericForm<MemoFormType>
