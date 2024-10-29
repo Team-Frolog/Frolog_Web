@@ -119,7 +119,7 @@ const config: Config = {
             life: '#75F3C9',
             travel: '#00CE4C',
             essay: '#A0FF56',
-            etc: '#FFDA4A',
+            unknown: '#FFDA4A',
           },
           text: {
             religion: '#FABBC8',
@@ -136,7 +136,7 @@ const config: Config = {
             life: '#00754E',
             travel: '#00722A',
             essay: '#419400',
-            etc: '#A78500',
+            unknown: '#A78500',
           },
           band: {
             religion: '#FF7171',
@@ -153,7 +153,7 @@ const config: Config = {
             life: '#B0FFE5',
             travel: '#6EED9C',
             essay: '#CAFFA0',
-            etc: '#FFE88C',
+            unknown: '#FFE88C',
           },
         },
       },
