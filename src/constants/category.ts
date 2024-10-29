@@ -56,7 +56,7 @@ export const CATEGORY: Category = {
     text: '#FFDDBB',
     band: '#FFC183',
   },
-  etc: {
+  unknown: {
     name: '기타',
     bg: '#FFDA4A',
     text: '#A78500',
