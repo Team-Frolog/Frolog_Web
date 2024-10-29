@@ -40,8 +40,13 @@ function WellForm({ type, userId, wellId }: Props) {
     formState: { errors, isDirty },
   } = methods;
 
-  const { handleAddWell, handleClickBack, handleEditWell, isPending } =
-    useWellForm(type, reset, wellId);
+  const {
+    handleAddWell,
+    handleClickBack,
+    handleEditWell,
+    isPending,
+    isSuccess,
+  } = useWellForm(type, reset, wellId);
 
   return (
     <FormProvider {...methods}>
@@ -56,7 +61,7 @@ function WellForm({ type, userId, wellId }: Props) {
           theme='light'
           type={type}
           onClickBack={() => handleClickBack(isDirty)}
-          isDisabled={!watch('name') || !!errors.name || isPending}
+          isDisabled={!watch('name') || !!errors.name || isPending || isSuccess}
         />
         <div className='flex w-full flex-1 flex-col gap-[36px] overflow-auto bg-white px-page py-[32px]'>
           <WellNameInput />
