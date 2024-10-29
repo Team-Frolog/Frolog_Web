@@ -33,7 +33,11 @@ function WellBookMemoPage({ params: { bookId, memoId } }: Props) {
         defaultValues,
       }}
     >
-      <MemoForm defaultValues={defaultValues} isPending={isPending} />
+      <MemoForm
+        defaultValues={defaultValues}
+        isPending={isPending}
+        bookId={memoDetail.isbn}
+      />
     </GenericForm>
   );
 }

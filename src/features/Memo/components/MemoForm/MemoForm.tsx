@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import isEqual from 'lodash/isEqual';
 import Textarea from '@/components/Form/Input/Textarea';
 import { textareaType } from '@/data/ui/textareaType';
+import { useBook } from '@/features/Book';
 import { useFormContext } from 'react-hook-form';
 import TitleHeader from '@/components/Header/TitleHeader';
 import { bottomSheet } from '@/modules/BottomSheet';
@@ -15,10 +16,12 @@ import { MemoFormType } from '../../types/form';
 interface Props {
   defaultValues?: MemoFormType;
   isPending?: boolean;
+  bookId: string;
 }
 
-function MemoForm({ defaultValues, isPending }: Props) {
+function MemoForm({ defaultValues, isPending, bookId }: Props) {
   const router = useRouter();
+  const { bookData } = useBook(bookId);
   const { watch, getValues } = useFormContext();
 
   const handleClickBack = () => {
@@ -40,7 +43,7 @@ function MemoForm({ defaultValues, isPending }: Props) {
   return (
     <>
       <TitleHeader
-        title='메리와 메리'
+        title={bookData?.title || ''}
         theme='light'
         type='edit'
         isDisabled={!watch('memo') || isPending}
