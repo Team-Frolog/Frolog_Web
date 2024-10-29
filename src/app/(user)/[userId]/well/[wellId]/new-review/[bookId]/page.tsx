@@ -11,11 +11,13 @@ import { useRouter } from 'next/navigation';
 
 interface Props {
   params: {
+    wellId: string;
+    userId: string;
     bookId: string;
   };
 }
 
-function NewReviewPage({ params: { bookId } }: Props) {
+function NewReviewPage({ params: { wellId, userId, bookId } }: Props) {
   const router = useRouter();
   useScroll({ categoryColor: undefined });
 
@@ -37,7 +39,7 @@ function NewReviewPage({ params: { bookId } }: Props) {
       </ResponsiveHeaderLayout>
       <MainLayout>
         <BookInfo bookId={bookId} />
-        <NewReviewForm isbn={bookId} />
+        <NewReviewForm isbn={bookId} userId={userId} wellId={wellId} />
       </MainLayout>
     </>
   );

@@ -3,7 +3,6 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { useState } from 'react';
-import { PAGES } from '@/constants/page';
 import { getReviewCount } from '../api/book.api';
 
 export const useAddBookToWell = (isbn: string) => {
@@ -31,7 +30,7 @@ export const useAddBookToWell = (isbn: string) => {
       }
       // 1-2. 리뷰가 없는 경우 - 리뷰 작성 후 쌓기
       else {
-        router.push(`${PAGES.NEW_REVIEW}/${isbn}`);
+        router.push(`/${userId}/well/${wellId}/new-review/${isbn}`);
       }
     }
     // case 2. 검색에서 접근
@@ -50,7 +49,7 @@ export const useAddBookToWell = (isbn: string) => {
         setStep('select-well');
         setCallback(() => (id: string) => {
           setWellId(id);
-          router.push(`${PAGES.NEW_REVIEW}/${isbn}`);
+          router.push(`/${userId}/well/${id}/new-review/${isbn}`);
         });
       }
     }

@@ -6,10 +6,16 @@ import { useAddReview } from '../../hooks/useAddReview';
 
 interface Props {
   isbn: string;
+  wellId: string;
+  userId: string;
 }
 
-function NewReviewForm({ isbn }: Props) {
-  const { handleAddReview, isPending, isSuccess } = useAddReview(isbn);
+function NewReviewForm({ isbn, wellId, userId }: Props) {
+  const { handleAddReview, isPending, isSuccess } = useAddReview(
+    userId,
+    wellId,
+    isbn
+  );
 
   const methods = useForm<ReviewFormType>({
     mode: 'onBlur',

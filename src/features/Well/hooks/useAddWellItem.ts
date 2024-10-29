@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { PostWellItemReq } from '@frolog/frolog-api';
 import { useMutation } from '@tanstack/react-query';
 import { useStackMotionActions } from '@/store/stackMotionStore';
@@ -9,11 +8,11 @@ import useAddBookStore from '@/store/addBookStore';
 import { addWellItem } from '../api/well.api';
 
 export const useAddWellItem = (userId: string | undefined) => {
-  const [isThroughSearch, setIsThroughSearch] = useState(false);
   const router = useRouter();
   const {
     wellId,
-    actions: { resetWellId, setWellId },
+    isThroughSearch,
+    actions: { resetAll, setWellId, resetWellId, setIsThroughSearch },
   } = useAddBookStore();
   const pathname = usePathname();
   const { setNewReviewId } = useStackMotionActions();
@@ -25,7 +24,7 @@ export const useAddWellItem = (userId: string | undefined) => {
         toast.error('아이템 추가에 실패했습니다.');
 
         if (isThroughSearch) {
-          resetWellId();
+          resetAll();
         }
         return;
       }
@@ -45,7 +44,7 @@ export const useAddWellItem = (userId: string | undefined) => {
         setNewReviewId(itemId);
         if (!isAfterReview) {
           router.push(`/${userId}/well/${wellId}`);
-          resetWellId();
+          resetAll();
         }
       }
     },

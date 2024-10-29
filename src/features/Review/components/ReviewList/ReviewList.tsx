@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { PAGES } from '@/constants/page';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import AddButton from '@/components/Button/AddButton';
 import ReviewListItem from './ReviewListItem';
@@ -11,10 +10,11 @@ import { useReviews } from '../../hooks/useReviews';
 interface Props {
   bookId: string;
   userId: string;
+  wellId: string;
   isRootUser: boolean;
 }
 
-function ReviewList({ bookId, userId, isRootUser }: Props) {
+function ReviewList({ bookId, wellId, userId, isRootUser }: Props) {
   const { reviews, setReviewId, deleteReview, isEmpty, isFetched } = useReviews(
     bookId,
     userId
@@ -25,7 +25,7 @@ function ReviewList({ bookId, userId, isRootUser }: Props) {
       {isRootUser && isEmpty && (
         <div className='add-button-wrapper'>
           <AddButton
-            route={`${PAGES.NEW_REVIEW}/${bookId}`}
+            route={`/${userId}/well/${wellId}/new-review/${bookId}`}
             text='리뷰 추가하기'
           />
         </div>

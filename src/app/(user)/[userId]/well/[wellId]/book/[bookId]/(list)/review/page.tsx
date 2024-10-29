@@ -13,15 +13,23 @@ const ReviewList = dynamic(
 
 interface Props {
   params: {
+    wellId: string;
     userId: string;
     bookId: string;
   };
 }
 
-async function ReviewPage({ params: { userId, bookId } }: Props) {
+async function ReviewPage({ params: { userId, wellId, bookId } }: Props) {
   const { isRootUser } = await getIsRootUser(userId);
 
-  return <ReviewList bookId={bookId} userId={userId} isRootUser={isRootUser} />;
+  return (
+    <ReviewList
+      bookId={bookId}
+      wellId={wellId}
+      userId={userId}
+      isRootUser={isRootUser}
+    />
+  );
 }
 
 export default ReviewPage;
