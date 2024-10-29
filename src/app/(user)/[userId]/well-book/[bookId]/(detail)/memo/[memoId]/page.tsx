@@ -12,7 +12,10 @@ interface Props {
 }
 
 function WellBookMemoPage({ params: { bookId, memoId } }: Props) {
-  const { memoDetail, handleEditMemo } = useMemoDetail(bookId, memoId);
+  const { memoDetail, handleEditMemo, isPending } = useMemoDetail(
+    bookId,
+    memoId
+  );
   if (!memoDetail) return <></>;
 
   const defaultValues = {
@@ -30,7 +33,7 @@ function WellBookMemoPage({ params: { bookId, memoId } }: Props) {
         defaultValues,
       }}
     >
-      <MemoForm defaultValues={defaultValues} />
+      <MemoForm defaultValues={defaultValues} isPending={isPending} />
     </GenericForm>
   );
 }

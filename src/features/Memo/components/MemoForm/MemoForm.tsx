@@ -14,9 +14,10 @@ import { MemoFormType } from '../../types/form';
 
 interface Props {
   defaultValues?: MemoFormType;
+  isPending?: boolean;
 }
 
-function MemoForm({ defaultValues }: Props) {
+function MemoForm({ defaultValues, isPending }: Props) {
   const router = useRouter();
   const { watch, getValues } = useFormContext();
 
@@ -42,7 +43,7 @@ function MemoForm({ defaultValues }: Props) {
         title='메리와 메리'
         theme='light'
         type='edit'
-        isDisabled={!watch('memo')}
+        isDisabled={!watch('memo') || isPending}
         onClickBack={handleClickBack}
       />
       <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>

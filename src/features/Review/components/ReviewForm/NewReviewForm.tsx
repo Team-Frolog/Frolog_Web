@@ -9,7 +9,7 @@ interface Props {
 }
 
 function NewReviewForm({ isbn }: Props) {
-  const { handleAddReview } = useAddReview(isbn);
+  const { handleAddReview, isPending } = useAddReview(isbn);
 
   const methods = useForm<ReviewFormType>({
     mode: 'onBlur',
@@ -41,7 +41,7 @@ function NewReviewForm({ isbn }: Props) {
         className='flex-1 bg-white pt-0'
         onSubmit={handleSubmit((data) => handleAddReview(data))}
       >
-        <ReviewForm type='new' isDisabled={isDisabled} />
+        <ReviewForm type='new' isDisabled={isDisabled || isPending} />
       </form>
     </FormProvider>
   );

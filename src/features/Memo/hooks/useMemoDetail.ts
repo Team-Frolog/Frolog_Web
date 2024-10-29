@@ -14,7 +14,7 @@ export const useMemoDetail = (bookId: string, memoId: string) => {
     queryFn: () => getMemoDetail({ id: memoId }),
   });
 
-  const { mutate: handleEditMemo } = useMutation({
+  const { mutate: handleEditMemo, isPending } = useMutation({
     mutationFn: (data: MemoFormType) =>
       editMemoDetail({
         id: memoId,
@@ -29,5 +29,5 @@ export const useMemoDetail = (bookId: string, memoId: string) => {
     },
   });
 
-  return { memoDetail, handleEditMemo };
+  return { memoDetail, handleEditMemo, isPending };
 };

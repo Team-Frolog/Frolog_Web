@@ -11,7 +11,7 @@ export const useAddReview = (isbn: string) => {
   const { openFlash } = useFlash();
   const { handleAddWellItem, wellId } = useAddWellItem(userId);
 
-  const { mutate: handleAddReview } = useMutation({
+  const { mutate: handleAddReview, isPending } = useMutation({
     mutationFn: async (data: ReviewFormType) => {
       const reqData = {
         writer: userId!,
@@ -41,5 +41,5 @@ export const useAddReview = (isbn: string) => {
     },
   });
 
-  return { handleAddReview };
+  return { handleAddReview, isPending };
 };
