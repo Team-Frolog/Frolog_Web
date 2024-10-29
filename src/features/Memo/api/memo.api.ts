@@ -27,14 +27,11 @@ const getMemo = new GetMemo(baseOptions);
 const editMemo = new EditMemo(baseOptions);
 const deleteMemoObj = new DeleteMemo(baseOptions);
 
-export const getMemos = async (isbn: string, page: number) => {
+export const getMemos = async (isbn: string, userId:string, page: number) => {
   try {
-    const session = await getSession();
-    if (!session) throw new Error();
-
     const response = await searchMemo.fetch({
       isbn,
-      writer: session.user.id,
+      writer: userId,
       limit: DEFAULT_LIMIT,
       page,
     });

@@ -17,14 +17,14 @@ export interface MemoData {
   pageParams: number[];
 }
 
-export const useMemos = (bookId: string) => {
+export const useMemos = (bookId: string, userId: string) => {
   const [memoId, setMemoId] = useState<string>('');
   const queryClient = useQueryClient();
 
   const { data, hasNextPage, fetchNextPage, isFetched, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
       queryKey: ['myMemos', bookId],
-      queryFn: async ({ pageParam }) => getMemos(bookId, pageParam),
+      queryFn: async ({ pageParam }) => getMemos(bookId, userId, pageParam),
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {
         const totalPages = Math.ceil(lastPage.count / lastPage.limit);
