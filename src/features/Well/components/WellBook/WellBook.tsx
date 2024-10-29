@@ -11,11 +11,11 @@ import ReadBook from '../Well/Book/ReadBook';
 import { getMargin } from '../../utils/getMargin';
 
 interface Props {
-  userId?: string;
   wellBook: GetWellItemRes;
+  wellId: string;
 }
 
-function WellBook({ userId, wellBook }: Props) {
+function WellBook({ wellId, wellBook }: Props) {
   const router = useRouter();
   const {
     newReviewId,
@@ -36,8 +36,8 @@ function WellBook({ userId, wellBook }: Props) {
       onClick={() =>
         router.push(
           isReading
-            ? `/${userId}/well-book/${isbn}/memo`
-            : `/${userId}/well-book/${isbn}/review`
+            ? `${wellId}/book/${isbn}/memo`
+            : `${wellId}/book/${isbn}/review`
         )
       }
       variants={newReviewId === wellBook.id ? staggerItemVariants : undefined}

@@ -17,7 +17,6 @@ export const PAGES = {
   FIND_PASSWORD: '/find-password',
   TEST: '/frolog-test',
   TEST_RESULT: '/frolog-test/result',
-  WELL_BOOK: '/well-book',
   SEARCH_HOME: '/search-home',
   SEARCH: '/search',
   FEED: '/feed',

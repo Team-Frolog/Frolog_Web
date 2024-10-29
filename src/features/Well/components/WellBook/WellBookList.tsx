@@ -12,14 +12,13 @@ import WellActionButton from '../Well/Pointing/WellActionButton';
 import { chat } from '../../data/chat';
 
 interface Props {
-  userId?: string;
   wellData: GetWellRes;
   isRootUser: boolean;
   isDefaultWell: boolean | undefined;
 }
 
 const WellBookList = React.memo(
-  ({ userId, wellData, isRootUser, isDefaultWell }: Props) => {
+  ({ wellData, isRootUser, isDefaultWell }: Props) => {
     const { wellItems } = useWellItems(wellData.id);
     const { id, name, item_cnt } = wellData;
     const [message, setMessage] = useState<string | undefined>(undefined);
@@ -67,13 +66,13 @@ const WellBookList = React.memo(
         >
           <div className='h-[12px] w-full shrink-0 rounded-t-[20px] bg-gray-900' />
           {wellItems.map((item) => (
-            <WellBook key={item.id} userId={userId} wellBook={item} />
+            <WellBook key={item.id} wellBook={item} wellId={wellData.id} />
           ))}
           <FrogOnBook frogId={wellData.frog} message={message} />
           {isDefaultWell && wellItems.length >= 2 && (
             <WellActionButton
               btnName='새로운 우물 파기'
-              href={`/${userId}/well/create?isSecond=true`}
+              href='create?isSecond=true'
               isPointing
             />
           )}

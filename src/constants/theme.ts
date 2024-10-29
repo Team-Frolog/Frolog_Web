@@ -22,6 +22,5 @@ export const PAGE_THEME: {
   '/search': LIGHT,
   '/feed': GRAY,
   '/profile': LIGHT,
-  '/well-book': HALF,
   '/new-well': LIGHT,
 };

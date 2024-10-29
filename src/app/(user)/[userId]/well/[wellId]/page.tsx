@@ -40,7 +40,6 @@ function UserWellDetailPage({ params: { userId, wellId } }: Props) {
         />
         {well && (
           <WellBookList
-            userId={userId}
             isRootUser={isRootUser}
             wellData={well}
             isDefaultWell={isDefaultWell}
