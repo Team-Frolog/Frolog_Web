@@ -33,7 +33,8 @@ function ReviewItem({ reviewData, category, onClickLike }: Props) {
 
         <div className='flex w-full items-center justify-between bg-white px-page py-[12px]'>
           <span className='text-body-md text-gray-600'>
-            {formatDate(reviewData.date)}
+            {formatDate(reviewData.date)}{' '}
+            {reviewData.date !== reviewData.edit && '(수정됨)'}
           </span>
           <div className='flex gap-[20px]'>
             <LikeButton
