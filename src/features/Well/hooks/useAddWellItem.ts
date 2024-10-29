@@ -54,7 +54,9 @@ export const useAddWellItem = (userId: string | undefined) => {
     wellId,
     handleAddWellItem,
     resetWellId,
+    resetAll,
     setWellId,
+    isThroughSearch,
     setIsThroughSearch,
   };
 };

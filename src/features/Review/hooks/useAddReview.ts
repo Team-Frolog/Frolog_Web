@@ -6,7 +6,7 @@ import { ReviewFormType } from '..';
 
 export const useAddReview = (userId: string, wellId: string, isbn: string) => {
   const { openFlash } = useFlash();
-  const { handleAddWellItem, isThroughSearch } = useAddWellItem(userId);
+  const { handleAddWellItem, resetAll } = useAddWellItem(userId);
 
   const {
     mutate: handleAddReview,
@@ -30,12 +30,10 @@ export const useAddReview = (userId: string, wellId: string, isbn: string) => {
     onSuccess: (res) => {
       if (res.result) {
         handleAddWellItem({ well_id: wellId, isbn, status: 'done' });
-
+        resetAll();
         openFlash({
           type: 'review',
-          callbackUrl: isThroughSearch
-            ? `/${userId}/well/${wellId}`
-            : `/${userId}/well/${wellId}/book/${isbn}/review`,
+          callbackUrl: `/${userId}/well/${wellId}`,
         });
       }
     },
