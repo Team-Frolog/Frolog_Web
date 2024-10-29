@@ -27,6 +27,7 @@ function WellBook({ wellId, wellBook, isLastItem }: Props) {
   const isReading = status === 'reading';
 
   useEffect(() => {
+    console.log('same', newReviewId === id, 'last?', isLastItem);
     return () => {
       setNewReviewId(null);
     };
