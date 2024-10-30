@@ -1,12 +1,14 @@
-import { StoreHeader } from '@/features/Store';
-import MainLayout from '@/layouts/MainLayout';
 import React from 'react';
+import MainLayout from '@/layouts/MainLayout';
+import { StoreHeader, FrogList } from '@/features/Store';
 
 function StorePage() {
   return (
     <>
       <StoreHeader />
-      <MainLayout extraClass='bg-white px-pgae pt-[16px]'>dd</MainLayout>
+      <MainLayout extraClass='bg-white px-page pt-[16px]'>
+        <FrogList />
+      </MainLayout>
     </>
   );
 }
