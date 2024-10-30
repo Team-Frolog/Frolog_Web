@@ -17,6 +17,7 @@ function BottomSheet({
   onClick,
   onClickSubButton,
   onClose,
+  titleProp,
 }: BottomSheetProps) {
   useScrollFreeze();
   const { getTitle, type, frog, buttonText, extraButtonText, description } =
@@ -51,7 +52,9 @@ function BottomSheet({
           style={{ top: '-55px' }}
         />
         <div className='flex-col-center w-full gap-[12px]'>
-          <h2 className='text-center text-title-xl-bold'>{getTitle()}</h2>
+          <h2 className='text-center text-title-xl-bold'>
+            {getTitle(titleProp)}
+          </h2>
           {description && <p className='text-body-lg'>{description()}</p>}
           {children}
         </div>

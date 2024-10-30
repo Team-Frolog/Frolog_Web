@@ -10,6 +10,7 @@ export interface BottomSheetProps {
   onClick?: () => void;
   onClickSubButton?: () => void;
   onClose?: () => void;
+  titleProp?: string;
 }
 
 class BottomSheet {

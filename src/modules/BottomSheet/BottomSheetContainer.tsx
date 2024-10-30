@@ -18,6 +18,7 @@ function BottomSheetContainer({ bottomSheet }: Props) {
             sheetKey={bottomSheet.sheetKey}
             onClick={bottomSheet.onClick}
             onClickSubButton={bottomSheet.onClickSubButton}
+            titleProp={bottomSheet.titleProp}
           >
             {bottomSheet.children}
           </BottomSheet>

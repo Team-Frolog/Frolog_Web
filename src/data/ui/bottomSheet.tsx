@@ -2,7 +2,7 @@ import { SHEET_FROG } from '@/constants/frogs';
 import { PopUpType } from '@/store/popUpStore';
 
 export interface AlertSheet {
-  getTitle: () => JSX.Element;
+  getTitle: (value?: any) => JSX.Element;
   type: 'normal' | 'error';
   stateType: PopUpType;
   buttonText?: string;
@@ -174,5 +174,14 @@ export const sheetData: {
     extraButtonText: '취소',
     stateType: 'isOpenAlertSheet',
     description: () => <>그동안 정말 고마웠습니다. Good Bye</>,
+  },
+  purchase: {
+    getTitle: (name: string) => <>{name} 구매하나요?</>,
+    type: 'normal',
+    buttonText: '구매하기',
+    extraButtonText: '취소',
+    frog: SHEET_FROG.wink,
+    stateType: 'isOpenAlertSheet',
+    description: () => <>구매 후 교환 및 환불이 불가능합니다.</>,
   },
 };

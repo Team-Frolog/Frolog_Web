@@ -4,6 +4,7 @@ import React from 'react';
 import FrogCharacter from '@/components/Frog/FrogCharacter';
 import { FROGS } from '@/constants/frogs';
 import { useFrogs } from '@/features/Well/hooks/useFrogs';
+import { useStore } from '../hooks/useStore';
 
 interface Props {
   userId: string;
@@ -11,6 +12,7 @@ interface Props {
 
 function FrogList({ userId }: Props) {
   const { frogs } = useFrogs(userId);
+  const { handlePurchase } = useStore();
   const existFrogs = frogs?.map((frog) => frog.id);
 
   return (
@@ -24,7 +26,11 @@ function FrogList({ userId }: Props) {
                 key={frog}
                 data={{ id: frog }}
                 isSelected={false}
-                onClick={() => {}}
+                onClick={
+                  existFrogs?.includes(frog)
+                    ? () => {}
+                    : () => handlePurchase(FROGS[frog].name)
+                }
                 isExist={existFrogs?.includes(frog)}
               />
             )

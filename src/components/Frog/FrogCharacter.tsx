@@ -5,6 +5,7 @@ import NewTag from '@/features/Well/components/NewTag';
 import { getIsNew } from '@/features/Well/utils/getIsNew';
 import Image from 'next/image';
 import React from 'react';
+import { motion } from 'framer-motion';
 
 interface Props {
   data: {
@@ -18,8 +19,9 @@ interface Props {
 
 function FrogCharacter({ data, isSelected, onClick, isExist }: Props) {
   return (
-    <button
+    <motion.button
       type='button'
+      whileTap={{ scale: 0.95 }}
       onClick={onClick}
       className={`relative flex h-fit w-full max-w-[105px] flex-col items-center justify-end gap-[12px] rounded-[12px] border bg-white pb-[16px] pt-[20px] ${isSelected ? 'border-main shadow-inner' : 'border-gray-300'}`}
     >
@@ -43,7 +45,7 @@ function FrogCharacter({ data, isSelected, onClick, isExist }: Props) {
           </span>
         )}
       </div>
-    </button>
+    </motion.button>
   );
 }
 
