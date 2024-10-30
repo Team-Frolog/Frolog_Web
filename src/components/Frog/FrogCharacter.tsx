@@ -13,9 +13,10 @@ interface Props {
   };
   isSelected: boolean;
   onClick: () => void;
+  isExist?: boolean;
 }
 
-function FrogCharacter({ data, isSelected, onClick }: Props) {
+function FrogCharacter({ data, isSelected, onClick, isExist }: Props) {
   return (
     <button
       type='button'
@@ -30,7 +31,18 @@ function FrogCharacter({ data, isSelected, onClick }: Props) {
         height={108}
         className='w-full'
       />
-      <span className='text-body-md text-gray-800'>{FROGS[data.id].name}</span>
+      <div className='flex flex-col'>
+        <span className='text-body-md text-gray-800'>
+          {FROGS[data.id].name}
+        </span>
+        {isExist !== undefined && (
+          <span
+            className={`text-body-md-bold ${isExist ? 'text-main' : 'text-gray-800'}`}
+          >
+            {isExist ? '보유중' : `${FROGS[data.id].price}P`}
+          </span>
+        )}
+      </div>
     </button>
   );
 }

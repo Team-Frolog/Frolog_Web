@@ -21,6 +21,7 @@ export const IMAGES = {
     },
     memo_frog: `${BASE_PATH}/frog/memo-frog.svg`,
     more_feed: `${BASE_PATH}/frog/morefeed-frog.svg`,
+    more_frogs: `${BASE_PATH}/frog/more-character-frog.svg`,
     empty_dot: `${BASE_PATH}/frog/frog-empty-dot.svg`,
   },
   test: {
