@@ -4,25 +4,70 @@ interface Frog {
   [key: string]: {
     src: string;
     name: string;
+    price: null | number;
   };
 }
 
 export const FROGS: Frog = {
   default: {
-    src: `${BASE_PATH}/frog/character/default.svg`,
+    src: `${BASE_PATH}/frog/character/sqaure/default-sqaure.svg`,
     name: '개꾸리',
+    price: null,
   },
   fro: {
-    src: `${BASE_PATH}/frog/character/fro.svg`,
+    src: `${BASE_PATH}/frog/character/sqaure/fro-sqaure.svg`,
     name: '프로',
+    price: null,
   },
   roro: {
-    src: `${BASE_PATH}/frog/character/roro.svg`,
+    src: `${BASE_PATH}/frog/character/sqaure/roro-sqaure.svg`,
     name: '로로',
+    price: 50,
   },
   rogy: {
-    src: `${BASE_PATH}/frog/character/rogy.svg`,
+    src: `${BASE_PATH}/frog/character/sqaure/rogy-sqaure.svg`,
     name: '로기',
+    price: 100,
+  },
+  ghost: {
+    src: `${BASE_PATH}/frog/character/sqaure/ghost-sqaure.svg`,
+    name: '유령꾸리',
+    price: 200,
+  },
+  mummy: {
+    src: `${BASE_PATH}/frog/character/sqaure/mummy-sqaure.svg`,
+    name: '미라꾸리',
+    price: 200,
+  },
+  pumkin: {
+    src: `${BASE_PATH}/frog/character/sqaure/pumkin-sqaure.svg`,
+    name: '호박꾸리',
+    price: 300,
+  },
+  skeleton: {
+    src: `${BASE_PATH}/frog/character/sqaure/skeleton-sqaure.svg`,
+    name: '해골꾸리',
+    price: 300,
+  },
+  devil: {
+    src: `${BASE_PATH}/frog/character/sqaure/devil-sqaure.svg`,
+    name: '악마꾸리',
+    price: 500,
+  },
+  gguristein: {
+    src: `${BASE_PATH}/frog/character/sqaure/gguristein-sqaure.svg`,
+    name: '꾸리슈타인',
+    price: 500,
+  },
+  witch: {
+    src: `${BASE_PATH}/frog/character/sqaure/witch-sqaure.svg`,
+    name: '마녀꾸리',
+    price: 1000,
+  },
+  dracula: {
+    src: `${BASE_PATH}/frog/character/sqaure/dracula-sqaure.svg`,
+    name: '꾸리백작',
+    price: 1000,
   },
 };
 
