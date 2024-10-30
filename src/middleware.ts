@@ -5,7 +5,6 @@ import type { NextRequest } from 'next/server';
 const protectedRoutes: string[] = [
   '/frolog-test',
   '/profile',
-  '/well-book',
   '/join/finish',
   '/flash',
   '/well',
@@ -14,6 +13,7 @@ const protectedRoutes: string[] = [
   '/new-review',
   '/quit',
   '/terms',
+  '/store',
 ]; // 로그인이 필요한 페이지 목록
 const publicRoutes: string[] = [
   '/landing',
