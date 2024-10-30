@@ -77,7 +77,7 @@ function Well({ wellData, type = 'default', onClick }: Props) {
           width={80}
           height={110}
           loading='eager'
-          className='absolute inset-x-0 bottom-[15px] z-10 mx-auto h-[60%] w-auto'
+          className='absolute inset-x-0 bottom-[15px] z-10 mx-auto h-[75%] w-auto'
         />
         <div className='absolute left-1/2 top-1/2 z-20 h-full w-full -translate-x-1/2 -translate-y-1/2 pt-[0px]'>
           <WellOutline welltype={shape} fill={CATEGORY[color].bg} />
