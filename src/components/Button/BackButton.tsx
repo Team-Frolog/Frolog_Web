@@ -3,9 +3,10 @@
 import { BackIcon, WellBackIcon } from 'public/icons';
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 interface Props {
-  onClick: () => void;
+  onClick?: () => void;
   fill?: string;
   extraClass?: string;
   type?: 'normal' | 'green';
@@ -17,13 +18,14 @@ function BackButton({
   extraClass,
   type = 'normal',
 }: Props) {
+  const router = useRouter();
   return (
     <>
       {type === 'normal' ? (
         <button
           type='button'
           className={`cursor-pointer ${extraClass}`}
-          onClick={onClick}
+          onClick={onClick || (() => router.back())}
         >
           <BackIcon id='icon' fill={fill} />
         </button>
