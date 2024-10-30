@@ -1,8 +1,8 @@
 import { FROGS } from '@/constants/frogs';
+import NewTag from '@/features/Well/components/NewTag';
+import { getIsNew } from '@/features/Well/utils/getIsNew';
 import Image from 'next/image';
 import React from 'react';
-import { getIsNew } from '../../../utils/getIsNew';
-import NewTag from '../../NewTag';
 
 interface Props {
   data: {

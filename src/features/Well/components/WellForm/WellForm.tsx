@@ -9,7 +9,7 @@ import WellNameInput from './WellNameInput';
 import ShapeForm from './Shape/ShapeForm';
 import { useWellForm } from '../../hooks/useWellForm';
 
-const FrogSelector = dynamic(() => import('./Frog/FrogSelector'), {
+const FrogSelector = dynamic(() => import('@/components/Frog/FrogSelector'), {
   ssr: false,
   loading: () => <FrogSelectorSkeleton />,
 });
