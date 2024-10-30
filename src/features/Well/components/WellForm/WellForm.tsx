@@ -9,10 +9,13 @@ import WellNameInput from './WellNameInput';
 import ShapeForm from './Shape/ShapeForm';
 import { useWellForm } from '../../hooks/useWellForm';
 
-const FrogSelector = dynamic(() => import('@/components/Frog/FrogSelector'), {
-  ssr: false,
-  loading: () => <FrogSelectorSkeleton />,
-});
+const FrogSelector = dynamic(
+  () => import('@/features/Well/components/WellForm/Frog/FrogSelector'),
+  {
+    ssr: false,
+    loading: () => <FrogSelectorSkeleton />,
+  }
+);
 
 export interface WellFormType {
   name: string;

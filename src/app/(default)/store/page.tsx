@@ -6,7 +6,7 @@ function StorePage() {
   return (
     <>
       <StoreHeader />
-      <MainLayout extraClass='bg-white'>dd</MainLayout>
+      <MainLayout extraClass='bg-white px-pgae pt-[16px]'>dd</MainLayout>
     </>
   );
 }

@@ -26,6 +26,7 @@ export const PAGES = {
   WELL: '/well',
   DEFAULT: '/default',
   FLASH: '/flash',
+  STORE: '/store',
 } as const;
 
 export const PAGE_CONFIG: PageConfig = {

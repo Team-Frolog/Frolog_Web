@@ -1,13 +1,13 @@
 'use client';
 
 import SideHeader from '@/components/Header/SideHeader';
-import { usePopUpActions } from '@/store/popUpStore';
 import { useRouter } from 'next/navigation';
 import { StoreIcon } from 'public/icons';
 import React from 'react';
 import { motion } from 'framer-motion';
 import BackButton from '@/components/Button/BackButton';
 import { useProfile } from '@/hooks/useProfile';
+import { PAGES } from '@/constants/page';
 
 interface Props {
   userId?: string;
@@ -24,7 +24,6 @@ function SideWellHeader({
 }: Props) {
   const router = useRouter();
   const { profile } = useProfile(userId);
-  const { changePopUpState } = usePopUpActions();
 
   return (
     <SideHeader
@@ -38,7 +37,7 @@ function SideWellHeader({
         <motion.button
           type='button'
           whileTap={{ scale: 0.9 }}
-          onClick={() => changePopUpState('isOpenAlertSheet', true)}
+          onClick={() => router.push(PAGES.STORE)}
           className='absolute right-[24px] top-[24px] z-70'
         >
           <StoreIcon />

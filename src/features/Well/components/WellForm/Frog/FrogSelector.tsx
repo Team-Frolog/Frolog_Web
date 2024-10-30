@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { motion, useAnimationControls } from 'framer-motion';
 import { ExpandIcon } from 'public/icons';
 import { useFrogs } from '@/features/Well/hooks/useFrogs';
-import FrogCharacter from './FrogCharacter';
+import FrogCharacter from '@/components/Frog/FrogCharacter';
 
 interface Props {
   userId: string;
