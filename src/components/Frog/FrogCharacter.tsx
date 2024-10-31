@@ -23,7 +23,7 @@ function FrogCharacter({ data, isSelected, onClick, isExist }: Props) {
       type='button'
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
-      className={`relative flex h-fit w-full max-w-[105px] flex-col items-center justify-end gap-[12px] rounded-[12px] border bg-white pb-[16px] pt-[20px] ${isSelected ? 'border-main shadow-inner' : 'border-gray-300'}`}
+      className={`relative flex h-fit flex-col items-center justify-end gap-[12px] rounded-[12px] border bg-white pb-[16px] pt-[20px] ${isSelected ? 'border-main shadow-inner' : 'border-gray-300'}`}
     >
       {data.date && getIsNew(data.date) && <NewTag position='left-0 top-0' />}
       <Image

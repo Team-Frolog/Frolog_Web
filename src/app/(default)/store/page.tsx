@@ -13,7 +13,7 @@ async function StorePage() {
   return (
     <>
       <StoreHeader />
-      <MainLayout extraClass='bg-white px-page pt-[16px] gap-[40px]'>
+      <MainLayout extraClass='px-page pt-[16px] gap-[40px] bg-white'>
         {userId && <FrogList userId={userId} />}
         <Image
           src={IMAGES.frog.more_frogs}

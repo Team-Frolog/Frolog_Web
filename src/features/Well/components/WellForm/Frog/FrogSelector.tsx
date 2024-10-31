@@ -34,7 +34,7 @@ function FrogSelector({ userId }: Props) {
         initial={{ height: isExpanded || isNoExpansion ? 'auto' : '280px' }}
         animate={controls}
         transition={{ duration: 0.3 }}
-        className='relative flex flex-wrap gap-[9px] overflow-hidden mobile:grid mobile:grid-cols-3'
+        className='relative grid grid-cols-3 gap-[9px] overflow-hidden'
       >
         {!isNoExpansion && (
           <div
