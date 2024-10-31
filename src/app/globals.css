@@ -37,6 +37,12 @@
     -moz-user-drag: none;
     -o-user-drag: none;
   }
+  svg {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+  }
   button {
     box-sizing: content-box;
     cursor: pointer;
@@ -97,11 +103,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 /* type=date input icon 색상 세팅 */
