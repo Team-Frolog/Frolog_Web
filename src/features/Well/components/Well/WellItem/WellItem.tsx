@@ -4,11 +4,8 @@ import { motion } from 'framer-motion';
 import { staggerItemVariants } from '@/styles/variants/variants';
 import useStackMotionStore from '@/store/stackMotionStore';
 import { useRouter } from 'next/navigation';
-import { MemoBookmarkIcon } from 'public/icons';
 import { GetWellItemRes } from '@frolog/frolog-api';
-import ReadingBook from '../Well/Book/ReadingBook';
-import ReadBook from '../Well/Book/ReadBook';
-import { getMargin } from '../../utils/getMargin';
+import Wave from './Wave';
 
 interface Props {
   wellBook: GetWellItemRes;
@@ -16,14 +13,14 @@ interface Props {
   isLastItem: boolean;
 }
 
-function WellBook({ wellId, wellBook, isLastItem }: Props) {
+function WellItem({ wellId, wellBook, isLastItem }: Props) {
   const router = useRouter();
   const {
     newReviewId,
     actions: { setNewReviewId },
   } = useStackMotionStore();
-  const { id, status, memo_cnt, title, page, category, isbn } = wellBook;
-  const bookHeight = page > 420 ? page * 0.1 : 42;
+  const { id, status, title, page, category, isbn } = wellBook;
+  const height = page > 550 ? page * 0.1 : 55;
   const isReading = status === 'reading';
 
   useEffect(() => {
@@ -44,21 +41,11 @@ function WellBook({ wellId, wellBook, isLastItem }: Props) {
       variants={
         newReviewId === id && isLastItem ? staggerItemVariants : undefined
       }
-      className='flex w-[80%] items-center justify-center'
-      style={{ margin: getMargin() }}
+      className='flex w-full'
     >
-      {isReading ? (
-        <ReadingBook
-          title={title}
-          category={category}
-          bookHeight={bookHeight}
-        />
-      ) : (
-        <ReadBook title={title} category={category} bookHeight={bookHeight} />
-      )}
-      {memo_cnt > 0 && <MemoBookmarkIcon />}
+      <Wave title={title} category={category} height={height} />
     </motion.div>
   );
 }
 
-export default WellBook;
+export default WellItem;

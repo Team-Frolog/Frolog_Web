@@ -19,7 +19,7 @@ export const staggerContainerVariants = {
 };
 
 export const staggerItemVariants = {
-  hidden: { y: -50, opacity: 0 },
+  hidden: { y: '100%', opacity: 0 },
   visible: {
     opacity: 1,
     y: 0,
