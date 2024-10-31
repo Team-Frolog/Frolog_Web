@@ -22,6 +22,7 @@ function Wave({ title, category, height, isReading }: Props) {
         width={390}
         height={12}
         className='absolute -top-[12px] left-0 h-[12px] w-full'
+        loading='eager'
       />
       {isReading && (
         <WellBubble
