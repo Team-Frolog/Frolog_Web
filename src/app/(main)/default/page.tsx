@@ -5,8 +5,8 @@ import {
   WellTitle,
   FrogOnBook,
 } from '@/features/Well';
+import Wave from '@/features/Well/components/Well/WellItem/Wave';
 import MainLayout from '@/layouts/MainLayout';
-import { MemoBookmarkIcon } from 'public/icons';
 import React from 'react';
 
 function DefaultWellPage() {
@@ -23,29 +23,22 @@ function DefaultWellPage() {
           itemCount={2}
         />
         <div className='flex w-full flex-col-reverse items-center'>
-          <div
-            className='flex w-[80%] items-center justify-center'
-            style={{ margin: '0px 0px 0px 30px' }}
-          >
-            <div className='read-book bg-category-bg-novel'>
-              <div className='read-book-band bg-category-band-novel' />
-              <span className='read-book-text'>다 읽은 책은 이렇게 쌓여요</span>
-            </div>
-            <MemoBookmarkIcon />
-          </div>
-          <div
-            className='flex w-[80%] items-center'
-            style={{ margin: '0px 30px 0px 0px' }}
-          >
-            <div className='reading-book border-category-bg-it'>
-              <span className='reading-book-text'>
-                읽는 중인 책은 이렇게 쌓여요
-              </span>
-            </div>
-            <MemoBookmarkIcon />
+          <div className='flex w-full flex-col'>
+            <Wave
+              title='다 읽은 책은 이렇게 쌓여요'
+              category='unknown'
+              isReading={false}
+              height={55}
+            />
+            <Wave
+              title='읽는 중인 책은 이렇게 쌓여요'
+              category='travel'
+              isReading
+              height={55}
+            />
           </div>
 
-          <FrogOnBook />
+          <FrogOnBook zIndex={10} />
         </div>
       </MainLayout>
     </>
