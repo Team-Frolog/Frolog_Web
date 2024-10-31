@@ -32,6 +32,7 @@ function WellItem({ wellId, wellBook, isLastItem, zIndex }: Props) {
 
   return (
     <motion.div
+      whileTap={{ y: -10 }}
       onClick={() =>
         router.push(
           isReading
@@ -45,7 +46,12 @@ function WellItem({ wellId, wellBook, isLastItem, zIndex }: Props) {
       style={{ zIndex }}
       className='flex h-fit w-full'
     >
-      <Wave title={title} category={category} height={height} />
+      <Wave
+        title={title}
+        category={category}
+        height={height}
+        isReading={isReading}
+      />
     </motion.div>
   );
 }
