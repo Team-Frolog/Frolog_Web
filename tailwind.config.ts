@@ -19,6 +19,9 @@ const config: Config = {
       pattern: /border-category-./,
     },
     {
+      pattern: /border-b-category-./,
+    },
+    {
       pattern: /button-./,
     },
     {

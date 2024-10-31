@@ -15,10 +15,10 @@
     @apply after:absolute after:left-1/2 after:-z-0 after:h-0 after:w-0 after:-translate-x-[50%] after:rotate-45 after:border-solid;
   }
   .tooltip-feed {
-    @apply after:absolute after:-top-[23px] after:left-[31px] after:h-0 after:w-0 after:rotate-0 after:border-solid after:border-transparent;
+    @apply absolute -top-[23px] left-[31px] h-0 w-0 rotate-0 border-solid border-transparent;
 
-    &::after {
-      border-width: 0 13.5px 23.4px 13.5px;
+    & {
+      border-width: 0 13.5px 23.4px;
     }
   }
   .tooltip-no-book {

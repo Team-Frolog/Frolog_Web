@@ -26,8 +26,9 @@ function BookInfo({ feedData, isMemo }: Props) {
   return (
     <div className='pt-[30px]'>
       <div
-        className={`tooltip-feed relative flex w-full gap-[16px] rounded-t-[20px] bg-category-bg-${category} px-page pt-[24px] after:border-b-category-bg-${category}`}
+        className={`relative flex w-full gap-[16px] rounded-t-[20px] bg-category-bg-${category} px-page pt-[24px]`}
       >
+        <div className={`tooltip-feed border-b-category-bg-${category}`} />
         <Image
           src={bookCover || IMAGES.book.cover}
           alt='book cover'
