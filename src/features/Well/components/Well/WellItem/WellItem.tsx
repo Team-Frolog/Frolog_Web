@@ -1,8 +1,8 @@
 /* eslint-disable arrow-body-style */
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { staggerItemVariants } from '@/styles/variants/variants';
 import useStackMotionStore from '@/store/stackMotionStore';
+import { staggerItemVariants } from '@/styles/variants/variants';
 import { useRouter } from 'next/navigation';
 import { GetWellItemRes } from '@frolog/frolog-api';
 import Wave from './Wave';
@@ -11,9 +11,10 @@ interface Props {
   wellBook: GetWellItemRes;
   wellId: string;
   isLastItem: boolean;
+  zIndex: number;
 }
 
-function WellItem({ wellId, wellBook, isLastItem }: Props) {
+function WellItem({ wellId, wellBook, isLastItem, zIndex }: Props) {
   const router = useRouter();
   const {
     newReviewId,
@@ -41,7 +42,8 @@ function WellItem({ wellId, wellBook, isLastItem }: Props) {
       variants={
         newReviewId === id && isLastItem ? staggerItemVariants : undefined
       }
-      className='flex w-full'
+      style={{ zIndex }}
+      className='flex h-fit w-full'
     >
       <Wave title={title} category={category} height={height} />
     </motion.div>

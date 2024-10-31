@@ -48,8 +48,9 @@ function WellIcon({ wellData, type = 'default', onClick }: Props) {
 
   return (
     <div className='flex h-fit w-fit flex-col gap-[8px] place-self-center'>
-      <button
+      <motion.button
         ref={buttonRef}
+        whileTap={{ scale: 0.95 }}
         type='button'
         onClick={type === 'default' ? () => handleIntoWell(id) : onClick}
         className='flex-center relative box-content h-[120px] w-[120px] rounded-[50%] p-[20px]'
@@ -82,7 +83,7 @@ function WellIcon({ wellData, type = 'default', onClick }: Props) {
         <div className='absolute left-1/2 top-1/2 z-20 h-full w-full -translate-x-1/2 -translate-y-1/2 pt-[0px]'>
           <WellOutline welltype={shape} fill={CATEGORY[color].bg} />
         </div>
-      </button>
+      </motion.button>
       <h5 className='break-all text-center text-body-lg-bold text-gray-800'>
         {name}
       </h5>

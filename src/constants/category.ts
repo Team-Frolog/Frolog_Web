@@ -55,7 +55,7 @@ export const CATEGORY: Category = {
   },
   self_development: {
     name: '자기개발',
-    bg: '#FB7A35',
+    bg: '#FF7B35',
     text: '#FFC8AB',
     band: '#FFA474',
     wave: `${BASE_URL}/self_development.svg`,
@@ -76,7 +76,7 @@ export const CATEGORY: Category = {
   },
   science: {
     name: '과학',
-    bg: '#4D6FF4',
+    bg: '#4E72FF',
     text: '#BBC4E9',
     band: '#9BACF1',
     wave: `${BASE_URL}/science.svg`,
@@ -90,7 +90,7 @@ export const CATEGORY: Category = {
   },
   economic_business: {
     name: '경제경영',
-    bg: '#6BCEF5',
+    bg: '#85DCFF',
     text: '#0073A0',
     band: '#9DE3FF',
     wave: `${BASE_URL}/economic_business.svg`,

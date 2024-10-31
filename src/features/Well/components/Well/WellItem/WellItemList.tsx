@@ -67,16 +67,15 @@ const WellItemList = React.memo(
           {wellItems.length === 0 && (
             <div className='h-[12px] w-full shrink-0 rounded-t-[20px] bg-gray-900' />
           )}
-          <div className='flex w-full flex-col'>
-            {wellItems.map((item, i) => (
-              <WellItem
-                key={item.id}
-                wellBook={item}
-                wellId={wellData.id}
-                isLastItem={item_cnt === i + 1}
-              />
-            ))}
-          </div>
+          {wellItems.map((item, i) => (
+            <WellItem
+              key={item.id}
+              wellBook={item}
+              wellId={wellData.id}
+              isLastItem={item_cnt === i + 1}
+              zIndex={wellItems.length - i}
+            />
+          ))}
           <FrogOnBook frogId={wellData.frog} message={message} />
           {isDefaultWell && wellItems.length >= 2 && (
             <WellActionButton

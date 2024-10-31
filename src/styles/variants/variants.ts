@@ -38,7 +38,7 @@ export const frogVariants = {
     transition: {
       duration: 0.5,
       ease: 'easeOut',
-      delay: 1,
+      delay: 2,
     },
   },
 };
