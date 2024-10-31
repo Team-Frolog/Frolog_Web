@@ -3,7 +3,7 @@ export interface TagData {
   value: string;
 }
 
-export const proTags: TagData[] = [
+export const PROS_TAG: TagData[] = [
   { id: 'easy', value: '완독하기 쉬운' },
   { id: 'squeeze_time', value: '틈틈이 읽기 좋은' },
   { id: 'killing_time', value: '시간 순삭' },
@@ -19,7 +19,7 @@ export const proTags: TagData[] = [
   { id: 'various', value: '해석이 무궁무진' },
 ];
 
-export const conTags: TagData[] = [
+export const CONS_TAG: TagData[] = [
   { id: 'biased', value: '민초급 호불호' },
   { id: 'wasting_time', value: '남는 게 없는' },
   { id: 'yawning', value: '하품이 나오는' },

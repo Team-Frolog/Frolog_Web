@@ -1,4 +1,4 @@
-export const jobs = [
+export const JOBS = [
   { id: 1, value: '학생' },
   { id: 2, value: '기획/마케팅/경영' },
   { id: 3, value: '디자인/크리에이티브' },

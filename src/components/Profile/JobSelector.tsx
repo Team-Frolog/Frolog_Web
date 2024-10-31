@@ -1,7 +1,7 @@
 'use client';
 
 import FormTitleWithToggle from '@/components/Form/FormTitleWithToggle';
-import { jobs } from '@/data/jobs';
+import { JOBS } from '@/constants/jobs';
 import { SelectIcon } from 'public/icons';
 import React from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -27,7 +27,7 @@ function JobSelector({ theme }: Props) {
           }
           className={`w-full cursor-pointer appearance-none rounded-[12px] border border-solid px-[16px] py-[18px] text-body-lg outline-none ${theme === 'dark' ? 'input-default' : 'input-light'}`}
         >
-          {jobs.map((item) => (
+          {JOBS.map((item) => (
             <option key={item.id} value={item.value}>
               {item.value}
             </option>
