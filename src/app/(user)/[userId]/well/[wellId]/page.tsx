@@ -2,7 +2,8 @@
 
 import ScrollToTop from '@/components/Button/ScrollToTop';
 import NavigationBar from '@/components/NavigationBar';
-import { WellBookList, WellHeader } from '@/features/Well';
+import { WellHeader } from '@/features/Well';
+import WellItemList from '@/features/Well/components/Well/WellItem/WellItemList';
 import { useWell } from '@/features/Well/hooks/useWell';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import MainLayout from '@/layouts/MainLayout';
@@ -36,7 +37,7 @@ function UserWellDetailPage({ params: { userId, wellId } }: Props) {
           hasBackButton={!isDefaultWell}
         />
         {well && (
-          <WellBookList
+          <WellItemList
             isRootUser={isRootUser}
             wellData={well}
             isDefaultWell={isDefaultWell}
