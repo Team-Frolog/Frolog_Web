@@ -36,6 +36,9 @@ export const IMAGES = {
     skin: `${BASE_PATH}/book/book-skin.svg`,
     cover: `${BASE_PATH}/book/book-cover.svg`,
   },
+  well: {
+    leaf: `${BASE_PATH}/well/well-leaf.svg`,
+  },
   ground: `${BASE_PATH}/etc/ground.svg`,
   ground_sm: `${BASE_PATH}/etc/ground-sm.svg`,
   default_profile: `${BASE_PATH}/etc/default-profile.svg`,

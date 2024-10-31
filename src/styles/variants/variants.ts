@@ -30,7 +30,7 @@ export const staggerItemVariants = {
   },
 };
 
-export const frogVariants = {
+export const leafVariants = {
   hidden: { y: -50, opacity: 0 },
   visible: {
     opacity: 1,
@@ -39,6 +39,19 @@ export const frogVariants = {
       duration: 0.5,
       ease: 'easeOut',
       delay: 2,
+    },
+  },
+};
+
+export const frogVariants = {
+  hidden: { y: -50, opacity: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut',
+      delay: 2.5,
     },
   },
 };

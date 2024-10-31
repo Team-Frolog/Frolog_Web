@@ -59,7 +59,7 @@ const WellItemList = React.memo(
           isPointing={isDefaultWell && wellItems.length < 2}
         />
         <motion.div
-          className='flex h-fit w-full flex-1 flex-col-reverse items-center'
+          className='relative flex h-fit w-full flex-1 flex-col-reverse items-center'
           initial='hidden'
           animate='visible'
           variants={staggerContainerVariants}
@@ -76,7 +76,7 @@ const WellItemList = React.memo(
               zIndex={wellItems.length - i}
             />
           ))}
-          <FrogOnBook frogId={wellData.frog} message={message} />
+          <FrogOnBook frogId={wellData.frog} message={message} zIndex={wellItems.length + 1} />
           {isDefaultWell && wellItems.length >= 2 && (
             <WellActionButton
               btnName='새로운 우물 파기'

@@ -71,13 +71,21 @@ export const FROGS: Frog = {
   },
 } as const;
 
-export const FROG_SITTING: {
+export const FROGS_FIT: {
   [key: string]: string;
 } = {
-  default: `${BASE_PATH}/frog/character/sitting/default-sitting.svg`,
-  fro: `${BASE_PATH}/frog/character/sitting/fro-sitting.svg`,
-  roro: `${BASE_PATH}/frog/character/sitting/roro-sitting.svg`,
-  rogy: `${BASE_PATH}/frog/character/sitting/rogy-sitting.svg`,
+  default: `${BASE_PATH}/frog/character/fit/default.svg`,
+  fro: `${BASE_PATH}/frog/character/fit/fro.svg`,
+  roro: `${BASE_PATH}/frog/character/fit/roro.svg`,
+  rogy: `${BASE_PATH}/frog/character/fit/rogy.svg`,
+  ghost: `${BASE_PATH}/frog/character/fit/ghost.svg`,
+  mummy: `${BASE_PATH}/frog/character/fit/mummy.svg`,
+  pumkin: `${BASE_PATH}/frog/character/fit/pumkin.svg`,
+  skeleton: `${BASE_PATH}/frog/character/fit/skeleton.svg`,
+  devil: `${BASE_PATH}/frog/character/fit/devil.svg`,
+  gguristein: `${BASE_PATH}/frog/character/fit/gguristein.svg`,
+  witch: `${BASE_PATH}/frog/character/fit/witch.svg`,
+  dracula: `${BASE_PATH}/frog/character/fit/dracula.svg`,
 };
 
 export const SHEET_FROG = {
