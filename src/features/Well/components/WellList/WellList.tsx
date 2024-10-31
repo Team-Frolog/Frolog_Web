@@ -5,7 +5,7 @@ import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton'
 import { useObserver } from '@/hooks/gesture/useObserver';
 import MessageToast from '@/components/Toast/MessageToast';
 import WellAddButton from './WellAddButton';
-import Well from '../WellItem/Well';
+import WellIcon from './WellIcon/WellIcon';
 import { useWells } from '../../hooks/useWells';
 
 interface Props {
@@ -22,7 +22,7 @@ function WellList({ userId, isRootUser }: Props) {
     <div className='relative flex w-full flex-col bg-gray-300 pb-[48px] text-gray-800'>
       <div className='grid grid-cols-2 gap-[24px] px-page py-[12px]'>
         {isRootUser && <WellAddButton userId={userId} />}
-        {wells?.map((well) => <Well key={well.id} wellData={well} />)}
+        {wells?.map((well) => <WellIcon key={well.id} wellData={well} />)}
         {isFetchingNextPage ? (
           <WellItemsSkeleton />
         ) : (

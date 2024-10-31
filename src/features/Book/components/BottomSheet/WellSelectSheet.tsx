@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Well, useWells } from '@/features/Well';
+import { WellIcon, useWells } from '@/features/Well';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton';
 
@@ -20,7 +20,7 @@ function WellSelectSheet({ callback, userId }: Props) {
       {!isFetched && <WellItemsSkeleton />}
       {isFetched &&
         wells.map((well) => (
-          <Well
+          <WellIcon
             type='select'
             key={well.id}
             wellData={well}

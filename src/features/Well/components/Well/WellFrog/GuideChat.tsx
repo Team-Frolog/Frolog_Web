@@ -3,8 +3,8 @@
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { chat } from '../../data/chat';
-import { getRandomMessage } from '../../utils/getRandomMessage';
+import { chat } from '../../../data/chat';
+import { getRandomMessage } from '../../../utils/getRandomMessage';
 
 interface Props {
   message?: string;

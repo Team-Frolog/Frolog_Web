@@ -1,7 +1,7 @@
 'use client';
 
 import { FROGS } from '@/constants/frogs';
-import NewTag from '@/features/Well/components/NewTag';
+import NewTag from '@/components/Tag/NewTag';
 import { getIsNew } from '@/features/Well/utils/getIsNew';
 import Image from 'next/image';
 import React from 'react';

@@ -22,7 +22,7 @@ export const staggerItemVariants = {
   hidden: { y: '100%', opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
+    y: '0%',
     transition: {
       duration: 0.5,
       ease: 'easeOut',

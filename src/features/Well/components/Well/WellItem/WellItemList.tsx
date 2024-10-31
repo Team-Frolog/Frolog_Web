@@ -8,7 +8,7 @@ import { useWellItems } from '@/features/Well/hooks/useWellItems';
 import { chat } from '@/features/Well/data/chat';
 import WellTitle from '../WellTitle';
 import WellActionButton from '../Pointing/WellActionButton';
-import FrogOnBook from '../FrogOnBook';
+import FrogOnBook from '../WellFrog/FrogOnBook';
 import WellItem from './WellItem';
 
 interface Props {

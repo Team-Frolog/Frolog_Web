@@ -7,11 +7,11 @@ import { useRouter } from 'next/navigation';
 import { CATEGORY } from '@/constants/category';
 import { GetWellRes } from '@frolog/frolog-api';
 import { FROGS } from '@/constants/frogs';
-import NewTag from '../NewTag';
-import { sizeOfBg } from '../../data/wellSize';
+import NewTag from '@/components/Tag/NewTag';
+import { sizeOfBg } from '../../../data/wellSize';
 import WellOutline from './WellOutline';
 import WellShape from './WellShape';
-import { getIsNew } from '../../utils/getIsNew';
+import { getIsNew } from '../../../utils/getIsNew';
 
 interface Props {
   type?: 'default' | 'select';
@@ -19,7 +19,7 @@ interface Props {
   onClick?: () => void;
 }
 
-function Well({ wellData, type = 'default', onClick }: Props) {
+function WellIcon({ wellData, type = 'default', onClick }: Props) {
   const { id, name, frog, owner, color, shape, date } = wellData;
   const router = useRouter();
   const controls = useAnimation();
@@ -90,4 +90,4 @@ function Well({ wellData, type = 'default', onClick }: Props) {
   );
 }
 
-export default Well;
+export default WellIcon;

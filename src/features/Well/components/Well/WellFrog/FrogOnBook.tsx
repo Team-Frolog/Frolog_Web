@@ -8,6 +8,7 @@ import { frogVariants } from '@/styles/variants/variants';
 import React from 'react';
 import GuideChat from './GuideChat';
 
+
 interface Props {
   frogId?: string;
   message?: string;
