@@ -49,11 +49,11 @@ module.exports = nextConfig;
 const { withSentryConfig } = require('@sentry/nextjs');
 
 module.exports = withSentryConfig(module.exports, {
-  org: 'frolog',
-  project: 'frolog-web',
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
   silent: !process.env.CI,
   widenClientFileUpload: true,
-  authToken: process.env.NEXT_PUBLIC_SENTRY_AUTH_TOKEN,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
   reactComponentAnnotation: {
     enabled: true,
   },
