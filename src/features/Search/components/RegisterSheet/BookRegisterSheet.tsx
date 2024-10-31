@@ -5,17 +5,19 @@ import Portal from '@/layouts/Portal';
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
-import { usePopUpActions } from '@/store/popUpStore';
 import SheetHeader from 'public/images/frog/sheet/sheet-header.svg';
 import RegisterForm from './RegisterForm';
 import { useBookRegister } from '../../hooks/useBookRegister';
 
-function BookRegisterSheet() {
+interface Props {
+  onClose: () => void;
+}
+
+function BookRegisterSheet({ onClose }: Props) {
   const { isRegistered, handleRegister } = useBookRegister();
-  const { changePopUpState } = usePopUpActions();
   const ref = useRef<HTMLDivElement | null>(null);
 
-  useClickOutside(ref, () => changePopUpState('isOpenAlertSheet', false));
+  useClickOutside(ref, onClose);
 
   return (
     <>

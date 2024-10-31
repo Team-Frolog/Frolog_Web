@@ -39,8 +39,8 @@ export const FROGS: Frog = {
     name: '미라꾸리',
     price: 200,
   },
-  pumkin: {
-    src: `${BASE_PATH}/frog/character/square/pumkin-square.svg`,
+  pumpkin: {
+    src: `${BASE_PATH}/frog/character/square/pumpkin-square.svg`,
     name: '호박꾸리',
     price: 300,
   },
@@ -80,7 +80,7 @@ export const FROGS_FIT: {
   rogy: `${BASE_PATH}/frog/character/fit/rogy.svg`,
   ghost: `${BASE_PATH}/frog/character/fit/ghost.svg`,
   mummy: `${BASE_PATH}/frog/character/fit/mummy.svg`,
-  pumkin: `${BASE_PATH}/frog/character/fit/pumkin.svg`,
+  pumpkin: `${BASE_PATH}/frog/character/fit/pumpkin.svg`,
   skeleton: `${BASE_PATH}/frog/character/fit/skeleton.svg`,
   devil: `${BASE_PATH}/frog/character/fit/devil.svg`,
   gguristein: `${BASE_PATH}/frog/character/fit/gguristein.svg`,

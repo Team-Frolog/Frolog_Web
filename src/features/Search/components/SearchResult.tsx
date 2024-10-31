@@ -1,8 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { BookListItem } from '@/features/Book';
-import usePopUpStore from '@/store/popUpStore';
 import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
@@ -29,11 +28,7 @@ function SearchResult() {
   } = useSearch();
   const { data: session } = useSession();
   const router = useRouter();
-
-  const { isOpenAlert, changePopUpState } = usePopUpStore((state) => ({
-    isOpenAlert: state.isOpenAlertSheet,
-    changePopUpState: state.actions.changePopUpState,
-  }));
+  const [isOpenRegister, setIsOpenRegister] = useState(false);
 
   const { setTarget } = useObserver({
     hasNextPage,
@@ -42,7 +37,7 @@ function SearchResult() {
 
   const handleNoBookClick = () => {
     if (session) {
-      changePopUpState('isOpenAlertSheet', true);
+      setIsOpenRegister(true);
     } else {
       bottomSheet.open({
         sheetKey: 'need_to_login',
@@ -74,7 +69,11 @@ function SearchResult() {
       {!isFetchingNextPage && !isLoading && (
         <div ref={setTarget} id='observer' className='h-[10px]' />
       )}
-      <AnimatePresence>{isOpenAlert && <BookRegisterSheet />}</AnimatePresence>
+      <AnimatePresence>
+        {isOpenRegister && (
+          <BookRegisterSheet onClose={() => setIsOpenRegister(false)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
