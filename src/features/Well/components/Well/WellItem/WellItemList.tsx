@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { staggerContainerVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
 import { GetWellRes } from '@frolog/frolog-api';
@@ -65,7 +66,20 @@ const WellItemList = React.memo(
           variants={staggerContainerVariants}
         >
           {wellItems.length === 0 && (
-            <div className='h-[12px] w-full shrink-0 rounded-t-[20px] bg-gray-900' />
+            <div className='relative z-auto box-border flex h-[55px] w-full justify-center bg-[#B7CEFF] pt-[12px]'>
+              <Image
+                src='/images/well/wave/default.svg'
+                alt='wave'
+                width={390}
+                height={12}
+                className='absolute -top-[12px] left-0 h-[12px] w-full'
+                loading='eager'
+              />
+              <span className='text-body-sm-bold text-gray-600'>
+                리뷰를 남겨 높게 올라가봐요!
+              </span>
+              <div className='absolute bottom-[-10px] left-0 h-[10px] w-full bg-[#B7CEFF]' />
+            </div>
           )}
           {wellItems.map((item, i) => (
             <WellItem
@@ -76,7 +90,11 @@ const WellItemList = React.memo(
               zIndex={wellItems.length - i}
             />
           ))}
-          <FrogOnBook frogId={wellData.frog} message={message} zIndex={wellItems.length + 1} />
+          <FrogOnBook
+            frogId={wellData.frog}
+            message={message}
+            zIndex={wellItems.length + 1}
+          />
           {isDefaultWell && wellItems.length >= 2 && (
             <WellActionButton
               btnName='새로운 우물 파기'
