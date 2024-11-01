@@ -28,7 +28,7 @@ function LoginPage() {
         },
       }}
     >
-      {isLoading && <LoadingOverlay />}
+      {isLoading && <LoadingOverlay theme='dark' />}
       <div className='flex flex-col gap-[20px]'>
         <LoginForm setIsFaild={setIsFaild} userLogin={userLogin} />
         <RememberMe isSaved={isSaved} setIsSaved={setIsSaved} />
