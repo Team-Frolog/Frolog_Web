@@ -1,10 +1,10 @@
 import React from 'react';
 import { onBoarding } from '@/data/ui/onBoarding';
 import Slider, { Settings } from 'react-slick';
-import Slide1 from 'public/images/onBoarding/slide-1.svg';
-import Slide2 from 'public/images/onBoarding/slide-2.svg';
-import Slide3 from 'public/images/onBoarding/slide-3.svg';
-import Slide4 from 'public/images/onBoarding/slide-4.svg';
+// import Slide1 from 'public/images/onBoarding/slide-1.svg';
+// import Slide2 from 'public/images/onBoarding/slide-2.svg';
+// import Slide3 from 'public/images/onBoarding/slide-3.svg';
+// import Slide4 from 'public/images/onBoarding/slide-4.svg';
 import OnBoardingHeader from './OnBoardingHeader';
 
 interface Props {
@@ -33,22 +33,22 @@ function OnBoardingSlide({ activeSlide, setActiveSlide }: Props) {
       <Slider {...settings} className='flex flex-1 shrink'>
         <div className='flex h-full w-full flex-1 shrink'>
           <div className='flex h-full shrink items-end justify-center'>
-            <Slide1 className='h-full w-auto' width={190} height={220} />
+            {/* <Slide1 className='h-full w-auto' width={190} height={220} /> */}
           </div>
         </div>
         <div className='flex h-full w-full flex-1 shrink'>
           <div className='flex h-full shrink items-end justify-start'>
-            <Slide2 className='h-[80%] w-auto' width={159} height={147} />
+            {/* <Slide2 className='h-[80%] w-auto' width={159} height={147} /> */}
           </div>
         </div>
         <div className='flex h-full w-full flex-1 shrink'>
           <div className='flex h-full shrink items-end justify-center'>
-            <Slide3 className='h-full w-auto' width={190} height={220} />
+            {/* <Slide3 className='h-full w-auto' width={190} height={220} /> */}
           </div>
         </div>
         <div className='flex h-full w-full flex-1 shrink'>
           <div className='flex h-full shrink items-end justify-center'>
-            <Slide4 className='h-full w-auto' width={162} height={189} />
+            {/* <Slide4 className='h-full w-auto' width={162} height={189} /> */}
           </div>
         </div>
       </Slider>
