@@ -3,26 +3,21 @@ import {
   REMEMBER_ME_KEY,
   TEMP_ACCOUNT_KEY,
 } from '@/constants/storage';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { LoginForm } from '../types/login';
 
 export const useLogin = (type: 'login' | 'test') => {
   const router = useRouter();
   const callbackUrl = () => sessionStorage.getItem(LOGIN_CALLBACK);
-  const { data: session, status } = useSession();
   const [isSaved, setIsSaved] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isFaild, setIsFaild] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (status === 'authenticated' && type === 'login') {
-      router.replace(callbackUrl() || '/');
-    }
-  }, [router, session, status, type]);
 
   const userLogin = async (data: LoginForm) => {
     setIsFaild(false);
+    setIsLoading(true);
 
     const result = await signIn('credentials', {
       redirect: false,
@@ -38,6 +33,8 @@ export const useLogin = (type: 'login' | 'test') => {
           localStorage.setItem(REMEMBER_ME_KEY, 'false');
           sessionStorage.setItem(REMEMBER_ME_KEY, 'logged_in');
         }
+        router.replace(callbackUrl() || '/');
+        router.refresh();
       } else {
         localStorage.removeItem(TEMP_ACCOUNT_KEY);
         localStorage.setItem(REMEMBER_ME_KEY, 'false');
@@ -48,5 +45,5 @@ export const useLogin = (type: 'login' | 'test') => {
     }
   };
 
-  return { isSaved, setIsSaved, isFaild, userLogin, setIsFaild };
+  return { isSaved, setIsSaved, isFaild, userLogin, setIsFaild, isLoading };
 };

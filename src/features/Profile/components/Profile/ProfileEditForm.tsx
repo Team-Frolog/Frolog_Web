@@ -31,7 +31,11 @@ export const defaultValue: ProfileEditFormType = {
   },
 };
 
-function ProfileEditForm() {
+interface Props {
+  userId: string;
+}
+
+function ProfileEditForm({ userId }: Props) {
   const methods = useForm<ProfileEditFormType>({
     mode: 'onBlur',
     defaultValues: defaultValue,
@@ -43,7 +47,7 @@ function ProfileEditForm() {
     formState: { isDirty, isValid },
   } = methods;
   const { handleClickBack, handleEditProfile, original_username } =
-    useProfileEdit(reset, isDirty);
+    useProfileEdit(userId, reset, isDirty);
   const isDiabled = !watch('self_intro') || !watch('username') || !isValid;
 
   return (

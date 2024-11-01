@@ -1,15 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { BookListItem } from '@/features/Book';
-import usePopUpStore from '@/store/popUpStore';
-import { sheetData } from '@/data/ui/bottomSheet';
-import { LOGIN_CALLBACK } from '@/constants/storage';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useSession } from 'next-auth/react';
+import SearchResultSkeleton from '@/components/Fallback/Skeleton/SearchResultSkeleton';
+import BookListItemSkeleton from '@/components/Fallback/Skeleton/BookListItemSkeleton';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
 import { useSearch } from '../hooks/useSearch';
 import SearchResultEmpty from './SearchResultEmpty';
@@ -20,39 +19,29 @@ function SearchResult() {
   const {
     searchResult,
     isEmpty,
+    isLoading,
     isSearched,
     isFetching,
     hasNextPage,
     fetchNextPage,
+    isFetchingNextPage,
   } = useSearch();
   const { data: session } = useSession();
   const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  const { isOpenAlert, changePopUpState } = usePopUpStore((state) => ({
-    isOpenAlert: state.isOpenAlertSheet,
-    changePopUpState: state.actions.changePopUpState,
-  }));
+  const [isOpenRegister, setIsOpenRegister] = useState(false);
 
   const { setTarget } = useObserver({
     hasNextPage,
     fetchNextPage,
   });
 
-  const handleClickLogin = () => {
-    const callbackUrl = `${pathname}?${searchParams}`;
-    sessionStorage.setItem(LOGIN_CALLBACK, callbackUrl);
-    router.push(PAGES.LANDING);
-  };
-
   const handleNoBookClick = () => {
     if (session) {
-      changePopUpState('isOpenAlertSheet', true);
+      setIsOpenRegister(true);
     } else {
       bottomSheet.open({
-        sheetData: sheetData.need_to_login,
-        onClick: handleClickLogin,
+        sheetKey: 'need_to_login',
+        onClick: () => router.push(PAGES.LANDING),
       });
     }
   };
@@ -69,8 +58,22 @@ function SearchResult() {
       )}
 
       {isSearched && <NoBookButton onClick={handleNoBookClick} />}
-      <div ref={setTarget} id='observer' className='h-[10px]' />
-      <AnimatePresence>{isOpenAlert && <BookRegisterSheet />}</AnimatePresence>
+      {isLoading && <SearchResultSkeleton />}
+      {isFetchingNextPage && (
+        <>
+          <BookListItemSkeleton />
+          <BookListItemSkeleton />
+          <BookListItemSkeleton />
+        </>
+      )}
+      {!isFetchingNextPage && !isLoading && (
+        <div ref={setTarget} id='observer' className='h-[10px]' />
+      )}
+      <AnimatePresence>
+        {isOpenRegister && (
+          <BookRegisterSheet onClose={() => setIsOpenRegister(false)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

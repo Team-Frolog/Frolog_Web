@@ -9,7 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@frolog/frolog-api": "^0.2.16-fix4",
+    "@frolog/frolog-api": "^0.2.18-fix0",
+    "@sentry/nextjs": "^8.35.0",
     "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query": "^5.40.1",
     "@types/react-slick": "^0.23.13",
@@ -28,6 +29,7 @@
     "react-lottie-player": "^2.0.0",
     "react-markdown": "^9.0.1",
     "react-slick": "^0.30.2",
+    "sharp": "^0.33.5",
     "tailwind-scrollbar-hide": "^1.1.7",
     "zustand": "^4.5.2"
   },

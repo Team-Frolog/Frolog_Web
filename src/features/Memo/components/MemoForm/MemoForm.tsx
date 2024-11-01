@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import isEqual from 'lodash/isEqual';
 import Textarea from '@/components/Form/Input/Textarea';
 import { textareaType } from '@/data/ui/textareaType';
+import { useBook } from '@/features/Book';
 import { useFormContext } from 'react-hook-form';
-import { sheetData } from '@/data/ui/bottomSheet';
 import TitleHeader from '@/components/Header/TitleHeader';
 import { bottomSheet } from '@/modules/BottomSheet';
 import PublicToggle from './PublicToggle';
@@ -15,19 +15,20 @@ import { MemoFormType } from '../../types/form';
 
 interface Props {
   defaultValues?: MemoFormType;
+  isPending?: boolean;
+  bookId: string;
 }
 
-function MemoForm({ defaultValues }: Props) {
+function MemoForm({ defaultValues, isPending, bookId }: Props) {
   const router = useRouter();
+  const { bookData } = useBook(bookId);
   const { watch, getValues } = useFormContext();
 
   const handleClickBack = () => {
     const formData = getValues();
     if (!isEqual(defaultValues, formData)) {
       bottomSheet.open({
-        sheetData: defaultValues
-          ? sheetData.leave_while_edit
-          : sheetData.leave_while_write,
+        sheetKey: defaultValues ? 'leave_while_edit' : 'leave_while_write',
         onClick: () => {
           setTimeout(() => {
             router.back();
@@ -42,10 +43,10 @@ function MemoForm({ defaultValues }: Props) {
   return (
     <>
       <TitleHeader
-        title='메리와 메리'
+        title={bookData?.title || ''}
         theme='light'
         type='edit'
-        isDisabled={!watch('memo')}
+        isDisabled={!watch('memo') || isPending}
         onClickBack={handleClickBack}
       />
       <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>

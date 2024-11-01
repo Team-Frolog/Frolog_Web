@@ -1,8 +1,6 @@
 'use client';
 
-import { ReviewDetail } from '@/features/Review';
-import { getReviewDetail } from '@/features/Review/api/review.api';
-import { useQuery } from '@tanstack/react-query';
+import { ReviewDetail, useReviewDetailPage } from '@/features/Review';
 import React from 'react';
 import MainLayout from '@/layouts/MainLayout';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
@@ -22,20 +20,17 @@ interface Props {
 function ReviewPage({ params: { reviewId } }: Props) {
   useScroll({ categoryColor: undefined });
   const router = useRouter();
-  const { data: reviewDetail } = useQuery({
-    queryKey: ['reviewDetail', reviewId],
-    queryFn: () => getReviewDetail(reviewId),
-  });
   const { data: session } = useSession();
+  const { reviewDetail } = useReviewDetailPage(reviewId);
   const { profile } = useProfile(reviewDetail?.writer);
-  const isMe = session?.user.id === profile?.id;
+  const isRootUser = session?.user.id === profile?.id;
 
   if (!reviewDetail || !profile) return <></>;
 
   return (
     <>
       <ResponsiveHeaderLayout onClick={() => router.back()}>
-        {!isMe && (
+        {!isRootUser && (
           <div className='flex flex-1 justify-end'>
             <button
               type='button'

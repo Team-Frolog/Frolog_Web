@@ -1,6 +1,6 @@
 import React from 'react';
 import PopperAnimation from '@/components/animation/PopperAnimation';
-import FinishLight from '@/components/Splash/FinishLight';
+import FinishLight from '@/components/Light/FinishLight';
 import Image from 'next/image';
 import QuitButton from '@/components/Button/QuitButton';
 import { IMAGES } from '@/constants/images';
@@ -11,7 +11,7 @@ function JoinFinishPage() {
     <div className='relative flex h-dvh w-full flex-col justify-between overflow-hidden'>
       <FinishLight frog={IMAGES.frog.congrats}>
         야호!
-        <br />
+      <br />
         가입이
         <br />
         완료되었어요

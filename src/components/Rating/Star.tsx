@@ -9,7 +9,7 @@ interface Props {
 
 function Star({ rating, color, size = 20, onClick }: Props) {
   const starWidth = `${rating * 100}%`;
-  const gradientId = `starGradient-${rating}-${size}`;
+  const gradientId = `starGradient-${rating}-${size}-${color}`;
   const scaleFactor = size / 20;
 
   return (

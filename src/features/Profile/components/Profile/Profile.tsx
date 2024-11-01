@@ -8,10 +8,10 @@ import { useProfileDetail } from '../../hooks/useProfileDetail';
 
 interface Props {
   userId: string;
-  isMe?: boolean;
+  isRootUser?: boolean;
 }
 
-function Profile({ userId, isMe = false }: Props) {
+function Profile({ userId, isRootUser = false }: Props) {
   const { profileDetail } = useProfileDetail(userId);
 
   if (!profileDetail) return <></>;
@@ -20,9 +20,9 @@ function Profile({ userId, isMe = false }: Props) {
     <div className='flex w-full flex-col gap-[28px]'>
       <UserStatistics profileDetail={profileDetail} />
       <UserType profileDetail={profileDetail} />
-      {isMe && (
+      {isRootUser && (
         <div className='flex px-page'>
-          <LinkButton route='/profile/edit' theme='gray'>
+          <LinkButton route={`/${userId}/profile/edit`} theme='gray'>
             프로필 편집
           </LinkButton>
         </div>

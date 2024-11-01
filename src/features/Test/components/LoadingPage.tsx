@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { PAGES } from '@/constants/page';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import FinishLight from '@/components/Splash/FinishLight';
+import FinishLight from '@/components/Light/FinishLight';
 
 function LoadingPage() {
   const type = useSearchParams().get('type');
@@ -26,7 +26,7 @@ function LoadingPage() {
 
       setTimeout(() => {
         window.location.replace(
-          `${PAGES.TEST_RESULT}/${type}?callbackUrl=${callback}`
+          `${PAGES.TEST_RESULT}/${type}${callback ? `?callbackUrl=${callback}` : ''}`
         );
       }, 1500);
     }, 4000);

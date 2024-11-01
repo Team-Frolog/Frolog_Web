@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { conTags, proTags } from '@/data/tag';
+import { CONS_TAG, PROS_TAG } from '@/constants/tags';
 import { Tag as TagType } from '@/types/tag';
 import { useTags } from '@/hooks/useTags';
 import { motion, useAnimationControls } from 'framer-motion';
@@ -20,7 +20,7 @@ function TagList({ type }: Props) {
   const [isExpanded, setIsExpanded] = useState<boolean>(
     getValues()[type].length
   );
-  const tagData = type === 'pros' ? proTags : conTags;
+  const tagData = type === 'pros' ? PROS_TAG : CONS_TAG;
 
   useEffect(() => {
     if (isExpanded) {

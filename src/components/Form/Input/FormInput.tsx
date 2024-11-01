@@ -10,7 +10,7 @@ type FieldName =
   | 'username'
   | 'title'
   | 'author'
-  | 'wellName'
+  | 'name'
   | 'intro'
   | 'description';
 

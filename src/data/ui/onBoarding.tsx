@@ -13,13 +13,13 @@ export const onBoarding: OnBoarding = {
   1: {
     title: () => (
       <>
-        우물에 책을 쌓아
+        우물에 책을 추가해
         <br />
         탈출하세요!
       </>
     ),
     titleColor: 'text-main_hightlight',
-    bg: `bg-gray-300 bg-[url('/well-bg.svg')]`,
+    bg: `bg-gray-300 bg-[url('/images/well/bg/well-bg-1.svg')]`,
     groundColor: 'bg-gray-300',
     textColor: 'text-gray-600',
     boldColor: 'text-gray-800',
@@ -27,12 +27,13 @@ export const onBoarding: OnBoarding = {
   2: {
     title: () => (
       <>
-        책을 많이 읽으면
-        <br />새 캐릭터 등장!
+        다양한 캐릭터로
+        <br />
+        우물을 꾸며요!
       </>
     ),
     titleColor: 'text-main_hightlight',
-    bg: `bg-gray-300 bg-[url('/well-bg.svg')]`,
+    bg: `bg-gray-300 bg-[url('/images/well/bg/well-bg-1.svg')]`,
     groundColor: 'bg-gray-300',
     textColor: 'text-gray-600',
     boldColor: 'text-gray-800',

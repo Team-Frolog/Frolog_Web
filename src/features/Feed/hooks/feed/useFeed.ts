@@ -1,4 +1,4 @@
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { getFeed } from '../../api/feed.api';
 
 export const useFeed = () => {
@@ -10,7 +10,7 @@ export const useFeed = () => {
     isFetched,
     isLoading,
     isFetchingNextPage,
-  } = useSuspenseInfiniteQuery({
+  } = useInfiniteQuery({
     queryKey: ['feed'],
     queryFn: ({ pageParam }) => getFeed(pageParam),
     initialPageParam: 0,
@@ -25,7 +25,6 @@ export const useFeed = () => {
         : [],
       pageParams: fetchedData.pageParams,
     }),
-    staleTime: Infinity,
   });
 
   const isEmpty = !data?.pages.length;

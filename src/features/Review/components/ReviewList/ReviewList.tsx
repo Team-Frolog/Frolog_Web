@@ -2,6 +2,7 @@
 
 import React from 'react';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
+import AddButton from '@/components/Button/AddButton';
 import ReviewListItem from './ReviewListItem';
 import FirstReviewItem from './FirstReviewItem';
 import { useReviews } from '../../hooks/useReviews';
@@ -9,41 +10,44 @@ import { useReviews } from '../../hooks/useReviews';
 interface Props {
   bookId: string;
   userId: string;
+  wellId: string;
+  isRootUser: boolean;
 }
 
-function ReviewList({ bookId, userId }: Props) {
-  const { reviews, setReviewId, deleteReview } = useReviews(bookId);
+function ReviewList({ bookId, wellId, userId, isRootUser }: Props) {
+  const { reviews, setReviewId, deleteReview, isEmpty, isFetched } = useReviews(
+    bookId,
+    userId
+  );
 
   return (
-    <div className='z-10 flex w-full flex-1 flex-col gap-[12px]'>
-      {reviews.length === 0 && (
-        <EmptyContentFrog title='책을 다 읽으셨으면 이제 리뷰를 써보세요!' />
-      )}
-      {reviews.length === 1 && (
-        <>
-          <ReviewListItem
-            key={reviews[0].id}
-            index={1}
-            reviewData={reviews[0]}
-            onDelete={deleteReview}
-            setReviewId={setReviewId}
-            userId={userId}
+    <>
+      {isRootUser && isEmpty && (
+        <div className='add-button-wrapper'>
+          <AddButton
+            route={`/${userId}/well/${wellId}/new-review/${bookId}`}
+            text='리뷰 추가하기'
           />
-          {reviews[0].rating >= 3.5 && <FirstReviewItem />}
-        </>
+        </div>
       )}
-      {reviews.length > 1 &&
-        reviews.map((review, i) => (
-          <ReviewListItem
-            key={review.id}
-            index={i + 1}
-            reviewData={review}
-            onDelete={deleteReview}
-            setReviewId={setReviewId}
-            userId={userId}
-          />
-        ))}
-    </div>
+      <div className='z-10 flex w-full flex-1 flex-col gap-[12px]'>
+        {isEmpty && isFetched && (
+          <EmptyContentFrog title='책을 다 읽으셨으면 이제 리뷰를 써보세요!' />
+        )}
+        {!isEmpty && isFetched && (
+          <>
+            <ReviewListItem
+              key={reviews[0].id}
+              reviewData={reviews[0]}
+              onDelete={deleteReview}
+              setReviewId={setReviewId}
+              userId={userId}
+            />
+            <FirstReviewItem />
+          </>
+        )}
+      </div>
+    </>
   );
 }
 

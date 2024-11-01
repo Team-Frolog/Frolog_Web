@@ -1,14 +1,16 @@
 'use client';
 
 import { createRoot } from 'react-dom/client';
-import { AlertSheet } from '@/data/ui/bottomSheet';
+import { BottomSheetKeys } from '@/data/ui/bottomSheet';
 import BottomSheetContainer from './BottomSheetContainer';
 
 export interface BottomSheetProps {
-  sheetData: AlertSheet;
+  sheetKey: BottomSheetKeys;
   children?: React.ReactNode;
   onClick?: () => void;
   onClickSubButton?: () => void;
+  onClose?: () => void;
+  titleProp?: string;
 }
 
 class BottomSheet {

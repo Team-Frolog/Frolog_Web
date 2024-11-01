@@ -15,10 +15,6 @@ const cspHeader = `
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  env: {
-    NEXTAUTH_URL: 'http://localhost:3000/api/auth',
-    NEXTAUTH_SECRET: 'frolog',
-  },
   experimental: {
     middleware: true,
   },
@@ -49,3 +45,18 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+const { withSentryConfig } = require('@sentry/nextjs');
+
+module.exports = withSentryConfig(module.exports, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  reactComponentAnnotation: {
+    enabled: true,
+  },
+  hideSourceMaps: true,
+  disableLogger: true,
+});

@@ -17,10 +17,16 @@ export const PAGES = {
   FIND_PASSWORD: '/find-password',
   TEST: '/frolog-test',
   TEST_RESULT: '/frolog-test/result',
-  WELL_BOOK: '/well-book',
+  SEARCH_HOME: '/search-home',
   SEARCH: '/search',
+  FEED: '/feed',
   NEW_REVIEW: '/new-review',
+  NEW_MEMO: '/new-memo',
   PROFILE: '/profile',
+  WELL: '/well',
+  DEFAULT: '/default',
+  FLASH: '/flash',
+  STORE: '/store',
 } as const;
 
 export const PAGE_CONFIG: PageConfig = {

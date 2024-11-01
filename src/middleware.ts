@@ -2,28 +2,49 @@ import { getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const protectedRoutes: string[] = ['/frolog-test', '/profile', '/well-book']; // 로그인이 필요한 페이지 목록
+const protectedRoutes: string[] = [
+  '/frolog-test',
+  '/profile',
+  '/join/finish',
+  '/flash',
+  '/well',
+  '/comments',
+  '/new-memo',
+  '/new-review',
+  '/quit',
+  '/terms',
+  '/store',
+]; // 로그인이 필요한 페이지 목록
 const publicRoutes: string[] = [
   '/landing',
   '/login',
   '/join',
   '/find-password',
+  '/default',
 ]; // 로그인이 되면 접근할 수 없는 페이지 목록
 
 export async function middleware(req: NextRequest) {
   const token = await getToken({
     req,
-    secret: process.env.NEXTAUTH_SECRET,
+    secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
     secureCookie: true,
-    // cookieName: '__Secure-next-auth.session-token',
   });
   const { pathname } = req.nextUrl;
+  const defaultWellId = token ? token.defaultWellId : undefined;
 
-  console.log('token:', token);
+  if (pathname === '/') {
+    if (!token) {
+      return NextResponse.redirect(new URL('/default', req.url));
+    } else if (defaultWellId) {
+      return NextResponse.redirect(
+        new URL(`/${token.id}/well/${defaultWellId}`, req.url)
+      );
+    }
+  }
 
   // pathname이 어느 routes에 속하는지 확인
-  const isWithAuth = protectedRoutes.includes(pathname);
-  const isWithOutAuth = publicRoutes.includes(pathname);
+  const isWithAuth = protectedRoutes.some((route) => pathname.includes(route));
+  const isWithOutAuth = publicRoutes.some((route) => pathname.includes(route));
 
   // 로그인 여부에 따라 redirect
   if (isWithAuth) return withAuth(req, !!token);
@@ -31,7 +52,7 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images|$).*)', '/'],
 };
 
 function withAuth(req: NextRequest, isLoggedIn: boolean) {

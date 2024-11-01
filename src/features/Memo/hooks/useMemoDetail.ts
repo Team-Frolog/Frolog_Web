@@ -1,10 +1,16 @@
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { editMemoDetail, getMemoDetail } from '../api/memo.api';
 import { MemoFormType } from '../types/form';
 
-export const useMemoDetail = (bookId: string, memoId: string) => {
+export const useMemoDetail = (
+  wellId: string,
+  bookId: string,
+  memoId: string
+) => {
   const router = useRouter();
+  const { data: session } = useSession();
   const queryClient = useQueryClient();
 
   const { data: memoDetail } = useQuery({
@@ -12,7 +18,7 @@ export const useMemoDetail = (bookId: string, memoId: string) => {
     queryFn: () => getMemoDetail({ id: memoId }),
   });
 
-  const { mutate: handleEditMemo } = useMutation({
+  const { mutate: handleEditMemo, isPending } = useMutation({
     mutationFn: (data: MemoFormType) =>
       editMemoDetail({
         id: memoId,
@@ -23,9 +29,9 @@ export const useMemoDetail = (bookId: string, memoId: string) => {
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['memo', memoId] });
-      router.replace(`/well-book/${bookId}/memo`);
+      router.replace(`/${session!.user.id}/well/${wellId}/book/${bookId}/memo`);
     },
   });
 
-  return { memoDetail, handleEditMemo };
+  return { memoDetail, handleEditMemo, isPending };
 };

@@ -5,12 +5,12 @@ import { getCategories } from '../api/search.api';
 export const useCategory = () => {
   const searchValue = useSearchParams().get('query');
 
-  const { data } = useQuery({
+  const { data, isLoading, isFetched } = useQuery({
     queryKey: ['category', searchValue],
     queryFn: () => getCategories({ q: searchValue! }),
     enabled: searchValue !== null,
     select: (fetchedData) => fetchedData.sort((a, b) => b.count - a.count),
   });
 
-  return { categoryData: data, searchValue };
+  return { categoryData: data, searchValue, isLoading, isFetched };
 };

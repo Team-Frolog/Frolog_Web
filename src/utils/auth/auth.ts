@@ -3,6 +3,7 @@ import { SignIn } from '@frolog/frolog-api';
 import { NextAuthOptions } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
 import { getExpFromToken } from '@/utils/auth/decodeToken';
+import { getWellList } from '@/features/Well/api/well.api';
 import { refreshAccessToken } from './refreshAccessToken';
 
 const logIn = new SignIn(baseOptions);
@@ -22,9 +23,22 @@ export const authOptions: NextAuthOptions = {
           password: credentials.password,
         });
 
+        // 기본 우물 확인
+        let defaultWellId = null;
+        
+        if (data.id) {
+          const res = await getWellList(data.id, 0);
+          const isDefault = res.count === 1;
+
+          if (isDefault) {
+            defaultWellId = res.wells[0].id;
+          }
+        }
+
         if (data.result) {
           const user = {
             id: data.id || '',
+            defaultWellId,
             accessToken: data.access_token!,
             refreshToken: data.refresh_token!,
           };
@@ -35,13 +49,18 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
       if (user) {
         // 최초 로그인 시에만 실행
         token.id = user.id;
+        token.defaultWellId = user.defaultWellId;
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
         token.accessTokenExpires = getExpFromToken(user.accessToken);
+      }
+
+      if (trigger === 'update' && session.defaultWellId !== undefined) {
+        token.defaultWellId = session.defaultWellId;
       }
 
       const timeRemaing =
@@ -58,6 +77,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (token) {
         session.user.id = token.id;
+        session.user.defaultWellId = token.defaultWellId;
         session.user.accessToken = token.accessToken;
         session.user.refreshToken = token.refreshToken;
         session.user.accessTokenExpires = token.accessTokenExpires;
@@ -74,5 +94,5 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
     maxAge: 60 * 60 * 24 * 30,
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
 };

@@ -12,7 +12,7 @@ interface Props {
 
 function UserStatistics({ profileDetail }: Props) {
   const {
-    max_height,
+    max_item_cnt,
     follower_cnt,
     following_cnt,
     username,
@@ -36,8 +36,8 @@ function UserStatistics({ profileDetail }: Props) {
         </div>
         <div className='flex flex-1 justify-around'>
           <div className='flex flex-col items-center justify-center'>
-            <h3 className='text-title-xl-bold text-gray-800'>{max_height}</h3>
-            <span className='text-body-sm text-gray-600'>최고높이(cm)</span>
+            <h3 className='text-title-xl-bold text-gray-800'>{max_item_cnt}</h3>
+            <span className='text-body-sm text-gray-600'>최대 높이(권)</span>
           </div>
           <Link
             href={`/${profileDetail.id}/profile/follows?tap=followers`}

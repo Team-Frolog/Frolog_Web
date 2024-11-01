@@ -1,4 +1,3 @@
-import { sheetData } from '@/data/ui/bottomSheet';
 import { bottomSheet } from '@/modules/BottomSheet';
 import React from 'react';
 
@@ -20,10 +19,7 @@ function DeleteButton({ type, buttonText, onDelete, onClick }: Props) {
             onClick();
           }
           bottomSheet.open({
-            sheetData:
-              type === 'review'
-                ? sheetData.delete_review
-                : sheetData.delete_memo,
+            sheetKey: type === 'review' ? 'delete_review' : 'delete_memo',
             onClick: onDelete,
           });
         }}

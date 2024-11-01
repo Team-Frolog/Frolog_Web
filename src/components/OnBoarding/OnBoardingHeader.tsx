@@ -30,7 +30,7 @@ function OnBoardingHeader({ activeSlide }: Props) {
           className='fixed left-1/2 top-0 z-0 h-[50%] w-[450px] -translate-x-1/2 mobile:w-full'
           style={{
             background:
-              'linear-gradient(-35deg, rgba(0, 0, 0, 0) 55%, #0E0E0E 55%)',
+              'linear-gradient(-35deg, rgba(0, 0, 0, 0) 52%, #0E0E0E 52%)',
           }}
         />
       )}
@@ -40,7 +40,7 @@ function OnBoardingHeader({ activeSlide }: Props) {
           onClick={() => router.back()}
         />
         <h1
-          className={`text-heading-md-bold mobile:text-title-xl-bold ${onBoarding[activeSlide].titleColor}`}
+          className={`text-heading-md-bold mobile:text-title-xl-bold [@media(max-height:700px)]:text-title-xl-bold ${onBoarding[activeSlide].titleColor}`}
         >
           {onBoarding[activeSlide].title()}
         </h1>

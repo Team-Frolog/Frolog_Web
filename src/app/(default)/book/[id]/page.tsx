@@ -1,19 +1,16 @@
 'use client';
 
+import React, { useState } from 'react';
 import BookInfo from '@/components/Book/BookInfo';
 import AddButton from '@/components/Button/AddButton';
 import TitleHeader from '@/components/Header/TitleHeader';
 import RatingSelector from '@/components/Rating/RatingSelector';
 import MajorTagList from '@/components/Tag/MajorTagList';
-import { BookDetail } from '@/features/Book';
+import { BookDetail, useBookDetail, AddBookToWell } from '@/features/Book';
 import { useScroll } from '@/hooks/gesture/useScroll';
-import { useBookDetail } from '@/features/Book/hooks/useBookDetail';
-import React from 'react';
-import { bottomSheet } from '@/modules/BottomSheet';
-import { sheetData } from '@/data/ui/bottomSheet';
-import AddBookToWell from '@/components/BottomSheet/AddBookToWell';
 import MainLayout from '@/layouts/MainLayout';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
+import { AnimatePresence } from 'framer-motion';
 
 interface Props {
   params: {
@@ -23,6 +20,7 @@ interface Props {
 
 function BookPage({ params: { id } }: Props) {
   const { bookData } = useBookDetail(id);
+  const [open, setOpen] = useState(false);
   useScroll({ categoryColor: undefined });
 
   return (
@@ -40,15 +38,8 @@ function BookPage({ params: { id } }: Props) {
             <RatingSelector type='default' rating={bookData?.avg_rating} />
             <AddButton
               text='우물에 책 추가하기'
-              categoryId='novel'
-              onClick={() =>
-                runWhenLoggedIn(() =>
-                  bottomSheet.open({
-                    sheetData: sheetData.add_book,
-                    children: <AddBookToWell />,
-                  })
-                )
-              }
+              categoryId={bookData?.category}
+              onClick={() => runWhenLoggedIn(() => setOpen(true))}
             />
             <MajorTagList type='pros' tagData={bookData?.tags_pos} />
             <MajorTagList type='cons' tagData={bookData?.tags_neg} />
@@ -56,6 +47,11 @@ function BookPage({ params: { id } }: Props) {
           <BookDetail bookId={id} />
         </div>
       </MainLayout>
+      <AnimatePresence>
+        {open && (
+          <AddBookToWell bookId={id} closeSheet={() => setOpen(false)} />
+        )}
+      </AnimatePresence>
     </>
   );
 }

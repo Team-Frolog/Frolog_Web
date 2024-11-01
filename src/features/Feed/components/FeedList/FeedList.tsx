@@ -15,12 +15,22 @@ function FeedList() {
     hasNextPage,
     isFetched,
     isEmpty,
+    isLoading,
     isFetchingNextPage,
   } = useFeed();
   const { setTarget } = useObserver({
     hasNextPage,
     fetchNextPage,
   });
+
+  if (isLoading) {
+    return (
+      <div className='flex h-fit w-full flex-col gap-[36px]'>
+        <FeedSkeleton />
+        <FeedSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className='flex h-fit w-full flex-col justify-between gap-[36px]'>

@@ -1,24 +1,10 @@
 'use client';
 
+import React, { useRef } from 'react';
 import PullToRefresh from '@/components/Gesture/PullToRefresh';
-import FeedSkeleton from '@/components/Fallback/Skeleton/FeedSkeleton';
 import SideHeader from '@/components/Header/SideHeader';
 import MainLayout from '@/layouts/MainLayout';
-import dynamic from 'next/dynamic';
-import React, { useRef } from 'react';
-
-const FeedList = dynamic(
-  () => import('@/features/Feed/components/FeedList/FeedList'),
-  {
-    ssr: false,
-    loading: () => (
-      <div className='flex w-full flex-col gap-[36px]'>
-        <FeedSkeleton />
-        <FeedSkeleton />
-      </div>
-    ),
-  }
-);
+import { FeedList } from '@/features/Feed';
 
 function FeedPage() {
   const containerRef = useRef<HTMLDivElement | null>(null);

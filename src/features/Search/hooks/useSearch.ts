@@ -15,14 +15,31 @@ export const useSearch = () => {
     });
   }, [queryClient, searchValue, category]);
 
-  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isLoading,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
     queryKey: ['search', [searchValue, category]],
-    queryFn: ({ pageParam }) =>
-      searchBook({
+    queryFn: async ({ pageParam }) => {
+      if (searchValue === null) {
+        return {
+          books: [],
+          count: 0,
+          limit: 0,
+          page: 0,
+        };
+      }
+      const res = await searchBook({
         q: searchValue!,
         page: pageParam,
         category: category || undefined,
-      }),
+      });
+      return res;
+    },
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const totalPages = Math.ceil(lastPage.count / lastPage.limit);
@@ -46,5 +63,7 @@ export const useSearch = () => {
     hasNextPage,
     isFetching,
     isSearched,
+    isLoading,
+    isFetchingNextPage,
   };
 };

@@ -8,13 +8,19 @@ interface Props {
   children?: React.ReactNode;
   title?: string;
   hasBackButton?: boolean;
+  bgColor?: string;
 }
 
-function SideHeader({ children, title, hasBackButton = false }: Props) {
+function SideHeader({
+  children,
+  title,
+  bgColor,
+  hasBackButton = false,
+}: Props) {
   const router = useRouter();
 
   return (
-    <div className='flex h-fit w-full bg-white'>
+    <div className={`flex h-fit w-full ${bgColor || 'bg-white'}`}>
       {hasBackButton && (
         <BackButton type='green' onClick={() => router.back()} />
       )}

@@ -3,7 +3,6 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { bottomSheet } from '@/modules/BottomSheet';
-import { sheetData } from '@/data/ui/bottomSheet';
 import BackButton from '../Button/BackButton';
 
 interface Props {
@@ -32,10 +31,7 @@ function TitleHeader({
   const handleClick = () => {
     if (type === 'edit' || type === 'write') {
       bottomSheet.open({
-        sheetData:
-          type === 'edit'
-            ? sheetData.leave_while_edit
-            : sheetData.leave_while_write,
+        sheetKey: type === 'edit' ? 'leave_while_edit' : 'leave_while_write',
         onClick: () => {
           setTimeout(() => {
             router.back();

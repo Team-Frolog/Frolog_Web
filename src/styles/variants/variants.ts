@@ -19,6 +19,18 @@ export const staggerContainerVariants = {
 };
 
 export const staggerItemVariants = {
+  hidden: { y: '100%', opacity: 0 },
+  visible: {
+    opacity: 1,
+    y: '0%',
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  },
+};
+
+export const leafVariants = {
   hidden: { y: -50, opacity: 0 },
   visible: {
     opacity: 1,
@@ -26,6 +38,20 @@ export const staggerItemVariants = {
     transition: {
       duration: 0.5,
       ease: 'easeOut',
+      delay: 2,
+    },
+  },
+};
+
+export const frogVariants = {
+  hidden: { y: -50, opacity: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut',
+      delay: 2.5,
     },
   },
 };

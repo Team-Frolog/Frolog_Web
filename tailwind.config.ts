@@ -16,8 +16,17 @@ const config: Config = {
       pattern: /text-category-./,
     },
     {
+      pattern: /border-category-./,
+    },
+    {
+      pattern: /border-b-category-./,
+    },
+    {
       pattern: /button-./,
-    }
+    },
+    {
+      pattern: /shape-./,
+    },
   ],
   theme: {
     extend: {
@@ -25,6 +34,18 @@ const config: Config = {
         mobile: {
           max: '430px',
         },
+      },
+      backgroundImage: {
+        'shape-1': "url('/images/well/bg/well-bg-1.svg')",
+        'shape-2': "url('/images/well/bg/well-bg-2.svg')",
+        'shape-3': "url('/images/well/bg/well-bg-3.svg')",
+        'shape-4': "url('/images/well/bg/well-bg-4.svg')",
+        'shape-5': "url('/images/well/bg/well-bg-5.svg')",
+        'shape-6': "url('/images/well/bg/well-bg-6.svg')",
+        'shape-7': "url('/images/well/bg/well-bg-7.svg')",
+        'shape-8': "url('/images/well/bg/well-bg-8.svg')",
+        'shape-9': "url('/images/well/bg/well-bg-9.svg')",
+        wall: "url('/images/well/well-wall.svg')",
       },
       zIndex: {
         '60': '60',
@@ -94,15 +115,15 @@ const config: Config = {
             humanities: '#B85FFF',
             novel: '#CAA2FF',
             foreign_languages: '#92666C',
-            self_development: '#FB7A35',
+            self_development: '#FF7B35',
             sociology: '#FFA144',
-            science: '#4D6FF4',
+            science: '#4E72FF',
             it: '#84ADFF',
-            economic_business: '#6BCEF5',
+            economic_business: '#85DCFF',
             life: '#75F3C9',
             travel: '#00CE4C',
             essay: '#A0FF56',
-            etc: '#FFDA4A',
+            unknown: '#FFDA4A',
           },
           text: {
             religion: '#FABBC8',
@@ -111,7 +132,7 @@ const config: Config = {
             humanities: '#F3B3EE',
             novel: '#6C5A84',
             foreign_language: '#FFC5CC',
-            self_developement: '#FFC8AB',
+            self_development: '#FFC8AB',
             sociology: '#FFDDBB',
             science: '#BBC4E9',
             it: '#3C4F77',
@@ -119,7 +140,7 @@ const config: Config = {
             life: '#00754E',
             travel: '#00722A',
             essay: '#419400',
-            etc: '#A78500',
+            unknown: '#A78500',
           },
           band: {
             religion: '#FF7171',
@@ -128,7 +149,7 @@ const config: Config = {
             humanities: '#D095FF',
             novel: '#D9BBFF',
             foreign_language: '#B78E93',
-            self_developement: '#FFA474',
+            self_development: '#FFA474',
             sociology: '#FFC183',
             science: '#9BACF1',
             it: '#AAC7FF',
@@ -136,7 +157,7 @@ const config: Config = {
             life: '#B0FFE5',
             travel: '#6EED9C',
             essay: '#CAFFA0',
-            etc: '#FFE88C',
+            unknown: '#FFE88C',
           },
         },
       },

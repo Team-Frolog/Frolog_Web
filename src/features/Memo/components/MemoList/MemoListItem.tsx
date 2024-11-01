@@ -23,14 +23,14 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
   const isRootUser = userId === session?.user.id;
 
   return (
-    <div className='review-item px-0 pb-0'>
+    <div className={`review-item px-0 ${isRootUser ? 'pb-0' : 'pb-[36px]'}`}>
       <div
         className='flex w-full flex-col gap-[20px]'
         onClick={() =>
           router.push(
             isRootUser
-              ? `/${userId}/well-book/${memoData.isbn}/memo/${memoData.id}`
-              : `/review/${memoData.id}`
+              ? `memo/${memoData.id}`
+              : `/memo/${memoData.id}`
           )
         }
       >

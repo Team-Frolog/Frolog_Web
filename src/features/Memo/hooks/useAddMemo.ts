@@ -1,19 +1,22 @@
 import { useMutation } from '@tanstack/react-query';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { addNewMemo } from '../api/memo.api';
 import { MemoFormType } from '../types/form';
 
-export const useAddMemo = () => {
+export const useAddMemo = (wellId: string, bookId: string) => {
   const router = useRouter();
-  const id = useSearchParams().get('id');
   const { data: session } = useSession();
 
-  const { mutate: handleAddMemo } = useMutation({
+  const {
+    mutate: handleAddMemo,
+    isPending,
+    isSuccess,
+  } = useMutation({
     mutationFn: async (data: MemoFormType) => {
       const req = {
         writer: session!.user.id,
-        isbn: id!,
+        isbn: bookId,
         content: data.memo,
         is_public: data.isPublic,
         images: data.images,
@@ -22,8 +25,9 @@ export const useAddMemo = () => {
       const result = addNewMemo(req);
       return result;
     },
-    onSuccess: () => router.replace(`${session!.user.id}/well-book/${id}/memo`),
+    onSuccess: () =>
+      router.replace(`/${session!.user.id}/well/${wellId}/book/${bookId}/memo`),
   });
 
-  return { handleAddMemo };
+  return { handleAddMemo, isPending, isSuccess };
 };

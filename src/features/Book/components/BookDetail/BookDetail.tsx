@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Tap from '@/components/Tap/Tap';
 import BookInfo from './BookInfo';
-import ReviewsForBook from './ReviewsForBook';
+import ReviewsForBook from '../ReviewsForBook/ReviewsForBook';
 
 interface Props {
   bookId: string;
@@ -19,11 +19,11 @@ function BookDetail({ bookId }: Props) {
           { id: 2, label: 'reviews', name: '리뷰 모음' },
         ]}
         currentTap={currentTap}
-        defaultTap="bookInfo"
+        defaultTap='bookInfo'
         onChangeTap={(label: string) => setCurrentTap(label)}
       />
       {currentTap === 'bookInfo' && <BookInfo bookId={bookId} />}
-      {currentTap === 'reviews' && <ReviewsForBook />}
+      {currentTap === 'reviews' && <ReviewsForBook bookId={bookId} />}
     </div>
   );
 }

@@ -28,7 +28,7 @@ function JoinPage() {
   return (
     <FormProvider {...methods}>
       <form
-        className='form-layout'
+        className='form-layout overflow-auto py-page scrollbar-hide'
         onSubmit={handleSubmit((data) => joinUser(data))}
       >
         {joinStep === 1 && <Step1 />}

@@ -1,20 +1,21 @@
 import { useMutation } from '@tanstack/react-query';
-import { useBook } from '@/features/Book';
-import { useStackMotionActions } from '@/store/stackMotionStore';
-import { useSession } from 'next-auth/react';
-import { flash } from '@/modules/Flash';
-import { ReviewFormType } from '..';
+import { useFlash } from '@/hooks/useFlash';
+import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { addNewReview } from '../api/review.api';
+import { ReviewFormType } from '..';
 
-export const useAddReview = (isbn: string) => {
-  const { data: session } = useSession();
-  const { bookData } = useBook(isbn);
-  const { setNewReviewId } = useStackMotionActions();
+export const useAddReview = (userId: string, wellId: string, isbn: string) => {
+  const { openFlash } = useFlash();
+  const { handleAddWellItem, resetAll } = useAddWellItem(userId);
 
-  const { mutate: handleAddReview } = useMutation({
-    mutationFn: (data: ReviewFormType) => {
+  const {
+    mutate: handleAddReview,
+    isPending,
+    isSuccess,
+  } = useMutation({
+    mutationFn: async (data: ReviewFormType) => {
       const reqData = {
-        writer: session!.user.id,
+        writer: userId!,
         isbn,
         tags_pos: data.pros,
         tags_neg: data.cons,
@@ -23,18 +24,20 @@ export const useAddReview = (isbn: string) => {
         rating: data.rating!,
       };
 
-      const result = addNewReview(reqData);
+      const result = await addNewReview(reqData);
       return result;
     },
-    onSuccess: (result) => {
-      setNewReviewId(result.id!);
-      flash.open({
-        flashType: 'review',
-        bookTitle: bookData?.title,
-        callbackUrl: `/`,
-      }); // TODO: 우물 id 가져와서 적용
+    onSuccess: (res) => {
+      if (res.result) {
+        handleAddWellItem({ well_id: wellId, isbn, status: 'done' });
+        resetAll();
+        openFlash({
+          type: 'review',
+          callbackUrl: `/${userId}/well/${wellId}`,
+        });
+      }
     },
   });
 
-  return { handleAddReview };
+  return { handleAddReview, isPending, isSuccess };
 };

@@ -1,3 +1,5 @@
+'use client';
+
 import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import BottomSheet from './BottomSheet';
@@ -13,9 +15,10 @@ function BottomSheetContainer({ bottomSheet }: Props) {
       <AnimatePresence>
         {bottomSheet && (
           <BottomSheet
-            sheetData={bottomSheet.sheetData}
+            sheetKey={bottomSheet.sheetKey}
             onClick={bottomSheet.onClick}
             onClickSubButton={bottomSheet.onClickSubButton}
+            titleProp={bottomSheet.titleProp}
           >
             {bottomSheet.children}
           </BottomSheet>

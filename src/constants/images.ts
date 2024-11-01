@@ -10,16 +10,10 @@ export const IMAGES = {
     },
     first_congrats: `${BASE_PATH}/frog/first-review-congrats.svg`,
     sitting: `${BASE_PATH}/frog/frog-sitting.svg`,
-    character: `${BASE_PATH}/frog/frog-character-ex.svg`,
     search: `${BASE_PATH}/frog/search-frog.svg`,
-    sheet: {
-      error: `${BASE_PATH}/frog/sheet/frog-sheet-error.svg`,
-      book: `${BASE_PATH}/frog/sheet/frog-with-book.svg`,
-      wink: `${BASE_PATH}/frog/sheet/wink-frog.svg`,
-      normal: `${BASE_PATH}/frog/sheet/frog-normal.svg`,
-    },
     withPen: `${BASE_PATH}/frog/frog-with-pen.svg`,
     review_done: `${BASE_PATH}/frog/review-done.svg`,
+    new_well: `${BASE_PATH}/frog/new-well-congrats.svg`,
     well_done: `${BASE_PATH}/frog/well-done-frog.svg`,
     add: {
       reading: `${BASE_PATH}/frog/frog-reading.svg`,
@@ -27,6 +21,7 @@ export const IMAGES = {
     },
     memo_frog: `${BASE_PATH}/frog/memo-frog.svg`,
     more_feed: `${BASE_PATH}/frog/morefeed-frog.svg`,
+    more_frogs: `${BASE_PATH}/frog/more-character-frog.svg`,
     empty_dot: `${BASE_PATH}/frog/frog-empty-dot.svg`,
   },
   test: {
@@ -40,6 +35,9 @@ export const IMAGES = {
     background: `${BASE_PATH}/book/book-bg.svg`,
     skin: `${BASE_PATH}/book/book-skin.svg`,
     cover: `${BASE_PATH}/book/book-cover.svg`,
+  },
+  well: {
+    leaf: `${BASE_PATH}/well/well-leaf.svg`,
   },
   ground: `${BASE_PATH}/etc/ground.svg`,
   ground_sm: `${BASE_PATH}/etc/ground-sm.svg`,

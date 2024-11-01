@@ -1,55 +1,78 @@
 'use client';
 
+import dynamic from 'next/dynamic';
+import FrogSelectorSkeleton from '@/components/Fallback/Skeleton/FrogSelectorSkeleton';
 import TitleHeader from '@/components/Header/TitleHeader';
 import React from 'react';
-import GenericForm from '@/components/Form/GenericForm';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import WellNameInput from './WellNameInput';
-import FrogSelector from './Frog/FrogSelector';
 import ShapeForm from './Shape/ShapeForm';
+import { useWellForm } from '../../hooks/useWellForm';
+
+const FrogSelector = dynamic(
+  () => import('@/features/Well/components/WellForm/Frog/FrogSelector'),
+  {
+    ssr: false,
+    loading: () => <FrogSelectorSkeleton />,
+  }
+);
 
 export interface WellFormType {
-  wellName: string;
-  frogId: number | null;
-  color: string | null;
-  shape: number | null;
+  name: string;
+  frog: string;
+  color: string;
+  shape: number;
 }
 
-function WellForm() {
+interface Props {
+  type: 'write' | 'edit';
+  userId: string;
+  wellId?: string;
+}
+
+function WellForm({ type, userId, wellId }: Props) {
   const methods = useForm<WellFormType>({
     mode: 'onChange',
-    defaultValues: { wellName: '', frogId: 1, color: 'novel', shape: 1 },
+    defaultValues: { name: '', frog: 'default', color: 'novel', shape: 1 },
   });
 
   const {
     watch,
-    formState: { errors },
+    reset,
+    handleSubmit,
+    formState: { errors, isDirty },
   } = methods;
 
-  const handleAddNewWell = () => {
-    //
-  };
+  const {
+    handleAddWell,
+    handleClickBack,
+    handleEditWell,
+    isPending,
+    isSuccess,
+  } = useWellForm(type, reset, wellId);
 
   return (
-    <GenericForm<WellFormType>
-      onSubmit={handleAddNewWell}
-      formOptions={{
-        mode: 'onChange',
-        defaultValues: { wellName: '', frogId: 1, color: 'novel', shape: 1 },
-      }}
-    >
-      <TitleHeader
-        title='새 우물 파기'
-        theme='light'
-        type='write'
-        isDisabled={!watch('wellName') || !!errors.wellName}
-      />
-      <div className='flex w-full flex-1 flex-col gap-[36px] overflow-auto bg-white px-page py-[32px]'>
-        <WellNameInput />
-        <FrogSelector />
-        <ShapeForm />
-      </div>
-    </GenericForm>
+    <FormProvider {...methods}>
+      <form
+        className='form-layout gap-0'
+        onSubmit={handleSubmit((data) =>
+          type === 'write' ? handleAddWell(data) : handleEditWell(data)
+        )}
+      >
+        <TitleHeader
+          title={type === 'write' ? '새 우물 파기' : '우물 고치기'}
+          theme='light'
+          type={type}
+          onClickBack={() => handleClickBack(isDirty)}
+          isDisabled={!watch('name') || !!errors.name || isPending || isSuccess}
+        />
+        <div className='flex w-full flex-1 flex-col gap-[36px] overflow-auto bg-white px-page py-[32px]'>
+          <WellNameInput />
+          <FrogSelector userId={userId} />
+          <ShapeForm />
+        </div>
+      </form>
+    </FormProvider>
   );
 }
 

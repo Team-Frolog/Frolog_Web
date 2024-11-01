@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   description: 'Web site created with Next.js.',
   viewport:
     'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
+  icons: {
+    icon: '/logo-symbol.svg',
+  },
 };
 
 export default function RootLayout({

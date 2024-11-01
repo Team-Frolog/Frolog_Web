@@ -1,5 +1,5 @@
 import Slider from '@/components/Slider/Slider';
-import { getTestTypeById } from '@/features/Test/utils/testEvaluator';
+import { getTestTypeById } from '@/features/Test';
 import { GetProfileDetailRes } from '@frolog/frolog-api';
 import React from 'react';
 import { getAgeCategory } from '../../utils/getAge';
@@ -70,9 +70,13 @@ function UserType({ profileDetail }: Props) {
         <span className='text-body-sm text-gray-600'>성별</span>
       </div>
       <div className='flex flex-col items-center gap-[4px]'>
-        <div className={
-            occupation?.visibility ? 'user-type-chip' : 'user-type-chip-disabled'
-          }>
+        <div
+          className={
+            occupation?.visibility
+              ? 'user-type-chip'
+              : 'user-type-chip-disabled'
+          }
+        >
           {occupation?.visibility ? occupation.value : '비공개'}
         </div>
         <span className='text-body-sm text-gray-600'>직업</span>
