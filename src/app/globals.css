@@ -120,6 +120,14 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+.safe-screen {
+  height: 100dvh;
+
+  @media all and (display-mode: standalone) {
+    height: 100vh;
+  }
+}
+
 #root {
   height: 100dvh;
   width: 100%;

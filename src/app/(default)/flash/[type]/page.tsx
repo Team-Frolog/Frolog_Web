@@ -19,7 +19,7 @@ function FlashPage({ params: { type } }: Props) {
   const { getTitle, frog, ground, width, height, max_height } = flash[type];
 
   return (
-    <div className='fixed inset-x-0 left-0 top-0 z-100 mx-auto flex h-dvh w-[450px] flex-col items-center justify-between overflow-hidden overscroll-none bg-white mobile:left-0 mobile:w-full'>
+    <div className='safe-screen fixed inset-x-0 left-0 top-0 z-100 mx-auto flex w-[450px] flex-col items-center justify-between overflow-hidden overscroll-none bg-white mobile:left-0 mobile:w-full'>
       <FlashHandler type={type} />
       <div className='absolute z-0 flex h-fit w-full flex-1 flex-col items-center bg-gray-900 pt-[30px]'>
         <Image

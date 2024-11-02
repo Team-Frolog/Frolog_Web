@@ -11,7 +11,7 @@ function LoadingOverlay({ theme }: Props) {
   return (
     <Portal>
       <div
-        className={`absolute left-0 top-0 z-100 flex h-dvh w-full flex-col items-center justify-center gap-[24px] bg-opacity-50 ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}
+        className={`safe-screen absolute left-0 top-0 z-100 flex w-full flex-col items-center justify-center gap-[24px] bg-opacity-50 ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}
       >
         <Logo />
         <LoadingSpinner theme={theme} />

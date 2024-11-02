@@ -27,7 +27,7 @@ function NewMemoPage({ params: { wellId, bookId } }: Props) {
   return (
     <GenericForm<MemoFormType>
       onSubmit={(data) => handleAddMemo(data)}
-      className='flex h-dvh w-full flex-1 flex-col bg-white'
+      className='safe-screen flex w-full flex-1 flex-col bg-white'
       formOptions={{
         mode: 'onBlur',
         defaultValues,

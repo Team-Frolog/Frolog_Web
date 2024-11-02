@@ -55,7 +55,7 @@ function WellBookReviewPage({ params: { bookId, reviewId } }: Props) {
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit((data) => handleEditReview(data))}
-        className='flex h-dvh w-full flex-1 flex-col bg-white'
+        className='safe-screen flex w-full flex-1 flex-col bg-white'
       >
         <TitleHeader
           title={bookTitle}
