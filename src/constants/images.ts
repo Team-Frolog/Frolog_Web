@@ -12,10 +12,10 @@ export const IMAGES = {
   },
   frog: {
     fallback: {
-      withPen: `${BASE_PATH}/frog/frog-with-pen.svg`,
-      search: `${BASE_PATH}/frog/search-frog.svg`,
-      no_review: `${BASE_PATH}/frog/no-review.svg`,
-      empty_dot: `${BASE_PATH}/frog/frog-empty-dot.svg`,
+      withPen: `${BASE_PATH}/frog/fallback/frog-with-pen.svg`,
+      search: `${BASE_PATH}/frog/fallback/search-frog.svg`,
+      no_review: `${BASE_PATH}/frog/fallback/no-review.svg`,
+      empty_dot: `${BASE_PATH}/frog/fallback/frog-empty-dot.svg`,
     },
     first_congrats: `${BASE_PATH}/frog/first-review-congrats.svg`,
     add: {

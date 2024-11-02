@@ -2,15 +2,17 @@ import Image from 'next/image';
 import React from 'react';
 import { CATEGORY } from '@/constants/category';
 import WellBubble from 'public/images/well/well-bubble.svg';
+import MemoLeaf from './MemoLeaf';
 
 interface Props {
   title: string;
   category: string;
   height: number;
   isReading: boolean;
+  hasMemo: boolean;
 }
 
-function Wave({ title, category, height, isReading }: Props) {
+function Wave({ title, category, height, isReading, hasMemo }: Props) {
   return (
     <div
       style={{ height }}
@@ -29,6 +31,9 @@ function Wave({ title, category, height, isReading }: Props) {
           fill={CATEGORY[category].band}
           className='absolute left-[24px] top-[8px]'
         />
+      )}
+      {hasMemo && (
+        <MemoLeaf bg={CATEGORY[category].text} line={CATEGORY[category].bg} />
       )}
       <span className={`text-category-text-${category} text-body-sm-bold`}>
         {title}
