@@ -3,6 +3,7 @@
 import React from 'react';
 import GenericForm from '@/components/Form/GenericForm';
 import { MemoForm, MemoFormType, useAddMemo } from '@/features/Memo';
+import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 
 interface Props {
   params: {
@@ -12,7 +13,10 @@ interface Props {
 }
 
 function NewMemoPage({ params: { wellId, bookId } }: Props) {
-  const { handleAddMemo, isPending, isSuccess } = useAddMemo(wellId, bookId);
+  const { handleAddMemo, isPending, isSuccess, isLoading } = useAddMemo(
+    wellId,
+    bookId
+  );
 
   const defaultValues = {
     images: [],
@@ -34,6 +38,7 @@ function NewMemoPage({ params: { wellId, bookId } }: Props) {
         isPending={isPending || isSuccess}
         bookId={bookId}
       />
+      {isLoading && <LoadingOverlay theme='light' />}
     </GenericForm>
   );
 }

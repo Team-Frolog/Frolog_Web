@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { UseFormReset } from 'react-hook-form';
 import { useFlash } from '@/hooks/useFlash';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -17,6 +17,7 @@ export const useWellForm = (
   const router = useRouter();
   const isSecond = useSearchParams().get('isSecond');
   const { data: session, update } = useSession();
+  const [isLoading, setIsLoading] = useState(false);
   const { openFlash } = useFlash();
 
   const { data: wellData } = useQuery({
@@ -24,6 +25,12 @@ export const useWellForm = (
     queryFn: () => getWell(wellId!),
     enabled: type === 'edit' && !!wellId,
   });
+
+  useEffect(() => {
+    return () => {
+      setIsLoading(false);
+    };
+  }, []);
 
   useEffect(() => {
     if (wellData) {
@@ -43,8 +50,11 @@ export const useWellForm = (
     isPending,
     isSuccess,
   } = useMutation({
-    mutationFn: (data: WellFormType) =>
-      addNewWell({ ...data, owner: session!.user.id }),
+    mutationFn: async (data: WellFormType) => {
+      setIsLoading(true);
+      const res = await addNewWell({ ...data, owner: session!.user.id });
+      return res;
+    },
     onSuccess: async () => {
       if (isSecond) {
         await update({ defaultWellId: null });
@@ -80,5 +90,6 @@ export const useWellForm = (
     handleEditWell,
     isPending,
     isSuccess,
+    isLoading,
   };
 };
