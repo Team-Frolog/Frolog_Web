@@ -100,7 +100,7 @@ body {
   padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
 }
 
-#side-header {
+.safe-header {
   top: constant(safe-area-inset-top);
   top: env(safe-area-inset-top);
 }

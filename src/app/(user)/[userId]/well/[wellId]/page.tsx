@@ -28,7 +28,7 @@ function UserWellDetailPage({ params: { userId, wellId } }: Props) {
     <>
       <MainLayout
         ref={containerRef}
-        extraClass={`bg-shape-${well?.shape} bg-gray-300`}
+        extraClass={`bg-shape-${well?.shape} bg-gray-300 overscroll-none`}
       >
         <WellHeader
           userId={userId}
