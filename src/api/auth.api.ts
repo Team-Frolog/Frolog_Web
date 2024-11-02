@@ -68,10 +68,6 @@ export const verifyCode = async (req: VerifyEmailCodeReq) => {
 };
 
 export const getProfile = async (id: string) => {
-  try {
-    const data = await getProfileInstance.fetch({ id });
-    return data;
-  } catch (err) {
-    toast.error(ERROR_ALERT);
-  }
+  const data = await getProfileInstance.fetch({ id });
+  return data;
 };

@@ -26,7 +26,7 @@ const getMemo = new GetMemo(baseOptions);
 const editMemo = new EditMemo(baseOptions);
 const deleteMemoObj = new DeleteMemo(baseOptions);
 
-export const getMemos = async (isbn: string, userId:string, page: number) => {
+export const getMemos = async (isbn: string, userId: string, page: number) => {
   try {
     const response = await searchMemo.fetch({
       isbn,
@@ -47,12 +47,8 @@ export const getMemos = async (isbn: string, userId:string, page: number) => {
 };
 
 export const getMemoDetail = async (req: GetMemoReq) => {
-  try {
-    const response = await getMemo.fetch(req);
-    return response;
-  } catch (err) {
-    toast.error(ERROR_ALERT);
-  }
+  const response = await getMemo.fetch(req);
+  return response;
 };
 
 export const addNewMemo = async (req: PostMemoReq) => {

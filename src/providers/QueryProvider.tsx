@@ -7,9 +7,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 0,
+      retry: 1,
       networkMode: 'online',
       refetchOnWindowFocus: false,
+      throwOnError: true,
     },
     mutations: {
       onError: () => toast.error(ERROR_ALERT),

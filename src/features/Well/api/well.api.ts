@@ -48,25 +48,17 @@ export const getWellList = async (owner: string, page: number) => {
 };
 
 export const getWell = async (id: string) => {
-  try {
-    const response = await fetchWell.fetch({ id });
-    return response;
-  } catch (err) {
-    toast.error(ERROR_ALERT);
-  }
+  const response = await fetchWell.fetch({ id });
+  return response;
 };
 
 export const getWellItems = async (well_id: string) => {
-  try {
-    const response = await searchWellItem.fetch({
-      well_id,
-      limit: 100,
-      sort: 'oldest',
-    });
-    return response;
-  } catch (err) {
-    toast.error(ERROR_ALERT);
-  }
+  const response = await searchWellItem.fetch({
+    well_id,
+    limit: 100,
+    sort: 'oldest',
+  });
+  return response;
 };
 
 export const editWell = async (req: EditWellReq) => {

@@ -25,12 +25,8 @@ export const addNewReview = async (req: PostReviewReq) => {
 };
 
 export const getReviewDetail = async (reviewId: string) => {
-  try {
-    const result = await getReview.fetch({ id: reviewId });
-    return result;
-  } catch (err) {
-    toast.error(ERROR_ALERT);
-  }
+  const result = await getReview.fetch({ id: reviewId });
+  return result;
 };
 
 export const editReview = async (req: EditReviewReq) => {
