@@ -42,6 +42,7 @@ export const useLogin = (type: 'login' | 'test') => {
       }
     } else {
       setIsFaild(true);
+      setIsLoading(false);
     }
   };
 

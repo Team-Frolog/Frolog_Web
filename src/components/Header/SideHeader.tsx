@@ -24,7 +24,7 @@ function SideHeader({
       {hasBackButton && (
         <BackButton type='green' onClick={() => router.back()} />
       )}
-      <div className='pointer-events-none absolute left-0 top-0 z-60 flex w-full justify-between gap-[80px]'>
+      <div className='safe-header pointer-events-none absolute left-0 top-0 z-60 flex w-full justify-between gap-[80px]'>
         <div className='side-header-left' />
         <div className='side-header-right' />
       </div>

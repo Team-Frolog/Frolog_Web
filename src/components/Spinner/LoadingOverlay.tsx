@@ -2,11 +2,17 @@ import React from 'react';
 import Logo from 'public/logo-title.svg';
 import LoadingSpinner from './LoadingSpinner';
 
-function LoadingOverlay() {
+interface Props {
+  theme: 'dark' | 'light';
+}
+
+function LoadingOverlay({ theme }: Props) {
   return (
-    <div className='absolute left-0 top-0 z-70 flex h-dvh w-full flex-col items-center justify-center gap-[24px] bg-gray-900 bg-opacity-50'>
+    <div
+      className={`absolute left-0 top-0 z-100 flex h-dvh w-full flex-col items-center justify-center gap-[24px] bg-opacity-50 ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}
+    >
       <Logo />
-      <LoadingSpinner />
+      <LoadingSpinner theme={theme} />
     </div>
   );
 }

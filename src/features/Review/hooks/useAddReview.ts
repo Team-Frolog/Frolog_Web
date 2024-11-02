@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useFlash } from '@/hooks/useFlash';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
@@ -7,6 +8,13 @@ import { ReviewFormType } from '..';
 export const useAddReview = (userId: string, wellId: string, isbn: string) => {
   const { openFlash } = useFlash();
   const { handleAddWellItem, resetAll } = useAddWellItem(userId);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      setIsLoading(false);
+    };
+  }, []);
 
   const {
     mutate: handleAddReview,
@@ -14,6 +22,7 @@ export const useAddReview = (userId: string, wellId: string, isbn: string) => {
     isSuccess,
   } = useMutation({
     mutationFn: async (data: ReviewFormType) => {
+      setIsLoading(true);
       const reqData = {
         writer: userId!,
         isbn,
@@ -39,5 +48,5 @@ export const useAddReview = (userId: string, wellId: string, isbn: string) => {
     },
   });
 
-  return { handleAddReview, isPending, isSuccess };
+  return { handleAddReview, isPending, isSuccess, isLoading };
 };

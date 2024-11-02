@@ -11,13 +11,13 @@ function LandingPage() {
   const [activeSlide, setActiveSlide] = useState<number>(1);
 
   return (
-    <div className='flex h-dvh min-h-[650px] w-full flex-col'>
+    <div className='safe-bottom flex h-full min-h-[650px] w-full flex-col bg-gray-300'>
       <OnBoardingSlide
         activeSlide={activeSlide}
         setActiveSlide={setActiveSlide}
       />
       <div
-        className={`flex w-full shrink-0 flex-col gap-[20px] px-page py-[32px] transition-all duration-200 mobile:py-[20px] ${onBoarding[activeSlide].groundColor}`}
+        className={`flex w-full shrink-0 flex-col gap-[20px] px-page py-[32px] transition-all duration-200 mobile:py-[20px] mobile:pb-[32px] ${onBoarding[activeSlide].groundColor}`}
       >
         <LinkButton disabled={false} route={PAGES.LOGIN}>
           로그인 하기

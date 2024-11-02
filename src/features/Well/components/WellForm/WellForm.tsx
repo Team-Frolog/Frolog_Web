@@ -1,9 +1,10 @@
 'use client';
 
+import React from 'react';
 import dynamic from 'next/dynamic';
 import FrogSelectorSkeleton from '@/components/Fallback/Skeleton/FrogSelectorSkeleton';
 import TitleHeader from '@/components/Header/TitleHeader';
-import React from 'react';
+import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import { FormProvider, useForm } from 'react-hook-form';
 import WellNameInput from './WellNameInput';
 import ShapeForm from './Shape/ShapeForm';
@@ -49,6 +50,7 @@ function WellForm({ type, userId, wellId }: Props) {
     handleEditWell,
     isPending,
     isSuccess,
+    isLoading,
   } = useWellForm(type, reset, wellId);
 
   return (
@@ -72,6 +74,7 @@ function WellForm({ type, userId, wellId }: Props) {
           <ShapeForm />
         </div>
       </form>
+      {isLoading && <LoadingOverlay theme='light' />}
     </FormProvider>
   );
 }

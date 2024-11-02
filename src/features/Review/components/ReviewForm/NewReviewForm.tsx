@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import ReviewForm from './ReviewForm';
 import { ReviewForm as ReviewFormType } from '../../types/review';
 import { useAddReview } from '../../hooks/useAddReview';
@@ -11,7 +12,7 @@ interface Props {
 }
 
 function NewReviewForm({ isbn, wellId, userId }: Props) {
-  const { handleAddReview, isPending, isSuccess } = useAddReview(
+  const { handleAddReview, isPending, isSuccess, isLoading } = useAddReview(
     userId,
     wellId,
     isbn
@@ -52,6 +53,7 @@ function NewReviewForm({ isbn, wellId, userId }: Props) {
           isDisabled={isDisabled || isPending || isSuccess}
         />
       </form>
+      {isLoading && <LoadingOverlay theme='light' />}
     </FormProvider>
   );
 }

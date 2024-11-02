@@ -1,6 +1,6 @@
 const DARK = 'dark';
 const LIGHT = 'light';
-const GRAY = 'gray';
+// const GRAY = 'gray';
 const HALF = 'half-gradient';
 
 export const PAGE_THEME: {
@@ -8,8 +8,8 @@ export const PAGE_THEME: {
 } = {
   '': DARK,
   '/landing': DARK,
-  '/join': DARK,
   '/join/finish': DARK,
+  '/join': DARK,
   '/login': DARK,
   '/find-password': DARK,
   '/frolog-test': LIGHT,
@@ -20,7 +20,10 @@ export const PAGE_THEME: {
   '/writing': HALF,
   '/new-review': HALF,
   '/search': LIGHT,
-  '/feed': GRAY,
-  '/profile': LIGHT,
+  '/search-home': DARK,
+  '/feed': DARK,
+  '/profile': DARK,
+  '/profile/edit': LIGHT,
+  '/profile/follows': LIGHT,
   '/new-well': LIGHT,
 };

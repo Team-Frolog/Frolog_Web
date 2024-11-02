@@ -4,7 +4,7 @@ import MainLayout from '@/layouts/MainLayout';
 
 function FormLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className='flex h-dvh w-full flex-col bg-gray-900 text-white'>
+    <div className='safe-bottom flex h-fit min-h-full w-full flex-col bg-gray-900 text-white'>
       <FormHeader />
       <MainLayout isCenter={false} extraClass='justify-between px-page'>
         {children}

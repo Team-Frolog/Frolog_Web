@@ -25,7 +25,9 @@ const WellItemList = React.memo(
     const [message, setMessage] = useState<string | undefined>(undefined);
 
     const getMessage = (count: number) => {
-      if (isDefaultWell) {
+      if (!isRootUser) {
+        return undefined
+      } else if (isDefaultWell) {
         if (count === 0) {
           return chat.empty;
         } else if (count === 1) {
@@ -76,7 +78,7 @@ const WellItemList = React.memo(
                 loading='eager'
               />
               <span className='text-body-sm-bold text-gray-600'>
-                리뷰를 남겨 높게 올라가봐요!
+                {isRootUser ? '리뷰를 남겨 높게 올라가봐요!' : '아직 우물이 비어있어요..'}
               </span>
               <div className='absolute bottom-[-10px] left-0 h-[10px] w-full bg-[#B7CEFF]' />
             </div>

@@ -14,11 +14,11 @@ const pretendard = localFont({
 
 export const metadata: Metadata = {
   title: 'Frolog | 프롤로그',
-  description: 'Web site created with Next.js.',
+  description: '책을 추가해 우물을 탈출하는 독서 기록 서비스, 프롤로그(Frolog)',
   viewport:
-    'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
+    'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no viewport-fit=cover',
   icons: {
-    icon: '/logo-symbol.svg',
+    icon: '/logo/favicon.ico',
   },
 };
 
@@ -29,6 +29,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang='ko'>
+      <head>
+        <meta
+          name='apple-mobile-web-app-status-bar-style'
+          content='black-translucent'
+        />
+      </head>
       <QueryProvider>
         <ThemeProvider />
         <AuthProvider>
