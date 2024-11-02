@@ -105,6 +105,11 @@ body {
   top: env(safe-area-inset-top);
 }
 
+#store-button {
+  top: calc(constant(safe-area-inset-top) + 24px);
+  top: calc(env(safe-area-inset-top) + 24px);
+}
+
 #message-toast {
   bottom: calc(constant(safe-area-inset-bottom) + 92px);
   bottom: calc(env(safe-area-inset-bottom) + 92px);
@@ -116,7 +121,7 @@ body {
 }
 
 #root {
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   overflow: hidden;
 
@@ -126,6 +131,10 @@ body {
 
   padding-top: constant(safe-area-inset-top);
   padding-top: env(safe-area-inset-top);
+
+  @media all and (display-mode: standalone) {
+    height: 100vh;
+  }
 }
 
 /* type=date input icon 색상 세팅 */
