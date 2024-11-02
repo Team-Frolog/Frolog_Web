@@ -16,7 +16,7 @@ function SearchPage() {
         <SearchHeader />
       </div>
 
-      <MainLayout isCenter={false} extraClass='px-[24px] bg-white'>
+      <MainLayout isCenter={false} extraClass='px-[24px] bg-white safe-bottom'>
         <SearchResult />
       </MainLayout>
     </>

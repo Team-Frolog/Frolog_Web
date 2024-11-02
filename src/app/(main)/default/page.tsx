@@ -12,7 +12,7 @@ import React from 'react';
 function DefaultWellPage() {
   return (
     <>
-      <MainLayout extraClass='bg-shape-1 bg-gray-300 justify-between'>
+      <MainLayout extraClass='bg-shape-1 bg-gray-300 justify-between overscroll-none'>
         <WellHeader hasBackButton={false} />
         <WellTitle title='소중한 나의 첫 우물' />
         <WellActionButton

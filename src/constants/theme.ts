@@ -8,8 +8,8 @@ export const PAGE_THEME: {
 } = {
   '': DARK,
   '/landing': DARK,
-  '/join': DARK,
   '/join/finish': DARK,
+  '/join': DARK,
   '/login': DARK,
   '/find-password': DARK,
   '/frolog-test': LIGHT,
@@ -19,9 +19,11 @@ export const PAGE_THEME: {
   '/well': DARK,
   '/writing': HALF,
   '/new-review': HALF,
-  '/search-home': DARK,
   '/search': LIGHT,
+  '/search-home': DARK,
   '/feed': DARK,
   '/profile': DARK,
+  '/profile/edit': LIGHT,
+  '/profile/follows': LIGHT,
   '/new-well': LIGHT,
 };
