@@ -1,3 +1,8 @@
+const withPWA = require('next-pwa')({
+  dest: 'public',
+});
+const { withSentryConfig } = require('@sentry/nextjs');
+
 const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline';
@@ -44,9 +49,7 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
-
-const { withSentryConfig } = require('@sentry/nextjs');
+module.exports = withPWA(nextConfig);
 
 module.exports = withSentryConfig(module.exports, {
   org: process.env.SENTRY_ORG,

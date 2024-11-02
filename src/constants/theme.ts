@@ -1,6 +1,6 @@
 const DARK = 'dark';
 const LIGHT = 'light';
-const GRAY = 'gray';
+// const GRAY = 'gray';
 const HALF = 'half-gradient';
 
 export const PAGE_THEME: {
@@ -19,8 +19,9 @@ export const PAGE_THEME: {
   '/well': DARK,
   '/writing': HALF,
   '/new-review': HALF,
+  '/search-home': DARK,
   '/search': LIGHT,
-  '/feed': GRAY,
-  '/profile': LIGHT,
+  '/feed': DARK,
+  '/profile': DARK,
   '/new-well': LIGHT,
 };

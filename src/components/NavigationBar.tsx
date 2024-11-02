@@ -15,7 +15,10 @@ function NavigationBar() {
   const pathname = usePathname();
 
   return (
-    <div className='z-50 flex h-[80px] w-full shrink-0 items-center justify-around border-t border-gray-300 bg-white px-[20px]'>
+    <div
+      id='navBar'
+      className='z-50 flex w-full shrink-0 items-center justify-around border-t border-gray-300 bg-white px-[20px] pb-[24px] pt-[10px]'
+    >
       <MotionLink
         whileTap={{ scale: 1.2 }}
         href={PAGES.HOME}
@@ -23,7 +26,9 @@ function NavigationBar() {
       >
         <WellIcon
           fill={
-            pathname === PAGES.HOME || pathname === PAGES.DEFAULT || pathname.includes(PAGES.WELL)
+            pathname === PAGES.HOME ||
+            pathname === PAGES.DEFAULT ||
+            pathname.includes(PAGES.WELL)
               ? '#313239'
               : '#B3B6C5'
           }
