@@ -12,6 +12,7 @@ import CodeForm from '@/components/Form/Code/CodeForm';
 import { JOIN_FORM_KEY } from '@/constants/storage';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useStepActions } from '@/store/stepStore';
+import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 
 function JoinPage() {
   const methods = useForm<JoinForm>({
@@ -23,7 +24,7 @@ function JoinPage() {
   });
   const { getValues, handleSubmit } = methods;
   const { goNextJoinStep } = useStepActions();
-  const { joinUser, joinStep } = useJoin(getValues);
+  const { joinUser, joinStep, isLoading } = useJoin(getValues);
 
   return (
     <FormProvider {...methods}>
@@ -38,6 +39,7 @@ function JoinPage() {
         )}
         {joinStep === 4 && <Step4 />}
       </form>
+      {isLoading && <LoadingOverlay theme='dark' />}
     </FormProvider>
   );
 }

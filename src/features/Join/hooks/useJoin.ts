@@ -1,7 +1,7 @@
 'use client';
 
 import { JOIN_FORM_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { PAGES } from '@/constants/page';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
@@ -21,6 +21,7 @@ export const useJoin = (getValues: () => JoinForm) => {
   const verifyToken = useVerifyToken();
   const { resetToken } = useAuthActions();
   const { userLogin } = useLogin('test');
+  const [isLoading, setIsLoading] = useState(false);
 
   const { mutate: handleLogin } = useMutation({
     mutationFn: async (username: string) => {
@@ -40,6 +41,12 @@ export const useJoin = (getValues: () => JoinForm) => {
     },
   });
 
+  useEffect(() => {
+    return () => {
+      setIsLoading(false);
+    };
+  }, []);
+
   // step별 폼 상태 저장
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -52,7 +59,11 @@ export const useJoin = (getValues: () => JoinForm) => {
   }, [getValues, joinStep]);
 
   const { mutate: handleSignUp } = useMutation<SignUpRes, Error, SignUpReq>({
-    mutationFn: (formData: SignUpReq) => signUp(formData),
+    mutationFn: async (formData: SignUpReq) => {
+      setIsLoading(true);
+      const res = await signUp(formData);
+      return res;
+    },
     onSuccess: (_result, formData) => {
       resetToken();
       localStorage.removeItem(JOIN_FORM_KEY);
@@ -69,5 +80,5 @@ export const useJoin = (getValues: () => JoinForm) => {
     handleSignUp(formData);
   };
 
-  return { joinUser, joinStep };
+  return { joinUser, joinStep, isLoading };
 };
