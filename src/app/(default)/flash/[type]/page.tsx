@@ -23,7 +23,7 @@ function FlashPage({ params: { type } }: Props) {
       <FlashHandler type={type} />
       <div className='absolute z-0 flex h-fit w-full flex-1 flex-col items-center bg-gray-900 pt-[30px]'>
         <Image
-          src='/images/flash/light.svg'
+          src='/images/flash/light.webp'
           alt='light'
           width={481}
           height={476}

@@ -9,7 +9,7 @@ import { TestStartButton } from '@/features/Join';
 function JoinFinishPage() {
   return (
     <div className='safe-screen relative flex w-full flex-col justify-between overflow-hidden'>
-      <FinishLight frog={IMAGES.frog.congrats}>
+      <FinishLight frog={IMAGES.flash.congrats}>
         야호!
         <br />
         가입이

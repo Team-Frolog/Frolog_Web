@@ -38,7 +38,9 @@ function LoadingPage() {
     <div className='flex-col-center safe-screen w-full justify-between'>
       <FinishLight
         frog={
-          isDone ? IMAGES.frog.evaluation.done : IMAGES.frog.evaluation.loading
+          isDone
+            ? IMAGES.flash.evaluation.done
+            : IMAGES.flash.evaluation.loading
         }
       >
         <motion.div

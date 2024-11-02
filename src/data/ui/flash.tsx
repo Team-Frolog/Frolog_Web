@@ -25,7 +25,7 @@ export const flash: {
         축하해요!
       </>
     ),
-    frog: IMAGES.frog.congrats,
+    frog: IMAGES.flash.congrats,
     ground: IMAGES.ground_sm,
     hasPopper: true,
     width: 166,
@@ -42,7 +42,7 @@ export const flash: {
         새로 팠어요
       </>
     ),
-    frog: IMAGES.frog.new_well,
+    frog: IMAGES.flash.new_well,
     ground: IMAGES.ground_sm,
     hasPopper: true,
     width: 141,
