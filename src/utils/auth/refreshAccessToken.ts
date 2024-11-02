@@ -2,6 +2,7 @@ import { baseOptions } from '@/api/options';
 import { getExpFromToken } from '@/utils/auth/decodeToken';
 import { RefreshToken } from '@frolog/frolog-api';
 import { JWT } from 'next-auth/jwt';
+import * as Sentry from '@sentry/nextjs';
 
 const refresh = new RefreshToken(baseOptions);
 
@@ -19,6 +20,7 @@ export const refreshAccessToken = async (tokenObj: JWT) => {
     }
     throw new Error();
   } catch (err) {
+    Sentry.captureException(err);
     return {
       ...tokenObj,
       error: 'RefreshAccessTokenError',

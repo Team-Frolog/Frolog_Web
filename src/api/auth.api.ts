@@ -1,5 +1,6 @@
 import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
+import * as Sentry from '@sentry/nextjs';
 import {
   GetEmailAvailability,
   GetEmailAvailabilityReq,
@@ -36,6 +37,7 @@ export const signOut = async () => {
     }
     throw new Error();
   } catch (err) {
+    Sentry.captureException(err);
     toast.error(ERROR_ALERT);
   }
 };
@@ -45,6 +47,7 @@ export const checkEmail = async (req: GetEmailAvailabilityReq) => {
     const data = await getEmailAvailability.fetch(req);
     return data.result;
   } catch (err) {
+    Sentry.captureException(err);
     toast.error(ERROR_ALERT);
   }
 };
@@ -54,6 +57,7 @@ export const requestCode = async (req: RequestEmailCodeReq) => {
     const data = await requestEmailCode.fetch(req);
     return data;
   } catch (err) {
+    Sentry.captureException(err);
     toast.error(ERROR_ALERT);
   }
 };
@@ -63,6 +67,7 @@ export const verifyCode = async (req: VerifyEmailCodeReq) => {
     const data = await verifyEmailCode.fetch(req);
     return data;
   } catch (err) {
+    Sentry.captureException(err);
     toast.error(ERROR_ALERT);
   }
 };

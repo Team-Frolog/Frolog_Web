@@ -2,6 +2,7 @@ import { baseOptions } from '@/api/options';
 import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
+import * as Sentry from '@sentry/nextjs';
 import {
   SearchBook,
   SearchBookCountByCategory,
@@ -27,6 +28,7 @@ export const searchBook = async ({
     return result;
   } catch (err) {
     toast.error(ERROR_ALERT);
+    Sentry.captureException(err);
     return {
       books: [],
       count: 0,
@@ -42,6 +44,7 @@ export const getCategories = async (req: SearchBookCountByCategoryReq) => {
     return result.counts;
   } catch (err) {
     toast.error(ERROR_ALERT);
+    Sentry.captureException(err);
     return [];
   }
 };

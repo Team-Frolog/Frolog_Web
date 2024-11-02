@@ -2,6 +2,7 @@ import { baseOptions } from '@/api/options';
 import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
+import * as Sentry from '@sentry/nextjs';
 import {
   EditWell,
   EditWellReq,
@@ -38,6 +39,7 @@ export const getWellList = async (owner: string, page: number) => {
     return response;
   } catch (err) {
     toast.error(ERROR_ALERT);
+    Sentry.captureException(err);
     return {
       wells: [],
       count: 0,
