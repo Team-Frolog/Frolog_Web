@@ -53,7 +53,11 @@ function RatingSelector({
       <h4
         className={`text-body-lg ${isError ? 'text-error' : 'text-gray-800'}`}
       >
-        {currentRating ? getRatingMsg(currentRating) : '별점을 남겨주세요'}
+        {currentRating
+          ? getRatingMsg(currentRating)
+          : type === 'default'
+            ? '아직 리뷰가 없어요'
+            : '별점을 남겨주세요'}
       </h4>
       <div className='flex gap-[10px]'>
         {type === 'default'
