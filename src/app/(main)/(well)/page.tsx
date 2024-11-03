@@ -17,6 +17,16 @@ const WellList = dynamic(
 
 export const metadata: Metadata = {
   title: '나의 우물',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
 };
 
 async function WellPage() {

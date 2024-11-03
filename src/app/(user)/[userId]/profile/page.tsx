@@ -19,6 +19,16 @@ const Profile = dynamic(
 
 export const metadata: Metadata = {
   title: '프로필',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
 };
 
 interface Props {

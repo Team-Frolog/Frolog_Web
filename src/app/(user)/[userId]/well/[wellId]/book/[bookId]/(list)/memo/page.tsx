@@ -5,6 +5,21 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/auth';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '메모',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+};
 
 const MemoList = dynamic(
   () => import('@/features/Memo/components/MemoList/MemoList'),

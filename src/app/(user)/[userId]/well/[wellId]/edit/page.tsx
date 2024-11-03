@@ -4,6 +4,16 @@ import React from 'react';
 
 export const metadata: Metadata = {
   title: '우물 수정',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
 };
 
 interface Props {

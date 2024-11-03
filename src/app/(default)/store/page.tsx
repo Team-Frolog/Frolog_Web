@@ -9,6 +9,16 @@ import { IMAGES } from '../../../constants/images';
 
 export const metadata: Metadata = {
   title: '상점',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
 };
 
 async function StorePage() {
