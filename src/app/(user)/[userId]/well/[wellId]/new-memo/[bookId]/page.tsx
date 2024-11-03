@@ -13,10 +13,7 @@ interface Props {
 }
 
 function NewMemoPage({ params: { wellId, bookId } }: Props) {
-  const { handleAddMemo, isPending, isSuccess, isLoading } = useAddMemo(
-    wellId,
-    bookId
-  );
+  const { handleAddMemo, isLoading } = useAddMemo(wellId, bookId);
 
   const defaultValues = {
     images: [],
@@ -35,7 +32,7 @@ function NewMemoPage({ params: { wellId, bookId } }: Props) {
     >
       <MemoForm
         defaultValues={defaultValues}
-        isPending={isPending || isSuccess}
+        isLoading={isLoading}
         bookId={bookId}
       />
       {isLoading && <LoadingOverlay theme='light' />}

@@ -23,11 +23,7 @@ export const useAddReview = (
     };
   }, []);
 
-  const {
-    mutate: handleAddReview,
-    isPending,
-    isSuccess,
-  } = useMutation({
+  const { mutate: handleAddReview } = useMutation({
     mutationFn: async (data: ReviewFormType) => {
       setIsLoading(true);
       const reqData = {
@@ -123,5 +119,5 @@ export const useAddReview = (
     }
   };
 
-  return { handleSubmitForm, handleError, isPending, isSuccess, isLoading };
+  return { handleSubmitForm, handleError, isLoading };
 };

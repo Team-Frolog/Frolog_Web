@@ -1,6 +1,7 @@
 'use client';
 
 import { ArrowIcon, PlusIcon } from 'public/icons';
+import { motion } from 'framer-motion';
 import { PAGES } from '@/constants/page';
 import React from 'react';
 import { useRouter } from 'next/navigation';
@@ -30,7 +31,8 @@ function WellActionButton({
   return (
     <div className='flex flex-col items-center gap-[6px]'>
       <div className='relative h-[28px] w-[28px]'>
-        <button
+        <motion.button
+          whileTap={{ scale: 1.1 }}
           type='button'
           onClick={() => {
             if (wellId) {
@@ -38,14 +40,14 @@ function WellActionButton({
             }
             router.push(href);
           }}
-          className='absolute inset-x-0 top-[50%] z-50 mx-auto -translate-y-1/2 cursor-pointer'
+          className='absolute inset-x-0 top-0 z-50 mx-auto cursor-pointer'
         >
           {type === 'plus' ? (
             <PlusIcon />
           ) : (
             <ArrowIcon fill='#313239' width={28} height={28} />
           )}
-        </button>
+        </motion.button>
         {isPointing && <Pointing />}
       </div>
       <h3 className='mt-[2px] text-body-xl-bold'>{btnName}</h3>
