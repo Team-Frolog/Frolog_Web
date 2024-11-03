@@ -53,6 +53,12 @@ export const metadata: Metadata = {
     description:
       '책을 추가해 우물을 탈출하는 독서 기록 서비스, 프롤로그(Frolog)',
   },
+  verification: {
+    google: 'f35-rdvgbbgvYjNJjFBfFU91fnG8bsUyDcfgpz0M8R8',
+  },
+  other: {
+    'naver-site-verification': 'dba81646f24c6216c666bf9b6aa3e37e0f77a2b8',
+  },
   viewport:
     'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no viewport-fit=cover',
   appleWebApp: {
