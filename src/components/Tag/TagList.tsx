@@ -16,7 +16,11 @@ interface Props {
 function TagList({ type }: Props) {
   const { handleTagSelect, selectedTags } = useTags(type);
   const controls = useAnimationControls();
-  const { getValues } = useFormContext();
+  const {
+    getValues,
+    clearErrors,
+    formState: { errors },
+  } = useFormContext();
   const [isExpanded, setIsExpanded] = useState<boolean>(
     getValues()[type].length
   );
@@ -32,7 +36,9 @@ function TagList({ type }: Props) {
 
   return (
     <div className='flex w-full flex-col gap-[8px]'>
-      <span className='text-body-md text-gray-700'>
+      <span
+        className={`text-body-md ${errors[type] ? 'text-error' : 'text-gray-700'}`}
+      >
         {type === 'pros' ? '장점' : '단점'} 키워드 (1~5개 고르세요)
       </span>
       <motion.div
@@ -53,7 +59,10 @@ function TagList({ type }: Props) {
             type={type}
             size='big'
             tagValue={item.value}
-            onClick={() => handleTagSelect(item.id)}
+            onClick={() => {
+              clearErrors(type);
+              handleTagSelect(item.id);
+            }}
             isSelected={selectedTags.includes(item.id)}
           />
         ))}

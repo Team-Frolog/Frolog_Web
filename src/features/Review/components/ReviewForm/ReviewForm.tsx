@@ -13,12 +13,23 @@ interface Props {
 }
 
 function ReviewForm({ type, isDisabled }: Props) {
-  const { watch, setValue } = useFormContext<ReviewFormType>();
+  const {
+    watch,
+    setValue,
+    clearErrors,
+    formState: { errors },
+  } = useFormContext<ReviewFormType>();
 
   return (
     <>
       <div className='flex-child-layout gap-[36px]'>
-        <RatingSelector type='form' watch={watch} setValue={setValue} />
+        <RatingSelector
+          type='form'
+          watch={watch}
+          setValue={setValue}
+          clearErrors={clearErrors}
+          isError={!!errors.rating}
+        />
         <div className='flex flex-col gap-[36px] px-page'>
           <TagList type='pros' />
           <TagList type='cons' />

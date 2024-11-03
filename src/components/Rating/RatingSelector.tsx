@@ -1,7 +1,11 @@
 'use client';
 
 import React from 'react';
-import { UseFormSetValue, UseFormWatch } from 'react-hook-form';
+import {
+  UseFormClearErrors,
+  UseFormSetValue,
+  UseFormWatch,
+} from 'react-hook-form';
 import { ReviewFormType } from '@/features/Review';
 import { generateRatingStars, getRatingMsg } from '@/utils/star';
 import Star from './Star';
@@ -11,9 +15,18 @@ interface Props {
   rating?: number | undefined;
   setValue?: UseFormSetValue<ReviewFormType>;
   watch?: UseFormWatch<ReviewFormType>;
+  isError?: boolean;
+  clearErrors?: UseFormClearErrors<ReviewFormType>;
 }
 
-function RatingSelector({ type, rating, setValue, watch }: Props) {
+function RatingSelector({
+  type,
+  rating,
+  setValue,
+  watch,
+  isError,
+  clearErrors,
+}: Props) {
   const currentRating = type === 'form' ? watch!('rating') : rating;
 
   const handleRating = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
@@ -24,6 +37,7 @@ function RatingSelector({ type, rating, setValue, watch }: Props) {
 
     const newRating = clickPosition < starHalf ? index + 0.5 : index + 1;
 
+    clearErrors!('rating');
     setValue!('rating', newRating === 0.5 ? 1 : newRating, {
       shouldDirty: true,
     });
@@ -31,10 +45,14 @@ function RatingSelector({ type, rating, setValue, watch }: Props) {
 
   return (
     <div className='flex-col-center w-full justify-center gap-[8px] text-gray-800'>
-      <h1 className='text-heading-xl-bold'>
+      <h1
+        className={`text-heading-xl-bold ${isError ? 'text-error' : 'text-gray-800'}`}
+      >
         {currentRating?.toFixed(1) || '0.0'}
       </h1>
-      <h4 className='text-body-lg'>
+      <h4
+        className={`text-body-lg ${isError ? 'text-error' : 'text-gray-800'}`}
+      >
         {currentRating ? getRatingMsg(currentRating) : '별점을 남겨주세요'}
       </h4>
       <div className='flex gap-[10px]'>
@@ -55,6 +73,9 @@ function RatingSelector({ type, rating, setValue, watch }: Props) {
                   key={index}
                   rating={num}
                   size={40}
+                  defaultColor={
+                    isError ? 'rgba(255, 100, 100, 0.5)' : undefined
+                  }
                   onClick={
                     type === 'form' ? (e) => handleRating(e, index) : undefined
                   }
