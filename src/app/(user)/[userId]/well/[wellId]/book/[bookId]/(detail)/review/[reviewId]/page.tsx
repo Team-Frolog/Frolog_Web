@@ -37,33 +37,41 @@ function WellBookReviewPage({ params: { bookId, reviewId } }: Props) {
     watch,
     handleSubmit,
     reset,
-    formState: { isValid, isDirty },
+    setError,
+    formState: { isDirty },
   } = methods;
 
-  const { bookTitle, reviewDetail, handleEditReview, handleClickBack } =
-    useReviewDetail({ bookId, reviewId, reset, pathname, isDirty });
-
-  const isDisabled =
-    !watch('rating') ||
-    !watch('oneLiner') ||
-    !watch('review') ||
-    !watch('pros').length ||
-    !watch('cons').length ||
-    !isValid;
+  const {
+    bookTitle,
+    reviewDetail,
+    handleSubmitForm,
+    handleClickBack,
+    handleError,
+  } = useReviewDetail({
+    bookId,
+    reviewId,
+    reset,
+    pathname,
+    isDirty,
+    watch,
+    setError,
+  });
 
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={handleSubmit((data) => handleEditReview(data))}
+        onSubmit={handleSubmit(handleSubmitForm, handleError)}
         className='safe-screen flex w-full flex-1 flex-col bg-white'
       >
         <TitleHeader
           title={bookTitle}
           theme='light'
           type={isEditing ? 'edit' : 'default'}
-          isDisabled={isDisabled}
+          isDisabled={false}
           onClick={() => router.push(`${pathname}?edit=true`)}
-          onClickBack={() => handleClickBack()}
+          onClickBack={
+            isEditing ? () => handleClickBack() : () => router.back()
+          }
         />
         <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>
           {isEditing ? (

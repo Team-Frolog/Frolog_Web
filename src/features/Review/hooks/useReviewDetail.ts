@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { UseFormReset } from 'react-hook-form';
+import { UseFormReset, UseFormSetError, UseFormWatch } from 'react-hook-form';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { editReview, getReviewDetail } from '../api/review.api';
 import { ReviewForm } from '../types/review';
@@ -15,6 +15,8 @@ interface Props {
   reset: UseFormReset<ReviewForm>;
   pathname: string;
   isDirty: boolean;
+  watch: UseFormWatch<ReviewForm>;
+  setError: UseFormSetError<ReviewForm>;
 }
 
 export const useReviewDetail = ({
@@ -23,6 +25,8 @@ export const useReviewDetail = ({
   reset,
   pathname,
   isDirty,
+  watch,
+  setError,
 }: Props) => {
   const router = useRouter();
 
@@ -55,6 +59,45 @@ export const useReviewDetail = ({
     },
   });
 
+  const handleSubmitForm = async (formData: ReviewForm) => {
+    const { rating, pros, cons, oneLiner, review } = formData;
+
+    // rating 유효성 검사
+    if (!rating) {
+      setError(
+        'rating',
+        { type: 'validate', message: '별점을 선택해주세요' },
+        { shouldFocus: true }
+      );
+    }
+    if (!pros.length) {
+      setError(
+        'pros',
+        { type: 'validate', message: '장점을 선택해주세요' },
+        { shouldFocus: true }
+      );
+    }
+    if (!cons.length) {
+      setError(
+        'cons',
+        { type: 'validate', message: '단점을 선택해주세요' },
+        { shouldFocus: true }
+      );
+    }
+
+    if (
+      !rating ||
+      !pros.length ||
+      !cons.length ||
+      oneLiner.length < 10 ||
+      review.length < 10
+    ) {
+      return;
+    }
+
+    handleEditReview(formData);
+  };
+
   useEffect(() => {
     if (data) {
       reset({
@@ -82,10 +125,40 @@ export const useReviewDetail = ({
     }
   };
 
+  const handleError = () => {
+    const rating = watch('rating');
+    const pros = watch('pros');
+    const cons = watch('cons');
+
+    // rating 유효성 검사
+    if (!rating) {
+      setError(
+        'rating',
+        { type: 'validate', message: '별점을 선택해주세요' },
+        { shouldFocus: true }
+      );
+    }
+    if (!pros.length) {
+      setError(
+        'pros',
+        { type: 'validate', message: '장점을 선택해주세요' },
+        { shouldFocus: true }
+      );
+    }
+    if (!cons.length) {
+      setError(
+        'cons',
+        { type: 'validate', message: '단점을 선택해주세요' },
+        { shouldFocus: true }
+      );
+    }
+  };
+
   return {
+    handleError,
     reviewDetail: data,
     bookTitle: bookData?.title || '',
-    handleEditReview,
+    handleSubmitForm,
     handleClickBack,
   };
 };
