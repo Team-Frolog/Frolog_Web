@@ -5,13 +5,18 @@ import Image from 'next/image';
 import QuitButton from '@/components/Button/QuitButton';
 import { IMAGES } from '@/constants/images';
 import { TestStartButton } from '@/features/Join';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '회원가입',
+};
 
 function JoinFinishPage() {
   return (
-    <div className='relative flex h-dvh w-full flex-col justify-between overflow-hidden'>
-      <FinishLight frog={IMAGES.frog.congrats}>
+    <div className='safe-screen relative flex w-full flex-col justify-between overflow-hidden'>
+      <FinishLight frog={IMAGES.flash.congrats}>
         야호!
-      <br />
+        <br />
         가입이
         <br />
         완료되었어요

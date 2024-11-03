@@ -10,7 +10,12 @@ function SearchResultEmpty() {
         <br />
         찾지 못했어요!
       </h5>
-      <Image src={IMAGES.frog.search} alt='search' width={120} height={120} />
+      <Image
+        src={IMAGES.frog.fallback.search}
+        alt='search'
+        width={120}
+        height={120}
+      />
       <span className='text-body-lg text-gray-600'>
         책 제목이나 저자명을 다시 검색해주세요
       </span>

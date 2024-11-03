@@ -2,6 +2,7 @@ import { baseOptions } from '@/api/options';
 import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
+import * as Sentry from '@sentry/nextjs';
 import {
   DeleteReview,
   EditReview,
@@ -25,12 +26,8 @@ export const addNewReview = async (req: PostReviewReq) => {
 };
 
 export const getReviewDetail = async (reviewId: string) => {
-  try {
-    const result = await getReview.fetch({ id: reviewId });
-    return result;
-  } catch (err) {
-    toast.error(ERROR_ALERT);
-  }
+  const result = await getReview.fetch({ id: reviewId });
+  return result;
 };
 
 export const editReview = async (req: EditReviewReq) => {
@@ -44,6 +41,7 @@ export const getReviewList = async (req: SearchReviewReq) => {
     return result;
   } catch (err) {
     toast.error(ERROR_ALERT);
+    Sentry.captureException(err);
     return {
       reviews: [],
       count: 0,

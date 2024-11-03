@@ -41,6 +41,7 @@ function Textarea({ type = 'default', option }: Props) {
           }}
           rows={option.minRow}
           {...register(option.fieldName, {
+            required: option.required,
             minLength: {
               value: option.minLength,
               message: option.errorMessage,

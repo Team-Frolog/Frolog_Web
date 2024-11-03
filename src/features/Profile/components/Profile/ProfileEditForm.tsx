@@ -43,12 +43,10 @@ function ProfileEditForm({ userId }: Props) {
   const {
     reset,
     handleSubmit,
-    watch,
-    formState: { isDirty, isValid },
+    formState: { isDirty },
   } = methods;
   const { handleClickBack, handleEditProfile, original_username } =
     useProfileEdit(userId, reset, isDirty);
-  const isDiabled = !watch('self_intro') || !watch('username') || !isValid;
 
   return (
     <FormProvider {...methods}>
@@ -60,7 +58,7 @@ function ProfileEditForm({ userId }: Props) {
           title=''
           theme='light'
           type='edit'
-          isDisabled={isDiabled}
+          isDisabled={false}
           onClickBack={() => handleClickBack()}
         />
         <MainLayout isCenter extraClass='pt-[16px] gap-[16px]'>

@@ -11,12 +11,8 @@ const getBookDetailObj = new GetBookDetail(baseOptions);
 const searchMyReview = new SearchReview(baseOptions);
 
 export const getBookDetail = async (isbn: string) => {
-  try {
-    const result = await getBookDetailObj.fetch({ isbn });
-    return result;
-  } catch (err) {
-    toast.error(ERROR_ALERT);
-  }
+  const result = await getBookDetailObj.fetch({ isbn });
+  return result;
 };
 
 export const getReviewCount = async (req: SearchReviewReq) => {

@@ -2,17 +2,22 @@
 
 import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
+import * as Sentry from '@sentry/nextjs';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 0,
+      retry: 1,
       networkMode: 'online',
       refetchOnWindowFocus: false,
+      throwOnError: true,
     },
     mutations: {
-      onError: () => toast.error(ERROR_ALERT),
+      onError: (err) => {
+        Sentry.captureException(err);
+        toast.error(ERROR_ALERT);
+      },
     },
   },
 });

@@ -20,7 +20,7 @@ function SideHeader({
   const router = useRouter();
 
   return (
-    <div className={`flex h-fit w-full ${bgColor || 'bg-white'}`}>
+    <header className={`flex h-fit w-full ${bgColor || 'bg-white'}`}>
       {hasBackButton && (
         <BackButton type='green' onClick={() => router.back()} />
       )}
@@ -36,7 +36,7 @@ function SideHeader({
         </div>
       )}
       {children}
-    </div>
+    </header>
   );
 }
 

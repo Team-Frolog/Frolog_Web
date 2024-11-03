@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
@@ -16,11 +18,7 @@ export const useAddMemo = (wellId: string, bookId: string) => {
     };
   }, []);
 
-  const {
-    mutate: handleAddMemo,
-    isPending,
-    isSuccess,
-  } = useMutation({
+  const { mutate: handleAddMemo } = useMutation({
     mutationFn: async (data: MemoFormType) => {
       setIsLoading(true);
       const req = {
@@ -38,5 +36,5 @@ export const useAddMemo = (wellId: string, bookId: string) => {
       router.replace(`/${session!.user.id}/well/${wellId}/book/${bookId}/memo`),
   });
 
-  return { handleAddMemo, isPending, isSuccess, isLoading };
+  return { handleAddMemo, isLoading };
 };

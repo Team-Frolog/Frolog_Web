@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
@@ -12,12 +14,6 @@ interface Props {
 }
 
 function NewReviewForm({ isbn, wellId, userId }: Props) {
-  const { handleAddReview, isPending, isSuccess, isLoading } = useAddReview(
-    userId,
-    wellId,
-    isbn
-  );
-
   const methods = useForm<ReviewFormType>({
     mode: 'onBlur',
     defaultValues: {
@@ -28,30 +24,24 @@ function NewReviewForm({ isbn, wellId, userId }: Props) {
       cons: [],
     },
   });
-  const {
-    watch,
-    handleSubmit,
-    formState: { isValid },
-  } = methods;
 
-  const isDisabled =
-    !watch('rating') ||
-    !watch('oneLiner') ||
-    !watch('review') ||
-    !watch('pros').length ||
-    !watch('cons').length ||
-    !isValid;
+  const { handleSubmit, watch, setError } = methods;
+
+  const { handleSubmitForm, handleError, isLoading } = useAddReview(
+    userId,
+    wellId,
+    isbn,
+    watch,
+    setError
+  );
 
   return (
     <FormProvider {...methods}>
       <form
         className='flex-1 bg-white pt-0'
-        onSubmit={handleSubmit((data) => handleAddReview(data))}
+        onSubmit={handleSubmit(handleSubmitForm, handleError)}
       >
-        <ReviewForm
-          type='new'
-          isDisabled={isDisabled || isPending || isSuccess}
-        />
+        <ReviewForm type='new' isDisabled={isLoading} />
       </form>
       {isLoading && <LoadingOverlay theme='light' />}
     </FormProvider>

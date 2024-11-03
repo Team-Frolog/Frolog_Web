@@ -1,9 +1,20 @@
-'use client';
-
 import React from 'react';
-import GenericForm from '@/components/Form/GenericForm';
-import { MemoForm, MemoFormType, useAddMemo } from '@/features/Memo';
-import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
+import { NewMemoPage } from '@/features/Memo';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '새로운 메모',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+};
 
 interface Props {
   params: {
@@ -12,35 +23,8 @@ interface Props {
   };
 }
 
-function NewMemoPage({ params: { wellId, bookId } }: Props) {
-  const { handleAddMemo, isPending, isSuccess, isLoading } = useAddMemo(
-    wellId,
-    bookId
-  );
-
-  const defaultValues = {
-    images: [],
-    memo: '',
-    isPublic: true,
-  };
-
-  return (
-    <GenericForm<MemoFormType>
-      onSubmit={(data) => handleAddMemo(data)}
-      className='flex h-dvh w-full flex-1 flex-col bg-white'
-      formOptions={{
-        mode: 'onBlur',
-        defaultValues,
-      }}
-    >
-      <MemoForm
-        defaultValues={defaultValues}
-        isPending={isPending || isSuccess}
-        bookId={bookId}
-      />
-      {isLoading && <LoadingOverlay theme='light' />}
-    </GenericForm>
-  );
+function AddNewMemoPage({ params }: Props) {
+  return <NewMemoPage params={params} />;
 }
 
-export default NewMemoPage;
+export default AddNewMemoPage;

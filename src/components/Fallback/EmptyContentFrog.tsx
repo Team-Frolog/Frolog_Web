@@ -13,14 +13,14 @@ function EmptyContentFrog({ title, type = 'with pen' }: Props) {
       <h3 className='text-body-xl-bold'>{title}</h3>
       {type === 'with pen' ? (
         <Image
-          src={IMAGES.frog.withPen}
+          src={IMAGES.frog.fallback.withPen}
           alt='empty frog'
           width={120}
           height={120}
         />
       ) : (
         <Image
-          src={IMAGES.frog.empty_dot}
+          src={IMAGES.frog.fallback.empty_dot}
           alt='empty frog'
           width={120}
           height={120}

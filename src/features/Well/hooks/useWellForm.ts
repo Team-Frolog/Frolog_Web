@@ -45,11 +45,7 @@ export const useWellForm = (
     }
   }, [wellData]);
 
-  const {
-    mutate: handleAddWell,
-    isPending,
-    isSuccess,
-  } = useMutation({
+  const { mutate: handleAddWell } = useMutation({
     mutationFn: async (data: WellFormType) => {
       setIsLoading(true);
       const res = await addNewWell({ ...data, owner: session!.user.id });
@@ -88,8 +84,6 @@ export const useWellForm = (
     handleAddWell,
     handleClickBack,
     handleEditWell,
-    isPending,
-    isSuccess,
     isLoading,
   };
 };

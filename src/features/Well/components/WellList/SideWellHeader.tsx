@@ -35,6 +35,7 @@ function SideWellHeader({
       )}
       {hasStoreButton && (
         <motion.button
+          id='store-button'
           type='button'
           whileTap={{ scale: 0.9 }}
           onClick={() => router.push(PAGES.STORE)}

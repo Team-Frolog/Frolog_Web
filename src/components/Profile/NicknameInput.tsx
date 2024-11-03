@@ -24,12 +24,13 @@ function NicknameInput({ theme, originUsername = '' }: Props) {
       title='닉네임'
       type='text'
       fieldName='username'
-      placeholder='4~15자 이내 한글, 영문 또는 숫자를 입력하세요. (공백 제외)'
+      placeholder='4~15자 이내 한글, 영문 또는 숫자를 입력하세요 (공백 제외)'
       errorMessage={errors.username && String(errors.username.message)}
       {...register('username', {
+        required: '닉네임을 입력해주세요',
         pattern: {
           value: /^[가-힣a-zA-Z0-9]{4,15}$/,
-          message: '4~15자 이내 한글, 영문 또는 숫자를 입력하세요. (공백 제외)',
+          message: '4~15자 이내 한글, 영문 또는 숫자를 입력하세요 (공백 제외)',
         },
         onBlur: async (e) => {
           const isValid = await trigger('username');
@@ -46,7 +47,7 @@ function NicknameInput({ theme, originUsername = '' }: Props) {
             if (!data) {
               setError('username', {
                 type: 'manual',
-                message: '이미 사용 중인 닉네임이에요.',
+                message: '이미 사용 중인 닉네임이에요',
               });
             }
           }

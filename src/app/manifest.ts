@@ -5,6 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: '#0E0E0E',
     background_color: '#ffffff',
     display: 'standalone',
+    orientation: 'portrait',
     scope: '/',
     start_url: '/',
     lang: 'ko-KR',

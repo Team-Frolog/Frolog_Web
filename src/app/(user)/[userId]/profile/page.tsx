@@ -5,6 +5,7 @@ import NavigationBar from '@/components/NavigationBar';
 import { Menu } from '@/features/Profile';
 import MainLayout from '@/layouts/MainLayout';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import React from 'react';
 
@@ -15,6 +16,20 @@ const Profile = dynamic(
     loading: () => <ProfileSkeleton />,
   }
 );
+
+export const metadata: Metadata = {
+  title: '프로필',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+};
 
 interface Props {
   params: {

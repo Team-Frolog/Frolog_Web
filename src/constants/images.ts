@@ -1,20 +1,23 @@
 const BASE_PATH = '/images';
 
 export const IMAGES = {
-  frog: {
-    no_review: `${BASE_PATH}/frog/no-review.svg`,
-    congrats: `${BASE_PATH}/frog/congrats.svg`,
+  flash: {
+    congrats: `${BASE_PATH}/frog/flash/congrats.webp`,
+    new_well: `${BASE_PATH}/frog/flash/new-well-congrats.webp`,
+    well_done: `${BASE_PATH}/frog/flash/well-done-frog.webp`,
     evaluation: {
-      loading: `${BASE_PATH}/frog/frog-evaluating.svg`,
-      done: `${BASE_PATH}/frog/frog-evaluating-done.svg`,
+      loading: `${BASE_PATH}/frog/flash/frog-evaluating.webp`,
+      done: `${BASE_PATH}/frog/flash/frog-evaluating-done.webp`,
+    },
+  },
+  frog: {
+    fallback: {
+      withPen: `${BASE_PATH}/frog/fallback/frog-with-pen.svg`,
+      search: `${BASE_PATH}/frog/fallback/search-frog.svg`,
+      no_review: `${BASE_PATH}/frog/fallback/no-review.svg`,
+      empty_dot: `${BASE_PATH}/frog/fallback/frog-empty-dot.svg`,
     },
     first_congrats: `${BASE_PATH}/frog/first-review-congrats.svg`,
-    sitting: `${BASE_PATH}/frog/frog-sitting.svg`,
-    search: `${BASE_PATH}/frog/search-frog.svg`,
-    withPen: `${BASE_PATH}/frog/frog-with-pen.svg`,
-    review_done: `${BASE_PATH}/frog/review-done.svg`,
-    new_well: `${BASE_PATH}/frog/new-well-congrats.svg`,
-    well_done: `${BASE_PATH}/frog/well-done-frog.svg`,
     add: {
       reading: `${BASE_PATH}/frog/frog-reading.svg`,
       done: `${BASE_PATH}/frog/frog-done.svg`,
@@ -22,7 +25,6 @@ export const IMAGES = {
     memo_frog: `${BASE_PATH}/frog/memo-frog.svg`,
     more_feed: `${BASE_PATH}/frog/morefeed-frog.svg`,
     more_frogs: `${BASE_PATH}/frog/more-character-frog.svg`,
-    empty_dot: `${BASE_PATH}/frog/frog-empty-dot.svg`,
   },
   test: {
     result: {
@@ -39,7 +41,7 @@ export const IMAGES = {
   well: {
     leaf: `${BASE_PATH}/well/well-leaf.svg`,
   },
-  ground: `${BASE_PATH}/etc/ground.svg`,
-  ground_sm: `${BASE_PATH}/etc/ground-sm.svg`,
+  ground: `${BASE_PATH}/etc/ground.webp`,
+  ground_sm: `${BASE_PATH}/etc/ground-sm.webp`,
   default_profile: `${BASE_PATH}/etc/default-profile.svg`,
 };

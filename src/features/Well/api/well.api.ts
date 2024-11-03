@@ -2,6 +2,7 @@ import { baseOptions } from '@/api/options';
 import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
+import * as Sentry from '@sentry/nextjs';
 import {
   EditWell,
   EditWellReq,
@@ -38,6 +39,7 @@ export const getWellList = async (owner: string, page: number) => {
     return response;
   } catch (err) {
     toast.error(ERROR_ALERT);
+    Sentry.captureException(err);
     return {
       wells: [],
       count: 0,
@@ -48,25 +50,17 @@ export const getWellList = async (owner: string, page: number) => {
 };
 
 export const getWell = async (id: string) => {
-  try {
-    const response = await fetchWell.fetch({ id });
-    return response;
-  } catch (err) {
-    toast.error(ERROR_ALERT);
-  }
+  const response = await fetchWell.fetch({ id });
+  return response;
 };
 
 export const getWellItems = async (well_id: string) => {
-  try {
-    const response = await searchWellItem.fetch({
-      well_id,
-      limit: 100,
-      sort: 'oldest',
-    });
-    return response;
-  } catch (err) {
-    toast.error(ERROR_ALERT);
-  }
+  const response = await searchWellItem.fetch({
+    well_id,
+    limit: 100,
+    sort: 'oldest',
+  });
+  return response;
 };
 
 export const editWell = async (req: EditWellReq) => {

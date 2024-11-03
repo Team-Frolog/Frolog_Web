@@ -1,6 +1,8 @@
+export { default as MyReviewPage } from './components/MyReviewPage';
+export { default as NewReviewPage } from './components/NewReviewPage';
+export { default as ReviewDetailPage } from './components/ReviewDetailPage';
 export { useReviewDetailPage } from './hooks/useReviewDetailPage';
 export { useReviewForBook } from './hooks/useReviewForBook';
-export { default as NewReviewForm } from './components/ReviewForm/NewReviewForm';
 export { default as ReviewDetail } from './components/ReviewDetail';
 export { default as ReviewForm } from './components/ReviewForm/ReviewForm';
 export { default as ReviewList } from './components/ReviewList/ReviewList';

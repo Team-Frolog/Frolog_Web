@@ -22,7 +22,7 @@ function FormHeader() {
   };
 
   return (
-    <div className='block w-full gap-3 p-[24px] pb-0'>
+    <header className='block w-full gap-3 p-[24px] pb-0'>
       <button
         type='button'
         className='cursor-pointer'
@@ -31,7 +31,7 @@ function FormHeader() {
         <BackIcon fill='#B3B6C5' />
       </button>
       <h3 className='text-heading-md-bold'>{title}</h3>
-    </div>
+    </header>
   );
 }
 

@@ -15,14 +15,14 @@ function ResponsiveHeaderLayout({
   display = 'flex',
 }: Props) {
   return (
-    <div
+    <header
       id='header'
       className={`duration-50 h-fit w-full gap-3 bg-gray-900 p-[24px] text-white transition-all ${display}`}
       style={{ paddingBottom: '10px' }}
     >
       <BackButton fill='#B3B6C5' onClick={onClick} />
       {children}
-    </div>
+    </header>
   );
 }
 

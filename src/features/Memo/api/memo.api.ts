@@ -2,6 +2,7 @@ import { baseOptions } from '@/api/options';
 import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
+import * as Sentry from '@sentry/nextjs';
 import {
   DeleteMemoImage,
   PostMemo,
@@ -26,7 +27,7 @@ const getMemo = new GetMemo(baseOptions);
 const editMemo = new EditMemo(baseOptions);
 const deleteMemoObj = new DeleteMemo(baseOptions);
 
-export const getMemos = async (isbn: string, userId:string, page: number) => {
+export const getMemos = async (isbn: string, userId: string, page: number) => {
   try {
     const response = await searchMemo.fetch({
       isbn,
@@ -37,6 +38,7 @@ export const getMemos = async (isbn: string, userId:string, page: number) => {
     return response;
   } catch (err) {
     toast.error(ERROR_ALERT);
+    Sentry.captureException(err);
     return {
       memos: [],
       count: 0,
@@ -47,12 +49,8 @@ export const getMemos = async (isbn: string, userId:string, page: number) => {
 };
 
 export const getMemoDetail = async (req: GetMemoReq) => {
-  try {
-    const response = await getMemo.fetch(req);
-    return response;
-  } catch (err) {
-    toast.error(ERROR_ALERT);
-  }
+  const response = await getMemo.fetch(req);
+  return response;
 };
 
 export const addNewMemo = async (req: PostMemoReq) => {

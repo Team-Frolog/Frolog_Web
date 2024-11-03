@@ -4,10 +4,11 @@ interface Props {
   rating: number;
   size?: number;
   color?: string | undefined;
+  defaultColor?: string;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-function Star({ rating, color, size = 20, onClick }: Props) {
+function Star({ rating, color, defaultColor, size = 20, onClick }: Props) {
   const starWidth = `${rating * 100}%`;
   const gradientId = `starGradient-${rating}-${size}-${color}`;
   const scaleFactor = size / 20;
@@ -31,7 +32,10 @@ function Star({ rating, color, size = 20, onClick }: Props) {
             />
             <stop
               offset={starWidth}
-              style={{ stopColor: '#EDEFF4', stopOpacity: color ? 0 : 1 }}
+              style={{
+                stopColor: defaultColor || '#EDEFF4',
+                stopOpacity: color ? 0 : 1,
+              }}
             />
           </linearGradient>
         </defs>

@@ -17,9 +17,10 @@ function WellNameInput() {
       placeholder='12자 이내로 입력하세요.'
       errorMessage={errors.name && String(errors.name.message)}
       {...register('name', {
+        required: '우물 이름을 입력해주세요',
         maxLength: {
           value: 12,
-          message: '12자 이내로 입력하세요.',
+          message: '12자 이내로 입력하세요',
         },
       })}
     />

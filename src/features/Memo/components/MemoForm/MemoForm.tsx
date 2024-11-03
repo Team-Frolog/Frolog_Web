@@ -15,11 +15,11 @@ import { MemoFormType } from '../../types/form';
 
 interface Props {
   defaultValues?: MemoFormType;
-  isPending?: boolean;
+  isLoading?: boolean;
   bookId: string;
 }
 
-function MemoForm({ defaultValues, isPending, bookId }: Props) {
+function MemoForm({ defaultValues, isLoading, bookId }: Props) {
   const router = useRouter();
   const { bookData } = useBook(bookId);
   const { watch, getValues } = useFormContext();
@@ -46,7 +46,7 @@ function MemoForm({ defaultValues, isPending, bookId }: Props) {
         title={bookData?.title || ''}
         theme='light'
         type='edit'
-        isDisabled={!watch('memo') || isPending}
+        isDisabled={(!watch('memo') && !watch('images').length) || isLoading}
         onClickBack={handleClickBack}
       />
       <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>

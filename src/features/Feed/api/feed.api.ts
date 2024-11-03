@@ -3,6 +3,7 @@ import { DEFAULT_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
 import { GetFeed } from '@frolog/frolog-api';
+import * as Sentry from '@sentry/nextjs';
 
 const getFeedObj = new GetFeed(baseOptions);
 
@@ -16,6 +17,7 @@ export const getFeed = async (page: number) => {
     return result;
   } catch (err) {
     toast.error(ERROR_ALERT);
+    Sentry.captureException(err);
     return {
       contents: [],
       count: 0,

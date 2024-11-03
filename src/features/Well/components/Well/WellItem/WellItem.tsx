@@ -20,7 +20,7 @@ function WellItem({ wellId, wellBook, isLastItem, zIndex }: Props) {
     newReviewId,
     actions: { setNewReviewId },
   } = useStackMotionStore();
-  const { id, status, title, page, category, isbn } = wellBook;
+  const { id, status, title, page, category, isbn, memo_cnt } = wellBook;
   const height = page > 550 ? page * 0.1 : 55;
   const isReading = status === 'reading';
 
@@ -51,6 +51,7 @@ function WellItem({ wellId, wellBook, isLastItem, zIndex }: Props) {
         category={category}
         height={height}
         isReading={isReading}
+        hasMemo={memo_cnt > 0}
       />
     </motion.div>
   );

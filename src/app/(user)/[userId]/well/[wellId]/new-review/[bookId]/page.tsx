@@ -1,13 +1,20 @@
-'use client';
-
 import React from 'react';
-import BookInfo from '@/components/Book/BookInfo';
-import { NewReviewForm } from '@/features/Review';
-import { useScroll } from '@/hooks/gesture/useScroll';
-import MainLayout from '@/layouts/MainLayout';
-import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
-import { bottomSheet } from '@/modules/BottomSheet';
-import { useRouter } from 'next/navigation';
+import { NewReviewPage } from '@/features/Review';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '새로운 리뷰',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+};
 
 interface Props {
   params: {
@@ -17,32 +24,8 @@ interface Props {
   };
 }
 
-function NewReviewPage({ params: { wellId, userId, bookId } }: Props) {
-  const router = useRouter();
-  useScroll({ categoryColor: undefined });
-
-  return (
-    <>
-      <ResponsiveHeaderLayout
-        onClick={() => {
-          bottomSheet.open({
-            sheetKey: 'leave_while_write',
-            onClick: () => {
-              setTimeout(() => {
-                router.back();
-              }, 300);
-            },
-          });
-        }}
-      >
-        <></>
-      </ResponsiveHeaderLayout>
-      <MainLayout>
-        <BookInfo bookId={bookId} />
-        <NewReviewForm isbn={bookId} userId={userId} wellId={wellId} />
-      </MainLayout>
-    </>
-  );
+function ADdNewReviewPage({ params }: Props) {
+  return <NewReviewPage params={params} />;
 }
 
-export default NewReviewPage;
+export default ADdNewReviewPage;

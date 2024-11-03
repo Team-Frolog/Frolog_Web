@@ -1,8 +1,20 @@
-'use client';
-
+import { MyMemoPage } from '@/features/Memo';
+import { Metadata } from 'next';
 import React from 'react';
-import GenericForm from '@/components/Form/GenericForm';
-import { MemoForm, MemoFormType, useMemoDetail } from '@/features/Memo';
+
+export const metadata: Metadata = {
+  title: '메모',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+};
 
 interface Props {
   params: {
@@ -12,36 +24,8 @@ interface Props {
   };
 }
 
-function WellBookMemoPage({ params: { wellId, bookId, memoId } }: Props) {
-  const { memoDetail, handleEditMemo, isPending } = useMemoDetail(
-    wellId,
-    bookId,
-    memoId
-  );
-  if (!memoDetail) return <></>;
-
-  const defaultValues = {
-    images: memoDetail.images,
-    memo: memoDetail.content,
-    isPublic: memoDetail.is_public,
-  };
-
-  return (
-    <GenericForm<MemoFormType>
-      onSubmit={(data) => handleEditMemo(data)}
-      className='flex h-dvh w-full flex-1 flex-col bg-white'
-      formOptions={{
-        mode: 'onBlur',
-        defaultValues,
-      }}
-    >
-      <MemoForm
-        defaultValues={defaultValues}
-        isPending={isPending}
-        bookId={memoDetail.isbn}
-      />
-    </GenericForm>
-  );
+function WellBookMemoPage({ params }: Props) {
+  return <MyMemoPage params={params} />;
 }
 
 export default WellBookMemoPage;

@@ -5,6 +5,7 @@ import { SideWellHeader } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
 import dynamic from 'next/dynamic';
 import WellListSkeleton from '@/components/Fallback/Skeleton/WellListSkeleton';
+import { Metadata } from 'next';
 
 const WellList = dynamic(
   () => import('@/features/Well/components/WellList/WellList'),
@@ -13,6 +14,20 @@ const WellList = dynamic(
     loading: () => <WellListSkeleton />,
   }
 );
+
+export const metadata: Metadata = {
+  title: '나의 우물',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+};
 
 async function WellPage() {
   const session = await getServerSession(authOptions);

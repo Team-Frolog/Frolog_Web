@@ -28,11 +28,13 @@ function GuideChat({ message }: Props) {
   }, [session, message]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-    }, 3000);
+    if (!message && session) {
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+      }, 5000);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   return (
