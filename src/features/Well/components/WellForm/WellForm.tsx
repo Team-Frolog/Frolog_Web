@@ -34,24 +34,17 @@ interface Props {
 function WellForm({ type, userId, wellId }: Props) {
   const methods = useForm<WellFormType>({
     mode: 'onChange',
-    defaultValues: { name: '', frog: 'default', color: 'novel', shape: 1 },
+    defaultValues: { name: '', frog: 'default', color: 'religion', shape: 1 },
   });
 
   const {
-    watch,
     reset,
     handleSubmit,
-    formState: { errors, isDirty },
+    formState: { isDirty },
   } = methods;
 
-  const {
-    handleAddWell,
-    handleClickBack,
-    handleEditWell,
-    isPending,
-    isSuccess,
-    isLoading,
-  } = useWellForm(type, reset, wellId);
+  const { handleAddWell, handleClickBack, handleEditWell, isLoading } =
+    useWellForm(type, reset, wellId);
 
   return (
     <FormProvider {...methods}>
@@ -66,7 +59,7 @@ function WellForm({ type, userId, wellId }: Props) {
           theme='light'
           type={type}
           onClickBack={() => handleClickBack(isDirty)}
-          isDisabled={!watch('name') || !!errors.name || isPending || isSuccess}
+          isDisabled={isLoading}
         />
         <div className='flex w-full flex-1 flex-col gap-[36px] overflow-auto bg-white px-page py-[32px]'>
           <WellNameInput />

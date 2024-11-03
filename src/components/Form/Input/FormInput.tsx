@@ -72,7 +72,7 @@ const FormInput = React.forwardRef(
           inputMode={type === 'email' ? 'email' : 'text'}
           placeholder={placeholder}
           style={{ imeMode: type === 'password' ? 'disabled' : 'auto' }}
-          className={`input-common placeholder:text-sm ${watch(fieldName) && errorMessage ? 'input-error' : theme === 'dark' ? 'input-default' : 'input-light'}`}
+          className={`input-common placeholder:text-sm ${theme === 'dark' ? 'input-default' : 'input-light'} ${errorMessage && theme === 'dark' ? 'input-error' : ''} ${errorMessage && theme === 'light' ? 'input-light-error' : ''}`}
           onKeyDown={handleKeyPress}
           maxLength={maxCount}
           {...props}

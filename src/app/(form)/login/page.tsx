@@ -33,7 +33,7 @@ function LoginPage() {
         <LoginForm setIsFaild={setIsFaild} userLogin={userLogin} />
         <RememberMe isSaved={isSaved} setIsSaved={setIsSaved} />
       </div>
-      <div className='flex-col-center w-full gap-[12px]'>
+      <div className='flex-col-center w-full gap-[12px] pb-[12px]'>
         <AnimatePresence>
           {isFaild && <ErrorToast errorMsg='로그인 정보를 다시 확인해주세요' />}
         </AnimatePresence>
