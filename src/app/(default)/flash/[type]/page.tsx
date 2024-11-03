@@ -2,6 +2,7 @@ import PopperAnimation from '@/components/animation/PopperAnimation';
 import FlashHandler from '@/components/Gesture/FlashHandler';
 import BigTitle from '@/components/Text/BigTitle';
 import { flash } from '@/data/ui/flash';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import React from 'react';
 
@@ -14,6 +15,19 @@ interface Props {
 export async function generateStaticParams() {
   return [{ type: 'review' }, { type: 'new_well' }];
 }
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+};
 
 function FlashPage({ params: { type } }: Props) {
   const { getTitle, frog, ground, width, height, max_height } = flash[type];

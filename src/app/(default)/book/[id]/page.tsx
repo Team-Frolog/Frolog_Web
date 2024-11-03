@@ -1,16 +1,9 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import BookInfo from '@/components/Book/BookInfo';
-import AddButton from '@/components/Button/AddButton';
 import TitleHeader from '@/components/Header/TitleHeader';
-import RatingSelector from '@/components/Rating/RatingSelector';
-import MajorTagList from '@/components/Tag/MajorTagList';
-import { BookDetail, useBookDetail, AddBookToWell } from '@/features/Book';
-import { useScroll } from '@/hooks/gesture/useScroll';
 import MainLayout from '@/layouts/MainLayout';
-import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
-import { AnimatePresence } from 'framer-motion';
+import { AboutBook } from '@/features/Book';
+import { Metadata } from 'next';
 
 interface Props {
   params: {
@@ -18,11 +11,11 @@ interface Props {
   };
 }
 
-function BookPage({ params: { id } }: Props) {
-  const { bookData } = useBookDetail(id);
-  const [open, setOpen] = useState(false);
-  useScroll({ categoryColor: undefined });
+export const metadata: Metadata = {
+  title: '도서 정보',
+};
 
+function BookPage({ params: { id } }: Props) {
   return (
     <>
       <TitleHeader
@@ -33,25 +26,8 @@ function BookPage({ params: { id } }: Props) {
       />
       <MainLayout>
         <BookInfo bookId={id} />
-        <div className='flex w-full flex-col gap-[36px] bg-white'>
-          <div className='flex w-full flex-col gap-[36px] px-page'>
-            <RatingSelector type='default' rating={bookData?.avg_rating} />
-            <AddButton
-              text='우물에 책 추가하기'
-              categoryId={bookData?.category}
-              onClick={() => runWhenLoggedIn(() => setOpen(true))}
-            />
-            <MajorTagList type='pros' tagData={bookData?.tags_pos} />
-            <MajorTagList type='cons' tagData={bookData?.tags_neg} />
-          </div>
-          <BookDetail bookId={id} />
-        </div>
+        <AboutBook bookId={id} />
       </MainLayout>
-      <AnimatePresence>
-        {open && (
-          <AddBookToWell bookId={id} closeSheet={() => setOpen(false)} />
-        )}
-      </AnimatePresence>
     </>
   );
 }

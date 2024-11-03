@@ -1,3 +1,5 @@
+'use client';
+
 import {
   LOGIN_CALLBACK,
   REMEMBER_ME_KEY,

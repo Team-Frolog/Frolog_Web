@@ -5,6 +5,11 @@ import Image from 'next/image';
 import QuitButton from '@/components/Button/QuitButton';
 import { IMAGES } from '@/constants/images';
 import { TestStartButton } from '@/features/Join';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '회원가입',
+};
 
 function JoinFinishPage() {
   return (

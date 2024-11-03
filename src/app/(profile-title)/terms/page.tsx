@@ -1,5 +1,10 @@
 import { TermsMenu } from '@/features/Profile';
+import { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: '이용약관',
+};
 
 function TermsPage() {
   return (

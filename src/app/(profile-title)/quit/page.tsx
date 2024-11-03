@@ -1,5 +1,10 @@
 import { QuitForm } from '@/features/Profile';
+import { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: '회원탈퇴',
+};
 
 function QuitPage() {
   return (

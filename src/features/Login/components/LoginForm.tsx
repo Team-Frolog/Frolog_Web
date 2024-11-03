@@ -1,7 +1,7 @@
 import FormInput from '@/components/Form/Input/FormInput';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { LoginFormType } from '..';
+import { LoginForm as LoginFormType } from '../types/login';
 
 interface Props {
   setIsFaild: React.Dispatch<React.SetStateAction<boolean>>;

@@ -1,7 +1,11 @@
 import React from 'react';
 import { terms } from '@/data/terms/terms';
 import TermsText from '@/components/Markdown/TermsText';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: '이용약관',
+};
 interface Props {
   params: {
     type: string;

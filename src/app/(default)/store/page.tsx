@@ -1,10 +1,15 @@
 import React from 'react';
+import { Metadata } from 'next';
 import MainLayout from '@/layouts/MainLayout';
 import { StoreHeader, FrogList } from '@/features/Store';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/auth';
 import Image from 'next/image';
 import { IMAGES } from '../../../constants/images';
+
+export const metadata: Metadata = {
+  title: '상점',
+};
 
 async function StorePage() {
   const session = await getServerSession(authOptions);

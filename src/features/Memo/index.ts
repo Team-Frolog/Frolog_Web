@@ -1,4 +1,4 @@
-export { useMemoDetailPage } from './hooks/useMemoDetailPage';
+export { default as MemoDetailPage } from './components/MemoDetailPage';
 export { default as ImageSlider } from './components/MemoForm/ImageForm/ImageSlider';
 export { default as ImageSlot } from './components/MemoForm/ImageForm/ImageSlot';
 export { useMemoDetail } from './hooks/useMemoDetail';

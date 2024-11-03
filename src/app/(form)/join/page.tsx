@@ -1,47 +1,13 @@
-'use client';
+import React from 'react';
+import { JoinForm } from '@/features/Join';
+import { Metadata } from 'next';
 
-import {
-  Step1,
-  Step2,
-  Step4,
-  useJoin,
-  defaultValue,
-  JoinForm,
-} from '@/features/Join';
-import CodeForm from '@/components/Form/Code/CodeForm';
-import { JOIN_FORM_KEY } from '@/constants/storage';
-import { FormProvider, useForm } from 'react-hook-form';
-import { useStepActions } from '@/store/stepStore';
-import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
+export const metadata: Metadata = {
+  title: '회원가입',
+};
 
 function JoinPage() {
-  const methods = useForm<JoinForm>({
-    mode: 'onBlur',
-    defaultValues:
-      typeof window !== 'undefined' && localStorage.getItem(JOIN_FORM_KEY)
-        ? JSON.parse(localStorage.getItem(JOIN_FORM_KEY)!)
-        : defaultValue,
-  });
-  const { getValues, handleSubmit } = methods;
-  const { goNextJoinStep } = useStepActions();
-  const { joinUser, joinStep, isLoading } = useJoin(getValues);
-
-  return (
-    <FormProvider {...methods}>
-      <form
-        className='form-layout overflow-auto py-page scrollbar-hide'
-        onSubmit={handleSubmit((data) => joinUser(data))}
-      >
-        {joinStep === 1 && <Step1 />}
-        {joinStep === 2 && <Step2 />}
-        {joinStep === 3 && (
-          <CodeForm type='signUp' onClickNext={goNextJoinStep} />
-        )}
-        {joinStep === 4 && <Step4 />}
-      </form>
-      {isLoading && <LoadingOverlay theme='dark' />}
-    </FormProvider>
-  );
+  return <JoinForm />;
 }
 
 export default JoinPage;

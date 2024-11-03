@@ -1,5 +1,6 @@
 import CommentListSkeleton from '@/components/Fallback/Skeleton/CommentListSkeleton';
 import BackHeader from '@/components/Header/BackHeader';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import React from 'react';
 
@@ -8,6 +9,19 @@ interface Props {
     itemId: string;
   };
 }
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+};
 
 const CommentList = dynamic(
   () => import('@/features/Feed/components/CommentList/CommentList'),

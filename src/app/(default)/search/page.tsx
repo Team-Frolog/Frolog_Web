@@ -1,7 +1,12 @@
 import TitleHeader from '@/components/Header/TitleHeader';
 import { SearchHeader, SearchResult } from '@/features/Search';
 import MainLayout from '@/layouts/MainLayout';
+import { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: '도서 검색',
+};
 
 function SearchPage() {
   return (

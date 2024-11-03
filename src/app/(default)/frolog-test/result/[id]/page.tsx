@@ -2,12 +2,17 @@ import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 import React from 'react';
 import { testResult, HeaderButtons, StartButton } from '@/features/Test';
+import { Metadata } from 'next';
 
 interface Props {
   params: {
     id: '1' | '2' | '3';
   };
 }
+
+export const metadata: Metadata = {
+  title: '독서 성향 테스트 결과',
+};
 
 function TestResultPage({ params: { id } }: Props) {
   const testData = testResult[Number(id)];
