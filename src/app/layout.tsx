@@ -13,8 +13,46 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Frolog | 프롤로그',
+  title: {
+    template: '%s | 프롤로그',
+    default: 'Frolog | 프롤로그',
+  },
+  applicationName: 'Frolog',
+  creator: 'Team Frolog',
   description: '책을 추가해 우물을 탈출하는 독서 기록 서비스, 프롤로그(Frolog)',
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+    },
+  },
+  openGraph: {
+    title: {
+      template: '%s | 프롤로그',
+      default: 'Frolog | 프롤로그',
+    },
+    description:
+      '책을 추가해 우물을 탈출하는 독서 기록 서비스, 프롤로그(Frolog)',
+    url: 'https://frolog.kr',
+    siteName: 'Frolog',
+    locale: 'ko_KR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    site: 'Frolog',
+    creator: 'Team Frolog',
+    title: {
+      template: '%s | 프롤로그',
+      default: 'Frolog | 프롤로그',
+    },
+    description:
+      '책을 추가해 우물을 탈출하는 독서 기록 서비스, 프롤로그(Frolog)',
+  },
   viewport:
     'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no viewport-fit=cover',
   appleWebApp: {
@@ -24,6 +62,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: '/logo/favicon.ico',
+    apple: '/logo/apple-touch-icon-120x120x.png',
     other: [
       {
         url: '/splash/iPhone_14__iPhone_13_Pro__iPhone_13__iPhone_12_Pro__iPhone_12_portrait.png',
