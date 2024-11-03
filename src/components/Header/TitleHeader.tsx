@@ -44,7 +44,7 @@ function TitleHeader({
   };
 
   return (
-    <div
+    <header
       id='header'
       className={`header-sticky duration-50 z-70 flex justify-between px-[24px] py-[20px] transition-all ${themeColor} ${type === 'no_border' ? 'border-0' : 'border-b-[0.5px] border-gray-400'}`}
     >
@@ -67,7 +67,7 @@ function TitleHeader({
           {type === 'default' ? '수정' : '저장'}
         </button>
       )}
-    </div>
+    </header>
   );
 }
 
