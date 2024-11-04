@@ -10,6 +10,7 @@ interface Props {
   fill?: string;
   extraClass?: string;
   type?: 'normal' | 'green';
+  hasSafeArea?: boolean;
 }
 
 function BackButton({
@@ -17,12 +18,14 @@ function BackButton({
   fill = '#B3B6C4',
   extraClass,
   type = 'normal',
+  hasSafeArea = false,
 }: Props) {
   const router = useRouter();
   return (
     <>
       {type === 'normal' ? (
         <button
+          id={hasSafeArea ? 'back-button' : undefined}
           type='button'
           className={`cursor-pointer ${extraClass}`}
           onClick={onClick || (() => router.back())}
@@ -31,6 +34,7 @@ function BackButton({
         </button>
       ) : (
         <motion.button
+          id={hasSafeArea ? 'back-button' : undefined}
           type='button'
           whileTap={{ scale: 0.9 }}
           onClick={onClick}

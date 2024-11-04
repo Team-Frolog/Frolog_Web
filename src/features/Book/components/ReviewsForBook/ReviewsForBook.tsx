@@ -31,7 +31,7 @@ function ReviewsForBook({ bookId }: Props) {
   if (!bookData) return <></>;
 
   return (
-    <div className='flex w-full flex-col gap-[36px] pt-[36px]'>
+    <div className='safe-bottom flex w-full flex-col gap-[36px] pt-[36px]'>
       {isEmpty && isFetched && <NoReviewForBook />}
       {!isEmpty && !session && (
         <>

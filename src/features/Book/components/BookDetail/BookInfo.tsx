@@ -22,7 +22,7 @@ function BookInfo({ bookId }: Props) {
       <hr className='h-[2px] w-full bg-gray-300' />
       <div className='flex w-full flex-col gap-[20px] px-page py-[36px]'>
         <h5 className='book-info-title'>책 소개</h5>
-        <p className='book-info-sub break-all'>{bookData?.desc}</p>
+        <p className='book-info-sub safe-bottom break-all'>{bookData?.desc}</p>
       </div>
     </div>
   );

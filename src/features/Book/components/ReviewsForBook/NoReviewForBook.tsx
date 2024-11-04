@@ -4,7 +4,7 @@ import React from 'react';
 
 function NoReviewForBook() {
   return (
-    <div className='flex w-full flex-col items-center gap-[20px]'>
+    <div className='safe-bottom flex w-full flex-col items-center gap-[20px]'>
       <h3 className='text-center text-title-xl-bold text-gray-800'>
         아직 이 책에 대한
         <br />
