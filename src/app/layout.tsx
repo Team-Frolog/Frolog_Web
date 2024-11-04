@@ -4,6 +4,7 @@ import './globals.css';
 import AuthProvider from '@/providers/AuthProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 import QueryProvider from '@/providers/QueryProvider';
+import GAProvider from '@/providers/GAProvider';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -155,6 +156,9 @@ export default function RootLayout({
     <html lang='ko'>
       <QueryProvider>
         <ThemeProvider />
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+          <GAProvider gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+        ) : null}
         <AuthProvider>
           <body
             className={`${pretendard.variable} ${pretendard.className} text-gray-800`}
