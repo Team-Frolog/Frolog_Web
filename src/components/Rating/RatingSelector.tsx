@@ -17,6 +17,7 @@ interface Props {
   watch?: UseFormWatch<ReviewFormType>;
   isError?: boolean;
   clearErrors?: UseFormClearErrors<ReviewFormType>;
+  review_cnt?: number;
 }
 
 function RatingSelector({
@@ -26,6 +27,7 @@ function RatingSelector({
   watch,
   isError,
   clearErrors,
+  review_cnt,
 }: Props) {
   const currentRating = type === 'form' ? watch!('rating') : rating;
 
@@ -45,11 +47,19 @@ function RatingSelector({
 
   return (
     <div className='flex-col-center w-full justify-center gap-[8px] text-gray-800'>
-      <h1
-        className={`text-heading-xl-bold ${isError ? 'text-error' : 'text-gray-800'}`}
-      >
-        {currentRating?.toFixed(1) || '0.0'}
-      </h1>
+      <div className='flex flex-col items-center'>
+        {review_cnt && (
+          <span className='text-body-sm text-gray-600'>
+            총 {review_cnt}개의 리뷰
+          </span>
+        )}
+        <h1
+          className={`text-heading-xl-bold ${isError ? 'text-error' : 'text-gray-800'}`}
+        >
+          {currentRating?.toFixed(1) || '0.0'}
+        </h1>
+      </div>
+
       <h4
         className={`text-body-lg ${isError ? 'text-error' : 'text-gray-800'}`}
       >
