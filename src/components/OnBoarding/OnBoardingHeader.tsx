@@ -44,18 +44,6 @@ function OnBoardingHeader({ activeSlide }: Props) {
         >
           {onBoarding[activeSlide].title()}
         </h1>
-        <div className='flex gap-[8px]'>
-          {Array(4)
-            .fill(0)
-            .map((_, i) => (
-              <div
-                key={i}
-                className={
-                  activeSlide === i + 1 ? 'active-circle' : 'non-active-circle'
-                }
-              />
-            ))}
-        </div>
       </div>
     </>
   );
