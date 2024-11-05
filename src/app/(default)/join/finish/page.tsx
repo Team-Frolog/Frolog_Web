@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 function JoinFinishPage() {
   return (
-    <div className='safe-screen relative flex w-full flex-col justify-between overflow-hidden'>
+    <div className='safe-screen safe-header relative flex w-full flex-col justify-between overflow-hidden'>
       <FinishLight frog={IMAGES.flash.congrats}>
         야호!
         <br />

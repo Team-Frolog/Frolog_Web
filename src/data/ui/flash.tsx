@@ -28,8 +28,8 @@ export const flash: {
     frog: IMAGES.flash.congrats,
     ground: IMAGES.ground_sm,
     hasPopper: true,
-    width: 166,
-    height: 185,
+    width: 1661,
+    height: 1339,
     max_height: 257,
   },
   new_well: {
@@ -45,8 +45,8 @@ export const flash: {
     frog: IMAGES.flash.new_well,
     ground: IMAGES.ground_sm,
     hasPopper: true,
-    width: 141,
-    height: 182,
+    width: 1255,
+    height: 1469,
     max_height: 282,
   },
 };
