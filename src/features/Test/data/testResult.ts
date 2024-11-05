@@ -26,7 +26,7 @@ export const testResult: TestResult = {
     },
     type: {
       title: '내 독서 성향은 감정형이에요',
-      tag: '#감동적인 #힐링 #읽기쉬운 #에세이',
+      tag: '#감동적인 #힐링 #소설 #에세이',
     },
     descriptions: [
       { id: 1, text: '감정과 이야기를 중심으로 책을 읽어요.' },
