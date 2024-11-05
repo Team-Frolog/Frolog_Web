@@ -10,7 +10,7 @@ function StoreLayout({ children }: Props) {
   return (
     <>
       <StoreHeader />
-      <MainLayout extraClass='px-page pt-[16px] gap-[40px] bg-white'>
+      <MainLayout extraClass='px-page pt-[16px] gap-[40px] bg-white justify-between'>
         {children}
       </MainLayout>
     </>
