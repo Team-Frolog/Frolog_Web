@@ -36,6 +36,11 @@
   }
 }
 
+#back-fixed {
+  top: calc(constant(safe-area-inset-top) + 24px);
+  top: calc(env(safe-area-inset-top) + 24px);
+}
+
 #store-button {
   top: calc(constant(safe-area-inset-top) + 24px);
   top: calc(env(safe-area-inset-top) + 24px);

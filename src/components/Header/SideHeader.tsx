@@ -22,7 +22,11 @@ function SideHeader({
   return (
     <header className={`flex h-fit w-full ${bgColor || 'bg-white'}`}>
       {hasBackButton && (
-        <BackButton type='green' hasSafeArea onClick={() => router.back()} />
+        <BackButton
+          type='green'
+          safeArea='back-button'
+          onClick={() => router.back()}
+        />
       )}
       <div className='safe-header pointer-events-none absolute left-0 top-0 z-60 flex w-full justify-between gap-[80px]'>
         <div className='side-header-left' />
