@@ -55,8 +55,10 @@ export const useWellForm = (
       if (isSecond) {
         await update({ defaultWellId: null });
         router.refresh();
+        openFlash({ type: 'first_new_well', callbackUrl: PAGES.HOME });
+      } else {
+        openFlash({ type: 'new_well', callbackUrl: PAGES.HOME });
       }
-      openFlash({ type: 'new_well', callbackUrl: PAGES.HOME });
     },
   });
 

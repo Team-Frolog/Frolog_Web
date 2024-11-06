@@ -49,4 +49,21 @@ export const flash: {
     height: 1469,
     max_height: 282,
   },
+  first_new_well: {
+    getTitle: () => (
+      <>
+        야호!
+        <br />
+        우물을
+        <br />
+        새로 팠어요
+      </>
+    ),
+    frog: IMAGES.flash.new_well,
+    ground: IMAGES.ground_sm,
+    hasPopper: true,
+    width: 1255,
+    height: 1469,
+    max_height: 282,
+  },
 };

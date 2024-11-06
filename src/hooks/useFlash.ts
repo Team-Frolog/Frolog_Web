@@ -1,8 +1,9 @@
+import { FlashType } from '@/app/(default)/flash/[type]/page';
 import { PAGES } from '@/constants/page';
 import { useRouter } from 'next/navigation';
 
 interface Props {
-  type: 'review' | 'new_well';
+  type: FlashType;
   callbackUrl: string;
 }
 

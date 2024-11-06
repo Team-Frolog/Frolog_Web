@@ -1,19 +1,22 @@
+import React from 'react';
+import { Metadata } from 'next';
+import Image from 'next/image';
 import PopperAnimation from '@/components/animation/PopperAnimation';
 import FlashHandler from '@/components/Gesture/FlashHandler';
 import BigTitle from '@/components/Text/BigTitle';
 import { flash } from '@/data/ui/flash';
-import { Metadata } from 'next';
-import Image from 'next/image';
-import React from 'react';
+import LinkButton from '@/components/Button/LinkButton';
+
+export type FlashType = 'review' | 'new_well' | 'first_new_well';
 
 interface Props {
   params: {
-    type: 'review' | 'new_well';
+    type: FlashType;
   };
 }
 
 export async function generateStaticParams() {
-  return [{ type: 'review' }, { type: 'new_well' }];
+  return [{ type: 'review' }, { type: 'new_well' }, { type: 'first_well' }];
 }
 
 export const metadata: Metadata = {
@@ -63,21 +66,38 @@ function FlashPage({ params: { type } }: Props) {
             alt='frog'
             width={width}
             height={height}
-            className='h-full w-auto [@media(max-height:700px)]:f-[80%]'
+            className='h-full w-auto [@media(max-height:700px)]:w-[80%] [@media(max-height:700px)]:h-auto'
             loading='eager'
             priority
             style={{ maxHeight: `${max_height}px`, marginBottom: '-5px' }}
           />
         </div>
-        <Image
-          src={ground}
-          alt='ground'
-          width={390}
-          height={182}
-          className='w-full'
-          loading='eager'
-          priority
-        />
+        {type === 'first_new_well' ? (
+          <div className='relative flex h-fit w-full'>
+            <Image
+              src={ground}
+              alt='ground'
+              width={390}
+              height={182}
+              className='w-full h-[100px]'
+              loading='eager'
+              priority
+            />
+            <div class='absolute top-1/2 -translate-y-1/2 left-0 w-full flex px-page justify-center'>
+              <LinkButton route='/'>확인</LinkButton>
+            </div>
+          </div>
+        ) : (
+          <Image
+            src={ground}
+            alt='ground'
+            width={390}
+            height={182}
+            className='w-full'
+            loading='eager'
+            priority
+          />
+        )}
       </div>
       <PopperAnimation />
     </div>
