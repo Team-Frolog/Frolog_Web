@@ -12,7 +12,7 @@ function LandingPage() {
   const [activeSlide, setActiveSlide] = useState<number>(1);
 
   return (
-    <div className='safe-bottom flex h-full min-h-[650px] w-full flex-col bg-gray-900'>
+    <div className='safe-screen safe-bottom safe-header flex h-full min-h-[650px] w-full flex-col bg-gray-900'>
       <OnBoardingSlide setActiveSlide={setActiveSlide} />
       <div className='flex w-full shrink-0 flex-col items-center gap-[20px] px-page py-[34px] pt-[12px] transition-all duration-200'>
         <div className='flex gap-[8px]'>

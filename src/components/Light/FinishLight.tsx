@@ -5,11 +5,12 @@ import BigTitle from '@/components/Text/BigTitle';
 interface Props {
   children: React.ReactNode;
   frog: string;
+  frogMaxHeight?: number;
 }
 
-function FinishLight({ children, frog }: Props) {
+function FinishLight({ children, frog, frogMaxHeight }: Props) {
   return (
-    <div className='relative z-0 flex h-fit w-full flex-1 flex-col bg-gray-900 pt-[30px]'>
+    <div className='relative z-10 flex h-fit w-full flex-1 flex-col bg-gray-900 pt-[30px]'>
       <Image
         src='/images/flash/light.webp'
         alt='light'
@@ -34,8 +35,9 @@ function FinishLight({ children, frog }: Props) {
             alt='frog'
             width={1661}
             height={1339}
-            className='h-full max-h-[257px] w-full mobile:h-auto [@media(max-height:700px)]:w-[70%]'
+            className='z-10 h-full w-full mobile:h-auto [@media(max-height:700px)]:h-auto [@media(max-height:700px)]:w-[80%] [@media(max-width:350px)]:w-[80%]'
             loading='eager'
+            style={{ maxHeight: frogMaxHeight || '250px' }}
             priority
           />
         </div>
