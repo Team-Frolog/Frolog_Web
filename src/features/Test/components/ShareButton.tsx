@@ -17,9 +17,10 @@ function ShareButton() {
       });
     } catch (err: any) {
       if (!err.toString().includes('cancel')) {
-        await window.navigator.clipboard.writeText(
-          process.env.NEXT_PUBLIC_TEST_SHARE_URL!
-        ).then(() =>  toast.normal('링크가 복사되었습니다!')).catch((err) => toast.error('다시 시도해주세요'))
+        await window.navigator.clipboard
+          .writeText(process.env.NEXT_PUBLIC_TEST_SHARE_URL!)
+          .then(() => toast.normal('링크가 복사되었습니다!'))
+          .catch(() => toast.error('다시 시도해주세요'));
       }
     }
   };

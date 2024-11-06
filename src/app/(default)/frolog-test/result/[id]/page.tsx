@@ -20,7 +20,7 @@ function TestResultPage({ params: { id } }: Props) {
   return (
     <div className='flex h-full w-full overflow-auto bg-gray-900 text-gray-800'>
       <div className='relative flex h-fit w-full flex-col gap-[12px] overflow-auto whitespace-pre-wrap pt-[36px]'>
-        <HeaderButtons id={id} />
+        <HeaderButtons />
         <div className='flex-col-center relative h-[480px] w-full justify-end gap-[32px] bg-gray-900 mobile:h-[390px]'>
           <Image
             src={IMAGES.test.result[id]}
