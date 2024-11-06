@@ -16,7 +16,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return [{ type: 'review' }, { type: 'new_well' }, { type: 'first_well' }];
+  return [{ type: 'review' }, { type: 'new_well' }, { type: 'first_new_well' }];
 }
 
 export const metadata: Metadata = {
