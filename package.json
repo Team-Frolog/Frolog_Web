@@ -37,6 +37,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
     "@team-frolog/eslint-config-web": "^1.0.0",
+    "@team-frolog/prettier-config-web": "^0.0.0",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/lodash": "^4.17.6",
     "@types/node": "^20",
@@ -48,9 +49,10 @@
     "eslint-config-next": "^15.0.2",
     "postcss": "^8",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.14",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "slick-carousel": "^1.8.1",
     "tailwindcss": "^3",
     "typescript": "^5"
-  }
+  },
+  "prettier": "@team-frolog/prettier-config-web"
 }
