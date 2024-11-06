@@ -17,7 +17,7 @@ function Counter() {
         type='number'
         value={count}
         onChange={(e) => setCount(Number(e.target.value))}
-        className='text-title-lg-bold rounded-[12px] border border-gray-400 bg-white px-[16px] py-[18px] text-center text-gray-800'
+        className='rounded-[12px] border border-gray-400 bg-white px-[16px] py-[18px] text-center text-title-lg-bold text-gray-800'
       />
       <button
         type='button'

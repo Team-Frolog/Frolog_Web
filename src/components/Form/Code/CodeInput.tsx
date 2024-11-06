@@ -39,7 +39,7 @@ function CodeInput({ code, setCode, handleSendCode, isFailed }: Props) {
 
   return (
     <div className='flex w-full flex-col gap-[8px]'>
-      <h6 className='text-body-md mb-[4px] text-white'>
+      <h6 className='mb-[4px] text-body-md text-white'>
         이메일로 전송된 코드번호를 입력하세요
       </h6>
       <div className='relative w-full'>

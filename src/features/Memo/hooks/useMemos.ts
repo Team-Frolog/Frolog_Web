@@ -23,7 +23,7 @@ export const useMemos = (bookId: string, userId: string) => {
 
   const { data, hasNextPage, fetchNextPage, isFetched, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
-      queryKey: ['myMemos', bookId],
+      queryKey: ['myMemos', bookId, userId],
       queryFn: async ({ pageParam }) => getMemos(bookId, userId, pageParam),
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {

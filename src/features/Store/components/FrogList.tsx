@@ -18,7 +18,7 @@ function FrogList({ userId }: Props) {
   return (
     <div className='flex w-full flex-col gap-[12px]'>
       <h6 className='text-body-md text-gray-700'>캐릭터</h6>
-      <div className='relative grid grid-cols-3 w-full gap-[9px] overflow-hidden'>
+      <div className='relative grid w-full grid-cols-3 gap-[9px] overflow-hidden'>
         {Object.keys(FROGS).map(
           (frog) =>
             FROGS[frog].price && (

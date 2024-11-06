@@ -4,7 +4,7 @@ import { getWellList } from '../api/well.api';
 export const useWells = (userId: string) => {
   const { data, hasNextPage, fetchNextPage, isFetched, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
-      queryKey: ['wells'],
+      queryKey: ['wells', userId],
       queryFn: ({ pageParam }) => getWellList(userId, pageParam),
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {

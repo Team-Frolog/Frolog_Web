@@ -11,7 +11,7 @@ function StoreHeader() {
   return (
     <header className='duration-50 block h-fit w-full gap-3 bg-white p-[24px] transition-all'>
       <BackButton fill='#727384' onClick={() => router.back()} />
-      <div className='flex justify-between items-center'>
+      <div className='flex items-center justify-between'>
         <div className='relative w-fit pb-[5px]'>
           <div className='flex gap-[24px]'>
             <button
@@ -40,7 +40,7 @@ function StoreHeader() {
             className={`absolute bottom-0 h-[3px] w-[60px] bg-gray-800 transition-all ${pathname.includes('mission') ? 'left-[84px]' : 'left-0'}`}
           />
         </div>
-        <div className='rounded-[50px] bg-gray-300 h-fit px-[14px] py-[8px] text-title-lg-bold'>
+        <div className='h-fit rounded-[50px] bg-gray-300 px-[14px] py-[8px] text-title-lg-bold'>
           1,000 P
         </div>
       </div>
