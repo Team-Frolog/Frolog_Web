@@ -22,7 +22,7 @@ function NotFound() {
           alt='ground'
           width={319}
           height={257}
-          className='h-auto max-h-[100px] w-full'
+          className='h-auto max-h-[160px] w-full'
           loading='eager'
           priority
         />

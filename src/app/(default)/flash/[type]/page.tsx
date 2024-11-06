@@ -66,7 +66,7 @@ function FlashPage({ params: { type } }: Props) {
             alt='frog'
             width={width}
             height={height}
-            className='h-full w-auto [@media(max-height:700px)]:w-[80%] [@media(max-height:700px)]:h-auto'
+            className='h-full w-auto [@media(max-height:700px)]:h-auto [@media(max-height:700px)]:w-[80%]'
             loading='eager'
             priority
             style={{ maxHeight: `${max_height}px`, marginBottom: '-5px' }}
@@ -79,11 +79,11 @@ function FlashPage({ params: { type } }: Props) {
               alt='ground'
               width={390}
               height={182}
-              className='w-full h-[100px]'
+              className='h-[100px] w-full'
               loading='eager'
               priority
             />
-            <div class='absolute top-1/2 -translate-y-1/2 left-0 w-full flex px-page justify-center'>
+            <div className='absolute left-0 top-1/2 flex w-full -translate-y-1/2 justify-center px-page'>
               <LinkButton route='/'>확인</LinkButton>
             </div>
           </div>
