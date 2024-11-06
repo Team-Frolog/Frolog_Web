@@ -48,7 +48,7 @@ function ShareButton() {
               duration: 0.3,
             }}
             exit={{ opacity: 0 }}
-            className='share-tooltip w-[130px]'
+            className='share-tooltip w-[140px]'
           >
             테스트를 공유해보세요!
           </motion.div>
