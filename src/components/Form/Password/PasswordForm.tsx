@@ -14,14 +14,15 @@ function PasswordForm() {
     <div className='flex flex-col gap-[8px]'>
       <FormInput
         type='password'
-        placeholder='8~15자 영문 대소문자, 숫자를 포함해주세요'
+        placeholder='대소문자, 숫자, 특수문자를 8~15자로 조합하세요.'
         title='비밀번호'
         fieldName='password'
         errorMessage={errors.password && String(errors.password.message)}
         {...register('password', {
           pattern: {
-            value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,15}$/,
-            message: '8~15자의 영문 대소문자, 숫자를 조합하세요.',
+            value:
+              /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-={}\\[\]\\|;:'"<>,.?/~]).{8,15}$/,
+            message: '대소문자, 숫자, 특수문자를 8~15자로 조합하세요.',
           },
           onChange: async () => {
             await trigger('passwordCheck');

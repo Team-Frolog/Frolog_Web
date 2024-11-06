@@ -1,11 +1,6 @@
 interface OnBoarding {
   [key: number]: {
     title: () => JSX.Element;
-    titleColor: string;
-    bg: string;
-    groundColor: string;
-    textColor: string;
-    boldColor: string;
   };
 }
 
@@ -18,11 +13,6 @@ export const onBoarding: OnBoarding = {
         탈출하세요!
       </>
     ),
-    titleColor: 'text-main_hightlight',
-    bg: `bg-gray-300 bg-[url('/images/well/bg/well-bg-1.svg')]`,
-    groundColor: 'bg-gray-300',
-    textColor: 'text-gray-600',
-    boldColor: 'text-gray-800',
   },
   2: {
     title: () => (
@@ -32,11 +22,6 @@ export const onBoarding: OnBoarding = {
         우물을 꾸며요!
       </>
     ),
-    titleColor: 'text-main_hightlight',
-    bg: `bg-gray-300 bg-[url('/images/well/bg/well-bg-1.svg')]`,
-    groundColor: 'bg-gray-300',
-    textColor: 'text-gray-600',
-    boldColor: 'text-gray-800',
   },
   3: {
     title: () => (
@@ -46,11 +31,6 @@ export const onBoarding: OnBoarding = {
         맞는 책을 추천해줘요!
       </>
     ),
-    titleColor: 'text-main_hightlight',
-    bg: 'bg-gray-900',
-    groundColor: 'bg-gray-900',
-    textColor: 'text-gray-400',
-    boldColor: 'text-white',
   },
   4: {
     title: () => (
@@ -60,10 +40,5 @@ export const onBoarding: OnBoarding = {
         공유하고 소통해요!
       </>
     ),
-    titleColor: 'text-gray-800',
-    bg: 'bg-gray-300',
-    groundColor: 'bg-gray-300',
-    textColor: 'text-gray-600',
-    boldColor: 'text-gray-800',
   },
 };

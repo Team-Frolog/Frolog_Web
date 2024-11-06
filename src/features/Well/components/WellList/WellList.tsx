@@ -30,7 +30,7 @@ function WellList({ userId, isRootUser }: Props) {
         )}
       </div>
       {isRootUser && (
-        <MessageToast message='우상단의 상점에서 내 포인트를 확인하세요' />
+        <MessageToast message='우물에 책을 추가해 플레이리스트처럼 만드세요' />
       )}
     </div>
   );

@@ -4,6 +4,7 @@ import './globals.css';
 import AuthProvider from '@/providers/AuthProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 import QueryProvider from '@/providers/QueryProvider';
+import GAProvider from '@/providers/GAProvider';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   },
   applicationName: 'Frolog',
   creator: 'Team Frolog',
-  description: '책을 추가해 우물을 탈출하는 독서 기록 서비스, 프롤로그(Frolog)',
+  description: '책을 추가해 우물을 탈출하는 독서 기록 플랫폼, 프롤로그(Frolog)',
   robots: {
     index: true,
     follow: true,
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     site: 'Frolog',
     creator: 'Team Frolog',
     title: {
@@ -155,6 +156,9 @@ export default function RootLayout({
     <html lang='ko'>
       <QueryProvider>
         <ThemeProvider />
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+          <GAProvider gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+        ) : null}
         <AuthProvider>
           <body
             className={`${pretendard.variable} ${pretendard.className} text-gray-800`}

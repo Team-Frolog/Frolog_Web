@@ -11,6 +11,7 @@ interface Props {
   route: string;
   disabled?: boolean;
   theme?: 'normal' | 'light' | 'gray';
+  extraClass?: string;
 }
 
 const MotionLink = motion(Link);
@@ -20,6 +21,7 @@ function LinkButton({
   route,
   disabled = false,
   theme = 'normal',
+  extraClass,
 }: Props) {
   const buttonType = getButtonColor(theme);
 
@@ -28,7 +30,7 @@ function LinkButton({
       variants={tapVariants}
       whileTap='tap'
       href={route}
-      className={`block text-center ${buttonType} ${disabled && `button-disabled`}`}
+      className={`block text-center ${buttonType} ${disabled ? 'button-disabled' : ''} ${extraClass}`}
     >
       {children}
     </MotionLink>

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { CATEGORY } from '@/constants/category';
 import { staggerContainerVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
 import { GetWellRes } from '@frolog/frolog-api';
@@ -26,7 +27,7 @@ const WellItemList = React.memo(
 
     const getMessage = (count: number) => {
       if (!isRootUser) {
-        return undefined
+        return undefined;
       } else if (isDefaultWell) {
         if (count === 0) {
           return chat.empty;
@@ -68,19 +69,21 @@ const WellItemList = React.memo(
           variants={staggerContainerVariants}
         >
           {wellItems.length === 0 && (
-            <div className='relative z-auto box-border flex h-[55px] w-full justify-center bg-[#B7CEFF] pt-[12px]'>
+            <div className='relative z-auto box-border flex h-[55px] w-full justify-center bg-category-bg-economic_business pt-[12px]'>
               <Image
-                src='/images/well/wave/default.svg'
+                src={CATEGORY.economic_business.wave}
                 alt='wave'
                 width={390}
                 height={12}
                 className='absolute -top-[12px] left-0 h-[12px] w-full'
                 loading='eager'
               />
-              <span className='text-body-sm-bold text-gray-600'>
-                {isRootUser ? '리뷰를 남겨 높게 올라가봐요!' : '아직 우물이 비어있어요..'}
+              <span className='text-body-sm-bold text-category-text-economic_business'>
+                {isRootUser
+                  ? '책을 추가해 높게 올라가봐요!'
+                  : '아직 우물이 비어있어요..'}
               </span>
-              <div className='absolute bottom-[-10px] left-0 h-[10px] w-full bg-[#B7CEFF]' />
+              <div className='absolute bottom-[-10px] left-0 h-[10px] w-full bg-category-bg-economic_business' />
             </div>
           )}
           {wellItems.map((item, i) => (

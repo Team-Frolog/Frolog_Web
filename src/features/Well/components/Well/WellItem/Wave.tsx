@@ -21,9 +21,9 @@ function Wave({ title, category, height, isReading, hasMemo }: Props) {
       <Image
         src={CATEGORY[category].wave}
         alt='wave'
-        width={390}
+        width={392}
         height={12}
-        className='absolute -top-[12px] left-0 h-[12px] w-full'
+        className='absolute -left-[0px] -top-[12px] h-[12px] w-full'
         loading='eager'
       />
       {isReading && (

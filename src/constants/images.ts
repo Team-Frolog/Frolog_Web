@@ -6,8 +6,8 @@ export const IMAGES = {
     new_well: `${BASE_PATH}/frog/flash/new-well-congrats.webp`,
     well_done: `${BASE_PATH}/frog/flash/well-done-frog.webp`,
     evaluation: {
-      loading: `${BASE_PATH}/frog/flash/frog-evaluating.webp`,
-      done: `${BASE_PATH}/frog/flash/frog-evaluating-done.webp`,
+      loading: `${BASE_PATH}/frog/flash/frog-evaluating.svg`,
+      done: `${BASE_PATH}/frog/flash/frog-evaluating-done.svg`,
     },
   },
   frog: {
@@ -25,6 +25,7 @@ export const IMAGES = {
     memo_frog: `${BASE_PATH}/frog/memo-frog.svg`,
     more_feed: `${BASE_PATH}/frog/morefeed-frog.svg`,
     more_frogs: `${BASE_PATH}/frog/more-character-frog.svg`,
+    mission_frog: `${BASE_PATH}/frog/mission-frog.svg`,
   },
   test: {
     result: {

@@ -42,6 +42,7 @@ function LoadingPage() {
             ? IMAGES.flash.evaluation.done
             : IMAGES.flash.evaluation.loading
         }
+        frogMaxHeight={300}
       >
         <motion.div
           initial={{ y: 10, opacity: 0 }}
@@ -57,12 +58,13 @@ function LoadingPage() {
         </motion.div>
       </FinishLight>
       <Image
-        src={IMAGES.ground_sm}
+        src={IMAGES.ground}
         alt='ground'
         width={390}
         height={106}
-        className='w-full'
+        className='h-auto max-h-[100px] w-full'
         loading='eager'
+        priority
       />
     </div>
   );

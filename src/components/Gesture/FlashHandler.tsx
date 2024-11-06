@@ -1,12 +1,13 @@
 'use client';
 
+import { FlashType } from '@/app/(default)/flash/[type]/page';
 import { PAGES } from '@/constants/page';
 import useAddBookStore from '@/store/addBookStore';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react';
 
 interface Props {
-  type: string;
+  type: FlashType;
 }
 
 function FlashHandler({ type }: Props) {
@@ -18,7 +19,9 @@ function FlashHandler({ type }: Props) {
       if (type === 'review') {
         resetWellId();
       }
-      window.location.replace(callbackUrl || PAGES.HOME);
+      if (type !== 'first_new_well') {
+        window.location.replace(callbackUrl || PAGES.HOME);
+      }
     }, 2500);
   }, []);
 

@@ -24,7 +24,11 @@ function AboutBook({ bookId }: Props) {
     <>
       <div className='flex w-full flex-col gap-[36px] bg-white'>
         <div className='flex w-full flex-col gap-[36px] px-page'>
-          <RatingSelector type='default' rating={bookData?.avg_rating} />
+          <RatingSelector
+            type='default'
+            rating={bookData?.avg_rating}
+            review_cnt={bookData?.review_cnt}
+          />
           <AddButton
             text='우물에 책 추가하기'
             categoryId={bookData?.category}
