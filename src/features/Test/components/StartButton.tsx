@@ -10,7 +10,7 @@ function StartButton() {
   const callback = useSearchParams().get('callbackUrl');
 
   return (
-    <div className='fixed bottom-[24px] left-[50%] z-10 w-[390px] -translate-x-1/2 mobile:w-[90%]'>
+    <div id='start-button' className='fixed left-[50%] z-10 w-[390px] -translate-x-1/2 mobile:w-[90%]'>
       {callback ? (
         <Button
           type='button'

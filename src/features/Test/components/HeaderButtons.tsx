@@ -3,7 +3,7 @@
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import QuitButton from '@/components/Button/QuitButton';
-import DownloadButton from './DownloadButton';
+import DownloadButton from './ShareButton';
 
 interface Props {
   id: '1' | '2' | '3';

@@ -143,6 +143,11 @@ body {
   bottom: calc(env(safe-area-inset-bottom) + 80px);
 }
 
+#start-button {
+  bottom: calc(constant(safe-area-inset-bottom) + 24px);
+  bottom: calc(env(safe-area-inset-bottom) + 24px);
+}
+
 #root {
   height: 100dvh;
   width: 100%;
