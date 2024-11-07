@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     statusBarStyle: 'black-translucent',
   },
   icons: {
-    icon: '/logo/favicon.ico',
+    icon: '/logo/favicon-96x96.png',
     apple: '/logo/apple-touch-icon-120x120x.png',
     other: [
       {
