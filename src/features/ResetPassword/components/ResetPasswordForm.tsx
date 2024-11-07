@@ -30,7 +30,7 @@ function ResetPasswordForm() {
   return (
     <FormProvider {...methods}>
       <form
-        className='form-layout'
+        className='form-layout py-[34px]'
         onSubmit={handleSubmit((data) => resetPassword(data))}
       >
         {findStep === 1 && <Step1 />}
