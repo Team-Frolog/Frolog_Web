@@ -4,14 +4,14 @@ import Logo from 'public/logo-title.svg';
 import LoadingSpinner from './LoadingSpinner';
 
 interface Props {
-  theme: 'dark' | 'light';
+  theme: 'dark' | 'light' | 'transparent';
 }
 
 function LoadingOverlay({ theme }: Props) {
   return (
     <Portal>
       <div
-        className={`safe-screen absolute left-0 top-0 z-100 flex w-full flex-col items-center justify-center gap-[24px] bg-opacity-50 ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}
+        className={`safe-screen absolute left-0 top-0 z-100 flex w-full flex-col items-center justify-center gap-[24px] ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} ${theme === 'transparent' ? 'bg-opacity-0' : 'bg-opcity-50'}`}
       >
         <Logo />
         <LoadingSpinner theme={theme} />

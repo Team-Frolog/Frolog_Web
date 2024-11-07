@@ -12,9 +12,16 @@ interface Props {
   wellId: string;
   isLastItem: boolean;
   zIndex: number;
+  startLoading: () => void;
 }
 
-function WellItem({ wellId, wellBook, isLastItem, zIndex }: Props) {
+function WellItem({
+  wellId,
+  wellBook,
+  isLastItem,
+  zIndex,
+  startLoading,
+}: Props) {
   const router = useRouter();
   const {
     newReviewId,
@@ -33,13 +40,14 @@ function WellItem({ wellId, wellBook, isLastItem, zIndex }: Props) {
   return (
     <motion.div
       whileTap={{ y: -10 }}
-      onClick={() =>
+      onClick={() => {
+        startLoading();
         router.push(
           isReading
             ? `${wellId}/book/${isbn}/memo`
             : `${wellId}/book/${isbn}/review`
-        )
-      }
+        );
+      }}
       variants={
         newReviewId === id && isLastItem ? staggerItemVariants : undefined
       }
