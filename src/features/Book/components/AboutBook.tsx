@@ -7,7 +7,7 @@ import RatingSelector from '@/components/Rating/RatingSelector';
 import AddButton from '@/components/Button/AddButton';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import MajorTagList from '@/components/Tag/MajorTagList';
-import { useBookDetail } from '../hooks/useBookDetail';
+import { useBook } from '../hooks/useBook';
 import BookDetail from './BookDetail/BookDetail';
 import AddBookToWell from './BottomSheet/AddBookToWell';
 
@@ -16,7 +16,7 @@ interface Props {
 }
 
 function AboutBook({ bookId }: Props) {
-  const { bookData } = useBookDetail(bookId);
+  const { bookData } = useBook(bookId);
   const [open, setOpen] = useState(false);
   useScroll({ categoryColor: undefined });
 

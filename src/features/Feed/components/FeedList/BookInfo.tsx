@@ -4,8 +4,6 @@ import Rating from '@/components/Rating/Rating';
 import { IMAGES } from '@/constants/images';
 import { useBook } from '@/features/Book';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
-import { useBookImage } from '@/features/Book/hooks/useBookImage';
-import { getImageSrc } from '@/utils/getImageSrc';
 import { isGetMemoRes } from '../../utils/typeGuard';
 
 interface Props {
@@ -15,13 +13,9 @@ interface Props {
 
 function BookInfo({ feedData, isMemo }: Props) {
   const { bookData } = useBook(feedData.isbn);
-  const { bookCover, setDefault } = useBookImage(
-    getImageSrc(bookData?.isbn, 'book')
-  );
-
   if (!bookData) return <></>;
 
-  const { title, author, author_cnt, publisher, category } = bookData;
+  const { title, author, publisher, category, image } = bookData;
 
   return (
     <div className='pt-[30px]'>
@@ -30,9 +24,8 @@ function BookInfo({ feedData, isMemo }: Props) {
       >
         <div className={`tooltip-feed border-b-category-bg-${category}`} />
         <Image
-          src={bookCover || IMAGES.book.cover}
+          src={image || IMAGES.book.cover}
           alt='book cover'
-          onError={() => setDefault()}
           width={74}
           height={110}
           className='h-[110px] w-auto shrink-0 self-end bg-gray-400'
@@ -48,12 +41,7 @@ function BookInfo({ feedData, isMemo }: Props) {
               className={`flex text-caption-bold text-category-text-${category}`}
             >
               <li className="after:content-['|']">
-                <span className='pr-[6px]'>
-                  {author}{' '}
-                  {author_cnt !== undefined &&
-                    author_cnt > 1 &&
-                    `외 ${author_cnt}명`}
-                </span>
+                <span className='pr-[6px]'>{author}</span>
               </li>
               <li>
                 <span className='pl-[6px]'>{publisher}</span>

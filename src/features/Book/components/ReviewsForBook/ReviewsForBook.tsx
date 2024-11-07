@@ -6,9 +6,9 @@ import { useObserver } from '@/hooks/gesture/useObserver';
 import { useReviewForBook } from '@/features/Review';
 import NoReviewForBook from './NoReviewForBook';
 import ReviewItem from './ReviewItem';
-import { useBookDetail } from '../../hooks/useBookDetail';
 import NeedToLoginBlur from './NeedToLoginBlur';
 import { useLikeReview } from '../../hooks/useLikeReview';
+import { useBook } from '../../hooks/useBook';
 
 interface Props {
   bookId: string;
@@ -25,7 +25,7 @@ function ReviewsForBook({ bookId }: Props) {
     isFetchingNextPage,
   } = useReviewForBook(bookId);
   const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
-  const { bookData } = useBookDetail(bookId);
+  const { bookData } = useBook(bookId);
   const { handleChangeLike } = useLikeReview(bookId);
 
   if (!bookData) return <></>;

@@ -51,7 +51,7 @@ function TestResultPage({ params: { id } }: Props) {
               </div>
               <ul className='w-full list-inside list-disc'>
                 {testData.descriptions.map((item) => (
-                  <li className=' text-body-md' key={item.id}>
+                  <li className='text-body-md' key={item.id}>
                     {item.text}
                   </li>
                 ))}

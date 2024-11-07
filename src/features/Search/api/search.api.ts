@@ -7,15 +7,10 @@ import { SearchBook, SearchBookReq } from '@frolog/frolog-api';
 
 const searchBookObj = new SearchBook(baseOptions);
 
-export const searchBook = async ({
-  q,
-  category,
-  page,
-}: Omit<SearchBookReq, 'limit'>) => {
+export const searchBook = async ({ q, page }: Omit<SearchBookReq, 'limit'>) => {
   try {
     const result = await searchBookObj.fetch({
       q,
-      category,
       limit: DEFAULT_LIMIT,
       page,
     });

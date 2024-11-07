@@ -1,15 +1,13 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Rating from '@/components/Rating/Rating';
 import Tag from '@/components/Tag/Tag';
 import { GetBookRes } from '@frolog/frolog-api';
 import { getTagById } from '@/utils/getTags';
 import { useRouter } from 'next/navigation';
 import { IMAGES } from '@/constants/images';
-import Image from 'next/image';
-import { getImageSrc } from '@/utils/getImageSrc';
-import { useBookImage } from '../../hooks/useBookImage';
 
 interface Props {
   bookData: GetBookRes;
@@ -21,15 +19,14 @@ function BookListItem({ bookData }: Props) {
     isbn,
     author,
     title,
+    image,
     publisher,
-    translator,
     has_review,
     avg_rating,
     tags_neg,
     tags_pos,
     review_cnt,
   } = bookData;
-  const { bookCover, setDefault } = useBookImage(getImageSrc(isbn, 'book'));
 
   return (
     <div
@@ -38,9 +35,8 @@ function BookListItem({ bookData }: Props) {
     >
       <Image
         className='h-[180px] w-[120px] bg-gray-400'
-        src={bookCover || IMAGES.book.cover}
+        src={image || IMAGES.book.cover}
         alt='book cover'
-        onError={() => setDefault()}
         width={126}
         height={186}
       />
@@ -57,10 +53,7 @@ function BookListItem({ bookData }: Props) {
           <h5 className='text-body-xl-bold'>{title}</h5>
           <ul className='flex text-caption-bold text-gray-600'>
             <li className="after:content-['|']">
-              <span className='pr-[6px]'>
-                {author}
-                {translator && ` · ${translator} 옮김`}
-              </span>
+              <span className='pr-[6px]'>{author}</span>
             </li>
             <li>
               <span className='pl-[6px]'>{publisher}</span>
