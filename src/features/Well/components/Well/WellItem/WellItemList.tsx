@@ -6,6 +6,7 @@ import { CATEGORY } from '@/constants/category';
 import { staggerContainerVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
 import { GetWellRes } from '@frolog/frolog-api';
+import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import { useWellItems } from '@/features/Well/hooks/useWellItems';
 import { chat } from '@/features/Well/data/chat';
 import WellTitle from '../WellTitle';
@@ -23,6 +24,7 @@ const WellItemList = React.memo(
   ({ wellData, isRootUser, isDefaultWell }: Props) => {
     const { wellItems } = useWellItems(wellData.id);
     const { id, name, item_cnt } = wellData;
+    const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState<string | undefined>(undefined);
 
     const getMessage = (count: number) => {
@@ -43,6 +45,12 @@ const WellItemList = React.memo(
       }
       return undefined;
     };
+
+    useEffect(() => {
+      return () => {
+        setIsLoading(false);
+      };
+    }, []);
 
     useEffect(() => {
       if (wellItems) {
@@ -93,6 +101,7 @@ const WellItemList = React.memo(
               wellId={wellData.id}
               isLastItem={item_cnt === i + 1}
               zIndex={wellItems.length - i}
+              startLoading={() => setIsLoading(true)}
             />
           ))}
           <FrogOnBook
@@ -108,6 +117,7 @@ const WellItemList = React.memo(
             />
           )}
         </motion.div>
+        {isLoading && <LoadingOverlay theme='transparent' />}
       </>
     );
   }

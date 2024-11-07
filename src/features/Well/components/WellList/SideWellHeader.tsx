@@ -31,7 +31,11 @@ function SideWellHeader({
       bgColor={bgColor}
     >
       {hasBackButton && (
-        <BackButton type='green' hasSafeArea onClick={() => router.back()} />
+        <BackButton
+          type='green'
+          safeArea='back-button'
+          onClick={() => router.back()}
+        />
       )}
       {hasStoreButton && (
         <motion.button

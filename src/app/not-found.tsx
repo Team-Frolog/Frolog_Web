@@ -2,11 +2,16 @@ import React from 'react';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import LinkButton from '@/components/Button/LinkButton';
+import BackButton from '@/components/Button/BackButton';
 import FinishLight from '../components/Light/FinishLight';
 
 function NotFound() {
   return (
-    <div className='safe-screen safe-header flex w-full flex-col items-center justify-between overflow-hidden overscroll-none bg-white'>
+    <div className='safe-screen safe-header relative flex w-full flex-col items-center justify-between overflow-hidden overscroll-none bg-white'>
+      <BackButton
+        safeArea='back-fixed'
+        extraClass='absolute left-[24px] z-100'
+      />
       <FinishLight frog='/images/frog/fallback/error-frog.svg'>
         <div className='flex flex-col items-center gap-[16px] pt-[50px]'>
           <h1 className='text-heading-lg-bold text-main'>404</h1>

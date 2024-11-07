@@ -1,10 +1,11 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { FrogList } from '@/features/Store';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/auth';
 import Image from 'next/image';
-import { IMAGES } from '../../../constants/images';
+import { IMAGES } from '@/constants/images';
+import dynamic from 'next/dynamic';
+import StoreItemSkeleton from '@/components/Fallback/Skeleton/StoreItemSkeleton';
 
 export const metadata: Metadata = {
   title: '상점',
@@ -20,13 +21,21 @@ export const metadata: Metadata = {
   },
 };
 
+const StoreItemList = dynamic(
+  () => import('@/features/Store/components/StoreItemList'),
+  {
+    ssr: false,
+    loading: () => <StoreItemSkeleton />,
+  }
+);
+
 async function StorePage() {
   const session = await getServerSession(authOptions);
   const userId = session?.user.id;
 
   return (
     <>
-      {userId && <FrogList userId={userId} />}
+      {userId && <StoreItemList userId={userId} />}
       <Image
         src={IMAGES.frog.more_frogs}
         alt='more frogs'

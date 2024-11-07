@@ -6,14 +6,13 @@ import { searchBook } from '../api/search.api';
 export const useSearch = () => {
   const queries = useSearchParams();
   const searchValue = queries.get('query');
-  const category = queries.get('category');
   const queryClient = useQueryClient();
 
   useEffect(() => {
     queryClient.removeQueries({
-      queryKey: ['search', [searchValue, category]],
+      queryKey: ['search', [searchValue]],
     });
-  }, [queryClient, searchValue, category]);
+  }, [queryClient, searchValue]);
 
   const {
     data,
@@ -23,7 +22,7 @@ export const useSearch = () => {
     isLoading,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ['search', [searchValue, category]],
+    queryKey: ['search', [searchValue]],
     queryFn: async ({ pageParam }) => {
       if (searchValue === null) {
         return {
@@ -36,7 +35,6 @@ export const useSearch = () => {
       const res = await searchBook({
         q: searchValue!,
         page: pageParam,
-        category: category || undefined,
       });
       return res;
     },

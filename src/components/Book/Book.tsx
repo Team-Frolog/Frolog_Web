@@ -1,16 +1,12 @@
-import { IMAGES } from '@/constants/images';
-import { useBookImage } from '@/features/Book/hooks/useBookImage';
-import { getImageSrc } from '@/utils/getImageSrc';
-import Image from 'next/image';
 import React from 'react';
+import Image from 'next/image';
+import { IMAGES } from '@/constants/images';
 
 interface Props {
-  isbn?: string;
+  imageUrl?: string;
 }
 
-function Book({ isbn }: Props) {
-  const { bookCover, setDefault } = useBookImage(getImageSrc(isbn, 'book'));
-
+function Book({ imageUrl }: Props) {
   return (
     <div className='relative z-10'>
       <Image
@@ -21,9 +17,8 @@ function Book({ isbn }: Props) {
         className='absolute -left-[9px] -top-[14px] -z-10 h-[245px] w-full'
       />
       <Image
-        src={bookCover || IMAGES.book.cover}
+        src={imageUrl || IMAGES.book.cover}
         alt='book cover'
-        onError={() => setDefault()}
         width={160}
         height={230}
         className='h-[230px] w-auto'

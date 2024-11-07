@@ -16,7 +16,7 @@ function CheckAllItem() {
   return (
     <div className='flex gap-[12px]' onClick={handleAllAgree}>
       <CheckButton isChecked={isAllAgree} />
-      <span className='text-body-lg-bold cursor-default'>
+      <span className='cursor-default text-body-lg-bold'>
         네, 모두 동의합니다.
       </span>
     </div>

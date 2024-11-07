@@ -2,7 +2,7 @@ import React from 'react';
 
 function BookListItemSkeleton() {
   return (
-    <div className='flex w-full cursor-pointer gap-[20px]'>
+    <div className='skeleton-animation flex w-full cursor-pointer gap-[20px]'>
       <div className='skeleton-box h-[180px] w-[120px]' />
       <div className='flex flex-1 flex-col gap-[16px]'>
         <div className='flex flex-col gap-[4px]'>

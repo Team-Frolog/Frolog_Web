@@ -28,9 +28,7 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
         className='flex w-full flex-col gap-[20px]'
         onClick={() =>
           router.push(
-            isRootUser
-              ? `memo/${memoData.id}`
-              : `/memo/${memoData.id}`
+            isRootUser ? `memo/${memoData.id}` : `/memo/${memoData.id}`
           )
         }
       >

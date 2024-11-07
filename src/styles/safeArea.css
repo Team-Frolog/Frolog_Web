@@ -1,0 +1,57 @@
+.safe-screen {
+  height: 100dvh;
+
+  @media all and (display-mode: standalone) {
+    height: 100vh;
+  }
+}
+
+.safe-bottom {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-header {
+  top: constant(safe-area-inset-top);
+  top: env(safe-area-inset-top);
+}
+
+#navBar {
+  padding-bottom: calc(constant(safe-area-inset-bottom) + 10px);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
+}
+
+#toast-message {
+  top: calc(constant(safe-area-inset-top) + 12px);
+  top: calc(env(safe-area-inset-top) + 12px);
+}
+
+#back-button {
+  top: calc(constant(safe-area-inset-top) + 12px);
+  top: calc(env(safe-area-inset-top) + 12px);
+
+  @media all and (display-mode: standalone) {
+    top: calc(constant(safe-area-inset-top) + 8px);
+    top: calc(env(safe-area-inset-top) + 8px);
+  }
+}
+
+#back-fixed {
+  top: calc(constant(safe-area-inset-top) + 24px);
+  top: calc(env(safe-area-inset-top) + 24px);
+}
+
+#store-button {
+  top: calc(constant(safe-area-inset-top) + 24px);
+  top: calc(env(safe-area-inset-top) + 24px);
+}
+
+#message-toast {
+  bottom: calc(constant(safe-area-inset-bottom) + 80px);
+  bottom: calc(env(safe-area-inset-bottom) + 80px);
+}
+
+#start-button {
+  bottom: calc(constant(safe-area-inset-bottom) + 24px);
+  bottom: calc(env(safe-area-inset-bottom) + 24px);
+}

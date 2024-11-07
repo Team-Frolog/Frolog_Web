@@ -46,8 +46,7 @@ export { default as StoreIcon } from './well/store-button.svg';
 export { default as WellBackIcon } from './well/well-back.svg';
 
 // test
-export { default as DownloadIcon } from './test/download-icon.svg';
-export { default as DownloadDoneIcon } from './test/download-done.svg';
+export { default as ShareIcon } from './test/share-icon.svg';
 
 // search
 export { default as ClearIcon } from './common/clear.svg';

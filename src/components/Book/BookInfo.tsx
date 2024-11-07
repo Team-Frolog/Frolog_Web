@@ -6,7 +6,12 @@ import { useBook } from '@/features/Book';
 import { IMAGES } from '@/constants/images';
 import Book from './Book';
 
-function BookInfo({ bookId }: { bookId: string }) {
+interface Props {
+  bookId: string;
+  titleWidth?: string;
+}
+
+function BookInfo({ bookId, titleWidth = '80%' }: Props) {
   const { bookData } = useBook(bookId);
 
   return (
@@ -25,9 +30,14 @@ function BookInfo({ bookId }: { bookId: string }) {
         />
       </div>
 
-      <Book isbn={bookData?.isbn} />
+      <Book imageUrl={bookData?.image} />
       <div className='flex-col-center gap-[4px]'>
-        <h3 className='text-title-lg-bold'>{bookData?.title}</h3>
+        <h3
+          className='text-center text-title-lg-bold'
+          style={{ width: titleWidth }}
+        >
+          {bookData?.title}
+        </h3>
         <ul className='flex text-body-sm text-gray-600'>
           <li className="after:content-['|']">
             <span className='px-[6px]'>{bookData?.author}</span>

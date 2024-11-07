@@ -45,7 +45,12 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ['images.frolog.kr'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
 };
 

@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
 
         // 기본 우물 확인
         let defaultWellId = null;
-        
+
         if (data.id) {
           const res = await getWellList(data.id, 0);
           const isDefault = res.count === 1;

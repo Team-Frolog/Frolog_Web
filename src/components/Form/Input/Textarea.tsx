@@ -1,3 +1,5 @@
+'use client';
+
 import { TextareaType } from '@/data/ui/textareaType';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -25,11 +27,7 @@ function Textarea({ type = 'default', option }: Props) {
         </span>
       </div>
 
-      <div
-        className="grid
-        after:invisible after:w-full after:whitespace-pre-wrap after:break-all after:border after:px-[24px] after:py-[28px] after:text-inherit after:content-[attr(data-cloned-val)_'_'] after:[grid-area:1/1/2/2]
-        [&>textarea]:resize-none [&>textarea]:overflow-hidden [&>textarea]:[grid-area:1/1/2/2]"
-      >
+      <div className="grid after:invisible after:w-full after:whitespace-pre-wrap after:break-all after:border after:px-[24px] after:py-[28px] after:text-inherit after:content-[attr(data-cloned-val)_'_'] after:[grid-area:1/1/2/2] [&>textarea]:resize-none [&>textarea]:overflow-hidden [&>textarea]:[grid-area:1/1/2/2]">
         <textarea
           className={`textarea-common ${errors[option.fieldName] ? 'input-error' : 'textarea-light'} ${type === 'bold' ? 'text-body-lg-bold' : 'text-body-lg'}`}
           maxLength={option.maxLength}

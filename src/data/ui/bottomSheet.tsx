@@ -165,4 +165,11 @@ export const sheetData: {
     frog: SHEET_FROG.wink,
     description: () => <>구매 후 교환 및 환불이 불가능합니다.</>,
   },
+  cant_buy: {
+    getTitle: () => <>포인트가 부족해요</>,
+    type: 'error',
+    buttonText: '확인',
+    extraButtonText: '취소',
+    description: () => <>포인트가 충분하면 캐릭터가 보여요</>,
+  },
 };

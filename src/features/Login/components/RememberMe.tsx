@@ -13,7 +13,7 @@ function RememberMe({ setIsSaved, isSaved }: Props) {
       onClick={() => setIsSaved((prev) => !prev)}
     >
       <CheckButton isChecked={isSaved} />
-      <span className='text-body-md cursor-default'>자동 로그인</span>
+      <span className='cursor-default text-body-md'>자동 로그인</span>
     </div>
   );
 }

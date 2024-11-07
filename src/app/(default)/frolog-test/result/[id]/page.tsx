@@ -10,6 +10,10 @@ interface Props {
   };
 }
 
+export async function generateStaticParams() {
+  return [{ id: '1' }, { id: '2' }, { id: '3' }];
+}
+
 export const metadata: Metadata = {
   title: '독서 성향 테스트 결과',
 };
@@ -18,9 +22,9 @@ function TestResultPage({ params: { id } }: Props) {
   const testData = testResult[Number(id)];
 
   return (
-    <div className='safe-bottom flex h-full w-full overflow-auto bg-gray-900 text-gray-800'>
+    <div className='flex h-full w-full overflow-auto bg-gray-900 text-gray-800'>
       <div className='relative flex h-fit w-full flex-col gap-[12px] overflow-auto whitespace-pre-wrap pt-[36px]'>
-        <HeaderButtons id={id} />
+        <HeaderButtons />
         <div className='flex-col-center relative h-[480px] w-full justify-end gap-[32px] bg-gray-900 mobile:h-[390px]'>
           <Image
             src={IMAGES.test.result[id]}
@@ -47,7 +51,7 @@ function TestResultPage({ params: { id } }: Props) {
               </div>
               <ul className='w-full list-inside list-disc'>
                 {testData.descriptions.map((item) => (
-                  <li className=' text-body-md' key={item.id}>
+                  <li className='text-body-md' key={item.id}>
                     {item.text}
                   </li>
                 ))}

@@ -1,12 +1,13 @@
 import React from 'react';
-import { useBookDetail } from '../../hooks/useBookDetail';
+import { useBook } from '../../hooks/useBook';
 
 interface Props {
   bookId: string;
 }
 
 function BookInfo({ bookId }: Props) {
-  const { bookData } = useBookDetail(bookId);
+  const { bookData } = useBook(bookId);
+
   return (
     <div className='flex w-full flex-col'>
       <div className='flex w-full flex-col gap-[20px] px-page py-[36px]'>
