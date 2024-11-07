@@ -1,10 +1,15 @@
-import { baseOptions } from '@/api/options';
 import { getExpFromToken } from '@/utils/auth/decodeToken';
 import { RefreshToken } from '@frolog/frolog-api';
 import { JWT } from 'next-auth/jwt';
-import * as Sentry from '@sentry/nextjs';
+import { getServerSession } from 'next-auth';
 
-const refresh = new RefreshToken(baseOptions);
+const refresh = new RefreshToken({
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  accessToken: async () => {
+    const session = await getServerSession();
+    return session?.user.accessToken || '';
+  },
+});
 
 export const refreshAccessToken = async (tokenObj: JWT) => {
   try {
@@ -20,7 +25,6 @@ export const refreshAccessToken = async (tokenObj: JWT) => {
     }
     throw new Error();
   } catch (err) {
-    Sentry.captureException(err);
     return {
       ...tokenObj,
       error: 'RefreshAccessTokenError',

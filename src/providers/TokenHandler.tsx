@@ -2,6 +2,7 @@ import { PAGES } from '@/constants/page';
 import { Session } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import { useEffect, useRef } from 'react';
+import * as Sentry from '@sentry/nextjs';
 
 interface Props {
   session: Session | null;
@@ -19,6 +20,7 @@ export function TokenHandler({ session, update }: Props) {
     }
 
     if (session?.user.error === 'RefreshAccessTokenError') {
+      Sentry.captureException(session?.user.error);
       signOut({ callbackUrl: PAGES.HOME, redirect: true });
     }
 
@@ -26,13 +28,13 @@ export function TokenHandler({ session, update }: Props) {
       if (session) {
         const nowTime = Math.floor(new Date().getTime() / 1000);
         const timeRemaining =
-          session.user.accessTokenExpires - 5 * 60 - nowTime; // 만료 5분전
+          session.user.accessTokenExpires - 10 * 60 - nowTime; // 만료 5분전
 
         if (timeRemaining <= 0) update();
       }
     };
 
-    interval.current = setInterval(watchAndUpdateIfExpire, 1000 * 10);
+    interval.current = setInterval(watchAndUpdateIfExpire, 1000 * 30);
 
     return () => clearInterval(interval.current);
   }, [session, update]);

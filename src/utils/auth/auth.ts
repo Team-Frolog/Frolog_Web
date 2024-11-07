@@ -59,13 +59,17 @@ export const authOptions: NextAuthOptions = {
         token.accessTokenExpires = getExpFromToken(user.accessToken);
       }
 
-      if (trigger === 'update' && session.defaultWellId !== undefined) {
+      if (
+        trigger === 'update' &&
+        session &&
+        session.defaultWellId !== undefined
+      ) {
         token.defaultWellId = session.defaultWellId;
       }
 
       const timeRemaing =
         token.accessTokenExpires -
-        (Math.floor(new Date().getTime() / 1000) + 5 * 60); // 10분 전
+        (Math.floor(new Date().getTime() / 1000) + 10 * 60); // 10분 전
 
       // 유효기간이 지난 경우
       if (timeRemaing <= 0) {
@@ -94,5 +98,5 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
     maxAge: 60 * 60 * 24 * 30,
   },
-  secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
 };
