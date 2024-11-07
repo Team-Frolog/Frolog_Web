@@ -12,7 +12,6 @@ function ShareButton() {
   const handleClickShare = async () => {
     try {
       await window.navigator.share({
-        title: 'Frolog 독서 성향 테스트',
         url: process.env.NEXT_PUBLIC_TEST_SHARE_URL,
       });
     } catch (err: any) {
