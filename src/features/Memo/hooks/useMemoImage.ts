@@ -35,9 +35,11 @@ export const useMemoImage = () => {
   const { mutate: handleDeleteImg } = useMutation({
     mutationFn: (index: number) => deleteMemoImage({ hash: images[index] }),
     onSuccess: (_res, index) => {
-      const updatedImages = images.filter((_, i) => i !== index);
-      setCurrentImgs(updatedImages);
-      setValue('images', updatedImages);
+      setCurrentImgs((prev) => prev.filter((_, i) => i !== index));
+      setValue(
+        'images',
+        images.filter((_, i) => i !== index)
+      );
     },
   });
 

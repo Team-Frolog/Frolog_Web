@@ -43,28 +43,37 @@ export const useMemos = (bookId: string, userId: string) => {
   const { mutate: handleDeleteMemo } = useMutation({
     mutationFn: () => deleteMemo({ id: memoId }),
     onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey: ['myMemos', bookId] });
+      await queryClient.cancelQueries({
+        queryKey: ['myMemos', bookId, userId],
+      });
 
       const previousMemos = queryClient.getQueryData([
         'myMemos',
         bookId,
+        userId,
       ]) as SearchMemoRes;
 
-      queryClient.setQueryData(['myMemos', bookId], (oldData: MemoData) => ({
-        ...oldData,
-        pages: oldData.pages.map((page) => ({
-          ...page,
-          memos: page.memos.filter((item) => item.id !== memoId),
-        })),
-      }));
+      queryClient.setQueryData(
+        ['myMemos', bookId, userId],
+        (oldData: MemoData) => ({
+          ...oldData,
+          pages: oldData.pages.map((page) => ({
+            ...page,
+            memos: page.memos.filter((item) => item.id !== memoId),
+          })),
+        })
+      );
 
       return { previousMemos };
     },
     onError: (_err, _variable, context) => {
-      queryClient.setQueryData(['myMemos', bookId], context?.previousMemos);
+      queryClient.setQueryData(
+        ['myMemos', bookId, userId],
+        context?.previousMemos
+      );
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['myMemos', bookId] });
+      queryClient.invalidateQueries({ queryKey: ['myMemos', bookId, userId] });
     },
   });
 
