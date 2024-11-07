@@ -69,7 +69,7 @@ export const authOptions: NextAuthOptions = {
 
       const timeRemaing =
         token.accessTokenExpires -
-        (Math.floor(new Date().getTime() / 1000) + 10 * 60); // 10분 전
+        (Math.floor(new Date().getTime() / 1000) + 4 * 60); // 10분 전
 
       // 유효기간이 지난 경우
       if (timeRemaing <= 0) {

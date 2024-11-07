@@ -28,7 +28,7 @@ export function TokenHandler({ session, update }: Props) {
       if (session) {
         const nowTime = Math.floor(new Date().getTime() / 1000);
         const timeRemaining =
-          session.user.accessTokenExpires - 10 * 60 - nowTime; // 만료 5분전
+          session.user.accessTokenExpires - 5 * 60 - nowTime; // 만료 5분전
 
         if (timeRemaining <= 0) update();
       }

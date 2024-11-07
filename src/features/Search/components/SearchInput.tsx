@@ -16,7 +16,9 @@ function SearchInput({ isMain = false }: Props) {
 
   const handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchValue.trim() !== '') {
-      router.replace(`/search?query=${searchValue.trim()}`);
+      const value = searchValue.trim().replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gim, '');
+      setSearchValue(value);
+      router.replace(`/search?query=${value}`);
     }
   };
 

@@ -5,6 +5,7 @@ import { REMEMBER_ME_KEY } from '@/constants/storage';
 import { useFormReset } from '@/hooks/auth/useFormReset';
 import { SessionProvider, signOut, useSession } from 'next-auth/react';
 import { PAGES } from '@/constants/page';
+import * as Sentry from '@sentry/nextjs';
 import { TokenHandler } from './TokenHandler';
 
 interface Props {
@@ -24,6 +25,7 @@ function Auth() {
       localStorage.getItem(REMEMBER_ME_KEY) === 'false' &&
       !sessionStorage.getItem(REMEMBER_ME_KEY)
     ) {
+      Sentry.captureException('no auto login');
       localStorage.removeItem(REMEMBER_ME_KEY);
       sessionStorage.removeItem(REMEMBER_ME_KEY);
       signOut({ callbackUrl: PAGES.HOME, redirect: true });
