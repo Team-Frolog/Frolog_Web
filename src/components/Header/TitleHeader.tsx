@@ -54,7 +54,7 @@ function TitleHeader({
       />
       <h2
         id='selected'
-        className='absolute inset-x-0 top-1/2 mx-auto w-fit -translate-y-1/2 text-body-xl-bold'
+        className='absolute inset-x-0 top-1/2 mx-auto w-[70%] -translate-y-1/2 truncate text-center text-body-xl-bold'
       >
         {title}
       </h2>
