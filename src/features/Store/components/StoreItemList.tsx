@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
+import FrologItem from '@/components/Item/FrologItem';
 import { useStore } from '../hooks/useStore';
-import StoreItem from './StoreItem';
 import { useWallet } from '../hooks/useWallet';
 
 interface Props {
@@ -25,10 +25,10 @@ function StoreItemList({ userId }: Props) {
             (item) =>
               item.is_available &&
               !item.disabled && (
-                <StoreItem
+                <FrologItem
+                  type='store'
                   key={item.key}
                   item={item}
-                  isOpen={points >= item.price}
                   onClick={() => handlePurchase(item)}
                 />
               )

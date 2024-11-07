@@ -13,11 +13,10 @@ interface Props {
   isSelected?: boolean;
   item: GetStoreItemRes;
   onClick: () => void;
-  isOpen?: boolean;
 }
 
-function FrologItem({ type, item, isSelected, onClick, isOpen }: Props) {
-  const { is_owned, key, name, price, date } = item;
+function FrologItem({ type, item, isSelected, onClick }: Props) {
+  const { is_owned, is_available, key, name, price, date } = item;
 
   const handleClickButton = () => {
     if (type === 'well' || !is_owned) {
@@ -36,7 +35,7 @@ function FrologItem({ type, item, isSelected, onClick, isOpen }: Props) {
         <NewTag position='left-0 top-0' />
       )}
       <Image
-        src={isOpen || is_owned ? FROGS[key].src : FROGS_SILHOUETTE[key]}
+        src={is_available || is_owned ? FROGS[key].src : FROGS_SILHOUETTE[key]}
         alt='frog character'
         width={77}
         height={108}
