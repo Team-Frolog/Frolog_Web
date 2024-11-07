@@ -1,11 +1,11 @@
 import { bottomSheet } from '@/modules/BottomSheet';
 import { toast } from '@/modules/Toast';
 import { GetStoreItemRes } from '@frolog/frolog-api';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { getStoreItems, purchaseItem } from '../api/store.api';
 
 export const useStore = (points?: number) => {
-  const { data } = useQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ['storeItems'],
     queryFn: () => getStoreItems({ type: 'frog' }),
   });
