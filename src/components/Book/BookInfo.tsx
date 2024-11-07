@@ -4,14 +4,17 @@ import Image from 'next/image';
 import React from 'react';
 import { useBook } from '@/features/Book';
 import { IMAGES } from '@/constants/images';
+import { useRouter } from 'next/navigation';
 import Book from './Book';
 
 interface Props {
   bookId: string;
   titleWidth?: string;
+  canClick?: boolean;
 }
 
-function BookInfo({ bookId, titleWidth = '80%' }: Props) {
+function BookInfo({ bookId, titleWidth = '80%', canClick = false }: Props) {
+  const router = useRouter();
   const { bookData } = useBook(bookId);
 
   return (
@@ -19,7 +22,10 @@ function BookInfo({ bookId, titleWidth = '80%' }: Props) {
       id='book-info'
       className='flex-col-center relative w-full gap-[20px] bg-white pb-[24px] pt-[48px] text-gray-800'
     >
-      <div className='absolute left-0 top-0 z-0 h-[230px] w-full mobile:h-[200px]'>
+      <div
+        onClick={canClick ? () => router.push(`/book/${bookId}`) : undefined}
+        className='absolute left-0 top-0 z-0 h-[230px] w-full mobile:h-[200px]'
+      >
         <Image
           src={IMAGES.book.background}
           alt='bg'

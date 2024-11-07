@@ -51,7 +51,7 @@ function MemoDetailPage({ memoId }: Props) {
           <h1 className='w-fit max-w-[350px] px-page text-heading-md-bold text-white'>
             {profile.username}의 메모
           </h1>
-          <BookInfo bookId={memoDetail.isbn} />
+          <BookInfo bookId={memoDetail.isbn} canClick />
         </div>
         <MemoDetail memoData={memoDetail} />
       </MainLayout>
