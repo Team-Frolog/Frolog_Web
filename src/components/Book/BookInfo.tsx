@@ -9,11 +9,10 @@ import Book from './Book';
 
 interface Props {
   bookId: string;
-  titleWidth?: string;
   canClick?: boolean;
 }
 
-function BookInfo({ bookId, titleWidth = '80%', canClick = false }: Props) {
+function BookInfo({ bookId, canClick = false }: Props) {
   const router = useRouter();
   const { bookData } = useBook(bookId);
 
@@ -37,13 +36,8 @@ function BookInfo({ bookId, titleWidth = '80%', canClick = false }: Props) {
       </div>
 
       <Book imageUrl={bookData?.image} />
-      <div className='flex-col-center gap-[4px]'>
-        <h3
-          className='text-center text-title-lg-bold'
-          style={{ width: titleWidth }}
-        >
-          {bookData?.title}
-        </h3>
+      <div className='flex-col-center w-[80%] gap-[4px]'>
+        <h3 className='text-center text-title-lg-bold'>{bookData?.title}</h3>
         <ul className='flex text-body-sm text-gray-600'>
           <li className="after:content-['|']">
             <span className='px-[6px]'>{bookData?.author}</span>
