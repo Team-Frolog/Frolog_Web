@@ -35,7 +35,6 @@ export const useStore = (userId: string, points?: number) => {
     } else {
       bottomSheet.open({
         sheetKey: 'cant_buy',
-        onClick: () => purchase(item.key),
         titleProp: item.name,
       });
     }
