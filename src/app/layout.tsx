@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     template: '%s | 프롤로그',
     default: 'Frolog | 프롤로그',
   },
+  metadataBase: new URL('https://www.frolog.kr/'),
   applicationName: 'Frolog',
   creator: 'Team Frolog',
   description: '책을 추가해 우물을 탈출하는 독서 기록 플랫폼, 프롤로그(Frolog)',
