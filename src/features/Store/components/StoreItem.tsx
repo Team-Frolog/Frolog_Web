@@ -1,8 +1,6 @@
 'use client';
 
 import { FROGS, FROGS_SILHOUETTE } from '@/constants/frogs';
-import NewTag from '@/components/Tag/NewTag';
-import { getIsNew } from '@/features/Well/utils/getIsNew';
 import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -19,12 +17,15 @@ function StoreItem({ item, onClick, isOpen }: Props) {
     <motion.button
       type='button'
       whileTap={{ scale: 0.95 }}
-      onClick={onClick}
+      onClick={item.is_owned ? undefined : onClick}
       className='relative flex h-fit flex-col items-center justify-end gap-[12px] rounded-[12px] border bg-white pb-[16px] pt-[20px]'
     >
-      {item.date && getIsNew(item.date) && <NewTag position='left-0 top-0' />}
       <Image
-        src={isOpen ? FROGS[item.key].src : FROGS_SILHOUETTE[item.key]}
+        src={
+          isOpen || item.is_owned
+            ? FROGS[item.key].src
+            : FROGS_SILHOUETTE[item.key]
+        }
         alt='frog character'
         width={77}
         height={108}

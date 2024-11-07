@@ -11,7 +11,7 @@ interface Props {
 
 function StoreItemList({ userId }: Props) {
   const { points } = useWallet(userId);
-  const { storeItems, handlePurchase } = useStore(points);
+  const { storeItems, handlePurchase } = useStore(points, userId);
 
   if (!storeItems || points === undefined) return <></>;
 
