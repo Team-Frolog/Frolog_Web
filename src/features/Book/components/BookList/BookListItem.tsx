@@ -34,7 +34,7 @@ function BookListItem({ bookData }: Props) {
       className='flex w-full cursor-pointer gap-[20px] text-gray-800'
     >
       <Image
-        className='h-[180px] w-[120px] bg-gray-400'
+        className='h-auto w-[120px] bg-gray-400'
         src={image || IMAGES.book.cover}
         alt='book cover'
         width={126}
