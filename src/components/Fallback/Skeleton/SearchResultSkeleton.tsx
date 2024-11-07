@@ -7,6 +7,9 @@ function SearchResultSkeleton() {
       <BookListItemSkeleton />
       <BookListItemSkeleton />
       <BookListItemSkeleton />
+      <BookListItemSkeleton />
+      <BookListItemSkeleton />
+      <BookListItemSkeleton />
     </div>
   );
 }

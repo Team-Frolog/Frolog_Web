@@ -64,6 +64,9 @@ function SearchResult() {
           <BookListItemSkeleton />
           <BookListItemSkeleton />
           <BookListItemSkeleton />
+          <BookListItemSkeleton />
+          <BookListItemSkeleton />
+          <BookListItemSkeleton />
         </>
       )}
       {!isFetchingNextPage && !isLoading && (
