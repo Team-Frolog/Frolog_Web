@@ -31,7 +31,7 @@ function ReviewMemoLayout({ children, params: { bookId } }: Props) {
       <TapHeader />
       <MainLayout extraClass='bg-white'>
         <Suspense fallback={<BookInfoSkeleton />}>
-          <BookInfo bookId={bookId} />
+          <BookInfo bookId={bookId} titleWidth='100%' />
         </Suspense>
 
         <div

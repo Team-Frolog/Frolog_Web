@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { FrogList } from '@/features/Store';
+import { StoreItemList } from '@/features/Store';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/auth';
 import Image from 'next/image';
@@ -26,7 +26,7 @@ async function StorePage() {
 
   return (
     <>
-      {userId && <FrogList userId={userId} />}
+      {userId && <StoreItemList userId={userId} />}
       <Image
         src={IMAGES.frog.more_frogs}
         alt='more frogs'

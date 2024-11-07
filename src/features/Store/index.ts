@@ -1,1 +1,1 @@
-export { default as FrogList } from './components/FrogList';
+export { default as StoreItemList } from './components/StoreItemList';
