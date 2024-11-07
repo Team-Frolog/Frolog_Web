@@ -74,14 +74,16 @@ export const FROGS: Frog = {
 export const FROGS_SILHOUETTE: {
   [key: string]: string;
 } = {
-  ghost: `${BASE_PATH}/frog/character/silhouette/ghost.svg`,
-  mummy: `${BASE_PATH}/frog/character/silhouette/mummy.svg`,
-  pumpkin: `${BASE_PATH}/frog/character/silhouette/pumpkin.svg`,
-  skeleton: `${BASE_PATH}/frog/character/silhouette/skeleton.svg`,
-  devil: `${BASE_PATH}/frog/character/silhouette/devil.svg`,
-  gguristein: `${BASE_PATH}/frog/character/silhouette/gguristein.svg`,
-  witch: `${BASE_PATH}/frog/character/silhouette/witch.svg`,
-  dracula: `${BASE_PATH}/frog/character/silhouette/dracula.svg`,
+  roro: `${BASE_PATH}/frog/character/silhouette/roro-silhouette.svg`,
+  rogy: `${BASE_PATH}/frog/character/silhouette/rogy-silhouette.svg`,
+  ghost: `${BASE_PATH}/frog/character/silhouette/ghost-silhouette.svg`,
+  mummy: `${BASE_PATH}/frog/character/silhouette/mummy-silhouette.svg`,
+  pumpkin: `${BASE_PATH}/frog/character/silhouette/pumpkin-silhouette.svg`,
+  skeleton: `${BASE_PATH}/frog/character/silhouette/skeleton-silhouette.svg`,
+  devil: `${BASE_PATH}/frog/character/silhouette/devil-silhouette.svg`,
+  gguristein: `${BASE_PATH}/frog/character/silhouette/gguristein-silhouette.svg`,
+  witch: `${BASE_PATH}/frog/character/silhouette/witch-silhouette.svg`,
+  dracula: `${BASE_PATH}/frog/character/silhouette/dracula-silhouette.svg`,
 };
 
 export const FROGS_FIT: {

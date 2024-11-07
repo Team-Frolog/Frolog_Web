@@ -1,6 +1,6 @@
 'use client';
 
-import { FROGS } from '@/constants/frogs';
+import { FROGS, FROGS_SILHOUETTE } from '@/constants/frogs';
 import NewTag from '@/components/Tag/NewTag';
 import { getIsNew } from '@/features/Well/utils/getIsNew';
 import Image from 'next/image';
@@ -11,9 +11,10 @@ import { GetStoreItemRes } from '@frolog/frolog-api';
 interface Props {
   item: GetStoreItemRes;
   onClick: () => void;
+  isOpen: boolean;
 }
 
-function StoreItem({ item, onClick }: Props) {
+function StoreItem({ item, onClick, isOpen }: Props) {
   return (
     <motion.button
       type='button'
@@ -23,7 +24,7 @@ function StoreItem({ item, onClick }: Props) {
     >
       {item.date && getIsNew(item.date) && <NewTag position='left-0 top-0' />}
       <Image
-        src={FROGS[item.key].src}
+        src={isOpen ? FROGS[item.key].src : FROGS_SILHOUETTE[item.key]}
         alt='frog character'
         width={77}
         height={108}

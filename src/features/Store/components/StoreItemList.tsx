@@ -2,18 +2,18 @@
 
 import React from 'react';
 import { useStore } from '../hooks/useStore';
-import { useStoreItems } from '../hooks/useStoreItems';
 import StoreItem from './StoreItem';
+import { useWallet } from '../hooks/useWallet';
 
 interface Props {
   userId: string;
 }
 
 function StoreItemList({ userId }: Props) {
-  const { storeItems } = useStoreItems();
-  const { handlePurchase } = useStore();
+  const { points } = useWallet(userId);
+  const { storeItems, handlePurchase } = useStore(points);
 
-  if (!storeItems) return <></>;
+  if (!storeItems || points === undefined) return <></>;
 
   return (
     <div className='flex w-full flex-col gap-[12px]'>
@@ -21,13 +21,17 @@ function StoreItemList({ userId }: Props) {
       <div className='relative grid w-full grid-cols-3 gap-[9px] overflow-hidden'>
         {storeItems
           .sort((a, b) => a.price - b.price)
-          .map((item) => (
-            <StoreItem
-              key={item.key}
-              item={item}
-              onClick={() => handlePurchase(item.key)}
-            />
-          ))}
+          .map(
+            (item) =>
+              item.is_available && (
+                <StoreItem
+                  key={item.key}
+                  item={item}
+                  isOpen={points >= item.price}
+                  onClick={() => handlePurchase(item)}
+                />
+              )
+          )}
       </div>
     </div>
   );
