@@ -1,12 +1,18 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useWallet } from '@/features/Store/hooks/useWallet';
 import BackButton from '../Button/BackButton';
 
-function StoreHeader() {
+interface Props {
+  userId: string | undefined;
+}
+
+function StoreHeader({ userId }: Props) {
   const router = useRouter();
   const pathname = usePathname();
+  const { points } = useWallet(userId);
 
   return (
     <header className='duration-50 block h-fit w-full gap-3 bg-white p-[24px] transition-all'>
@@ -41,7 +47,7 @@ function StoreHeader() {
           />
         </div>
         <div className='h-fit rounded-[50px] bg-gray-300 px-[14px] py-[8px] text-title-lg-bold'>
-          1,000 P
+          {points?.toLocaleString()} P
         </div>
       </div>
     </header>
