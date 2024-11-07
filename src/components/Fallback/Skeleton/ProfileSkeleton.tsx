@@ -7,7 +7,7 @@ function ProfileSkeleton() {
         <div className='flex w-full items-center gap-[30px]'>
           <div className='skeleton-box h-[76px] w-[76px] shrink-0 rounded-[50%]' />
           <div className='flex w-full items-center gap-[24px]'>
-            <div className='skeleton-box h-[50px] flex-1 ' />
+            <div className='skeleton-box h-[50px] flex-1' />
             <div className='skeleton-box h-[50px] flex-1' />
             <div className='skeleton-box h-[50px] flex-1' />
           </div>
