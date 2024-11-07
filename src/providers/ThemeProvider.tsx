@@ -2,13 +2,10 @@
 
 import { PAGE_THEME } from '@/constants/theme';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 function ThemeProvider() {
   const pathname = usePathname();
-  const [windowWidth, setWindowWidth] = useState<number>(
-    typeof window !== 'undefined' ? window.innerWidth : 0
-  );
 
   const getTheme = () => {
     const pages = Object.keys(PAGE_THEME);
@@ -25,21 +22,6 @@ function ThemeProvider() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const handleResize = () => {
-        setWindowWidth(window.innerWidth);
-      };
-
-      handleResize();
-      window.addEventListener('resize', handleResize);
-
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
       const body = document.querySelector('body')!;
       body.classList.remove('dark');
       body.classList.remove('light');
@@ -47,7 +29,7 @@ function ThemeProvider() {
       body.classList.remove('half-gradient');
       body.classList.add(getTheme());
     }
-  }, [pathname, windowWidth]);
+  }, [pathname]);
 
   return <></>;
 }

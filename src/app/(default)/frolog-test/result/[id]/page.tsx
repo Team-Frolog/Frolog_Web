@@ -10,6 +10,10 @@ interface Props {
   };
 }
 
+export async function generateStaticParams() {
+  return [{ id: '1' }, { id: '2' }, { id: '3' }];
+}
+
 export const metadata: Metadata = {
   title: '독서 성향 테스트 결과',
 };
