@@ -8,7 +8,7 @@ import {
 } from '@tanstack/react-query';
 import { getStoreItems, purchaseItem } from '../api/store.api';
 
-export const useStore = (points?: number, userId: string) => {
+export const useStore = (userId: string, points?: number) => {
   const queryClient = useQueryClient();
 
   const { data } = useSuspenseQuery({
