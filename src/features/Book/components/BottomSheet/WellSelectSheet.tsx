@@ -8,9 +8,11 @@ import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton'
 interface Props {
   userId: string;
   callback: (value?: any) => void;
+  isPending: boolean;
+  startPending: () => void;
 }
 
-function WellSelectSheet({ callback, userId }: Props) {
+function WellSelectSheet({ callback, userId, isPending, startPending }: Props) {
   const { wells, hasNextPage, fetchNextPage, isFetchingNextPage, isFetched } =
     useWells(userId);
   const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
@@ -24,7 +26,14 @@ function WellSelectSheet({ callback, userId }: Props) {
             type='select'
             key={well.id}
             wellData={well}
-            onClick={() => callback(well.id)}
+            onClick={
+              isPending
+                ? undefined
+                : () => {
+                    callback(well.id);
+                    startPending();
+                  }
+            }
           />
         ))}
       {!isFetchingNextPage && (

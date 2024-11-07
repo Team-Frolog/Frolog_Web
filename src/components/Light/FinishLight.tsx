@@ -35,7 +35,7 @@ function FinishLight({ children, frog, frogMaxHeight }: Props) {
             alt='frog'
             width={1661}
             height={1339}
-            className='z-10 h-full w-full mobile:h-auto [@media(max-height:700px)]:h-auto [@media(max-height:700px)]:w-[80%] [@media(max-width:350px)]:w-[80%]'
+            className='z-10 h-full w-auto mobile:h-auto [@media(max-height:700px)]:h-auto [@media(max-height:700px)]:w-[80%] [@media(max-width:350px)]:w-[80%]'
             loading='eager'
             style={{ maxHeight: frogMaxHeight || '250px' }}
             priority

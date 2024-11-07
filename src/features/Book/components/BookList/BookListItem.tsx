@@ -33,13 +33,15 @@ function BookListItem({ bookData }: Props) {
       onClick={() => router.push(`/book/${isbn}`)}
       className='flex w-full cursor-pointer gap-[20px] text-gray-800'
     >
-      <Image
-        className='h-[180px] w-[120px] bg-gray-400'
-        src={image || IMAGES.book.cover}
-        alt='book cover'
-        width={126}
-        height={186}
-      />
+      <div className='flex h-fit'>
+        <Image
+          className='h-auto w-[120px] bg-gray-400'
+          src={image || IMAGES.book.cover}
+          alt='book cover'
+          width={126}
+          height={186}
+        />
+      </div>
       <div className='flex flex-1 flex-col gap-[16px]'>
         <div className='flex flex-col gap-[4px]'>
           {has_review && (

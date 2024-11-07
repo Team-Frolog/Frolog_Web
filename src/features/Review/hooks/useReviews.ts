@@ -31,6 +31,7 @@ export const useReviews = (bookId: string, userId: string) => {
       const previousReviews = queryClient.getQueryData([
         'myReviews',
         bookId,
+        userId,
       ]) as SearchReviewRes;
 
       queryClient.setQueryData(

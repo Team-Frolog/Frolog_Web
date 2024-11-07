@@ -27,7 +27,7 @@ function LoginFormPage() {
       }}
     >
       {isLoading && <LoadingOverlay theme='dark' />}
-      <div className='flex flex-col gap-[20px]'>
+      <div className='flex flex-col gap-[20px] py-page'>
         <LoginForm setIsFaild={setIsFaild} userLogin={userLogin} />
         <RememberMe isSaved={isSaved} setIsSaved={setIsSaved} />
       </div>

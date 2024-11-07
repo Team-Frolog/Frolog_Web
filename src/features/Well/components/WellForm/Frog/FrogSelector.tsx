@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { motion, useAnimationControls } from 'framer-motion';
 import { ExpandIcon } from 'public/icons';
 import { useFrogs } from '@/features/Well/hooks/useFrogs';
-import FrogCharacter from '@/components/Frog/FrogCharacter';
+import FrologItem from '@/components/Item/FrologItem';
 
 interface Props {
   userId: string;
@@ -14,8 +14,7 @@ function FrogSelector({ userId }: Props) {
   const { frogs } = useFrogs(userId);
   const controls = useAnimationControls();
   const [isExpanded, setIsExpanded] = useState(false);
-
-  const isNoExpansion = frogs ? frogs.length < 3 : true;
+  const isNoExpansion = frogs ? frogs.length <= 3 : true;
 
   useEffect(() => {
     if (isExpanded || isNoExpansion) {
@@ -46,11 +45,12 @@ function FrogSelector({ userId }: Props) {
           />
         )}
         {frogs.map((frog) => (
-          <FrogCharacter
-            key={frog.id}
-            data={frog}
-            isSelected={frog.id === watch('frog')}
-            onClick={() => setValue('frog', frog.id, { shouldDirty: true })}
+          <FrologItem
+            key={frog.key}
+            type='well'
+            item={frog}
+            isSelected={frog.key === watch('frog')}
+            onClick={() => setValue('frog', frog.key, { shouldDirty: true })}
           />
         ))}
       </motion.div>

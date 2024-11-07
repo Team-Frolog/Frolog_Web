@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import BottomSheet from '@/modules/BottomSheet/BottomSheet';
 import { AnimatePresence } from 'framer-motion';
 import WellSelectSheet from './WellSelectSheet';
@@ -22,10 +22,12 @@ function AddBookToWell({ bookId, closeSheet }: Props) {
     handleAddReadBook,
     handleAddReadingBook,
   } = useAddBookToWell(bookId);
+  const [isPending, setIsPending] = useState(false);
 
   const handleClose = () => {
     setStep(null);
     setTimeout(() => {
+      setIsPending(false);
       closeSheet();
     }, 500);
   };
@@ -46,7 +48,14 @@ function AddBookToWell({ bookId, closeSheet }: Props) {
       <AnimatePresence>
         {step === 'select-well' && (
           <BottomSheet sheetKey='select_well' onClose={handleClose}>
-            {userId && <WellSelectSheet userId={userId} callback={callback} />}
+            {userId && (
+              <WellSelectSheet
+                userId={userId}
+                callback={callback}
+                isPending={isPending}
+                startPending={() => setIsPending(true)}
+              />
+            )}
           </BottomSheet>
         )}
       </AnimatePresence>

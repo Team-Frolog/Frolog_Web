@@ -3,7 +3,7 @@
 import CodeForm from '@/components/Form/Code/CodeForm';
 import { FIND_FORM_KEY } from '@/constants/storage';
 import { useStepActions } from '@/store/stepStore';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useResetPassword } from '../hooks/useResetPassword';
 import { FindForm } from '../types/findForm';
@@ -24,13 +24,20 @@ function ResetPasswordForm() {
   });
 
   const { handleSubmit } = methods;
-  const { goNextFindStep } = useStepActions();
+  const { goNextFindStep, resetFindStep } = useStepActions();
   const { findStep, resetPassword } = useResetPassword(methods.getValues);
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem(FIND_FORM_KEY);
+      resetFindStep();
+    };
+  }, []);
 
   return (
     <FormProvider {...methods}>
       <form
-        className='form-layout'
+        className='form-layout py-[34px]'
         onSubmit={handleSubmit((data) => resetPassword(data))}
       >
         {findStep === 1 && <Step1 />}

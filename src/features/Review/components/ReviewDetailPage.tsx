@@ -50,7 +50,7 @@ function ReviewDetailPage({ reviewId }: Props) {
           <h1 className='w-fit max-w-[350px] px-page text-heading-md-bold text-white'>
             {profile?.username}의 리뷰
           </h1>
-          <BookInfo bookId={reviewDetail.isbn} />
+          <BookInfo bookId={reviewDetail.isbn} canClick />
         </div>
         <ReviewDetail reviewDetail={reviewDetail} />
       </MainLayout>

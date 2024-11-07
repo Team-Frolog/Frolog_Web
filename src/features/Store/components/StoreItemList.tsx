@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
+import FrologItem from '@/components/Item/FrologItem';
 import { useStore } from '../hooks/useStore';
-import StoreItem from './StoreItem';
 import { useWallet } from '../hooks/useWallet';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 
 function StoreItemList({ userId }: Props) {
   const { points } = useWallet(userId);
-  const { storeItems, handlePurchase } = useStore(points);
+  const { storeItems, handlePurchase } = useStore(userId, points);
 
   if (!storeItems || points === undefined) return <></>;
 
@@ -23,11 +23,12 @@ function StoreItemList({ userId }: Props) {
           .sort((a, b) => a.price - b.price)
           .map(
             (item) =>
-              item.is_available && (
-                <StoreItem
+              item.is_available &&
+              !item.disabled && (
+                <FrologItem
+                  type='store'
                   key={item.key}
                   item={item}
-                  isOpen={points >= item.price}
                   onClick={() => handlePurchase(item)}
                 />
               )

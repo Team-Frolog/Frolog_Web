@@ -71,8 +71,8 @@ export const metadata: Metadata = {
     statusBarStyle: 'black-translucent',
   },
   icons: {
-    icon: '/logo/favicon.ico',
-    apple: '/logo/apple-touch-icon-120x120x.png',
+    icon: '/logo/favicon-96x96.png',
+    apple: '/logo/apple-touch-icon-120x120.png',
     other: [
       {
         url: '/splash/iPhone_14__iPhone_13_Pro__iPhone_13__iPhone_12_Pro__iPhone_12_portrait.png',

@@ -20,16 +20,19 @@ function BookInfo({ feedData, isMemo }: Props) {
   return (
     <div className='pt-[30px]'>
       <div
-        className={`relative flex w-full gap-[16px] rounded-t-[20px] bg-category-bg-${category} px-page pt-[24px]`}
+        className={`relative flex h-fit w-full gap-[16px] rounded-t-[20px] bg-category-bg-${category} px-page pt-[24px]`}
       >
         <div className={`tooltip-feed border-b-category-bg-${category}`} />
-        <Image
-          src={image || IMAGES.book.cover}
-          alt='book cover'
-          width={74}
-          height={110}
-          className='h-[110px] w-auto shrink-0 self-end bg-gray-400'
-        />
+        <div className='flex'>
+          <Image
+            src={image || IMAGES.book.cover}
+            alt='book cover'
+            width={74}
+            height={110}
+            className='h-full w-auto shrink self-end bg-gray-400'
+          />
+        </div>
+
         <div
           className={`flex w-full flex-col ${isMemo && 'justify-end gap-[8px]'}`}
         >
