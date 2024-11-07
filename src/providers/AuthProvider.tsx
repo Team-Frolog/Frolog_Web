@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import { REMEMBER_ME_KEY } from '@/constants/storage';
-import { useFormReset } from '@/hooks/auth/useFormReset';
 import { SessionProvider, signOut, useSession } from 'next-auth/react';
 import { PAGES } from '@/constants/page';
 import * as Sentry from '@sentry/nextjs';
@@ -15,7 +14,6 @@ interface Props {
 // eslint-disable-next-line @typescript-eslint/naming-convention
 function Auth() {
   const { data: session, update, status } = useSession();
-  useFormReset();
 
   useEffect(() => {
     if (
