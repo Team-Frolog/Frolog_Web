@@ -23,7 +23,8 @@ function StoreItemList({ userId }: Props) {
           .sort((a, b) => a.price - b.price)
           .map(
             (item) =>
-              item.is_available && (
+              item.is_available &&
+              !item.disabled && (
                 <StoreItem
                   key={item.key}
                   item={item}
