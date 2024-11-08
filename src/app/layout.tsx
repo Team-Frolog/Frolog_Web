@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-import AuthProvider from '@/providers/AuthProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 import QueryProvider from '@/providers/QueryProvider';
 import GAProvider from '@/providers/GAProvider';
+import NextAuthProvider from '@/providers/NextAuthProvider';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -162,7 +162,7 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
           <GAProvider gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
         ) : null}
-        <AuthProvider>
+        <NextAuthProvider>
           <body
             className={`${pretendard.variable} ${pretendard.className} text-gray-800`}
           >
@@ -170,7 +170,7 @@ export default function RootLayout({
             <div id='portal' />
             <div id='toast-root' />
           </body>
-        </AuthProvider>
+        </NextAuthProvider>
       </QueryProvider>
     </html>
   );

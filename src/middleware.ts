@@ -29,6 +29,17 @@ export async function middleware(req: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
     secureCookie: true,
   });
+
+  // 자동 로그인 판별
+  const isRemember = req.cookies.get('isRemember');
+  const isLoggedIn = req.cookies.get('isLoggedIn');
+
+  if (token && isRemember?.value === 'false' && !isLoggedIn) {
+    const response = NextResponse.redirect(new URL('/default', req.url));
+    response.cookies.delete(process.env.NEXTAUTH_TOKEN_NAME || '');
+    return response;
+  }
+
   const { pathname } = req.nextUrl;
   const defaultWellId = token ? token.defaultWellId : undefined;
 

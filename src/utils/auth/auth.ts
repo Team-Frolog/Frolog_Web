@@ -1,4 +1,5 @@
 import { baseOptions } from '@/api/options';
+import { cookies } from 'next/headers';
 import { SignIn } from '@frolog/frolog-api';
 import { NextAuthOptions } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
@@ -12,8 +13,9 @@ export const authOptions: NextAuthOptions = {
   providers: [
     CredentialProvider({
       credentials: {
-        email: { label: 'Email', type: 'email' },
-        password: { label: 'Password', type: 'password' },
+        email: { label: 'Email' },
+        password: { label: 'Password' },
+        isRemember: { label: 'isRemember' },
       },
       async authorize(credentials) {
         if (!credentials) return null;
@@ -36,6 +38,15 @@ export const authOptions: NextAuthOptions = {
         }
 
         if (data.result) {
+          const cookieStore = cookies();
+          cookieStore.set('isRemember', credentials.isRemember, {
+            maxAge: 24 * 60 * 60 * 30,
+            httpOnly: true,
+          });
+          cookieStore.set('isLoggedIn', 'true', {
+            httpOnly: true,
+          });
+
           const user = {
             id: data.id || '',
             defaultWellId,
@@ -96,7 +107,6 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: 'jwt',
-    maxAge: 60 * 60 * 24 * 30,
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

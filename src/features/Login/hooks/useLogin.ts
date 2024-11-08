@@ -25,6 +25,7 @@ export const useLogin = (type: 'login' | 'test') => {
       redirect: false,
       email: data.email,
       password: data.password,
+      isRemember: isSaved,
     });
 
     if (result?.ok) {
