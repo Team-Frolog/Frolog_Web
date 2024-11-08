@@ -35,7 +35,9 @@ function Wave({ title, category, height, isReading, hasMemo }: Props) {
       {hasMemo && (
         <MemoLeaf bg={CATEGORY[category].text} line={CATEGORY[category].bg} />
       )}
-      <span className={`text-category-text-${category} text-body-sm-bold`}>
+      <span
+        className={`text-category-text-${category} truncate text-center text-body-sm-bold ${isReading || hasMemo ? 'w-[65%]' : 'w-[90%]'}`}
+      >
         {title}
       </span>
       <div
