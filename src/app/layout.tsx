@@ -39,8 +39,8 @@ export const metadata: Metadata = {
     },
     images: '/opengraph-image.png',
     description:
-      '책을 추가해 우물을 탈출하는 독서 기록 서비스, 프롤로그(Frolog)',
-    url: 'https://frolog.kr',
+      '책을 추가해 우물을 탈출하는 독서 기록 플랫폼, 프롤로그(Frolog)',
+    url: 'https://www.frolog.kr',
     siteName: 'Frolog',
     locale: 'ko_KR',
     type: 'website',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
       default: 'Frolog | 프롤로그',
     },
     description:
-      '책을 추가해 우물을 탈출하는 독서 기록 서비스, 프롤로그(Frolog)',
+      '책을 추가해 우물을 탈출하는 독서 기록 플랫폼, 프롤로그(Frolog)',
   },
   verification: {
     google: 'f35-rdvgbbgvYjNJjFBfFU91fnG8bsUyDcfgpz0M8R8',
