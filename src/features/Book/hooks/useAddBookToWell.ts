@@ -8,11 +8,12 @@ import { getReviewCount } from '../api/book.api';
 export const useAddBookToWell = (isbn: string) => {
   const [step, setStep] = useState<string | null>('state');
   const [callback, setCallback] = useState<(value?: any) => void>(() => {});
+  const [isPending, setIsPending] = useState(false);
   const router = useRouter();
   const { data: session } = useSession();
   const userId = session?.user.id;
   const { handleAddWellItem, wellId, setWellId, setIsThroughSearch } =
-    useAddWellItem(userId);
+    useAddWellItem(userId, () => setIsPending(false));
 
   const { data: reviewCount } = useQuery({
     queryKey: ['reviewCount', isbn],
@@ -76,6 +77,8 @@ export const useAddBookToWell = (isbn: string) => {
     step,
     setStep,
     userId,
+    isPending,
+    setIsPending,
     callback,
     reviewCount,
     handleAddReadBook,

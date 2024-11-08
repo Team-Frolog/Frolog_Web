@@ -7,7 +7,10 @@ import { PAGES } from '@/constants/page';
 import useAddBookStore from '@/store/addBookStore';
 import { addWellItem } from '../api/well.api';
 
-export const useAddWellItem = (userId: string | undefined) => {
+export const useAddWellItem = (
+  userId: string | undefined,
+  stopPending?: () => void
+) => {
   const router = useRouter();
   const {
     wellId,
@@ -34,6 +37,9 @@ export const useAddWellItem = (userId: string | undefined) => {
       const isExisting = res.existing;
 
       if (isExisting) {
+        if (stopPending) {
+          stopPending();
+        }
         if (!isAfterReview) {
           toast.error('이미 해당 우물에 쌓인 책이에요!');
         }
@@ -42,6 +48,9 @@ export const useAddWellItem = (userId: string | undefined) => {
         }
       } else {
         setNewReviewId(itemId);
+        if (stopPending) {
+          stopPending();
+        }
         if (!isAfterReview) {
           router.push(`/${userId}/well/${wellId}`);
           resetAll();
