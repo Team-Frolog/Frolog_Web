@@ -29,7 +29,7 @@ function BookInfo({ feedData, isMemo }: Props) {
             alt='book cover'
             width={74}
             height={110}
-            className='h-full w-auto shrink self-end bg-gray-400'
+            className='h-full max-w-fit self-end bg-gray-400'
           />
         </div>
 
