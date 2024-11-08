@@ -26,7 +26,7 @@ const publicRoutes: string[] = [
 export async function middleware(req: NextRequest) {
   const token = await getToken({
     req,
-    secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+    secret: process.env.NEXTAUTH_SECRET,
     secureCookie: true,
   });
   const { pathname } = req.nextUrl;
