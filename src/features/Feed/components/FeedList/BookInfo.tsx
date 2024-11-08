@@ -34,7 +34,7 @@ function BookInfo({ feedData, isMemo }: Props) {
         </div>
 
         <div
-          className={`flex w-full flex-col ${isMemo && 'justify-end gap-[8px]'}`}
+          className={`flex w-full flex-col ${isMemo && 'z-[-1px] mb-[-2px] justify-end gap-[8px]'}`}
         >
           <div className='flex flex-col gap-[4px]'>
             <h5 className={`text-body-lg-bold text-category-text-${category}`}>
