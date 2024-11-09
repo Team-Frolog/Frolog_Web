@@ -4,7 +4,7 @@ interface Frog {
   [key: string]: {
     src: string;
     name: string;
-    price: number | null;
+    marginBottom: number;
   };
 }
 
@@ -12,62 +12,62 @@ export const FROGS: Frog = {
   default: {
     src: `${BASE_PATH}/frog/character/square/default-square.svg`,
     name: '개꾸리',
-    price: null,
+    marginBottom: 20,
   },
   fro: {
     src: `${BASE_PATH}/frog/character/square/fro-square.svg`,
     name: '프로',
-    price: null,
+    marginBottom: 20,
   },
   roro: {
     src: `${BASE_PATH}/frog/character/square/roro-square.svg`,
     name: '로로',
-    price: 50,
+    marginBottom: 20,
   },
   rogy: {
     src: `${BASE_PATH}/frog/character/square/rogy-square.svg`,
     name: '로기',
-    price: 100,
+    marginBottom: 20,
   },
   ghost: {
     src: `${BASE_PATH}/frog/character/square/ghost-square.svg`,
     name: '유령꾸리',
-    price: 200,
+    marginBottom: 20,
   },
   mummy: {
     src: `${BASE_PATH}/frog/character/square/mummy-square.svg`,
     name: '미라꾸리',
-    price: 200,
+    marginBottom: 20,
   },
   pumpkin: {
     src: `${BASE_PATH}/frog/character/square/pumpkin-square.svg`,
     name: '호박꾸리',
-    price: 300,
+    marginBottom: 20,
   },
   skeleton: {
     src: `${BASE_PATH}/frog/character/square/skeleton-square.svg`,
     name: '해골꾸리',
-    price: 300,
+    marginBottom: 20,
   },
   devil: {
     src: `${BASE_PATH}/frog/character/square/devil-square.svg`,
     name: '악마꾸리',
-    price: 500,
+    marginBottom: 20,
   },
   gguristein: {
     src: `${BASE_PATH}/frog/character/square/gguristein-square.svg`,
     name: '꾸리슈타인',
-    price: 500,
+    marginBottom: 20,
   },
   witch: {
     src: `${BASE_PATH}/frog/character/square/witch-square.svg`,
     name: '마녀꾸리',
-    price: 1000,
+    marginBottom: 0,
   },
   dracula: {
     src: `${BASE_PATH}/frog/character/square/dracula-square.svg`,
     name: '꾸리백작',
-    price: 1000,
+    marginBottom: 10,
   },
 } as const;
 

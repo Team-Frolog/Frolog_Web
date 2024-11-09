@@ -1,6 +1,6 @@
 'use client';
 
-import { FROGS_FIT } from '@/constants/frogs';
+import { FROGS } from '@/constants/frogs';
 import { motion } from 'framer-motion';
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
@@ -36,8 +36,11 @@ function FrogOnBook({ message, frogId = 'default', zIndex }: Props) {
         variants={hasNewReview ? frogVariants : undefined}
         className='flex-col-center relative z-[999px] pt-[20px]'
       >
-        <GuideChat message={message} />
-        <Image src={FROGS_FIT[frogId]} alt='frog' width={90} height={120} />
+        <GuideChat
+          message={message}
+          marginBottom={FROGS[frogId].marginBottom}
+        />
+        <Image src={FROGS[frogId].src} alt='frog' width={150} height={150} />
       </motion.div>
     </div>
   );
