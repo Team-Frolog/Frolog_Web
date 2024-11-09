@@ -28,6 +28,7 @@ function FeedList() {
       <div className='flex h-fit w-full flex-col gap-[36px]'>
         <FeedSkeleton />
         <FeedSkeleton />
+        <FeedSkeleton />
       </div>
     );
   }
@@ -47,7 +48,11 @@ function FeedList() {
       )}
 
       {isFetchingNextPage ? (
-        <FeedSkeleton />
+        <>
+          <FeedSkeleton />
+          <FeedSkeleton />
+          <FeedSkeleton />
+        </>
       ) : (
         <div ref={setTarget} id='observer' className='h-[10px]' />
       )}
