@@ -12,6 +12,7 @@
     "@frolog/frolog-api": "^1.0.1",
     "@sentry/nextjs": "^8.35.0",
     "@svgr/webpack": "^8.1.0",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@tanstack/react-query": "^5.40.1",
     "@types/react-slick": "^0.23.13",
     "axios": "^1.7.2",
