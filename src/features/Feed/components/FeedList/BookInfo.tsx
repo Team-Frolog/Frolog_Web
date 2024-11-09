@@ -29,12 +29,12 @@ function BookInfo({ feedData, isMemo }: Props) {
             alt='book cover'
             width={74}
             height={110}
-            className='h-full max-w-fit self-end bg-gray-400'
+            className='h-full w-auto self-end bg-gray-400'
           />
         </div>
 
         <div
-          className={`flex w-full flex-col ${isMemo && 'z-[-1px] mb-[-2px] justify-end gap-[8px]'}`}
+          className={`flex w-full flex-col ${isMemo ? 'z-[-1px] mb-[-2px] justify-end gap-[8px]' : ''}`}
         >
           <div className='flex flex-col gap-[4px]'>
             <h5 className={`text-body-lg-bold text-category-text-${category}`}>
