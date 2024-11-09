@@ -38,7 +38,7 @@ function BookInfo({ feedData, isMemo }: Props) {
         >
           <div className='flex w-full flex-col gap-[4px]'>
             <h5
-              className={`w-full line-clamp-1 text-body-lg-bold text-category-text-${category}`}
+              className={`line-clamp-1 w-full text-body-lg-bold text-category-text-${category}`}
             >
               {title}
             </h5>
