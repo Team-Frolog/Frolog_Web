@@ -12,57 +12,57 @@ export const FROGS: Frog = {
   default: {
     src: `${BASE_PATH}/frog/character/square/default-square.svg`,
     name: '개꾸리',
-    marginBottom: 20,
+    marginBottom: 0,
   },
   fro: {
     src: `${BASE_PATH}/frog/character/square/fro-square.svg`,
     name: '프로',
-    marginBottom: 20,
+    marginBottom: 0,
   },
   roro: {
     src: `${BASE_PATH}/frog/character/square/roro-square.svg`,
     name: '로로',
-    marginBottom: 20,
+    marginBottom: 0,
   },
   rogy: {
     src: `${BASE_PATH}/frog/character/square/rogy-square.svg`,
     name: '로기',
-    marginBottom: 20,
+    marginBottom: 0,
   },
   ghost: {
     src: `${BASE_PATH}/frog/character/square/ghost-square.svg`,
     name: '유령꾸리',
-    marginBottom: 20,
+    marginBottom: 0,
   },
   mummy: {
     src: `${BASE_PATH}/frog/character/square/mummy-square.svg`,
     name: '미라꾸리',
-    marginBottom: 20,
+    marginBottom: 0,
   },
   pumpkin: {
     src: `${BASE_PATH}/frog/character/square/pumpkin-square.svg`,
     name: '호박꾸리',
-    marginBottom: 20,
+    marginBottom: 0,
   },
   skeleton: {
     src: `${BASE_PATH}/frog/character/square/skeleton-square.svg`,
     name: '해골꾸리',
-    marginBottom: 20,
+    marginBottom: 0,
   },
   devil: {
     src: `${BASE_PATH}/frog/character/square/devil-square.svg`,
     name: '악마꾸리',
-    marginBottom: 20,
+    marginBottom: 0,
   },
   gguristein: {
     src: `${BASE_PATH}/frog/character/square/gguristein-square.svg`,
     name: '꾸리슈타인',
-    marginBottom: 20,
+    marginBottom: 0,
   },
   witch: {
     src: `${BASE_PATH}/frog/character/square/witch-square.svg`,
     name: '마녀꾸리',
-    marginBottom: 0,
+    marginBottom: 20,
   },
   dracula: {
     src: `${BASE_PATH}/frog/character/square/dracula-square.svg`,
