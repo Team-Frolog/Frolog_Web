@@ -39,7 +39,6 @@ function FlashPage({ params: { type } }: Props) {
   return (
     <>
       <Head>
-        {/* Preload 이미지 */}
         <link rel='preload' href='/images/flash/light.webp' as='image' />
         <link rel='preload' href={frog} as='image' />
         <link rel='preload' href={ground} as='image' />

@@ -16,9 +16,13 @@ function LoginButton() {
       route='/login'
       disabled={!isValid || !watch('email') || !watch('password')}
       btnType='submit'
+      gap={14}
     >
       <Link href={PAGES.FIND_PASSWORD} className='text-body-lg-bold text-white'>
         비밀번호를 잊으셨나요?
+      </Link>
+      <Link href={PAGES.JOIN} className='text-body-lg-bold text-main'>
+        15초만에 회원가입 하기
       </Link>
     </ButtonWithText>
   );
