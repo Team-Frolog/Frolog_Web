@@ -41,7 +41,7 @@ function Wave({ title, category, height, isReading, hasMemo }: Props) {
         {title}
       </span>
       <div
-        className={`absolute h-[10px] w-full bg-category-bg-${category} bottom-[-12px] left-0`}
+        className={`absolute h-[10px] w-full bg-category-bg-${category} bottom-[-10px] left-0`}
       />
     </div>
   );
