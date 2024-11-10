@@ -17,6 +17,7 @@ function Step2() {
   const {
     watch,
     register,
+    trigger,
     formState: { errors, isValid },
   } = useFormContext();
   const email = watch('email');
@@ -44,7 +45,15 @@ function Step2() {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
                 message: '이메일 형식을 확인해주세요.',
               },
-              onChange: () => setIsEmailChecked(false),
+              onChange: async (e) => {
+                if (errors.email) {
+                  const isPassed = await trigger('email');
+                  if (isPassed) {
+                    handleValidateEmail(e);
+                  }
+                }
+                setIsEmailChecked(false);
+              },
               onBlur: (e) => handleValidateEmail(e),
             })}
           />

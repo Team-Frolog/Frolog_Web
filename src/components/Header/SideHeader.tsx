@@ -6,7 +6,7 @@ import BackButton from '../Button/BackButton';
 
 interface Props {
   children?: React.ReactNode;
-  title?: string;
+  title?: string | React.ReactNode;
   hasBackButton?: boolean;
   bgColor?: string;
 }

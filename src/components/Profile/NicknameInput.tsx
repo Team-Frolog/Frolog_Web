@@ -20,17 +20,23 @@ function NicknameInput({ theme, originUsername = '' }: Props) {
       autoFocus
       hasCount
       theme={theme}
-      maxCount={15}
+      maxCount={7}
       title='닉네임'
       type='text'
       fieldName='username'
-      placeholder='4~15자 이내 한글, 영문 또는 숫자를 입력하세요 (공백 제외)'
+      placeholder='2~7자 이내 한글, 영문 또는 숫자를 입력하세요 (공백, 초성 제외)'
       errorMessage={errors.username && String(errors.username.message)}
       {...register('username', {
         required: '닉네임을 입력해주세요',
         pattern: {
-          value: /^[가-힣a-zA-Z0-9]{4,15}$/,
-          message: '4~15자 이내 한글, 영문 또는 숫자를 입력하세요 (공백 제외)',
+          value: /^[가-힣a-zA-Z0-9]{2,7}$/,
+          message:
+            '2~7자 이내 한글, 영문 또는 숫자를 입력하세요 (공백, 초성 제외)',
+        },
+        onChange: () => {
+          if (errors.username) {
+            trigger('username');
+          }
         },
         onBlur: async (e) => {
           const isValid = await trigger('username');
