@@ -14,14 +14,15 @@ interface Props {
 }
 
 function WellList({ userId, isRootUser }: Props) {
-  const { wells, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useWells(userId);
+  const { wells, hasNextPage, fetchNextPage, isFetchingNextPage } = useWells(
+    userId!
+  );
   const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
 
   return (
     <div className='relative flex w-full flex-col bg-gray-300 pb-[48px] text-gray-800'>
       <div className='grid grid-cols-2 gap-[24px] px-page py-[12px]'>
-        {isRootUser && <WellAddButton userId={userId} />}
+        {isRootUser && <WellAddButton userId={userId!} />}
         {wells?.map((well) => <WellIcon key={well.id} wellData={well} />)}
         {isFetchingNextPage ? (
           <WellItemsSkeleton />

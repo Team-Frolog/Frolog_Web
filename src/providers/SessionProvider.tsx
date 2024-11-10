@@ -9,7 +9,6 @@ function SessionProvider({ session }: { session: Session | null }) {
 
   useEffect(() => {
     if (session) {
-      console.log("change", session);
       setSession({
         userId: session.user.id,
         accessToken: session.user.accessToken,
