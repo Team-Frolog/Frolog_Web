@@ -11,7 +11,7 @@ export const useFlash = () => {
   const router = useRouter();
 
   const openFlash = ({ type, callbackUrl }: Props) => {
-    router.replace(`${PAGES.FLASH}/${type}?callbackUrl=${callbackUrl}`);
+    router.prefetch(`${PAGES.FLASH}/${type}?callbackUrl=${callbackUrl}`);
   };
 
   return { openFlash };
