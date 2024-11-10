@@ -5,6 +5,9 @@ import ThemeProvider from '@/providers/ThemeProvider';
 import QueryProvider from '@/providers/QueryProvider';
 import GAProvider from '@/providers/GAProvider';
 import NextAuthProvider from '@/providers/NextAuthProvider';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/utils/auth/auth';
+import SessionProvider from '@/providers/SessionProvider';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -150,11 +153,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang='ko'>
       <QueryProvider>
@@ -162,6 +167,7 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
           <GAProvider gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
         ) : null}
+        <SessionProvider session={session} />
         <NextAuthProvider>
           <body
             className={`${pretendard.variable} ${pretendard.className} text-gray-800`}

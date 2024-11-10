@@ -20,12 +20,12 @@ const useSessionStore = create<SessionStore>()(
       userId: null,
       accessToken: null,
       defaultWellId: null,
-      setSession: () =>
-        set((session) => ({
+      setSession: (session: Session) =>
+        set({
           userId: session.userId,
           accessToken: session.accessToken,
           defaultWellId: session.defaultWellId,
-        })),
+        }),
     }),
     {
       name: 'SessionStore',
