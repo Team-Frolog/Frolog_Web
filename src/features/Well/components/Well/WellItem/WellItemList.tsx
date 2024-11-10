@@ -117,7 +117,7 @@ const WellItemList = React.memo(
             />
           )}
         </motion.div>
-        {isLoading && <LoadingOverlay theme='transparent' />}
+        {isLoading && <LoadingOverlay theme='dark' />}
       </>
     );
   }
