@@ -36,7 +36,10 @@ export async function middleware(req: NextRequest) {
 
   if (token && isRemember?.value === 'false' && !isLoggedIn) {
     const response = NextResponse.redirect(new URL('/default', req.url));
-    response.cookies.delete(process.env.NEXTAUTH_TOKEN_NAME || '');
+    response.cookies.set(process.env.NEXTAUTH_TOKEN_NAME || '', '', {
+      httpOnly: true,
+      maxAge: 0,
+    });
     return response;
   }
 
