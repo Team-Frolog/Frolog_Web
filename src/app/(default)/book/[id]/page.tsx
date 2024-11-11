@@ -33,7 +33,7 @@ async function BookPage({ params: { id } }: Props) {
     queryFn: () =>
       new GetBook({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.id,
+        accessToken: session?.user.accessToken,
       }).fetch({ isbn: id }),
     staleTime: 1000 * 30,
   });
@@ -43,7 +43,7 @@ async function BookPage({ params: { id } }: Props) {
     queryFn: ({ pageParam }) =>
       new SearchReview({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.id,
+        accessToken: session?.user.accessToken,
       }).fetch({ isbn: id, limit: DEFAULT_LIMIT, page: pageParam }),
     initialPageParam: 0,
     staleTime: 1000 * 30,
