@@ -1,17 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import { useSession } from 'next-auth/react';
+import { useUserId } from '@/store/sessionStore';
 import { useRouter } from 'next/navigation';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { useState } from 'react';
 import { getReviewCount } from '../api/book.api';
 
 export const useAddBookToWell = (isbn: string) => {
+  const userId = useUserId();
   const [step, setStep] = useState<string | null>('state');
   const [callback, setCallback] = useState<(value?: any) => void>(() => {});
   const [isPending, setIsPending] = useState(false);
   const router = useRouter();
-  const { data: session } = useSession();
-  const userId = session?.user.id;
   const { handleAddWellItem, wellId, setWellId, setIsThroughSearch } =
     useAddWellItem(userId, () => setIsPending(false));
 

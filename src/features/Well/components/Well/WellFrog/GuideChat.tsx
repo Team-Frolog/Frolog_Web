@@ -1,7 +1,7 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
+import { useUserId } from '@/store/sessionStore';
 import { motion } from 'framer-motion';
 import { chat } from '../../../data/chat';
 import { getRandomMessage } from '../../../utils/getRandomMessage';
@@ -12,12 +12,12 @@ interface Props {
 }
 
 function GuideChat({ message, marginBottom }: Props) {
+  const userId = useUserId();
   const [isVisible, setIsVisible] = useState(true);
   const [msg, setMsg] = useState(message);
-  const { data: session } = useSession();
 
   useEffect(() => {
-    if (session) {
+    if (userId) {
       if (!message) {
         setMsg(getRandomMessage());
       } else {
@@ -26,10 +26,10 @@ function GuideChat({ message, marginBottom }: Props) {
     } else {
       setMsg(chat.not_loggedIn);
     }
-  }, [session, message]);
+  }, [userId, message]);
 
   useEffect(() => {
-    if (!message && session) {
+    if (!message && userId) {
       const timer = setTimeout(() => {
         setIsVisible(false);
       }, 5000);

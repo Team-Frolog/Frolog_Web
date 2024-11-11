@@ -9,9 +9,9 @@ function SessionProvider({ session }: { session: Session | null }) {
 
   useEffect(() => {
     setSession({
-      userId: session ? session.user.id : null,
-      accessToken: session ? session.user.accessToken : null,
-      defaultWellId: session ? session.user.defaultWellId : null,
+      userId: session?.user.id,
+      accessToken: session?.user.accessToken,
+      defaultWellId: session?.user.defaultWellId || null,
     });
   }, [session]);
 

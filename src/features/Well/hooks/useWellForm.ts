@@ -5,6 +5,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { toast } from '@/modules/Toast';
 import { ERROR_ALERT } from '@/constants/message';
+import { useUserId } from '@/store/sessionStore';
 import { PAGES } from '@/constants/page';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
@@ -19,7 +20,8 @@ export const useWellForm = (
 ) => {
   const router = useRouter();
   const isSecond = useSearchParams().get('isSecond');
-  const { data: session, update } = useSession();
+  const userId = useUserId();
+  const { update } = useSession();
   const [isLoading, setIsLoading] = useState(false);
   const [isNameChecked, setIsNameChecked] = useState(false);
   const { openFlash } = useFlash();
@@ -55,7 +57,7 @@ export const useWellForm = (
         return;
       }
       setIsLoading(true);
-      const res = await addNewWell({ ...data, owner: session!.user.id });
+      const res = await addNewWell({ ...data, owner: userId! });
       return res;
     },
     onError: () => {

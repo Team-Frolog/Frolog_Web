@@ -1,6 +1,6 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
+import { useUserId } from '@/store/sessionStore';
 import useCommentStore from '@/store/commentStore';
 import { CancelIcon, EnterIcon } from 'public/icons';
 import React, { useState } from 'react';
@@ -22,13 +22,13 @@ function CommentInput({
   comment,
   setComment,
 }: Props) {
+  const userId = useUserId();
   const { commentUser, setCommentUser } = useCommentStore();
-  const { data: session } = useSession();
   const [isFocusing, setIsFocusing] = useState(false);
 
   const handleAdd = (value: string) => {
     const req: any = {
-      writer: session?.user.id,
+      writer: userId,
       parent: commentUser?.parentId,
       mention: commentUser?.id,
       content: value,

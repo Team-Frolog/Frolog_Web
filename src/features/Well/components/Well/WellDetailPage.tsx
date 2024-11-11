@@ -5,7 +5,7 @@ import ScrollToTop from '@/components/Button/ScrollToTop';
 import NavigationBar from '@/components/NavigationBar';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import MainLayout from '@/layouts/MainLayout';
-import { useSession } from 'next-auth/react';
+import useSessionStore from '@/store/sessionStore';
 import { useWell } from '../../hooks/useWell';
 import WellItemList from './WellItem/WellItemList';
 import WellHeader from './WellHeader';
@@ -16,9 +16,12 @@ interface Props {
 }
 
 function WellDetailPage({ userId, wellId }: Props) {
-  const { data: session } = useSession();
-  const isRootUser = userId === session?.user.id;
-  const isDefaultWell = session?.user.defaultWellId === wellId;
+  const { sessionUserId, defaultWellId } = useSessionStore((state) => ({
+    sessionUserId: state.userId,
+    defaultWellId: state.defaultWellId,
+  }));
+  const isRootUser = userId === sessionUserId;
+  const isDefaultWell = defaultWellId === wellId;
   const { well } = useWell(wellId);
   const { isRendering, containerRef } = useScrollToTop();
 

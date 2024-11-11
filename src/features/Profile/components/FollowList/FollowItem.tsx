@@ -5,7 +5,7 @@ import { IMAGES } from '@/constants/images';
 import { useFollowUser } from '@/features/Feed';
 import { getImageSrc } from '@/utils/getImageSrc';
 import { GetProfileRes } from '@frolog/frolog-api';
-import { useSession } from 'next-auth/react';
+import { useUserId } from '@/store/sessionStore';
 
 interface Props {
   userId: string;
@@ -13,9 +13,9 @@ interface Props {
 }
 
 function FollowItem({ userId, targetUser }: Props) {
-  const { data: session } = useSession();
+  const sessionUserId = useUserId();
   const { handleFollow } = useFollowUser(userId);
-  const isRootUser = session?.user.id === targetUser.id;
+  const isRootUser = sessionUserId === targetUser.id;
   const isFollowing = !!targetUser.follow;
 
   return (

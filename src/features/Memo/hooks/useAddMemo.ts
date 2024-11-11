@@ -3,13 +3,13 @@
 import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useUserId } from '@/store/sessionStore';
 import { addNewMemo } from '../api/memo.api';
 import { MemoFormType } from '../types/form';
 
 export const useAddMemo = (wellId: string, bookId: string) => {
   const router = useRouter();
-  const { data: session } = useSession();
+  const userId = useUserId();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -21,8 +21,9 @@ export const useAddMemo = (wellId: string, bookId: string) => {
   const { mutate: handleAddMemo } = useMutation({
     mutationFn: async (data: MemoFormType) => {
       setIsLoading(true);
+
       const req = {
-        writer: session!.user.id,
+        writer: userId!,
         isbn: bookId,
         content: data.memo,
         is_public: data.isPublic,
@@ -33,7 +34,7 @@ export const useAddMemo = (wellId: string, bookId: string) => {
       return result;
     },
     onSuccess: () =>
-      router.replace(`/${session!.user.id}/well/${wellId}/book/${bookId}/memo`),
+      router.replace(`/${userId}/well/${wellId}/book/${bookId}/memo`),
   });
 
   return { handleAddMemo, isLoading };

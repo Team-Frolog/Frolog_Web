@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useSession } from 'next-auth/react';
+import { useUserId } from '@/store/sessionStore';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import useCommentStore from '@/store/commentStore';
@@ -20,8 +20,9 @@ interface Props {
 }
 
 function CommentItem({ commentData, itemId }: Props) {
+  const userId = useUserId();
   const [more, setMore] = useState(false);
-  const { data: session } = useSession();
+
   const {
     id,
     writer,
@@ -57,7 +58,7 @@ function CommentItem({ commentData, itemId }: Props) {
           userId={writer}
           isDeleted={deleted}
           onDelete={
-            session?.user.id === writer
+            userId === writer
               ? () =>
                   handleDeleteComment({ id: itemId, commentId: commentData.id })
               : undefined

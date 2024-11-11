@@ -5,7 +5,6 @@ import { Session } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import { useEffect, useRef } from 'react';
 import * as Sentry from '@sentry/nextjs';
-import useSessionStore from '@/store/sessionStore';
 
 interface Props {
   session: Session | null;
@@ -13,20 +12,11 @@ interface Props {
 }
 
 export function TokenHandler({ session, update }: Props) {
-  const setSession = useSessionStore((state) => state.setSession);
   const interval = useRef<ReturnType<typeof setInterval> | undefined>(
     undefined
   );
 
   useEffect(() => {
-    if (session) {
-      setSession({
-        userId: session.user.id,
-        accessToken: session.user.accessToken,
-        defaultWellId: session.user.defaultWellId,
-      });
-    }
-
     if (interval.current) {
       clearInterval(interval.current);
     }

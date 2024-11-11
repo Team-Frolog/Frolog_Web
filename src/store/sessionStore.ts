@@ -2,14 +2,14 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 interface Session {
-  userId: string | null;
-  accessToken: string | null;
+  userId: string | undefined;
+  accessToken: string | undefined;
   defaultWellId: string | null;
 }
 
 interface SessionStore {
-  userId: string | null;
-  accessToken: string | null;
+  userId: string | undefined;
+  accessToken: string | undefined;
   defaultWellId: string | null;
   setSession: (session: Session) => void;
 }
@@ -17,8 +17,8 @@ interface SessionStore {
 const useSessionStore = create<SessionStore>()(
   persist(
     (set) => ({
-      userId: null,
-      accessToken: null,
+      userId: undefined,
+      accessToken: undefined,
       defaultWellId: null,
       setSession: (session: Session) =>
         set({
