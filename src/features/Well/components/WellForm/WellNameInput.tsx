@@ -6,14 +6,16 @@ import { useFormContext } from 'react-hook-form';
 import { checkWellName } from '../../api/well.api';
 
 interface Props {
+  originalName?: string;
   setIsNameChecked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function WellNameInput({ setIsNameChecked }: Props) {
+function WellNameInput({ originalName, setIsNameChecked }: Props) {
   const { trigger, setError } = useFormContext();
 
   const {
     register,
+
     formState: { errors },
   } = useFormContext();
 
@@ -21,9 +23,14 @@ function WellNameInput({ setIsNameChecked }: Props) {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const isVaild = await trigger('name');
-    const { value } = e.target;
+    const value = e.target.value.trim();
 
-    if (isVaild && value.trim() !== '') {
+    if (originalName && value === originalName) {
+      setIsNameChecked(true);
+      return;
+    }
+
+    if (isVaild && value !== '') {
       const result = await checkWellName(value);
 
       if (result) {

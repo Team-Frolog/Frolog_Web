@@ -24,8 +24,6 @@ export const useWellForm = (
   const [isNameChecked, setIsNameChecked] = useState(false);
   const { openFlash } = useFlash();
 
-  console.log(isNameChecked);
-
   const { data: wellData } = useQuery({
     queryKey: ['well', wellId],
     queryFn: () => getWell(wellId!),
@@ -76,7 +74,8 @@ export const useWellForm = (
   });
 
   const { mutate: handleEditWell } = useMutation({
-    mutationFn: (data: WellFormType) => editWell({ ...data, id: wellId! }),
+    mutationFn: (data: Partial<WellFormType>) =>
+      editWell({ ...data, id: wellId! }),
     onError: () => {
       toast.error(ERROR_ALERT);
       setIsLoading(false);
@@ -107,12 +106,24 @@ export const useWellForm = (
       });
     } else if (type === 'write') {
       handleAddWell(data);
-    } else {
-      handleEditWell(data);
+    } else if (type === 'edit' && wellData) {
+      const updatedFields: Partial<WellFormType> = data;
+
+      Object.keys(data).forEach((key) => {
+        const typedKey = key as keyof WellFormType;
+        if (data[typedKey] === wellData[typedKey]) {
+          updatedFields[typedKey] = undefined;
+        }
+      });
+
+      if (Object.keys(updatedFields).length > 0) {
+        handleEditWell(updatedFields);
+      }
     }
   };
 
   return {
+    originalName: wellData?.name,
     handleWellFrom,
     handleClickBack,
     isLoading,

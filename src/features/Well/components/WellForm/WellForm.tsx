@@ -44,8 +44,13 @@ function WellForm({ type, userId, wellId }: Props) {
     formState: { isDirty },
   } = methods;
 
-  const { handleWellFrom, handleClickBack, isLoading, setIsNameChecked } =
-    useWellForm(type, reset, setError, wellId);
+  const {
+    originalName,
+    handleWellFrom,
+    handleClickBack,
+    isLoading,
+    setIsNameChecked,
+  } = useWellForm(type, reset, setError, wellId);
 
   return (
     <FormProvider {...methods}>
@@ -61,7 +66,10 @@ function WellForm({ type, userId, wellId }: Props) {
           isDisabled={isLoading}
         />
         <div className='flex w-full flex-1 flex-col gap-[36px] overflow-auto bg-white px-page py-[32px]'>
-          <WellNameInput setIsNameChecked={setIsNameChecked} />
+          <WellNameInput
+            originalName={originalName}
+            setIsNameChecked={setIsNameChecked}
+          />
           <FrogSelector userId={userId} />
           <ShapeForm />
         </div>
