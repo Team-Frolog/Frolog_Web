@@ -16,8 +16,6 @@ function Flash({ children, flashKey }: Props) {
     frog,
     ground,
     hasPopper,
-    width,
-    height,
     maxHeight,
     marginBottom,
     groundMaxHeight,
@@ -50,17 +48,20 @@ function Flash({ children, flashKey }: Props) {
             {getTitle()}
           </div>
 
-          <div className='flex flex-1 items-end justify-center'>
-            <Image
-              src={frog}
-              alt='frog'
-              width={width}
-              height={height}
-              className='z-10 h-full w-auto'
-              loading='eager'
-              priority
+          <div className='relative flex w-full flex-1 items-end justify-center'>
+            <div
               style={{ maxHeight, marginBottom }}
-            />
+              className='relative flex h-full w-full'
+            >
+              <Image
+                src={frog}
+                alt='frog'
+                fill
+                className='z-10 h-full w-auto object-contain'
+                loading='eager'
+                priority
+              />
+            </div>
           </div>
           {children || (
             <Image

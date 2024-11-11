@@ -6,8 +6,6 @@ interface Flash {
   frog: string;
   ground: string;
   hasPopper: boolean;
-  width: number;
-  height: number;
   maxHeight: number;
   marginBottom: number;
   groundMaxHeight?: number;
@@ -33,8 +31,6 @@ export const flash: {
     frog: IMAGES.flash.congrats,
     ground: IMAGES.ground_sm,
     hasPopper: true,
-    width: 1661,
-    height: 1339,
     maxHeight: 257,
     marginBottom: -20,
     isRedirect: true,
@@ -55,8 +51,6 @@ export const flash: {
     frog: IMAGES.flash.new_well,
     ground: IMAGES.ground_sm,
     hasPopper: true,
-    width: 1255,
-    height: 1469,
     maxHeight: 282,
     marginBottom: -5,
     isRedirect: true,
@@ -77,8 +71,6 @@ export const flash: {
     frog: IMAGES.flash.new_well,
     ground: IMAGES.ground_sm,
     hasPopper: true,
-    width: 160,
-    height: 190,
     maxHeight: 282,
     marginBottom: -2,
     isRedirect: false,
@@ -99,8 +91,6 @@ export const flash: {
     frog: IMAGES.flash.unsubscribe,
     ground: IMAGES.ground,
     hasPopper: false,
-    width: 249,
-    height: 340,
     maxHeight: 320,
     marginBottom: -60,
     groundMaxHeight: 130,
@@ -118,8 +108,6 @@ export const flash: {
     frog: IMAGES.frog.fallback.error_page,
     ground: IMAGES.ground,
     hasPopper: false,
-    width: 249,
-    height: 340,
     maxHeight: 250,
     marginBottom: -60,
     isRedirect: false,
@@ -136,8 +124,6 @@ export const flash: {
     frog: IMAGES.frog.fallback.notfound_page,
     ground: IMAGES.ground,
     hasPopper: false,
-    width: 249,
-    height: 340,
     maxHeight: 250,
     marginBottom: -60,
     isRedirect: false,

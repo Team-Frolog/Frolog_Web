@@ -29,17 +29,20 @@ function FinishLight({ children, frog, frogMaxHeight }: Props) {
           {children}
         </BigTitle>
 
-        <div className='flex flex-1 items-end justify-center'>
-          <Image
-            src={frog}
-            alt='frog'
-            width={240}
-            height={200}
-            className='z-10 h-full w-auto mobile:h-auto [@media(max-height:700px)]:h-auto [@media(max-height:700px)]:w-[80%] [@media(max-width:350px)]:w-[80%]'
-            loading='eager'
+        <div className='relative flex w-full flex-1 items-end justify-center'>
+          <div
             style={{ maxHeight: frogMaxHeight || '250px' }}
-            priority
-          />
+            className='relative flex h-full w-full'
+          >
+            <Image
+              src={frog}
+              alt='frog'
+              fill
+              className='z-10 h-full w-auto object-contain'
+              loading='eager'
+              priority
+            />
+          </div>
         </div>
       </div>
     </div>
