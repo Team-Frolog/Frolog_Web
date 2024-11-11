@@ -1,9 +1,9 @@
-import { FlashType } from '@/app/(default)/flash/[type]/page';
 import { PAGES } from '@/constants/page';
+import { FlashKeys } from '@/data/ui/flash';
 import { useRouter } from 'next/navigation';
 
 interface Props {
-  type: FlashType;
+  type: FlashKeys;
   callbackUrl: string;
 }
 

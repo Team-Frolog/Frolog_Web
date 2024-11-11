@@ -2,6 +2,9 @@ import React from 'react';
 import { Metadata } from 'next';
 import Flash from '@/components/Flash/Flash';
 import { FlashKeys } from '@/data/ui/flash';
+import Image from 'next/image';
+import LinkButton from '@/components/Button/LinkButton';
+import { IMAGES } from '@/constants/images';
 
 interface Props {
   params: {
@@ -27,7 +30,26 @@ export const metadata: Metadata = {
 };
 
 function FlashPage({ params: { type } }: Props) {
-  return <Flash flashKey={type} />;
+  return (
+    <Flash flashKey={type}>
+      {type === 'first_new_well' ? (
+        <div className='relative flex h-fit w-full'>
+          <Image
+            src={IMAGES.ground}
+            alt='ground'
+            width={390}
+            height={182}
+            className='h-[100px] w-full'
+            loading='eager'
+            priority
+          />
+          <div className='absolute left-0 top-1/2 flex w-full -translate-y-1/2 justify-center px-page'>
+            <LinkButton route='/'>확인</LinkButton>
+          </div>
+        </div>
+      ) : undefined}
+    </Flash>
+  );
 }
 
 export default FlashPage;

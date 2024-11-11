@@ -2,16 +2,15 @@ import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { flash, FlashKeys } from '@/data/ui/flash';
-import BigTitle from '../Text/BigTitle';
 import PopperAnimation from '../animation/PopperAnimation';
-import LinkButton from '../Button/LinkButton';
 import FlashHandler from '../Gesture/FlashHandler';
 
 interface Props {
   flashKey: FlashKeys;
+  children: React.ReactNode;
 }
 
-function Flash({ flashKey }: Props) {
+function Flash({ children, flashKey }: Props) {
   const {
     getTitle,
     frog,
@@ -48,12 +47,7 @@ function Flash({ flashKey }: Props) {
         </div>
         <div className='z-10 flex h-fit w-full flex-1 flex-col items-center justify-end pt-[170px] mobile:pt-[120px]'>
           <div className='flex min-h-[240px] w-fit items-end mobile:mb-[16px] [@media(max-height:800px)]:min-h-[180px]'>
-            <BigTitle
-              type='default'
-              extraClass='text-center mobile:text-heading-md-bold'
-            >
-              {getTitle()}
-            </BigTitle>
+            {getTitle()}
           </div>
 
           <div className='flex flex-1 items-end justify-center'>
@@ -68,22 +62,7 @@ function Flash({ flashKey }: Props) {
               style={{ maxHeight, marginBottom }}
             />
           </div>
-          {flashKey === 'first_new_well' ? (
-            <div className='relative flex h-fit w-full'>
-              <Image
-                src={ground}
-                alt='ground'
-                width={390}
-                height={182}
-                className='h-[100px] w-full'
-                loading='eager'
-                priority
-              />
-              <div className='absolute left-0 top-1/2 flex w-full -translate-y-1/2 justify-center px-page'>
-                <LinkButton route='/'>확인</LinkButton>
-              </div>
-            </div>
-          ) : (
+          {children || (
             <Image
               src={ground}
               alt='ground'

@@ -17,6 +17,8 @@ export const IMAGES = {
       search: `${BASE_PATH}/frog/fallback/search-frog.svg`,
       no_review: `${BASE_PATH}/frog/fallback/no-review.svg`,
       empty_dot: `${BASE_PATH}/frog/fallback/frog-empty-dot.svg`,
+      error_page: `${BASE_PATH}/frog/fallback/error-frog.svg`,
+      notfound_page: `${BASE_PATH}/frog/fallback/not-found-frog.svg`,
     },
     first_congrats: `${BASE_PATH}/frog/first-review-congrats.svg`,
     add: {
