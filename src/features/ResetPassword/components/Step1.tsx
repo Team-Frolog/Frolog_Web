@@ -8,7 +8,7 @@ import SendButton from '@/components/Form/Button/SendButton';
 function Step1() {
   const { moveStep } = useStepActions();
   const { handleValidateEmail, isEmailChecked, setIsEmailChecked } =
-    useEmailValidation('findPassword');
+    useEmailValidation('resetPassword');
   const {
     register,
     watch,

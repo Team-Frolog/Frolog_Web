@@ -2,7 +2,7 @@ import { checkEmail } from '@/api/auth.api';
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-export const useEmailValidation = (type: 'signUp' | 'findPassword') => {
+export const useEmailValidation = (type: 'signUp' | 'resetPassword') => {
   const { trigger, setError } = useFormContext();
   const [isEmailChecked, setIsEmailChecked] = useState(false);
 
@@ -26,7 +26,7 @@ export const useEmailValidation = (type: 'signUp' | 'findPassword') => {
             message: '이미 사용 중인 이메일이에요.',
           });
         }
-      } else if (type === 'findPassword') {
+      } else if (type === 'resetPassword') {
         if (data) {
           setError('email', {
             type: 'custom',

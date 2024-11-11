@@ -16,7 +16,7 @@ function NeedToLoginBlur() {
             TIP 나의 독서 성향에 맞는 책도 추천해줘요!
           </p>
         </div>
-        <LinkButton route={PAGES.LANDING}>로그인 하기</LinkButton>
+        <LinkButton route={PAGES.ONBOARDING}>로그인 하기</LinkButton>
       </div>
       <DummyItem />
     </div>

@@ -13,7 +13,7 @@ function FormHeader() {
   const { title } = useFormTitle();
 
   const handleClickBack = () => {
-    if (pathname === PAGES.LANDING) {
+    if (pathname === PAGES.ONBOARDING) {
       router.push('/');
     } else {
       localStorage.removeItem(JOIN_FORM_KEY);

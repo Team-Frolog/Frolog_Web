@@ -10,7 +10,7 @@ interface PageConfig {
 
 export const PAGES = {
   HOME: '/',
-  LANDING: '/landing',
+  ONBOARDING: '/onboarding',
   JOIN: '/join',
   JOIN_FINISH: '/join/finish',
   LOGIN: '/login',

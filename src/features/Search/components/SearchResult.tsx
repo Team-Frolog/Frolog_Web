@@ -41,7 +41,7 @@ function SearchResult() {
     } else {
       bottomSheet.open({
         sheetKey: 'need_to_login',
-        onClick: () => router.push(PAGES.LANDING),
+        onClick: () => router.push(PAGES.ONBOARDING),
       });
     }
   };
