@@ -1,40 +1,27 @@
 import React from 'react';
-import { Metadata } from 'next';
-import Image from 'next/image';
-import PopperAnimation from '@/components/animation/PopperAnimation';
-import FlashHandler from '@/components/Gesture/FlashHandler';
-import BigTitle from '@/components/Text/BigTitle';
-import { flash } from '@/data/ui/flash';
-import LinkButton from '@/components/Button/LinkButton';
 import Head from 'next/head';
-
-export type FlashType = 'review' | 'new_well' | 'first_new_well';
+import Image from 'next/image';
+import { flash, FlashKeys } from '@/data/ui/flash';
+import BigTitle from '../Text/BigTitle';
+import PopperAnimation from '../animation/PopperAnimation';
+import LinkButton from '../Button/LinkButton';
 
 interface Props {
-  params: {
-    type: FlashType;
-  };
+  flashKey: FlashKeys;
 }
 
-export async function generateStaticParams() {
-  return [{ type: 'review' }, { type: 'new_well' }, { type: 'first_new_well' }];
-}
-
-export const metadata: Metadata = {
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
-
-function FlashPage({ params: { type } }: Props) {
-  const { getTitle, frog, ground, width, height, maxHeight } = flash[type];
+function Flash({ flashKey }: Props) {
+  const {
+    getTitle,
+    frog,
+    ground,
+    hasPopper,
+    width,
+    height,
+    maxHeight,
+    marginBottom,
+    groundMaxHeight,
+  } = flash[flashKey];
 
   return (
     <>
@@ -44,7 +31,6 @@ function FlashPage({ params: { type } }: Props) {
         <link rel='preload' href={ground} as='image' />
       </Head>
       <div className='safe-screen safe-header flex w-full flex-col items-center justify-between overflow-hidden overscroll-none bg-white'>
-        <FlashHandler type={type} />
         <div className='absolute z-0 flex h-fit w-full flex-1 flex-col items-center bg-gray-900 pt-[30px]'>
           <Image
             src='/images/flash/light.webp'
@@ -57,7 +43,7 @@ function FlashPage({ params: { type } }: Props) {
           />
           <div className='w-full flex-1 bg-white' />
         </div>
-        <div className='z-10 flex h-fit w-full flex-1 flex-col items-center justify-end pt-[170px] mobile:pt-[120px]'>
+        <div className='z-10 flex h-fit w-full flex-1 flex-col items-center justify-end pt-[170px] mobile:gap-[20px] mobile:pt-[120px]'>
           <div className='flex min-h-[240px] w-fit items-end [@media(max-height:800px)]:min-h-[180px]'>
             <BigTitle
               type='default'
@@ -73,13 +59,13 @@ function FlashPage({ params: { type } }: Props) {
               alt='frog'
               width={width}
               height={height}
-              className='h-full w-auto [@media(max-height:700px)]:h-auto [@media(max-height:700px)]:w-[80%]'
+              className='z-10 h-full w-auto [@media(max-height:700px)]:h-auto [@media(max-height:700px)]:w-[80%]'
               loading='eager'
               priority
-              style={{ maxHeight: `${maxHeight}px`, marginBottom: '-5px' }}
+              style={{ maxHeight, marginBottom }}
             />
           </div>
-          {type === 'first_new_well' ? (
+          {flashKey === 'first_new_well' ? (
             <div className='relative flex h-fit w-full'>
               <Image
                 src={ground}
@@ -101,15 +87,16 @@ function FlashPage({ params: { type } }: Props) {
               width={390}
               height={182}
               className='w-full'
+              style={{ maxHeight: groundMaxHeight || 'none' }}
               loading='eager'
               priority
             />
           )}
         </div>
-        <PopperAnimation />
+        {hasPopper && <PopperAnimation />}
       </div>
     </>
   );
 }
 
-export default FlashPage;
+export default Flash;

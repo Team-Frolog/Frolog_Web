@@ -1,7 +1,5 @@
 import { IMAGES } from '@/constants/images';
 
-export type FlashKeys = 'review';
-
 interface Flash {
   getTitle: () => JSX.Element;
   frog: string;
@@ -9,7 +7,9 @@ interface Flash {
   hasPopper: boolean;
   width: number;
   height: number;
-  max_height: number;
+  maxHeight: number;
+  marginBottom: number;
+  groundMaxHeight?: number;
 }
 
 export const flash: {
@@ -30,7 +30,8 @@ export const flash: {
     hasPopper: true,
     width: 1661,
     height: 1339,
-    max_height: 257,
+    maxHeight: 257,
+    marginBottom: 0,
   },
   new_well: {
     getTitle: () => (
@@ -47,7 +48,8 @@ export const flash: {
     hasPopper: true,
     width: 1255,
     height: 1469,
-    max_height: 282,
+    maxHeight: 282,
+    marginBottom: 0,
   },
   first_new_well: {
     getTitle: () => (
@@ -64,7 +66,8 @@ export const flash: {
     hasPopper: true,
     width: 1255,
     height: 1469,
-    max_height: 282,
+    maxHeight: 282,
+    marginBottom: 0,
   },
   unsubscribe: {
     getTitle: () => (
@@ -81,6 +84,21 @@ export const flash: {
     hasPopper: false,
     width: 2490,
     height: 3417,
-    max_height: 320,
+    maxHeight: 320,
+    marginBottom: -60,
+    groundMaxHeight: 130,
   },
-};
+  test_loading: {
+    getTitle: () => <></>,
+    frog: '',
+    ground: IMAGES.ground,
+    hasPopper: false,
+    width: 2896,
+    height: 3771,
+    maxHeight: 300,
+    marginBottom: -60,
+    groundMaxHeight: 100,
+  },
+} as const;
+
+export type FlashKeys = keyof typeof flash;
