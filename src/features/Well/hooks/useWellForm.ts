@@ -101,7 +101,7 @@ export const useWellForm = (
   };
 
   const handleWellFrom = (data: WellFormType) => {
-    if (!isNameChecked) {
+    if (!isNameChecked && data.name !== wellData?.name) {
       setError('name', {
         type: 'custom',
         message: '이미 같은 이름의 우물이 있어요',

@@ -56,7 +56,7 @@ function Flash({ children, flashKey }: Props) {
               alt='frog'
               width={width}
               height={height}
-              className='z-10 h-full w-auto [@media(max-height:700px)]:h-auto [@media(max-height:700px)]:w-[80%]'
+              className='z-10 h-full w-auto'
               loading='eager'
               priority
               style={{ maxHeight, marginBottom }}

@@ -65,7 +65,7 @@ function WellIcon({ wellData, type = 'default', onClick }: Props) {
         </motion.div>
         {getIsNew(date) && <NewTag position='left-0 top-0 z-50' />}
         <Image
-          src={`/images/well/shape/${shape}.svg`}
+          src={`/images/well/shape/${shape}.webp`}
           alt='shape'
           width={sizeOfBg[shape].width}
           height={sizeOfBg[shape].height}

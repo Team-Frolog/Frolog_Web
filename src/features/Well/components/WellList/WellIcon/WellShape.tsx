@@ -1,13 +1,13 @@
 import React from 'react';
-import Well1 from 'public/images/well/shape/1.svg';
-import Well2 from 'public/images/well/shape/2.svg';
-import Well3 from 'public/images/well/shape/3.svg';
-import Well4 from 'public/images/well/shape/4.svg';
-import Well5 from 'public/images/well/shape/5.svg';
-import Well6 from 'public/images/well/shape/6.svg';
-import Well7 from 'public/images/well/shape/7.svg';
-import Well8 from 'public/images/well/shape/8.svg';
-import Well9 from 'public/images/well/shape/9.svg';
+import Well1 from 'public/images/well/shape/svg/1.svg';
+import Well2 from 'public/images/well/shape/svg/2.svg';
+import Well3 from 'public/images/well/shape/svg/3.svg';
+import Well4 from 'public/images/well/shape/svg/4.svg';
+import Well5 from 'public/images/well/shape/svg/5.svg';
+import Well6 from 'public/images/well/shape/svg/6.svg';
+import Well7 from 'public/images/well/shape/svg/7.svg';
+import Well8 from 'public/images/well/shape/svg/8.svg';
+import Well9 from 'public/images/well/shape/svg/9.svg';
 
 interface Props {
   welltype: number;
