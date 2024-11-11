@@ -40,13 +40,9 @@ function NicknameInput({ theme, originUsername = '' }: Props) {
         },
         onBlur: async (e) => {
           const isValid = await trigger('username');
-          const { value } = e.target;
+          const value = e.target.value.trim();
 
-          if (
-            isValid &&
-            value.trim() !== originUsername &&
-            value.trim() !== ''
-          ) {
+          if (isValid && value !== originUsername && value !== '') {
             const data = await checkNickname({
               username: value,
             });

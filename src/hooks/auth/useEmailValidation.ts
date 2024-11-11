@@ -10,9 +10,9 @@ export const useEmailValidation = (type: 'signUp' | 'findPassword') => {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const isVaild = await trigger('email');
-    const { value } = e.target;
+    const value = e.target.value.trim();
 
-    if (isVaild && value.trim() !== '') {
+    if (isVaild && value !== '') {
       const data = await checkEmail({
         email: value,
       });

@@ -40,9 +40,10 @@ function CommentInput({
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.currentTarget.blur();
+
       setIsFocusing(false);
       if (comment.trim() !== '') {
-        handleAdd(comment);
+        handleAdd(comment.trim());
       }
     }
   };
