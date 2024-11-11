@@ -66,4 +66,21 @@ export const flash: {
     height: 1469,
     max_height: 282,
   },
+  unsubscribe: {
+    getTitle: () => (
+      <>
+        이메일
+        <br />
+        수신 거부
+        <br />
+        완료
+      </>
+    ),
+    frog: IMAGES.flash.unsubscribe,
+    ground: IMAGES.ground,
+    hasPopper: false,
+    width: 2490,
+    height: 3417,
+    max_height: 320,
+  },
 };

@@ -9,6 +9,7 @@ export const IMAGES = {
       loading: `${BASE_PATH}/frog/flash/frog-evaluating.svg`,
       done: `${BASE_PATH}/frog/flash/frog-evaluating-done.svg`,
     },
+    unsubscribe: `${BASE_PATH}/frog/flash/unsubscribe-frog.webp`,
   },
   frog: {
     fallback: {
