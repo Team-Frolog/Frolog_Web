@@ -61,7 +61,8 @@ function BookInfo({ feedData, isMemo }: Props) {
                 alt='memo frog'
                 width={252}
                 height={56}
-                className='w-full max-w-[95%]'
+                className='mb-[-2px] w-full max-w-[95%]'
+                priority
               />
             ) : (
               <Rating
