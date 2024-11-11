@@ -31,13 +31,14 @@ function Step1() {
             message: '이메일 형식을 확인해주세요.',
           },
           onChange: async (e) => {
+            setIsEmailChecked(false);
             if (errors.email) {
               const isPassed = await trigger('email');
+
               if (isPassed) {
                 handleValidateEmail(e);
               }
             }
-            setIsEmailChecked(false);
           },
           onBlur: (e) => handleValidateEmail(e),
         })}

@@ -9,7 +9,6 @@ export const useEmailValidation = (type: 'signUp' | 'findPassword') => {
   const handleValidateEmail = async (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setIsEmailChecked(false);
     const isVaild = await trigger('email');
     const { value } = e.target;
 

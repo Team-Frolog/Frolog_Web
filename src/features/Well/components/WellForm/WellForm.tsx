@@ -39,20 +39,19 @@ function WellForm({ type, userId, wellId }: Props) {
 
   const {
     reset,
+    setError,
     handleSubmit,
     formState: { isDirty },
   } = methods;
 
-  const { handleAddWell, handleClickBack, handleEditWell, isLoading } =
-    useWellForm(type, reset, wellId);
+  const { handleWellFrom, handleClickBack, isLoading, setIsNameChecked } =
+    useWellForm(type, reset, setError, wellId);
 
   return (
     <FormProvider {...methods}>
       <form
         className='form-layout gap-0'
-        onSubmit={handleSubmit((data) =>
-          type === 'write' ? handleAddWell(data) : handleEditWell(data)
-        )}
+        onSubmit={handleSubmit(handleWellFrom)}
       >
         <TitleHeader
           title={type === 'write' ? '새 우물 파기' : '우물 고치기'}
@@ -62,7 +61,7 @@ function WellForm({ type, userId, wellId }: Props) {
           isDisabled={isLoading}
         />
         <div className='flex w-full flex-1 flex-col gap-[36px] overflow-auto bg-white px-page py-[32px]'>
-          <WellNameInput />
+          <WellNameInput setIsNameChecked={setIsNameChecked} />
           <FrogSelector userId={userId} />
           <ShapeForm />
         </div>

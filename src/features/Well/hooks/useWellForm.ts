@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { UseFormReset } from 'react-hook-form';
+import { UseFormReset, UseFormSetError } from 'react-hook-form';
 import { useFlash } from '@/hooks/useFlash';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { bottomSheet } from '@/modules/BottomSheet';
@@ -14,13 +14,17 @@ import { WellFormType } from '../components/WellForm/WellForm';
 export const useWellForm = (
   type: 'write' | 'edit',
   reset: UseFormReset<WellFormType>,
+  setError: UseFormSetError<WellFormType>,
   wellId?: string
 ) => {
   const router = useRouter();
   const isSecond = useSearchParams().get('isSecond');
   const { data: session, update } = useSession();
   const [isLoading, setIsLoading] = useState(false);
+  const [isNameChecked, setIsNameChecked] = useState(false);
   const { openFlash } = useFlash();
+
+  console.log(isNameChecked);
 
   const { data: wellData } = useQuery({
     queryKey: ['well', wellId],
@@ -49,6 +53,9 @@ export const useWellForm = (
 
   const { mutate: handleAddWell } = useMutation({
     mutationFn: async (data: WellFormType) => {
+      if (!isNameChecked) {
+        return;
+      }
       setIsLoading(true);
       const res = await addNewWell({ ...data, owner: session!.user.id });
       return res;
@@ -92,10 +99,23 @@ export const useWellForm = (
     }
   };
 
+  const handleWellFrom = (data: WellFormType) => {
+    if (!isNameChecked) {
+      setError('name', {
+        type: 'custom',
+        message: '이미 같은 이름의 우물이 있어요',
+      });
+    } else if (type === 'write') {
+      handleAddWell(data);
+    } else {
+      handleEditWell(data);
+    }
+  };
+
   return {
-    handleAddWell,
+    handleWellFrom,
     handleClickBack,
-    handleEditWell,
     isLoading,
+    setIsNameChecked,
   };
 };

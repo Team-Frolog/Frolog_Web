@@ -7,7 +7,7 @@ import FlashHandler from '../Gesture/FlashHandler';
 
 interface Props {
   flashKey: FlashKeys;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 function Flash({ children, flashKey }: Props) {

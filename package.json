@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@frolog/frolog-api": "^1.0.1",
+    "@frolog/frolog-api": "^1.0.2",
     "@sentry/nextjs": "^8.35.0",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/line-clamp": "^0.4.4",

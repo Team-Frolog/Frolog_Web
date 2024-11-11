@@ -8,13 +8,11 @@ function SessionProvider({ session }: { session: Session | null }) {
   const setSession = useSessionStore((state) => state.setSession);
 
   useEffect(() => {
-    if (session) {
-      setSession({
-        userId: session.user.id,
-        accessToken: session.user.accessToken,
-        defaultWellId: session.user.defaultWellId,
-      });
-    }
+    setSession({
+      userId: session ? session.user.id : null,
+      accessToken: session ? session.user.accessToken : null,
+      defaultWellId: session ? session.user.defaultWellId : null,
+    });
   }, [session]);
 
   return <></>;
