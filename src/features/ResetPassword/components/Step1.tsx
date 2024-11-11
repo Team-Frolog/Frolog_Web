@@ -6,7 +6,7 @@ import FormInput from '@/components/Form/Input/FormInput';
 import SendButton from '@/components/Form/Button/SendButton';
 
 function Step1() {
-  const { goNextFindStep } = useStepActions();
+  const { moveStep } = useStepActions();
   const { handleValidateEmail, isEmailChecked, setIsEmailChecked } =
     useEmailValidation('findPassword');
   const {
@@ -43,7 +43,7 @@ function Step1() {
         })}
       />
       <SendButton
-        onNext={goNextFindStep}
+        onNext={() => moveStep(1)}
         isDisabled={!watch('email') || !isValid || !isEmailChecked}
         type='resetPassword'
       />

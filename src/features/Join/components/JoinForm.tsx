@@ -22,13 +22,13 @@ function JoinForm() {
         : defaultValue,
   });
   const { getValues, handleSubmit } = methods;
-  const { goNextJoinStep, resetJoinStep } = useStepActions();
-  const { joinUser, joinStep, isLoading } = useJoin(getValues);
+  const { resetStep, moveStep } = useStepActions();
+  const { joinUser, step, isLoading } = useJoin(getValues);
 
   useEffect(() => {
     return () => {
       localStorage.removeItem(JOIN_FORM_KEY);
-      resetJoinStep();
+      resetStep();
     };
   }, []);
 
@@ -38,12 +38,12 @@ function JoinForm() {
         className='form-layout overflow-auto py-page scrollbar-hide'
         onSubmit={handleSubmit((data) => joinUser(data))}
       >
-        {joinStep === 1 && <Step1 />}
-        {joinStep === 2 && <Step2 />}
-        {joinStep === 3 && (
-          <CodeForm type='signUp' onClickNext={goNextJoinStep} />
+        {step === 1 && <Step1 />}
+        {step === 2 && <Step2 />}
+        {step === 3 && (
+          <CodeForm type='signUp' onClickNext={() => moveStep(1)} />
         )}
-        {joinStep === 4 && <Step4 />}
+        {step === 4 && <Step4 />}
       </form>
       {isLoading && <LoadingOverlay theme='dark' />}
     </FormProvider>

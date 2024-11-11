@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 function Step2() {
-  const { goNextJoinStep } = useStepActions();
+  const { moveStep } = useStepActions();
   const { handleValidateEmail, isEmailChecked, setIsEmailChecked } =
     useEmailValidation('signUp');
   const [isDisabled, setIsDisabled] = useState(true);
@@ -61,7 +61,7 @@ function Step2() {
         </div>
       </div>
       <SendButton
-        onNext={goNextJoinStep}
+        onNext={() => moveStep(1)}
         isDisabled={isDisabled || !isEmailChecked}
         type='signUp'
       />
