@@ -3,6 +3,8 @@ import { UseFormReset } from 'react-hook-form';
 import { useFlash } from '@/hooks/useFlash';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { bottomSheet } from '@/modules/BottomSheet';
+import { toast } from '@/modules/Toast';
+import { ERROR_ALERT } from '@/constants/message';
 import { PAGES } from '@/constants/page';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
@@ -51,6 +53,10 @@ export const useWellForm = (
       const res = await addNewWell({ ...data, owner: session!.user.id });
       return res;
     },
+    onError: () => {
+      toast.error(ERROR_ALERT);
+      setIsLoading(false);
+    },
     onSuccess: async () => {
       if (isSecond) {
         await update({ defaultWellId: null });
@@ -64,6 +70,10 @@ export const useWellForm = (
 
   const { mutate: handleEditWell } = useMutation({
     mutationFn: (data: WellFormType) => editWell({ ...data, id: wellId! }),
+    onError: () => {
+      toast.error(ERROR_ALERT);
+      setIsLoading(false);
+    },
     onSuccess: () => router.replace(PAGES.HOME),
   });
 
