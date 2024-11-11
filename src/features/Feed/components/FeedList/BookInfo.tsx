@@ -30,6 +30,7 @@ function BookInfo({ feedData, isMemo }: Props) {
             width={74}
             height={110}
             className='h-full max-w-fit self-end bg-gray-400'
+            priority
           />
         </div>
 
