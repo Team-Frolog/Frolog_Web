@@ -5,6 +5,7 @@ import { flash, FlashKeys } from '@/data/ui/flash';
 import BigTitle from '../Text/BigTitle';
 import PopperAnimation from '../animation/PopperAnimation';
 import LinkButton from '../Button/LinkButton';
+import FlashHandler from '../Gesture/FlashHandler';
 
 interface Props {
   flashKey: FlashKeys;
@@ -21,6 +22,7 @@ function Flash({ flashKey }: Props) {
     maxHeight,
     marginBottom,
     groundMaxHeight,
+    isRedirect,
   } = flash[flashKey];
 
   return (
@@ -31,6 +33,7 @@ function Flash({ flashKey }: Props) {
         <link rel='preload' href={ground} as='image' />
       </Head>
       <div className='safe-screen safe-header flex w-full flex-col items-center justify-between overflow-hidden overscroll-none bg-white'>
+        <FlashHandler type={flashKey} isRedirect={isRedirect} />
         <div className='absolute z-0 flex h-fit w-full flex-1 flex-col items-center bg-gray-900 pt-[30px]'>
           <Image
             src='/images/flash/light.webp'
@@ -43,8 +46,8 @@ function Flash({ flashKey }: Props) {
           />
           <div className='w-full flex-1 bg-white' />
         </div>
-        <div className='z-10 flex h-fit w-full flex-1 flex-col items-center justify-end pt-[170px] mobile:gap-[20px] mobile:pt-[120px]'>
-          <div className='flex min-h-[240px] w-fit items-end [@media(max-height:800px)]:min-h-[180px]'>
+        <div className='z-10 flex h-fit w-full flex-1 flex-col items-center justify-end pt-[170px] mobile:pt-[120px]'>
+          <div className='flex min-h-[240px] w-fit items-end mobile:mb-[16px] [@media(max-height:800px)]:min-h-[180px]'>
             <BigTitle
               type='default'
               extraClass='text-center mobile:text-heading-md-bold'

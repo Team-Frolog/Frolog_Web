@@ -1,16 +1,17 @@
 'use client';
 
-import { FlashType } from '@/app/(default)/flash/[type]/page';
 import { PAGES } from '@/constants/page';
+import { FlashKeys } from '@/data/ui/flash';
 import useAddBookStore from '@/store/addBookStore';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react';
 
 interface Props {
-  type: FlashType;
+  type: FlashKeys;
+  isRedirect: boolean;
 }
 
-function FlashHandler({ type }: Props) {
+function FlashHandler({ type, isRedirect }: Props) {
   const callbackUrl = useSearchParams().get('callbackUrl');
   const { resetWellId } = useAddBookStore((state) => state.actions);
 
@@ -19,7 +20,7 @@ function FlashHandler({ type }: Props) {
       if (type === 'review') {
         resetWellId();
       }
-      if (type !== 'first_new_well') {
+      if (isRedirect) {
         window.location.replace(callbackUrl || PAGES.HOME);
       }
     }, 2500);

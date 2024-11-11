@@ -10,6 +10,7 @@ interface Flash {
   maxHeight: number;
   marginBottom: number;
   groundMaxHeight?: number;
+  isRedirect: boolean;
 }
 
 export const flash: {
@@ -31,7 +32,8 @@ export const flash: {
     width: 1661,
     height: 1339,
     maxHeight: 257,
-    marginBottom: 0,
+    marginBottom: -20,
+    isRedirect: true,
   },
   new_well: {
     getTitle: () => (
@@ -49,7 +51,8 @@ export const flash: {
     width: 1255,
     height: 1469,
     maxHeight: 282,
-    marginBottom: 0,
+    marginBottom: -5,
+    isRedirect: true,
   },
   first_new_well: {
     getTitle: () => (
@@ -67,7 +70,8 @@ export const flash: {
     width: 1255,
     height: 1469,
     maxHeight: 282,
-    marginBottom: 0,
+    marginBottom: -5,
+    isRedirect: false,
   },
   unsubscribe: {
     getTitle: () => (
@@ -87,17 +91,7 @@ export const flash: {
     maxHeight: 320,
     marginBottom: -60,
     groundMaxHeight: 130,
-  },
-  test_loading: {
-    getTitle: () => <></>,
-    frog: '',
-    ground: IMAGES.ground,
-    hasPopper: false,
-    width: 2896,
-    height: 3771,
-    maxHeight: 300,
-    marginBottom: -60,
-    groundMaxHeight: 100,
+    isRedirect: false,
   },
 } as const;
 
