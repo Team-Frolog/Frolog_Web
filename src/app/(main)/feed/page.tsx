@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: '피드',
 };
 
-function FeedPage() {
+async function FeedPage() {
   return <Feeds />;
 }
 
