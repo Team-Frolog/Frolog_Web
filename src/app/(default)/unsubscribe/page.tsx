@@ -5,6 +5,8 @@ import PopperAnimation from '@/components/animation/PopperAnimation';
 import BigTitle from '@/components/Text/BigTitle';
 import Head from 'next/head';
 import { flash } from '@/data/ui/flash';
+import { UnsubscribeMailing } from '@frolog/frolog-api';
+import { baseOptions } from '@/api/options';
 
 export type FlashType = 'review' | 'new_well' | 'first_new_well';
 
@@ -21,16 +23,26 @@ export const metadata: Metadata = {
   },
 };
 
-function UnsubscribePage() {
-  const { getTitle, frog, ground, hasPopper, width, height, max_height } =
+interface Props {
+  searchParams?: { [key: string]: string | undefined };
+}
+
+async function UnsubscribePage({ searchParams }: Props) {
+  if (searchParams?.hash) {
+    throw Error("Unsubscribe Error: hash code doesn't exist.");
+  }
+  await new UnsubscribeMailing(baseOptions).fetch({
+    hash: searchParams!.hash!,
+  });
+  const { getTitle, frog, ground, hasPopper, width, height, maxHeight } =
     flash.unsubscribe;
 
   return (
     <>
       <Head>
         <link rel='preload' href='/images/flash/light.webp' as='image' />
-        <link rel='preload' href='' as='image' />
-        <link rel='preload' href='' as='image' />
+        <link rel='preload' href={frog} as='image' />
+        <link rel='preload' href={ground} as='image' />
       </Head>
       <div className='safe-screen safe-header flex w-full flex-col items-center justify-between overflow-hidden overscroll-none bg-white'>
         <div className='absolute z-0 flex h-fit w-full flex-1 flex-col items-center bg-gray-900 pt-[30px]'>
@@ -64,7 +76,7 @@ function UnsubscribePage() {
               className='z-10 h-full w-auto [@media(max-height:700px)]:h-auto [@media(max-height:700px)]:w-[80%]'
               loading='eager'
               priority
-              style={{ maxHeight: max_height, marginBottom: '-60px' }}
+              style={{ maxHeight, marginBottom: '-60px' }}
             />
           </div>
           <Image
