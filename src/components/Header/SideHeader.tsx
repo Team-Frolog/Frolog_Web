@@ -6,7 +6,7 @@ import BackButton from '../Button/BackButton';
 
 interface Props {
   children?: React.ReactNode;
-  title?: string;
+  title?: string | React.ReactNode;
   hasBackButton?: boolean;
   bgColor?: string;
 }
@@ -28,7 +28,7 @@ function SideHeader({
           onClick={() => router.back()}
         />
       )}
-      <div className='safe-header pointer-events-none absolute left-0 top-0 z-60 flex w-full justify-between gap-[80px]'>
+      <div className='safe-header pointer-events-none absolute left-0 z-60 flex w-full justify-between gap-[80px]'>
         <div className='side-header-left' />
         <div className='side-header-right' />
       </div>

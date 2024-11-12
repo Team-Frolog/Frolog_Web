@@ -1,21 +1,23 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
 import PullToRefresh from '@/components/Gesture/PullToRefresh';
 import SideHeader from '@/components/Header/SideHeader';
 import MainLayout from '@/layouts/MainLayout';
+import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
+import ScrollToTop from '@/components/Gesture/ScrollToTop';
 import FeedList from './FeedList/FeedList';
 
 function Feeds() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const { isRendering, containerRef } = useScrollToTop();
 
   return (
     <>
       <SideHeader />
-      <MainLayout extraClass='bg-gray-300 overflow-hidden'>
-        <div
+      <div className='flex w-full flex-1 flex-col overflow-hidden bg-gray-300'>
+        <MainLayout
           ref={containerRef}
-          className='flex w-full flex-1 flex-col overflow-auto scrollbar-hide'
+          extraClass='overflow-auto scrollbar-hide'
         >
           <PullToRefresh element={containerRef} />
           <div className='flex h-fit w-full px-page py-[20px] pt-[50px]'>
@@ -24,8 +26,10 @@ function Feeds() {
             </h1>
           </div>
           <FeedList />
-        </div>
-      </MainLayout>
+
+          {isRendering && <ScrollToTop />}
+        </MainLayout>
+      </div>
     </>
   );
 }

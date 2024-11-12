@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
 import { bottomSheet } from '@/modules/BottomSheet';
-import { useSession } from 'next-auth/react';
+import { useUserId } from '@/store/sessionStore';
 import SearchResultSkeleton from '@/components/Fallback/Skeleton/SearchResultSkeleton';
 import BookListItemSkeleton from '@/components/Fallback/Skeleton/BookListItemSkeleton';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
@@ -26,7 +26,7 @@ function SearchResult() {
     fetchNextPage,
     isFetchingNextPage,
   } = useSearch();
-  const { data: session } = useSession();
+  const userId = useUserId();
   const router = useRouter();
   const [isOpenRegister, setIsOpenRegister] = useState(false);
 
@@ -36,12 +36,12 @@ function SearchResult() {
   });
 
   const handleNoBookClick = () => {
-    if (session) {
+    if (userId) {
       setIsOpenRegister(true);
     } else {
       bottomSheet.open({
         sheetKey: 'need_to_login',
-        onClick: () => router.push(PAGES.LANDING),
+        onClick: () => router.push(PAGES.ONBOARDING),
       });
     }
   };

@@ -2,7 +2,7 @@
 
 import { PAGES } from '@/constants/page';
 import { TEST_ANSWER_KEY, TEST_RESULT_FOR_EDIT } from '@/constants/storage';
-import { useStepActions, useTestStep } from '@/store/stepStore';
+import { useStep, useStepActions } from '@/store/stepStore';
 import { editProfile } from '@/api/profile.api';
 import { getSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -13,10 +13,10 @@ import { testEvaluator } from '../utils/testEvaluator';
 import { Question, questions } from '../data/test';
 
 export const useTest = () => {
-  const testStep = useTestStep();
+  const step = useStep();
   const router = useRouter();
   const callback = useSearchParams().get('callbackUrl');
-  const { moveTestStep } = useStepActions();
+  const { moveStep } = useStepActions();
   const [testData, setTestData] = useState<Question>(questions[0]);
   const [answers, setAnswers] = useState<number[]>(() => {
     if (typeof window !== 'undefined') {
@@ -29,13 +29,13 @@ export const useTest = () => {
   const handleClickAnswer = (id: number) => {
     setAnswers((prev) => {
       const newArr = [...prev];
-      newArr[testStep - 1] = id;
+      newArr[step - 1] = id;
       sessionStorage.setItem(TEST_ANSWER_KEY, JSON.stringify(newArr));
       return newArr;
     });
 
     setTimeout(() => {
-      moveTestStep(1);
+      moveStep(1);
     }, 500);
   };
 
@@ -60,20 +60,20 @@ export const useTest = () => {
   };
 
   useEffect(() => {
-    if (testStep <= 7) {
-      setTestData(questions[testStep - 1]);
-      const currentAnswers = answers.slice(0, testStep);
+    if (step <= 7) {
+      setTestData(questions[step - 1]);
+      const currentAnswers = answers.slice(0, step);
       sessionStorage.setItem(TEST_ANSWER_KEY, JSON.stringify(currentAnswers));
       setAnswers(currentAnswers);
     }
-    if (testStep === 8) {
+    if (step === 8) {
       const testResult = testEvaluator(answers);
-      moveTestStep(1);
+      moveStep(1);
       router.replace(
         `${PAGES.TEST}?loading=true&type=${testResult}${callback ? `&callbackUrl=${callback}` : ''}`
       );
     }
-  }, [testStep]);
+  }, [step]);
 
-  return { testStep, answers, handleClickAnswer, testData, postTestResult };
+  return { step, answers, handleClickAnswer, testData, postTestResult };
 };

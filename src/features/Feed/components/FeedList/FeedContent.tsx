@@ -13,7 +13,7 @@ interface Props {
 
 function FeedContent({ feedData, isFeed = true }: Props) {
   return (
-    <div className='flex flex-col gap-[20px] bg-white py-[20px]'>
+    <div className='z-10 flex flex-col gap-[20px] bg-white py-[20px]'>
       {isGetMemoRes(feedData) ? (
         <>
           {feedData.images.length !== 0 && (

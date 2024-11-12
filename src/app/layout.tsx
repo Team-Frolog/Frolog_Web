@@ -1,16 +1,20 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-import AuthProvider from '@/providers/AuthProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 import QueryProvider from '@/providers/QueryProvider';
 import GAProvider from '@/providers/GAProvider';
+import NextAuthProvider from '@/providers/NextAuthProvider';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/utils/auth/auth';
+import SessionProvider from '@/providers/SessionProvider';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
   display: 'swap',
   weight: '45 920',
   variable: '--font-pretendard',
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -39,8 +43,8 @@ export const metadata: Metadata = {
     },
     images: '/opengraph-image.png',
     description:
-      '책을 추가해 우물을 탈출하는 독서 기록 서비스, 프롤로그(Frolog)',
-    url: 'https://frolog.kr',
+      '책을 추가해 우물을 탈출하는 독서 기록 플랫폼, 프롤로그(Frolog)',
+    url: 'https://www.frolog.kr',
     siteName: 'Frolog',
     locale: 'ko_KR',
     type: 'website',
@@ -55,7 +59,7 @@ export const metadata: Metadata = {
       default: 'Frolog | 프롤로그',
     },
     description:
-      '책을 추가해 우물을 탈출하는 독서 기록 서비스, 프롤로그(Frolog)',
+      '책을 추가해 우물을 탈출하는 독서 기록 플랫폼, 프롤로그(Frolog)',
   },
   verification: {
     google: 'f35-rdvgbbgvYjNJjFBfFU91fnG8bsUyDcfgpz0M8R8',
@@ -150,11 +154,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang='ko'>
       <QueryProvider>
@@ -162,7 +168,8 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
           <GAProvider gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
         ) : null}
-        <AuthProvider>
+        <SessionProvider session={session} />
+        <NextAuthProvider>
           <body
             className={`${pretendard.variable} ${pretendard.className} text-gray-800`}
           >
@@ -170,7 +177,7 @@ export default function RootLayout({
             <div id='portal' />
             <div id='toast-root' />
           </body>
-        </AuthProvider>
+        </NextAuthProvider>
       </QueryProvider>
     </html>
   );

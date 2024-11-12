@@ -1,3 +1,5 @@
+'use client';
+
 import { PAGES } from '@/constants/page';
 import { Session } from 'next-auth';
 import { signOut } from 'next-auth/react';

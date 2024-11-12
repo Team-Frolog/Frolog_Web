@@ -1,6 +1,6 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
+import { useUserId } from '@/store/sessionStore';
 import useCommentStore from '@/store/commentStore';
 import { CancelIcon, EnterIcon } from 'public/icons';
 import React, { useState } from 'react';
@@ -22,13 +22,13 @@ function CommentInput({
   comment,
   setComment,
 }: Props) {
+  const userId = useUserId();
   const { commentUser, setCommentUser } = useCommentStore();
-  const { data: session } = useSession();
   const [isFocusing, setIsFocusing] = useState(false);
 
   const handleAdd = (value: string) => {
     const req: any = {
-      writer: session?.user.id,
+      writer: userId,
       parent: commentUser?.parentId,
       mention: commentUser?.id,
       content: value,
@@ -40,15 +40,16 @@ function CommentInput({
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.currentTarget.blur();
+
       setIsFocusing(false);
       if (comment.trim() !== '') {
-        handleAdd(comment);
+        handleAdd(comment.trim());
       }
     }
   };
 
   return (
-    <div className='z-70 flex h-max w-full shrink-0 flex-col'>
+    <div className='safe-bottom z-70 flex h-max w-full shrink-0 flex-col'>
       {commentUser && (
         <div className='flex items-center justify-between bg-gray-200 px-page py-[8px] text-body-md text-gray-600'>
           <span>{commentUser?.name}님에게 댓글 남기는 중</span>

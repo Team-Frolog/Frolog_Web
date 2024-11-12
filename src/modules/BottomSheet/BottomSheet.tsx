@@ -40,7 +40,7 @@ function BottomSheet({
         animate={{ y: '0%' }}
         exit={{ y: '120%' }}
         transition={{ duration: 0.3 }}
-        className='safe-bottom relative flex h-fit w-full flex-col items-center gap-[40px] rounded-t-[20px] bg-white px-[24px] py-[40px] text-gray-800'
+        className='safe-bottom relative flex h-fit w-full flex-col items-center gap-[40px] rounded-t-[20px] bg-white px-[24px] pb-[20px] pt-[40px] text-gray-800'
         style={{ paddingTop: '40px', gap: '40px' }}
       >
         <Image

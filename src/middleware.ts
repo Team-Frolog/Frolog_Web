@@ -16,7 +16,7 @@ const protectedRoutes: string[] = [
   '/store',
 ]; // 로그인이 필요한 페이지 목록
 const publicRoutes: string[] = [
-  '/landing',
+  '/onboarding',
   '/login',
   '/join',
   '/find-password',
@@ -26,9 +26,25 @@ const publicRoutes: string[] = [
 export async function middleware(req: NextRequest) {
   const token = await getToken({
     req,
-    secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
-    secureCookie: true,
+    secret: process.env.NEXTAUTH_SECRET,
   });
+
+  // 자동 로그인 판별
+  const isRemember = req.cookies.get('isRemember');
+  const isLoggedIn = req.cookies.get('isLoggedIn');
+
+  if (token && isRemember?.value === 'false' && !isLoggedIn) {
+    const response = NextResponse.redirect(new URL('/default', req.url));
+    response.cookies.set(process.env.NEXTAUTH_TOKEN_NAME || '', '', {
+      httpOnly: true,
+      secure: true,
+      path: '/',
+      sameSite: 'lax',
+      maxAge: 0,
+    });
+    return response;
+  }
+
   const { pathname } = req.nextUrl;
   const defaultWellId = token ? token.defaultWellId : undefined;
 
@@ -57,7 +73,7 @@ export const config = {
 
 function withAuth(req: NextRequest, isLoggedIn: boolean) {
   if (!isLoggedIn) {
-    return NextResponse.redirect(new URL('/landing', req.url));
+    return NextResponse.redirect(new URL('/onboarding', req.url));
   }
   return NextResponse.next();
 }

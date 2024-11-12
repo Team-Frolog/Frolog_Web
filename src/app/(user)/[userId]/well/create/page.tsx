@@ -1,5 +1,13 @@
 import { WellForm } from '@/features/Well';
+import { authOptions } from '@/utils/auth/auth';
+import { SearchStoreItem } from '@frolog/frolog-api';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 import { Metadata } from 'next';
+import { getServerSession } from 'next-auth';
 import React from 'react';
 
 export const metadata: Metadata = {
@@ -22,8 +30,25 @@ interface Props {
   };
 }
 
-function WellCreatePage({ params: { userId } }: Props) {
-  return <WellForm type='write' userId={userId} />;
+async function WellCreatePage({ params: { userId } }: Props) {
+  const session = await getServerSession(authOptions);
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['frogs', userId],
+    queryFn: () =>
+      new SearchStoreItem({
+        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+        accessToken: session?.user.accessToken,
+      }).fetch({ owner: userId, type: 'frog' }),
+    staleTime: 1000 * 30,
+  });
+
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <WellForm type='write' userId={userId} />
+    </HydrationBoundary>
+  );
 }
 
 export default WellCreatePage;

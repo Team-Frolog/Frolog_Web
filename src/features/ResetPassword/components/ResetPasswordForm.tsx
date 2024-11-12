@@ -24,13 +24,13 @@ function ResetPasswordForm() {
   });
 
   const { handleSubmit } = methods;
-  const { goNextFindStep, resetFindStep } = useStepActions();
-  const { findStep, resetPassword } = useResetPassword(methods.getValues);
+  const { moveStep, resetStep } = useStepActions();
+  const { step, resetPassword } = useResetPassword(methods.getValues);
 
   useEffect(() => {
     return () => {
       localStorage.removeItem(FIND_FORM_KEY);
-      resetFindStep();
+      resetStep();
     };
   }, []);
 
@@ -40,11 +40,11 @@ function ResetPasswordForm() {
         className='form-layout py-[34px]'
         onSubmit={handleSubmit((data) => resetPassword(data))}
       >
-        {findStep === 1 && <Step1 />}
-        {findStep === 2 && (
-          <CodeForm type='resetPassword' onClickNext={goNextFindStep} />
+        {step === 1 && <Step1 />}
+        {step === 2 && (
+          <CodeForm type='resetPassword' onClickNext={() => moveStep(1)} />
         )}
-        {findStep === 3 && <Step3 />}
+        {step === 3 && <Step3 />}
       </form>
     </FormProvider>
   );

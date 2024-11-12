@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 function Step2() {
-  const { goNextJoinStep } = useStepActions();
+  const { moveStep } = useStepActions();
   const { handleValidateEmail, isEmailChecked, setIsEmailChecked } =
     useEmailValidation('signUp');
   const [isDisabled, setIsDisabled] = useState(true);
@@ -17,6 +17,7 @@ function Step2() {
   const {
     watch,
     register,
+    trigger,
     formState: { errors, isValid },
   } = useFormContext();
   const email = watch('email');
@@ -44,7 +45,16 @@ function Step2() {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
                 message: '이메일 형식을 확인해주세요.',
               },
-              onChange: () => setIsEmailChecked(false),
+              onChange: async (e) => {
+                setIsEmailChecked(false);
+                if (errors.email) {
+                  const isPassed = await trigger('email');
+
+                  if (isPassed) {
+                    handleValidateEmail(e);
+                  }
+                }
+              },
               onBlur: (e) => handleValidateEmail(e),
             })}
           />
@@ -52,7 +62,7 @@ function Step2() {
         </div>
       </div>
       <SendButton
-        onNext={goNextJoinStep}
+        onNext={() => moveStep(1)}
         isDisabled={isDisabled || !isEmailChecked}
         type='signUp'
       />

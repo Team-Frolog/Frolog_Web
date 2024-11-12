@@ -9,7 +9,7 @@ import { IMAGES } from '@/constants/images';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useReport } from '@/hooks/useReport';
 import { useProfile } from '@/hooks/useProfile';
-import { useSession } from 'next-auth/react';
+import { useUserId } from '@/store/sessionStore';
 import { getImageSrc } from '@/utils/getImageSrc';
 import { useFollowUser } from '../hooks/feed/useFollowUser';
 
@@ -30,9 +30,9 @@ function ProfileHeader({
   hasFollow = false,
   isChildComment = false,
 }: Props) {
-  const { data: session } = useSession();
+  const sessionUserId = useUserId();
   const router = useRouter();
-  const isRootUser = session?.user.id === userId;
+  const isRootUser = sessionUserId === userId;
   const { profile } = useProfile(userId);
   const { handleReport } = useReport(userId);
   const { handleFollow } = useFollowUser();

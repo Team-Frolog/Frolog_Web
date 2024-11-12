@@ -4,8 +4,16 @@ import SideHeader from '@/components/Header/SideHeader';
 import NavigationBar from '@/components/NavigationBar';
 import { Menu } from '@/features/Profile';
 import MainLayout from '@/layouts/MainLayout';
+import { authOptions } from '@/utils/auth/auth';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
+import { GetProfileDetail } from '@frolog/frolog-api';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 import { Metadata } from 'next';
+import { getServerSession } from 'next-auth';
 import dynamic from 'next/dynamic';
 import React from 'react';
 
@@ -38,7 +46,19 @@ interface Props {
 }
 
 async function UserProfilePage({ params: { userId } }: Props) {
+  const session = await getServerSession(authOptions);
   const { isRootUser } = await getIsRootUser(userId);
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['profileDetail', userId],
+    queryFn: () =>
+      new GetProfileDetail({
+        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+        accessToken: session?.user.accessToken,
+      }).fetch({ id: userId }),
+    staleTime: 1000 * 30,
+  });
 
   return (
     <>
@@ -47,7 +67,10 @@ async function UserProfilePage({ params: { userId } }: Props) {
         <div
           className={`flex w-full flex-1 flex-col gap-[32px] pb-[32px] ${isRootUser ? 'justify-start' : 'justify-between'}`}
         >
-          <Profile userId={userId} isRootUser={isRootUser} />
+          <HydrationBoundary state={dehydrate(queryClient)}>
+            <Profile userId={userId} isRootUser={isRootUser} />
+          </HydrationBoundary>
+
           {isRootUser && <Menu />}
           {!isRootUser && (
             <div className='flex px-page'>

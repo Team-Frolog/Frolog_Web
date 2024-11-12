@@ -1,7 +1,11 @@
+'use client';
+
+import { useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getFeed } from '../../api/feed.api';
 
 export const useFeed = () => {
+  const [isCommentLoading, setIsCommentLoading] = useState(false);
   const {
     data,
     fetchNextPage,
@@ -38,5 +42,7 @@ export const useFeed = () => {
     isLoading,
     isEmpty,
     refetch,
+    isCommentLoading,
+    setIsCommentLoading,
   };
 };

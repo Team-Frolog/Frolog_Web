@@ -32,9 +32,14 @@ export const useStore = (userId: string, points?: number) => {
         onClick: () => purchase(item.key),
         titleProp: item.name,
       });
-    } else {
+    } else if (item.is_available) {
       bottomSheet.open({
         sheetKey: 'cant_buy',
+        titleProp: item.name,
+      });
+    } else {
+      bottomSheet.open({
+        sheetKey: 'not_available_item',
         titleProp: item.name,
       });
     }

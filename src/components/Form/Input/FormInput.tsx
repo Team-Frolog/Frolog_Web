@@ -60,7 +60,9 @@ const FormInput = React.forwardRef(
               {isRequired && <span className='text-body-md text-main'>*</span>}
             </h6>
             {hasCount && (
-              <span className='text-body-md text-gray-700'>
+              <span
+                className={`text-body-md text-gray-700 ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}
+              >
                 {watch(fieldName).length}/{maxCount}
               </span>
             )}

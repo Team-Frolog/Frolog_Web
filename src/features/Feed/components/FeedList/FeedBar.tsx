@@ -12,9 +12,10 @@ import { isGetMemoRes } from '../../utils/typeGuard';
 interface Props {
   feedData: GetReviewRes | GetMemoRes;
   onClickLike: () => void;
+  startCommentLoading: () => void;
 }
 
-function FeedBar({ feedData, onClickLike }: Props) {
+function FeedBar({ feedData, onClickLike, startCommentLoading }: Props) {
   const router = useRouter();
 
   return (
@@ -30,13 +31,12 @@ function FeedBar({ feedData, onClickLike }: Props) {
           type='button'
           className='flex items-center gap-[4px]'
           onClick={() =>
-            runWhenLoggedIn(
-              () =>
-                router.push(
-                  `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}`
-                ),
-              'feed'
-            )
+            runWhenLoggedIn(() => {
+              startCommentLoading();
+              router.push(
+                `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}`
+              );
+            }, 'feed')
           }
         >
           <ChatIcon />

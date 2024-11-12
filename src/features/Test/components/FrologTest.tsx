@@ -12,14 +12,14 @@ import Question from './Question/Question';
 function FrologTest() {
   const type = useSearchParams().get('type');
   const isLoading = useSearchParams().get('loading');
-  const { resetTestStep } = useStepActions();
-  const { testData, answers, handleClickAnswer, testStep, postTestResult } =
+  const { resetStep } = useStepActions();
+  const { testData, answers, handleClickAnswer, step, postTestResult } =
     useTest();
 
   useEffect(() => {
     return () => {
       sessionStorage.removeItem(TEST_ANSWER_KEY);
-      resetTestStep();
+      resetStep();
     };
   }, []);
 
@@ -35,7 +35,7 @@ function FrologTest() {
         testData={testData}
         answers={answers}
         handleClickAnswer={handleClickAnswer}
-        testStep={testStep}
+        testStep={step}
       />
     </>
   );

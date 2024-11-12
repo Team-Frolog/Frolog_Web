@@ -8,7 +8,7 @@ import { useProfile } from '@/hooks/useProfile';
 import { useRouter } from 'next/navigation';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { useScroll } from '@/hooks/gesture/useScroll';
-import { useSession } from 'next-auth/react';
+import { useUserId } from '@/store/sessionStore';
 import { useMemoDetailPage } from '../hooks/useMemoDetailPage';
 import MemoDetail from './MemoDetail';
 
@@ -18,11 +18,11 @@ interface Props {
 
 function MemoDetailPage({ memoId }: Props) {
   const router = useRouter();
-  const { data: session } = useSession();
+  const userId = useUserId();
   useScroll({ categoryColor: undefined });
   const { memoDetail } = useMemoDetailPage(memoId);
   const { profile } = useProfile(memoDetail?.writer);
-  const isRootUser = session?.user.id === profile?.id;
+  const isRootUser = userId === profile?.id;
 
   if (!memoDetail || !profile) return <></>;
 

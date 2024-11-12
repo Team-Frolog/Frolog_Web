@@ -4,11 +4,13 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { signOut } from 'next-auth/react';
+import useSessionStore from '@/store/sessionStore';
 import { PAGES } from '@/constants/page';
 import MenuItem from './MenuItem';
 
 function Menu() {
   const router = useRouter();
+  const { clearStorage } = useSessionStore.persist;
 
   return (
     <div className='flex w-full flex-col gap-[28px] px-page'>
@@ -32,8 +34,10 @@ function Menu() {
             onClick={() =>
               bottomSheet.open({
                 sheetKey: 'logout',
-                onClick: () =>
-                  signOut({ callbackUrl: PAGES.HOME, redirect: true }),
+                onClick: () => {
+                  clearStorage();
+                  signOut({ callbackUrl: PAGES.HOME, redirect: true });
+                },
               })
             }
           />

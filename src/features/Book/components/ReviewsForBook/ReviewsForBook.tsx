@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { useSession } from 'next-auth/react';
 import { useObserver } from '@/hooks/gesture/useObserver';
+import { useUserId } from '@/store/sessionStore';
 import { useReviewForBook } from '@/features/Review';
 import NoReviewForBook from './NoReviewForBook';
 import ReviewItem from './ReviewItem';
@@ -15,7 +15,7 @@ interface Props {
 }
 
 function ReviewsForBook({ bookId }: Props) {
-  const { data: session } = useSession();
+  const userId = useUserId();
   const {
     reviews,
     isEmpty,
@@ -33,7 +33,7 @@ function ReviewsForBook({ bookId }: Props) {
   return (
     <div className='safe-bottom flex w-full flex-col gap-[36px] pt-[36px]'>
       {isEmpty && isFetched && <NoReviewForBook />}
-      {!isEmpty && !session && (
+      {!isEmpty && !userId && (
         <>
           <ReviewItem
             key={reviews[0].id}
@@ -44,7 +44,7 @@ function ReviewsForBook({ bookId }: Props) {
           <NeedToLoginBlur />
         </>
       )}
-      {session &&
+      {userId &&
         reviews.map((review) => (
           <ReviewItem
             key={review.id}
@@ -55,7 +55,7 @@ function ReviewsForBook({ bookId }: Props) {
             }
           />
         ))}
-      {!isFetchingNextPage && session && (
+      {!isFetchingNextPage && userId && (
         <div ref={setTarget} id='observer' className='h-[10px]' />
       )}
     </div>

@@ -9,7 +9,7 @@ import CheckAllItem from './CheckAllItem';
 import { requiredConsentsKeys } from '../../data/joinForm';
 
 function Step1() {
-  const { goNextJoinStep } = useStepActions();
+  const { moveStep } = useStepActions();
   const { watch } = useFormContext();
   const isAgree = requiredConsentsKeys.every((key) => watch(key));
 
@@ -24,7 +24,7 @@ function Step1() {
         btnType='button'
         btnText='다음'
         disabled={!isAgree}
-        onClick={goNextJoinStep}
+        onClick={() => moveStep(1)}
       >
         <p className='text-center text-body-sm text-gray-400'>
           개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있으며,

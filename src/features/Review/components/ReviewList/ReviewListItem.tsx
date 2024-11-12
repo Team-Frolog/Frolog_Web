@@ -7,7 +7,7 @@ import TagSlider from '@/components/Tag/TagSlider';
 import { GetReviewRes } from '@frolog/frolog-api';
 import { formatDate } from '@/utils/date';
 import DeleteButton from '@/components/ListItem/DeleteButton';
-import { useSession } from 'next-auth/react';
+import { useUserId } from '@/store/sessionStore';
 
 interface Props {
   reviewData: GetReviewRes;
@@ -18,8 +18,8 @@ interface Props {
 
 function ReviewListItem({ reviewData, setReviewId, onDelete, userId }: Props) {
   const router = useRouter();
-  const { data: session } = useSession();
-  const isRootUser = userId === session?.user.id;
+  const sessionUserId = useUserId();
+  const isRootUser = userId === sessionUserId;
 
   return (
     <div className={`review-item px-0 ${isRootUser && 'pb-0'}`}>

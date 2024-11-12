@@ -14,7 +14,7 @@ export const runWhenLoggedIn = async (
     bottomSheet.open({
       sheetKey: type === 'feed' ? 'need_to_login_feed' : 'need_to_login',
       onClick: () => {
-        window.location.href = PAGES.LANDING;
+        window.location.href = PAGES.ONBOARDING;
       },
     });
   }

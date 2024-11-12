@@ -6,12 +6,13 @@ import FormInput from '@/components/Form/Input/FormInput';
 import SendButton from '@/components/Form/Button/SendButton';
 
 function Step1() {
-  const { goNextFindStep } = useStepActions();
+  const { moveStep } = useStepActions();
   const { handleValidateEmail, isEmailChecked, setIsEmailChecked } =
-    useEmailValidation('findPassword');
+    useEmailValidation('resetPassword');
   const {
     register,
     watch,
+    trigger,
     formState: { errors, isValid },
   } = useFormContext();
 
@@ -29,12 +30,21 @@ function Step1() {
             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
             message: '이메일 형식을 확인해주세요.',
           },
-          onChange: () => setIsEmailChecked(false),
+          onChange: async (e) => {
+            setIsEmailChecked(false);
+            if (errors.email) {
+              const isPassed = await trigger('email');
+
+              if (isPassed) {
+                handleValidateEmail(e);
+              }
+            }
+          },
           onBlur: (e) => handleValidateEmail(e),
         })}
       />
       <SendButton
-        onNext={goNextFindStep}
+        onNext={() => moveStep(1)}
         isDisabled={!watch('email') || !isValid || !isEmailChecked}
         type='resetPassword'
       />

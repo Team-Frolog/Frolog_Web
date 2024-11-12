@@ -25,6 +25,9 @@ function PasswordForm() {
             message: '대소문자, 숫자, 특수문자를 8~15자로 조합하세요.',
           },
           onChange: async () => {
+            if (errors.password) {
+              trigger('password');
+            }
             await trigger('passwordCheck');
           },
         })}

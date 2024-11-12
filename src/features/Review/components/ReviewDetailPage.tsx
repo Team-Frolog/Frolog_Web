@@ -9,7 +9,7 @@ import { useProfile } from '@/hooks/useProfile';
 import { useRouter } from 'next/navigation';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { useScroll } from '@/hooks/gesture/useScroll';
-import { useSession } from 'next-auth/react';
+import { useUserId } from '@/store/sessionStore';
 
 interface Props {
   reviewId: string;
@@ -18,10 +18,10 @@ interface Props {
 function ReviewDetailPage({ reviewId }: Props) {
   useScroll({ categoryColor: undefined });
   const router = useRouter();
-  const { data: session } = useSession();
+  const userId = useUserId();
   const { reviewDetail } = useReviewDetailPage(reviewId);
   const { profile } = useProfile(reviewDetail?.writer);
-  const isRootUser = session?.user.id === profile?.id;
+  const isRootUser = userId === profile?.id;
 
   if (!reviewDetail || !profile) return <></>;
 

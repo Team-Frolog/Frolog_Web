@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import { UseFormReset } from 'react-hook-form';
+import { UseFormReset, UseFormSetError } from 'react-hook-form';
 import { useFlash } from '@/hooks/useFlash';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { bottomSheet } from '@/modules/BottomSheet';
+import { toast } from '@/modules/Toast';
+import { ERROR_ALERT } from '@/constants/message';
+import { useUserId } from '@/store/sessionStore';
 import { PAGES } from '@/constants/page';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
@@ -12,12 +15,15 @@ import { WellFormType } from '../components/WellForm/WellForm';
 export const useWellForm = (
   type: 'write' | 'edit',
   reset: UseFormReset<WellFormType>,
+  setError: UseFormSetError<WellFormType>,
   wellId?: string
 ) => {
   const router = useRouter();
   const isSecond = useSearchParams().get('isSecond');
-  const { data: session, update } = useSession();
+  const userId = useUserId();
+  const { update } = useSession();
   const [isLoading, setIsLoading] = useState(false);
+  const [isNameChecked, setIsNameChecked] = useState(false);
   const { openFlash } = useFlash();
 
   const { data: wellData } = useQuery({
@@ -47,9 +53,16 @@ export const useWellForm = (
 
   const { mutate: handleAddWell } = useMutation({
     mutationFn: async (data: WellFormType) => {
+      if (!isNameChecked) {
+        return;
+      }
       setIsLoading(true);
-      const res = await addNewWell({ ...data, owner: session!.user.id });
+      const res = await addNewWell({ ...data, owner: userId! });
       return res;
+    },
+    onError: () => {
+      toast.error(ERROR_ALERT);
+      setIsLoading(false);
     },
     onSuccess: async () => {
       if (isSecond) {
@@ -63,7 +76,12 @@ export const useWellForm = (
   });
 
   const { mutate: handleEditWell } = useMutation({
-    mutationFn: (data: WellFormType) => editWell({ ...data, id: wellId! }),
+    mutationFn: (data: Partial<WellFormType>) =>
+      editWell({ ...data, id: wellId! }),
+    onError: () => {
+      toast.error(ERROR_ALERT);
+      setIsLoading(false);
+    },
     onSuccess: () => router.replace(PAGES.HOME),
   });
 
@@ -82,10 +100,35 @@ export const useWellForm = (
     }
   };
 
+  const handleWellFrom = (data: WellFormType) => {
+    if (!isNameChecked && data.name !== wellData?.name) {
+      setError('name', {
+        type: 'custom',
+        message: '이미 같은 이름의 우물이 있어요',
+      });
+    } else if (type === 'write') {
+      handleAddWell(data);
+    } else if (type === 'edit' && wellData) {
+      const updatedFields: Partial<WellFormType> = data;
+
+      Object.keys(data).forEach((key) => {
+        const typedKey = key as keyof WellFormType;
+        if (data[typedKey] === wellData[typedKey]) {
+          updatedFields[typedKey] = undefined;
+        }
+      });
+
+      if (Object.keys(updatedFields).length > 0) {
+        handleEditWell(updatedFields);
+      }
+    }
+  };
+
   return {
-    handleAddWell,
+    originalName: wellData?.name,
+    handleWellFrom,
     handleClickBack,
-    handleEditWell,
     isLoading,
+    setIsNameChecked,
   };
 };

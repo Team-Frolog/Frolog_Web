@@ -3,22 +3,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { useStepActions, useTestStep } from '@/store/stepStore';
+import { useStep, useStepActions } from '@/store/stepStore';
 import { TEST_ANSWER_KEY } from '@/constants/storage';
 import { BackIcon } from 'public/icons';
 
 function ProgressHeader() {
   const router = useRouter();
-  const testStep = useTestStep();
-  const { moveTestStep } = useStepActions();
-  const percentage = (100 / 8) * testStep;
+  const step = useStep();
+  const { moveStep } = useStepActions();
+  const percentage = (100 / 8) * step;
 
   const handleClickBack = () => {
-    if (testStep === 1) {
+    if (step === 1) {
       sessionStorage.removeItem(TEST_ANSWER_KEY);
       router.back();
     } else {
-      moveTestStep(-1);
+      moveStep(-1);
     }
   };
 

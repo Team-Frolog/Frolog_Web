@@ -11,6 +11,7 @@ interface Props {
 function LoginForm({ setIsFaild, userLogin }: Props) {
   const {
     register,
+    trigger,
     formState: { errors },
     handleSubmit,
   } = useFormContext<LoginFormType>();
@@ -37,7 +38,10 @@ function LoginForm({ setIsFaild, userLogin }: Props) {
             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
             message: '이메일 형식을 확인해주세요.',
           },
-          onChange: () => {
+          onChange: async () => {
+            if (errors.email) {
+              trigger('email');
+            }
             setIsFaild(false);
           },
         })}

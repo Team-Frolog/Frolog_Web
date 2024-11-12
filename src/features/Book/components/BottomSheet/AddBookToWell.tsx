@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import BottomSheet from '@/modules/BottomSheet/BottomSheet';
 import { AnimatePresence } from 'framer-motion';
 import WellSelectSheet from './WellSelectSheet';
@@ -18,11 +18,12 @@ function AddBookToWell({ bookId, closeSheet }: Props) {
     setStep,
     userId,
     callback,
+    isPending,
+    setIsPending,
     reviewCount,
     handleAddReadBook,
     handleAddReadingBook,
   } = useAddBookToWell(bookId);
-  const [isPending, setIsPending] = useState(false);
 
   const handleClose = () => {
     setStep(null);

@@ -23,7 +23,6 @@ function StoreItemList({ userId }: Props) {
           .sort((a, b) => a.price - b.price)
           .map(
             (item) =>
-              item.is_available &&
               !item.disabled && (
                 <FrologItem
                   type='store'

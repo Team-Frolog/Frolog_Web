@@ -7,7 +7,7 @@ export const PAGE_THEME: {
   [key: string]: string;
 } = {
   '': DARK,
-  '/landing': DARK,
+  '/onboarding': DARK,
   '/join/finish': DARK,
   '/join': DARK,
   '/login': DARK,
@@ -22,6 +22,7 @@ export const PAGE_THEME: {
   '/search': LIGHT,
   '/search-home': DARK,
   '/feed': DARK,
+  '/comments': LIGHT,
   '/profile': DARK,
   '/profile/edit': LIGHT,
   '/profile/follows': LIGHT,

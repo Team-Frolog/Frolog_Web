@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@frolog/frolog-api": "^1.0.1",
+    "@frolog/frolog-api": "^1.0.2",
     "@sentry/nextjs": "^8.35.0",
     "@svgr/webpack": "^8.1.0",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@tanstack/react-query": "^5.40.1",
     "@types/react-slick": "^0.23.13",
     "axios": "^1.7.2",
@@ -38,7 +39,7 @@
     "@tailwindcss/typography": "^0.5.13",
     "@team-frolog/eslint-config-web": "^1.0.0",
     "@team-frolog/prettier-config-web": "^0.0.0",
-    "@team-frolog/tailwind-config": "^0.0.0",
+    "@team-frolog/tailwind-config": "^0.0.2",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/lodash": "^4.17.6",
     "@types/node": "^20",

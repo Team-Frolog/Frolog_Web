@@ -21,7 +21,7 @@ function DefaultWellPage() {
           btnName='로그인이 필요해요'
           type='arrow'
           isPointing
-          href={PAGES.LANDING}
+          href={PAGES.ONBOARDING}
         />
         <div className='flex w-full flex-col-reverse items-center'>
           <div className='flex w-full flex-col'>

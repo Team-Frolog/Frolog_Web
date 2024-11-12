@@ -2,18 +2,17 @@ import { checkEmail } from '@/api/auth.api';
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-export const useEmailValidation = (type: 'signUp' | 'findPassword') => {
+export const useEmailValidation = (type: 'signUp' | 'resetPassword') => {
   const { trigger, setError } = useFormContext();
   const [isEmailChecked, setIsEmailChecked] = useState(false);
 
   const handleValidateEmail = async (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setIsEmailChecked(false);
     const isVaild = await trigger('email');
-    const { value } = e.target;
+    const value = e.target.value.trim();
 
-    if (isVaild && value.trim() !== '') {
+    if (isVaild && value !== '') {
       const data = await checkEmail({
         email: value,
       });
@@ -27,7 +26,7 @@ export const useEmailValidation = (type: 'signUp' | 'findPassword') => {
             message: '이미 사용 중인 이메일이에요.',
           });
         }
-      } else if (type === 'findPassword') {
+      } else if (type === 'resetPassword') {
         if (data) {
           setError('email', {
             type: 'custom',

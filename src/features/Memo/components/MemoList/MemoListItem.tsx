@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useSession } from 'next-auth/react';
+import { useUserId } from '@/store/sessionStore';
 import uniqueId from 'lodash/uniqueId';
 import DeleteButton from '@/components/ListItem/DeleteButton';
 import { useRouter } from 'next/navigation';
@@ -19,8 +19,8 @@ interface Props {
 
 function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
   const router = useRouter();
-  const { data: session } = useSession();
-  const isRootUser = userId === session?.user.id;
+  const sessionUserId = useUserId();
+  const isRootUser = userId === sessionUserId;
 
   return (
     <div className={`review-item px-0 ${isRootUser ? 'pb-0' : 'pb-[36px]'}`}>

@@ -9,6 +9,7 @@ interface Props {
   disabled: boolean;
   btnType?: 'link' | 'submit' | 'button';
   onClick?: () => void;
+  gap?: number;
 }
 
 function ButtonWithText({
@@ -18,9 +19,10 @@ function ButtonWithText({
   disabled,
   btnType = 'link',
   onClick,
+  gap,
 }: Props) {
   return (
-    <div className='flex h-[120px] w-full flex-col'>
+    <div className='flex h-fit w-full flex-col gap-[20px]'>
       {btnType === 'link' && (
         <LinkButton disabled={disabled} route={route!}>
           {btnText}
@@ -37,7 +39,11 @@ function ButtonWithText({
         </Button>
       )}
 
-      <div className='flex-center w-full flex-1'>{children}</div>
+      <div
+        className={`flex-center w-full flex-1 flex-col ${gap ? `gap-[${gap}px]` : ''}`}
+      >
+        {children}
+      </div>
     </div>
   );
 }

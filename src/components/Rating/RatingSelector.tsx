@@ -48,9 +48,11 @@ function RatingSelector({
   return (
     <div className='flex-col-center w-full justify-center gap-[8px] text-gray-800'>
       <div className='flex flex-col items-center'>
-        <span className='text-body-sm text-gray-600'>
-          총 {review_cnt}개의 리뷰
-        </span>
+        {review_cnt !== undefined && (
+          <span className='text-body-sm text-gray-600'>
+            총 {review_cnt}개의 리뷰
+          </span>
+        )}
         <h1
           className={`text-heading-xl-bold ${isError ? 'text-error' : 'text-gray-800'}`}
         >

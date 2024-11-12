@@ -27,7 +27,17 @@ function SideWellHeader({
 
   return (
     <SideHeader
-      title={profile ? `${profile.username}의 우물` : '우물'}
+      title={
+        profile ? (
+          <>
+            {profile.username}의
+            <br />
+            우물
+          </>
+        ) : (
+          '우물'
+        )
+      }
       bgColor={bgColor}
     >
       {hasBackButton && (
