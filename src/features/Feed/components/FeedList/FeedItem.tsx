@@ -10,9 +10,10 @@ import { useLikeFeed } from '../../hooks/feed/useLikeFeed';
 interface Props {
   isMemo: boolean;
   feedData: GetReviewRes | GetMemoRes;
+  startCommentLoading: () => void;
 }
 
-function FeedItem({ isMemo, feedData }: Props) {
+function FeedItem({ isMemo, feedData, startCommentLoading }: Props) {
   const { handleChangeLike } = useLikeFeed(!isMemo);
 
   return (
@@ -32,6 +33,7 @@ function FeedItem({ isMemo, feedData }: Props) {
           onClickLike={() =>
             handleChangeLike({ id: feedData.id, value: !feedData.like })
           }
+          startCommentLoading={startCommentLoading}
         />
       </div>
     </div>

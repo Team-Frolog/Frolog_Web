@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import FeedSkeleton from '@/components/Fallback/Skeleton/FeedSkeleton';
 import { useObserver } from '@/hooks/gesture/useObserver';
+import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import FeedItem from './FeedItem';
 import { useFeed } from '../../hooks/feed/useFeed';
 
@@ -17,6 +18,8 @@ function FeedList() {
     isEmpty,
     isLoading,
     isFetchingNextPage,
+    isCommentLoading,
+    setIsCommentLoading,
   } = useFeed();
   const { setTarget } = useObserver({
     hasNextPage,
@@ -42,6 +45,7 @@ function FeedList() {
               key={feed.memo ? feed.memo.id : feed.review?.id}
               isMemo={!!feed.memo}
               feedData={feed.memo ? feed.memo : feed.review!}
+              startCommentLoading={() => setIsCommentLoading(true)}
             />
           ))}
         </div>
@@ -65,6 +69,7 @@ function FeedList() {
           className='mx-auto'
         />
       )}
+      {isCommentLoading && <LoadingOverlay theme='dark' />}
     </div>
   );
 }

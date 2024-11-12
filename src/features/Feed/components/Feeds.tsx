@@ -14,10 +14,10 @@ function Feeds() {
   return (
     <>
       <SideHeader />
-      <div className='flex w-full flex-1 flex-col overflow-hidden'>
+      <div className='flex w-full flex-1 flex-col overflow-hidden bg-gray-300'>
         <MainLayout
           ref={containerRef}
-          extraClass='bg-gray-300 overflow-auto scrollbar-hide'
+          extraClass='overflow-auto scrollbar-hide'
         >
           <PullToRefresh element={containerRef} />
           <div className='flex h-fit w-full px-page py-[20px] pt-[50px]'>

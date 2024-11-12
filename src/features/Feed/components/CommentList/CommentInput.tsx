@@ -49,7 +49,7 @@ function CommentInput({
   };
 
   return (
-    <div className='z-70 flex h-max w-full shrink-0 flex-col'>
+    <div className='safe-bottom z-70 flex h-max w-full shrink-0 flex-col'>
       {commentUser && (
         <div className='flex items-center justify-between bg-gray-200 px-page py-[8px] text-body-md text-gray-600'>
           <span>{commentUser?.name}님에게 댓글 남기는 중</span>

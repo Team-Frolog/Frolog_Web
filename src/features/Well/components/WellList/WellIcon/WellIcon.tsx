@@ -37,7 +37,7 @@ function WellIcon({ wellData, type = 'default', onClick }: Props) {
 
       controls.start({
         scale: 18,
-        transition: { duration: 1.2, ease: 'easeInOut' },
+        transition: { duration: 1, ease: 'easeInOut' },
       });
 
       setTimeout(() => {

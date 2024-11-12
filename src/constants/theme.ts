@@ -22,6 +22,7 @@ export const PAGE_THEME: {
   '/search': LIGHT,
   '/search-home': DARK,
   '/feed': DARK,
+  '/comments': LIGHT,
   '/profile': DARK,
   '/profile/edit': LIGHT,
   '/profile/follows': LIGHT,
