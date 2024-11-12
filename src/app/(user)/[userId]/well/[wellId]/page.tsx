@@ -34,6 +34,7 @@ async function UserWellDetailPage({ params: { userId, wellId } }: Props) {
       }).fetch({ id: wellId }),
     staleTime: 1000 * 30,
   });
+
   await queryClient.prefetchQuery({
     queryKey: ['wellItems', wellId],
     queryFn: () =>

@@ -1,5 +1,13 @@
 import { MyMemoPage } from '@/features/Memo';
+import { authOptions } from '@/utils/auth/auth';
+import { GetMemo } from '@frolog/frolog-api';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 import { Metadata } from 'next';
+import { getServerSession } from 'next-auth';
 import React from 'react';
 
 export const metadata: Metadata = {
@@ -24,8 +32,25 @@ interface Props {
   };
 }
 
-function WellBookMemoPage({ params }: Props) {
-  return <MyMemoPage params={params} />;
+async function WellBookMemoPage({ params }: Props) {
+  const session = await getServerSession(authOptions);
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['memo', params.memoId],
+    queryFn: () =>
+      new GetMemo({
+        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+        accessToken: session?.user.accessToken,
+      }).fetch({ id: params.memoId }),
+    staleTime: 1000 * 30,
+  });
+
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <MyMemoPage params={params} />
+    </HydrationBoundary>
+  );
 }
 
 export default WellBookMemoPage;

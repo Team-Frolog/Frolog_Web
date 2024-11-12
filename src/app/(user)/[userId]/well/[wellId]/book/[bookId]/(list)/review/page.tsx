@@ -3,6 +3,14 @@ import ReviewListSkeleton from '@/components/Fallback/Skeleton/ReviewListSkeleto
 import dynamic from 'next/dynamic';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
 import { Metadata } from 'next';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/utils/auth/auth';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
+import { SearchReview } from '@frolog/frolog-api';
 
 export const metadata: Metadata = {
   title: '리뷰',
@@ -35,15 +43,29 @@ interface Props {
 }
 
 async function ReviewPage({ params: { userId, wellId, bookId } }: Props) {
+  const session = await getServerSession(authOptions);
   const { isRootUser } = await getIsRootUser(userId);
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['reviews', bookId, userId],
+    queryFn: () =>
+      new SearchReview({
+        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+        accessToken: session?.user.accessToken,
+      }).fetch({ isbn: bookId, writer: userId }),
+    staleTime: 1000 * 30,
+  });
 
   return (
-    <ReviewList
-      bookId={bookId}
-      wellId={wellId}
-      userId={userId}
-      isRootUser={isRootUser}
-    />
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <ReviewList
+        bookId={bookId}
+        wellId={wellId}
+        userId={userId}
+        isRootUser={isRootUser}
+      />
+    </HydrationBoundary>
   );
 }
 

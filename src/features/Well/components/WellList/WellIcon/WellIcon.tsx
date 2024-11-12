@@ -42,7 +42,7 @@ function WellIcon({ wellData, type = 'default', onClick }: Props) {
 
       setTimeout(() => {
         router.push(`/${owner}/well/${wellId}`);
-      }, 1500);
+      }, 1000);
     }
   };
 
