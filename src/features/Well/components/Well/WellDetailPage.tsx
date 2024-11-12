@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import ScrollToTop from '@/components/Button/ScrollToTop';
+import ScrollToTop from '@/components/Gesture/ScrollToTop';
 import NavigationBar from '@/components/NavigationBar';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import MainLayout from '@/layouts/MainLayout';
@@ -44,7 +44,7 @@ function WellDetailPage({ userId, wellId }: Props) {
             isDefaultWell={isDefaultWell}
           />
         )}
-        {isRendering && <ScrollToTop />}
+        {isRendering && <ScrollToTop type={isRootUser ? 'nav' : 'floating'} />}
       </MainLayout>
       {isRootUser && <NavigationBar />}
     </>

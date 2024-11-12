@@ -36,6 +36,16 @@
   }
 }
 
+#nav-floating {
+  bottom: calc(constant(safe-area-inset-bottom) + 89px);
+  bottom: calc(env(safe-area-inset-bottom) + 89px);
+}
+
+#floating {
+  bottom: calc(constant(safe-area-inset-bottom) + 24px);
+  bottom: calc(env(safe-area-inset-bottom) + 24px);
+}
+
 #back-fixed {
   top: calc(constant(safe-area-inset-top) + 24px);
   top: calc(env(safe-area-inset-top) + 24px);

@@ -5,7 +5,7 @@ import PullToRefresh from '@/components/Gesture/PullToRefresh';
 import SideHeader from '@/components/Header/SideHeader';
 import MainLayout from '@/layouts/MainLayout';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
-import ScrollToTop from '@/components/Button/ScrollToTop';
+import ScrollToTop from '@/components/Gesture/ScrollToTop';
 import FeedList from './FeedList/FeedList';
 
 function Feeds() {
