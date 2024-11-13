@@ -15,7 +15,7 @@ interface Props {
 
 function Tap({ taps, currentTap, defaultTap, onChangeTap }: Props) {
   return (
-    <div className='flex w-full flex-col'>
+    <div className='flex w-full flex-col bg-white'>
       <div className='grid w-full grid-cols-2 pb-[2px]'>
         {taps.map((tap) => (
           <button

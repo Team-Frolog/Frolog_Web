@@ -1,6 +1,5 @@
 const DARK = 'dark';
 const LIGHT = 'light';
-// const GRAY = 'gray';
 const HALF = 'half-gradient';
 
 export const PAGE_THEME: {
@@ -27,4 +26,5 @@ export const PAGE_THEME: {
   '/profile/edit': LIGHT,
   '/profile/follows': LIGHT,
   '/new-well': LIGHT,
+  '/how-to-install': LIGHT,
 };
