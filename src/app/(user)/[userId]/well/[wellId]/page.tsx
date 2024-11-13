@@ -47,7 +47,12 @@ async function UserWellDetailPage({ params: { userId, wellId } }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <WellDetailPage userId={userId} wellId={wellId} />
+      <WellDetailPage
+        userId={userId}
+        wellId={wellId}
+        sessionUserId={session?.user.id}
+        defaultWellId={session?.user.defaultWellId}
+      />
     </HydrationBoundary>
   );
 }
