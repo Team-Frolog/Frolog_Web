@@ -8,7 +8,7 @@ import { useMutation } from '@tanstack/react-query';
 import { SignUpReq, SignUpRes } from '@frolog/frolog-api';
 import { useAuthActions, useVerifyToken } from '@/store/authStore';
 import { toast } from '@/modules/Toast';
-import { useStep } from '@/store/stepStore';
+import { useStep, useStepActions } from '@/store/stepStore';
 import { ERROR_ALERT } from '@/constants/message';
 import { useLogin } from '@/features/Login';
 import { transformJoinForm } from '../utils/transformJoinForm';
@@ -21,6 +21,7 @@ export const useJoin = (getValues: () => JoinForm) => {
   const verifyToken = useVerifyToken();
   const { resetToken } = useAuthActions();
   const { userLogin } = useLogin('test');
+  const { resetStep } = useStepActions();
   const [isLoading, setIsLoading] = useState(false);
 
   const { mutate: handleLogin } = useMutation({
@@ -29,7 +30,7 @@ export const useJoin = (getValues: () => JoinForm) => {
 
       if (account) {
         const res = await userLogin(JSON.parse(account));
-        window.location.replace(`${PAGES.JOIN_FINISH}?username=${username}`);
+        router.replace(`${PAGES.JOIN_FINISH}?username=${username}`);
         return res;
       } else {
         throw new Error();
@@ -44,6 +45,8 @@ export const useJoin = (getValues: () => JoinForm) => {
   useEffect(() => {
     return () => {
       setIsLoading(false);
+      localStorage.removeItem(JOIN_FORM_KEY);
+      resetStep();
     };
   }, []);
 

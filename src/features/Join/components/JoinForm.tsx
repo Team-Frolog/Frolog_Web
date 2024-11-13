@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import CodeForm from '@/components/Form/Code/CodeForm';
 import { JOIN_FORM_KEY } from '@/constants/storage';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -22,15 +21,8 @@ function JoinForm() {
         : defaultValue,
   });
   const { getValues, handleSubmit } = methods;
-  const { resetStep, moveStep } = useStepActions();
+  const { moveStep } = useStepActions();
   const { joinUser, step, isLoading } = useJoin(getValues);
-
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem(JOIN_FORM_KEY);
-      resetStep();
-    };
-  }, []);
 
   return (
     <FormProvider {...methods}>
