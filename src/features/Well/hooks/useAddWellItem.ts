@@ -26,6 +26,10 @@ export const useAddWellItem = (
       if (!res.result) {
         toast.error('아이템 추가에 실패했습니다.');
 
+        if (stopPending) {
+          stopPending();
+        }
+
         if (isThroughSearch) {
           resetAll();
         }

@@ -6,6 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 import WellSelectSheet from './WellSelectSheet';
 import StateSelectSheet from './StateSelectSheet';
 import { useAddBookToWell } from '../../hooks/useAddBookToWell';
+import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 
 interface Props {
   bookId: string;
@@ -60,6 +61,7 @@ function AddBookToWell({ bookId, closeSheet }: Props) {
           </BottomSheet>
         )}
       </AnimatePresence>
+      {isPending && <LoadingOverlay theme='dark' />}
     </>
   );
 }
