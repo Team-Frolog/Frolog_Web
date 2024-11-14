@@ -40,7 +40,7 @@ export const authOptions: NextAuthOptions = {
         if (data.result) {
           const cookieStore = cookies();
           cookieStore.set('isRemember', credentials.isRemember, {
-            maxAge: 24 * 60 * 60 * 30,
+            maxAge: 24 * 60 * 60 * 90,
             httpOnly: true,
           });
           cookieStore.set('isLoggedIn', 'true', {
@@ -85,14 +85,6 @@ export const authOptions: NextAuthOptions = {
       // 유효기간이 지난 경우
       if (timeRemaing <= 0) {
         token = await refreshAccessToken(token);
-
-        // 자동 로그인 관련 쿠키 재설정
-        const cookieStore = cookies();
-        const origin = cookieStore.get('isRemember')?.value || 'false';
-        cookieStore.set('isRemember', origin, {
-          maxAge: 24 * 60 * 60 * 30,
-          httpOnly: true,
-        });
       }
 
       return token;
