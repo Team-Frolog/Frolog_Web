@@ -1,4 +1,5 @@
 import { TermsMenu } from '@/features/Profile';
+import MainLayout from '@/layouts/MainLayout';
 import { Metadata } from 'next';
 import React from 'react';
 
@@ -8,9 +9,9 @@ export const metadata: Metadata = {
 
 function TermsPage() {
   return (
-    <div className='flex w-full flex-1 px-page pb-[30px] pt-[16px]'>
+    <MainLayout extraClass='bg-white px-page pb-[30px] pt-[16px]'>
       <TermsMenu />
-    </div>
+    </MainLayout>
   );
 }
 

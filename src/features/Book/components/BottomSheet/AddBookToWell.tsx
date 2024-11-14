@@ -3,6 +3,7 @@
 import React from 'react';
 import BottomSheet from '@/modules/BottomSheet/BottomSheet';
 import { AnimatePresence } from 'framer-motion';
+import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import WellSelectSheet from './WellSelectSheet';
 import StateSelectSheet from './StateSelectSheet';
 import { useAddBookToWell } from '../../hooks/useAddBookToWell';
@@ -60,6 +61,7 @@ function AddBookToWell({ bookId, closeSheet }: Props) {
           </BottomSheet>
         )}
       </AnimatePresence>
+      {isPending && <LoadingOverlay theme='dark' />}
     </>
   );
 }

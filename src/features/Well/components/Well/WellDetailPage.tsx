@@ -5,7 +5,6 @@ import ScrollToTop from '@/components/Gesture/ScrollToTop';
 import NavigationBar from '@/components/NavigationBar';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import MainLayout from '@/layouts/MainLayout';
-import useSessionStore from '@/store/sessionStore';
 import { useWell } from '../../hooks/useWell';
 import WellItemList from './WellItem/WellItemList';
 import WellHeader from './WellHeader';
@@ -13,13 +12,16 @@ import WellHeader from './WellHeader';
 interface Props {
   userId: string;
   wellId: string;
+  sessionUserId?: string;
+  defaultWellId?: string | null;
 }
 
-function WellDetailPage({ userId, wellId }: Props) {
-  const { sessionUserId, defaultWellId } = useSessionStore((state) => ({
-    sessionUserId: state.userId,
-    defaultWellId: state.defaultWellId,
-  }));
+function WellDetailPage({
+  userId,
+  wellId,
+  sessionUserId,
+  defaultWellId,
+}: Props) {
   const isRootUser = userId === sessionUserId;
   const isDefaultWell = defaultWellId === wellId;
   const { well } = useWell(wellId);

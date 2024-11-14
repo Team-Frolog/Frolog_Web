@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { signOut } from 'next-auth/react';
 import useSessionStore from '@/store/sessionStore';
@@ -9,7 +8,6 @@ import { PAGES } from '@/constants/page';
 import MenuItem from './MenuItem';
 
 function Menu() {
-  const router = useRouter();
   const { clearStorage } = useSessionStore.persist;
 
   return (
@@ -17,13 +15,14 @@ function Menu() {
       <div className='flex w-full flex-col gap-[20px] border-b border-gray-300 pb-[16px]'>
         <h5 className='text-body-lg text-gray-700'>지원</h5>
         <div className='flex flex-col gap-[32px]'>
+          <MenuItem name='앱 설치하기' theme='highlight' href={PAGES.INSTALL} />
           <MenuItem
             name='건의하기'
             onClick={() => {
               window.open(process.env.NEXT_PUBLIC_FORM_URL!);
             }}
           />
-          <MenuItem name='이용약관' onClick={() => router.push('/terms')} />
+          <MenuItem name='이용약관' href={PAGES.TERMS} />
         </div>
       </div>
       <div className='flex w-full flex-col gap-[20px]'>
@@ -41,7 +40,7 @@ function Menu() {
               })
             }
           />
-          <MenuItem name='회원탈퇴' onClick={() => router.push('/quit')} />
+          <MenuItem name='회원탈퇴' href={PAGES.QUIT} />
         </div>
       </div>
     </div>

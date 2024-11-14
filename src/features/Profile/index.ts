@@ -1,3 +1,4 @@
+export { default as HowToInstall } from './components/HowToInstall/HowToInstall';
 export { default as ProfileEditForm } from './components/Profile/ProfileEditForm';
 export { default as FollowPage } from './components/FollowList/FollowPage';
 export { default as Menu } from './components/Menu/Menu';

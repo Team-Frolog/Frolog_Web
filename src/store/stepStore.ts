@@ -17,10 +17,11 @@ const useStepStore = create<StepStore>()(
       (set) => ({
         step: 1,
         actions: {
-          resetStep: () =>
+          resetStep: () => {
             set(() => ({
               step: 1,
-            })),
+            }));
+          },
           moveStep: (n: number) =>
             set((state) => ({
               step: state.step + n,

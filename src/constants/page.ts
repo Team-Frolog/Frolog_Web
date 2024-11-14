@@ -27,6 +27,9 @@ export const PAGES = {
   DEFAULT: '/default',
   FLASH: '/flash',
   STORE: '/store',
+  INSTALL: '/how-to-install',
+  QUIT: '/quit',
+  TERMS: '/terms',
 } as const;
 
 export const PAGE_CONFIG: PageConfig = {

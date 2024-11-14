@@ -19,12 +19,10 @@ function BookInfo({ bookId, canClick = false }: Props) {
   return (
     <div
       id='book-info'
+      onClick={canClick ? () => router.push(`/book/${bookId}`) : undefined}
       className='flex-col-center relative w-full gap-[20px] bg-white pb-[24px] pt-[48px] text-gray-800'
     >
-      <div
-        onClick={canClick ? () => router.push(`/book/${bookId}`) : undefined}
-        className='absolute left-0 top-0 z-0 h-[230px] w-full mobile:h-[200px]'
-      >
+      <div className='absolute left-0 top-0 z-0 h-[230px] w-full mobile:h-[200px]'>
         <Image
           src={IMAGES.book.background}
           alt='bg'

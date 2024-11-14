@@ -18,7 +18,8 @@ function LoginForm({ setIsFaild, userLogin }: Props) {
 
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      document.querySelector('input')?.blur();
+      e.preventDefault();
+      (document.activeElement as HTMLElement).blur();
       handleSubmit((data) => userLogin(data))();
     }
   };
