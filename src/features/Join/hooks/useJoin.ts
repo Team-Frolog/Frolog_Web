@@ -67,6 +67,10 @@ export const useJoin = (getValues: () => JoinForm) => {
       const res = await signUp(formData);
       return res;
     },
+    onError: () => {
+      toast.error(ERROR_ALERT);
+      setIsLoading(false);
+    },
     onSuccess: (_result, formData) => {
       resetToken();
       localStorage.removeItem(JOIN_FORM_KEY);

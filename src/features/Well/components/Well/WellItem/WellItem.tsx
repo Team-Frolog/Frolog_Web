@@ -1,11 +1,14 @@
 /* eslint-disable arrow-body-style */
 import React, { useEffect } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import useStackMotionStore from '@/store/stackMotionStore';
 import { staggerItemVariants } from '@/styles/variants/variants';
 import { useRouter } from 'next/navigation';
 import { GetWellItemRes } from '@frolog/frolog-api';
-import Wave from './Wave';
+import { CATEGORY } from '@/constants/category';
+import WellBubble from 'public/images/well/well-bubble.svg';
+import MemoLeaf from './MemoLeaf';
 
 interface Props {
   wellBook: GetWellItemRes;
@@ -30,6 +33,7 @@ function WellItem({
   const { id, status, title, page, category, isbn, memo_cnt } = wellBook;
   const height = page > 550 ? page * 0.1 : 55;
   const isReading = status === 'reading';
+  const hasMemo = memo_cnt > 0;
 
   useEffect(() => {
     return () => {
@@ -38,30 +42,50 @@ function WellItem({
   }, []);
 
   return (
-    <motion.div
-      whileTap={{ y: -10 }}
-      onClick={() => {
-        startLoading();
-        router.push(
-          isReading
-            ? `${wellId}/book/${isbn}/memo`
-            : `${wellId}/book/${isbn}/review`
-        );
-      }}
-      variants={
-        newReviewId === id && isLastItem ? staggerItemVariants : undefined
-      }
-      style={{ zIndex }}
-      className='flex h-fit w-full'
-    >
-      <Wave
-        title={title}
-        category={category}
-        height={height}
-        isReading={isReading}
-        hasMemo={memo_cnt > 0}
+    <div className='relative flex w-full'>
+      <motion.div
+        whileTap={{ y: -10 }}
+        onClick={() => {
+          startLoading();
+          router.push(
+            isReading
+              ? `${wellId}/book/${isbn}/memo`
+              : `${wellId}/book/${isbn}/review`
+          );
+        }}
+        variants={
+          newReviewId === id && isLastItem ? staggerItemVariants : undefined
+        }
+        style={{ zIndex, height }}
+        className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[12px]`}
+      >
+        <Image
+          src={CATEGORY[category].wave}
+          alt='wave'
+          width={392}
+          height={12}
+          className='absolute -left-[0px] -top-[12px] h-[12px] w-full'
+          loading='eager'
+        />
+        {isReading && (
+          <WellBubble
+            fill={CATEGORY[category].band}
+            className='absolute left-[24px] top-[8px]'
+          />
+        )}
+        {hasMemo && (
+          <MemoLeaf bg={CATEGORY[category].text} line={CATEGORY[category].bg} />
+        )}
+        <span
+          className={`text-category-text-${category} truncate text-center text-body-sm-bold ${isReading || hasMemo ? 'w-[65%]' : 'w-[90%]'}`}
+        >
+          {title}
+        </span>
+      </motion.div>
+      <div
+        className={`absolute h-[20px] w-full bg-category-bg-${category} bottom-0 left-0`}
       />
-    </motion.div>
+    </div>
   );
 }
 

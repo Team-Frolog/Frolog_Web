@@ -91,7 +91,6 @@ const WellItemList = React.memo(
                   ? '책을 추가해 높게 올라가봐요!'
                   : '아직 우물이 비어있어요..'}
               </span>
-              <div className='absolute bottom-[-10px] left-0 h-[10px] w-full bg-category-bg-economic_business' />
             </div>
           )}
           {wellItems.map((item, i) => (
