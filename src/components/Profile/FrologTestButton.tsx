@@ -33,7 +33,7 @@ function FrologTestButton() {
           <span className='text-body-lg text-gray-700'>
             {reading_preference ? '다시' : '독서 성향'} 진단하기
           </span>
-          <MenuArrowIcon />
+          <MenuArrowIcon fill='#B3B6C4' />
         </div>
       </button>
     </div>

@@ -1,6 +1,5 @@
 import TitleHeader from '@/components/Header/TitleHeader';
 import { SearchHeader, SearchResult } from '@/features/Search';
-import MainLayout from '@/layouts/MainLayout';
 import { Metadata } from 'next';
 import React from 'react';
 
@@ -20,10 +19,7 @@ function SearchPage() {
         />
         <SearchHeader />
       </div>
-
-      <MainLayout isCenter={false} extraClass='px-[24px] bg-white safe-bottom'>
-        <SearchResult />
-      </MainLayout>
+      <SearchResult />
     </>
   );
 }

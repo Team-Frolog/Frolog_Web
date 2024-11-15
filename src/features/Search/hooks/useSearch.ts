@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { searchBook } from '../api/search.api';
@@ -7,6 +7,7 @@ export const useSearch = () => {
   const queries = useSearchParams();
   const searchValue = queries.get('query');
   const queryClient = useQueryClient();
+  const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     queryClient.removeQueries({
@@ -54,6 +55,12 @@ export const useSearch = () => {
   const isEmpty = !data?.pages.length;
   const isSearched = searchValue !== null;
 
+  useEffect(() => {
+    if (mainRef.current) {
+      mainRef.current.scrollTop = 0;
+    }
+  }, [searchValue]);
+
   return {
     searchResult: data ? data.pages : [],
     isEmpty,
@@ -63,5 +70,6 @@ export const useSearch = () => {
     isSearched,
     isLoading,
     isFetchingNextPage,
+    mainRef,
   };
 };
