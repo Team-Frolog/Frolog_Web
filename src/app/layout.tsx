@@ -168,8 +168,8 @@ export default async function RootLayout({
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
           <GAProvider gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
         ) : null}
-        <SessionProvider session={session} />
         <NextAuthProvider>
+          <SessionProvider session={session} />
           <body
             className={`${pretendard.variable} ${pretendard.className} text-gray-800`}
           >
