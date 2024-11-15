@@ -22,6 +22,12 @@ function SessionProvider({ session }: { session: Session | null }) {
         accessToken: session?.user.accessToken,
         defaultWellId: session?.user.defaultWellId || null,
       });
+    } else {
+      setSession({
+        userId: undefined,
+        accessToken: undefined,
+        defaultWellId: null,
+      });
     }
   }, [session, clientSession]);
 
