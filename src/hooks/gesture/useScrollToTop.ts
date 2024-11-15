@@ -7,7 +7,7 @@ export const useScrollToTop = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (containerRef.current) {
-        const isAtTop = containerRef.current.scrollTop === 0;
+        const isAtTop = containerRef.current.scrollTop <= 0;
         setIsRendering(!isAtTop);
       }
     };
