@@ -33,7 +33,7 @@ function BookInfo({ bookId, canClick = false }: Props) {
         />
       </div>
 
-      <Book imageUrl={bookData?.image} />
+      <Book imageUrl={bookData?.image} canClick={canClick} />
       <div className='flex-col-center w-[80%] gap-[4px]'>
         <h3 className='text-center text-title-lg-bold'>{bookData?.title}</h3>
         <ul className='flex text-body-sm text-gray-600'>
