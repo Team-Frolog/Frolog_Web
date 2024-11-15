@@ -26,10 +26,9 @@ function Feeds() {
             </h1>
           </div>
           <FeedList />
-
-          {isRendering && <ScrollToTop />}
         </MainLayout>
       </div>
+      {isRendering && <ScrollToTop />}
     </>
   );
 }
