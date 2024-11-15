@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
 import { bottomSheet } from '@/modules/BottomSheet';
+import MainLayout from '@/layouts/MainLayout';
 import { useUserId } from '@/store/sessionStore';
 import SearchResultSkeleton from '@/components/Fallback/Skeleton/SearchResultSkeleton';
 import BookListItemSkeleton from '@/components/Fallback/Skeleton/BookListItemSkeleton';
@@ -19,6 +20,7 @@ function SearchResult() {
   const {
     searchResult,
     isEmpty,
+    mainRef,
     isLoading,
     isSearched,
     isFetching,
@@ -47,7 +49,11 @@ function SearchResult() {
   };
 
   return (
-    <div className='flex h-fit w-full flex-1 flex-col items-end gap-[36px] pb-[36px] pt-[24px]'>
+    <MainLayout
+      ref={mainRef}
+      isCenter={false}
+      extraClass='px-[24px] h-fit bg-white pb-[36px] pt-[24px] items-end gap-[36px]'
+    >
       {isSearched && isEmpty && !isFetching && <SearchResultEmpty />}
       {!isEmpty && (
         <div className='flex w-full flex-1 flex-col gap-[36px]'>
@@ -77,7 +83,7 @@ function SearchResult() {
           <BookRegisterSheet onClose={() => setIsOpenRegister(false)} />
         )}
       </AnimatePresence>
-    </div>
+    </MainLayout>
   );
 }
 

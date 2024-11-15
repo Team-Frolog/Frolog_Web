@@ -10,7 +10,7 @@ import Instruction from './Instruction';
 
 function HowToInstall() {
   const router = useRouter();
-  const tap = useSearchParams().get('tap') || 'followers';
+  const tap = useSearchParams().get('tap') || 'ios';
 
   return (
     <>

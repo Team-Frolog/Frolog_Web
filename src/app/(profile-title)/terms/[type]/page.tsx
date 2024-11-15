@@ -2,6 +2,7 @@ import React from 'react';
 import { terms } from '@/data/terms/terms';
 import TermsText from '@/components/Markdown/TermsText';
 import { Metadata } from 'next';
+import MainLayout from '@/layouts/MainLayout';
 
 export const metadata: Metadata = {
   title: '이용약관',
@@ -18,9 +19,9 @@ function TermsDetailPage({ params: { type } }: Props) {
   if (!viewData) return <></>;
 
   return (
-    <div className='flex px-page pb-[30px]'>
+    <MainLayout extraClass='flex bg-white px-page pb-[30px]'>
       <TermsText text={viewData.view!} />
-    </div>
+    </MainLayout>
   );
 }
 

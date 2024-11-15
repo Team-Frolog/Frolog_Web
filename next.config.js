@@ -10,6 +10,7 @@ const nextConfig = {
   reactStrictMode: false,
   experimental: {
     middleware: true,
+    scrollRestoration: true,
   },
   webpack: (config) => {
     config.module.rules.push({
