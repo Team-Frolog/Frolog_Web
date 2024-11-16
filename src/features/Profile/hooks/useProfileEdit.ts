@@ -47,6 +47,7 @@ export const useProfileEdit = (
     },
     onSuccess: () => {
       router.replace(`/${userId}/profile`);
+      router.back();
     },
   });
 

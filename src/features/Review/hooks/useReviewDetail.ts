@@ -56,6 +56,7 @@ export const useReviewDetail = ({
     onSuccess: () => {
       refetch();
       router.replace(pathname);
+      router.back();
     },
   });
 
