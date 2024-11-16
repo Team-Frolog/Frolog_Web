@@ -5,6 +5,7 @@ export const useFrogs = (userId: string) => {
   const { data } = useSuspenseQuery({
     queryKey: ['frogs', userId],
     queryFn: () => getStoreItems({ owner: userId, type: 'frog' }),
+    refetchOnWindowFocus: false,
   });
 
   return { frogs: data.items };

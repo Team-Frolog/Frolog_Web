@@ -5,6 +5,7 @@ export const useWell = (wellId: string) => {
   const { data } = useQuery({
     queryKey: ['well', wellId],
     queryFn: () => getWell(wellId),
+    refetchOnWindowFocus: false,
   });
 
   return { well: data };

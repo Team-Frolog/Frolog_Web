@@ -18,7 +18,7 @@ export const useReviews = (bookId: string, userId: string) => {
         isbn: bookId,
         writer: userId,
       }),
-    refetchOnWindowFocus: false,
+    staleTime: 1000 * 10,
   });
 
   const { mutate } = useMutation({

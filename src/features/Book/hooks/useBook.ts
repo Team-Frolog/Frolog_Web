@@ -5,6 +5,8 @@ export const useBook = (bookId: string) => {
   const { data } = useSuspenseQuery({
     queryKey: ['bookInfo', bookId],
     queryFn: () => getBookInfo({ isbn: bookId }).then((res) => res),
+    refetchOnWindowFocus: false,
+    staleTime: Infinity,
   });
 
   return { bookData: data };

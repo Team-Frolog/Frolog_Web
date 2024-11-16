@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { UseFormReset, UseFormSetError, UseFormWatch } from 'react-hook-form';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { editReview, getReviewDetail } from '../api/review.api';
@@ -29,8 +29,9 @@ export const useReviewDetail = ({
   setError,
 }: Props) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
-  const { data, refetch } = useQuery({
+  const { data } = useQuery({
     queryKey: ['reviewDetail', reviewId],
     queryFn: () => getReviewDetail(reviewId),
   });
@@ -54,7 +55,7 @@ export const useReviewDetail = ({
       return result;
     },
     onSuccess: () => {
-      refetch();
+      queryClient.invalidateQueries({ queryKey: ['reviewDetail', reviewId] });
       router.replace(pathname);
       router.back();
     },

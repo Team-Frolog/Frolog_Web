@@ -29,6 +29,8 @@ export const useFeed = () => {
         : [],
       pageParams: fetchedData.pageParams,
     }),
+    refetchOnMount: true,
+    staleTime: Infinity,
   });
 
   const isEmpty = !data?.pages.length;

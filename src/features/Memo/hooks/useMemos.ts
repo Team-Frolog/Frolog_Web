@@ -37,7 +37,7 @@ export const useMemos = (bookId: string, userId: string) => {
           : [],
         pageParams: fetchedData.pageParams,
       }),
-      refetchOnWindowFocus: false,
+      staleTime: 1000 * 10,
     });
 
   const { mutate: handleDeleteMemo } = useMutation({
