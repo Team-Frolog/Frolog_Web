@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { DeleteImgIcon, ImgPlusIcon } from 'public/icons';
+import debounce from 'lodash/debounce';
 import ImagePreview from './ImagePreview';
 
 interface Props {
@@ -23,16 +24,17 @@ function ImageSlot({
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  useEffect(() => {
-    const handleResize = () => {
-      const newSize =
-        window.innerWidth >= 450 ? 450 - 48 : window.innerWidth - 48;
-      setDimensions({
-        width: newSize,
-        height: newSize,
-      });
-    };
+  const handleResize = debounce(() => {
+    const newSize =
+      window.innerWidth >= 450 ? 450 - 48 : window.innerWidth - 48;
 
+    setDimensions({
+      width: newSize,
+      height: newSize,
+    });
+  }, 500);
+
+  useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);

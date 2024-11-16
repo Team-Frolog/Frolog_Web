@@ -5,6 +5,7 @@ export const useMemoDetailPage = (memoId: string) => {
   const { data: memoDetail } = useQuery({
     queryKey: ['memo', memoId],
     queryFn: () => getMemoDetail({ id: memoId }),
+    refetchOnWindowFocus: false,
   });
 
   return { memoDetail };
