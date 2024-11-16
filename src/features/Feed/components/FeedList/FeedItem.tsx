@@ -21,6 +21,7 @@ function FeedItem({ isMemo, feedData, startCommentLoading }: Props) {
       <ProfileHeader type='feed' userId={feedData.writer} hasFollow />
       <div className='flex w-full flex-col'>
         <Link
+          prefetch
           href={isMemo ? `/memo/${feedData.id}` : `/review/${feedData.id}`}
           className='flex w-full flex-col'
         >

@@ -8,6 +8,9 @@ import { motion } from 'framer-motion';
 import BackButton from '@/components/Button/BackButton';
 import { useProfile } from '@/hooks/useProfile';
 import { PAGES } from '@/constants/page';
+import Link from 'next/link';
+
+const MotionLink = motion(Link);
 
 interface Props {
   userId?: string;
@@ -48,15 +51,16 @@ function SideWellHeader({
         />
       )}
       {hasStoreButton && (
-        <motion.button
+        <MotionLink
           id='store-button'
           type='button'
+          prefetch
           whileTap={{ scale: 0.9 }}
-          onClick={() => router.push(PAGES.STORE)}
+          href={PAGES.STORE}
           className='absolute right-[24px] top-[24px] z-70'
         >
           <StoreIcon />
-        </motion.button>
+        </MotionLink>
       )}
     </SideHeader>
   );
