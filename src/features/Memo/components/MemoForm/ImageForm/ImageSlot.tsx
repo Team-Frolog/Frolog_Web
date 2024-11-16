@@ -61,6 +61,7 @@ function ImageSlot({
                 priority
                 loading='eager'
                 className='object-cover'
+                placeholder='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Ww8AAj8BXkQ+xPEAAAAASUVORK5CYII='
                 onClick={
                   isReadOnly
                     ? undefined
