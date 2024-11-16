@@ -2,7 +2,6 @@ import TagSlider from '@/components/Tag/TagSlider';
 import { ImageSlider, ImageSlot } from '@/features/Memo';
 import { formatDate } from '@/utils/date';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
-import uniqueId from 'lodash/uniqueId';
 import React from 'react';
 import { isGetMemoRes } from '../../utils/typeGuard';
 
@@ -20,7 +19,7 @@ function FeedContent({ feedData, isFeed = true }: Props) {
             <ImageSlider>
               {feedData.images.map((img, index) => (
                 <ImageSlot
-                  key={uniqueId()}
+                  key={index}
                   isReadOnly
                   src={`https://images.frolog.kr/memo/${img}.webp`}
                   index={index}

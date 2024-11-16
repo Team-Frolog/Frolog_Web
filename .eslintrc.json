@@ -18,6 +18,7 @@
     "next.config.js"
   ], // eslint 미적용될 폴더나 파일
   "rules": {
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "react/no-array-index-key": "warn"
   }
 }

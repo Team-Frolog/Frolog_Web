@@ -24,17 +24,19 @@ function ImageSlot({
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  const handleResize = debounce(() => {
-    const newSize =
-      window.innerWidth >= 450 ? 450 - 48 : window.innerWidth - 48;
-
-    setDimensions({
-      width: newSize,
-      height: newSize,
-    });
-  }, 500);
-
   useEffect(() => {
+    const handleResize = debounce(() => {
+      const newSize =
+        window.innerWidth >= 450 ? 450 - 48 : window.innerWidth - 48;
+
+      if (newSize > 0) {
+        setDimensions({
+          width: newSize,
+          height: newSize,
+        });
+      }
+    }, 500);
+
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -42,7 +44,7 @@ function ImageSlot({
 
   return (
     <div
-      className='relative shrink-0 overflow-hidden rounded-[12px]'
+      className='relative w-full shrink-0 overflow-hidden rounded-[12px]'
       style={{
         width: `${dimensions.width}px`,
         height: `${dimensions.height}px`,
