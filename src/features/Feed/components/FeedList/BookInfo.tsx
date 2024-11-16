@@ -45,7 +45,7 @@ function BookInfo({ feedData, isMemo }: Props) {
               {title}
             </h5>
             <ul
-              className={`flex text-caption-bold text-category-text-${category}`}
+              className={`line-clamp-1 flex text-caption-bold text-category-text-${category}`}
             >
               <li className="after:content-['|']">
                 <span className='pr-[6px]'>{author}</span>

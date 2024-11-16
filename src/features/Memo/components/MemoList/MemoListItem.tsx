@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useUserId } from '@/store/sessionStore';
 import uniqueId from 'lodash/uniqueId';
 import DeleteButton from '@/components/ListItem/DeleteButton';
-import { useRouter } from 'next/navigation';
 import { formatDate } from '@/utils/date';
 import ImageSlider from '../MemoForm/ImageForm/ImageSlider';
 import { Memo } from '../../models/memo.model';
@@ -18,19 +18,15 @@ interface Props {
 }
 
 function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
-  const router = useRouter();
   const sessionUserId = useUserId();
   const isRootUser = userId === sessionUserId;
 
   return (
     <div className={`review-item px-0 ${isRootUser ? 'pb-0' : 'pb-[36px]'}`}>
-      <div
+      <Link
+        prefetch
         className='flex w-full flex-col gap-[20px]'
-        onClick={() =>
-          router.push(
-            isRootUser ? `memo/${memoData.id}` : `/memo/${memoData.id}`
-          )
-        }
+        href={isRootUser ? `memo/${memoData.id}` : `/memo/${memoData.id}`}
       >
         {memoData.images.length !== 0 && (
           <ImageSlider>
@@ -59,7 +55,7 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
             </span>
           </div>
         </div>
-      </div>
+      </Link>
       {isRootUser && (
         <DeleteButton
           type='memo'

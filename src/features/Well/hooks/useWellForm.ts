@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { UseFormReset, UseFormSetError } from 'react-hook-form';
 import { useFlash } from '@/hooks/useFlash';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { toast } from '@/modules/Toast';
 import { ERROR_ALERT } from '@/constants/message';
@@ -25,11 +25,13 @@ export const useWellForm = (
   const [isLoading, setIsLoading] = useState(false);
   const [isNameChecked, setIsNameChecked] = useState(false);
   const { openFlash } = useFlash();
+  const queryClient = useQueryClient();
 
   const { data: wellData } = useQuery({
     queryKey: ['well', wellId],
     queryFn: () => getWell(wellId!),
     enabled: type === 'edit' && !!wellId,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {
@@ -82,7 +84,10 @@ export const useWellForm = (
       toast.error(ERROR_ALERT);
       setIsLoading(false);
     },
-    onSuccess: () => router.replace(PAGES.HOME),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['well', wellId] });
+      router.replace(PAGES.HOME);
+    },
   });
 
   const handleClickBack = (isDirty: boolean) => {

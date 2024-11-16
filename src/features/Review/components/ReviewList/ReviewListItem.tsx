@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Rating from '@/components/Rating/Rating';
 import TagSlider from '@/components/Tag/TagSlider';
 import { GetReviewRes } from '@frolog/frolog-api';
@@ -17,26 +17,22 @@ interface Props {
 }
 
 function ReviewListItem({ reviewData, setReviewId, onDelete, userId }: Props) {
-  const router = useRouter();
   const sessionUserId = useUserId();
   const isRootUser = userId === sessionUserId;
 
   return (
     <div className={`review-item px-0 ${isRootUser && 'pb-0'}`}>
       <div className='flex w-full flex-col gap-[12px]'>
-        <div
-          onClick={() =>
-            router.push(
-              isRootUser
-                ? `review/${reviewData.id}`
-                : `/review/${reviewData.id}`
-            )
+        <Link
+          prefetch
+          href={
+            isRootUser ? `review/${reviewData.id}` : `/review/${reviewData.id}`
           }
           className='flex w-full cursor-pointer flex-col gap-[12px] px-[24px]'
         >
           <Rating rating={reviewData.rating} textClass='text-heading-lg-bold' />
           <h3 className='break-all text-title-xl-bold'>{reviewData.title}</h3>
-        </div>
+        </Link>
 
         <div className='flex-col-center w-full gap-[8px]'>
           <TagSlider type='pros' tagKeys={reviewData.tags_pos} />

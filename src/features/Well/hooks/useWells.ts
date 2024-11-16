@@ -18,6 +18,7 @@ export const useWells = (userId: string) => {
           : [],
         pageParams: fetchedData.pageParams,
       }),
+      refetchOnWindowFocus: false,
     });
 
   const isEmpty = data ? data.pages.length === 0 : 0;

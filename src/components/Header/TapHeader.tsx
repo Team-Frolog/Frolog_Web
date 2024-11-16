@@ -3,47 +3,40 @@
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
+import Link from 'next/link';
 
 function TapHeader() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleClick = (route: 'back' | 'memo' | 'review') => {
-    if (route === 'back') {
-      router.back();
-    } else {
-      router.replace(
-        `${pathname.replace(/memo|review/, route === 'memo' ? 'memo' : 'review')}`
-      );
-    }
-  };
-
   return (
-    <ResponsiveHeaderLayout display='block' onClick={() => handleClick('back')}>
+    <ResponsiveHeaderLayout display='block' onClick={() => router.back()}>
       <div className='relative w-fit pb-[5px]'>
         <div className='flex gap-[24px]'>
-          <button
+          <Link
             id={pathname.includes('memo') ? 'selected' : 'unselected'}
             type='button'
-            onClick={() => handleClick('memo')}
+            replace
+            href={`${pathname.replace(/review/, 'memo')}`}
             className='text-heading-md-bold'
             style={{
               color: pathname.includes('memo') ? '#FFFFFF' : '#b3b6c5',
             }}
           >
             메모
-          </button>
-          <button
+          </Link>
+          <Link
             id={pathname.includes('review') ? 'selected' : 'unselected'}
             type='button'
-            onClick={() => handleClick('review')}
+            replace
+            href={`${pathname.replace(/memo/, 'review')}`}
             className='text-heading-md-bold'
             style={{
               color: pathname.includes('review') ? '#FFFFFF' : '#b3b6c5',
             }}
           >
             리뷰
-          </button>
+          </Link>
         </div>
         <div
           id='bar'

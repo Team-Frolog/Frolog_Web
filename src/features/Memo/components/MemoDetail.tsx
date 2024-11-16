@@ -1,5 +1,4 @@
 import React from 'react';
-import uniqueId from 'lodash/uniqueId';
 import ReadOnlyTextarea from '@/components/Form/Input/ReadOnlyTextarea';
 import { textareaType } from '@/data/ui/textareaType';
 import { GetMemoRes } from '@frolog/frolog-api';
@@ -19,7 +18,7 @@ function MemoDetail({ memoData }: Props) {
         <ImageSlider>
           {memoData.images.map((img, index) => (
             <ImageSlot
-              key={uniqueId()}
+              key={index}
               src={`https://images.frolog.kr/memo/${img}.webp`}
               index={index}
             />

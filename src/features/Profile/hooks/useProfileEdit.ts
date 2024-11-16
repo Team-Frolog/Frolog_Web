@@ -4,7 +4,7 @@ import {
   transformInfoToObject,
 } from '@/utils/transformInfo';
 import { UseFormReset } from 'react-hook-form';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   PROFILE_EDIT_FORM_KEY,
   TEST_RESULT_FOR_EDIT,
@@ -23,6 +23,7 @@ export const useProfileEdit = (
 ) => {
   const [isEdited, setIsEdited] = useState(false);
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const { data: profileDetail } = useQuery({
     queryKey: ['profileDetail', userId],
@@ -46,7 +47,9 @@ export const useProfileEdit = (
       return result;
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['profileDetail', userId] });
       router.replace(`/${userId}/profile`);
+      router.back();
     },
   });
 

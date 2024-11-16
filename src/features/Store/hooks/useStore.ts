@@ -14,6 +14,8 @@ export const useStore = (userId: string, points?: number) => {
   const { data } = useSuspenseQuery({
     queryKey: ['storeItems'],
     queryFn: () => getStoreItems({ type: 'frog', limit: 100 }),
+    refetchOnWindowFocus: false,
+    staleTime: Infinity,
   });
 
   const { mutate: purchase } = useMutation({

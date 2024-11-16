@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { DeleteImgIcon, ImgPlusIcon } from 'public/icons';
+import debounce from 'lodash/debounce';
 import ImagePreview from './ImagePreview';
 
 interface Props {
@@ -24,14 +25,17 @@ function ImageSlot({
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = debounce(() => {
       const newSize =
         window.innerWidth >= 450 ? 450 - 48 : window.innerWidth - 48;
-      setDimensions({
-        width: newSize,
-        height: newSize,
-      });
-    };
+
+      if (newSize > 0) {
+        setDimensions({
+          width: newSize,
+          height: newSize,
+        });
+      }
+    }, 500);
 
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -40,7 +44,7 @@ function ImageSlot({
 
   return (
     <div
-      className='relative shrink-0 overflow-hidden rounded-[12px]'
+      className='relative w-full shrink-0 overflow-hidden rounded-[12px]'
       style={{
         width: `${dimensions.width}px`,
         height: `${dimensions.height}px`,
@@ -57,6 +61,7 @@ function ImageSlot({
                 priority
                 loading='eager'
                 className='object-cover'
+                placeholder='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Ww8AAj8BXkQ+xPEAAAAASUVORK5CYII='
                 onClick={
                   isReadOnly
                     ? undefined

@@ -29,6 +29,7 @@ export const PAGES = {
   STORE: '/store',
   INSTALL: '/how-to-install',
   QUIT: '/quit',
+  MISSION: '/mission',
   TERMS: '/terms',
 } as const;
 

@@ -6,15 +6,14 @@ import Rating from '@/components/Rating/Rating';
 import Tag from '@/components/Tag/Tag';
 import { GetBookRes } from '@frolog/frolog-api';
 import { getTagById } from '@/utils/getTags';
-import { useRouter } from 'next/navigation';
 import { IMAGES } from '@/constants/images';
+import Link from 'next/link';
 
 interface Props {
   bookData: GetBookRes;
 }
 
 function BookListItem({ bookData }: Props) {
-  const router = useRouter();
   const {
     isbn,
     author,
@@ -29,8 +28,9 @@ function BookListItem({ bookData }: Props) {
   } = bookData;
 
   return (
-    <div
-      onClick={() => router.push(`/book/${isbn}`)}
+    <Link
+      prefetch
+      href={`/book/${isbn}`}
       className='flex w-full cursor-pointer gap-[20px] text-gray-800'
     >
       <div className='flex h-fit'>
@@ -53,14 +53,9 @@ function BookListItem({ bookData }: Props) {
           )}
 
           <h5 className='text-body-xl-bold'>{title}</h5>
-          <ul className='flex text-caption-bold text-gray-600'>
-            <li className="after:content-['|']">
-              <span className='pr-[6px]'>{author}</span>
-            </li>
-            <li>
-              <span className='pl-[6px]'>{publisher}</span>
-            </li>
-          </ul>
+          <span className='flex text-caption-bold text-gray-600'>
+            {author} | {publisher}
+          </span>
         </div>
         <div className='flex flex-col gap-[8px]'>
           <Rating rating={avg_rating || null} />
@@ -91,7 +86,7 @@ function BookListItem({ bookData }: Props) {
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

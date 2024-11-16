@@ -10,24 +10,20 @@ function ProfileTitleHeader() {
   const pathname = usePathname();
 
   const getTitle = (path: string) => {
-    switch (path) {
-      case PAGES.QUIT:
-        return (
-          <h3 className='text-heading-md-bold text-gray-800'>
-            정말 탈퇴하나요?
-          </h3>
-        );
-      case PAGES.TERMS:
-        return <h3 className='text-heading-md-bold text-gray-800'>이용약관</h3>;
-      case PAGES.INSTALL:
-        return (
-          <h3 className='text-heading-md-bold text-gray-800'>
-            <strong className='text-heading-md-bold text-main'>프롤로그</strong>
-            를<br />
-            앱으로 즐기세요!
-          </h3>
-        );
-      default:
+    if (path.includes(PAGES.QUIT)) {
+      return (
+        <h3 className='text-heading-md-bold text-gray-800'>정말 탈퇴하나요?</h3>
+      );
+    } else if (path.includes(PAGES.TERMS)) {
+      return <h3 className='text-heading-md-bold text-gray-800'>이용약관</h3>;
+    } else if (path.includes(PAGES.INSTALL)) {
+      return (
+        <h3 className='text-heading-md-bold text-gray-800'>
+          <strong className='text-heading-md-bold text-main'>프롤로그</strong>
+          를<br />
+          앱으로 즐기세요!
+        </h3>
+      );
     }
   };
 

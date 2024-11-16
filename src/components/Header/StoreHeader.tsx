@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
+import { PAGES } from '@/constants/page';
 import { usePathname, useRouter } from 'next/navigation';
 import { useWallet } from '@/features/Store/hooks/useWallet';
 import BackButton from '../Button/BackButton';
@@ -20,26 +22,28 @@ function StoreHeader({ userId }: Props) {
       <div className='flex items-center justify-between'>
         <div className='relative w-fit pb-[5px]'>
           <div className='flex gap-[24px]'>
-            <button
+            <Link
               type='button'
-              onClick={() => router.replace('/store')}
+              replace
+              href={PAGES.STORE}
               className='text-heading-md-bold'
               style={{
                 color: pathname.includes('store') ? '#313239' : '#B3B6C4',
               }}
             >
               상점
-            </button>
-            <button
+            </Link>
+            <Link
               type='button'
-              onClick={() => router.replace('/mission')}
+              replace
+              href={PAGES.MISSION}
               className='text-heading-md-bold'
               style={{
                 color: pathname.includes('mission') ? '#313239' : '#B3B6C4',
               }}
             >
               미션
-            </button>
+            </Link>
           </div>
           <div
             id='bar'

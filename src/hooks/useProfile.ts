@@ -6,6 +6,8 @@ export const useProfile = (userId: string | undefined) => {
     queryKey: ['profile', userId],
     queryFn: () => getProfile(userId!),
     enabled: userId !== undefined,
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false,
   });
 
   return { profile: data };

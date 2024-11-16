@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { useBook } from '@/features/Book';
 import { IMAGES } from '@/constants/images';
-import { useRouter } from 'next/navigation';
 import Book from './Book';
 
 interface Props {
@@ -13,14 +13,14 @@ interface Props {
 }
 
 function BookInfo({ bookId, canClick = false }: Props) {
-  const router = useRouter();
   const { bookData } = useBook(bookId);
 
   return (
-    <div
+    <Link
       id='book-info'
-      onClick={canClick ? () => router.push(`/book/${bookId}`) : undefined}
-      className='flex-col-center relative w-full gap-[20px] bg-white pb-[24px] pt-[48px] text-gray-800'
+      prefetch
+      href={canClick ? `/book/${bookId}` : ''}
+      className={`flex-col-center relative w-full gap-[20px] bg-white pb-[24px] pt-[48px] text-gray-800 ${canClick ? '' : 'pointer-events-none'}`}
     >
       <div className='absolute left-0 top-0 z-0 h-[230px] w-full mobile:h-[200px]'>
         <Image
@@ -33,19 +33,14 @@ function BookInfo({ bookId, canClick = false }: Props) {
         />
       </div>
 
-      <Book imageUrl={bookData?.image} />
+      <Book imageUrl={bookData?.image} canClick={canClick} />
       <div className='flex-col-center w-[80%] gap-[4px]'>
         <h3 className='text-center text-title-lg-bold'>{bookData?.title}</h3>
-        <ul className='flex text-body-sm text-gray-600'>
-          <li className="after:content-['|']">
-            <span className='px-[6px]'>{bookData?.author}</span>
-          </li>
-          <li>
-            <span className='px-[6px]'>{bookData?.publisher}</span>
-          </li>
-        </ul>
+        <span className='flex text-body-sm text-gray-600'>
+          {bookData?.author} | {bookData?.publisher}
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }
 

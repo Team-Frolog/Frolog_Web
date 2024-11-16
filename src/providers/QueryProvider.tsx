@@ -13,6 +13,7 @@ export const getQueryClient = () =>
         networkMode: 'online',
         refetchOnWindowFocus: false,
         throwOnError: true,
+        staleTime: 1000 * 20,
       },
       mutations: {
         onError: (err) => {
