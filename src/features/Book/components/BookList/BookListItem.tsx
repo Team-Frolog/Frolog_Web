@@ -53,14 +53,9 @@ function BookListItem({ bookData }: Props) {
           )}
 
           <h5 className='text-body-xl-bold'>{title}</h5>
-          <ul className='flex text-caption-bold text-gray-600'>
-            <li className="after:content-['|']">
-              <span className='pr-[6px]'>{author}</span>
-            </li>
-            <li>
-              <span className='pl-[6px]'>{publisher}</span>
-            </li>
-          </ul>
+          <span className='flex text-caption-bold text-gray-600'>
+            {author} | {publisher}
+          </span>
         </div>
         <div className='flex flex-col gap-[8px]'>
           <Rating rating={avg_rating || null} />

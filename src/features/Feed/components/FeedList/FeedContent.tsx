@@ -46,7 +46,9 @@ function FeedContent({ feedData, isFeed = true }: Props) {
             <h3 className='break-all text-title-xl-bold'>
               {(feedData as GetReviewRes).title}
             </h3>
-            <p className='break-all text-body-lg'>{feedData.content}</p>
+            <p className='whitespace-pre-wrap break-all text-body-lg'>
+              {feedData.content}
+            </p>
           </div>
         </>
       )}

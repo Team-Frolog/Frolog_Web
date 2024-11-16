@@ -6,7 +6,7 @@ export const PAGE_THEME: {
   [key: string]: string;
 } = {
   '': DARK,
-  '/book': DARK,
+  '/book': HALF,
   '/onboarding': DARK,
   '/join': DARK,
   '/unsubscribe': DARK,
