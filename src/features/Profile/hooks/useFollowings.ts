@@ -23,6 +23,7 @@ export const useFollowings = (userId: string) => {
         : [],
       pageParams: fetchedData.pageParams,
     }),
+    staleTime: 0,
   });
 
   const isEmpty = followings?.pages.length === 0;

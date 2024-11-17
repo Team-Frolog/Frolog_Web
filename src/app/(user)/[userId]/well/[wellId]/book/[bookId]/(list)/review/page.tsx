@@ -54,7 +54,7 @@ async function ReviewPage({ params: { userId, wellId, bookId } }: Props) {
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
         accessToken: session?.user.accessToken,
       }).fetch({ isbn: bookId, writer: userId }),
-    staleTime: 1000 * 30,
+    staleTime: 1000 * 10,
   });
 
   return (

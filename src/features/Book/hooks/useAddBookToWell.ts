@@ -18,6 +18,7 @@ export const useAddBookToWell = (isbn: string) => {
     queryKey: ['reviewCount', isbn],
     queryFn: () => getReviewCount({ isbn, writer: userId }),
     enabled: !!userId,
+    staleTime: 0,
   });
 
   /* ----- 다 읽었어요 ----- */

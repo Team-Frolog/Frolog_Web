@@ -5,7 +5,7 @@ export const useProfileDetail = (userId: string) => {
   const { data } = useSuspenseQuery({
     queryKey: ['profileDetail', userId],
     queryFn: () => getProfileDetail(userId),
-    staleTime: 1000 * 10,
+    staleTime: 1000 * 5,
   });
 
   return { profileDetail: data };

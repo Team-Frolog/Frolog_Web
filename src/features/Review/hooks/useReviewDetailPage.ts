@@ -5,6 +5,7 @@ export const useReviewDetailPage = (reviewId: string) => {
   const { data: reviewDetail } = useQuery({
     queryKey: ['reviewDetail', reviewId],
     queryFn: () => getReviewDetail(reviewId),
+    staleTime: 0,
   });
 
   return { reviewDetail };

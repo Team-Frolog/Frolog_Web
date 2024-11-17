@@ -6,6 +6,7 @@ export const useWallet = (userId?: string) => {
     queryKey: ['points', userId],
     queryFn: () => getUserPoints(userId!),
     enabled: userId !== undefined,
+    staleTime: 0,
   });
 
   return { points: data?.points };

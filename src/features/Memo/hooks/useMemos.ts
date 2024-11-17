@@ -37,7 +37,7 @@ export const useMemos = (bookId: string, userId: string) => {
           : [],
         pageParams: fetchedData.pageParams,
       }),
-      staleTime: 1000 * 10,
+      staleTime: 1000 * 5,
     });
 
   const { mutate: handleDeleteMemo } = useMutation({

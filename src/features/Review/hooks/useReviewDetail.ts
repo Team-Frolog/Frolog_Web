@@ -34,6 +34,7 @@ export const useReviewDetail = ({
   const { data } = useQuery({
     queryKey: ['reviewDetail', reviewId],
     queryFn: () => getReviewDetail(reviewId),
+    staleTime: 0,
   });
 
   const { data: bookData } = useQuery({

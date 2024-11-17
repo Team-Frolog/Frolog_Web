@@ -28,6 +28,7 @@ export const useProfileEdit = (
   const { data: profileDetail } = useQuery({
     queryKey: ['profileDetail', userId],
     queryFn: () => getProfileDetail(userId),
+    staleTime: 0,
   });
   const original_username = profileDetail?.username;
 

@@ -6,6 +6,7 @@ export const useWell = (wellId: string) => {
     queryKey: ['well', wellId],
     queryFn: () => getWell(wellId),
     refetchOnWindowFocus: false,
+    staleTime: 0,
   });
 
   return { well: data };

@@ -18,7 +18,7 @@ export const useReviews = (bookId: string, userId: string) => {
         isbn: bookId,
         writer: userId,
       }),
-    staleTime: 1000 * 10,
+    staleTime: 1000 * 5,
   });
 
   const { mutate } = useMutation({

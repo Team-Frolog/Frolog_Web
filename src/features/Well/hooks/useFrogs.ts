@@ -6,6 +6,7 @@ export const useFrogs = (userId: string) => {
     queryKey: ['frogs', userId],
     queryFn: () => getStoreItems({ owner: userId, type: 'frog' }),
     refetchOnWindowFocus: false,
+    staleTime: 0,
   });
 
   return { frogs: data.items };
