@@ -30,6 +30,7 @@ export const useComments = (id: string, isReview: boolean) => {
           : [],
         pageParams: fetchedData.pageParams,
       }),
+      staleTime: 0,
     });
 
   const isEmpty = !data?.pages.length;

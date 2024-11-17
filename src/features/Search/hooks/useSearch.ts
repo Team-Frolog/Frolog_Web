@@ -50,6 +50,7 @@ export const useSearch = () => {
       pageParams: fetchedData.pageParams,
     }),
     enabled: searchValue !== null,
+    staleTime: 1000 * 5,
   });
 
   const isEmpty = !data?.pages.length;

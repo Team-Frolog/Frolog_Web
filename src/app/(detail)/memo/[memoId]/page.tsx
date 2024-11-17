@@ -31,7 +31,7 @@ async function MemoPage({ params: { memoId } }: Props) {
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
         accessToken: session?.user.accessToken,
       }).fetch({ id: memoId }),
-    staleTime: 1000 * 30,
+    staleTime: 1000 * 10,
   });
 
   return (

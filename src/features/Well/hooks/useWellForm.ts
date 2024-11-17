@@ -32,6 +32,7 @@ export const useWellForm = (
     queryFn: () => getWell(wellId!),
     enabled: type === 'edit' && !!wellId,
     refetchOnWindowFocus: false,
+    staleTime: 0,
   });
 
   useEffect(() => {

@@ -61,7 +61,7 @@ async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
         page: pageParam,
       }),
     initialPageParam: 0,
-    staleTime: 1000 * 30,
+    staleTime: 1000 * 10,
   });
 
   return (

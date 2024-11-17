@@ -35,7 +35,7 @@ async function BookPage({ params: { id } }: Props) {
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
         accessToken: session?.user.accessToken,
       }).fetch({ isbn: id }),
-    staleTime: 1000 * 30,
+    staleTime: 1000 * 10,
   });
 
   await queryClient.prefetchInfiniteQuery({
@@ -46,7 +46,7 @@ async function BookPage({ params: { id } }: Props) {
         accessToken: session?.user.accessToken,
       }).fetch({ isbn: id, limit: DEFAULT_LIMIT, page: pageParam }),
     initialPageParam: 0,
-    staleTime: 1000 * 30,
+    staleTime: 1000 * 10,
   });
 
   return (

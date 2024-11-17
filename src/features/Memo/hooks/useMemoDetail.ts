@@ -16,6 +16,7 @@ export const useMemoDetail = (
   const { data: memoDetail } = useQuery({
     queryKey: ['memo', memoId],
     queryFn: () => getMemoDetail({ id: memoId }),
+    staleTime: 0,
   });
 
   const { mutate: handleEditMemo, isPending } = useMutation({

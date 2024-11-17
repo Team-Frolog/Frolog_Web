@@ -19,6 +19,7 @@ export const useChildComments = ({
     queryKey: ['childComments', parentId],
     queryFn: () => getComments({ id: itemId, isReview, depth: 1, parentId }),
     enabled: more,
+    staleTime: 0,
   });
 
   return {

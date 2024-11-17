@@ -54,7 +54,7 @@ async function UserWellListPage({ params: { userId } }: Props) {
         accessToken: session?.user.accessToken,
       }).fetch({ owner: userId, limit: DEFAULT_LIMIT, page: pageParam }),
     initialPageParam: 0,
-    staleTime: 1000 * 30,
+    staleTime: 1000 * 10,
   });
 
   return (

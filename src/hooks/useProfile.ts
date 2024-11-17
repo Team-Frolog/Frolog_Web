@@ -7,7 +7,7 @@ export const useProfile = (userId: string | undefined) => {
     queryFn: () => getProfile(userId!),
     enabled: userId !== undefined,
     staleTime: 1000 * 60 * 5,
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
   });
 
   return { profile: data };
