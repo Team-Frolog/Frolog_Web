@@ -60,10 +60,9 @@ export async function middleware(req: NextRequest) {
       // 재발급
       const result = await new RefreshToken({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: sessionToken.accessToken,
       }).fetch({ refresh_token: sessionToken.refreshToken });
 
-      if (result.access_token && result.refresh_token) {
+      if (result && result.access_token && result.refresh_token) {
         // 새로운 토큰 세팅
         newSessionToken = await encode({
           token: {
