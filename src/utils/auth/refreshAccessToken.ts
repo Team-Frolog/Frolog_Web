@@ -6,7 +6,6 @@ export const refreshAccessToken = async (tokenObj: JWT) => {
   try {
     const data = await new RefreshToken({
       baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-      accessToken: tokenObj.accessToken,
     }).fetch({ refresh_token: tokenObj.refreshToken });
 
     if (data.result) {
