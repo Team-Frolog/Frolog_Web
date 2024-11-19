@@ -1,4 +1,4 @@
-import { RefreshToken } from '@frolog/frolog-api';
+import { RefreshToken, RefreshTokenRes } from '@frolog/frolog-api';
 import { encode, getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
@@ -58,9 +58,14 @@ export async function middleware(req: NextRequest) {
     // 만료된 경우
     if (timeRemaining <= 0) {
       // 재발급
-      const result = await new RefreshToken({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-      }).fetch({ refresh_token: sessionToken.refreshToken });
+      const result: RefreshTokenRes = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/v1/auth/refresh-token`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ refresh_token: sessionToken.refreshToken }),
+        }
+      ).then((res) => res.json());
 
       if (result && result.access_token && result.refresh_token) {
         // 새로운 토큰 세팅
