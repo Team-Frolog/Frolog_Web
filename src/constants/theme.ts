@@ -25,7 +25,7 @@ export const PAGE_THEME: {
   '/new-memo': LIGHT,
   '/search': LIGHT,
   '/search-home': DARK,
-  '/feed': DARK,
+  '/feed': HALF,
   '/comments': LIGHT,
   '/profile': DARK,
   '/profile/follows': LIGHT,
