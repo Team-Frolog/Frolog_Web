@@ -12,7 +12,7 @@ function DummyItem() {
       </div>
       <div className='flex w-full flex-col'>
         <div className='flex w-full flex-col'>
-          <div className='pt-[30px] w-full flex'>
+          <div className='flex w-full pt-[30px]'>
             <div className='relative flex h-[80px] w-full gap-[16px] rounded-t-[20px] bg-category-bg-economic_business after:border-b-category-bg-economic_business'>
               rating
             </div>

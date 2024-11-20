@@ -1,6 +1,5 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { TEST_ANSWER_KEY } from '@/constants/storage';
 import { useStepActions } from '@/store/stepStore';
@@ -10,11 +9,8 @@ import ProgressHeader from './ProgressHeader';
 import Question from './Question/Question';
 
 function FrologTest() {
-  const type = useSearchParams().get('type');
-  const isLoading = useSearchParams().get('loading');
   const { resetStep } = useStepActions();
-  const { testData, answers, handleClickAnswer, step, postTestResult } =
-    useTest();
+  const { testData, answers, handleClickAnswer, step, isLoading } = useTest();
 
   useEffect(() => {
     return () => {
@@ -23,8 +19,7 @@ function FrologTest() {
     };
   }, []);
 
-  if (isLoading) {
-    postTestResult(type!);
+  if (isLoading === 'true') {
     return <LoadingPage />;
   }
 

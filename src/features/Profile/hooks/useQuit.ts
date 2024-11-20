@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { signOut } from 'next-auth/react';
+import useSessionStore from '@/store/sessionStore';
 import { PAGES } from '@/constants/page';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { quit } from '../api/quit.api';
@@ -8,9 +9,12 @@ import { quitReasons } from '../data/quitForm';
 import { Survey } from '../types/quit';
 
 export const useQuit = () => {
+  const clearSession = useSessionStore.persist.clearStorage;
+
   const { mutate: quitUser } = useMutation({
     mutationFn: (survey: Survey) => quit(survey),
     onSuccess: () => {
+      clearSession();
       signOut({ callbackUrl: PAGES.HOME, redirect: true });
     },
   });
