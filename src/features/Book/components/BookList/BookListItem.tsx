@@ -40,6 +40,7 @@ function BookListItem({ bookData }: Props) {
           alt='book cover'
           width={126}
           height={186}
+          unoptimized
         />
       </div>
       <div className='flex flex-1 flex-col gap-[16px]'>

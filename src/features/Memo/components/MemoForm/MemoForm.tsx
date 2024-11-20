@@ -46,7 +46,9 @@ function MemoForm({ defaultValues, isLoading, bookId }: Props) {
         title={bookData?.title || ''}
         theme='light'
         type='edit'
-        isDisabled={(!watch('memo') && !watch('images').length) || isLoading}
+        isDisabled={
+          (!watch('memo') && watch('images').length === 0) || isLoading
+        }
         onClickBack={handleClickBack}
       />
       <div className='flex w-full flex-1 flex-col overflow-auto py-[36px]'>

@@ -30,6 +30,7 @@ function BookInfo({ bookId, canClick = false }: Props) {
           className='object-cover'
           loading='eager'
           priority
+          unoptimized
         />
       </div>
 
