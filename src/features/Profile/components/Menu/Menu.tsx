@@ -8,7 +8,7 @@ import { PAGES } from '@/constants/page';
 import MenuItem from './MenuItem';
 
 function Menu() {
-  const { clearStorage } = useSessionStore.persist;
+  const clearSession = useSessionStore.persist.clearStorage;
 
   return (
     <div className='flex w-full flex-col gap-[28px] px-page'>
@@ -34,7 +34,7 @@ function Menu() {
               bottomSheet.open({
                 sheetKey: 'logout',
                 onClick: () => {
-                  clearStorage();
+                  clearSession();
                   signOut({ callbackUrl: PAGES.HOME, redirect: true });
                 },
               })

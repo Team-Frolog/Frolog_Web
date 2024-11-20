@@ -16,6 +16,9 @@ export const useTest = () => {
   const step = useStep();
   const router = useRouter();
   const callback = useSearchParams().get('callbackUrl');
+  const testType = useSearchParams().get('type');
+  const isLoading = useSearchParams().get('loading');
+  const [isEdited, setIsEdited] = useState(false);
   const { moveStep } = useStepActions();
   const [testData, setTestData] = useState<Question>(questions[0]);
   const [answers, setAnswers] = useState<number[]>(() => {
@@ -60,6 +63,13 @@ export const useTest = () => {
   };
 
   useEffect(() => {
+    if (isLoading && !isEdited) {
+      postTestResult(testType!);
+      setIsEdited(true);
+    }
+  }, [isLoading, testType, isEdited]);
+
+  useEffect(() => {
     if (step <= 7) {
       setTestData(questions[step - 1]);
       const currentAnswers = answers.slice(0, step);
@@ -75,5 +85,5 @@ export const useTest = () => {
     }
   }, [step]);
 
-  return { step, answers, handleClickAnswer, testData, postTestResult };
+  return { step, answers, handleClickAnswer, testData, isLoading };
 };
