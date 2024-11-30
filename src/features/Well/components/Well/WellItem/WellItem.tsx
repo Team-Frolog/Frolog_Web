@@ -32,7 +32,7 @@ function WellItem({
     actions: { setNewReviewId },
   } = useStackMotionStore();
   const { id, status, title, page, category, isbn, memo_cnt } = wellBook;
-  const height = page > 550 ? page * 0.1 : 55;
+  const height = page > 400 ? page * 0.15 : 55;
   const isReading = status === 'reading';
   const hasMemo = memo_cnt > 0;
 
@@ -58,7 +58,8 @@ function WellItem({
           newReviewId === id && isLastItem ? staggerItemVariants : undefined
         }
         style={{ zIndex, height }}
-        className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[12px]`}
+        // className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[12px]`}
+        className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[18px]`}
       >
         <Image
           src={CATEGORY[category].wave}
