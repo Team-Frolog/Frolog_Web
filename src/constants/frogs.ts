@@ -69,6 +69,47 @@ export const FROGS: Frog = {
     name: '꾸리백작',
     marginBottom: 10,
   },
+  // 크리스마스 캐릭터
+  gguristmas: {
+    src: `${BASE_PATH}/christmas/character/gguristmas.webp`,
+    name: '꾸리스마스',
+    marginBottom: 10,
+  },
+  box: {
+    src: `${BASE_PATH}/christmas/character/box.webp`,
+    name: '상자꾸리',
+    marginBottom: 10,
+  },
+  candle: {
+    src: `${BASE_PATH}/christmas/character/candle.webp`,
+    name: '양초꾸리',
+    marginBottom: 10,
+  },
+  gguribread: {
+    src: `${BASE_PATH}/christmas/character/gguribread.webp`,
+    name: '꾸리브레드',
+    marginBottom: 10,
+  },
+  snowgguri: {
+    src: `${BASE_PATH}/christmas/character/snowgguri.webp`,
+    name: '눈꾸리',
+    marginBottom: 10,
+  },
+  santa: {
+    src: `${BASE_PATH}/christmas/character/santa.webp`,
+    name: '산타꾸리',
+    marginBottom: 10,
+  },
+  tree: {
+    src: `${BASE_PATH}/christmas/character/tree.webp`,
+    name: '트리꾸리',
+    marginBottom: 10,
+  },
+  ggudolph: {
+    src: `${BASE_PATH}/christmas/character/ggudolph.webp`,
+    name: '꾸돌프',
+    marginBottom: 10,
+  },
 } as const;
 
 export const FROGS_SILHOUETTE: {
@@ -84,6 +125,15 @@ export const FROGS_SILHOUETTE: {
   gguristein: `${BASE_PATH}/frog/character/silhouette/gguristein-silhouette.webp`,
   witch: `${BASE_PATH}/frog/character/silhouette/witch-silhouette.webp`,
   dracula: `${BASE_PATH}/frog/character/silhouette/dracula-silhouette.webp`,
+  // 크리스마스
+  gguristmas: `${BASE_PATH}/christmas/character/silhouette/`,
+  box: `${BASE_PATH}/christmas/character/silhouette/`,
+  candle: `${BASE_PATH}/christmas/character/silhouette/`,
+  gguribread: `${BASE_PATH}/christmas/character/silhouette/`,
+  snowgguri: `${BASE_PATH}/christmas/character/silhouette/`,
+  santa: `${BASE_PATH}/christmas/character/silhouette/`,
+  tree: `${BASE_PATH}/christmas/character/silhouette/`,
+  ggudolph: `${BASE_PATH}/christmas/character/silhouette/`,
 };
 
 export const SHEET_FROG = {
