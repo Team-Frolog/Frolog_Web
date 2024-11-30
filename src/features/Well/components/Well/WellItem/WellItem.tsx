@@ -67,7 +67,7 @@ function WellItem({
           width={392}
           height={12}
           // className='absolute -left-[0px] -top-[12px] h-[12px] w-full'  - 기존 클래스
-          className='absolute -left-[0px] -top-[11px] h-[65px] w-full'
+          className='absolute -left-[0px] -top-[12px] h-[68px] w-full'
           loading='eager'
         />
         {isReading && (
