@@ -1,12 +1,16 @@
 import React from 'react';
+import Snowflake from 'public/images/christmas/well/well-snowflake.svg';
 
 interface Props {
   bg: string;
   line: string;
+  isOtherSkin?: boolean;
 }
 
-function MemoLeaf({ bg, line }: Props) {
-  return (
+function MemoLeaf({ bg, line, isOtherSkin = false }: Props) {
+  return isOtherSkin ? (
+    <Snowflake fill={bg} />
+  ) : (
     <svg
       width='30'
       height='27'

@@ -1,4 +1,5 @@
-const BASE_URL = '/images/well/wave';
+// const BASE_URL = '/images/well/wave';
+const BASE_URL = '/images/christmas/wave';
 
 interface Category {
   [key: string]: {
