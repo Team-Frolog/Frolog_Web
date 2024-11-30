@@ -73,7 +73,7 @@ export const FROGS: Frog = {
   gguristmas: {
     src: `${BASE_PATH}/christmas/character/gguristmas.webp`,
     name: '꾸리스마스',
-    marginBottom: 10,
+    marginBottom: 0,
   },
   box: {
     src: `${BASE_PATH}/christmas/character/box.webp`,
@@ -88,22 +88,22 @@ export const FROGS: Frog = {
   gguribread: {
     src: `${BASE_PATH}/christmas/character/gguribread.webp`,
     name: '꾸리브레드',
-    marginBottom: 10,
+    marginBottom: 0,
   },
   snowgguri: {
     src: `${BASE_PATH}/christmas/character/snowgguri.webp`,
     name: '눈꾸리',
-    marginBottom: 10,
+    marginBottom: 0,
   },
   santa: {
     src: `${BASE_PATH}/christmas/character/santa.webp`,
     name: '산타꾸리',
-    marginBottom: 10,
+    marginBottom: 0,
   },
   tree: {
     src: `${BASE_PATH}/christmas/character/tree.webp`,
     name: '트리꾸리',
-    marginBottom: 10,
+    marginBottom: 20,
   },
   ggudolph: {
     src: `${BASE_PATH}/christmas/character/ggudolph.webp`,
