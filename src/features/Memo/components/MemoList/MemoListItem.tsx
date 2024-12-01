@@ -42,7 +42,9 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
         )}
 
         <div className='flex w-full flex-col gap-[20px] px-page pt-0'>
-          <p className='break-all text-body-lg'>{memoData.content}</p>
+          <p className='whitespace-pre-wrap break-all text-body-lg'>
+            {memoData.content}
+          </p>
           <div className='flex w-full justify-between'>
             <span className='text-body-md text-gray-600'>
               {formatDate(memoData.date)}{' '}
