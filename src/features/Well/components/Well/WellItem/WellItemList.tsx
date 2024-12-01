@@ -6,6 +6,8 @@ import { CATEGORY } from '@/constants/category';
 import { staggerContainerVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
 import { GetWellRes } from '@frolog/frolog-api';
+import WellitemSkeleton from '@/components/Fallback/Skeleton/WellitemSkeleton';
+import { useObserver } from '@/hooks/gesture/useObserver';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import { useWellItems } from '@/features/Well/hooks/useWellItems';
 import { chat } from '@/features/Well/data/chat';
@@ -22,10 +24,18 @@ interface Props {
 
 const WellItemList = React.memo(
   ({ wellData, isRootUser, isDefaultWell }: Props) => {
-    const { wellItems } = useWellItems(wellData.id);
+    const {
+      wellItems,
+      fetchNextPage,
+      hasNextPage,
+      isFetchingNextPage,
+      isEmpty,
+      isFetched,
+    } = useWellItems(wellData.id);
     const { id, name, item_cnt } = wellData;
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState<string | undefined>(undefined);
+    const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
 
     const getMessage = (count: number) => {
       if (!isRootUser) {
@@ -76,7 +86,7 @@ const WellItemList = React.memo(
           animate='visible'
           variants={staggerContainerVariants}
         >
-          {wellItems.length === 0 && (
+          {isEmpty && (
             <div className='relative z-auto box-border flex h-[55px] w-full justify-center bg-category-bg-economic_business pt-[12px]'>
               <Image
                 src={CATEGORY.economic_business.wave}
@@ -94,22 +104,28 @@ const WellItemList = React.memo(
               </span>
             </div>
           )}
-          {wellItems.map((item, i) => (
-            <WellItem
-              key={item.id}
-              wellBook={item}
-              wellId={wellData.id}
-              isLastItem={item_cnt === i + 1}
-              zIndex={wellItems.length - i}
-              startLoading={() => setIsLoading(true)}
-            />
-          ))}
+          {isFetchingNextPage ? (
+            <WellitemSkeleton />
+          ) : (
+            <div ref={setTarget} id='observer' />
+          )}
+          {isFetched &&
+            wellItems.map((item, i) => (
+              <WellItem
+                key={item.id}
+                wellBook={item}
+                wellId={wellData.id}
+                isLastItem={item_cnt === i + 1}
+                zIndex={wellItems.length - i}
+                startLoading={() => setIsLoading(true)}
+              />
+            ))}
           <FrogOnBook
             frogId={wellData.frog}
             message={message}
             zIndex={wellItems.length + 1}
           />
-          {isDefaultWell && wellItems.length >= 2 && (
+          {isDefaultWell && isFetched && wellItems.length >= 2 && (
             <WellActionButton
               btnName='새로운 우물 파기'
               href='create?isSecond=true'
