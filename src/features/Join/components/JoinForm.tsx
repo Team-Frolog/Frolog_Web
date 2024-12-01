@@ -1,7 +1,7 @@
 'use client';
 
 import CodeForm from '@/components/Form/Code/CodeForm';
-import { JOIN_FORM_KEY } from '@/constants/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useStepActions } from '@/store/stepStore';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
@@ -16,8 +16,9 @@ function JoinForm() {
   const methods = useForm<JoinFormType>({
     mode: 'onBlur',
     defaultValues:
-      typeof window !== 'undefined' && localStorage.getItem(JOIN_FORM_KEY)
-        ? JSON.parse(localStorage.getItem(JOIN_FORM_KEY)!)
+      typeof window !== 'undefined' &&
+      localStorage.getItem(STORAGE_KEY.JOIN_FORM_KEY)
+        ? JSON.parse(localStorage.getItem(STORAGE_KEY.JOIN_FORM_KEY)!)
         : defaultValue,
   });
   const { getValues, handleSubmit } = methods;

@@ -1,12 +1,39 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { getWellItems } from '../api/well.api';
 
 export const useWellItems = (wellId: string) => {
-  const { data } = useQuery({
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetched,
+    isPending,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
     queryKey: ['wellItems', wellId],
-    queryFn: () => getWellItems(wellId),
+    queryFn: ({ pageParam }) => getWellItems(pageParam, wellId),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      const totalPages = Math.ceil(lastPage.count / lastPage.limit);
+      const isLastPage = totalPages === lastPage.page + 1 || totalPages === 0;
+      return isLastPage ? undefined : lastPage.page + 1;
+    },
+    select: (fetchedData) => ({
+      pages: fetchedData ? fetchedData.pages.flatMap((page) => page.items) : [],
+      pageParams: fetchedData.pageParams,
+    }),
     staleTime: 0,
   });
 
-  return { wellItems: data?.items };
+  const isEmpty = !data?.pages.length;
+
+  return {
+    wellItems: data ? data.pages : [],
+    isEmpty,
+    fetchNextPage,
+    hasNextPage,
+    isFetched,
+    isPending,
+    isFetchingNextPage,
+  };
 };

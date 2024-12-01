@@ -5,10 +5,7 @@ import {
 } from '@/utils/transformInfo';
 import { UseFormReset } from 'react-hook-form';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import {
-  PROFILE_EDIT_FORM_KEY,
-  TEST_RESULT_FOR_EDIT,
-} from '@/constants/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import { editProfile } from '@/api/profile.api';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useRouter } from 'next/navigation';
@@ -56,8 +53,10 @@ export const useProfileEdit = (
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const originData = sessionStorage.getItem(PROFILE_EDIT_FORM_KEY);
-      const testType = sessionStorage.getItem(TEST_RESULT_FOR_EDIT);
+      const originData = sessionStorage.getItem(
+        STORAGE_KEY.PROFILE_EDIT_FORM_KEY
+      );
+      const testType = sessionStorage.getItem(STORAGE_KEY.TEST_RESULT_FOR_EDIT);
 
       // 성향 테스트 다녀 온 뒤
       if (originData) {
@@ -67,8 +66,8 @@ export const useProfileEdit = (
             testType || JSON.parse(originData!).reading_preference,
         };
         reset(originValues);
-        sessionStorage.removeItem(PROFILE_EDIT_FORM_KEY);
-        sessionStorage.removeItem(TEST_RESULT_FOR_EDIT);
+        sessionStorage.removeItem(STORAGE_KEY.PROFILE_EDIT_FORM_KEY);
+        sessionStorage.removeItem(STORAGE_KEY.TEST_RESULT_FOR_EDIT);
         setIsEdited(true);
       }
       // 성향 테스트 안함, 기존 프로필 데이터 있는 경우

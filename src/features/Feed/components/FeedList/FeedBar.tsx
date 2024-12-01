@@ -12,10 +12,16 @@ import { isGetMemoRes } from '../../utils/typeGuard';
 interface Props {
   feedData: GetReviewRes | GetMemoRes;
   onClickLike: () => void;
-  startCommentLoading: () => void;
+  onClickComment: () => void;
+  onClickDetail: () => void;
 }
 
-function FeedBar({ feedData, onClickLike, startCommentLoading }: Props) {
+function FeedBar({
+  feedData,
+  onClickLike,
+  onClickComment,
+  onClickDetail,
+}: Props) {
   const router = useRouter();
 
   return (
@@ -32,7 +38,7 @@ function FeedBar({ feedData, onClickLike, startCommentLoading }: Props) {
           className='flex items-center gap-[4px]'
           onClick={() =>
             runWhenLoggedIn(() => {
-              startCommentLoading();
+              onClickComment();
               router.push(
                 `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}`
               );
@@ -49,7 +55,10 @@ function FeedBar({ feedData, onClickLike, startCommentLoading }: Props) {
         type='button'
         whileTap={{ scale: 1.1 }}
         onClick={() =>
-          runWhenLoggedIn(() => router.push(`/book/${feedData.isbn}`), 'feed')
+          runWhenLoggedIn(() => {
+            onClickDetail();
+            router.push(`/book/${feedData.isbn}`);
+          }, 'feed')
         }
         className='flex items-center gap-[4px] text-body-md text-gray-600'
       >
