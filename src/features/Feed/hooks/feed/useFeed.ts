@@ -6,6 +6,7 @@ import { getFeed } from '../../api/feed.api';
 
 export const useFeed = () => {
   const [isCommentLoading, setIsCommentLoading] = useState(false);
+
   const {
     data,
     fetchNextPage,
@@ -16,7 +17,7 @@ export const useFeed = () => {
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: ['feed'],
-    queryFn: ({ pageParam }) => getFeed(pageParam),
+    queryFn: ({ pageParam }) => getFeed({ page: pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const totalPages = Math.ceil(lastPage.count / lastPage.limit);
