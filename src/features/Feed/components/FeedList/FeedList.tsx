@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import FeedSkeleton from '@/components/Fallback/Skeleton/FeedSkeleton';
 import { useObserver } from '@/hooks/gesture/useObserver';
-import { SCROLL_INFO } from '@/constants/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import FeedItem from './FeedItem';
 import { useFeed } from '../../hooks/feed/useFeed';
@@ -28,7 +28,7 @@ function FeedList() {
   });
 
   useEffect(() => {
-    const getStorage = sessionStorage.getItem(SCROLL_INFO);
+    const getStorage = sessionStorage.getItem(STORAGE_KEY.SCROLL_INFO);
     if (!getStorage || !isFetched) {
       return;
     }
@@ -39,14 +39,14 @@ function FeedList() {
       top: JSON.parse(getStorage).anchorPosition,
     });
 
-    sessionStorage.removeItem(SCROLL_INFO);
+    sessionStorage.removeItem(STORAGE_KEY.SCROLL_INFO);
   }, [isFetched]);
 
   const saveScroll = () => {
     const main = window.document.getElementById('main');
 
     sessionStorage.setItem(
-      SCROLL_INFO,
+      STORAGE_KEY.SCROLL_INFO,
       JSON.stringify({
         anchorPosition: main?.scrollTop,
       })

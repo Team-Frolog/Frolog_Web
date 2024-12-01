@@ -1,7 +1,7 @@
 'use client';
 
 import CodeForm from '@/components/Form/Code/CodeForm';
-import { FIND_FORM_KEY } from '@/constants/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import { useStepActions } from '@/store/stepStore';
 import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -14,8 +14,9 @@ function ResetPasswordForm() {
   const methods = useForm<FindForm>({
     mode: 'onBlur',
     defaultValues:
-      typeof window !== 'undefined' && localStorage.getItem(FIND_FORM_KEY)
-        ? JSON.parse(localStorage.getItem(FIND_FORM_KEY)!)
+      typeof window !== 'undefined' &&
+      localStorage.getItem(STORAGE_KEY.FIND_FORM_KEY)
+        ? JSON.parse(localStorage.getItem(STORAGE_KEY.FIND_FORM_KEY)!)
         : {
             email: '',
             password: '',
@@ -29,7 +30,7 @@ function ResetPasswordForm() {
 
   useEffect(() => {
     return () => {
-      localStorage.removeItem(FIND_FORM_KEY);
+      localStorage.removeItem(STORAGE_KEY.FIND_FORM_KEY);
       resetStep();
     };
   }, []);

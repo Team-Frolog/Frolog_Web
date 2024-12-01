@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { TEST_ANSWER_KEY } from '@/constants/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import { useStepActions } from '@/store/stepStore';
 import { useTest } from '../hooks/useTest';
 import LoadingPage from './LoadingPage';
@@ -14,7 +14,7 @@ function FrologTest() {
 
   useEffect(() => {
     return () => {
-      sessionStorage.removeItem(TEST_ANSWER_KEY);
+      sessionStorage.removeItem(STORAGE_KEY.TEST_ANSWER_KEY);
       resetStep();
     };
   }, []);

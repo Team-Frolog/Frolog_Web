@@ -7,7 +7,7 @@ import { FeedIcon, ProfileIcon, SearchIcon, WellIcon } from 'public/icons';
 import { motion } from 'framer-motion';
 import { PAGES } from '@/constants/page';
 import { useUserId } from '@/store/sessionStore';
-import { SCROLL_INFO } from '@/constants/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 
 const MotionLink = motion(Link);
 
@@ -45,7 +45,7 @@ function NavigationBar() {
         whileTap={{ scale: 1.2 }}
         href={PAGES.FEED}
         className='navItem'
-        onClick={() => sessionStorage.removeItem(SCROLL_INFO)}
+        onClick={() => sessionStorage.removeItem(STORAGE_KEY.SCROLL_INFO)}
       >
         <FeedIcon
           fill={pathname === PAGES.FEED ? '#313239' : '#B3B6C5'}
