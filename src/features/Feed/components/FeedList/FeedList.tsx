@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
-import FeedSkeleton from '@/components/Fallback/Skeleton/FeedSkeleton';
+import FeedListSkeleton from '@/components/Fallback/Skeleton/FeedListSkeleton';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import { STORAGE_KEY } from '@/constants/storage';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
@@ -56,9 +56,7 @@ function FeedList() {
   if (isLoading) {
     return (
       <div className='flex h-fit w-full flex-col gap-[36px]'>
-        <FeedSkeleton />
-        <FeedSkeleton />
-        <FeedSkeleton />
+        <FeedListSkeleton />
       </div>
     );
   }
@@ -80,11 +78,7 @@ function FeedList() {
       )}
 
       {isFetchingNextPage ? (
-        <>
-          <FeedSkeleton />
-          <FeedSkeleton />
-          <FeedSkeleton />
-        </>
+        <FeedListSkeleton />
       ) : (
         <div ref={setTarget} id='observer' className='h-[10px]' />
       )}
