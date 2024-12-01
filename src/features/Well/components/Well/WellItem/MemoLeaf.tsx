@@ -9,7 +9,7 @@ interface Props {
 
 function MemoLeaf({ bg, line, isOtherSkin = false }: Props) {
   return isOtherSkin ? (
-    <Snowflake fill={bg} />
+    <Snowflake className='absolute right-[24px] top-[8px]' fill={bg} />
   ) : (
     <svg
       width='30'
