@@ -42,14 +42,13 @@ function FeedList() {
     sessionStorage.removeItem(SCROLL_INFO);
   }, [isFetched]);
 
-  const saveScroll = (index: number) => {
+  const saveScroll = () => {
     const main = window.document.getElementById('main');
 
     sessionStorage.setItem(
       SCROLL_INFO,
       JSON.stringify({
         anchorPosition: main?.scrollTop,
-        clickedIndex: index,
       })
     );
   };
@@ -68,13 +67,13 @@ function FeedList() {
     <div className='flex h-fit w-full flex-col justify-between gap-[36px]'>
       {!isEmpty && (
         <div className='flex flex-col gap-[36px]'>
-          {feedData.map((feed, i) => (
+          {feedData.map((feed) => (
             <FeedItem
               key={feed.memo ? feed.memo.id : feed.review?.id}
               isMemo={!!feed.memo}
               feedData={feed.memo ? feed.memo : feed.review!}
               startCommentLoading={() => setIsCommentLoading(true)}
-              onClickDetail={() => saveScroll(i)}
+              onClickDetail={() => saveScroll()}
             />
           ))}
         </div>
