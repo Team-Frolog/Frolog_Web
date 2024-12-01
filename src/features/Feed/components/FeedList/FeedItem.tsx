@@ -11,9 +11,15 @@ interface Props {
   isMemo: boolean;
   feedData: GetReviewRes | GetMemoRes;
   startCommentLoading: () => void;
+  onClickDetail: () => void;
 }
 
-function FeedItem({ isMemo, feedData, startCommentLoading }: Props) {
+function FeedItem({
+  isMemo,
+  feedData,
+  startCommentLoading,
+  onClickDetail,
+}: Props) {
   const { handleChangeLike } = useLikeFeed(!isMemo);
 
   return (
@@ -24,6 +30,7 @@ function FeedItem({ isMemo, feedData, startCommentLoading }: Props) {
           prefetch
           href={isMemo ? `/memo/${feedData.id}` : `/review/${feedData.id}`}
           className='flex w-full flex-col'
+          onClick={onClickDetail}
         >
           <BookInfo isMemo={isMemo} feedData={feedData} />
           <FeedContent feedData={feedData} />
@@ -34,7 +41,11 @@ function FeedItem({ isMemo, feedData, startCommentLoading }: Props) {
           onClickLike={() =>
             handleChangeLike({ id: feedData.id, value: !feedData.like })
           }
-          startCommentLoading={startCommentLoading}
+          onClickComment={() => {
+            startCommentLoading();
+            onClickDetail();
+          }}
+          onClickDetail={onClickDetail}
         />
       </div>
     </div>
