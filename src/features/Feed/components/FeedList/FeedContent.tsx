@@ -27,7 +27,9 @@ function FeedContent({ feedData, isFeed = true }: Props) {
               ))}
             </ImageSlider>
           )}
-          <p className='break-all px-page text-body-lg'>{feedData.content}</p>
+          <p className='whitespace-pre-wrap break-all px-page text-body-lg'>
+            {feedData.content}
+          </p>
         </>
       ) : (
         <>

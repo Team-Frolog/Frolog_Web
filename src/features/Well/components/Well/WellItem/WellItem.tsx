@@ -7,7 +7,8 @@ import { staggerItemVariants } from '@/styles/variants/variants';
 import { useRouter } from 'next/navigation';
 import { GetWellItemRes } from '@frolog/frolog-api';
 import { CATEGORY } from '@/constants/category';
-import WellBubble from 'public/images/well/well-bubble.svg';
+// import WellBubble from 'public/images/well/well-bubble.svg';
+import WellBubble from 'public/images/christmas/well/christmas-reading.svg';
 import MemoLeaf from './MemoLeaf';
 
 interface Props {
@@ -31,7 +32,7 @@ function WellItem({
     actions: { setNewReviewId },
   } = useStackMotionStore();
   const { id, status, title, page, category, isbn, memo_cnt } = wellBook;
-  const height = page > 550 ? page * 0.1 : 55;
+  const height = page > 400 ? page * 0.15 : 55;
   const isReading = status === 'reading';
   const hasMemo = memo_cnt > 0;
 
@@ -57,14 +58,16 @@ function WellItem({
           newReviewId === id && isLastItem ? staggerItemVariants : undefined
         }
         style={{ zIndex, height }}
-        className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[12px]`}
+        // className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[12px]`}
+        className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[18px]`}
       >
         <Image
           src={CATEGORY[category].wave}
           alt='wave'
           width={392}
           height={12}
-          className='absolute -left-[0px] -top-[12px] h-[12px] w-full'
+          // className='absolute -left-[0px] -top-[12px] h-[12px] w-full'  - 기존 클래스
+          className='absolute -left-[0px] -top-[12px] h-[68px] w-full'
           loading='eager'
         />
         {isReading && (
@@ -74,7 +77,11 @@ function WellItem({
           />
         )}
         {hasMemo && (
-          <MemoLeaf bg={CATEGORY[category].text} line={CATEGORY[category].bg} />
+          <MemoLeaf
+            bg={CATEGORY[category].text}
+            line={CATEGORY[category].bg}
+            isOtherSkin
+          />
         )}
         <span
           className={`text-category-text-${category} truncate text-center text-body-sm-bold ${isReading || hasMemo ? 'w-[65%]' : 'w-[90%]'}`}
