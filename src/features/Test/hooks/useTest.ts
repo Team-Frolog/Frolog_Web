@@ -1,7 +1,7 @@
 'use client';
 
 import { PAGES } from '@/constants/page';
-import { TEST_ANSWER_KEY, TEST_RESULT_FOR_EDIT } from '@/constants/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import { useStep, useStepActions } from '@/store/stepStore';
 import { editProfile } from '@/api/profile.api';
 import { getSession } from 'next-auth/react';
@@ -23,7 +23,7 @@ export const useTest = () => {
   const [testData, setTestData] = useState<Question>(questions[0]);
   const [answers, setAnswers] = useState<number[]>(() => {
     if (typeof window !== 'undefined') {
-      const savedAnswers = sessionStorage.getItem(TEST_ANSWER_KEY);
+      const savedAnswers = sessionStorage.getItem(STORAGE_KEY.TEST_ANSWER_KEY);
       return savedAnswers ? JSON.parse(savedAnswers) : [];
     }
     return [];
@@ -33,7 +33,10 @@ export const useTest = () => {
     setAnswers((prev) => {
       const newArr = [...prev];
       newArr[step - 1] = id;
-      sessionStorage.setItem(TEST_ANSWER_KEY, JSON.stringify(newArr));
+      sessionStorage.setItem(
+        STORAGE_KEY.TEST_ANSWER_KEY,
+        JSON.stringify(newArr)
+      );
       return newArr;
     });
 
@@ -48,7 +51,7 @@ export const useTest = () => {
 
   const postTestResult = async (type: string) => {
     if (callback) {
-      sessionStorage.setItem(TEST_RESULT_FOR_EDIT, type);
+      sessionStorage.setItem(STORAGE_KEY.TEST_RESULT_FOR_EDIT, type);
       return;
     }
 
@@ -73,7 +76,10 @@ export const useTest = () => {
     if (step <= 7) {
       setTestData(questions[step - 1]);
       const currentAnswers = answers.slice(0, step);
-      sessionStorage.setItem(TEST_ANSWER_KEY, JSON.stringify(currentAnswers));
+      sessionStorage.setItem(
+        STORAGE_KEY.TEST_ANSWER_KEY,
+        JSON.stringify(currentAnswers)
+      );
       setAnswers(currentAnswers);
     }
     if (step === 8) {

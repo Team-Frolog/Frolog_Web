@@ -1,6 +1,6 @@
 'use client';
 
-import { JOIN_FORM_KEY, TEMP_ACCOUNT_KEY } from '@/constants/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import { useEffect, useState } from 'react';
 import { PAGES } from '@/constants/page';
 import { useRouter } from 'next/navigation';
@@ -26,7 +26,7 @@ export const useJoin = (getValues: () => JoinForm) => {
 
   const { mutate: handleLogin } = useMutation({
     mutationFn: async (username: string) => {
-      const account = localStorage.getItem(TEMP_ACCOUNT_KEY);
+      const account = localStorage.getItem(STORAGE_KEY.TEMP_ACCOUNT_KEY);
 
       if (account) {
         const res = await userLogin(JSON.parse(account));
@@ -45,7 +45,7 @@ export const useJoin = (getValues: () => JoinForm) => {
   useEffect(() => {
     return () => {
       setIsLoading(false);
-      localStorage.removeItem(JOIN_FORM_KEY);
+      localStorage.removeItem(STORAGE_KEY.JOIN_FORM_KEY);
       resetStep();
     };
   }, []);
@@ -54,9 +54,12 @@ export const useJoin = (getValues: () => JoinForm) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (step === 1) {
-        localStorage.removeItem(JOIN_FORM_KEY);
+        localStorage.removeItem(STORAGE_KEY.JOIN_FORM_KEY);
       } else {
-        localStorage.setItem(JOIN_FORM_KEY, JSON.stringify(getValues()));
+        localStorage.setItem(
+          STORAGE_KEY.JOIN_FORM_KEY,
+          JSON.stringify(getValues())
+        );
       }
     }
   }, [getValues, step]);
@@ -73,9 +76,9 @@ export const useJoin = (getValues: () => JoinForm) => {
     },
     onSuccess: (_result, formData) => {
       resetToken();
-      localStorage.removeItem(JOIN_FORM_KEY);
+      localStorage.removeItem(STORAGE_KEY.JOIN_FORM_KEY);
       localStorage.setItem(
-        TEMP_ACCOUNT_KEY,
+        STORAGE_KEY.TEMP_ACCOUNT_KEY,
         JSON.stringify({ email: formData.email, password: formData.password })
       );
       handleLogin(formData.username!);

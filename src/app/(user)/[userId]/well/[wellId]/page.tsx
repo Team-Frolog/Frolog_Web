@@ -8,7 +8,8 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import { GetWell } from '@frolog/frolog-api';
+import { GetWell, SearchWellItem } from '@frolog/frolog-api';
+import { WELLITEM_LIMIT } from '@/constants/api';
 
 export const metadata: Metadata = {
   title: '우물',
@@ -32,6 +33,22 @@ async function UserWellDetailPage({ params: { userId, wellId } }: Props) {
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
         accessToken: session?.user.accessToken,
       }).fetch({ id: wellId }),
+    staleTime: 1000 * 10,
+  });
+
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ['wellItems', wellId],
+    queryFn: ({ pageParam }) =>
+      new SearchWellItem({
+        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+        accessToken: session?.user.accessToken,
+      }).fetch({
+        page: pageParam,
+        limit: WELLITEM_LIMIT,
+        sort: 'oldest',
+        well_id: wellId,
+      }),
+    initialPageParam: 0,
     staleTime: 1000 * 10,
   });
 

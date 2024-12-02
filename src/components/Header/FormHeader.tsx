@@ -3,7 +3,7 @@
 import React from 'react';
 import { useFormTitle } from '@/hooks/useFormTitle';
 import { usePathname, useRouter } from 'next/navigation';
-import { JOIN_FORM_KEY } from '@/constants/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import { PAGES } from '@/constants/page';
 import { BackIcon } from 'public/icons';
 
@@ -16,7 +16,7 @@ function FormHeader() {
     if (pathname === PAGES.ONBOARDING) {
       router.push('/');
     } else {
-      localStorage.removeItem(JOIN_FORM_KEY);
+      localStorage.removeItem(STORAGE_KEY.JOIN_FORM_KEY);
       router.back();
     }
   };

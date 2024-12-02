@@ -1,5 +1,5 @@
 import { PAGES } from '@/constants/page';
-import { FIND_FORM_KEY } from '@/constants/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import { useVerifyToken } from '@/store/authStore';
 import { useStep } from '@/store/stepStore';
 import { useRouter } from 'next/navigation';
@@ -16,9 +16,12 @@ export const useResetPassword = (getValues: () => FindForm) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (step === 1) {
-        localStorage.removeItem(FIND_FORM_KEY);
+        localStorage.removeItem(STORAGE_KEY.FIND_FORM_KEY);
       } else {
-        localStorage.setItem(FIND_FORM_KEY, JSON.stringify(getValues()));
+        localStorage.setItem(
+          STORAGE_KEY.FIND_FORM_KEY,
+          JSON.stringify(getValues())
+        );
       }
     }
   }, [step, getValues]);

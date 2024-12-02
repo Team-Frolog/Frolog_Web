@@ -7,11 +7,17 @@ import * as Sentry from '@sentry/nextjs';
 
 const getFeedObj = new GetFeed(baseOptions);
 
-export const getFeed = async (page: number) => {
+export const getFeed = async ({
+  page,
+  limit,
+}: {
+  page: number;
+  limit?: number;
+}) => {
   try {
     const result = await getFeedObj.fetch({
       type: 'latest',
-      limit: DEFAULT_LIMIT,
+      limit: limit || DEFAULT_LIMIT,
       page,
     });
     return result;

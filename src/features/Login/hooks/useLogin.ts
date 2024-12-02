@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { LOGIN_CALLBACK, TEMP_ACCOUNT_KEY } from '@/constants/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { LoginForm } from '../types/login';
 
 export const useLogin = (type: 'login' | 'test') => {
   const router = useRouter();
-  const callbackUrl = () => sessionStorage.getItem(LOGIN_CALLBACK);
+  const callbackUrl = () => sessionStorage.getItem(STORAGE_KEY.LOGIN_CALLBACK);
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isFaild, setIsFaild] = useState<boolean>(false);
@@ -29,7 +29,7 @@ export const useLogin = (type: 'login' | 'test') => {
         router.replace(callbackUrl() || '/');
         router.refresh();
       } else {
-        localStorage.removeItem(TEMP_ACCOUNT_KEY);
+        localStorage.removeItem(STORAGE_KEY.TEMP_ACCOUNT_KEY);
       }
     } else {
       setIsFaild(true);

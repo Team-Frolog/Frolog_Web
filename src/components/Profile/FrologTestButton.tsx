@@ -2,7 +2,7 @@ import { MenuArrowIcon } from 'public/icons';
 import React from 'react';
 import { PAGES } from '@/constants/page';
 import { usePathname, useRouter } from 'next/navigation';
-import { PROFILE_EDIT_FORM_KEY } from '@/constants/storage';
+import { STORAGE_KEY } from '@/constants/storage';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { getTestTypeById } from '@/features/Test';
 
@@ -20,7 +20,7 @@ function FrologTestButton() {
         onClick={() => {
           router.push(`${PAGES.TEST}?callbackUrl=${pathname}`);
           sessionStorage.setItem(
-            PROFILE_EDIT_FORM_KEY,
+            STORAGE_KEY.PROFILE_EDIT_FORM_KEY,
             JSON.stringify(getValues())
           );
         }}
