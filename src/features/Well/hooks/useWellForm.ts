@@ -109,7 +109,7 @@ export const useWellForm = (
   const handleWellFrom = async (data: WellFormType) => {
     let isNameValidated = isNameChecked;
 
-    if (data.name !== wellData?.name) {
+    if (data.name === wellData?.name) {
       isNameValidated = true;
     } else if (isNameValidated === null) {
       // blur 처리로 유효성 검사되지 않고 넘어온 경우 double check
