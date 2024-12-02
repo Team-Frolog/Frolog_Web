@@ -14,16 +14,22 @@ import MemoLeaf from './MemoLeaf';
 interface Props {
   wellBook: GetWellItemRes;
   wellId: string;
-  isLastItem: boolean;
+  isTopItem: boolean;
   zIndex: number;
   startLoading: () => void;
+  isLastItem?: boolean;
+  setTarget?: React.Dispatch<
+    React.SetStateAction<HTMLDivElement | null | undefined>
+  >;
 }
 
 function WellItem({
   wellId,
   wellBook,
-  isLastItem,
+  isTopItem,
   zIndex,
+  isLastItem,
+  setTarget,
   startLoading,
 }: Props) {
   const router = useRouter();
@@ -55,12 +61,19 @@ function WellItem({
           );
         }}
         variants={
-          newReviewId === id && isLastItem ? staggerItemVariants : undefined
+          newReviewId === id && isTopItem ? staggerItemVariants : undefined
         }
         style={{ zIndex, height }}
         // className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[12px]`}
         className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[18px]`}
       >
+        {isLastItem && (
+          <div
+            ref={setTarget}
+            id='observer'
+            className='absolute -top-[10px] h-[10px] w-full'
+          />
+        )}
         <Image
           src={CATEGORY[category].wave}
           alt='wave'
