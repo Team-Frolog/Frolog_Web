@@ -20,12 +20,14 @@ interface Props {
   hasFollow?: boolean;
   isChildComment?: boolean;
   onDelete?: () => void;
+  onClick?: () => void;
 }
 
 function ProfileHeader({
   type,
   userId,
   onDelete,
+  onClick,
   isDeleted = false,
   hasFollow = false,
   isChildComment = false,
@@ -56,7 +58,12 @@ function ProfileHeader({
       <button
         type='button'
         onClick={() =>
-          runWhenLoggedIn(() => router.push(`/${profile.id}/profile`))
+          runWhenLoggedIn(() => {
+            if (onClick) {
+              onClick();
+            }
+            router.push(`/${profile.id}/profile`);
+          })
         }
         className='flex items-center gap-[8px]'
       >

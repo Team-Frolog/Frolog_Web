@@ -24,7 +24,12 @@ function FeedItem({
 
   return (
     <div className='w-full'>
-      <ProfileHeader type='feed' userId={feedData.writer} hasFollow />
+      <ProfileHeader
+        type='feed'
+        userId={feedData.writer}
+        hasFollow
+        onClick={onClickDetail}
+      />
       <div className='flex w-full flex-col'>
         <Link
           prefetch
