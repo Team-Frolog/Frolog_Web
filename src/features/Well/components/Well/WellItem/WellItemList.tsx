@@ -116,7 +116,7 @@ const WellItemList = React.memo(
                   key={item.id}
                   wellBook={item}
                   wellId={wellData.id}
-                  isLastItem={item_cnt === i + 1}
+                  isLastItem={i === 0}
                   zIndex={wellItems.length - i}
                   startLoading={() => setIsLoading(true)}
                 />
