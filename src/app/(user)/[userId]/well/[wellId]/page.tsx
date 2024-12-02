@@ -45,7 +45,7 @@ async function UserWellDetailPage({ params: { userId, wellId } }: Props) {
       }).fetch({
         page: pageParam,
         limit: WELLITEM_LIMIT,
-        sort: 'oldest',
+        sort: 'newest',
         well_id: wellId,
       }),
     initialPageParam: 0,

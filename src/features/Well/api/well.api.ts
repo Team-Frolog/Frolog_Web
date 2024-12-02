@@ -61,7 +61,7 @@ export const getWellItems = async (page: number, well_id: string) => {
     well_id,
     page,
     limit: WELLITEM_LIMIT,
-    sort: 'oldest',
+    sort: 'newest',
   });
   return response;
 };
