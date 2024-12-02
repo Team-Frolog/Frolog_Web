@@ -7,7 +7,7 @@ import { checkWellName } from '../../api/well.api';
 
 interface Props {
   originalName?: string;
-  setIsNameChecked: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsNameChecked: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 function WellNameInput({ originalName, setIsNameChecked }: Props) {
@@ -36,6 +36,7 @@ function WellNameInput({ originalName, setIsNameChecked }: Props) {
       if (result) {
         setIsNameChecked(true);
       } else {
+        setIsNameChecked(false);
         setError('name', {
           type: 'custom',
           message: '이미 같은 이름의 우물이 있어요',
@@ -59,7 +60,7 @@ function WellNameInput({ originalName, setIsNameChecked }: Props) {
           message: '12자 이내로 입력하세요',
         },
         onChange: async (e) => {
-          setIsNameChecked(false);
+          setIsNameChecked(null);
           if (errors.name) {
             const isPassed = await trigger('name');
 

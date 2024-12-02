@@ -9,7 +9,7 @@ import { useUserId } from '@/store/sessionStore';
 import { PAGES } from '@/constants/page';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import { addNewWell, editWell, getWell } from '../api/well.api';
+import { addNewWell, checkWellName, editWell, getWell } from '../api/well.api';
 import { WellFormType } from '../components/WellForm/WellForm';
 
 export const useWellForm = (
@@ -23,7 +23,7 @@ export const useWellForm = (
   const userId = useUserId();
   const { update } = useSession();
   const [isLoading, setIsLoading] = useState(false);
-  const [isNameChecked, setIsNameChecked] = useState(false);
+  const [isNameChecked, setIsNameChecked] = useState<boolean | null>(null);
   const { openFlash } = useFlash();
   const queryClient = useQueryClient();
 
@@ -106,26 +106,42 @@ export const useWellForm = (
     }
   };
 
-  const handleWellFrom = (data: WellFormType) => {
-    if (!isNameChecked && data.name !== wellData?.name) {
-      setError('name', {
-        type: 'custom',
-        message: '이미 같은 이름의 우물이 있어요',
-      });
-    } else if (type === 'write') {
-      handleAddWell(data);
-    } else if (type === 'edit' && wellData) {
-      const updatedFields: Partial<WellFormType> = data;
+  const handleWellFrom = async (data: WellFormType) => {
+    let isNameValidated = isNameChecked;
 
-      Object.keys(data).forEach((key) => {
-        const typedKey = key as keyof WellFormType;
-        if (data[typedKey] === wellData[typedKey]) {
-          updatedFields[typedKey] = undefined;
+    if (data.name === wellData?.name) {
+      isNameValidated = true;
+    } else if (isNameValidated === null) {
+      // blur 처리로 유효성 검사되지 않고 넘어온 경우 double check
+      const result = await checkWellName(data.name);
+      if (result) {
+        setIsNameChecked(true);
+        isNameValidated = true;
+      } else {
+        setError('name', {
+          type: 'custom',
+          message: '이미 같은 이름의 우물이 있어요',
+        });
+        return;
+      }
+    }
+
+    if (isNameValidated) {
+      if (type === 'write') {
+        handleAddWell(data);
+      } else if (type === 'edit' && wellData) {
+        const updatedFields: Partial<WellFormType> = data;
+
+        Object.keys(data).forEach((key) => {
+          const typedKey = key as keyof WellFormType;
+          if (data[typedKey] === wellData[typedKey]) {
+            updatedFields[typedKey] = undefined;
+          }
+        });
+
+        if (Object.keys(updatedFields).length > 0) {
+          handleEditWell(updatedFields);
         }
-      });
-
-      if (Object.keys(updatedFields).length > 0) {
-        handleEditWell(updatedFields);
       }
     }
   };
