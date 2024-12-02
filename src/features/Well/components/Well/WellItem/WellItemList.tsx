@@ -107,19 +107,22 @@ const WellItemList = React.memo(
           {isFetchingNextPage ? (
             <WellitemSkeleton />
           ) : (
-            <div ref={setTarget} id='observer' />
+            <div ref={setTarget} id='observer' className='h-[0.1px] w-full' />
           )}
-          {isFetched &&
-            wellItems.map((item, i) => (
-              <WellItem
-                key={item.id}
-                wellBook={item}
-                wellId={wellData.id}
-                isLastItem={item_cnt === i + 1}
-                zIndex={wellItems.length - i}
-                startLoading={() => setIsLoading(true)}
-              />
-            ))}
+          <div className='flex w-full flex-col'>
+            {isFetched &&
+              wellItems.map((item, i) => (
+                <WellItem
+                  key={item.id}
+                  wellBook={item}
+                  wellId={wellData.id}
+                  isLastItem={i === 0}
+                  zIndex={i}
+                  startLoading={() => setIsLoading(true)}
+                />
+              ))}
+          </div>
+
           <FrogOnBook
             frogId={wellData.frog}
             message={message}
