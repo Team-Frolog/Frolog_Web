@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { EditProfileReq } from '@frolog/frolog-api';
 import { testEvaluator } from '../utils/testEvaluator';
-import { Question, questions } from '../data/test';
+import { Question, questions } from '../data/testQuestions';
 
 export const useTest = () => {
   const step = useStep();

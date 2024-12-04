@@ -1,5 +1,5 @@
 import Slider from '@/components/Slider/Slider';
-import { getTestTypeById } from '@/features/Test';
+import { getTestTypeById } from '@/features/FrologTest';
 import { GetProfileDetailRes } from '@frolog/frolog-api';
 import React from 'react';
 import { getAgeCategory } from '../../utils/getAge';

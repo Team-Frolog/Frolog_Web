@@ -1,7 +1,7 @@
 import React from 'react';
 import QuestionTitle from './QuestionTitle';
 import QuestionItem from './QuestionItem';
-import { Question as QuestionType } from '../../data/test';
+import { Question as QuestionType } from '../../data/testQuestions';
 
 interface Props {
   testData: QuestionType;

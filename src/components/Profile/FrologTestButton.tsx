@@ -4,7 +4,7 @@ import { PAGES } from '@/constants/page';
 import { usePathname, useRouter } from 'next/navigation';
 import { STORAGE_KEY } from '@/constants/storage';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { getTestTypeById } from '@/features/Test';
+import { getTestTypeById } from '@/features/FrologTest';
 
 function FrologTestButton() {
   const router = useRouter();

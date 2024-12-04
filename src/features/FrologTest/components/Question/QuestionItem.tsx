@@ -1,5 +1,5 @@
 import React from 'react';
-import { Answer } from '../../data/test';
+import { Answer } from '../../data/testQuestions';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   data: Answer;

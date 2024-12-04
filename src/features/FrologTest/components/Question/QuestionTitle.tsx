@@ -1,5 +1,5 @@
 import React from 'react';
-import { Question } from '../../data/test';
+import { Question } from '../../data/testQuestions';
 
 interface Props {
   data: Question;
