@@ -4,13 +4,12 @@ const createJestConfig = nextJest({
 });
 
 const config = {
-  setupFilesAfterEnv: ['./jest.setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   testEnvironment: 'jest-environment-jsdom',
   preset: 'ts-jest',
-  setupFilesAfterEnv: ['./src/jest.setup.ts'],
   transformIgnorePatterns: ['/node_modules/'],
   moduleNameMapper: {
-    '^@/(.*)$': './src/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
 };
 
