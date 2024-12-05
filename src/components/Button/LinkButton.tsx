@@ -14,7 +14,7 @@ interface Props {
   extraClass?: string;
 }
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 function LinkButton({
   children,
