@@ -10,6 +10,7 @@ const config = {
   transformIgnorePatterns: ['/node_modules/'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    'public/icons': '<rootDir>/src/__mock__/svgMock.tsx',
   },
 };
 
