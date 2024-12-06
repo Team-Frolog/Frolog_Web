@@ -1,15 +1,19 @@
 'use client';
 
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { FROGS } from '@/constants/frogs';
 import { motion } from 'framer-motion';
+import { useUserId } from '@/store/sessionStore';
 import { IMAGES } from '@/constants/images';
-import Image from 'next/image';
 import { useNewReviewId } from '@/store/stackMotionStore';
 import { leafVariants, frogVariants } from '@/styles/variants/variants';
-import React from 'react';
+import { PAGES } from '@/constants/page';
 import GuideChat from './GuideChat';
 
-const MotionImage = motion(Image);
+const MotionImage = motion.create(Image);
+const MotionLink = motion.create(Link);
 
 interface Props {
   frogId?: string;
@@ -19,6 +23,7 @@ interface Props {
 
 function FrogOnBook({ message, frogId = 'default', zIndex }: Props) {
   const hasNewReview = useNewReviewId();
+  const userId = useUserId();
 
   return (
     <div className='relative z-20'>
@@ -40,7 +45,13 @@ function FrogOnBook({ message, frogId = 'default', zIndex }: Props) {
           message={message}
           marginBottom={FROGS[frogId].marginBottom}
         />
-        <Image src={FROGS[frogId].src} alt='frog' width={150} height={150} />
+        <MotionLink
+          href={PAGES.STORE}
+          whileTap={{ scale: 0.95 }}
+          className={userId ? '' : 'pointer-events-none'}
+        >
+          <Image src={FROGS[frogId].src} alt='frog' width={150} height={150} />
+        </MotionLink>
       </motion.div>
     </div>
   );
