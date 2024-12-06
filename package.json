@@ -36,6 +36,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@microsoft/tsdoc": "^0.15.1",
     "@sentry/types": "^8.38.0",
     "@tailwindcss/typography": "^0.5.13",
     "@team-frolog/eslint-config-web": "^1.0.0",

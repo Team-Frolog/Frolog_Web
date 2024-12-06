@@ -13,7 +13,6 @@ function LoginButton() {
   return (
     <ButtonWithText
       btnText='로그인 하기'
-      route='/login'
       disabled={!isValid || !watch('email') || !watch('password')}
       btnType='submit'
       gap={14}

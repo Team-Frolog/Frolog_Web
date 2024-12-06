@@ -1,33 +1,30 @@
 import React from 'react';
-import LinkButton from './LinkButton';
 import Button from './Button';
 
 interface Props {
   btnText: string;
   children: React.ReactNode;
-  route?: string;
   disabled: boolean;
-  btnType?: 'link' | 'submit' | 'button';
+  btnType?: 'submit' | 'button';
   onClick?: () => void;
+  /** children 내부 갭 */
   gap?: number;
 }
 
+/** 아래 텍스트를 가지는 버튼
+ * - children으로 버튼 아래 텍스트를 적용합니다.
+ * - btnType에 따라 일반 버튼 혹은 submit 버튼으로 적용됩니다.
+ */
 function ButtonWithText({
   children,
   btnText,
-  route,
   disabled,
-  btnType = 'link',
+  btnType = 'button',
   onClick,
   gap,
 }: Props) {
   return (
     <div className='flex h-fit w-full flex-col gap-[20px]'>
-      {btnType === 'link' && (
-        <LinkButton disabled={disabled} route={route!}>
-          {btnText}
-        </LinkButton>
-      )}
       {btnType === 'submit' && (
         <Button type={btnType} disabled={disabled}>
           {btnText}
