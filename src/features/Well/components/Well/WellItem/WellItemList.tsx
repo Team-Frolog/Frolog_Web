@@ -6,6 +6,7 @@ import { CATEGORY } from '@/constants/category';
 import { staggerContainerVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
 import { GetWellRes } from '@frolog/frolog-api';
+import { getRandomEmptyMessage } from '@/features/Well/utils/getRandomMessage';
 import WellitemSkeleton from '@/components/Fallback/Skeleton/WellitemSkeleton';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
@@ -42,7 +43,7 @@ const WellItemList = React.memo(
         return undefined;
       } else if (isDefaultWell) {
         if (count === 0) {
-          return chat.empty;
+          return getRandomEmptyMessage();
         } else if (count === 1) {
           return chat.first_book;
         } else if (count === 2) {
@@ -50,7 +51,7 @@ const WellItemList = React.memo(
         }
       } else {
         if (count === 0) {
-          return chat.empty;
+          return getRandomEmptyMessage();
         }
       }
       return undefined;
