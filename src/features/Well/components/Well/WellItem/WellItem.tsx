@@ -44,7 +44,9 @@ function WellItem({
 
   useEffect(() => {
     return () => {
-      setNewReviewId(null);
+      if (newReviewId === id) {
+        setNewReviewId(null);
+      }
     };
   }, []);
 
@@ -103,7 +105,7 @@ function WellItem({
         </span>
       </motion.div>
       <div
-        className={`absolute h-[20px] w-full bg-category-bg-${category} bottom-0 left-0`}
+        className={`absolute h-[20px] w-full bg-category-bg-${category} bottom-0 left-0 z-0`}
       />
     </div>
   );

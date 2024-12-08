@@ -25,7 +25,7 @@ export const useWellItems = (wellId: string) => {
     staleTime: 0,
   });
 
-  const isEmpty = !data?.pages.length;
+  const isEmpty = isFetched && !data?.pages.length;
 
   return {
     wellItems: data ? data.pages : [],
