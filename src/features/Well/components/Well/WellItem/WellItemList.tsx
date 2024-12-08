@@ -115,7 +115,7 @@ const WellItemList = React.memo(
                   isTopItem={i === 0}
                   isLastItem={wellItems.length === i + 1 && !isFetchingNextPage}
                   setTarget={setTarget}
-                  zIndex={i}
+                  zIndex={i + 1}
                   startLoading={() => setIsLoading(true)}
                 />
               ))}

@@ -38,7 +38,7 @@ async function UserWellDetailPage({ params: { userId, wellId } }: Props) {
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: ['wellItems', wellId],
-    queryFn: ({ pageParam }) =>
+    queryFn: async ({ pageParam }) =>
       new SearchWellItem({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
         accessToken: session?.user.accessToken,
@@ -49,7 +49,7 @@ async function UserWellDetailPage({ params: { userId, wellId } }: Props) {
         well_id: wellId,
       }),
     initialPageParam: 0,
-    staleTime: 1000 * 10,
+    staleTime: 1000 * 5,
   });
 
   return (
