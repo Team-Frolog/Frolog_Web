@@ -10,6 +10,10 @@ interface Props {
   children?: React.ReactNode;
 }
 
+/** light가 비춰진 개구리 페이지 컴포넌트
+ * - 404, error 페이지
+ * - 리뷰 작성 / 우물 생성 시
+ */
 function Flash({ children, flashKey }: Props) {
   const {
     getTitle,
