@@ -11,6 +11,7 @@ const config = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     'public/icons': '<rootDir>/src/__mock__/svgMock.tsx',
+    '^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i': `<rootDir>/__mock__/fileMock.ts`,
   },
 };
 
