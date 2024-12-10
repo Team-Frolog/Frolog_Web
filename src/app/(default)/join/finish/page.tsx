@@ -1,11 +1,10 @@
 import React from 'react';
-import PopperAnimation from '@/components/animation/PopperAnimation';
-import FinishLight from '@/components/Light/FinishLight';
+import { Metadata } from 'next';
 import Image from 'next/image';
+import PopperAnimation from '@/components/animation/PopperAnimation';
 import QuitButton from '@/components/Button/QuitButton';
 import { IMAGES } from '@/constants/images';
-import { TestStartButton } from '@/features/Join';
-import { Metadata } from 'next';
+import { TestStartButton, FinishLight } from '@/features/Join';
 
 export const metadata: Metadata = {
   title: '회원가입',
