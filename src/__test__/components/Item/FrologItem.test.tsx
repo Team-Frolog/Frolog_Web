@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import FrologItem from '@/components/Item/FrologItem';
+import FrologItem from '@/components/FrologItem/FrologItem';
 import { FROGS_SILHOUETTE } from '@/constants/frogs';
 import '@testing-library/jest-dom';
 

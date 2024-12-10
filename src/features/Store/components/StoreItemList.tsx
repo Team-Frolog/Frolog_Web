@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import FrologItem from '@/components/Item/FrologItem';
+import FrologItem from '@/components/FrologItem/FrologItem';
 import { useStore } from '../hooks/useStore';
 import { useWallet } from '../hooks/useWallet';
 

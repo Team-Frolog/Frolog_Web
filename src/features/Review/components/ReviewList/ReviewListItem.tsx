@@ -6,7 +6,7 @@ import Rating from '@/components/Rating/Rating';
 import TagSlider from '@/components/Tag/TagSlider';
 import { GetReviewRes } from '@frolog/frolog-api';
 import { formatDate } from '@/utils/date';
-import DeleteButton from '@/components/ListItem/DeleteButton';
+import DeleteButton from '@/components/Button/DeleteButton';
 import { useUserId } from '@/store/sessionStore';
 
 interface Props {

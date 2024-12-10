@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useUserId } from '@/store/sessionStore';
 import uniqueId from 'lodash/uniqueId';
-import DeleteButton from '@/components/ListItem/DeleteButton';
+import DeleteButton from '@/components/Button/DeleteButton';
 import { formatDate } from '@/utils/date';
 import ImageSlider from '../MemoForm/ImageForm/ImageSlider';
 import { Memo } from '../../models/memo.model';
