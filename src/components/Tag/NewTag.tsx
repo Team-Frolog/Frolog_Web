@@ -1,9 +1,11 @@
 import React from 'react';
 
 interface Props {
+  /** absolute에 대한 포지션 값(top, left, right, bottom) */
   position: string;
 }
 
+/** 상점 아이템에 붙는 'NEW' 태그 */
 function NewTag({ position }: Props) {
   return (
     <span
