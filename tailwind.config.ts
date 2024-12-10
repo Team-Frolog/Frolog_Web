@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import { tailwindPlugin } from './src/styles/tailwind';
 
 const config: Config = {
   presets: [require('@team-frolog/tailwind-config')],
@@ -9,5 +10,6 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/styles/**/*.{js,ts,jsx,tsx}',
   ],
+  plugins: [tailwindPlugin],
 };
 export default config;
