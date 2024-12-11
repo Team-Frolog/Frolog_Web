@@ -34,8 +34,8 @@ function AboutBook({ bookId }: Props) {
             categoryId={bookData?.category}
             onClick={() => runWhenLoggedIn(() => setOpen(true))}
           />
-          <MajorTagList type='pros' tagData={bookData?.tags_pos} />
-          <MajorTagList type='cons' tagData={bookData?.tags_neg} />
+          <MajorTagList type='pros' tagKeys={bookData?.tags_pos} />
+          <MajorTagList type='cons' tagKeys={bookData?.tags_neg} />
         </div>
         <BookDetail bookId={bookId} />
       </div>
