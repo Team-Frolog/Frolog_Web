@@ -5,7 +5,8 @@ interface Props {
   message: string;
 }
 
-function MessageToast({ message }: Props) {
+/** 우물 리스트 하단에 위치한 토스트 형태의 메시지 컴포넌트 */
+function WellListMessage({ message }: Props) {
   return (
     <div
       id='message-toast'
@@ -17,4 +18,4 @@ function MessageToast({ message }: Props) {
   );
 }
 
-export default MessageToast;
+export default WellListMessage;

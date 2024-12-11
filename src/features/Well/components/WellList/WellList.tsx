@@ -3,7 +3,7 @@
 import React from 'react';
 import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton';
 import { useObserver } from '@/hooks/gesture/useObserver';
-import MessageToast from '@/components/Toast/MessageToast';
+import WellListMessage from '@/features/Well/components/WellList/WellListMessage';
 import WellAddButton from './WellAddButton';
 import WellIcon from './WellIcon/WellIcon';
 import { useWells } from '../../hooks/useWells';
@@ -31,7 +31,7 @@ function WellList({ userId, isRootUser }: Props) {
         )}
       </div>
       {isRootUser && (
-        <MessageToast message='우물에 책을 추가해 플레이리스트처럼 만드세요' />
+        <WellListMessage message='우물에 책을 추가해 플레이리스트처럼 만드세요' />
       )}
     </div>
   );
