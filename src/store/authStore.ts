@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist, devtools, createJSONStorage } from 'zustand/middleware';
 
-interface Actions {
+export interface AuthActions {
   setEmailCodeToken: (value: string | null) => void;
   setEmailVerifiedToken: (value: string | null) => void;
   resetToken: () => void;
@@ -12,7 +12,7 @@ interface AuthStore {
   emailCodeToken: string | null;
   emailVerifiedToken: string | null;
   expiredTime: number | null;
-  actions: Actions;
+  actions: AuthActions;
 }
 
 const useAuthStore = create<AuthStore>()(

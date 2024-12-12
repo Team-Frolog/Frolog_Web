@@ -5,15 +5,24 @@ import { useCodeTime } from '@/store/authStore';
 import React from 'react';
 
 interface Props {
+  /** 인증코드 값 */
   code: string;
+  /** 인증코드 setter */
   setCode: React.Dispatch<React.SetStateAction<string>>;
+  /** 인증코드 전송 함수 */
   handleSendCode: () => void;
-  isFailed: boolean;
+  /** 인증코드 전송 실패 여부 */
+  isSendFailed: boolean;
 }
 
-function CodeInput({ code, setCode, handleSendCode, isFailed }: Props) {
+/** 인증번호 입력 input
+ * - 외부에서 code 상태값과 setter 함수를 전달 받아야 합니다.
+ * - 타이머 기능, 재전송 버튼이 포함되어 있습니다.
+ */
+function CodeInput({ code, setCode, handleSendCode, isSendFailed }: Props) {
   const expiredTime = useCodeTime();
 
+  /** 인증코드 재전송 함수를 호출하고 코드 값을 초기화하는 함수 */
   const handleClickSend = () => {
     handleSendCode();
     setCode('');
@@ -28,12 +37,13 @@ function CodeInput({ code, setCode, handleSendCode, isFailed }: Props) {
     }
   };
 
+  /** code 값을 업데이트하고 만약 값의 길이가 6인 경우 키보드를 내리는 함수 */
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     setCode(inputValue);
 
     if (inputValue.length === 6) {
-      event.target.blur(); // 입력 요소로부터 포커스를 제거하여 키보드를 내림
+      event.target.blur();
     }
   };
 
@@ -53,7 +63,7 @@ function CodeInput({ code, setCode, handleSendCode, isFailed }: Props) {
           placeholder='인증번호 입력'
           onKeyDown={handleKeyPress}
           disabled={expiredTime === 0}
-          className={`input-code-common ${expiredTime === 0 || isFailed ? 'input-code-error' : 'input-default'}`}
+          className={`input-code-common ${expiredTime === 0 || isSendFailed ? 'input-code-error' : 'input-default'}`}
         />
         <div className='absolute bottom-1/4 right-[16px] flex items-center gap-[8px]'>
           <Timer />
@@ -66,7 +76,7 @@ function CodeInput({ code, setCode, handleSendCode, isFailed }: Props) {
           </button>
         </div>
       </div>
-      {(expiredTime === 0 || isFailed) && (
+      {(expiredTime === 0 || isSendFailed) && (
         <span className='text-body-md text-error'>
           {expiredTime === 0
             ? '입력 유효시간이 지났어요. 다시 인증해주세요.'
