@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PullToRefresh from '@/components/Gesture/PullToRefresh';
-import SideHeader from '@/components/Header/SideHeader';
+import WellEntryHeader from '@/components/Header/WellEntryHeader';
 import MainLayout from '@/layouts/MainLayout';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import ScrollToTop from '@/components/Gesture/ScrollToTop';
@@ -13,7 +13,7 @@ function Feeds() {
 
   return (
     <>
-      <SideHeader />
+      <WellEntryHeader />
       <div className='flex w-full flex-1 flex-col overflow-hidden bg-gray-300'>
         <MainLayout
           ref={containerRef}

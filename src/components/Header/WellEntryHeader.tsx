@@ -7,11 +7,15 @@ import BackButton from '../Button/BackButton';
 interface Props {
   children?: React.ReactNode;
   title?: string | React.ReactNode;
-  hasBackButton?: boolean;
   bgColor?: string;
+  /** 뒤로가기 버튼 존재 여부 (타인의 프로필 페이지에서 적용) */
+  hasBackButton?: boolean;
 }
 
-function SideHeader({
+/** 우물 입구를 표현한 헤더
+ * - 피드, 검색, 프로필, 우물 리스트 페이지에서 활용됩니다.
+ */
+function WellEntryHeader({
   children,
   title,
   bgColor,
@@ -44,4 +48,4 @@ function SideHeader({
   );
 }
 
-export default SideHeader;
+export default WellEntryHeader;

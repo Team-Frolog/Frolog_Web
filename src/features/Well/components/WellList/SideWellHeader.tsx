@@ -1,6 +1,6 @@
 'use client';
 
-import SideHeader from '@/components/Header/SideHeader';
+import WellEntryHeader from '@/components/Header/WellEntryHeader';
 import { useRouter } from 'next/navigation';
 import { StoreIcon } from 'public/icons';
 import React from 'react';
@@ -29,7 +29,7 @@ function SideWellHeader({
   const { profile } = useProfile(userId);
 
   return (
-    <SideHeader
+    <WellEntryHeader
       title={
         profile ? (
           <>
@@ -62,7 +62,7 @@ function SideWellHeader({
           <StoreIcon />
         </MotionLink>
       )}
-    </SideHeader>
+    </WellEntryHeader>
   );
 }
 

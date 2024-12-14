@@ -5,6 +5,9 @@ import React from 'react';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
 import Link from 'next/link';
 
+/** 메모, 리뷰 리스트의 탭 헤더
+ * - 헤더 색상 전환 기능이 포함되어 있습니다.
+ */
 function TapHeader() {
   const router = useRouter();
   const pathname = usePathname();

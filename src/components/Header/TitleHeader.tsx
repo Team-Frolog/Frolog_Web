@@ -6,15 +6,25 @@ import { bottomSheet } from '@/modules/BottomSheet';
 import BackButton from '../Button/BackButton';
 
 interface Props {
+  /** 헤더의 성격 */
   type: 'default' | 'edit' | 'write' | 'no_border';
+  /** 우측 추가 버튼 여부 */
   hasButton?: boolean;
+  /** 추가 버튼의 비활성화 여부 */
   isDisabled?: boolean;
+  /** 타이틀명 */
   title: string;
+  /** 다크/라이트 테마 */
   theme: 'dark' | 'light';
+  /** 추가 버튼 핸들러 함수 */
   onClick?: () => void;
+  /** 뒤로가기 핸들러 (주어지지 않은 경우 내부 함수 사용) */
   onClickBack?: () => void;
 }
 
+/** 기본 타이틀 헤더
+ * - 중앙에 타이틀이 위치하고, 뒤로가기 버튼이 기본으로 적용되어 있습니다.
+ */
 function TitleHeader({
   type,
   isDisabled,
@@ -28,6 +38,10 @@ function TitleHeader({
   const themeColor =
     theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-gray-800';
 
+  /** 기본 뒤로가기 핸들러 함수
+   * - type이 edit, write인 경우(수정 중, 작성 중), 이탈 확인 바텀시트를 렌더링합니다.
+   * - 그렇지 않은 경우 뒤로가기 기능을 동작시킵니다.
+   */
   const handleClick = () => {
     if (type === 'edit' || type === 'write') {
       bottomSheet.open({
