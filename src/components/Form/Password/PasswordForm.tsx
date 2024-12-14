@@ -2,6 +2,9 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import FormInput from '../Input/FormInput';
 
+/** 비밀번호 input 및 비밀번호 확인 input이 포함된 폼
+ * - react-hook-form이 적용되어 있습니다. (password, passwordCheck)
+ */
 function PasswordForm() {
   const {
     register,
