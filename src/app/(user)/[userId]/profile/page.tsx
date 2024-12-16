@@ -1,7 +1,7 @@
 import LinkButton from '@/components/Button/LinkButton';
 import ProfileSkeleton from '@/components/Fallback/Skeleton/ProfileSkeleton';
 import WellEntryHeader from '@/components/Header/WellEntryHeader';
-import NavigationBar from '@/components/NavigationBar';
+import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import { Menu } from '@/features/Profile';
 import MainLayout from '@/layouts/MainLayout';
 import { authOptions } from '@/utils/auth/auth';

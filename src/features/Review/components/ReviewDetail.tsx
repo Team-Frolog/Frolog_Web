@@ -16,8 +16,8 @@ function ReviewDetail({ reviewDetail }: Props) {
     <div className='flex-child-layout gap-[36px]'>
       <div className='flex w-full flex-col gap-[36px] px-page'>
         <RatingSelector type='default' rating={reviewDetail.rating} />
-        <MajorTagList type='pros' tagData={reviewDetail.tags_pos} />
-        <MajorTagList type='cons' tagData={reviewDetail.tags_neg} />
+        <MajorTagList type='pros' tagKeys={reviewDetail.tags_pos} />
+        <MajorTagList type='cons' tagKeys={reviewDetail.tags_neg} />
       </div>
 
       <ReadOnlyTextarea

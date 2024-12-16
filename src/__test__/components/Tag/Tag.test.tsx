@@ -42,17 +42,13 @@ describe('Tag Component', () => {
   });
 
   test('태그가 선택된 경우, type에 맞는 테마가 적용되어야 한다.', () => {
-    render(
-      <Tag tagValue='테스트 태그' size='big' type='pros' isSelected={true} />
-    );
+    render(<Tag tagValue='테스트 태그' size='big' type='pros' isSelected />);
     const button = screen.getByRole('button');
     expect(button).toHaveClass('pro-tag');
   });
 
   test('태그가 선택된 경우, type에 맞는 테마가 적용되어야 한다.', () => {
-    render(
-      <Tag tagValue='테스트 태그' size='big' type='cons' isSelected={true} />
-    );
+    render(<Tag tagValue='테스트 태그' size='big' type='cons' isSelected />);
     const button = screen.getByRole('button');
     expect(button).toHaveClass('con-tag');
   });

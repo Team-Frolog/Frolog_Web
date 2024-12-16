@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ScrollToTop from '@/components/Gesture/ScrollToTop';
-import NavigationBar from '@/components/NavigationBar';
+import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import MainLayout from '@/layouts/MainLayout';
 import { useWell } from '../../hooks/useWell';
