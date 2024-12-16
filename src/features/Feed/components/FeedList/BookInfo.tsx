@@ -69,7 +69,7 @@ function BookInfo({ feedData, isMemo }: Props) {
               <Rating
                 rating={!isGetMemoRes(feedData) ? feedData.rating : null}
                 textClass={`text-heading-lg-bold text-category-text-${category}`}
-                category={category}
+                categoryId={category}
               />
             )}
           </div>

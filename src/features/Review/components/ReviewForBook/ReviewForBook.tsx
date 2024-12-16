@@ -17,7 +17,7 @@ function ReviewForBook() {
           <Rating
             rating={3.5}
             hasComment
-            category='novel'
+            categoryId='novel'
             textClass='text-heading-lg-bold text-category-text-novel'
           />
         </div>

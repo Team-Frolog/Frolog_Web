@@ -16,7 +16,7 @@ function ReviewItemHeader({ rating, category }: Props) {
         <Rating
           rating={rating}
           textClass={`text-heading-lg-bold text-category-text-${category}`}
-          category={category}
+          categoryId={category}
           hasComment
         />
       </div>

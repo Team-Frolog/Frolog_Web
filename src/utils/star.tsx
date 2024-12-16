@@ -12,7 +12,9 @@ export const generateRatingStars = (
       stars.push(<Star rating={1} size={size} key={i} color={color} />);
       curRating -= 1;
     } else if (curRating >= 0) {
-      stars.push(<Star rating={curRating} size={size} key={i} color={color} />);
+      stars.push(
+        <Star rating={curRating as 0 | 0.5} size={size} key={i} color={color} />
+      );
       curRating = 0;
     }
   }

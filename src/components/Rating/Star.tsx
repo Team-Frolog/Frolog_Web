@@ -1,13 +1,25 @@
 import React from 'react';
 
 interface Props {
-  rating: number;
+  /** 별점 값 (0, 0.5, 1) */
+  rating: 0 | 0.5 | 1;
+  /** 사이즈 (px) */
   size?: number;
+  /** 별 색상 */
   color?: string | undefined;
+  /** 채워지지 않은 상태의 별 색상 */
   defaultColor?: string;
+  /** 별점 선택 핸들러 */
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
+/** 공통 별 컴포넌트
+ * @param rating - 0, 0.5, 1의 값으로 별의 채움 정도를 조절
+ * @param size - 별의 px 사이즈 (optional)
+ * @param color - 채워진 별의 색상 (optional)
+ * @param defaultColor - 채워지지 않은 별의 색상 (optional)
+ * @param onClick - 별점 선택 핸들러 (optional, 주어지지 않은 경우 read only)
+ */
 function Star({ rating, color, defaultColor, size = 20, onClick }: Props) {
   const starWidth = `${rating * 100}%`;
   const gradientId = `starGradient-${rating}-${size}-${color}`;
