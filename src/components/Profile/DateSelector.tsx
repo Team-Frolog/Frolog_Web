@@ -9,6 +9,9 @@ interface Props {
   theme: 'dark' | 'light';
 }
 
+/** 생년월일 선택 컴포넌트
+ * - react-hook-form이 적용되어 있습니다.
+ */
 function DateSelector({ theme }: Props) {
   const { watch, setValue } = useFormContext();
 

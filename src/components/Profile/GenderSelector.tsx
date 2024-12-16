@@ -8,6 +8,9 @@ interface Props {
   theme: 'dark' | 'light';
 }
 
+/** 성별 선택 컴포넌트
+ * - react-hook-form이 적용되어 있습니다.
+ */
 function GenderSelector({ theme }: Props) {
   const { watch, setValue } = useFormContext();
   const buttonStyle = `rounded-[12px] border px-[16px] py-[18px] text-body-lg ${theme === 'dark' ? 'border-gray-800 bg-gray-800 text-white' : 'border-gray-200 bg-gray-200 text-gray-800'}`;

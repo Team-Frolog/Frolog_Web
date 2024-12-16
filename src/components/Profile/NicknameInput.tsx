@@ -8,6 +8,10 @@ interface Props {
   originUsername?: string;
 }
 
+/** 닉네임 입력 컴포넌트
+ * - react-hook-form이 적용되어 있습니다.
+ * - 닉네임 대상 중복 확인을 진행합니다.
+ */
 function NicknameInput({ theme, originUsername = '' }: Props) {
   const {
     register,
@@ -15,6 +19,7 @@ function NicknameInput({ theme, originUsername = '' }: Props) {
     setError,
     formState: { errors },
   } = useFormContext();
+
   return (
     <FormInput
       autoFocus

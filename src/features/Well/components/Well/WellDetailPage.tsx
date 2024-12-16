@@ -46,7 +46,9 @@ function WellDetailPage({
             isDefaultWell={isDefaultWell}
           />
         )}
-        {isRendering && <ScrollToTop type={isRootUser ? 'nav' : 'floating'} />}
+        {isRendering && (
+          <ScrollToTop isOnNav={isRootUser ? 'nav' : 'floating'} />
+        )}
       </MainLayout>
       {isRootUser && <NavigationBar />}
     </>
