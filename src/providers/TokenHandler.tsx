@@ -11,6 +11,10 @@ interface Props {
   update: (data?: any) => Promise<Session | null>;
 }
 
+/** token refetch handler
+ * - 30초마다 accessToken의 만료 시간을 체크합니다.
+ * - 만료 5분 전인 경우, accessToken을 재발급합니다. (useSession update 호출)
+ */
 export function TokenHandler({ session, update }: Props) {
   const interval = useRef<ReturnType<typeof setInterval> | undefined>(
     undefined

@@ -24,6 +24,7 @@ export const getQueryClient = () =>
     },
   });
 
+/** tanstack-query provider */
 function QueryProvider({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
 

@@ -5,7 +5,8 @@ import React, { memo, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import useSessionStore from '../store/sessionStore';
 
-function SessionProvider({ session }: { session: Session | null }) {
+/** 초기 세션 값을 가져와 전역 store에 저장하는 핸들러 */
+function SessionHandler({ session }: { session: Session | null }) {
   const { data: clientSession } = useSession();
   const setSession = useSessionStore((state) => state.setSession);
 
@@ -34,4 +35,4 @@ function SessionProvider({ session }: { session: Session | null }) {
   return <></>;
 }
 
-export default memo(SessionProvider);
+export default memo(SessionHandler);

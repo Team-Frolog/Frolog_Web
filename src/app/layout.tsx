@@ -7,7 +7,7 @@ import GAProvider from '@/providers/GAProvider';
 import NextAuthProvider from '@/providers/NextAuthProvider';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/auth';
-import SessionProvider from '@/providers/SessionProvider';
+import SessionHandler from '@/providers/SessionHandler';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -169,7 +169,7 @@ export default async function RootLayout({
           <GAProvider gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
         ) : null}
         <NextAuthProvider>
-          <SessionProvider session={session} />
+          <SessionHandler session={session} />
           <body
             className={`${pretendard.variable} ${pretendard.className} text-gray-800`}
           >
