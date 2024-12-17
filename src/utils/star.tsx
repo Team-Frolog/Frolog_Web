@@ -1,11 +1,18 @@
 import Star from '@/components/Rating/Star';
 import { ratingMessage } from '@/data/ui/ratingMessage';
 
-export const generateRatingStars = (
-  curRating: number,
-  size: number,
-  color?: string
-) => {
+interface Props {
+  curRating: number;
+  size: number;
+  color?: string;
+}
+
+/** 별점용 별을 반환하는 함수
+ * @param curRating - 별점 값 (0, 0.5, 1)
+ * @param size - 별점 사이즈 (px)
+ * @param color - 별점 색상 (optional)
+ */
+export const generateRatingStars = ({ curRating, size, color }: Props) => {
   const stars = [];
   for (let i = 0; i < 5; i += 1) {
     if (curRating >= 1) {
@@ -21,6 +28,7 @@ export const generateRatingStars = (
   return stars;
 };
 
+/** 별점별 메시지를 반환하는 함수 */
 export const getRatingMsg = (rating: number) => {
   if (rating in ratingMessage) {
     return ratingMessage[rating];

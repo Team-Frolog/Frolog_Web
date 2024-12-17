@@ -36,11 +36,11 @@ function Rating({
           </span>
         )}
         <div className='flex gap-[4px]'>
-          {generateRatingStars(
-            rating || 0,
-            20,
-            categoryId ? CATEGORY[categoryId].text : undefined
-          )}
+          {generateRatingStars({
+            curRating: rating || 0,
+            size: 20,
+            color: categoryId ? CATEGORY[categoryId].text : undefined,
+          })}
         </div>
       </div>
     </div>

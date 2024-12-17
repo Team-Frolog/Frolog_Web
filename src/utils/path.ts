@@ -1,5 +1,6 @@
 import { PAGE_CONFIG } from '@/constants/page';
 
+/** 폼에 속하는 경로인지 확인하는 함수 */
 export const isPathExists = (path: string): boolean => {
   let result: boolean = false;
 
@@ -11,6 +12,7 @@ export const isPathExists = (path: string): boolean => {
   return result;
 };
 
+/** 경로에 해당하는 이름을 구하는 함수 */
 export const getPathName = (path: string): string | undefined => {
   let result;
 

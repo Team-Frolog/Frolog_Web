@@ -9,6 +9,7 @@ import { refreshAccessToken } from './refreshAccessToken';
 
 const logIn = new SignIn(baseOptions);
 
+/** next-auth 설정 */
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialProvider({

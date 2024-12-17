@@ -61,7 +61,7 @@ function RatingSelector({
    */
   const renderStars = () => {
     if (type === 'default') {
-      return generateRatingStars(rating || 0, 40);
+      return generateRatingStars({ curRating: rating || 0, size: 40 });
     }
     return Array.from({ length: 5 }, (_, index) => {
       let starRating: 0 | 0.5 | 1;

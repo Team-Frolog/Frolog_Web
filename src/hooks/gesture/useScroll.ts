@@ -20,14 +20,29 @@ export const useScroll = ({
     (mode: 'dark' | 'light' | 'category') => {
       switch (mode) {
         case 'dark':
-          setHeaderStyle('#0E0E0E', '#B3B6C5', '#FFFFFF', '#B3B6C5');
+          setHeaderStyle({
+            backgroundColor: '#0E0E0E',
+            iconColor: '#B3B6C5',
+            foregroundColor: '#FFFFFF',
+            unSelected: '#B3B6C5',
+          });
           break;
         case 'light':
-          setHeaderStyle('#FFFFFF', '#727484', '#313239', '#B3B6C5');
+          setHeaderStyle({
+            backgroundColor: '#FFFFFF',
+            iconColor: '#727484',
+            foregroundColor: '#313239',
+            unSelected: '#B3B6C5',
+          });
           break;
         case 'category':
           if (categoryColor) {
-            setHeaderStyle(categoryColor, foreground, foreground, unSelected);
+            setHeaderStyle({
+              backgroundColor: categoryColor,
+              iconColor: foreground,
+              foregroundColor: foreground,
+              unSelected,
+            });
           }
           break;
         default:
