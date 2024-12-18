@@ -9,6 +9,7 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import { GetBook } from '@frolog/frolog-api';
+import { QUERY_KEY } from '@/constants/query';
 
 export const metadata: Metadata = {
   title: '새로운 리뷰',
@@ -37,7 +38,7 @@ async function AddNewReviewPage({ params }: Props) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['bookInfo', params.bookId],
+    queryKey: [QUERY_KEY.bookInfo, params.bookId],
     queryFn: () =>
       new GetBook({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,

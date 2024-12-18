@@ -1,3 +1,4 @@
+import { QUERY_KEY } from '@/constants/query';
 import { WellForm } from '@/features/Well';
 import { authOptions } from '@/utils/auth/auth';
 import { SearchStoreItem } from '@frolog/frolog-api';
@@ -35,7 +36,7 @@ async function WellCreatePage({ params: { userId } }: Props) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['frogs', userId],
+    queryKey: [QUERY_KEY.myFrogs, userId],
     queryFn: () =>
       new SearchStoreItem({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,

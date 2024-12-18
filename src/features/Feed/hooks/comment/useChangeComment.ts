@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { QUERY_KEY } from '@/constants/query';
 import { changeLikeThisComment } from '../../api/activity.api';
 import { GetCommentsRes } from '../../types/comment';
 import { toggleLike } from '../../utils/toggleLike';
@@ -21,13 +22,18 @@ export const useChangeComment = (itemId: string, isReview: boolean) => {
     mutationFn: (req: { id: string; value: boolean }) =>
       changeLikeThisComment({ ...req, itemId }, isReview),
     onMutate: async ({ id }) => {
-      await queryClient.cancelQueries({ queryKey: ['comments', itemId] });
-      const prevComments = queryClient.getQueryData(['comments', itemId]);
+      await queryClient.cancelQueries({
+        queryKey: [QUERY_KEY.comments, itemId],
+      });
+      const prevComments = queryClient.getQueryData([
+        QUERY_KEY.comments,
+        itemId,
+      ]);
 
       if (!prevComments) return;
 
       queryClient.setQueryData(
-        ['comments', itemId],
+        [QUERY_KEY.comments, itemId],
         (oldData: CommentData) => ({
           ...oldData,
           pages: oldData.pages.map((page) => ({
@@ -45,7 +51,10 @@ export const useChangeComment = (itemId: string, isReview: boolean) => {
       return { prevComments };
     },
     onError: (_err, _variables, context) => {
-      queryClient.setQueryData(['comments', itemId], context?.prevComments);
+      queryClient.setQueryData(
+        [QUERY_KEY.comments, itemId],
+        context?.prevComments
+      );
     },
   });
 
@@ -53,7 +62,7 @@ export const useChangeComment = (itemId: string, isReview: boolean) => {
     mutationFn: (req: { id: string; commentId: string }) =>
       deleteComment(req, isReview),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['comments', itemId] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.comments, itemId] });
     },
   });
 

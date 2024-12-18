@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { QUERY_KEY } from '@/constants/query';
 import { changeLikeThisComment } from '../../api/activity.api';
 import { Comments, GetCommentsRes } from '../../types/comment';
 import { toggleLike } from '../../utils/toggleLike';
@@ -25,17 +26,21 @@ export const useChangeChildComment = ({
       changeLikeThisComment({ ...req, itemId }, isReview),
     onMutate: async ({ id }) => {
       await queryClient.cancelQueries({
-        queryKey: isFirst ? ['comments', itemId] : ['childComments', parentId],
+        queryKey: isFirst
+          ? [QUERY_KEY.comments, itemId]
+          : [QUERY_KEY.childComments, parentId],
       });
       const prevData = queryClient.getQueryData(
-        isFirst ? ['comments', itemId] : ['childComments', parentId]
+        isFirst
+          ? [QUERY_KEY.comments, itemId]
+          : [QUERY_KEY.childComments, parentId]
       );
 
       if (!prevData) return;
 
       if (isFirst) {
         queryClient.setQueryData(
-          ['comments', itemId],
+          [QUERY_KEY.comments, itemId],
           (oldData: CommentData) => ({
             ...oldData,
             pages: oldData.pages.map((page) => ({
@@ -53,7 +58,7 @@ export const useChangeChildComment = ({
         );
       } else {
         queryClient.setQueryData(
-          ['childComments', parentId],
+          [QUERY_KEY.childComments, parentId],
           (oldData: GetCommentsRes) => ({
             ...oldData,
             comments: oldData.comments.map((item: Comments) => {
@@ -69,7 +74,10 @@ export const useChangeChildComment = ({
       return { prevData };
     },
     onError: (_err, _variables, context) => {
-      queryClient.setQueryData(['childComments', parentId], context?.prevData);
+      queryClient.setQueryData(
+        [QUERY_KEY.childComments, parentId],
+        context?.prevData
+      );
     },
   });
 
@@ -77,7 +85,9 @@ export const useChangeChildComment = ({
     mutationFn: (req: { id: string; commentId: string }) =>
       deleteComment(req, isReview),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['childComments', parentId] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.childComments, parentId],
+      });
     },
   });
 

@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { QUERY_KEY } from '@/constants/query';
 import { getWellItems } from '../api/well.api';
 
 export const useWellItems = (wellId: string) => {
@@ -10,7 +11,7 @@ export const useWellItems = (wellId: string) => {
     isPending,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ['wellItems', wellId],
+    queryKey: [QUERY_KEY.wellItems, wellId],
     queryFn: ({ pageParam }) => getWellItems(pageParam, wellId),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {

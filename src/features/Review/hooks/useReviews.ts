@@ -4,6 +4,7 @@ import {
   useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query';
+import { QUERY_KEY } from '@/constants/query';
 import { SearchReviewRes } from '@frolog/frolog-api';
 import { deleteReview, getReviewList } from '../api/review.api';
 
@@ -12,7 +13,7 @@ export const useReviews = (bookId: string, userId: string) => {
   const queryClient = useQueryClient();
 
   const { data, isFetched } = useSuspenseQuery({
-    queryKey: ['reviews', bookId, userId],
+    queryKey: [QUERY_KEY.reviewList, bookId, userId],
     queryFn: () =>
       getReviewList({
         isbn: bookId,
@@ -25,17 +26,17 @@ export const useReviews = (bookId: string, userId: string) => {
     mutationFn: () => deleteReview(reviewId),
     onMutate: async () => {
       await queryClient.cancelQueries({
-        queryKey: ['reviews', bookId, userId],
+        queryKey: [QUERY_KEY.reviewList, bookId, userId],
       });
 
       const previousReviews = queryClient.getQueryData([
-        'reviews',
+        QUERY_KEY.reviewList,
         bookId,
         userId,
       ]) as SearchReviewRes;
 
       queryClient.setQueryData(
-        ['reviews', bookId, userId],
+        [QUERY_KEY.reviewList, bookId, userId],
         previousReviews.reviews.filter((review) => review.id !== reviewId)
       );
 
@@ -43,13 +44,13 @@ export const useReviews = (bookId: string, userId: string) => {
     },
     onError: (_err, _variable, context) => {
       queryClient.setQueryData(
-        ['reviews', bookId, userId],
+        [QUERY_KEY.reviewList, bookId, userId],
         context?.previousReviews
       );
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ['reviews', bookId, userId],
+        queryKey: [QUERY_KEY.reviewList, bookId, userId],
       });
     },
   });

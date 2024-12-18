@@ -9,6 +9,7 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import { GetProfileDetail } from '@frolog/frolog-api';
+import { QUERY_KEY } from '@/constants/query';
 
 export const metadata: Metadata = {
   title: '프로필 수정',
@@ -35,7 +36,7 @@ async function ProfileEditPage({ params: { userId } }: Props) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['profileDetail', userId],
+    queryKey: [QUERY_KEY.profileDetail, userId],
     queryFn: () =>
       new GetProfileDetail({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,

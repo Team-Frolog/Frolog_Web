@@ -1,5 +1,6 @@
 import { bottomSheet } from '@/modules/BottomSheet';
 import { toast } from '@/modules/Toast';
+import { QUERY_KEY } from '@/constants/query';
 import { GetStoreItemRes } from '@frolog/frolog-api';
 import {
   useMutation,
@@ -12,7 +13,7 @@ export const useStore = (userId: string, points?: number) => {
   const queryClient = useQueryClient();
 
   const { data } = useSuspenseQuery({
-    queryKey: ['storeItems'],
+    queryKey: [QUERY_KEY.storeItemList],
     queryFn: () => getStoreItems({ type: 'frog', limit: 100 }),
     refetchOnWindowFocus: false,
     staleTime: Infinity,
@@ -22,8 +23,8 @@ export const useStore = (userId: string, points?: number) => {
     mutationFn: (itemKey: string) => purchaseItem(itemKey),
     onSuccess: () => {
       toast.normal('구매가 완료되었어요');
-      queryClient.invalidateQueries({ queryKey: ['storeItems'] });
-      queryClient.invalidateQueries({ queryKey: ['points', userId] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.storeItemList] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.points, userId] });
     },
   });
 

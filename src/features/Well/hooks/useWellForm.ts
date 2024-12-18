@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { UseFormReset, UseFormSetError } from 'react-hook-form';
 import { useFlash } from '@/hooks/useFlash';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -7,8 +9,7 @@ import { toast } from '@/modules/Toast';
 import { ERROR_ALERT } from '@/constants/message';
 import { useUserId } from '@/store/sessionStore';
 import { PAGES } from '@/constants/page';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { QUERY_KEY } from '@/constants/query';
 import { addNewWell, checkWellName, editWell, getWell } from '../api/well.api';
 import { WellFormType } from '../components/WellForm/WellForm';
 
@@ -28,7 +29,7 @@ export const useWellForm = (
   const queryClient = useQueryClient();
 
   const { data: wellData } = useQuery({
-    queryKey: ['well', wellId],
+    queryKey: [QUERY_KEY.wellDetail, wellId],
     queryFn: () => getWell(wellId!),
     enabled: type === 'edit' && !!wellId,
     refetchOnWindowFocus: false,
@@ -86,7 +87,9 @@ export const useWellForm = (
       setIsLoading(false);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['well', wellId] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.wellDetail, wellId],
+      });
       router.replace(PAGES.HOME);
     },
   });

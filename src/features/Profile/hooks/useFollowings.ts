@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { QUERY_KEY } from '@/constants/query';
 import { getFollowings } from '../api/follow.api';
 
 export const useFollowings = (userId: string) => {
@@ -9,7 +10,7 @@ export const useFollowings = (userId: string) => {
     isFetched,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ['followings', userId],
+    queryKey: [QUERY_KEY.followings, userId],
     queryFn: ({ pageParam }) => getFollowings(userId, pageParam),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {

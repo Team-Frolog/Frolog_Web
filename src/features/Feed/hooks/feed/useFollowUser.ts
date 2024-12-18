@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FollowUserReq, GetProfileRes } from '@frolog/frolog-api';
+import { QUERY_KEY } from '@/constants/query';
 import { changeFollowUser } from '../../api/activity.api';
 
 export const useFollowUser = (userId?: string | undefined) => {
@@ -8,10 +9,10 @@ export const useFollowUser = (userId?: string | undefined) => {
   const { mutate: handleFollow } = useMutation({
     mutationFn: (req: FollowUserReq) => changeFollowUser(req),
     onMutate: async ({ id }) => {
-      await queryClient.cancelQueries({ queryKey: ['profile', id] });
+      await queryClient.cancelQueries({ queryKey: [QUERY_KEY.profile, id] });
 
       const prevProfile = queryClient.getQueryData([
-        'profile',
+        QUERY_KEY.profile,
         id,
       ]) as GetProfileRes;
 
@@ -20,27 +21,30 @@ export const useFollowUser = (userId?: string | undefined) => {
       const isFollowing = !prevProfile.follow;
 
       const updatedProfile = { ...prevProfile, follow: isFollowing };
-      queryClient.setQueryData(['profile', id], updatedProfile);
+      queryClient.setQueryData([QUERY_KEY.profile, id], updatedProfile);
 
       return { prevProfile };
     },
     onError: (_err, variable, context) => {
-      queryClient.setQueryData(['profile', variable.id], context?.prevProfile);
+      queryClient.setQueryData(
+        [QUERY_KEY.profile, variable.id],
+        context?.prevProfile
+      );
     },
     onSuccess: (_res, _req, prev) => {
       if (userId) {
         queryClient.invalidateQueries({
-          queryKey: ['followings', userId],
+          queryKey: [QUERY_KEY.followings, userId],
         });
         queryClient.invalidateQueries({
-          queryKey: ['followers', userId],
+          queryKey: [QUERY_KEY.followers, userId],
         });
         queryClient.invalidateQueries({
-          queryKey: ['profileDetail', userId],
+          queryKey: [QUERY_KEY.profileDetail, userId],
         });
       } else {
         queryClient.invalidateQueries({
-          queryKey: ['profile', prev.prevProfile.id],
+          queryKey: [QUERY_KEY.profile, prev.prevProfile.id],
         });
       }
     },

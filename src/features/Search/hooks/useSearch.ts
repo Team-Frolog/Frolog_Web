@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
+import { QUERY_KEY } from '@/constants/query';
 import { searchBook } from '../api/search.api';
 
 export const useSearch = () => {
@@ -11,7 +12,7 @@ export const useSearch = () => {
 
   useEffect(() => {
     queryClient.removeQueries({
-      queryKey: ['search', [searchValue]],
+      queryKey: [QUERY_KEY.searchResult, [searchValue]],
     });
   }, [queryClient, searchValue]);
 
@@ -23,7 +24,7 @@ export const useSearch = () => {
     isLoading,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ['search', [searchValue]],
+    queryKey: [QUERY_KEY.searchResult, [searchValue]],
     queryFn: async ({ pageParam }) => {
       if (searchValue === null) {
         return {

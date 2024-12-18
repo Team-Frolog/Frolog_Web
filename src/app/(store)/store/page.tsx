@@ -12,6 +12,7 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import { SearchStoreItem } from '@frolog/frolog-api';
+import { QUERY_KEY } from '@/constants/query';
 
 export const metadata: Metadata = {
   title: '상점',
@@ -41,7 +42,7 @@ async function StorePage() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['storeItems'],
+    queryKey: [QUERY_KEY.storeItemList],
     queryFn: () =>
       new SearchStoreItem({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,

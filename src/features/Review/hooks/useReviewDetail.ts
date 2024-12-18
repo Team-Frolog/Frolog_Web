@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { UseFormReset, UseFormSetError, UseFormWatch } from 'react-hook-form';
 import { bottomSheet } from '@/modules/BottomSheet';
+import { QUERY_KEY } from '@/constants/query';
 import { editReview, getReviewDetail } from '../api/review.api';
 import { ReviewForm } from '../types/review';
 import { getBookInfo } from '../api/getBookInfo.api';
@@ -32,13 +33,13 @@ export const useReviewDetail = ({
   const queryClient = useQueryClient();
 
   const { data } = useQuery({
-    queryKey: ['reviewDetail', reviewId],
+    queryKey: [QUERY_KEY.reviewDetail, reviewId],
     queryFn: () => getReviewDetail(reviewId),
     staleTime: 0,
   });
 
   const { data: bookData } = useQuery({
-    queryKey: ['bookInfo', bookId],
+    queryKey: [QUERY_KEY.bookInfo, bookId],
     queryFn: () => getBookInfo({ isbn: bookId }).then((res) => res),
   });
 
@@ -56,7 +57,9 @@ export const useReviewDetail = ({
       return result;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['reviewDetail', reviewId] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.reviewDetail, reviewId],
+      });
       router.replace(pathname);
       router.back();
     },

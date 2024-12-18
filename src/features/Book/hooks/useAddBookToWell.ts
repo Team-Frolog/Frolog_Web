@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useUserId } from '@/store/sessionStore';
 import { useRouter } from 'next/navigation';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
-import { useState } from 'react';
+import { QUERY_KEY } from '@/constants/query';
 import { getReviewCount } from '../api/book.api';
 
 export const useAddBookToWell = (isbn: string) => {
@@ -15,7 +16,7 @@ export const useAddBookToWell = (isbn: string) => {
     useAddWellItem(userId, () => setIsPending(false));
 
   const { data: reviewCount } = useQuery({
-    queryKey: ['reviewCount', isbn],
+    queryKey: [QUERY_KEY.reviewCount, isbn],
     queryFn: () => getReviewCount({ isbn, writer: userId }),
     enabled: !!userId,
     staleTime: 0,
