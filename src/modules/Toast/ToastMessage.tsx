@@ -9,6 +9,7 @@ interface Props {
   text: string;
 }
 
+/** 토스트 메시지 컴포넌트 */
 function ToastMessage({ type, text }: Props) {
   const getIcon = () => {
     if (type === 'normal') return <ToastNormalIcon />;

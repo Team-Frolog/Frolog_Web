@@ -11,6 +11,7 @@ import Button from '@/components/Button/Button';
 import BackDrop from '@/layouts/BackDrop';
 import { bottomSheet, BottomSheetProps } from '.';
 
+/** 바텀시트 컴포넌트 */
 function BottomSheet({
   sheetKey,
   children,
