@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import BigTitle from '@/components/Text/BigTitle';
+import { IMAGES } from '@/constants/images';
 
 interface Props {
   children: React.ReactNode;
@@ -12,7 +13,7 @@ function FinishLight({ children, frog, frogMaxHeight }: Props) {
   return (
     <div className='relative z-10 flex h-fit w-full flex-1 flex-col bg-gray-900 pt-[30px]'>
       <Image
-        src='/images/flash/light.webp'
+        src={IMAGES.flash.light}
         alt='light'
         width={2505}
         height={2479}

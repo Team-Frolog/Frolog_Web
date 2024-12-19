@@ -3,6 +3,7 @@
 import React from 'react';
 import { terms } from '@/data/terms/terms';
 import { useRouter } from 'next/navigation';
+import { PAGES } from '@/constants/page';
 import MenuItem from '../Menu/MenuItem';
 
 function TermsMenu() {
@@ -16,7 +17,7 @@ function TermsMenu() {
             <MenuItem
               key={item.id}
               name={item.title}
-              onClick={() => router.push(`/terms/${item.name}`)}
+              onClick={() => router.push(`${PAGES.TERMS}/${item.name}`)}
             />
           )
       )}

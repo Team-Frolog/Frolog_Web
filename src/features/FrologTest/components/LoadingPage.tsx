@@ -38,7 +38,7 @@ function LoadingPage() {
   return (
     <>
       <Head>
-        <link rel='preload' href='/images/flash/light.webp' as='image' />
+        <link rel='preload' href={IMAGES.flash.light} as='image' />
         <link rel='preload' href={IMAGES.flash.evaluation.loading} as='image' />
         <link rel='preload' href={IMAGES.flash.evaluation.done} as='image' />
         <link rel='preload' href={IMAGES.ground} as='image' />
@@ -46,7 +46,7 @@ function LoadingPage() {
       <div className='safe-screen safe-header flex w-full flex-col items-center justify-between overflow-hidden overscroll-none bg-white'>
         <div className='absolute z-0 flex h-fit w-full flex-1 flex-col items-center bg-gray-900 pt-[30px]'>
           <Image
-            src='/images/flash/light.webp'
+            src={IMAGES.flash.light}
             alt='light'
             width={2505}
             height={2479}

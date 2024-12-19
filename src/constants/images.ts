@@ -2,6 +2,7 @@ const BASE_PATH = '/images';
 
 export const IMAGES = {
   flash: {
+    light: `${BASE_PATH}/flash/light.webp`,
     congrats: `${BASE_PATH}/frog/flash/congrats.webp`,
     new_well: `${BASE_PATH}/frog/flash/new-well-congrats.webp`,
     well_done: `${BASE_PATH}/frog/flash/well-done-frog.webp`,

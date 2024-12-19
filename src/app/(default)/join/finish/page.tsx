@@ -5,6 +5,7 @@ import PopperAnimation from '@/components/animation/PopperAnimation';
 import QuitButton from '@/components/Button/QuitButton';
 import { IMAGES } from '@/constants/images';
 import { TestStartButton, FinishLight } from '@/features/Join';
+import { PAGES } from '@/constants/page';
 
 export const metadata: Metadata = {
   title: '회원가입',
@@ -21,7 +22,7 @@ function JoinFinishPage() {
         완료되었어요
       </FinishLight>
       <QuitButton
-        route='/'
+        route={PAGES.HOME}
         classes='absolute left-[24px] top-[24px] z-100 cursor-pointer'
       />
       <div className='flex-col-center w-full justify-end gap-[12px]'>

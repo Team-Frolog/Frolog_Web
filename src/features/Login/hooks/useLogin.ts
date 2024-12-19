@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { STORAGE_KEY } from '@/constants/storage';
 import { signIn } from 'next-auth/react';
+import { PAGES } from '@/constants/page';
 import { useRouter } from 'next/navigation';
 import { LoginForm } from '../types/login';
 
@@ -26,7 +27,7 @@ export const useLogin = (type: 'login' | 'test') => {
 
     if (result?.ok) {
       if (type === 'login') {
-        router.replace(callbackUrl() || '/');
+        router.replace(callbackUrl() || PAGES.HOME);
         router.refresh();
       } else {
         localStorage.removeItem(STORAGE_KEY.TEMP_ACCOUNT_KEY);

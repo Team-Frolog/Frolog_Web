@@ -21,7 +21,7 @@ function FormHeader() {
    */
   const handleClickBack = () => {
     if (pathname === PAGES.ONBOARDING) {
-      router.push('/');
+      router.push(PAGES.HOME);
     } else {
       localStorage.removeItem(STORAGE_KEY.JOIN_FORM_KEY);
       router.back();

@@ -21,7 +21,7 @@ function SearchInput({ isMain = false }: Props) {
         // eslint-disable-next-line no-useless-escape
         .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gim, '');
       setSearchValue(value);
-      router.replace(`/search?query=${value}`);
+      router.replace(`${PAGES.SEARCH}?query=${value}`);
     }
   };
 

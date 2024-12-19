@@ -4,6 +4,7 @@ import { IMAGES } from '@/constants/images';
 import LinkButton from '@/components/Button/LinkButton';
 import BackButton from '@/components/Button/BackButton';
 import Flash from '@/components/Flash/Flash';
+import { PAGES } from '@/constants/page';
 
 function NotFound() {
   return (
@@ -23,7 +24,7 @@ function NotFound() {
           priority
         />
         <div className='absolute bottom-0 left-0 flex w-full p-page'>
-          <LinkButton route='/'>홈으로 돌아가기</LinkButton>
+          <LinkButton route={PAGES.HOME}>홈으로 돌아가기</LinkButton>
         </div>
       </div>
     </Flash>

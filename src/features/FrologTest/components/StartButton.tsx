@@ -4,6 +4,7 @@ import React from 'react';
 import LinkButton from '@/components/Button/LinkButton';
 import Button from '@/components/Button/Button';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { PAGES } from '@/constants/page';
 
 function StartButton() {
   const router = useRouter();
@@ -25,7 +26,7 @@ function StartButton() {
           프로필 편집 이어하기
         </Button>
       ) : (
-        <LinkButton route='/' disabled={false}>
+        <LinkButton route={PAGES.HOME} disabled={false}>
           Frolog 시작하기
         </LinkButton>
       )}
