@@ -6,7 +6,7 @@ function NeedToLoginBlur() {
   return (
     <div className='relative flex w-full'>
       <div className='absolute left-0 top-0 z-10 flex h-full w-full flex-col items-center justify-center gap-[40px] bg-white bg-opacity-0 px-page'>
-        <div className='flex flex-col gap-[12px] text-gray-800'>
+        <div className='flex-column gap-[12px] text-gray-800'>
           <h3 className='text-center text-title-xl-bold'>
             로그인하고
             <br />

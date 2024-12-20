@@ -98,7 +98,7 @@ export const flash: {
   },
   error: {
     getTitle: () => (
-      <div className='flex flex-col items-center gap-[16px] pt-[50px]'>
+      <div className='flex-column flex items-center gap-[16px] pt-[50px]'>
         <h1 className='text-heading-lg-bold text-main'>error</h1>
         <span className='text-title-xl-bold text-gray-800 mobile:text-title-lg-bold'>
           잠시 후 다시 시도해주세요
@@ -114,7 +114,7 @@ export const flash: {
   },
   notfound: {
     getTitle: () => (
-      <div className='flex flex-col items-center gap-[16px] pt-[50px]'>
+      <div className='flex-column items-center gap-[16px] pt-[50px]'>
         <h1 className='text-heading-lg-bold text-main'>404</h1>
         <span className='text-title-xl-bold text-gray-800 mobile:text-title-lg-bold'>
           페이지를 찾을 수 없어요

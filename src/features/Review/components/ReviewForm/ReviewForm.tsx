@@ -32,7 +32,7 @@ function ReviewForm({ type, isDisabled }: Props) {
           clearErrors={clearErrors}
           isError={!!errors.rating}
         />
-        <div className='flex flex-col gap-[36px] px-page'>
+        <div className='flex-column gap-[36px] px-page'>
           <TagList type='pros' />
           <TagList type='cons' />
         </div>

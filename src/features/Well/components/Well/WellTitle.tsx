@@ -30,7 +30,7 @@ function WellTitle({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className='flex flex-col items-center gap-[20px] py-[50px]'
+        className='flex-column items-center gap-[20px] py-[50px]'
       >
         <h1 className='text-title-xl-bold'>{title}</h1>
         {isRootUser && (

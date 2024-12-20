@@ -18,7 +18,4 @@
   .flex-col-center {
     @apply flex flex-col items-center;
   }
-  .header-sticky {
-    @apply z-60 sticky left-0 top-0 w-full;
-  }
 }

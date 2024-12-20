@@ -14,7 +14,7 @@ function PasswordForm() {
   } = useFormContext();
 
   return (
-    <div className='flex flex-col gap-[8px]'>
+    <div className='flex-column gap-[8px]'>
       <FormInput
         type='password'
         placeholder='대소문자, 숫자, 특수문자를 8~15자로 조합하세요.'

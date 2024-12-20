@@ -32,7 +32,7 @@ function Step2() {
   return (
     <>
       <div className='flex w-full flex-col'>
-        <div className='flex flex-col gap-[36px]'>
+        <div className='flex-column gap-[36px]'>
           <FormInput
             autoFocus
             type='email'

@@ -12,7 +12,7 @@ function Pointing() {
           key={delay}
           animate={pointing.animate}
           transition={{ ...pointing.transition, delay }}
-          className='circle'
+          className='pointing-circle'
         />
       ))}
     </div>

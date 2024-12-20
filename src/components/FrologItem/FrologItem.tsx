@@ -53,7 +53,7 @@ function FrologItem({ type, item, isSelected, onClick }: Props) {
         height={108}
         className='w-full'
       />
-      <div className='flex flex-col'>
+      <div className='flex-column'>
         <span className='text-body-md text-gray-800'>{name}</span>
         {type === 'store' && (
           <span

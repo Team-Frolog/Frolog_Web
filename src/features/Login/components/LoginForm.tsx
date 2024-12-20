@@ -25,7 +25,7 @@ function LoginForm({ setIsFaild, userLogin }: Props) {
   };
 
   return (
-    <div className='flex flex-col gap-[32px]'>
+    <div className='flex-column gap-[32px]'>
       <FormInput
         autoFocus
         type='email'

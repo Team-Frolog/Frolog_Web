@@ -29,7 +29,7 @@ function Rating({
       <span className={`${!rating && 'text-gray-600'} ${textClass}`}>
         {rating ? rating.toFixed(1) : '0.0'}
       </span>
-      <div className='flex flex-col gap-[4px]'>
+      <div className='flex-column gap-[4px]'>
         {hasComment && (
           <span className={`text-body-lg text-category-text-${categoryId}`}>
             {getRatingMsg(rating!)}

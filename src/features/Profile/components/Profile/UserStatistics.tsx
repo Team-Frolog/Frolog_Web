@@ -36,13 +36,13 @@ function UserStatistics({ profileDetail }: Props) {
           />
         </div>
         <div className='flex flex-1 justify-around'>
-          <div className='flex flex-col items-center justify-center'>
+          <div className='flex-column items-center justify-center'>
             <h3 className='text-title-xl-bold text-gray-800'>{max_item_cnt}</h3>
             <span className='text-body-sm text-gray-600'>최고 높이(권)</span>
           </div>
           <Link
             href={`/${profileDetail.id}/profile/follows?tap=followers`}
-            className='flex flex-col items-center justify-center'
+            className='flex-column items-center justify-center'
           >
             <h3 className='text-title-xl-bold text-gray-800'>
               {formatUnit(follower_cnt)}
@@ -51,7 +51,7 @@ function UserStatistics({ profileDetail }: Props) {
           </Link>
           <Link
             href={`/${profileDetail.id}/profile/follows?tap=followings`}
-            className='flex flex-col items-center justify-center'
+            className='flex-column items-center justify-center'
           >
             <h3 className='text-title-xl-bold text-gray-800'>
               {formatUnit(following_cnt)}

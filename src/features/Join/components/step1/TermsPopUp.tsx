@@ -13,7 +13,7 @@ interface Props {
 function TermsPopUp({ termsData, closePopUp }: Props) {
   return (
     <PopUpLayout closePopUp={() => {}}>
-      <div className='flex flex-col overflow-hidden px-[16px] py-[20px] text-gray-900'>
+      <div className='flex-column overflow-hidden px-[16px] py-[20px] text-gray-900'>
         <h5 className='w-full border-b border-gray-400 pb-[12px] text-center text-body-lg-bold'>
           {termsData.title}
         </h5>

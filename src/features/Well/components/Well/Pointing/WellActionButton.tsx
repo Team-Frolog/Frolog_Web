@@ -29,7 +29,7 @@ function WellActionButton({
   const { setWellId } = useAddBookStore((state) => state.actions);
 
   return (
-    <div className='flex flex-col items-center gap-[6px]'>
+    <div className='flex-column items-center gap-[6px]'>
       <div className='relative h-[28px] w-[28px]'>
         <motion.button
           whileTap={{ scale: 1.1 }}

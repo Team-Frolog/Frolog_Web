@@ -64,7 +64,7 @@ function FeedList() {
   return (
     <div className='flex h-fit w-full flex-col justify-between gap-[36px]'>
       {!isEmpty && (
-        <div className='flex flex-col gap-[36px]'>
+        <div className='flex-column gap-[36px]'>
           {feedData.map((feed) => (
             <FeedItem
               key={feed.memo ? feed.memo.id : feed.review?.id}

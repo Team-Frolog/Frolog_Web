@@ -16,7 +16,7 @@ interface Props {
  */
 function EmptyContentFrog({ title, type = 'with pen' }: Props) {
   return (
-    <div className='review-item flex-1 items-center justify-center bg-white text-center'>
+    <div className='review-item flex-1 items-center justify-center text-center'>
       <h3 className='text-body-xl-bold'>{title}</h3>
       {type === 'with pen' ? (
         <Image
