@@ -1,7 +1,8 @@
 import { requestCode, verifyCode } from '@/api/auth.api';
-import { CODE_EXPIRE_TIME } from '@/constants/auth';
 import { useAuthActions, useCodeToken } from '@/store/authStore';
 import { useState } from 'react';
+
+const CODE_EXPIRE_TIME = 3 * 60 * 1000;
 
 export const useVerification = () => {
   const [isVerified, setIsVerified] = useState<boolean | null>(null);

@@ -1,5 +1,5 @@
 import Star from '@/components/Rating/Star';
-import { ratingMessage } from '@/data/ui/ratingMessage';
+import { ratingMessage } from '@/constants/rating';
 
 interface Props {
   curRating: number;
