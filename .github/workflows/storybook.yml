@@ -1,6 +1,6 @@
 name: Storybook Deployment
 on:
-  pull_request:
+  push:
     branches:
       - dev
 jobs:
