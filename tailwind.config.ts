@@ -9,6 +9,7 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/styles/**/*.{js,ts,jsx,tsx}',
     './.storybook/preview.tsx',
+    './src/stories/**/*.{js,ts,jsx,tsx}',
   ],
 };
 export default config;
