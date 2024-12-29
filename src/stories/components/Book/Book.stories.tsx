@@ -2,7 +2,7 @@ import Book from '@/components/Book/Book';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Common/Book/Book',
+  title: 'Common/Book',
   component: Book,
   tags: ['autodocs'],
   parameters: {
