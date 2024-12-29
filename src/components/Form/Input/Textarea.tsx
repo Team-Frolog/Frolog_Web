@@ -4,7 +4,7 @@ import { TextareaType } from '@/data/ui/textareaType';
 import React, { useEffect, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-interface Props {
+export interface TextareaProps {
   /** 폰트 타입 - 기본/굵게 */
   type?: 'default' | 'bold';
   /** textarea 데이터 */
@@ -15,7 +15,7 @@ interface Props {
  * - 입력 값에 따라 높이가 조절됩니다.
  * - react hook form이 적용되어 있습니다.
  */
-function Textarea({ type = 'default', option }: Props) {
+function Textarea({ type = 'default', option }: TextareaProps) {
   const {
     register,
     watch,

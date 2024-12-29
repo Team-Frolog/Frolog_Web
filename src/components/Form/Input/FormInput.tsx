@@ -14,7 +14,8 @@ type FieldName =
   | 'intro'
   | 'description';
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface FormInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   /** input 이름 (react-hook-form 상에서의) */
   fieldName: FieldName;
   /** 에러 발생 시 메시지 (존재하는 경우에 렌더링) */
@@ -47,7 +48,7 @@ const FormInput = React.forwardRef(
       isRequired = false,
       hasCount = false,
       ...props
-    }: Props,
+    }: FormInputProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const { watch } = useFormContext();
