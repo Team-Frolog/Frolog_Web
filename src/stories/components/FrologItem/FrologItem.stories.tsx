@@ -5,9 +5,6 @@ const meta = {
   title: 'Common/FrologItem',
   component: FrologItem,
   tags: ['autodocs'],
-  parameters: {
-    componentSubtitle: '상점 아이템 컴포넌트',
-  },
   decorators: (Story) => (
     <div className='relative flex w-[128px] gap-[9px] overflow-hidden'>
       <Story />

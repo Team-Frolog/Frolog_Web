@@ -5,9 +5,6 @@ const meta = {
   title: 'Common/Button/BackButton',
   component: BackButton,
   tags: ['autodocs'],
-  parameters: {
-    componentSubtitle: 'BackIcon 버튼',
-  },
 } satisfies Meta<typeof BackButton>;
 
 export default meta;

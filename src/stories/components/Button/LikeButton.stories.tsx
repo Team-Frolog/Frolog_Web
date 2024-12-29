@@ -5,9 +5,6 @@ const meta = {
   title: 'Common/Button/LikeButton',
   component: LikeButton,
   tags: ['autodocs'],
-  parameters: {
-    componentSubtitle: '좋아요 버튼',
-  },
 } satisfies Meta<typeof LikeButton>;
 
 export default meta;

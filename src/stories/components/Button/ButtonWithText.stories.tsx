@@ -5,9 +5,6 @@ const meta = {
   title: 'Common/Button/ButtonWithText',
   component: ButtonWithText,
   tags: ['autodocs'],
-  parameters: {
-    componentSubtitle: 'text가 포함된 버튼',
-  },
 } satisfies Meta<typeof ButtonWithText>;
 
 export default meta;

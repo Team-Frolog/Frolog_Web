@@ -5,9 +5,6 @@ const meta = {
   title: 'Common/Book',
   component: Book,
   tags: ['autodocs'],
-  parameters: {
-    componentSubtitle: '공통 도서 컴포넌트',
-  },
   decorators: (Story) => (
     <div className='w-[155.81px]'>
       <Story />

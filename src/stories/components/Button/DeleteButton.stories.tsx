@@ -5,9 +5,6 @@ const meta = {
   title: 'Common/Button/DeleteButton',
   component: DeleteButton,
   tags: ['autodocs'],
-  parameters: {
-    componentSubtitle: '삭제 버튼',
-  },
 } satisfies Meta<typeof DeleteButton>;
 
 export default meta;

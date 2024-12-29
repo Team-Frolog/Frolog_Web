@@ -5,9 +5,6 @@ const meta = {
   title: 'Common/Button/CheckButton',
   component: CheckButton,
   tags: ['autodocs'],
-  parameters: {
-    componentSubtitle: '공통 체크박스 버튼',
-  },
 } satisfies Meta<typeof CheckButton>;
 
 export default meta;

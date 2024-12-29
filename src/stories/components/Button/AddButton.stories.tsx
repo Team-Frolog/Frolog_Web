@@ -5,9 +5,6 @@ const meta = {
   title: 'Common/Button/AddButton',
   component: AddButton,
   tags: ['autodocs'],
-  parameters: {
-    componentSubtitle: 'AddIcon 버튼',
-  },
 } satisfies Meta<typeof AddButton>;
 
 export default meta;
