@@ -12,6 +12,7 @@ const config: StorybookConfig = {
     '@storybook/addon-styling-webpack',
     '@storybook/addon-postcss',
     '@tomfreudenberg/next-auth-mock/storybook',
+    '@storybook/addon-jest',
   ],
   framework: {
     name: '@storybook/nextjs',

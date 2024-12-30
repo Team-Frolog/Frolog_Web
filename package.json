@@ -17,6 +17,7 @@
   "dependencies": {
     "@frolog/frolog-api": "^1.0.2",
     "@sentry/nextjs": "^8.35.0",
+    "@storybook/addon-jest": "^8.4.7",
     "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query": "^5.40.1",
     "@types/react-slick": "^0.23.13",
