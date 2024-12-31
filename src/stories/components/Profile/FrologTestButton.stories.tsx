@@ -51,6 +51,6 @@ export const NoPreference: Story = {
   args: {},
   play: () => {
     const { setValue } = useForm();
-    setValue('reading_preference', '');
+    setValue('reading_preference', null);
   },
 };
