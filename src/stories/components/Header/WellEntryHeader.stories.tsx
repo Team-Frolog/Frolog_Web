@@ -2,7 +2,7 @@ import WellEntryHeader from '@/components/Header/WellEntryHeader';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'WellEntryHeader',
+  title: 'Common/Header/WellEntryHeader',
   component: WellEntryHeader,
   tags: ['autodocs'],
 } satisfies Meta<typeof WellEntryHeader>;
