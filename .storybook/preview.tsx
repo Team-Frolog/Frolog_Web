@@ -2,7 +2,10 @@ import React from 'react';
 import type { Preview } from '@storybook/react';
 import QueryProvider from '../src/providers/QueryProvider';
 import NextAuthProvider from '../src/providers/NextAuthProvider';
+import { initialize, mswDecorator } from 'msw-storybook-addon';
 import '../src/app/globals.css';
+
+initialize(); // MSW 초기화 함수
 
 const preview: Preview = {
   parameters: {
@@ -28,4 +31,5 @@ export const decorators = [
       </NextAuthProvider>
     </QueryProvider>
   ),
+  mswDecorator,
 ];
