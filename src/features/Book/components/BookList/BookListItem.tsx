@@ -13,6 +13,7 @@ interface Props {
   bookData: GetBookRes;
 }
 
+/** 도서 검색 결과 아이템 컴포넌트 */
 function BookListItem({ bookData }: Props) {
   const {
     isbn,

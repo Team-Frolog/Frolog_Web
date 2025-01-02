@@ -9,7 +9,8 @@ interface Props {
   bookId: string;
 }
 
-function BookDetail({ bookId }: Props) {
+/** 도서 상세 페이지 중 도서 정보/리뷰 모음 탭 컴포넌트 */
+function BookInfoTap({ bookId }: Props) {
   const [currentTap, setCurrentTap] = useState('bookInfo');
   return (
     <div className='w-full'>
@@ -28,4 +29,4 @@ function BookDetail({ bookId }: Props) {
   );
 }
 
-export default BookDetail;
+export default BookInfoTap;

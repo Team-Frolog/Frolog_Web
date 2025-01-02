@@ -1,9 +1,9 @@
-import BookInfo from '@/components/Book/BookInfo';
-import type { Meta, StoryObj } from '@storybook/react';
 import { Suspense } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import BookInfo from '@/features/Book/components/BookDetail/BookInfo';
 
 const meta = {
-  title: 'Common/Book/BookInfo',
+  title: 'Book/BookDetail/BookInfo',
   component: BookInfo,
   tags: ['autodocs'],
   decorators: [
@@ -21,6 +21,5 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     bookId: '9788936434410',
-    canClick: false,
   },
 };

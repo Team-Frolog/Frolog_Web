@@ -8,13 +8,14 @@ import AddButton from '@/components/Button/AddButton';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import MajorTagList from '@/components/Tag/MajorTagList';
 import { useBook } from '../hooks/useBook';
-import BookDetail from './BookDetail/BookDetail';
+import BookInfoTap from './BookDetail/BookInfoTap';
 import AddBookToWell from './BottomSheet/AddBookToWell';
 
 interface Props {
   bookId: string;
 }
 
+/** 도서 상세 페이지 중 정보 부분 컴포넌트 */
 function AboutBook({ bookId }: Props) {
   const { bookData } = useBook(bookId);
   const [open, setOpen] = useState(false);
@@ -37,7 +38,7 @@ function AboutBook({ bookId }: Props) {
           <MajorTagList type='pros' tagKeys={bookData?.tags_pos} />
           <MajorTagList type='cons' tagKeys={bookData?.tags_neg} />
         </div>
-        <BookDetail bookId={bookId} />
+        <BookInfoTap bookId={bookId} />
       </div>
       <AnimatePresence>
         {open && (

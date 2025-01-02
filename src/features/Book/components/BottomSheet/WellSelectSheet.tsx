@@ -6,12 +6,17 @@ import { useObserver } from '@/hooks/gesture/useObserver';
 import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton';
 
 interface Props {
+  /** 루트 유저 id */
   userId: string;
+  /** 우물 선택 시 동작할 콜백 함수 */
   callback: (value?: any) => void;
+  /** 선택 후 pending 여부 (중복 선택 방지)  */
   isPending: boolean;
+  /** pending 처리 핸들러 */
   startPending: () => void;
 }
 
+/** 우물 선택 바텀시트 컨텐츠 */
 function WellSelectSheet({ callback, userId, isPending, startPending }: Props) {
   const { wells, hasNextPage, fetchNextPage, isFetchingNextPage, isFetched } =
     useWells(userId);

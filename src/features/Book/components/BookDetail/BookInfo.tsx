@@ -5,6 +5,9 @@ interface Props {
   bookId: string;
 }
 
+/** 도서 상세 페이지 내 도서 정보 컴포넌트
+ * - ISBN, 출판사, 책 소개 정보가 포함되어 있습니다.
+ */
 function BookInfo({ bookId }: Props) {
   const { bookData } = useBook(bookId);
 
