@@ -86,5 +86,10 @@
     "ts-jest": "^29.2.5",
     "typescript": "^5"
   },
-  "prettier": "@team-frolog/prettier-config-web"
+  "prettier": "@team-frolog/prettier-config-web",
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
 }
