@@ -1,6 +1,7 @@
 import { ChatIcon, HeartIcon } from 'public/icons';
 import React from 'react';
 
+/** 도서 상세 > 리뷰 모음 중 로그인 이전 상태인 경우 보여지는 더미 아이템 */
 function DummyItem() {
   return (
     <div className='w-full blur-xl'>

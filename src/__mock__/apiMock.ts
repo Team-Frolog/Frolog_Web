@@ -19,4 +19,11 @@ export const handlers = [
       tags_neg: ['shallow'],
     })
   ),
+  http.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/v1/profile/:id`, () =>
+    HttpResponse.json({
+      id: 'RXgYmgQ',
+      reading_preference: '2',
+      username: '테스터',
+    })
+  ),
 ];

@@ -2,6 +2,7 @@ import LinkButton from '@/components/Button/LinkButton';
 import { PAGES } from '@/constants/page';
 import DummyItem from './DummyItem';
 
+/** 도서 상세 > 리뷰 모음 중 로그인 이전 상태인 경우 보여지는 더미 아이템의 블러 처리용 컴포넌트 */
 function NeedToLoginBlur() {
   return (
     <div className='relative flex w-full'>

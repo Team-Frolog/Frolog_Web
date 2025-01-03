@@ -16,6 +16,9 @@ interface Props {
   onClickLike: () => void;
 }
 
+/** 도서 상세 > 리뷰 모음의 리뷰 아이템 컴포넌트
+ * - 피드와 동일한 ProfileHeader, FeedContent 컴포넌트를 활용합니다.
+ */
 function ReviewItem({ reviewData, category, onClickLike }: Props) {
   const router = useRouter();
 

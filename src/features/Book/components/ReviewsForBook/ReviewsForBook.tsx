@@ -14,6 +14,9 @@ interface Props {
   bookId: string;
 }
 
+/** 도서 상세 > 리뷰 모음 리스트 컴포넌트
+ * - 무한 스크롤이 적용되어 있습니다.
+ */
 function ReviewsForBook({ bookId }: Props) {
   const userId = useUserId();
   const {
