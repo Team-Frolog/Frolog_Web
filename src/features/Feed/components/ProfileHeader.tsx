@@ -14,15 +14,25 @@ import { getImageSrc } from '@/utils/getImageSrc';
 import { useFollowUser } from '../hooks/feed/useFollowUser';
 
 interface Props {
+  /** 사용 위치 */
   type: 'feed' | 'comment';
+  /** 유저 id */
   userId: string;
+  /** 삭제 여부 */
   isDeleted?: boolean;
+  /** 팔로우 버튼 여부 */
   hasFollow?: boolean;
+  /** 자식 댓글의 헤더인지 여부 */
   isChildComment?: boolean;
+  /** 삭제 핸들러 */
   onDelete?: () => void;
+  /** 프로필 클릭 핸들러 */
   onClick?: () => void;
 }
 
+/** 프로필 헤더 컴포넌트
+ * - 피드 아이템, 댓글 아이템 등에서 활용됩니다.
+ */
 function ProfileHeader({
   type,
   userId,

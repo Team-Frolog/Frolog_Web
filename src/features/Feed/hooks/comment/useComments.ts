@@ -9,6 +9,7 @@ import { QUERY_KEY } from '@/constants/query';
 import { addNewComment, getComments } from '../../api/comments.api';
 import { GetCommentsRes, PostComments } from '../../types/comment';
 
+/** 댓글 쿼리 훅 */
 export const useComments = (id: string, isReview: boolean) => {
   const [comment, setComment] = useState('');
   const queryClient = useQueryClient();

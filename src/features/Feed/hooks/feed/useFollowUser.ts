@@ -3,6 +3,7 @@ import { FollowUserReq, GetProfileRes } from '@frolog/frolog-api';
 import { QUERY_KEY } from '@/constants/query';
 import { changeFollowUser } from '../../api/activity.api';
 
+/** 유저 팔로우 핸들러가 있는 훅 */
 export const useFollowUser = (userId?: string | undefined) => {
   const queryClient = useQueryClient();
 

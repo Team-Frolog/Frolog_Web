@@ -10,6 +10,9 @@ import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import FeedItem from './FeedItem';
 import { useFeed } from '../../hooks/feed/useFeed';
 
+/** 피드 리스트 컴포넌트
+ * - 무한 스크롤, 스크롤 위치 저장 기능이 적용되어 있습니다.
+ */
 function FeedList() {
   const {
     feedData,
@@ -71,7 +74,7 @@ function FeedList() {
               isMemo={!!feed.memo}
               feedData={feed.memo ? feed.memo : feed.review!}
               startCommentLoading={() => setIsCommentLoading(true)}
-              onClickDetail={() => saveScroll()}
+              onSaveScroll={() => saveScroll()}
             />
           ))}
         </div>

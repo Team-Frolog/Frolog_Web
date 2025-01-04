@@ -17,6 +17,7 @@ interface FeedData {
   pageParams: number[];
 }
 
+/** 피드 좋아요 핸들링 훅 */
 export const useLikeFeed = (isReview: boolean) => {
   const queryClient = useQueryClient();
 

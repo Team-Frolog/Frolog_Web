@@ -21,6 +21,7 @@ interface Props {
   commentData: Comments;
 }
 
+/** 댓글 아이템 컴포넌트 */
 function CommentItem({ commentData, contentId }: Props) {
   const userId = useUserId();
   const [more, setMore] = useState(false);

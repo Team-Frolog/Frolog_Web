@@ -7,12 +7,17 @@ import { deleteComment } from '../../api/comments.api';
 import { CommentData } from '../comment/useChangeComment';
 
 interface Props {
+  /** 리뷰인지 여부 */
   isReview: boolean;
+  /** 댓글 대상이 되는 컨텐츠의 id */
   contentId: string;
+  /** 부모 댓글 id */
   parentId: string;
+  /** 첫번째 자식인지 여부 */
   isFirst: boolean;
 }
 
+/** 자식 댓글에 대한 좋아요, 삭제 핸들러가 있는 훅 */
 export const useChangeChildComment = ({
   isReview,
   contentId,

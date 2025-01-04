@@ -14,6 +14,7 @@ interface ReviewData {
   pageParams: number[];
 }
 
+/** 도서 상세 > 리뷰 모음의 리뷰에 대한 좋아요를 처리하는 훅 */
 export const useLikeReview = (isbn: string) => {
   const queryClient = useQueryClient();
 

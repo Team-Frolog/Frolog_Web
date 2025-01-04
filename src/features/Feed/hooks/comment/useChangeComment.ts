@@ -15,6 +15,7 @@ export interface CommentData {
   pageParams: number[];
 }
 
+/** 댓글에 대한 좋아요, 삭제 핸들러가 있는 훅 */
 export const useChangeComment = (contentId: string, isReview: boolean) => {
   const queryClient = useQueryClient();
 

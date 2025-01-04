@@ -6,11 +6,12 @@ import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { QUERY_KEY } from '@/constants/query';
 import { getReviewCount } from '../api/book.api';
 
+/** 도서를 우물에 추가하는 로직을 처리하는 훅 */
 export const useAddBookToWell = (isbn: string) => {
   const userId = useUserId();
   const [step, setStep] = useState<string | null>('state');
   const [callback, setCallback] = useState<(value?: any) => void>(() => {});
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, setIsPending] = useState(false); // 우물을 선택한 경우 완료되기까지 pending 여부
   const router = useRouter();
   const { handleAddWellItem, wellId, setWellId, setIsThroughSearch } =
     useAddWellItem(userId, () => setIsPending(false));

@@ -8,6 +8,7 @@ import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import ScrollToTop from '@/components/Gesture/ScrollToTop';
 import FeedList from './FeedList/FeedList';
 
+/** 피드 페이지 컴포넌트 */
 function Feeds() {
   const { isRendering, containerRef } = useScrollToTop();
 
