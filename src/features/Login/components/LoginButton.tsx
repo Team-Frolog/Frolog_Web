@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
+/** 로그인 버튼 */
 function LoginButton() {
   const {
     watch,

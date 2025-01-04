@@ -13,6 +13,7 @@ import RememberMe from './RememberMe';
 import { LoginForm as LoginFormType } from '../types/login';
 import LoginButton from './LoginButton';
 
+/** 로그인 페이지 */
 function LoginFormPage() {
   const { isSaved, setIsSaved, userLogin, isFaild, setIsFaild, isLoading } =
     useLogin('login');

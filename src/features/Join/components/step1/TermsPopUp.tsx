@@ -6,10 +6,13 @@ import { Terms } from '@/data/terms/terms';
 import TermsText from '@/components/Markdown/TermsText';
 
 interface Props {
+  /** 약관 데이터 객체 */
   termsData: Terms;
+  /** 팝업 닫힘 핸들러 */
   closePopUp: () => void;
 }
 
+/** 약관 상세를 보여주는 팝업 */
 function TermsPopUp({ termsData, closePopUp }: Props) {
   return (
     <PopUpLayout closePopUp={() => {}}>

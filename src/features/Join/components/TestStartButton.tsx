@@ -5,6 +5,7 @@ import { PAGES } from '@/constants/page';
 import { useSearchParams } from 'next/navigation';
 import LinkButton from '@/components/Button/LinkButton';
 
+/** 회원가입 완료 페이지의 테스트 시작 버튼 */
 function TestStartButton() {
   const username = useSearchParams().get('username');
 

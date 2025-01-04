@@ -5,6 +5,7 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { consentsKeys } from '../../data/joinForm';
 
+/** 모두 동의 체크박스 컴포넌트 */
 function CheckAllItem() {
   const { setValue, watch } = useFormContext();
   const isAllAgree = consentsKeys.every((key) => watch(key));

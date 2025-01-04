@@ -8,6 +8,7 @@ import { useStepActions } from '@/store/stepStore';
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+/** 회원가입 2단계: 이메일, 비밀번호 입력 폼 */
 function Step2() {
   const { moveStep } = useStepActions();
   const { handleValidateEmail, isEmailChecked, setIsEmailChecked } =

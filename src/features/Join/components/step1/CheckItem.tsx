@@ -7,11 +7,13 @@ import CheckButton from '@/components/Button/CheckButton';
 import { Terms } from '@/data/terms/terms';
 import TermsPopUp from './TermsPopUp';
 
-interface Props {
+export interface CheckItemProps {
+  /** 약관 데이터 객체 */
   termsData: Terms;
 }
 
-function CheckItem({ termsData }: Props) {
+/** 약관 동의 체크박스 아이템 */
+function CheckItem({ termsData }: CheckItemProps) {
   const [openDetail, setOpenDetail] = useState<boolean>(false);
   const { watch, setValue } = useFormContext();
   const isChecked = watch(`consents.${termsData.name}.given`);

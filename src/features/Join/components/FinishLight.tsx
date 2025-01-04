@@ -5,10 +5,13 @@ import { IMAGES } from '@/constants/images';
 
 interface Props {
   children: React.ReactNode;
+  /** 개구리 이미지 src */
   frog: string;
+  /** 개구리 최대 높이 */
   frogMaxHeight?: number;
 }
 
+/** 회원가입 완료 페이지의 상단 불빛 부분 컴포넌트 */
 function FinishLight({ children, frog, frogMaxHeight }: Props) {
   return (
     <div className='relative z-10 flex h-fit w-full flex-1 flex-col bg-gray-900 pt-[30px]'>
