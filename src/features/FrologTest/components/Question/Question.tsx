@@ -4,9 +4,13 @@ import QuestionItem from './QuestionItem';
 import { Question as QuestionType } from '../../data/testQuestions';
 
 interface Props {
+  /** 단계별 테스트 데이터 */
   testData: QuestionType;
+  /** 현재까지 선택한 답안 리스트 */
   answers: number[];
+  /** 답안 선택 핸들러 */
   handleClickAnswer: (id: number) => void;
+  /** 현재 스텝 */
   testStep: number;
 }
 

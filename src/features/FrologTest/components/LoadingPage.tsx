@@ -9,6 +9,7 @@ import Image from 'next/image';
 import BigTitle from '@/components/Text/BigTitle';
 import Head from 'next/head';
 
+/** 독서 성향 테스트 중 로딩 페이지 */
 function LoadingPage() {
   const type = useSearchParams().get('type');
   const callback = useSearchParams().get('callbackUrl');

@@ -2,9 +2,11 @@ import React from 'react';
 import { Question } from '../../data/testQuestions';
 
 interface Props {
+  /** 단계별 테스트 데이터 */
   data: Question;
 }
 
+/** 테스트 페이지 내 타이틀 컴포넌트 */
 function QuestionTitle({ data }: Props) {
   return (
     <div>

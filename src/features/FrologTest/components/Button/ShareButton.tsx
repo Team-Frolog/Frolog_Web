@@ -6,6 +6,7 @@ import { useTooltip } from '@/hooks/popup/useTooltip';
 import { ShareIcon } from 'public/icons';
 import { toast } from '@/modules/Toast';
 
+/** 테스트 결과 공유 버튼 */
 function ShareButton() {
   const { isOpenTooltip } = useTooltip();
 

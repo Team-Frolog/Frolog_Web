@@ -1,6 +1,7 @@
 /* eslint-disable prefer-destructuring */
 type NumberObj = { [key: number]: number };
 
+/** 독서 성향 테스트 질문별 가중치 */
 export const weight: NumberObj = {
   1: 3,
   2: 3,
@@ -11,6 +12,7 @@ export const weight: NumberObj = {
   7: 1,
 };
 
+/** 독서 성향 테스트 결과 계산 함수 */
 export const testEvaluator = (answers: number[]) => {
   const totalScore: NumberObj = {
     1: 0,

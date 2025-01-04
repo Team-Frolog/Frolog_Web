@@ -6,6 +6,7 @@ import Button from '@/components/Button/Button';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 
+/** 테스트 결과 페이지의 하단 버튼 */
 function StartButton() {
   const router = useRouter();
   const callback = useSearchParams().get('callbackUrl');

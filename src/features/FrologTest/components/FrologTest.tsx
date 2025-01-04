@@ -8,6 +8,7 @@ import LoadingPage from './LoadingPage';
 import ProgressHeader from './ProgressHeader';
 import Question from './Question/Question';
 
+/** 독서 성향 테스트 컴포넌트 */
 function FrologTest() {
   const { resetStep } = useStepActions();
   const { testData, answers, handleClickAnswer, step, isLoading } = useTest();

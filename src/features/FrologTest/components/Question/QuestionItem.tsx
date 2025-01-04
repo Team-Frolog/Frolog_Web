@@ -2,10 +2,13 @@ import React from 'react';
 import { Answer } from '../../data/testQuestions';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** 아이템 데이터 */
   data: Answer;
+  /** 선택 상태 */
   isSelected: boolean;
 }
 
+/** 테스트 선택지 컴포넌트 */
 function QuestionItem({ data, isSelected, ...props }: Props) {
   return (
     <button

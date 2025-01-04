@@ -7,6 +7,7 @@ import { useStep, useStepActions } from '@/store/stepStore';
 import { STORAGE_KEY } from '@/constants/storage';
 import { BackIcon } from 'public/icons';
 
+/** 독서 성향 테스트 헤더 부분의 상태바 */
 function ProgressHeader() {
   const router = useRouter();
   const step = useStep();
