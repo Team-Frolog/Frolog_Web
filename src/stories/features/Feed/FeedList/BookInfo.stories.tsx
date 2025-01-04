@@ -1,10 +1,18 @@
 import BookInfo from '@/features/Feed/components/FeedList/BookInfo';
 import type { Meta, StoryObj } from '@storybook/react';
+import { Suspense } from 'react';
 
 const meta = {
   title: 'Feed/FeedList/BookInfo',
   component: BookInfo,
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Story />
+      </Suspense>
+    ),
+  ],
 } satisfies Meta<typeof BookInfo>;
 
 export default meta;

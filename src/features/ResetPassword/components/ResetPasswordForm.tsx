@@ -10,6 +10,7 @@ import { FindForm } from '../types/findForm';
 import Step1 from './Step1';
 import Step3 from './Step3';
 
+/** 비밀번호 재설정 폼 */
 function ResetPasswordForm() {
   const methods = useForm<FindForm>({
     mode: 'onBlur',
