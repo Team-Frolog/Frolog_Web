@@ -6,7 +6,7 @@ import React from 'react';
 
 interface Props {
   params: {
-    itemId: string;
+    contentId: string;
   };
 }
 
@@ -31,11 +31,11 @@ const CommentList = dynamic(
   }
 );
 
-function CommentPage({ params: { itemId } }: Props) {
+function CommentPage({ params: { contentId } }: Props) {
   return (
     <div className='flex w-full flex-1 flex-col overflow-hidden'>
       <BackHeader />
-      <CommentList itemId={itemId} />
+      <CommentList contentId={contentId} />
     </div>
   );
 }

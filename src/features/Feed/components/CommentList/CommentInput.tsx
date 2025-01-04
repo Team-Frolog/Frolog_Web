@@ -7,21 +7,30 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { PostCommentMutation } from '../../types/comment';
 
-interface Props {
-  itemId: string;
+export interface CommentInputProps {
+  /** 댓글을 작성할 컨텐츠의 id */
+  contentId: string;
+  /** 댓글 입력값 */
   comment: string;
+  /** 댓글 setter */
   setComment: React.Dispatch<React.SetStateAction<string>>;
+  /** 컨텐츠가 리뷰인지 여부 */
   isReview: boolean;
+  /** 댓글 추가 핸들러 */
   handleAddComment: PostCommentMutation;
 }
 
+/** 댓글 입력 input 컴포넌트
+ * - 외부에서 useState를 활용하여 값과 setter를 전달해주어야 합니다.
+ * - 전역 스토어를 활용하여 대댓글 작성자 정보를 유지합니다.
+ */
 function CommentInput({
-  itemId,
+  contentId,
   isReview,
   handleAddComment,
   comment,
   setComment,
-}: Props) {
+}: CommentInputProps) {
   const userId = useUserId();
   const { commentUser, setCommentUser } = useCommentStore();
   const [isFocusing, setIsFocusing] = useState(false);
@@ -33,7 +42,7 @@ function CommentInput({
       mention: commentUser?.id,
       content: value,
     };
-    req[isReview ? 'review_id' : 'memo_id'] = itemId;
+    req[isReview ? 'review_id' : 'memo_id'] = contentId;
     handleAddComment(req);
   };
 

@@ -15,25 +15,25 @@ export interface CommentData {
   pageParams: number[];
 }
 
-export const useChangeComment = (itemId: string, isReview: boolean) => {
+export const useChangeComment = (contentId: string, isReview: boolean) => {
   const queryClient = useQueryClient();
 
   const { mutate: handleChangeLike } = useMutation({
     mutationFn: (req: { id: string; value: boolean }) =>
-      changeLikeThisComment({ ...req, itemId }, isReview),
+      changeLikeThisComment({ ...req, contentId }, isReview),
     onMutate: async ({ id }) => {
       await queryClient.cancelQueries({
-        queryKey: [QUERY_KEY.comments, itemId],
+        queryKey: [QUERY_KEY.comments, contentId],
       });
       const prevComments = queryClient.getQueryData([
         QUERY_KEY.comments,
-        itemId,
+        contentId,
       ]);
 
       if (!prevComments) return;
 
       queryClient.setQueryData(
-        [QUERY_KEY.comments, itemId],
+        [QUERY_KEY.comments, contentId],
         (oldData: CommentData) => ({
           ...oldData,
           pages: oldData.pages.map((page) => ({
@@ -52,7 +52,7 @@ export const useChangeComment = (itemId: string, isReview: boolean) => {
     },
     onError: (_err, _variables, context) => {
       queryClient.setQueryData(
-        [QUERY_KEY.comments, itemId],
+        [QUERY_KEY.comments, contentId],
         context?.prevComments
       );
     },
@@ -62,7 +62,9 @@ export const useChangeComment = (itemId: string, isReview: boolean) => {
     mutationFn: (req: { id: string; commentId: string }) =>
       deleteComment(req, isReview),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.comments, itemId] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.comments, contentId],
+      });
     },
   });
 

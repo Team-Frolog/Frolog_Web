@@ -12,16 +12,26 @@ import { Comments } from '../../types/comment';
 import { useChangeChildComment } from '../../hooks/child/useChangeChildComment';
 
 interface Props {
-  itemId: string;
+  /** 댓글 대상이 되는 컨텐츠의 id */
+  contentId: string;
+  /** 첫번째 자식인지 여부 */
   isFirstChild?: boolean;
+  /** 댓글 데이터 객체 */
   childCommentData: Comments;
+  /** 더보기 댓글 개수 */
   moreCount?: number;
+  /** 더보기 클릭 핸들러 */
   onClickMore?: () => void;
+  /** 더보기 버튼 렌더링 여부 */
   hasMoreButton?: boolean;
 }
 
+/** 자식 댓글 컴포넌트
+ * - 첫번째 자식인 경우, 이후 자식 댓글 존재 유무에 따라 '더보기'를 렌더링할 수 있습니다.
+ * - 댓글 좋아요, 삭제 혹은 신고 기능이 포함되어 있습니다.
+ */
 function ChildCommentItem({
-  itemId,
+  contentId,
   childCommentData,
   moreCount,
   onClickMore,
@@ -45,7 +55,7 @@ function ChildCommentItem({
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
   const { handleChangeLikeChild, handleDeleteComment } = useChangeChildComment({
     isReview,
-    itemId,
+    contentId,
     parentId: childCommentData.parent || '',
     isFirst: isFirstChild,
   });
@@ -59,7 +69,7 @@ function ChildCommentItem({
         userId={writer}
         isDeleted={deleted}
         isChildComment
-        onDelete={() => handleDeleteComment({ id: itemId, commentId: id })}
+        onDelete={() => handleDeleteComment({ id: contentId, commentId: id })}
       />
       <p
         className={`break-all px-page text-body-lg ${deleted ? 'text-gray-500' : 'text-gray-800'}`}

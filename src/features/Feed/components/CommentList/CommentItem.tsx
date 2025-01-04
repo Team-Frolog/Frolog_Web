@@ -15,11 +15,13 @@ import { Comments } from '../../types/comment';
 import { useChangeComment } from '../../hooks/comment/useChangeComment';
 
 interface Props {
+  /** 댓글 대상이 되는 컨텐츠의 id */
+  contentId: string;
+  /** 댓글 데이터 객체 */
   commentData: Comments;
-  itemId: string;
 }
 
-function CommentItem({ commentData, itemId }: Props) {
+function CommentItem({ commentData, contentId }: Props) {
   const userId = useUserId();
   const [more, setMore] = useState(false);
 
@@ -38,12 +40,12 @@ function CommentItem({ commentData, itemId }: Props) {
   const isReview = useSearchParams().get('type') === 'review';
   const { childComments, isFetched } = useChildComments({
     more,
-    itemId,
+    contentId,
     parentId: commentData.id,
     isReview,
   });
   const { handleChangeLike, handleDeleteComment } = useChangeComment(
-    itemId,
+    contentId,
     isReview
   );
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
@@ -60,7 +62,10 @@ function CommentItem({ commentData, itemId }: Props) {
           onDelete={
             userId === writer
               ? () =>
-                  handleDeleteComment({ id: itemId, commentId: commentData.id })
+                  handleDeleteComment({
+                    id: contentId,
+                    commentId: commentData.id,
+                  })
               : undefined
           }
         />
@@ -100,7 +105,7 @@ function CommentItem({ commentData, itemId }: Props) {
       </div>
       {replies !== undefined && replies.length > 0 && (!more || !isFetched) && (
         <ChildCommentItem
-          itemId={itemId}
+          contentId={contentId}
           isFirstChild
           hasMoreButton={reply_count ? reply_count > 1 : false}
           moreCount={reply_count ? reply_count - 1 : 0}
@@ -112,7 +117,7 @@ function CommentItem({ commentData, itemId }: Props) {
         isFetched &&
         childComments.map((comment: Comments) => (
           <ChildCommentItem
-            itemId={itemId}
+            contentId={contentId}
             key={comment.id}
             onClickMore={() => setMore(true)}
             childCommentData={comment}

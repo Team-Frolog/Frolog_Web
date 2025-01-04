@@ -10,10 +10,15 @@ import CommentInput from './CommentInput';
 import { useComments } from '../../hooks/comment/useComments';
 
 interface Props {
-  itemId: string;
+  /** 댓글 대상이 되는 컨텐츠 id */
+  contentId: string;
 }
 
-function CommentList({ itemId }: Props) {
+/** 댓글 리스트 컴포넌트
+ * - 'type' 쿼리 스트링에 따라 컨텐츠가 리뷰인지 메모인지 판단합니다.
+ * - 무한스크롤이 적용되어 있습니다.
+ */
+function CommentList({ contentId }: Props) {
   const isReview = useSearchParams().get('type') === 'review';
   const {
     comments,
@@ -24,7 +29,7 @@ function CommentList({ itemId }: Props) {
     setComment,
     hasNextPage,
     fetchNextPage,
-  } = useComments(itemId, isReview);
+  } = useComments(contentId, isReview);
 
   const { setTarget } = useObserver({
     hasNextPage,
@@ -42,14 +47,18 @@ function CommentList({ itemId }: Props) {
         {!isEmpty && isFetched && (
           <div className='flex w-full flex-col gap-[36px] py-[16px]'>
             {comments.map((item) => (
-              <CommentItem key={item.id} itemId={itemId} commentData={item} />
+              <CommentItem
+                key={item.id}
+                contentId={contentId}
+                commentData={item}
+              />
             ))}
           </div>
         )}
         <div ref={setTarget} id='observer' className='h-[10px]' />
       </MainLayout>
       <CommentInput
-        itemId={itemId}
+        contentId={contentId}
         comment={comment}
         setComment={setComment}
         isReview={isReview}

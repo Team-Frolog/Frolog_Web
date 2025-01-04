@@ -8,14 +8,14 @@ import { CommentData } from '../comment/useChangeComment';
 
 interface Props {
   isReview: boolean;
-  itemId: string;
+  contentId: string;
   parentId: string;
   isFirst: boolean;
 }
 
 export const useChangeChildComment = ({
   isReview,
-  itemId,
+  contentId,
   parentId,
   isFirst,
 }: Props) => {
@@ -23,16 +23,16 @@ export const useChangeChildComment = ({
 
   const { mutate: handleChangeLikeChild } = useMutation({
     mutationFn: (req: { id: string; value: boolean }) =>
-      changeLikeThisComment({ ...req, itemId }, isReview),
+      changeLikeThisComment({ ...req, contentId }, isReview),
     onMutate: async ({ id }) => {
       await queryClient.cancelQueries({
         queryKey: isFirst
-          ? [QUERY_KEY.comments, itemId]
+          ? [QUERY_KEY.comments, contentId]
           : [QUERY_KEY.childComments, parentId],
       });
       const prevData = queryClient.getQueryData(
         isFirst
-          ? [QUERY_KEY.comments, itemId]
+          ? [QUERY_KEY.comments, contentId]
           : [QUERY_KEY.childComments, parentId]
       );
 
@@ -40,7 +40,7 @@ export const useChangeChildComment = ({
 
       if (isFirst) {
         queryClient.setQueryData(
-          [QUERY_KEY.comments, itemId],
+          [QUERY_KEY.comments, contentId],
           (oldData: CommentData) => ({
             ...oldData,
             pages: oldData.pages.map((page) => ({
