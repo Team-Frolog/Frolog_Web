@@ -20,6 +20,7 @@ interface Props {
   setError: UseFormSetError<ReviewForm>;
 }
 
+/** 리뷰 상세 쿼리 훅 */
 export const useReviewDetail = ({
   bookId,
   reviewId,
@@ -65,6 +66,7 @@ export const useReviewDetail = ({
     },
   });
 
+  /** 리뷰 수정 시 폼 작성 완료 핸들러 */
   const handleSubmitForm = async (formData: ReviewForm) => {
     const { rating, pros, cons, oneLiner, review } = formData;
 
@@ -104,6 +106,7 @@ export const useReviewDetail = ({
     handleEditReview(formData);
   };
 
+  // 컴포넌트 마운트 후 리뷰 폼 데이터 세팅
   useEffect(() => {
     if (data) {
       reset({
@@ -116,6 +119,7 @@ export const useReviewDetail = ({
     }
   }, [data, reset]);
 
+  /** 리뷰 폼이 변경된 경우 바텀시트로 이탈을 재확인하는 뒤로가기 핸들러 */
   const handleClickBack = () => {
     if (isDirty) {
       bottomSheet.open({
@@ -131,6 +135,7 @@ export const useReviewDetail = ({
     }
   };
 
+  /** 리뷰 폼 각 필드에 대한 유효성 검사 핸들러 */
   const handleError = () => {
     const rating = watch('rating');
     const pros = watch('pros');

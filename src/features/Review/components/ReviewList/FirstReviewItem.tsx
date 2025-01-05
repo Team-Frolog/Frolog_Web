@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import { IMAGES } from '@/constants/images';
 
+/** 리뷰 리스트 내 첫 리뷰 작성 축하 컴포넌트 */
 function FirstReviewItem() {
   return (
     <div className='review-item items-center text-center'>

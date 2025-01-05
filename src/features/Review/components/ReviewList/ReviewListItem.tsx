@@ -10,12 +10,17 @@ import DeleteButton from '@/components/Button/DeleteButton';
 import { useUserId } from '@/store/sessionStore';
 
 interface Props {
+  /** 리뷰 데이터 객체 */
   reviewData: GetReviewRes;
+  /** 삭제 시 삭제할 리뷰 id setter */
   setReviewId: React.Dispatch<React.SetStateAction<string>>;
+  /** 리뷰 삭제 핸들러 */
   onDelete: () => void;
+  /** 유저 id */
   userId: string;
 }
 
+/** 리뷰 리스트 아이템 컴포넌트 */
 function ReviewListItem({ reviewData, setReviewId, onDelete, userId }: Props) {
   const sessionUserId = useUserId();
   const isRootUser = userId === sessionUserId;

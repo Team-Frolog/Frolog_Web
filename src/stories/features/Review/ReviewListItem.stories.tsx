@@ -1,34 +1,30 @@
 import { Suspense } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { http, HttpResponse } from 'msw';
-import ReviewItem from '@/features/Book/components/ReviewsForBook/ReviewItem';
+import ReviewListItem from '@/features/Review/components/ReviewList/ReviewListItem';
 
 const meta = {
-  title: 'Book/ReviewsForBook/ReviewItem',
-  component: ReviewItem,
+  title: 'Review/ReviewListItem',
+  component: ReviewListItem,
   tags: ['autodocs'],
-  decorators: [
-    (Story) => (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Story />
-      </Suspense>
-    ),
-  ],
-} satisfies Meta<typeof ReviewItem>;
+} satisfies Meta<typeof ReviewListItem>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    setReviewId: () => {},
+    onDelete: () => {},
+    userId: '',
     reviewData: {
       id: 'pv4DQvV',
       writer: 'RXgYmgQ',
       isbn: '9788936434120',
       variant: 0,
-      title: '타이틀',
+      title: '제목',
       content: '컨텐츠',
-      rating: 4,
+      rating: 4.5,
       tags_pos: ['killing_time'],
       tags_neg: ['biased'],
       date: '2024-12-18T03:11:31.000Z',
@@ -37,7 +33,5 @@ export const Default: Story = {
       like_count: 1,
       comment_count: 0,
     },
-    category: 'novel',
-    onClickLike: () => {},
   },
 };

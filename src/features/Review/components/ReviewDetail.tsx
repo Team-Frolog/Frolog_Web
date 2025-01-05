@@ -9,6 +9,7 @@ interface Props {
   reviewDetail: GetReviewRes | undefined;
 }
 
+/** 리뷰 상세 컴포넌트 */
 function ReviewDetail({ reviewDetail }: Props) {
   if (!reviewDetail) return <></>;
 

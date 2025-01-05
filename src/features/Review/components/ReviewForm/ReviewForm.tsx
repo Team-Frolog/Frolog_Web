@@ -9,12 +9,15 @@ import Textarea from '@/components/Form/Input/Textarea';
 import Button from '@/components/Button/Button';
 import { ReviewFormType } from '../..';
 
-interface Props {
+export interface ReviewFormProps {
+  /** 새 리뷰 or 수정 여부 */
   type: 'new' | 'edit';
+  /** 작성 완료 버튼 비활성화 여부 */
   isDisabled?: boolean;
 }
 
-function ReviewForm({ type, isDisabled }: Props) {
+/** 리뷰 작성/수정 폼 */
+function ReviewForm({ type, isDisabled }: ReviewFormProps) {
   const {
     watch,
     setValue,

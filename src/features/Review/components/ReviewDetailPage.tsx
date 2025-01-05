@@ -15,6 +15,7 @@ interface Props {
   reviewId: string;
 }
 
+/** 리뷰 상세 페이지 */
 function ReviewDetailPage({ reviewId }: Props) {
   useScroll({ categoryColor: undefined });
   const router = useRouter();

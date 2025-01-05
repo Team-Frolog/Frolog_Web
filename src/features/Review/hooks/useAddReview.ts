@@ -8,6 +8,7 @@ import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { addNewReview } from '../api/review.api';
 import { ReviewFormType } from '..';
 
+/** 리뷰 작성 핸들링 훅 */
 export const useAddReview = (
   userId: string,
   wellId: string,
@@ -57,6 +58,7 @@ export const useAddReview = (
     },
   });
 
+  /** 리뷰 폼 작성 완료 후 각 필드에 대한 개별 유효성 검사 */
   const handleSubmitForm = async (data: ReviewFormType) => {
     const { rating, pros, cons, oneLiner, review } = data;
 
@@ -96,6 +98,7 @@ export const useAddReview = (
     handleAddReview(data);
   };
 
+  /** 각 필드에 대한 유효성 검사 핸들러 */
   const handleError = () => {
     const rating = watch('rating');
     const pros = watch('pros');

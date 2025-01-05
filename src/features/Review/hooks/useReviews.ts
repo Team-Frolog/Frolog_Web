@@ -8,6 +8,7 @@ import { QUERY_KEY } from '@/constants/query';
 import { SearchReviewRes } from '@frolog/frolog-api';
 import { deleteReview, getReviewList } from '../api/review.api';
 
+/** 리뷰 리스트 쿼리 훅 */
 export const useReviews = (bookId: string, userId: string) => {
   const [reviewId, setReviewId] = useState<string>('');
   const queryClient = useQueryClient();
