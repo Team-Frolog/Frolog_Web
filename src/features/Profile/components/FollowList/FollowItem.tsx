@@ -8,10 +8,13 @@ import { GetProfileRes } from '@frolog/frolog-api';
 import { useUserId } from '@/store/sessionStore';
 
 interface Props {
+  /** 리스트 조회 대상이 되는 유저 id */
   userId: string;
+  /** 팔로워/팔로잉 리스트의 유저 id */
   targetUser: GetProfileRes;
 }
 
+/** 팔로워/팔로잉 리스트 아이템 컴포넌트 */
 function FollowItem({ userId, targetUser }: Props) {
   const sessionUserId = useUserId();
   const { handleFollow } = useFollowUser(userId);

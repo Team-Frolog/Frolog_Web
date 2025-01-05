@@ -8,9 +8,11 @@ import { useFollowings } from '../../hooks/useFollowings';
 import FollowItem from './FollowItem';
 
 interface Props {
+  /** 리스트 조회 대상이 되는 유저 id */
   userId: string;
 }
 
+/** 팔로잉 리스트 */
 function Followings({ userId }: Props) {
   const {
     followings,

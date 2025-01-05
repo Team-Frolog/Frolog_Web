@@ -7,6 +7,7 @@ import useSessionStore from '@/store/sessionStore';
 import { PAGES } from '@/constants/page';
 import MenuItem from './MenuItem';
 
+/** 프로필 내 메뉴 컴포넌트 */
 function Menu() {
   const clearSession = useSessionStore.persist.clearStorage;
 

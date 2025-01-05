@@ -5,6 +5,7 @@ interface Props {
   data: InstructionType[];
 }
 
+/** 단계별 설치 방법 가이드라인 컴포넌트 */
 function Instruction({ data }: Props) {
   return (
     <>

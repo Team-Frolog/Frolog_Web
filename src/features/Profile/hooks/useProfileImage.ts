@@ -5,6 +5,7 @@ import { getImageSrc } from '@/utils/getImageSrc';
 import { IMAGES } from '@/constants/images';
 import { editProfileImage } from '../api/profile.api';
 
+/** 프로필 이미지 변경 핸들링 훅 */
 export const useProfileImage = () => {
   const {
     setValue,

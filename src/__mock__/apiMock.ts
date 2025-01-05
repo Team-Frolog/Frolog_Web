@@ -24,6 +24,73 @@ export const handlers = [
       id: 'RXgYmgQ',
       reading_preference: '2',
       username: '테스터',
+      follow: false,
     })
+  ),
+  http.get(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/v1/profile/:id/detail`,
+    ({ request }) => {
+      const splited = request.url.split('/');
+      const idx = splited.indexOf('profile') + 1;
+      const id = splited[idx];
+
+      if (id === '0') {
+        return HttpResponse.json({
+          id: 'RXgYmgQ',
+          reading_preference: '2',
+          username: '테스터',
+          follow: false,
+          self_intro: '자기소개',
+          max_item_cnt: 12,
+          following_cnt: 21,
+          follower_cnt: 25,
+          personal_infos: [
+            {
+              type: 'occupation',
+              value: '학생',
+              visibility: true,
+            },
+            {
+              type: 'birth_date',
+              value: '2002-10-20',
+              visibility: true,
+            },
+            {
+              type: 'gender',
+              value: '여성',
+              visibility: true,
+            },
+          ],
+        });
+      } else {
+        return HttpResponse.json({
+          id: 'RXgYmgQ',
+          reading_preference: null,
+          username: '테스터',
+          follow: false,
+          self_intro: '자기소개',
+          max_item_cnt: 12,
+          following_cnt: 21,
+          follower_cnt: 25,
+          personal_infos: [
+            {
+              type: 'occupation',
+              value: '학생',
+              visibility: false,
+            },
+            {
+              type: 'birth_date',
+              value: '2002-10-20',
+              visibility: false,
+            },
+            {
+              type: 'gender',
+              value: '여성',
+              visibility: false,
+            },
+          ],
+        });
+      }
+    }
   ),
 ];

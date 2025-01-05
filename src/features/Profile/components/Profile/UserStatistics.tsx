@@ -7,9 +7,11 @@ import { getImageSrc } from '@/utils/getImageSrc';
 import { formatUnit } from '../../utils/formatUnit';
 
 interface Props {
+  /** 프로필 상세 데이터 객체 */
   profileDetail: GetProfileDetailRes;
 }
 
+/** 유저 정보 통계 컴포넌트 */
 function UserStatistics({ profileDetail }: Props) {
   const {
     max_item_cnt,

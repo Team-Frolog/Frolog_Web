@@ -6,9 +6,11 @@ import { useFollowers } from '../../hooks/useFollowers';
 import FollowItem from './FollowItem';
 
 interface Props {
+  /** 리스트 조회 대상이 되는 유저 id */
   userId: string;
 }
 
+/** 팔로워 리스트 */
 function Followers({ userId }: Props) {
   const {
     followers,

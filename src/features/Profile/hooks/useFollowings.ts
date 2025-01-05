@@ -2,6 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@/constants/query';
 import { getFollowings } from '../api/follow.api';
 
+/** 팔로잉 리스트 쿼리 훅 */
 export const useFollowings = (userId: string) => {
   const {
     data: followings,

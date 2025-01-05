@@ -14,12 +14,13 @@ import { getProfileDetail } from '../api/profile.api';
 import { compareForm } from '../utils/compareForm';
 import { ProfileEditFormType } from '../types/editForm';
 
+/** 프로필 수정 핸들링 훅 */
 export const useProfileEdit = (
   userId: string,
   reset: UseFormReset<ProfileEditFormType>,
   isDirty: boolean
 ) => {
-  const [isEdited, setIsEdited] = useState(false);
+  const [isEdited, setIsEdited] = useState(false); // 성향 테스트 재시도 완료 여부
   const router = useRouter();
   const queryClient = useQueryClient();
 
@@ -30,6 +31,7 @@ export const useProfileEdit = (
   });
   const original_username = profileDetail?.username;
 
+  /** 프로필 수정 핸들러 */
   const { mutate: handleEditProfile } = useMutation({
     mutationFn: async (editForm: ProfileEditFormType) => {
       const editReq = {
@@ -54,6 +56,7 @@ export const useProfileEdit = (
     },
   });
 
+  /** 첫 진입 or 테스트 재시도 후 진입 시 초기 처리 */
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const originData = sessionStorage.getItem(
@@ -61,7 +64,7 @@ export const useProfileEdit = (
       );
       const testType = sessionStorage.getItem(STORAGE_KEY.TEST_RESULT_FOR_EDIT);
 
-      // 성향 테스트 다녀 온 뒤
+      // 성향 테스트 다녀 온 뒤 결과 업데이트
       if (originData) {
         const originValues = {
           ...JSON.parse(originData!),

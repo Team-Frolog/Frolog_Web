@@ -7,10 +7,13 @@ import UserType from './UserType';
 import { useProfileDetail } from '../../hooks/useProfileDetail';
 
 interface Props {
+  /** 해당 프로필 유저 id */
   userId: string;
+  /** 현재 로그인한 유저인지 여부 */
   isRootUser?: boolean;
 }
 
+/** 프로필 컴포넌트 */
 function Profile({ userId, isRootUser = false }: Props) {
   const { profileDetail } = useProfileDetail(userId);
 

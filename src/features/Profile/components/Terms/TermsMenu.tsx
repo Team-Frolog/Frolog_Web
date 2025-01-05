@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import MenuItem from '../Menu/MenuItem';
 
+/** 약관 메뉴 */
 function TermsMenu() {
   const router = useRouter();
 

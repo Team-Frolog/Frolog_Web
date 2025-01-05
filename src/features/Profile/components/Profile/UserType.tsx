@@ -5,6 +5,7 @@ import React from 'react';
 import { getAgeCategory } from '../../utils/getAge';
 
 interface Props {
+  /** 프로필 상세 데이터 객체 */
   profileDetail: GetProfileDetailRes;
 }
 
@@ -16,6 +17,7 @@ interface Info {
   visibility: boolean;
 }
 
+/** 유저 타입 컴포넌트 */
 function UserType({ profileDetail }: Props) {
   const { reading_preference, personal_infos } = profileDetail;
 
