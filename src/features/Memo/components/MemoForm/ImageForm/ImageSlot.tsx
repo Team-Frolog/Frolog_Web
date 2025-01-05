@@ -7,13 +7,22 @@ import debounce from 'lodash/debounce';
 import ImagePreview from './ImagePreview';
 
 interface Props {
+  /** 이미지 주소 */
   src: string | null;
+  /** 슬라이더 내 위치 인덱스 */
   index: number;
+  /** 미리보기 불가능 여부 */
   isReadOnly?: boolean;
+  /** 이미지 변경 핸들러 */
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  /** 이미지 삭제 핸들러 */
   onDelete?: () => void;
 }
 
+/** 이미지 컴포넌트
+ * - src가 주어지는 경우 변경 불가능한 이미지가 렌더링됩니다.
+ * - src가 주어지지 않는 경우 onChange를 통한 이미지 등록이 가능한 input이 렌더링됩니다.
+ */
 function ImageSlot({
   src,
   index,

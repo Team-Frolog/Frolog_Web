@@ -11,12 +11,17 @@ import { Memo } from '../../models/memo.model';
 import ImageSlot from '../MemoForm/ImageForm/ImageSlot';
 
 interface Props {
+  /** 메모 데이터 객체 */
   memoData: Memo;
+  /** 삭제 시 삭제 할 메모 id setter  */
   setMemoId: () => void;
+  /** 삭제 핸들러 */
   onDelete: () => void;
+  /** 유저 id */
   userId: string;
 }
 
+/** 메모 리스트 아이템 컴포넌트 */
 function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
   const sessionUserId = useUserId();
   const isRootUser = userId === sessionUserId;

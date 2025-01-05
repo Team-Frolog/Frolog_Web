@@ -14,6 +14,7 @@ interface Props {
   };
 }
 
+/** 사용자 본인의 메모 상세 페이지 */
 function MyMemoPage({ params: { wellId, bookId, memoId } }: Props) {
   const { memoDetail, handleEditMemo, isPending } = useMemoDetail(
     wellId,

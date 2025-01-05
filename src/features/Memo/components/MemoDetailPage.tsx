@@ -13,9 +13,11 @@ import { useMemoDetailPage } from '../hooks/useMemoDetailPage';
 import MemoDetail from './MemoDetail';
 
 interface Props {
+  /** 메모 id */
   memoId: string;
 }
 
+/** 메모 상세 페이지 */
 function MemoDetailPage({ memoId }: Props) {
   const router = useRouter();
   const userId = useUserId();

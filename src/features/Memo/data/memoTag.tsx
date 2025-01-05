@@ -2,6 +2,7 @@ import { MemoBubble, MemoLight, MemoPin } from 'public/icons';
 
 export type MemoType = 'phrase' | 'thought' | 'question';
 
+/** deprecated */
 export const memoTag = {
   phrase: {
     icon: <MemoPin />,

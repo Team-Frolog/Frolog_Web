@@ -18,6 +18,7 @@ export interface MemoData {
   pageParams: number[];
 }
 
+/** 메모 리스트 쿼리 훅 */
 export const useMemos = (bookId: string, userId: string) => {
   const [memoId, setMemoId] = useState<string>('');
   const queryClient = useQueryClient();
