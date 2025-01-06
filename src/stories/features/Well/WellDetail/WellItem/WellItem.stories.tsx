@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import WellItem from '@/features/Well/components/Well/WellItem/WellItem';
 
 const meta = {
-  title: 'Well/WellItem/WellItem',
+  title: 'Well/WellDetail/WellItem/WellItem',
   component: WellItem,
   tags: ['autodocs'],
   decorators: [

@@ -1,27 +1,25 @@
-import { Suspense } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { FrogOnBook } from '@/features/Well';
+import GuideChat from '@/features/Well/components/Well/WellFrog/GuideChat';
 
 const meta = {
-  title: 'Well/WellFrog/FrogOnBook',
-  component: FrogOnBook,
+  title: 'Well/WellDetail/WellFrog/GuideChat',
+  component: GuideChat,
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div className='bg-gray-200'>
+      <div className='flex h-[200px] w-[300px] items-center justify-center bg-gray-200'>
         <Story />
       </div>
     ),
   ],
-} satisfies Meta<typeof FrogOnBook>;
+} satisfies Meta<typeof GuideChat>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    frogId: 'default',
     message: '메세지',
-    zIndex: 0,
+    marginBottom: 0,
   },
 };

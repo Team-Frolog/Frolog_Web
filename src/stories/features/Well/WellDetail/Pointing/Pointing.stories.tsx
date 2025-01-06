@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Pointing from '@/features/Well/components/Well/Pointing/Pointing';
 
 const meta = {
-  title: 'Well/Pointing/Pointing',
+  title: 'Well/WellDetail/Pointing/Pointing',
   component: Pointing,
   tags: ['autodocs'],
   decorators: [

@@ -26,11 +26,15 @@ export interface WellFormType {
 }
 
 interface Props {
+  /** 폼 타입 (생성/수정) */
   type: 'write' | 'edit';
+  /** 현재 유저 id */
   userId: string;
+  /** 우물 수정인 경우 우물 id */
   wellId?: string;
 }
 
+/** 우물 생성/수정 폼 컴포넌트 */
 function WellForm({ type, userId, wellId }: Props) {
   const methods = useForm<WellFormType>({
     mode: 'onChange',

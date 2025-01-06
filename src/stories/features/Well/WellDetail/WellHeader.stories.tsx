@@ -1,28 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { WellTitle } from '@/features/Well';
+import { WellHeader } from '@/features/Well';
 
 const meta = {
-  title: 'Well/WellTitle',
-  component: WellTitle,
+  title: 'Well/WellDetail/WellHeader',
+  component: WellHeader,
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div className='w-[450px] bg-gray-200'>
+      <div className='relative flex h-[300px] w-full bg-gray-200'>
         <Story />
       </div>
     ),
   ],
-} satisfies Meta<typeof WellTitle>;
+} satisfies Meta<typeof WellHeader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    title: '소중한 내 첫 우물',
+    userId: '1',
     wellId: '',
-    itemCount: 10,
-    isPointing: true,
-    isRootUser: true,
+    hasEditButton: true,
+    hasBackButton: true,
   },
 };

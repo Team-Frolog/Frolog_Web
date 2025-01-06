@@ -1,10 +1,8 @@
-import { Suspense } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { http, HttpResponse } from 'msw';
 import { WellActionButton } from '@/features/Well';
 
 const meta = {
-  title: 'Well/Pointing/WellActionButton',
+  title: 'Well/WellDetail/Pointing/WellActionButton',
   component: WellActionButton,
   tags: ['autodocs'],
   decorators: [

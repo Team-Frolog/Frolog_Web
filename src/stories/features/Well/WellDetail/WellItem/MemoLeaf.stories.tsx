@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import MemoLeaf from '@/features/Well/components/Well/WellItem/MemoLeaf';
 
 const meta = {
-  title: 'Well/WellItem/MemoLeaf',
+  title: 'Well/WellDetail/WellItem/MemoLeaf',
   component: MemoLeaf,
   tags: ['autodocs'],
   decorators: [

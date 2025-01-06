@@ -6,16 +6,18 @@ import { useFormContext } from 'react-hook-form';
 import { checkWellName } from '../../api/well.api';
 
 interface Props {
+  /** 우물 수정인 경우 기존 이름 */
   originalName?: string;
+  /** 이름 유효성 검사 확인 여부 setter */
   setIsNameChecked: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
+/** 우물 이름 input 컴포넌트 */
 function WellNameInput({ originalName, setIsNameChecked }: Props) {
   const { trigger, setError } = useFormContext();
 
   const {
     register,
-
     formState: { errors },
   } = useFormContext();
 
