@@ -10,12 +10,17 @@ import WellItemList from './WellItem/WellItemList';
 import WellHeader from './WellHeader';
 
 interface Props {
+  /** 우물 소유 유저 id */
   userId: string;
+  /** 우물 id */
   wellId: string;
+  /** 현재 세션에 로그인 된 유저의 id */
   sessionUserId?: string;
+  /** 현재 세션에 로그인 된 유저의 기본 우물 id */
   defaultWellId?: string | null;
 }
 
+/** 우물 상세 페이지 */
 function WellDetailPage({
   userId,
   wellId,

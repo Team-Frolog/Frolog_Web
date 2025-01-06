@@ -2,11 +2,15 @@ import React from 'react';
 import Snowflake from 'public/images/christmas/well/well-snowflake.svg';
 
 interface Props {
+  /** 배경색 */
   bg: string;
+  /** 라인색 (=text color) */
   line: string;
+  /** 특별 스킨인 경우 */
   isOtherSkin?: boolean;
 }
 
+/** 우물 내 도서 메모를 나타내는 개구리밥 컴포넌트 */
 function MemoLeaf({ bg, line, isOtherSkin = false }: Props) {
   return isOtherSkin ? (
     <Snowflake className='absolute right-[24px] top-[8px]' fill={bg} />

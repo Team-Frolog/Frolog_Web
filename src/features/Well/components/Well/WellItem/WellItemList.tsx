@@ -18,11 +18,15 @@ import FrogOnBook from '../WellFrog/FrogOnBook';
 import WellItem from './WellItem';
 
 interface Props {
+  /** 우물 정보 데이터 객체 */
   wellData: GetWellRes;
+  /** 로그인한 유저인지 여부 */
   isRootUser: boolean;
+  /** 첫 우물인지 여부 */
   isDefaultWell: boolean | undefined;
 }
 
+/** 우물 아이템 리스트 컴포넌트 */
 const WellItemList = React.memo(
   ({ wellData, isRootUser, isDefaultWell }: Props) => {
     const {
@@ -38,6 +42,7 @@ const WellItemList = React.memo(
     const [message, setMessage] = useState<string | undefined>(undefined);
     const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
 
+    /** 우물 내 개구리 말풍선 메세지를 구하는 함수 */
     const getMessage = (count: number) => {
       if (!isRootUser) {
         return undefined;

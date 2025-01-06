@@ -6,13 +6,19 @@ import { PAGES } from '@/constants/page';
 import WellActionButton from './Pointing/WellActionButton';
 
 interface Props {
+  /** 타이틀 */
   title: string;
+  /** 우물 id */
   wellId?: string;
+  /** 우물 내 도서 개수 */
   itemCount?: number;
+  /** 클릭 유도 여부 */
   isPointing?: boolean;
+  /** 현재 로그인한 유저인지 여부 */
   isRootUser?: boolean;
 }
 
+/** 우물 타이틀 컴포넌트 */
 function WellTitle({
   title,
   wellId,

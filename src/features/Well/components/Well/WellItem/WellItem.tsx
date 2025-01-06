@@ -12,17 +12,25 @@ import WellBubble from 'public/images/christmas/well/christmas-reading.svg';
 import MemoLeaf from './MemoLeaf';
 
 interface Props {
+  /** 도서 데이터 객체 */
   wellBook: GetWellItemRes;
+  /** 우물 id */
   wellId: string;
+  /** 최상단 아이템인지 여부 */
   isTopItem: boolean;
+  /** 아이템의 z-index */
   zIndex: number;
+  /** 로딩 시작 핸들러 */
   startLoading: () => void;
+  /** 최하단 아이템인지 여부 */
   isLastItem?: boolean;
+  /** 무한스크롤을 위한 observer 타겟 세팅 핸들러 */
   setTarget?: React.Dispatch<
     React.SetStateAction<HTMLDivElement | null | undefined>
   >;
 }
 
+/** 우물 도서 아이템 컴포넌트 */
 function WellItem({
   wellId,
   wellBook,

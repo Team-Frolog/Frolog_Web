@@ -7,12 +7,17 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 interface Props {
+  /** 우물 소유 유저 id */
   userId?: string;
+  /** 우물 id */
   wellId?: string;
+  /** 수정 버튼 유무 */
   hasEditButton?: boolean;
+  /** 뒤로가기 버튼 유무 */
   hasBackButton?: boolean;
 }
 
+/** 우물 헤더 컴포넌트 */
 function WellHeader({
   userId,
   wellId,

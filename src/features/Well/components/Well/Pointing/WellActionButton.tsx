@@ -9,19 +9,26 @@ import useAddBookStore from '@/store/addBookStore';
 import Pointing from './Pointing';
 
 interface Props {
-  type?: 'arrow' | 'plus';
+  /** 아이콘 타입 */
+  iconType?: 'arrow' | 'plus';
+  /** 해당 우물 id */
   wellId?: string;
+  /** 버튼 클릭 시 이동 경로 */
   href?: string;
+  /** 클릭 유도 애니메이션 유무 */
   isPointing?: boolean;
+  /** 버튼명 */
   btnName: string;
+  /** 도서 개수 */
   itemCount?: number;
 }
 
+/** 우물 최상단에 있는 버튼 컴포넌트 */
 function WellActionButton({
   btnName,
   wellId,
   itemCount,
-  type = 'plus',
+  iconType = 'plus',
   href = PAGES.SEARCH,
   isPointing = false,
 }: Props) {
@@ -42,7 +49,7 @@ function WellActionButton({
           }}
           className='absolute inset-x-0 top-0 z-50 mx-auto cursor-pointer'
         >
-          {type === 'plus' ? (
+          {iconType === 'plus' ? (
             <PlusIcon />
           ) : (
             <ArrowIcon fill='#313239' width={28} height={28} />

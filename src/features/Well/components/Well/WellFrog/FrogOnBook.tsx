@@ -16,11 +16,15 @@ const MotionImage = motion.create(Image);
 const MotionLink = motion.create(Link);
 
 interface Props {
+  /** 개구리 id */
   frogId?: string;
+  /** 말풍선 메세지 */
   message?: string;
+  /** 개구리 z-index */
   zIndex: number;
 }
 
+/** 우물 내 도서 최상단에 있는 개구리 컴포넌트 */
 function FrogOnBook({ message, frogId = 'default', zIndex }: Props) {
   const hasNewReview = useNewReviewId();
   const userId = useUserId();

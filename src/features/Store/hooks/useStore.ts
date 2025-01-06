@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-query';
 import { getStoreItems, purchaseItem } from '../api/store.api';
 
+/** 상점 아이템 조회 및 구매 핸들링 훅 */
 export const useStore = (userId: string, points?: number) => {
   const queryClient = useQueryClient();
 
