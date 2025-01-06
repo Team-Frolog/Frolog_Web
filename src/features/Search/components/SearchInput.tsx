@@ -6,9 +6,11 @@ import { ClearIcon, SearchIcon } from 'public/icons';
 import React, { useState, KeyboardEvent } from 'react';
 
 interface Props {
+  /** 검색 메인 페이지인지 여부 */
   isMain?: boolean;
 }
 
+/** 검색 input 컴포넌트 */
 function SearchInput({ isMain = false }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams().get('query');

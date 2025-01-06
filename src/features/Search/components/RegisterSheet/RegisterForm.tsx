@@ -9,9 +9,11 @@ export interface RegisterFormType {
 }
 
 interface Props {
+  /** 제출 핸들러 */
   onSubmit: (data: RegisterFormType) => void;
 }
 
+/** 검색되지 않는 책을 등록하는 폼 */
 function RegisterForm({ onSubmit }: Props) {
   const methods = useForm<RegisterFormType>();
   const { watch, register, handleSubmit } = methods;

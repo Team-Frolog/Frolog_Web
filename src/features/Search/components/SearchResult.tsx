@@ -16,6 +16,7 @@ import SearchResultEmpty from './SearchResultEmpty';
 import { useObserver } from '../../../hooks/gesture/useObserver';
 import NoBookButton from './NoBookButton';
 
+/** 검색 결과 리스트 */
 function SearchResult() {
   const {
     searchResult,

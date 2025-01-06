@@ -2,6 +2,7 @@ import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 import React from 'react';
 
+/** 검색 결과가 없는 경우 개구리 컴포넌트 */
 function SearchResultEmpty() {
   return (
     <div className='flex w-full flex-1 flex-col items-center justify-center gap-[20px]'>

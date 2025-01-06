@@ -33,6 +33,8 @@ export const decorators = [
     <QueryProvider>
       <NextAuthProvider>
         <Story />
+        <div id='portal' />
+        <div id='toast-root' />
       </NextAuthProvider>
     </QueryProvider>
   ),
