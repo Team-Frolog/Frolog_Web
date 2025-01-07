@@ -68,7 +68,7 @@ export const useReviewDetail = ({
 
   /** 리뷰 수정 시 폼 작성 완료 핸들러 */
   const handleSubmitForm = async (formData: ReviewForm) => {
-    const { rating, pros, cons, oneLiner, review } = formData;
+    const { rating, pros, oneLiner, review } = formData;
 
     // rating 유효성 검사
     if (!rating) {
@@ -85,21 +85,8 @@ export const useReviewDetail = ({
         { shouldFocus: true }
       );
     }
-    if (!cons.length) {
-      setError(
-        'cons',
-        { type: 'validate', message: '단점을 선택해주세요' },
-        { shouldFocus: true }
-      );
-    }
 
-    if (
-      !rating ||
-      !pros.length ||
-      !cons.length ||
-      oneLiner.length < 10 ||
-      review.length < 10
-    ) {
+    if (!rating || !pros.length || oneLiner.length < 10 || review.length < 10) {
       return;
     }
 
@@ -139,7 +126,6 @@ export const useReviewDetail = ({
   const handleError = () => {
     const rating = watch('rating');
     const pros = watch('pros');
-    const cons = watch('cons');
 
     // rating 유효성 검사
     if (!rating) {
@@ -153,13 +139,6 @@ export const useReviewDetail = ({
       setError(
         'pros',
         { type: 'validate', message: '장점을 선택해주세요' },
-        { shouldFocus: true }
-      );
-    }
-    if (!cons.length) {
-      setError(
-        'cons',
-        { type: 'validate', message: '단점을 선택해주세요' },
         { shouldFocus: true }
       );
     }

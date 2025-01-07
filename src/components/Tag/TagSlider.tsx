@@ -16,6 +16,10 @@ interface Props {
  * - 도서 상세 > 리뷰 모음
  */
 function TagSlider({ type, tagKeys }: Props) {
+  if (tagKeys.length === 0) {
+    return;
+  }
+
   const tagData = getTags(type, tagKeys);
 
   return (

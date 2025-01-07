@@ -51,7 +51,9 @@ function TagList({ type }: Props) {
       <span
         className={`text-body-md ${errors[type] ? 'text-error' : 'text-gray-700'}`}
       >
-        {type === 'pros' ? '장점' : '단점'} 키워드 (1~5개 고르세요)
+        {type === 'pros'
+          ? '장점 키워드 (1~5개 고르세요)'
+          : '단점 키워드 (선택)'}
       </span>
       <motion.div
         initial={{ height: isExpanded ? 'auto' : LIST_MIN_HEIGHT }}
