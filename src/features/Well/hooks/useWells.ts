@@ -2,6 +2,7 @@ import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@/constants/query';
 import { getWellList } from '../api/well.api';
 
+/** 우물 리스트 쿼리 훅 */
 export const useWells = (userId: string) => {
   const { data, hasNextPage, fetchNextPage, isFetched, isFetchingNextPage } =
     useSuspenseInfiniteQuery({

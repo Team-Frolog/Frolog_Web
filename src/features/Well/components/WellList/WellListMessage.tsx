@@ -2,6 +2,7 @@ import { ToastPlus } from 'public/icons';
 import React from 'react';
 
 interface Props {
+  /** 메세지 */
   message: string;
 }
 

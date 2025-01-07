@@ -7,6 +7,7 @@ import { PAGES } from '@/constants/page';
 import useAddBookStore from '@/store/addBookStore';
 import { addWellItem } from '../api/well.api';
 
+/** 우물 아이템 추가 핸들링 훅 */
 export const useAddWellItem = (
   userId: string | undefined,
   stopPending?: () => void
@@ -23,6 +24,7 @@ export const useAddWellItem = (
   const { mutate: handleAddWellItem } = useMutation({
     mutationFn: (req: PostWellItemReq) => addWellItem(req),
     onSuccess: (res) => {
+      /** 아이템 추가 실패 */
       if (!res.result) {
         toast.error('아이템 추가에 실패했습니다.');
 
@@ -30,15 +32,17 @@ export const useAddWellItem = (
           stopPending();
         }
 
+        // 검색을 통해 추가한 경우
         if (isThroughSearch) {
           resetAll();
         }
         return;
       }
 
+      /** 아이템 추가 성공 */
       const itemId = res.id!;
-      const isAfterReview = pathname.includes(PAGES.NEW_REVIEW);
-      const isExisting = res.existing;
+      const isAfterReview = pathname.includes(PAGES.NEW_REVIEW); // 리뷰 작성 직후인 경우
+      const isExisting = res.existing; // 이미 존재하는 도서인 경우
 
       if (isExisting) {
         if (stopPending) {

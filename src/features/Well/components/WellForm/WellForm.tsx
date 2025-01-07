@@ -54,7 +54,7 @@ function WellForm({ type, userId, wellId }: Props) {
     handleClickBack,
     isLoading,
     setIsNameChecked,
-  } = useWellForm(type, reset, setError, wellId);
+  } = useWellForm({ type, reset, setError, wellId });
 
   return (
     <FormProvider {...methods}>

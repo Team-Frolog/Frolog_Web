@@ -2,6 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@/constants/query';
 import { getWellItems } from '../api/well.api';
 
+/** 우물 아이템 쿼리 훅 */
 export const useWellItems = (wellId: string) => {
   const {
     data,

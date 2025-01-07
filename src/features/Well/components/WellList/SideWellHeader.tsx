@@ -13,12 +13,17 @@ import Link from 'next/link';
 const MotionLink = motion(Link);
 
 interface Props {
+  /** 유저 id */
   userId?: string;
+  /** 상점 버튼 유무 */
   hasStoreButton?: boolean;
+  /** 뒤로가기 버튼 유무 */
   hasBackButton?: boolean;
+  /** 헤더 배경 색상 */
   bgColor?: string;
 }
 
+/** 사이드 형태의 우물 입구 헤더 컴포넌트 */
 function SideWellHeader({
   userId,
   bgColor,

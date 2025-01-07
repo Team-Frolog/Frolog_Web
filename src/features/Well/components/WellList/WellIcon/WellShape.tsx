@@ -10,9 +10,11 @@ import Well8 from 'public/images/well/shape/svg/8.svg';
 import Well9 from 'public/images/well/shape/svg/9.svg';
 
 interface Props {
+  /** 우물 모양 타입 id */
   welltype: number;
 }
 
+/** 우물 배경 모양 컴포넌트 */
 function WellShape({ welltype }: Props) {
   switch (welltype) {
     case 1:

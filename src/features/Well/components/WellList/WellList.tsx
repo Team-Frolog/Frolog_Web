@@ -9,10 +9,13 @@ import WellIcon from './WellIcon/WellIcon';
 import { useWells } from '../../hooks/useWells';
 
 interface Props {
+  /** 유저 id */
   userId: string;
+  /** 현재 로그인한 유저인지 여부 */
   isRootUser: boolean;
 }
 
+/** 우물 리스트 컴포넌트 */
 function WellList({ userId, isRootUser }: Props) {
   const { wells, hasNextPage, fetchNextPage, isFetchingNextPage } = useWells(
     userId!
