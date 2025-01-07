@@ -7,7 +7,7 @@ import { FROGS } from '@/constants/frogs';
 import { motion } from 'framer-motion';
 import { useUserId } from '@/store/sessionStore';
 import { IMAGES } from '@/constants/images';
-import { useNewReviewId } from '@/store/stackMotionStore';
+import useNewItemStore from '@/store/newItemStore';
 import { leafVariants, frogVariants } from '@/styles/variants/variants';
 import { PAGES } from '@/constants/page';
 import GuideChat from './GuideChat';
@@ -26,13 +26,13 @@ interface Props {
 
 /** 우물 내 도서 최상단에 있는 개구리 컴포넌트 */
 function FrogOnBook({ message, frogId = 'default', zIndex }: Props) {
-  const hasNewReview = useNewReviewId();
+  const newItemId = useNewItemStore((state) => state.newItemId);
   const userId = useUserId();
 
   return (
     <div className='relative z-20'>
       <MotionImage
-        variants={hasNewReview ? leafVariants : undefined}
+        variants={newItemId ? leafVariants : undefined}
         style={{ zIndex }}
         className='absolute inset-x-0 bottom-[-8px] mx-auto h-[24px] w-[190px]'
         src={IMAGES.well.leaf}
@@ -42,7 +42,7 @@ function FrogOnBook({ message, frogId = 'default', zIndex }: Props) {
       />
       <motion.div
         style={{ zIndex: zIndex + 1 }}
-        variants={hasNewReview ? frogVariants : undefined}
+        variants={newItemId ? frogVariants : undefined}
         className='flex-col-center relative z-[999px] pt-[20px]'
       >
         <GuideChat

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+/** 툴팁 렌더링 훅 */
 export const useTooltip = () => {
   const [isOpenTooltip, setIsOpenTooltip] = useState<boolean>(true);
 

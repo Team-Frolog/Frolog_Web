@@ -2,6 +2,7 @@ import { checkEmail } from '@/api/auth.api';
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+/** 이메일 중복 검사를 위한 훅 */
 export const useEmailValidation = (type: 'signUp' | 'resetPassword') => {
   const { trigger, setError } = useFormContext();
   const [isEmailChecked, setIsEmailChecked] = useState(false);

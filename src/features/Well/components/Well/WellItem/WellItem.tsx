@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import useStackMotionStore from '@/store/stackMotionStore';
+import useNewItemStore from '@/store/newItemStore';
 import { staggerItemVariants } from '@/styles/variants/variants';
 import { useRouter } from 'next/navigation';
 import { GetWellItemRes } from '@frolog/frolog-api';
@@ -41,10 +41,7 @@ function WellItem({
   startLoading,
 }: Props) {
   const router = useRouter();
-  const {
-    newReviewId,
-    actions: { setNewReviewId },
-  } = useStackMotionStore();
+  const { newItemId, setNewItemId } = useNewItemStore();
   const { id, status, title, page, category, isbn, memo_cnt } = wellBook;
   const height = page > 400 ? page * 0.15 : 55;
   const isReading = status === 'reading';
@@ -52,8 +49,8 @@ function WellItem({
 
   useEffect(() => {
     return () => {
-      if (newReviewId === id) {
-        setNewReviewId(null);
+      if (newItemId === id) {
+        setNewItemId(null);
       }
     };
   }, []);
@@ -71,7 +68,7 @@ function WellItem({
           );
         }}
         variants={
-          newReviewId === id && isTopItem ? staggerItemVariants : undefined
+          newItemId === id && isTopItem ? staggerItemVariants : undefined
         }
         style={{ zIndex, height }}
         // className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[12px]`}

@@ -6,6 +6,7 @@ interface Props {
   fetchNextPage: () => Promise<InfiniteQueryObserverResult>;
 }
 
+/** 무한스크롤을 위한 observer 훅 */
 export const useObserver = ({ hasNextPage, fetchNextPage }: Props) => {
   const [target, setTarget] = useState<HTMLDivElement | null | undefined>(null);
 

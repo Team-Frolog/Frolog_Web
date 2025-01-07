@@ -8,12 +8,16 @@ interface Session {
 }
 
 interface SessionStore {
+  /** 현재 로그인 한 유저 id */
   userId: string | undefined;
+  /** 유저의 access token */
   accessToken: string | undefined;
+  /** 유저의 첫 우물(기본 우물) id */
   defaultWellId: string | null;
   setSession: (session: Session) => void;
 }
 
+/** 세션 유지를 위한 state store */
 const useSessionStore = create<SessionStore>()(
   persist(
     (set) => ({

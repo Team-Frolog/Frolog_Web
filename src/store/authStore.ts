@@ -9,12 +9,16 @@ export interface AuthActions {
 }
 
 interface AuthStore {
+  /** 인증번호 검증용 토큰 (검증 시 필요) */
   emailCodeToken: string | null;
+  /** 인증번호 검증완료 토큰 (최종 회원가입 시 필요) */
   emailVerifiedToken: string | null;
+  /** 만료시간 */
   expiredTime: number | null;
   actions: AuthActions;
 }
 
+/** 인증을 위한 state store */
 const useAuthStore = create<AuthStore>()(
   devtools(
     persist(

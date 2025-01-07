@@ -4,7 +4,7 @@ import { getPathName, isPathExists } from '@/utils/path';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-/* ----- Form - 경로에 따른 페이지 제목 구하는 훅 ----- */
+/* 경로에 따른 폼의 제목을 구하는 훅 */
 export const useFormTitle = () => {
   const step = useStep();
   const [title, setTitle] = useState<string>('');

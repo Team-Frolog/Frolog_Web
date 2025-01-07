@@ -4,7 +4,9 @@ import { createRoot } from 'react-dom/client';
 import ToastContainer from './ToastContainer';
 
 export interface ToastProps {
+  /** 토스트 타입 - 'normal', 'error' */
   type: 'normal' | 'error';
+  /** 토스트 메세지 */
   text: string;
 }
 
@@ -72,7 +74,7 @@ class Toast {
 
 /** toast 모듈
  * @param type - 'normal', 'error'
- * @param text - 토스트 메시지
+ * @param text - 토스트 메세지
  */
 const toast = new Toast();
 

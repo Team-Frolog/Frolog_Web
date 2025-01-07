@@ -5,11 +5,17 @@ import { BottomSheetKeys } from '@/data/ui/bottomSheet';
 import BottomSheetContainer from './BottomSheetContainer';
 
 export interface BottomSheetProps {
+  /** 바텀시트 데이터 객체 키 */
   sheetKey: BottomSheetKeys;
+  /** 추가적인 자식 컴포넌트 */
   children?: React.ReactNode;
+  /** 메인 버튼 핸들러 */
   onClick?: () => void;
+  /** 서브 버튼 핸들러 */
   onClickSubButton?: () => void;
+  /** 바텀시트 닫힘 핸들러 */
   onClose?: () => void;
+  /** 동적 타이틀을 위한 props (optional) */
   titleProp?: string;
 }
 

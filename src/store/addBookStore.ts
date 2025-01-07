@@ -2,7 +2,9 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 interface StackMotionState {
+  /** 검색을 통해 도서를 추가한 경우 */
   isThroughSearch: boolean | null;
+  /** 도서를 추가할 우물 id */
   wellId: string | null;
   actions: {
     setIsThroughSearch: (value: boolean) => void;
@@ -12,6 +14,7 @@ interface StackMotionState {
   };
 }
 
+/** 우물에 도서를 추가하는 과정에서 필요한 state store */
 const useAddBookStore = create<StackMotionState>()(
   persist(
     (set) => ({

@@ -1,6 +1,6 @@
 import { PostWellItemReq } from '@frolog/frolog-api';
 import { useMutation } from '@tanstack/react-query';
-import { useStackMotionActions } from '@/store/stackMotionStore';
+import useNewItemStore from '@/store/newItemStore';
 import { usePathname, useRouter } from 'next/navigation';
 import { toast } from '@/modules/Toast';
 import { PAGES } from '@/constants/page';
@@ -19,7 +19,7 @@ export const useAddWellItem = (
     actions: { resetAll, setWellId, resetWellId, setIsThroughSearch },
   } = useAddBookStore();
   const pathname = usePathname();
-  const { setNewReviewId } = useStackMotionActions();
+  const setNewItemId = useNewItemStore((state) => state.setNewItemId);
 
   const { mutate: handleAddWellItem } = useMutation({
     mutationFn: (req: PostWellItemReq) => addWellItem(req),
@@ -55,7 +55,7 @@ export const useAddWellItem = (
           resetWellId();
         }
       } else {
-        setNewReviewId(itemId);
+        setNewItemId(itemId);
         if (stopPending) {
           stopPending();
         }

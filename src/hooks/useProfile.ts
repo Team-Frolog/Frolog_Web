@@ -2,6 +2,7 @@ import { getProfile } from '@/api/auth.api';
 import { QUERY_KEY } from '@/constants/query';
 import { useQuery } from '@tanstack/react-query';
 
+/** 프로필 개요 쿼리 훅 */
 export const useProfile = (userId: string | undefined) => {
   const { data } = useQuery({
     queryKey: [QUERY_KEY.profile, userId],

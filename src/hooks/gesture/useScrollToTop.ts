@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+/** 스크롤 위치에 따라 렌더링 유무를 조절하는 훅 */
 export const useScrollToTop = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isRendering, setIsRendering] = useState(false);

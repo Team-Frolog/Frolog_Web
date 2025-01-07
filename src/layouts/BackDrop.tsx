@@ -7,6 +7,7 @@ import { useScrollFreeze } from '@/hooks/gesture/useScrollFreeze';
 
 interface Props {
   children: React.ReactNode;
+  /** 자식 컴포넌트의 위치 */
   align: 'center' | 'end';
 }
 
