@@ -7,6 +7,7 @@ import useSessionStore from '@/store/sessionStore';
 import { PAGES } from '@/constants/page';
 import MenuItem from './MenuItem';
 
+/** 프로필 내 메뉴 컴포넌트 */
 function Menu() {
   const clearSession = useSessionStore.persist.clearStorage;
 
@@ -14,7 +15,7 @@ function Menu() {
     <div className='flex w-full flex-col gap-[28px] px-page'>
       <div className='flex w-full flex-col gap-[20px] border-b border-gray-300 pb-[16px]'>
         <h5 className='text-body-lg text-gray-700'>지원</h5>
-        <div className='flex flex-col gap-[32px]'>
+        <div className='flex-column gap-[32px]'>
           <MenuItem name='앱 설치하기' theme='highlight' href={PAGES.INSTALL} />
           <MenuItem
             name='건의하기'
@@ -27,7 +28,7 @@ function Menu() {
       </div>
       <div className='flex w-full flex-col gap-[20px]'>
         <h5 className='text-body-lg text-gray-700'>계정관리</h5>
-        <div className='flex flex-col gap-[32px]'>
+        <div className='flex-column gap-[32px]'>
           <MenuItem
             name='로그아웃'
             onClick={() =>

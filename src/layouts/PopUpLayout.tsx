@@ -11,6 +11,7 @@ interface Props {
   closePopUp: () => void;
 }
 
+/** 팝업을 위한 레이아웃 */
 function PopUpLayout({ children, closePopUp }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
 

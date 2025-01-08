@@ -1,6 +1,10 @@
 @import 'tailwindcss/components';
 
 @layer components {
+  .header-sticky {
+    @apply sticky left-0 top-0 z-60 w-full;
+  }
+
   .side-header-right {
     border-top: 105px solid #0e0e0e;
     border-left: 240px solid transparent;

@@ -6,13 +6,19 @@ import { PAGES } from '@/constants/page';
 import WellActionButton from './Pointing/WellActionButton';
 
 interface Props {
+  /** 타이틀 */
   title: string;
+  /** 우물 id */
   wellId?: string;
+  /** 우물 내 도서 개수 */
   itemCount?: number;
+  /** 클릭 유도 여부 */
   isPointing?: boolean;
+  /** 현재 로그인한 유저인지 여부 */
   isRootUser?: boolean;
 }
 
+/** 우물 타이틀 컴포넌트 */
 function WellTitle({
   title,
   wellId,
@@ -30,7 +36,7 @@ function WellTitle({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className='flex flex-col items-center gap-[20px] py-[50px]'
+        className='flex-column items-center gap-[20px] py-[50px]'
       >
         <h1 className='text-title-xl-bold'>{title}</h1>
         {isRootUser && (

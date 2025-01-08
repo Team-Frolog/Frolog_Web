@@ -13,6 +13,7 @@ import RememberMe from './RememberMe';
 import { LoginForm as LoginFormType } from '../types/login';
 import LoginButton from './LoginButton';
 
+/** 로그인 페이지 */
 function LoginFormPage() {
   const { isSaved, setIsSaved, userLogin, isFaild, setIsFaild, isLoading } =
     useLogin('login');
@@ -29,7 +30,7 @@ function LoginFormPage() {
       }}
     >
       {isLoading && <LoadingOverlay theme='dark' />}
-      <div className='flex flex-col gap-[20px] py-[32px]'>
+      <div className='flex-column gap-[20px] py-[32px]'>
         <LoginForm setIsFaild={setIsFaild} userLogin={userLogin} />
         <div className='flex w-full items-center justify-between'>
           <RememberMe isSaved={isSaved} setIsSaved={setIsSaved} />

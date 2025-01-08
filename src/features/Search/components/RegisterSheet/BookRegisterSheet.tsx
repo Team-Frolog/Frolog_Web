@@ -10,9 +10,11 @@ import RegisterForm from './RegisterForm';
 import { useBookRegister } from '../../hooks/useBookRegister';
 
 interface Props {
+  /** 바텀시트 닫힘 핸들러 */
   onClose: () => void;
 }
 
+/** 검색되지 않는 책을 등록하는 바텀시트 */
 function BookRegisterSheet({ onClose }: Props) {
   const { isRegistered, handleRegister } = useBookRegister();
   const ref = useRef<HTMLDivElement | null>(null);

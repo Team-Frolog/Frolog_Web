@@ -17,6 +17,7 @@ interface Props {
   };
 }
 
+/** 새로운 리뷰 작성 페이지 */
 function NewReviewPage({ params: { wellId, userId, bookId } }: Props) {
   const router = useRouter();
   useScroll({ categoryColor: undefined });

@@ -2,11 +2,12 @@ import { toast } from '@/modules/Toast';
 import { Tag } from '@/types/tag';
 import { useFormContext } from 'react-hook-form';
 
+/** 태그 선택 핸들링 훅 */
 export const useTags = (type: Tag) => {
   const { watch, setValue } = useFormContext();
   const selectedTags = watch(type) || [];
 
-  /* ----- 태그 선택 처리 함수 ----- */
+  /** 태그 선택 처리 함수 */
   const handleTagSelect = (id: string) => {
     const isSelected = selectedTags.includes(id);
 

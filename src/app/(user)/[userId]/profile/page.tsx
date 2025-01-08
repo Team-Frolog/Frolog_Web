@@ -1,7 +1,8 @@
 import LinkButton from '@/components/Button/LinkButton';
 import ProfileSkeleton from '@/components/Fallback/Skeleton/ProfileSkeleton';
-import SideHeader from '@/components/Header/SideHeader';
-import NavigationBar from '@/components/NavigationBar';
+import WellEntryHeader from '@/components/Header/WellEntryHeader';
+import NavigationBar from '@/components/NavigationBar/NavigationBar';
+import { QUERY_KEY } from '@/constants/query';
 import { Menu } from '@/features/Profile';
 import MainLayout from '@/layouts/MainLayout';
 import { authOptions } from '@/utils/auth/auth';
@@ -51,7 +52,7 @@ async function UserProfilePage({ params: { userId } }: Props) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['profileDetail', userId],
+    queryKey: [QUERY_KEY.profileDetail, userId],
     queryFn: () =>
       new GetProfileDetail({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
@@ -63,7 +64,7 @@ async function UserProfilePage({ params: { userId } }: Props) {
   return (
     <>
       <MainLayout extraClass='bg-white'>
-        <SideHeader title='프로필' hasBackButton={!isRootUser} />
+        <WellEntryHeader title='프로필' hasBackButton={!isRootUser} />
         <div
           className={`flex w-full flex-1 flex-col gap-[32px] pb-[32px] ${isRootUser ? 'justify-start' : 'justify-between'}`}
         >

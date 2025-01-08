@@ -9,10 +9,13 @@ import { useMemos } from '../../hooks/useMemos';
 import { Memo } from '../../models/memo.model';
 
 interface Props {
+  /** 메모 대상이 되는 도서 id */
   bookId: string;
+  /** 유저 id */
   userId: string;
 }
 
+/** 메모 리스트 컴포넌트 */
 function MemoList({ bookId, userId }: Props) {
   const {
     memoList,

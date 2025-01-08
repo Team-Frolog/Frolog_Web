@@ -12,6 +12,7 @@ import Step2 from './step2/Step2';
 import { defaultValue } from '../data/joinForm';
 import { useJoin } from '../hooks/useJoin';
 
+/** 회원가입 폼 */
 function JoinForm() {
   const methods = useForm<JoinFormType>({
     mode: 'onBlur',

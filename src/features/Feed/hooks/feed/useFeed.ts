@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { QUERY_KEY } from '@/constants/query';
 import { getFeed } from '../../api/feed.api';
 
+/** 피드 쿼리 훅 */
 export const useFeed = () => {
   const [isCommentLoading, setIsCommentLoading] = useState(false);
 
@@ -16,7 +18,7 @@ export const useFeed = () => {
     isLoading,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ['feed'],
+    queryKey: [QUERY_KEY.feed],
     queryFn: ({ pageParam }) => getFeed({ page: pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {

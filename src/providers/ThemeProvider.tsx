@@ -4,6 +4,7 @@ import { PAGE_THEME } from '@/constants/theme';
 import { usePathname } from 'next/navigation';
 import React, { useEffect } from 'react';
 
+/** 페이지별 배경 테마를 조절하는 컴포넌트 */
 function ThemeProvider() {
   const pathname = usePathname();
 

@@ -4,12 +4,18 @@ import { TextareaType } from '@/data/ui/textareaType';
 import React, { useEffect, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-interface Props {
+export interface TextareaProps {
+  /** 폰트 타입 - 기본/굵게 */
   type?: 'default' | 'bold';
+  /** textarea 데이터 */
   option: TextareaType;
 }
 
-function Textarea({ type = 'default', option }: Props) {
+/** 리뷰, 메모 작성에 활용되는 동적 높이 조절 textarea
+ * - 입력 값에 따라 높이가 조절됩니다.
+ * - react hook form이 적용되어 있습니다.
+ */
+function Textarea({ type = 'default', option }: TextareaProps) {
   const {
     register,
     watch,
@@ -20,6 +26,7 @@ function Textarea({ type = 'default', option }: Props) {
   const { length } = textValue;
   const parentRef = useRef<HTMLDivElement>(null);
 
+  /** 부모 div에 현재 입력 값을 clonedVal로 적용 */
   useEffect(() => {
     if (parentRef.current) {
       parentRef.current.dataset.clonedVal = textValue;
@@ -50,6 +57,7 @@ function Textarea({ type = 'default', option }: Props) {
               value: option.minLength,
               message: option.errorMessage,
             },
+            /** 에러가 있는 경우 onChange로 실시간 유효성 체크 */
             onChange: () => {
               if (errors[option.fieldName]) {
                 trigger(option.fieldName);
@@ -59,7 +67,7 @@ function Textarea({ type = 'default', option }: Props) {
         />
       </div>
 
-      <span className='text-- px-page text-error'>
+      <span className='px-page text-body-md text-error'>
         {errors[option.fieldName]
           ? String(errors[option.fieldName]!.message)
           : ''}

@@ -23,6 +23,7 @@ const outlines = [
   { id: 9, Shape: Outline9 },
 ];
 
+/** 우물 모양 선택 컴포넌트 */
 function ShapeSelector() {
   const { watch, setValue } = useFormContext();
 

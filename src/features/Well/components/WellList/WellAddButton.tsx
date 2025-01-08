@@ -8,9 +8,11 @@ import React from 'react';
 const MotionLink = motion(Link);
 
 interface Props {
+  /** 유저 id */
   userId: string;
 }
 
+/** 우물 추가 버튼 컴포넌트 */
 function WellAddButton({ userId }: Props) {
   return (
     <div className='flex h-fit w-fit flex-col items-center gap-[8px] place-self-center'>

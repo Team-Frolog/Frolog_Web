@@ -6,6 +6,7 @@ import { useMemoImage } from '../../../hooks/useMemoImage';
 import ImageSlider from './ImageSlider';
 import ImageSlot from './ImageSlot';
 
+/** 메모 이미지 등록 폼 */
 function ImageForm() {
   const { currentImgs, handleImgChange, handleDeleteImg } = useMemoImage();
 

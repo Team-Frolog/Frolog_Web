@@ -11,6 +11,7 @@ interface StepStore {
   actions: Actions;
 }
 
+/** 여러 단계를 가진 폼을 위한 단계 저장 state store */
 const useStepStore = create<StepStore>()(
   devtools(
     persist(

@@ -5,6 +5,7 @@ import { FlashKeys } from '@/data/ui/flash';
 import Image from 'next/image';
 import LinkButton from '@/components/Button/LinkButton';
 import { IMAGES } from '@/constants/images';
+import { PAGES } from '@/constants/page';
 
 interface Props {
   params: {
@@ -44,7 +45,7 @@ function FlashPage({ params: { type } }: Props) {
             priority
           />
           <div className='absolute left-0 top-1/2 flex w-full -translate-y-1/2 justify-center px-page'>
-            <LinkButton route='/'>확인</LinkButton>
+            <LinkButton route={PAGES.HOME}>확인</LinkButton>
           </div>
         </div>
       ) : undefined}

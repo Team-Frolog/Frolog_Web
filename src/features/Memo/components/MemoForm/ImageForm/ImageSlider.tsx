@@ -5,6 +5,7 @@ interface Props {
   children: React.ReactNode;
 }
 
+/** 이미지 전용 슬라이더 */
 function ImageSlider({ children }: Props) {
   return (
     <Slider sliderClass='flex w-full overflow-hidden' slideClass='gap-[8px]'>

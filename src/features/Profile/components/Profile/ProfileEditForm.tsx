@@ -5,40 +5,20 @@ import TitleHeader from '@/components/Header/TitleHeader';
 import MainLayout from '@/layouts/MainLayout';
 import ProfileForm from '@/components/Profile/ProfileForm';
 import { FormProvider, useForm } from 'react-hook-form';
-import { getToday } from '@/utils/date';
 import ImageEditor from './ImageEditor';
 import { useProfileEdit } from '../../hooks/useProfileEdit';
 import { ProfileEditFormType } from '../../types/editForm';
-
-export const defaultValue: ProfileEditFormType = {
-  username: '',
-  image: null,
-  reading_preference: null,
-  self_intro: '',
-  personal_infos: {
-    occupation: {
-      value: '학생',
-      visibility: true,
-    },
-    birth_date: {
-      value: getToday(),
-      visibility: true,
-    },
-    gender: {
-      value: '남성',
-      visibility: true,
-    },
-  },
-};
+import { profileEditDefaultValue } from '../../data/editForm';
 
 interface Props {
   userId: string;
 }
 
+/** 프로필 수정 폼 */
 function ProfileEditForm({ userId }: Props) {
   const methods = useForm<ProfileEditFormType>({
     mode: 'onBlur',
-    defaultValues: defaultValue,
+    defaultValues: profileEditDefaultValue,
   });
   const {
     reset,

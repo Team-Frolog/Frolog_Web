@@ -3,6 +3,7 @@ import React from 'react';
 import { ImageEditIcon } from 'public/icons';
 import { useProfileImage } from '../../hooks/useProfileImage';
 
+/** 프로필 사진 변경 input */
 function ImageEditor() {
   const { profileImage, handleImgChange } = useProfileImage();
 

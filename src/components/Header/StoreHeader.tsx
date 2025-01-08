@@ -11,6 +11,10 @@ interface Props {
   userId: string | undefined;
 }
 
+/** 상점 페이지 헤더
+ * - '상점', '미션' 2가지 탭으로 구성되어 있습니다.
+ * - 유저의 포인트 내역이 포함됩니다.
+ */
 function StoreHeader({ userId }: Props) {
   const router = useRouter();
   const pathname = usePathname();

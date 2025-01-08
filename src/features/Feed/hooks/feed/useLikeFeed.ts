@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { QUERY_KEY } from '@/constants/query';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
 import { changeLikeThisFeed } from '../../api/activity.api';
 import { LikeFeedReq } from '../../types/like';
@@ -16,6 +17,7 @@ interface FeedData {
   pageParams: number[];
 }
 
+/** 피드 좋아요 핸들링 훅 */
 export const useLikeFeed = (isReview: boolean) => {
   const queryClient = useQueryClient();
 
@@ -29,12 +31,12 @@ export const useLikeFeed = (isReview: boolean) => {
   const { mutate: handleChangeLike } = useMutation({
     mutationFn: (req: LikeFeedReq) => changeLikeThisFeed(req, isReview),
     onMutate: async (variables) => {
-      await queryClient.cancelQueries({ queryKey: ['feed'] });
-      const prevFeed = queryClient.getQueryData(['feed']);
+      await queryClient.cancelQueries({ queryKey: [QUERY_KEY.feed] });
+      const prevFeed = queryClient.getQueryData([QUERY_KEY.feed]);
 
       if (!prevFeed) return;
 
-      queryClient.setQueryData(['feed'], (oldData: FeedData) => ({
+      queryClient.setQueryData([QUERY_KEY.feed], (oldData: FeedData) => ({
         ...oldData,
         pages: oldData.pages.map((page) => ({
           ...page,
@@ -55,7 +57,7 @@ export const useLikeFeed = (isReview: boolean) => {
       return { prevFeed };
     },
     onError: (_err, _variables, context) => {
-      queryClient.setQueryData(['feed'], context?.prevFeed);
+      queryClient.setQueryData([QUERY_KEY.feed], context?.prevFeed);
     },
   });
 

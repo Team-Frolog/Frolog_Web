@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+/** draggable slide 훅 */
 export const useSlideDrag = (isBetween: boolean) => {
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const motionDivRef = useRef<HTMLDivElement | null>(null);

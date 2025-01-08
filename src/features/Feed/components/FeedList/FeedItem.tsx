@@ -8,17 +8,22 @@ import FeedBar from './FeedBar';
 import { useLikeFeed } from '../../hooks/feed/useLikeFeed';
 
 interface Props {
+  /** 메모인지 여부 */
   isMemo: boolean;
+  /** 피드 데이터 객체 */
   feedData: GetReviewRes | GetMemoRes;
+  /** 댓글 클릭 시 로딩 시작 핸들러 */
   startCommentLoading: () => void;
-  onClickDetail: () => void;
+  /** 스크롤 저장 핸들러 */
+  onSaveScroll: () => void;
 }
 
+/** 피드 아이템 컴포넌트 */
 function FeedItem({
   isMemo,
   feedData,
   startCommentLoading,
-  onClickDetail,
+  onSaveScroll,
 }: Props) {
   const { handleChangeLike } = useLikeFeed(!isMemo);
 
@@ -28,14 +33,14 @@ function FeedItem({
         type='feed'
         userId={feedData.writer}
         hasFollow
-        onClick={onClickDetail}
+        onClick={onSaveScroll}
       />
       <div className='flex w-full flex-col'>
         <Link
           prefetch
           href={isMemo ? `/memo/${feedData.id}` : `/review/${feedData.id}`}
           className='flex w-full flex-col'
-          onClick={onClickDetail}
+          onClick={onSaveScroll}
         >
           <BookInfo isMemo={isMemo} feedData={feedData} />
           <FeedContent feedData={feedData} />
@@ -48,9 +53,9 @@ function FeedItem({
           }
           onClickComment={() => {
             startCommentLoading();
-            onClickDetail();
+            onSaveScroll();
           }}
-          onClickDetail={onClickDetail}
+          onSaveScroll={onSaveScroll}
         />
       </div>
     </div>

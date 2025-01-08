@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { requestResetPassword } from '../api/reset.api';
 import { FindForm } from '../types/findForm';
 
+/** 비밀번호 재설정 핸들링 훅 */
 export const useResetPassword = (getValues: () => FindForm) => {
   const step = useStep();
   const router = useRouter();

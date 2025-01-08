@@ -6,6 +6,9 @@ interface Props {
   element: React.RefObject<HTMLDivElement>;
 }
 
+/** 당겨서 새로고침 컴포넌트
+ * @param element - 부모 컴포넌트의 ref
+ */
 function PullToRefresh({ element }: Props) {
   const { refetch: refetchFeed } = useFeed();
 

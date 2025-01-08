@@ -13,6 +13,9 @@ interface Props {
   closeSheet: () => void;
 }
 
+/** 우물에 책 추가 컴포넌트
+ * - 순서에 따라 읽음/읽는 중 상태 바텀시트 or 우물 선택 바텀시트를 렌더링합니다.
+ */
 function AddBookToWell({ bookId, closeSheet }: Props) {
   const {
     step,

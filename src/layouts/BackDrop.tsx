@@ -7,11 +7,16 @@ import { useScrollFreeze } from '@/hooks/gesture/useScrollFreeze';
 
 interface Props {
   children: React.ReactNode;
+  /** 자식 컴포넌트의 위치 */
   align: 'center' | 'end';
 }
 
+/** 바텀시트, 팝업 등에 활용되는 검은 반투명 배경
+ * @param align - 'center', 'end' 자식 컴포넌트의 위치를 결정합니다.
+ */
 function BackDrop({ children, align }: Props) {
   useScrollFreeze();
+
   const alignmentClass =
     align === 'center'
       ? 'flex flex-col justify-center items-center'

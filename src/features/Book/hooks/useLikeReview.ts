@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { GetReviewRes } from '@frolog/frolog-api';
 import { LikeFeedReq } from '@/features/Feed/types/like';
 import { changeLikeThisFeed } from '@/features/Feed/api/activity.api';
+import { QUERY_KEY } from '@/constants/query';
 
 interface ReviewData {
   pages: {
@@ -13,6 +14,7 @@ interface ReviewData {
   pageParams: number[];
 }
 
+/** 도서 상세 > 리뷰 모음의 리뷰에 대한 좋아요를 처리하는 훅 */
 export const useLikeReview = (isbn: string) => {
   const queryClient = useQueryClient();
 
@@ -26,28 +28,39 @@ export const useLikeReview = (isbn: string) => {
   const { mutate: handleChangeLike } = useMutation({
     mutationFn: (req: LikeFeedReq) => changeLikeThisFeed(req, true),
     onMutate: async ({ id }) => {
-      await queryClient.cancelQueries({ queryKey: ['reviews', isbn] });
-      const prevReviews = queryClient.getQueryData(['reviews', isbn]);
+      await queryClient.cancelQueries({
+        queryKey: [QUERY_KEY.reviewList, isbn],
+      });
+      const prevReviews = queryClient.getQueryData([
+        QUERY_KEY.reviewList,
+        isbn,
+      ]);
 
       if (!prevReviews) return;
 
-      queryClient.setQueryData(['reviews', isbn], (oldData: ReviewData) => ({
-        ...oldData,
-        pages: oldData.pages.map((page) => ({
-          ...page,
-          reviews: page.reviews.map((item) => {
-            if (item.id === id) {
-              toggleLike(item);
-            }
-            return item;
-          }),
-        })),
-      }));
+      queryClient.setQueryData(
+        [QUERY_KEY.reviewList, isbn],
+        (oldData: ReviewData) => ({
+          ...oldData,
+          pages: oldData.pages.map((page) => ({
+            ...page,
+            reviews: page.reviews.map((item) => {
+              if (item.id === id) {
+                toggleLike(item);
+              }
+              return item;
+            }),
+          })),
+        })
+      );
 
       return { prevReviews };
     },
     onError: (_err, _variables, context) => {
-      queryClient.setQueryData(['reviews', isbn], context?.prevReviews);
+      queryClient.setQueryData(
+        [QUERY_KEY.reviewList, isbn],
+        context?.prevReviews
+      );
     },
   });
 

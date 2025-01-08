@@ -5,10 +5,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface Props {
-  type?: 'nav' | 'floating';
+  /** nav 위에 있는지 여부 */
+  isOnNav?: 'nav' | 'floating';
 }
 
-function ScrollToTop({ type = 'nav' }: Props) {
+/** 맨 위로 이동하기 컴포넌트
+ * @param isOnNav - nav 위에 위치한 경우 true, 아닌 경우 false
+ */
+function ScrollToTop({ isOnNav: type = 'nav' }: Props) {
   const handleScroll = () => {
     document.getElementById('main')!.scrollTo({
       top: 0,

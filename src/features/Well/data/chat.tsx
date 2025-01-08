@@ -1,10 +1,14 @@
 export const chat = {
   not_loggedIn: '로그인을 해야\n책을 기록할 수 있어요',
-  empty: '⭐높이 올라가고 싶어요⭐\n책을 추가해주세요',
   first_book:
     '🚨특급 정보 입수!🚨\n책을 하나만 더 추가하면\n새로운 개구리가 나온대요!',
   second_book: '새로운 개구리가 왔나봐요!\n또 다른 우물을 파볼까요?',
 };
+
+export const emptyMessage = [
+  { id: 1, value: '⭐높이 올라가고 싶어요⭐\n책을 추가해주세요' },
+  { id: 2, value: '개구리 상점이 궁금하면\n저를 눌러보세요! 🐸' },
+];
 
 export const defaultMessage = [
   { id: 1, value: '또 만났군요.\n오늘은 운수 좋은 날이네요 😍' },

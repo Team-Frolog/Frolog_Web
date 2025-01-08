@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { flash, FlashKeys } from '@/data/ui/flash';
+import { IMAGES } from '@/constants/images';
 import PopperAnimation from '../animation/PopperAnimation';
 import FlashHandler from '../Gesture/FlashHandler';
 
@@ -10,6 +11,10 @@ interface Props {
   children?: React.ReactNode;
 }
 
+/** light가 비춰진 개구리 페이지 컴포넌트
+ * - 404, error 페이지
+ * - 리뷰 작성 / 우물 생성 시
+ */
 function Flash({ children, flashKey }: Props) {
   const {
     getTitle,
@@ -25,7 +30,7 @@ function Flash({ children, flashKey }: Props) {
   return (
     <>
       <Head>
-        <link rel='preload' href='/images/flash/light.webp' as='image' />
+        <link rel='preload' href={IMAGES.flash.light} as='image' />
         <link rel='preload' href={frog} as='image' />
         <link rel='preload' href={ground} as='image' />
       </Head>
@@ -33,7 +38,7 @@ function Flash({ children, flashKey }: Props) {
         <FlashHandler type={flashKey} isRedirect={isRedirect} />
         <div className='absolute z-0 flex h-fit w-full flex-1 flex-col items-center bg-gray-900 pt-[30px]'>
           <Image
-            src='/images/flash/light.webp'
+            src={IMAGES.flash.light}
             alt='light'
             width={2505}
             height={2479}

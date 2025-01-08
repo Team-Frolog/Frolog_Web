@@ -1,10 +1,11 @@
 import Slider from '@/components/Slider/Slider';
-import { getTestTypeById } from '@/features/Test';
+import { getTestTypeById } from '@/features/FrologTest';
 import { GetProfileDetailRes } from '@frolog/frolog-api';
 import React from 'react';
 import { getAgeCategory } from '../../utils/getAge';
 
 interface Props {
+  /** 프로필 상세 데이터 객체 */
   profileDetail: GetProfileDetailRes;
 }
 
@@ -16,6 +17,7 @@ interface Info {
   visibility: boolean;
 }
 
+/** 유저 타입 컴포넌트 */
 function UserType({ profileDetail }: Props) {
   const { reading_preference, personal_infos } = profileDetail;
 
@@ -35,7 +37,7 @@ function UserType({ profileDetail }: Props) {
       sliderClass='flex w-full overflow-hidden'
       slideClass='gap-[8px]'
     >
-      <div className='flex flex-col items-center gap-[4px]'>
+      <div className='flex-column items-center gap-[4px]'>
         <div
           className={
             reading_preference ? 'user-type-chip' : 'user-type-chip-disabled'
@@ -45,7 +47,7 @@ function UserType({ profileDetail }: Props) {
         </div>
         <span className='text-body-sm text-gray-600'>독서성향</span>
       </div>
-      <div className='flex flex-col items-center gap-[4px]'>
+      <div className='flex-column items-center gap-[4px]'>
         <div
           className={
             birth_date?.visibility
@@ -59,7 +61,7 @@ function UserType({ profileDetail }: Props) {
         </div>
         <span className='text-body-sm text-gray-600'>연령대</span>
       </div>
-      <div className='flex flex-col items-center gap-[4px]'>
+      <div className='flex-column items-center gap-[4px]'>
         <div
           className={
             gender?.visibility ? 'user-type-chip' : 'user-type-chip-disabled'
@@ -69,7 +71,7 @@ function UserType({ profileDetail }: Props) {
         </div>
         <span className='text-body-sm text-gray-600'>성별</span>
       </div>
-      <div className='flex flex-col items-center gap-[4px]'>
+      <div className='flex-column items-center gap-[4px]'>
         <div
           className={
             occupation?.visibility

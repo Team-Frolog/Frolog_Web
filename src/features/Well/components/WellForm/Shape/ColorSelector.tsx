@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import ColorButton from './ColorButton';
 
+/** 색상 선택 슬라이드 컴포넌트 */
 function ColorSelector() {
   const { watch, setValue } = useFormContext();
   const sliderRef = useRef<HTMLDivElement | null>(null);

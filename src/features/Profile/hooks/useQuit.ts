@@ -8,6 +8,7 @@ import { QuitFormType } from '../components/Quit/QuitForm';
 import { quitReasons } from '../data/quitForm';
 import { Survey } from '../types/quit';
 
+/** 회원탈퇴 처리 훅 */
 export const useQuit = () => {
   const clearSession = useSessionStore.persist.clearStorage;
 

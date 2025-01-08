@@ -14,16 +14,21 @@ import ImageForm from './ImageForm/ImageForm';
 import { MemoFormType } from '../../types/form';
 
 interface Props {
+  /** 폼의 초기값 */
   defaultValues?: MemoFormType;
+  /** 로딩 여부 */
   isLoading?: boolean;
+  /** 메모 대상이 되는 도서의 id */
   bookId: string;
 }
 
+/** 메모 작성 폼 */
 function MemoForm({ defaultValues, isLoading, bookId }: Props) {
   const router = useRouter();
   const { bookData } = useBook(bookId);
   const { watch, getValues } = useFormContext();
 
+  /** 값이 변경된 경우 바텀시트로 이탈을 재확인하는 뒤로가기 핸들러 */
   const handleClickBack = () => {
     const formData = getValues();
     if (!isEqual(defaultValues, formData)) {

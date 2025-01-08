@@ -14,18 +14,23 @@ import WellShape from './WellShape';
 import { getIsNew } from '../../../utils/getIsNew';
 
 interface Props {
-  type?: 'default' | 'select';
+  /** 사용 타입 (리스트 or 선택 시트) */
+  type?: 'list' | 'select';
+  /** 우물 정보 데이터 객체 */
   wellData: GetWellRes;
+  /** 클릭 핸들러 */
   onClick?: () => void;
 }
 
-function WellIcon({ wellData, type = 'default', onClick }: Props) {
+/** 우물 아이콘 컴포넌트 */
+function WellIcon({ wellData, type = 'list', onClick }: Props) {
   const { id, name, frog, owner, color, shape, date } = wellData;
   const router = useRouter();
   const controls = useAnimation();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const shapeRef = useRef<HTMLDivElement | null>(null);
 
+  /** 우물 접근 모션 실행 함수 */
   const handleIntoWell = (wellId: string) => {
     if (buttonRef.current && shapeRef.current) {
       const buttonRect = buttonRef.current.getBoundingClientRect();
@@ -52,7 +57,7 @@ function WellIcon({ wellData, type = 'default', onClick }: Props) {
         ref={buttonRef}
         whileTap={{ scale: 0.95 }}
         type='button'
-        onClick={type === 'default' ? () => handleIntoWell(id) : onClick}
+        onClick={type === 'list' ? () => handleIntoWell(id) : onClick}
         className='flex-center relative box-content h-[120px] w-[120px] rounded-[50%] p-[20px]'
       >
         <motion.div

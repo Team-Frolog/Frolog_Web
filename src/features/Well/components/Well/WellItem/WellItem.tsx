@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import useStackMotionStore from '@/store/stackMotionStore';
+import useNewItemStore from '@/store/newItemStore';
 import { staggerItemVariants } from '@/styles/variants/variants';
 import { useRouter } from 'next/navigation';
 import { GetWellItemRes } from '@frolog/frolog-api';
@@ -12,17 +12,25 @@ import WellBubble from 'public/images/christmas/well/christmas-reading.svg';
 import MemoLeaf from './MemoLeaf';
 
 interface Props {
+  /** 도서 데이터 객체 */
   wellBook: GetWellItemRes;
+  /** 우물 id */
   wellId: string;
+  /** 최상단 아이템인지 여부 */
   isTopItem: boolean;
+  /** 아이템의 z-index */
   zIndex: number;
+  /** 로딩 시작 핸들러 */
   startLoading: () => void;
+  /** 최하단 아이템인지 여부 */
   isLastItem?: boolean;
+  /** 무한스크롤을 위한 observer 타겟 세팅 핸들러 */
   setTarget?: React.Dispatch<
     React.SetStateAction<HTMLDivElement | null | undefined>
   >;
 }
 
+/** 우물 도서 아이템 컴포넌트 */
 function WellItem({
   wellId,
   wellBook,
@@ -33,10 +41,7 @@ function WellItem({
   startLoading,
 }: Props) {
   const router = useRouter();
-  const {
-    newReviewId,
-    actions: { setNewReviewId },
-  } = useStackMotionStore();
+  const { newItemId, setNewItemId } = useNewItemStore();
   const { id, status, title, page, category, isbn, memo_cnt } = wellBook;
   const height = page > 400 ? page * 0.15 : 55;
   const isReading = status === 'reading';
@@ -44,8 +49,8 @@ function WellItem({
 
   useEffect(() => {
     return () => {
-      if (newReviewId === id) {
-        setNewReviewId(null);
+      if (newItemId === id) {
+        setNewItemId(null);
       }
     };
   }, []);
@@ -63,7 +68,7 @@ function WellItem({
           );
         }}
         variants={
-          newReviewId === id && isTopItem ? staggerItemVariants : undefined
+          newItemId === id && isTopItem ? staggerItemVariants : undefined
         }
         style={{ zIndex, height }}
         // className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[12px]`}

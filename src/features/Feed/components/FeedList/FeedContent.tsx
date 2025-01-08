@@ -6,13 +6,19 @@ import React from 'react';
 import { isGetMemoRes } from '../../utils/typeGuard';
 
 interface Props {
+  /** 피드 이외의 곳에서 사용될 경우 false */
   isFeed?: boolean;
+  /** 피드 데이터 객체 */
   feedData: GetReviewRes | GetMemoRes;
 }
 
+/** 피드, 리뷰, 메모 아이템에 활용되는 컨텐츠 부분 컴포넌트
+ * - 메모인 경우 이미지가 포함될 수 있습니다.
+ * - 리뷰인 경우 태그가 포함됩니다.
+ */
 function FeedContent({ feedData, isFeed = true }: Props) {
   return (
-    <div className='z-10 flex flex-col gap-[20px] bg-white py-[20px]'>
+    <div className='flex-column z-10 gap-[20px] bg-white py-[20px]'>
       {isGetMemoRes(feedData) ? (
         <>
           {feedData.images.length !== 0 && (
@@ -43,7 +49,7 @@ function FeedContent({ feedData, isFeed = true }: Props) {
               tagKeys={(feedData as GetReviewRes).tags_neg}
             />
           </div>
-          <div className='flex flex-col gap-[12px] px-page'>
+          <div className='flex-column gap-[12px] px-page'>
             <h3 className='break-all text-title-xl-bold'>
               {(feedData as GetReviewRes).title}
             </h3>

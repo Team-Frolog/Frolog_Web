@@ -27,6 +27,7 @@ interface Props {
   userId: string;
 }
 
+/** 팔로워/팔로잉 리스트 탭 컴포넌트 */
 function FollowList({ userId }: Props) {
   const router = useRouter();
   const pathname = usePathname();

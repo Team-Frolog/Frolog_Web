@@ -7,10 +7,13 @@ import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
 import { isGetMemoRes } from '../../utils/typeGuard';
 
 interface Props {
+  /** 컨텐츠가 메모인지 여부 */
   isMemo: boolean;
+  /** 피드 데이터 객체 */
   feedData: GetReviewRes | GetMemoRes;
 }
 
+/** 피드 아이템 중 도서 정보 부분 컴포넌트 */
 function BookInfo({ feedData, isMemo }: Props) {
   const { bookData } = useBook(feedData.isbn);
   if (!bookData) return <></>;
@@ -69,7 +72,7 @@ function BookInfo({ feedData, isMemo }: Props) {
               <Rating
                 rating={!isGetMemoRes(feedData) ? feedData.rating : null}
                 textClass={`text-heading-lg-bold text-category-text-${category}`}
-                category={category}
+                categoryId={category}
               />
             )}
           </div>

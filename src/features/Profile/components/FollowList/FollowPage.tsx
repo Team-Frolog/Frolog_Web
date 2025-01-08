@@ -9,6 +9,7 @@ interface Props {
   userId: string;
 }
 
+/** 팔로워/팔로잉 페이지 */
 function FollowPage({ userId }: Props) {
   const { profile } = useProfile(userId);
 

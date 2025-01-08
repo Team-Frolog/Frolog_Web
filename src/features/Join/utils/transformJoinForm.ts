@@ -1,6 +1,7 @@
 import { transformeInfoToArray } from '@/utils/transformInfo';
 import { Consent, JoinForm } from '../types/form';
 
+/** 회원가입 api 요청을 보내기 위한 객체 형태를 만드는 함수 */
 export const transformJoinForm = (
   joinFormData: JoinForm,
   email_verified_token: string

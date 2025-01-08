@@ -4,6 +4,7 @@ import ToggleButton from '@/components/Form/Button/ToggleButton';
 import React from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
+/** 메모 폼 하단 공개/비공개 토글 버튼 */
 function PublicToggle() {
   const { setValue } = useFormContext();
   const isPublic = useWatch({ name: 'isPublic' });

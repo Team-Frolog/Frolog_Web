@@ -5,10 +5,13 @@ import Image from 'next/image';
 import React, { useRef } from 'react';
 
 interface Props {
+  /** 이미지 주소 */
   imgSrc: string;
+  /** 미리보기 닫힘 핸들러 */
   closePreview: () => void;
 }
 
+/** 이미지 미리보기 컴포넌트 */
 function ImagePreview({ imgSrc, closePreview }: Props) {
   const ref = useRef<HTMLImageElement | null>(null);
 

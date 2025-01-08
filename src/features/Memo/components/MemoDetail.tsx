@@ -6,9 +6,11 @@ import ImageSlider from './MemoForm/ImageForm/ImageSlider';
 import ImageSlot from './MemoForm/ImageForm/ImageSlot';
 
 interface Props {
+  /** 메모 데이터 객체 */
   memoData: GetMemoRes | undefined;
 }
 
+/** 메모 상세 컴포넌트 */
 function MemoDetail({ memoData }: Props) {
   if (!memoData) return <></>;
 

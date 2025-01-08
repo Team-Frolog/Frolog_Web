@@ -2,6 +2,7 @@ import { getExpFromToken } from '@/utils/auth/decodeToken';
 import { RefreshToken } from '@frolog/frolog-api';
 import { JWT } from 'next-auth/jwt';
 
+/** token refresh 핸들러 함수 */
 export const refreshAccessToken = async (tokenObj: JWT) => {
   try {
     const data = await new RefreshToken({

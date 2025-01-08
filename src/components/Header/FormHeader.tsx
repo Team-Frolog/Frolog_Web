@@ -7,14 +7,21 @@ import { STORAGE_KEY } from '@/constants/storage';
 import { PAGES } from '@/constants/page';
 import { BackIcon } from 'public/icons';
 
+/** 각종 폼에 할용되는 타이틀 헤더
+ * - FormLayout에 적용됩니다.
+ */
 function FormHeader() {
   const router = useRouter();
   const pathname = usePathname();
   const { title } = useFormTitle();
 
+  /** 뒤로가기 핸들러
+   * - 경로가 온보딩인 경우 메인으로 이동
+   * - 그 외의 경우에는 localStorage 내의 회원가입 폼 저장내역 삭제
+   */
   const handleClickBack = () => {
     if (pathname === PAGES.ONBOARDING) {
-      router.push('/');
+      router.push(PAGES.HOME);
     } else {
       localStorage.removeItem(STORAGE_KEY.JOIN_FORM_KEY);
       router.back();

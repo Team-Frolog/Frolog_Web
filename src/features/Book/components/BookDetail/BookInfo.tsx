@@ -5,6 +5,9 @@ interface Props {
   bookId: string;
 }
 
+/** 도서 상세 페이지 내 도서 정보 컴포넌트
+ * - ISBN, 출판사, 책 소개 정보가 포함되어 있습니다.
+ */
 function BookInfo({ bookId }: Props) {
   const { bookData } = useBook(bookId);
 
@@ -12,18 +15,22 @@ function BookInfo({ bookId }: Props) {
     <div className='flex w-full flex-col'>
       <div className='flex w-full flex-col gap-[20px] px-page py-[36px]'>
         <div className='flex w-full flex-col gap-[8px]'>
-          <h5 className='book-info-title'>출판사</h5>
-          <span className='book-info-sub'>{bookData?.publisher}</span>
+          <h5 className='text-body-lg-bold text-gray-800'>출판사</h5>
+          <span className='text-body-lg text-gray-600'>
+            {bookData?.publisher}
+          </span>
         </div>
         <div className='flex w-full flex-col gap-[8px]'>
-          <h5 className='book-info-title'>ISBN</h5>
-          <span className='book-info-sub'>{bookId}</span>
+          <h5 className='text-body-lg-bold text-gray-800'>ISBN</h5>
+          <span className='text-body-lg text-gray-600'>{bookId}</span>
         </div>
       </div>
       <hr className='h-[2px] w-full bg-gray-300' />
       <div className='flex w-full flex-col gap-[20px] px-page py-[36px]'>
-        <h5 className='book-info-title'>책 소개</h5>
-        <p className='book-info-sub safe-bottom break-all'>{bookData?.desc}</p>
+        <h5 className='text-body-lg-bold text-gray-800'>책 소개</h5>
+        <p className='safe-bottom break-all text-body-lg text-gray-600'>
+          {bookData?.desc}
+        </p>
       </div>
     </div>
   );

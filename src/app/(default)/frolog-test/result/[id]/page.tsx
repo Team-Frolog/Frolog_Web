@@ -1,7 +1,7 @@
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 import React from 'react';
-import { testResult, HeaderButtons, StartButton } from '@/features/Test';
+import { testResult, HeaderButtons, StartButton } from '@/features/FrologTest';
 import { Metadata } from 'next';
 
 interface Props {

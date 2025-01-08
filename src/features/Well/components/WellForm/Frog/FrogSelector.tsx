@@ -3,12 +3,14 @@ import { useFormContext } from 'react-hook-form';
 import { motion, useAnimationControls } from 'framer-motion';
 import { ExpandIcon } from 'public/icons';
 import { useFrogs } from '@/features/Well/hooks/useFrogs';
-import FrologItem from '@/components/Item/FrologItem';
+import FrologItem from '@/components/FrologItem/FrologItem';
 
 interface Props {
+  /** 유저 id */
   userId: string;
 }
 
+/** 개구리 캐릭터 선택 컴포넌트 */
 function FrogSelector({ userId }: Props) {
   const { watch, setValue } = useFormContext();
   const { frogs } = useFrogs(userId);

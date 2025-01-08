@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { QUERY_KEY } from '@/constants/query';
 import { changeLikeThisComment } from '../../api/activity.api';
 import { GetCommentsRes } from '../../types/comment';
 import { toggleLike } from '../../utils/toggleLike';
@@ -14,20 +15,26 @@ export interface CommentData {
   pageParams: number[];
 }
 
-export const useChangeComment = (itemId: string, isReview: boolean) => {
+/** 댓글에 대한 좋아요, 삭제 핸들러가 있는 훅 */
+export const useChangeComment = (contentId: string, isReview: boolean) => {
   const queryClient = useQueryClient();
 
   const { mutate: handleChangeLike } = useMutation({
     mutationFn: (req: { id: string; value: boolean }) =>
-      changeLikeThisComment({ ...req, itemId }, isReview),
+      changeLikeThisComment({ ...req, contentId }, isReview),
     onMutate: async ({ id }) => {
-      await queryClient.cancelQueries({ queryKey: ['comments', itemId] });
-      const prevComments = queryClient.getQueryData(['comments', itemId]);
+      await queryClient.cancelQueries({
+        queryKey: [QUERY_KEY.comments, contentId],
+      });
+      const prevComments = queryClient.getQueryData([
+        QUERY_KEY.comments,
+        contentId,
+      ]);
 
       if (!prevComments) return;
 
       queryClient.setQueryData(
-        ['comments', itemId],
+        [QUERY_KEY.comments, contentId],
         (oldData: CommentData) => ({
           ...oldData,
           pages: oldData.pages.map((page) => ({
@@ -45,7 +52,10 @@ export const useChangeComment = (itemId: string, isReview: boolean) => {
       return { prevComments };
     },
     onError: (_err, _variables, context) => {
-      queryClient.setQueryData(['comments', itemId], context?.prevComments);
+      queryClient.setQueryData(
+        [QUERY_KEY.comments, contentId],
+        context?.prevComments
+      );
     },
   });
 
@@ -53,7 +63,9 @@ export const useChangeComment = (itemId: string, isReview: boolean) => {
     mutationFn: (req: { id: string; commentId: string }) =>
       deleteComment(req, isReview),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['comments', itemId] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.comments, contentId],
+      });
     },
   });
 

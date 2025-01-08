@@ -13,6 +13,9 @@ interface Props {
   username?: string;
 }
 
+/** 프로필 폼 컴포넌트
+ * - 회원가입, 프로필 편집에서 활용됩니다.
+ */
 function ProfileForm({ type = 'join', theme = 'dark', username }: Props) {
   return (
     <div className='flex w-full flex-col gap-[36px]'>

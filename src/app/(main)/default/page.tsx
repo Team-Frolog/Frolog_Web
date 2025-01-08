@@ -20,7 +20,7 @@ function DefaultWellPage() {
         <WellTitle title='소중한 나의 첫 우물' />
         <WellActionButton
           btnName='로그인이 필요해요'
-          type='arrow'
+          iconType='arrow'
           isPointing
           href={PAGES.ONBOARDING}
         />

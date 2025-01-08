@@ -1,3 +1,4 @@
+/** 생년월일을 이용하여 나이대를 구하는 함수 (ex. 20대) */
 export const getAgeCategory = (birthDate: string) => {
   const today = new Date();
   const birth = new Date(birthDate);

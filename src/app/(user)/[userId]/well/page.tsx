@@ -13,6 +13,7 @@ import {
 } from '@tanstack/react-query';
 import { SearchWell } from '@frolog/frolog-api';
 import { DEFAULT_LIMIT } from '@/constants/api';
+import { QUERY_KEY } from '@/constants/query';
 
 export const metadata: Metadata = {
   title: '우물 목록',
@@ -47,7 +48,7 @@ async function UserWellListPage({ params: { userId } }: Props) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ['wells', userId],
+    queryKey: [QUERY_KEY.wellList, userId],
     queryFn: ({ pageParam }) =>
       new SearchWell({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,

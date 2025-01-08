@@ -12,6 +12,7 @@ interface Props {
   setActiveSlide: React.Dispatch<React.SetStateAction<number>>;
 }
 
+/** 온보딩 소개 슬라이드 */
 function OnBoardingSlide({ setActiveSlide }: Props) {
   const router = useRouter();
 

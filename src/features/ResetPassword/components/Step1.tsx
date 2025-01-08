@@ -5,6 +5,7 @@ import { useStepActions } from '@/store/stepStore';
 import FormInput from '@/components/Form/Input/FormInput';
 import SendButton from '@/components/Form/Button/SendButton';
 
+/** 비밀번호 재설정 1단계: 이메일 입력 폼 */
 function Step1() {
   const { moveStep } = useStepActions();
   const { handleValidateEmail, isEmailChecked, setIsEmailChecked } =

@@ -2,6 +2,7 @@ import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 import React from 'react';
 
+/** 도서 검색 > 리뷰 모음 중 리뷰가 없는 경우를 나타내는 컴포넌트 */
 function NoReviewForBook() {
   return (
     <div

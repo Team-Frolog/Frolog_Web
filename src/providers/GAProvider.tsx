@@ -1,5 +1,6 @@
 import Script from 'next/script';
 
+/** Google Analytics Provider */
 function GAProvider({ gaId }: { gaId: string }) {
   return (
     <>

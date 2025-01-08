@@ -9,9 +9,11 @@ import Book from './Book';
 
 interface Props {
   bookId: string;
+  /** 도서를 클릭하여 도서 상세 페이지로 넘어갈 수 있는지의 여부 */
   canClick?: boolean;
 }
 
+/** 도서 상세 페이지, 리뷰/메모 리스트 내 도서 정보 컴포넌트 (도서 커버, 배경 포함) */
 function BookInfo({ bookId, canClick = false }: Props) {
   const { bookData } = useBook(bookId);
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ScrollToTop from '@/components/Gesture/ScrollToTop';
-import NavigationBar from '@/components/NavigationBar';
+import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import MainLayout from '@/layouts/MainLayout';
 import { useWell } from '../../hooks/useWell';
@@ -10,12 +10,17 @@ import WellItemList from './WellItem/WellItemList';
 import WellHeader from './WellHeader';
 
 interface Props {
+  /** 우물 소유 유저 id */
   userId: string;
+  /** 우물 id */
   wellId: string;
+  /** 현재 세션에 로그인 된 유저의 id */
   sessionUserId?: string;
+  /** 현재 세션에 로그인 된 유저의 기본 우물 id */
   defaultWellId?: string | null;
 }
 
+/** 우물 상세 페이지 */
 function WellDetailPage({
   userId,
   wellId,
@@ -46,7 +51,9 @@ function WellDetailPage({
             isDefaultWell={isDefaultWell}
           />
         )}
-        {isRendering && <ScrollToTop type={isRootUser ? 'nav' : 'floating'} />}
+        {isRendering && (
+          <ScrollToTop isOnNav={isRootUser ? 'nav' : 'floating'} />
+        )}
       </MainLayout>
       {isRootUser && <NavigationBar />}
     </>

@@ -10,10 +10,13 @@ import Well8 from 'public/images/well/outline/8.svg';
 import Well9 from 'public/images/well/outline/9.svg';
 
 interface Props {
+  /** 우물 모양 타입 id */
   welltype: number;
+  /** 색상 */
   fill: string;
 }
 
+/** 우물 모양 outline 컴포넌트 */
 function WellOutline({ welltype, fill }: Props) {
   switch (welltype) {
     case 1:

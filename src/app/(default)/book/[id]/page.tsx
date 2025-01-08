@@ -13,6 +13,7 @@ import { DEFAULT_LIMIT } from '@/constants/api';
 import { GetBook, SearchReview } from '@frolog/frolog-api';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/auth';
+import { QUERY_KEY } from '@/constants/query';
 
 interface Props {
   params: {
@@ -29,7 +30,7 @@ async function BookPage({ params: { id } }: Props) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['bookInfo', id],
+    queryKey: [QUERY_KEY.bookInfo, id],
     queryFn: () =>
       new GetBook({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
@@ -39,7 +40,7 @@ async function BookPage({ params: { id } }: Props) {
   });
 
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ['reviews', id],
+    queryKey: [QUERY_KEY.reviewList, id],
     queryFn: ({ pageParam }) =>
       new SearchReview({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,

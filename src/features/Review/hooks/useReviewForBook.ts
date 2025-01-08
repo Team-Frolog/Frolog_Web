@@ -1,11 +1,13 @@
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { DEFAULT_LIMIT } from '@/constants/api';
+import { QUERY_KEY } from '@/constants/query';
 import { getReviewList } from '../api/review.api';
 
+/** 도서 상세 > 리뷰 모음 리스트 쿼리 훅 */
 export const useReviewForBook = (isbn: string) => {
   const { data, hasNextPage, fetchNextPage, isFetched, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
-      queryKey: ['reviews', isbn],
+      queryKey: [QUERY_KEY.reviewList, isbn],
       queryFn: ({ pageParam }) =>
         getReviewList({ isbn, limit: DEFAULT_LIMIT, page: pageParam }),
       initialPageParam: 0,

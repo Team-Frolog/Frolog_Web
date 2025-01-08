@@ -14,8 +14,9 @@ interface Props {
   extraClass?: string;
 }
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
+/** 기본 버튼 컴포넌트와 같은 스타일의 Link */
 function LinkButton({
   children,
   route,

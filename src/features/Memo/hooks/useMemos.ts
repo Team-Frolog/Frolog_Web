@@ -5,6 +5,7 @@ import {
   useSuspenseInfiniteQuery,
 } from '@tanstack/react-query';
 import { GetMemoRes, SearchMemoRes } from '@frolog/frolog-api';
+import { QUERY_KEY } from '@/constants/query';
 import { deleteMemo, getMemos } from '../api/memo.api';
 
 export interface MemoData {
@@ -17,13 +18,14 @@ export interface MemoData {
   pageParams: number[];
 }
 
+/** 메모 리스트 쿼리 훅 */
 export const useMemos = (bookId: string, userId: string) => {
   const [memoId, setMemoId] = useState<string>('');
   const queryClient = useQueryClient();
 
   const { data, hasNextPage, fetchNextPage, isFetched, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
-      queryKey: ['memos', bookId, userId],
+      queryKey: [QUERY_KEY.memoList, bookId, userId],
       queryFn: async ({ pageParam }) => getMemos(bookId, userId, pageParam),
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {
@@ -44,17 +46,17 @@ export const useMemos = (bookId: string, userId: string) => {
     mutationFn: () => deleteMemo({ id: memoId }),
     onMutate: async () => {
       await queryClient.cancelQueries({
-        queryKey: ['memos', bookId, userId],
+        queryKey: [QUERY_KEY.memoList, bookId, userId],
       });
 
       const previousMemos = queryClient.getQueryData([
-        'memos',
+        QUERY_KEY.memoList,
         bookId,
         userId,
       ]) as SearchMemoRes;
 
       queryClient.setQueryData(
-        ['memos', bookId, userId],
+        [QUERY_KEY.memoList, bookId, userId],
         (oldData: MemoData) => ({
           ...oldData,
           pages: oldData.pages.map((page) => ({
@@ -68,12 +70,12 @@ export const useMemos = (bookId: string, userId: string) => {
     },
     onError: (_err, _variable, context) => {
       queryClient.setQueryData(
-        ['memos', bookId, userId],
+        [QUERY_KEY.memoList, bookId, userId],
         context?.previousMemos
       );
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['memos', bookId, userId] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY, bookId, userId] });
     },
   });
 

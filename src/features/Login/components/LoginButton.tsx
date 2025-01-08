@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
+/** 로그인 버튼 */
 function LoginButton() {
   const {
     watch,
@@ -13,7 +14,6 @@ function LoginButton() {
   return (
     <ButtonWithText
       btnText='로그인 하기'
-      route='/login'
       disabled={!isValid || !watch('email') || !watch('password')}
       btnType='submit'
       gap={14}

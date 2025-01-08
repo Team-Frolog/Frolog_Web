@@ -10,17 +10,22 @@ import { useRouter } from 'next/navigation';
 import { isGetMemoRes } from '../../utils/typeGuard';
 
 interface Props {
+  /** 피드 데이터 객체 */
   feedData: GetReviewRes | GetMemoRes;
+  /** 좋아요 핸들러 */
   onClickLike: () => void;
+  /** 댓글 클릭 핸들러 */
   onClickComment: () => void;
-  onClickDetail: () => void;
+  /** 스크롤 저장 핸들러  */
+  onSaveScroll: () => void;
 }
 
+/** 피드 아이템 중 댓글, 좋아요, 우물에 담기 등이 포함된 하단 바 */
 function FeedBar({
   feedData,
   onClickLike,
   onClickComment,
-  onClickDetail,
+  onSaveScroll,
 }: Props) {
   const router = useRouter();
 
@@ -56,7 +61,7 @@ function FeedBar({
         whileTap={{ scale: 1.1 }}
         onClick={() =>
           runWhenLoggedIn(() => {
-            onClickDetail();
+            onSaveScroll();
             router.push(`/book/${feedData.isbn}`);
           }, 'feed')
         }

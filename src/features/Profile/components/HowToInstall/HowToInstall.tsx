@@ -8,6 +8,7 @@ import { PAGES } from '@/constants/page';
 import { aos, ios } from '../../data/howToInstall';
 import Instruction from './Instruction';
 
+/** 프롤로그 앱 설치 방법 컴포넌트 */
 function HowToInstall() {
   const router = useRouter();
   const tap = useSearchParams().get('tap') || 'ios';

@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { useEffect } from 'react';
 
+/** deprecated */
 const usePreventRefresh = () => {
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {

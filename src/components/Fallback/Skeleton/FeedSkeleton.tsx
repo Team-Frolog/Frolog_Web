@@ -21,12 +21,12 @@ function FeedSkeleton() {
               </div>
             </div>
           </div>
-          <div className='skeleton-animation flex flex-col gap-[20px] bg-white px-page py-[20px]'>
+          <div className='skeleton-animation flex-column gap-[20px] bg-white px-page py-[20px]'>
             <div className='flex-col-center w-full gap-[8px]'>
               <div className='skeleton-line h-[30px]' />
               <div className='skeleton-line h-[30px]' />
             </div>
-            <div className='flex flex-col gap-[12px]'>
+            <div className='flex-column gap-[12px]'>
               <span className='skeleton-text h-[32px] w-[180px]' />
               <span className='skeleton-line h-[40px]' />
             </div>

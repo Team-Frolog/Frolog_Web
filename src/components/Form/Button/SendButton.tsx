@@ -4,11 +4,15 @@ import { useFormContext } from 'react-hook-form';
 import Button from '../../Button/Button';
 
 interface Props {
-  onNext: () => void;
-  isDisabled: boolean;
+  /** 컴포넌트 사용처 */
   type: 'signUp' | 'resetPassword';
+  /** 인증번호 요청 후 동작 함수 */
+  onNext: () => void;
+  /** 비활성화 여부 */
+  isDisabled: boolean;
 }
 
+/** 인증번호 요청 버튼 */
 function SendButton({ onNext, isDisabled, type }: Props) {
   const { isSendFailed, sendEmailCode } = useVerification();
   const { watch, setError } = useFormContext();

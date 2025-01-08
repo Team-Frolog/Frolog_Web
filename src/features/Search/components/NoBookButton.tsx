@@ -5,9 +5,11 @@ import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 interface Props {
+  /** 클릭 핸들러 */
   onClick: () => void;
 }
 
+/** 검색되지 않는 책인 경우, 책 등록을 요청할 수 있는 버튼 */
 function NoBookButton({ onClick }: Props) {
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 

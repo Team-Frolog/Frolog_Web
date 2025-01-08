@@ -1,3 +1,4 @@
+import { QUERY_KEY } from '@/constants/query';
 import { WellForm } from '@/features/Well';
 import { GetWell } from '@frolog/frolog-api';
 import {
@@ -35,7 +36,7 @@ async function WellEditPage({ params: { wellId, userId } }: Props) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['well', wellId],
+    queryKey: [QUERY_KEY.wellDetail, wellId],
     queryFn: () =>
       new GetWell({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,

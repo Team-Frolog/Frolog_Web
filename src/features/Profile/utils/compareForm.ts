@@ -1,6 +1,7 @@
 import { GetProfileDetailRes } from '@frolog/frolog-api';
 import { EditReq } from '../types/editForm';
 
+/** 프로필이 편집 되었는지 초기 객체와 비교하는 함수 */
 export const compareForm = (
   defaultValue: GetProfileDetailRes,
   editValue: EditReq

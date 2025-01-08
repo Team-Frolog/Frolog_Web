@@ -10,6 +10,9 @@ interface Props {
   theme: 'dark' | 'light';
 }
 
+/** 직업 선택 컴포넌트
+ * - react-hook-form이 적용되어 있습니다.
+ */
 function JobSelector({ theme }: Props) {
   const { setValue } = useFormContext();
   const original_value = useWatch({ name: 'personal_infos.occupation.value' });

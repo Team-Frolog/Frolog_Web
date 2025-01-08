@@ -21,9 +21,9 @@ function MissionPage() {
   return (
     <>
       <div className='flex w-full flex-col gap-[20px]'>
-        <div className='flex flex-col gap-[4px] rounded-[20px] bg-[#FF8BCA] px-[20px] pt-[20px] text-white'>
+        <div className='flex-column gap-[4px] rounded-[20px] bg-[#FF8BCA] px-[20px] pt-[20px] text-white'>
           <h5 className='text-title-xl-bold'>다 읽은 책 추가</h5>
-          <div className='flex flex-col'>
+          <div className='flex-column'>
             <span className='text-body-lg-bold'>1일 최대 20p</span>
             <span className='self-end text-body-lg'>1회 20p</span>
             <Image
@@ -35,9 +35,9 @@ function MissionPage() {
             />
           </div>
         </div>
-        <div className='flex flex-col gap-[4px] rounded-[20px] bg-[#85DCFF] px-[20px] pt-[20px] text-white'>
+        <div className='flex-column gap-[4px] rounded-[20px] bg-[#85DCFF] px-[20px] pt-[20px] text-white'>
           <h5 className='text-title-xl-bold'>읽는 중 책 추가</h5>
-          <div className='flex flex-col'>
+          <div className='flex-column'>
             <span className='text-body-lg-bold'>1일 최대 20p</span>
             <span className='self-end text-body-lg'>1회 10p</span>
             <Image

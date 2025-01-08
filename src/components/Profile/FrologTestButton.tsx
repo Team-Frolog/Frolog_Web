@@ -4,8 +4,11 @@ import { PAGES } from '@/constants/page';
 import { usePathname, useRouter } from 'next/navigation';
 import { STORAGE_KEY } from '@/constants/storage';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { getTestTypeById } from '@/features/Test';
+import { getTestTypeById } from '@/features/FrologTest';
 
+/** 프로필 편집 내 테스트 버튼
+ * - react-hook-form이 적용되어 있습니다.
+ */
 function FrologTestButton() {
   const router = useRouter();
   const pathname = usePathname();

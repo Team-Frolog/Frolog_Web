@@ -1,17 +1,20 @@
 import { useEffect, useRef } from 'react';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
+import { QUERY_KEY } from '@/constants/query';
 import { searchBook } from '../api/search.api';
 
+/** 검색 핸들링 훅 */
 export const useSearch = () => {
   const queries = useSearchParams();
   const searchValue = queries.get('query');
   const queryClient = useQueryClient();
   const mainRef = useRef<HTMLElement>(null);
 
+  /** 무한스크롤 리셋을 위한 쿼리 제거 */
   useEffect(() => {
     queryClient.removeQueries({
-      queryKey: ['search', [searchValue]],
+      queryKey: [QUERY_KEY.searchResult, [searchValue]],
     });
   }, [queryClient, searchValue]);
 
@@ -23,7 +26,7 @@ export const useSearch = () => {
     isLoading,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ['search', [searchValue]],
+    queryKey: [QUERY_KEY.searchResult, [searchValue]],
     queryFn: async ({ pageParam }) => {
       if (searchValue === null) {
         return {
@@ -56,6 +59,7 @@ export const useSearch = () => {
   const isEmpty = !data?.pages.length;
   const isSearched = searchValue !== null;
 
+  /** 재 검색 시 스크롤 상단으로 이동 */
   useEffect(() => {
     if (mainRef.current) {
       mainRef.current.scrollTop = 0;

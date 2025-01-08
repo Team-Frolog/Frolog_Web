@@ -10,6 +10,9 @@ interface Props extends HTMLMotionProps<'button'> {
   theme?: 'dark' | 'light';
 }
 
+/** Checkbox 기능을 하는 버튼
+ * - theme을 기준으로 dark / light 모드를 전환합니다.
+ */
 function CheckButton({ isChecked, theme = 'dark', ...props }: Props) {
   return (
     <motion.button

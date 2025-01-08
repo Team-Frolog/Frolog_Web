@@ -16,6 +16,7 @@ interface Props {
   };
 }
 
+/** 사용자 본인의 리뷰 페이지 */
 function MyReviewPage({ params: { bookId, reviewId } }: Props) {
   const isEditing = !!useSearchParams().get('edit');
   const router = useRouter();

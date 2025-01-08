@@ -24,6 +24,7 @@ export const useJoin = (getValues: () => JoinForm) => {
   const { resetStep } = useStepActions();
   const [isLoading, setIsLoading] = useState(false);
 
+  /** 로그인 처리 핸들러 */
   const { mutate: handleLogin } = useMutation({
     mutationFn: async (username: string) => {
       const account = localStorage.getItem(STORAGE_KEY.TEMP_ACCOUNT_KEY);
@@ -64,6 +65,7 @@ export const useJoin = (getValues: () => JoinForm) => {
     }
   }, [getValues, step]);
 
+  /** 회원가입 처리 핸들러 */
   const { mutate: handleSignUp } = useMutation<SignUpRes, Error, SignUpReq>({
     mutationFn: async (formData: SignUpReq) => {
       setIsLoading(true);

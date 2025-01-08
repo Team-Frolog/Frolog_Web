@@ -1,14 +1,16 @@
 'use client';
 
 import React from 'react';
-import FrologItem from '@/components/Item/FrologItem';
+import FrologItem from '@/components/FrologItem/FrologItem';
 import { useStore } from '../hooks/useStore';
 import { useWallet } from '../hooks/useWallet';
 
 interface Props {
+  /** 현재 로그인한 유저 id */
   userId: string;
 }
 
+/** 상점 아이템 리스트 컴포넌트 */
 function StoreItemList({ userId }: Props) {
   const { points } = useWallet(userId);
   const { storeItems, handlePurchase } = useStore(userId, points);

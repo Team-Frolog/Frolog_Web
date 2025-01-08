@@ -2,6 +2,7 @@ import React from 'react';
 import ColorSelector from './ColorSelector';
 import ShapeSelector from './ShapeSelector';
 
+/** 우물 색상/타입 선택 폼 */
 function ShapeForm() {
   return (
     <div className='flex w-full flex-col gap-[12px]'>

@@ -1,3 +1,4 @@
+/** deprecated */
 export const getMargin = () => {
   const margins = [
     '0px 0px 0px 30px',

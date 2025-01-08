@@ -14,6 +14,7 @@ interface Props {
   isRootUser: boolean;
 }
 
+/** 리뷰 리스트 컴포넌트 */
 function ReviewList({ bookId, wellId, userId, isRootUser }: Props) {
   const { reviews, setReviewId, deleteReview, isEmpty, isFetched } = useReviews(
     bookId,

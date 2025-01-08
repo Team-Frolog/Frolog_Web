@@ -31,7 +31,7 @@ export const changeLikeThisFeed = async (
 };
 
 interface LikeComment {
-  itemId: string;
+  contentId: string;
   id: string;
   value: boolean;
 }
@@ -40,13 +40,13 @@ export const changeLikeThisComment = async (
   req: LikeComment,
   isReview: boolean
 ) => {
-  const { itemId, id, value } = req;
+  const { contentId, id, value } = req;
   let result;
 
   if (isReview) {
-    result = await likeReviewComment.fetch({ review_id: itemId, id, value });
+    result = await likeReviewComment.fetch({ review_id: contentId, id, value });
   } else {
-    result = await likeMemoComment.fetch({ memo_id: itemId, id, value });
+    result = await likeMemoComment.fetch({ memo_id: contentId, id, value });
   }
 
   return result;

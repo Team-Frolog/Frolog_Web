@@ -1,3 +1,6 @@
+/** 버튼 색상을 반환하는 함수
+ * - theme: normal, error, gray, light or etc.
+ */
 export const getButtonColor = (theme: string) => {
   switch (theme) {
     case 'normal':

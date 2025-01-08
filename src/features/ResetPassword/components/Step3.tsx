@@ -3,6 +3,7 @@ import PasswordForm from '@/components/Form/Password/PasswordForm';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
+/** 비밀번호 재설정 3단계: 비밀번호 입력 폼 */
 function Step3() {
   const {
     watch,

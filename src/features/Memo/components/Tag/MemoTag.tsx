@@ -2,9 +2,11 @@ import React from 'react';
 import { memoTag, MemoType } from '../../data/memoTag';
 
 interface Props {
+  /** 메모 태그의 키값 */
   type: MemoType;
 }
 
+/** deprecated */
 function MemoTag({ type }: Props) {
   const { icon, label } = memoTag[type];
 

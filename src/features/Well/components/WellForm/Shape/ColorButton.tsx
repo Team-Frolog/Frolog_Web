@@ -1,11 +1,15 @@
 import React from 'react';
 
 interface Props {
+  /** 색상 id */
   id: string;
+  /** 선택 여부 */
   isSelected: boolean;
+  /** 클릭 핸들러 */
   onClick: () => void;
 }
 
+/** 색상 버튼 컴포넌트 */
 function ColorButton({ id, isSelected, onClick }: Props) {
   return (
     <button

@@ -8,6 +8,7 @@ import TermsContainer from './TermsContainer';
 import CheckAllItem from './CheckAllItem';
 import { requiredConsentsKeys } from '../../data/joinForm';
 
+/** 회원가입 1단계: 약관동의 폼 */
 function Step1() {
   const { moveStep } = useStepActions();
   const { watch } = useFormContext();

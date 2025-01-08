@@ -7,6 +7,9 @@ interface Props {
   theme: 'dark' | 'light' | 'transparent';
 }
 
+/** 프롤로그 로고, 스피너가 포함된 로딩 화면
+ * @param theme - dark, light, transparent
+ */
 function LoadingOverlay({ theme }: Props) {
   return (
     <Portal>

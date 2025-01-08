@@ -4,10 +4,13 @@ import { useFormContext } from 'react-hook-form';
 import { LoginForm as LoginFormType } from '../types/login';
 
 interface Props {
+  /** 로그인 실패 flag 변수 setter */
   setIsFaild: React.Dispatch<React.SetStateAction<boolean>>;
+  /** 로그인 핸들러 */
   userLogin: (data: LoginFormType) => Promise<void>;
 }
 
+/** 로그인 폼 */
 function LoginForm({ setIsFaild, userLogin }: Props) {
   const {
     register,
@@ -25,7 +28,7 @@ function LoginForm({ setIsFaild, userLogin }: Props) {
   };
 
   return (
-    <div className='flex flex-col gap-[32px]'>
+    <div className='flex-column gap-[32px]'>
       <FormInput
         autoFocus
         type='email'

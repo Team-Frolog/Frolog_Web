@@ -14,6 +14,7 @@ interface Props {
   };
 }
 
+/** 새 메모 작성 페이지 */
 function NewMemoPage({ params: { wellId, bookId } }: Props) {
   const { handleAddMemo, isLoading } = useAddMemo(wellId, bookId);
 

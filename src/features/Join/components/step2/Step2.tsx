@@ -8,6 +8,7 @@ import { useStepActions } from '@/store/stepStore';
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+/** 회원가입 2단계: 이메일, 비밀번호 입력 폼 */
 function Step2() {
   const { moveStep } = useStepActions();
   const { handleValidateEmail, isEmailChecked, setIsEmailChecked } =
@@ -32,7 +33,7 @@ function Step2() {
   return (
     <>
       <div className='flex w-full flex-col'>
-        <div className='flex flex-col gap-[36px]'>
+        <div className='flex-column gap-[36px]'>
           <FormInput
             autoFocus
             type='email'

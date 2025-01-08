@@ -7,23 +7,29 @@ import { chat } from '../../../data/chat';
 import { getRandomMessage } from '../../../utils/getRandomMessage';
 
 interface Props {
+  /** 말풍선 메세지 */
   message?: string;
+  /** 말풍선 하단 margin */
   marginBottom: number;
 }
 
+/** 우물 내 개구리 말풍선 컴포넌트 */
 function GuideChat({ message, marginBottom }: Props) {
   const userId = useUserId();
   const [isVisible, setIsVisible] = useState(true);
   const [msg, setMsg] = useState(message);
 
   useEffect(() => {
+    // 로그인 한 경우
     if (userId) {
       if (!message) {
         setMsg(getRandomMessage());
       } else {
         setMsg(message);
       }
-    } else {
+    }
+    // 로그인 하지 않은 경우
+    else {
       setMsg(chat.not_loggedIn);
     }
   }, [userId, message]);

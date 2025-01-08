@@ -6,6 +6,7 @@ interface Props {
   category: string;
 }
 
+/** 도서 상세 > 리뷰 모음의 리뷰 아이템 헤더 부분 컴포넌트 */
 function ReviewItemHeader({ rating, category }: Props) {
   return (
     <div className='pt-[30px]'>
@@ -16,7 +17,7 @@ function ReviewItemHeader({ rating, category }: Props) {
         <Rating
           rating={rating}
           textClass={`text-heading-lg-bold text-category-text-${category}`}
-          category={category}
+          categoryId={category}
           hasComment
         />
       </div>

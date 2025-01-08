@@ -8,11 +8,15 @@ import { ReviewForm as ReviewFormType } from '../../types/review';
 import { useAddReview } from '../../hooks/useAddReview';
 
 interface Props {
+  /** 도서 id */
   isbn: string;
+  /** 우물 id */
   wellId: string;
+  /** 현재 유저 id */
   userId: string;
 }
 
+/** 새 리뷰 작성 폼 컴포넌트 */
 function NewReviewForm({ isbn, wellId, userId }: Props) {
   const methods = useForm<ReviewFormType>({
     mode: 'onBlur',

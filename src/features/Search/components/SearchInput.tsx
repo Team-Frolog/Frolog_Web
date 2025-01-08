@@ -6,9 +6,11 @@ import { ClearIcon, SearchIcon } from 'public/icons';
 import React, { useState, KeyboardEvent } from 'react';
 
 interface Props {
+  /** 검색 메인 페이지인지 여부 */
   isMain?: boolean;
 }
 
+/** 검색 input 컴포넌트 */
 function SearchInput({ isMain = false }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams().get('query');
@@ -21,7 +23,7 @@ function SearchInput({ isMain = false }: Props) {
         // eslint-disable-next-line no-useless-escape
         .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gim, '');
       setSearchValue(value);
-      router.replace(`/search?query=${value}`);
+      router.replace(`${PAGES.SEARCH}?query=${value}`);
     }
   };
 

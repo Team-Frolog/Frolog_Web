@@ -13,6 +13,7 @@ interface Props {
   bookData: GetBookRes;
 }
 
+/** 도서 검색 결과 아이템 컴포넌트 */
 function BookListItem({ bookData }: Props) {
   const {
     isbn,
@@ -44,7 +45,7 @@ function BookListItem({ bookData }: Props) {
         />
       </div>
       <div className='flex flex-1 flex-col gap-[16px]'>
-        <div className='flex flex-col gap-[4px]'>
+        <div className='flex-column gap-[4px]'>
           {has_review && (
             <div className='flex'>
               <span className='box-border rounded-[20px] bg-main px-[8px] py-[4px] text-caption-bold text-white'>
@@ -58,9 +59,9 @@ function BookListItem({ bookData }: Props) {
             {author} | {publisher}
           </span>
         </div>
-        <div className='flex flex-col gap-[8px]'>
+        <div className='flex-column gap-[8px]'>
           <Rating rating={avg_rating || null} />
-          <div className='flex flex-col gap-[4px]'>
+          <div className='flex-column gap-[4px]'>
             {avg_rating !== 0 ? (
               <>
                 <Tag

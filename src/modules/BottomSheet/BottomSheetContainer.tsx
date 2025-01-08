@@ -9,6 +9,7 @@ interface Props {
   bottomSheet: BottomSheetProps | null;
 }
 
+/** 바텀시트를 렌더링하기 위한 wrapping 컨테이너 */
 function BottomSheetContainer({ bottomSheet }: Props) {
   return (
     <div id='sheet-container'>

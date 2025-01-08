@@ -7,6 +7,7 @@ export interface StepProps {
   children: ReactNode;
 }
 
+/** deprecated */
 export interface FunnelProps {
   children: Array<ReactElement<StepProps>>;
 }

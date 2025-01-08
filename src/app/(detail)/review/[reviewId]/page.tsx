@@ -9,6 +9,7 @@ import {
 import { GetReview } from '@frolog/frolog-api';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/auth';
+import { QUERY_KEY } from '@/constants/query';
 
 interface Props {
   params: {
@@ -25,7 +26,7 @@ async function ReviewPage({ params: { reviewId } }: Props) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['reviewDetail', reviewId],
+    queryKey: [QUERY_KEY.reviewDetail, reviewId],
     queryFn: () =>
       new GetReview({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,

@@ -5,9 +5,11 @@ import {
   useSuspenseInfiniteQuery,
 } from '@tanstack/react-query';
 import useCommentStore from '@/store/commentStore';
+import { QUERY_KEY } from '@/constants/query';
 import { addNewComment, getComments } from '../../api/comments.api';
 import { GetCommentsRes, PostComments } from '../../types/comment';
 
+/** 댓글 쿼리 훅 */
 export const useComments = (id: string, isReview: boolean) => {
   const [comment, setComment] = useState('');
   const queryClient = useQueryClient();
@@ -15,7 +17,7 @@ export const useComments = (id: string, isReview: boolean) => {
 
   const { data, fetchNextPage, hasNextPage, isFetching, isFetched } =
     useSuspenseInfiniteQuery<GetCommentsRes>({
-      queryKey: ['comments', id],
+      queryKey: [QUERY_KEY.comments, id],
       queryFn: ({ pageParam }) =>
         getComments({ id, isReview, page: pageParam as number, depth: 0 }),
       initialPageParam: 0,
@@ -42,10 +44,10 @@ export const useComments = (id: string, isReview: boolean) => {
       setComment('');
       if (req.parent) {
         queryClient.invalidateQueries({
-          queryKey: ['childComments', req.parent],
+          queryKey: [QUERY_KEY.childComments, req.parent],
         });
       }
-      queryClient.invalidateQueries({ queryKey: ['comments', id] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.comments, id] });
     },
   });
 

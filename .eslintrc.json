@@ -15,7 +15,11 @@
     "src/middleware.ts",
     "src/types",
     "tailwind.config.ts",
-    "next.config.js"
+    "next.config.js",
+    "jest.setup.js",
+    "jest.config.js",
+    "src/styles",
+    "src/stories"
   ], // eslint 미적용될 폴더나 파일
   "rules": {
     "react/display-name": "off",

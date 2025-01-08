@@ -58,7 +58,3 @@ export { default as MemoLight } from './memo/memo-light.svg';
 export { default as MemoPin } from './memo/memo-pin.svg';
 export { default as ImgPlusIcon } from './memo/icon-plus.svg';
 export { default as DeleteImgIcon } from './memo/x-light.svg';
-
-// counter
-export { default as IncreaseIcon } from './counter/plus.svg';
-export { default as DecreaseIcon } from './counter/minus.svg';

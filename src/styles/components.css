@@ -1,31 +1,14 @@
 @import 'tailwindcss/components';
 
 @layer components {
+  .review-item {
+    @apply flex w-full flex-col gap-[20px] rounded-[20px] bg-white px-[24px] py-[36px] text-gray-800 last:rounded-b-none;
+  }
   .navItem {
     @apply flex flex-col items-center gap-[4px];
   }
-  .share-tooltip {
-    @apply absolute bottom-[-52px] right-[-10px] rounded-[12px] bg-gray-300 p-[12px] text-center text-body-sm text-gray-800 after:absolute after:right-[15px] after:top-[-5px] after:h-0 after:w-0 after:rotate-45 after:border-[8px] after:border-solid after:border-gray-300;
-  }
-  .circle {
+  .pointing-circle {
     @apply absolute h-[320px] w-[320px] rounded-[50%] border-[5px] border-white bg-none;
-  }
-  .tooltip-after {
-    /* 별개로 지정해야 하는 속성 - top || bottom, border-[width], border-[color]*/
-    @apply after:absolute after:left-1/2 after:-z-0 after:h-0 after:w-0 after:-translate-x-[50%] after:rotate-45 after:border-solid;
-  }
-  .tooltip-feed {
-    @apply absolute -top-[23px] left-[31px] h-0 w-0 rotate-0 border-solid border-transparent;
-
-    & {
-      border-width: 0 13.5px 23.4px;
-    }
-  }
-  .tooltip-no-book {
-    @apply absolute right-[-3px] top-[-90px] w-[100px] rounded-[20px] bg-gray-800 px-[16px] py-[12px] text-center text-body-lg text-white after:absolute after:bottom-[-7px] after:right-[17px] after:h-0 after:w-0 after:rotate-45 after:border-[8px] after:border-solid after:border-gray-800;
-  }
-  .review-item {
-    @apply flex w-full flex-col gap-[20px] rounded-[20px] bg-white px-[24px] py-[36px] text-gray-800 last:rounded-b-none;
   }
   .user-type-chip {
     @apply w-fit whitespace-nowrap rounded-[12px] bg-gray-200 px-[22px] py-[8px] text-body-lg-bold text-gray-800;
@@ -44,6 +27,9 @@
   }
   .non-active-circle {
     @apply h-[8px] w-[8px] rounded-[50%] border-[1.2px] border-gray-600;
+  }
+  .add-button-wrapper {
+    @apply w-full px-page pb-[24px];
   }
 
   @keyframes spin {

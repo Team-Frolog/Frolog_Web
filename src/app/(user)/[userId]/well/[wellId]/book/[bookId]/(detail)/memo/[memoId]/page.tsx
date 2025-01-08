@@ -1,3 +1,4 @@
+import { QUERY_KEY } from '@/constants/query';
 import { MyMemoPage } from '@/features/Memo';
 import { authOptions } from '@/utils/auth/auth';
 import { GetMemo } from '@frolog/frolog-api';
@@ -37,7 +38,7 @@ async function WellBookMemoPage({ params }: Props) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['memo', params.memoId],
+    queryKey: [QUERY_KEY.memoDetail, params.memoId],
     queryFn: () =>
       new GetMemo({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,

@@ -8,6 +8,10 @@ interface Props {
   errorMsg: string;
 }
 
+/** 버튼 위로 에러를 알리는 토스트
+ * - 외부에서 boolean 값을 이용해 렌더링을 제어해야 합니다.
+ * - 인증번호 폼, 로그인 폼에서 활용됩니다.
+ */
 function ErrorToast({ errorMsg }: Props) {
   return (
     <motion.div

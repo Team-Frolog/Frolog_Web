@@ -14,6 +14,7 @@ export interface QuitFormType {
   description?: string;
 }
 
+/** 회원탈퇴 폼 */
 function QuitForm() {
   const router = useRouter();
   const { reconfirmQuit } = useQuit();

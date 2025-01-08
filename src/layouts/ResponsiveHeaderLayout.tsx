@@ -9,6 +9,7 @@ interface Props {
   display?: 'flex' | 'block';
 }
 
+/** 스크롤에 따른 색상 변화 헤더 */
 function ResponsiveHeaderLayout({
   onClick,
   children,

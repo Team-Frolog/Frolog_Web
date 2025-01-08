@@ -9,6 +9,7 @@ import {
 import { GetMemo } from '@frolog/frolog-api';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/auth';
+import { QUERY_KEY } from '@/constants/query';
 
 interface Props {
   params: {
@@ -25,7 +26,7 @@ async function MemoPage({ params: { memoId } }: Props) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['memo', memoId],
+    queryKey: [QUERY_KEY.memoDetail, memoId],
     queryFn: () =>
       new GetMemo({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
