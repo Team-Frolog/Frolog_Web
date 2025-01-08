@@ -13,23 +13,25 @@ interface Props {
 function ReviewDetail({ reviewDetail }: Props) {
   if (!reviewDetail) return <></>;
 
+  const { rating, tags_neg, tags_pos, title, content } = reviewDetail;
+
   return (
     <div className='flex-child-layout gap-[36px]'>
       <div className='flex w-full flex-col gap-[36px] px-page'>
-        <RatingSelector type='default' rating={reviewDetail.rating} />
-        <MajorTagList type='pros' tagKeys={reviewDetail.tags_pos} />
-        <MajorTagList type='cons' tagKeys={reviewDetail.tags_neg} />
+        <RatingSelector type='default' rating={rating} />
+        <MajorTagList type='pros' tagKeys={tags_pos} />
+        <MajorTagList
+          type='cons'
+          tagKeys={tags_neg.length > 0 ? tags_neg : null}
+        />
       </div>
 
       <ReadOnlyTextarea
         type='bold'
         option={textareaType.oneLiner}
-        content={reviewDetail.title}
+        content={title}
       />
-      <ReadOnlyTextarea
-        option={textareaType.review}
-        content={reviewDetail.content}
-      />
+      <ReadOnlyTextarea option={textareaType.review} content={content} />
     </div>
   );
 }

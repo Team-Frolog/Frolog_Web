@@ -7,11 +7,14 @@ interface Props {
   /** 장점(pros) or 단점(cons) */
   type: TagType;
   /** 태그 키값 배열 */
-  tagKeys: string[] | undefined;
+  tagKeys: string[] | null;
 }
 
 /** 도서 상세 페이지에서 활용되는 대표 태그 5개 리스트 */
 function MajorTagList({ type, tagKeys }: Props) {
+  if (tagKeys === null) {
+    return;
+  }
   const tags = tagKeys ? getTags(type, tagKeys) : [];
 
   return (
