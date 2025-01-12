@@ -4,7 +4,6 @@ import * as Sentry from '@sentry/nextjs';
 import {
   GetEmailAvailability,
   GetEmailAvailabilityReq,
-  GetProfile,
   RequestEmailCode,
   RequestEmailCodeReq,
   SignOut,
@@ -20,8 +19,7 @@ const requestEmailCode = new RequestEmailCode(baseOptions);
 const verifyEmailCode = new VerifyEmailCode(baseOptions);
 const signOutInstance = new SignOut(baseOptions);
 
-const getProfileInstance = new GetProfile(baseOptions);
-
+// TODO: 처리 안됨
 export const signOut = async () => {
   try {
     const session = await getSession();
@@ -70,9 +68,4 @@ export const verifyCode = async (req: VerifyEmailCodeReq) => {
     Sentry.captureException(err);
     toast.error(ERROR_ALERT);
   }
-};
-
-export const getProfile = async (id: string) => {
-  const data = await getProfileInstance.fetch({ id });
-  return data;
 };
