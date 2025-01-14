@@ -1,28 +1,14 @@
-'use client';
+import React from 'react';
+import { SearchHome } from '@/features/Search';
+import { Metadata } from 'next';
 
-import React, { useEffect } from 'react';
-import MainLayout from '@/layouts/MainLayout';
-import WellEntryHeader from '@/components/Header/WellEntryHeader';
-import useAddBookStore from '@/store/addBookStore';
-import { SearchInput } from '@/features/Search';
+export const metadata: Metadata = {
+  title: '도서 검색',
+  description: '원하는 도서 검색하기',
+};
 
 function SearchMainPage() {
-  const {
-    actions: { resetWellId },
-  } = useAddBookStore();
-
-  useEffect(() => {
-    resetWellId();
-  }, []);
-
-  return (
-    <MainLayout extraClass='bg-white'>
-      <WellEntryHeader title='책 검색' />
-      <div className='w-full bg-white px-[24px]'>
-        <SearchInput isMain />
-      </div>
-    </MainLayout>
-  );
+  return <SearchHome />;
 }
 
 export default SearchMainPage;
