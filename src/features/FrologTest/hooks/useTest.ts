@@ -3,10 +3,10 @@
 import { PAGES } from '@/constants/page';
 import { STORAGE_KEY } from '@/constants/storage';
 import { useStep, useStepActions } from '@/store/stepStore';
-import { editProfile } from '@/api/profile.api';
 import { getSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { editProfile } from '@/features/Profile/api/profile.api';
 import { useMutation } from '@tanstack/react-query';
 import { EditProfileReq } from '@frolog/frolog-api';
 import { testEvaluator } from '../utils/testEvaluator';
