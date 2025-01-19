@@ -20,12 +20,16 @@ jobs:
         with:
           path: '**/node_modules'
           key:
-            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json')
-            }}-storybook
+            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json')}}-storybook
 
       - name: depedency install
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
+        run: |
+          echo "@team-frolog:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.SHARED_PACKAGE_TOKEN }}" >> .npmrc
+          npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.SHARED_PACKAGE_TOKEN }}
 
       - name: publish to chromatic
         id: chromatic
