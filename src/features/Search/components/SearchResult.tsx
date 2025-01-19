@@ -9,7 +9,6 @@ import { bottomSheet } from '@/modules/BottomSheet';
 import MainLayout from '@/layouts/MainLayout';
 import { useUserId } from '@/store/sessionStore';
 import SearchResultSkeleton from '@/components/Fallback/Skeleton/SearchResultSkeleton';
-import BookListItemSkeleton from '@/components/Fallback/Skeleton/BookListItemSkeleton';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
 import { useSearch } from '../hooks/useSearch';
 import SearchResultEmpty from './SearchResultEmpty';
@@ -24,7 +23,7 @@ function SearchResult() {
     mainRef,
     isLoading,
     isSearched,
-    isFetching,
+    isFetched,
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
@@ -53,32 +52,24 @@ function SearchResult() {
     <MainLayout
       ref={mainRef}
       isCenter={false}
-      extraClass='px-[24px] h-fit bg-white pb-[36px] pt-[24px] items-end gap-[36px]'
+      extraClass='px-[24px] h-fit bg-white pb-[36px] pt-[24px] items-end gap-[36px] bg-white'
     >
-      {isSearched && isEmpty && !isFetching && <SearchResultEmpty />}
+      {isSearched && isEmpty && isFetched && <SearchResultEmpty />}
       {!isEmpty && (
-        <div className='flex w-full flex-1 flex-col gap-[36px]'>
+        <>
           {searchResult.map((item) => (
             <BookListItem key={item.isbn} bookData={item} />
           ))}
-        </div>
+        </>
       )}
 
       {isSearched && <NoBookButton onClick={handleNoBookClick} />}
-      {isLoading && <SearchResultSkeleton />}
-      {isFetchingNextPage && (
-        <>
-          <BookListItemSkeleton />
-          <BookListItemSkeleton />
-          <BookListItemSkeleton />
-          <BookListItemSkeleton />
-          <BookListItemSkeleton />
-          <BookListItemSkeleton />
-        </>
-      )}
-      {!isFetchingNextPage && !isLoading && (
+      {isFetchingNextPage || isLoading ? (
+        <SearchResultSkeleton />
+      ) : (
         <div ref={setTarget} id='observer' className='h-[10px]' />
       )}
+
       <AnimatePresence>
         {isOpenRegister && (
           <BookRegisterSheet onClose={() => setIsOpenRegister(false)} />
