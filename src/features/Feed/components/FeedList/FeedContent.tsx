@@ -50,7 +50,7 @@ function FeedContent({ feedData, isFeed = true }: Props) {
             />
           </div>
           <div className='flex-column gap-[12px] px-page'>
-            <h3 className='break-all text-title-xl-bold'>
+            <h3 className='break-all text-body-xl-bold'>
               {(feedData as GetReviewRes).title}
             </h3>
             <p className='whitespace-pre-wrap break-all text-body-lg'>

@@ -36,7 +36,7 @@ function ReviewListItem({ reviewData, setReviewId, onDelete, userId }: Props) {
           className='flex w-full cursor-pointer flex-col gap-[12px] px-[24px]'
         >
           <Rating rating={reviewData.rating} textClass='text-heading-lg-bold' />
-          <h3 className='break-all text-title-xl-bold'>{reviewData.title}</h3>
+          <h3 className='break-all text-body-xl-bold'>{reviewData.title}</h3>
         </Link>
 
         <div className='flex-col-center w-full gap-[8px]'>

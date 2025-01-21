@@ -8,7 +8,7 @@ import { IMAGES } from '@/constants/images';
 function FirstReviewItem() {
   return (
     <div className='review-item items-center text-center'>
-      <h4 className='text-title-xl-bold'>
+      <h4 className='text-body-xl-bold'>
         이 책에 대한 첫 리뷰 작성!
         <br />
         축하드려요!
