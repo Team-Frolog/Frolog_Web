@@ -4,13 +4,14 @@ import React from 'react';
 import { usePathname } from 'next/navigation';
 import { FeedIcon, ProfileIcon, SearchIcon, WellIcon } from 'public/icons';
 import { PAGES } from '@/constants/page';
+import useUserActionStore from '@/store/userActionStore';
 import { useUserId } from '@/store/sessionStore';
-import { STORAGE_KEY } from '@/constants/storage';
 import NavItem from './NavItem';
 
 function NavigationBar() {
   const userId = useUserId();
   const pathname = usePathname();
+  const { setScrollPos } = useUserActionStore((state) => state.actions);
 
   return (
     <div
@@ -42,7 +43,7 @@ function NavigationBar() {
         label='피드'
         href={PAGES.FEED}
         isActive={pathname === PAGES.FEED}
-        onClick={() => sessionStorage.removeItem(STORAGE_KEY.SCROLL_INFO)}
+        onClick={() => setScrollPos(null)}
         icon={
           <FeedIcon
             fill={pathname === PAGES.FEED ? '#313239' : '#B3B6C5'}
