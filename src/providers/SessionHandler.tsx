@@ -1,7 +1,7 @@
 'use client';
 
 import { Session } from 'next-auth';
-import React, { memo, useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import useSessionStore from '../store/sessionStore';
 
@@ -32,7 +32,7 @@ function SessionHandler({ session }: { session: Session | null }) {
     }
   }, [session, clientSession]);
 
-  return <></>;
+  return null;
 }
 
 export default memo(SessionHandler);

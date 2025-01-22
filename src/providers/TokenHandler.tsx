@@ -46,5 +46,5 @@ export function TokenHandler({ session, update }: Props) {
   }, [session, update]);
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <></>;
+  return null;
 }

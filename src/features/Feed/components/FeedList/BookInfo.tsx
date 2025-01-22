@@ -16,7 +16,7 @@ interface Props {
 /** 피드 아이템 중 도서 정보 부분 컴포넌트 */
 function BookInfo({ feedData, isMemo }: Props) {
   const { bookData } = useBook(feedData.isbn);
-  if (!bookData) return <></>;
+  if (!bookData) return null;
 
   const { title, author, publisher, category, image } = bookData;
 

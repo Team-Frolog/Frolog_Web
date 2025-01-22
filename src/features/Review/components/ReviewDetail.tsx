@@ -11,7 +11,7 @@ interface Props {
 
 /** 리뷰 상세 컴포넌트 */
 function ReviewDetail({ reviewDetail }: Props) {
-  if (!reviewDetail) return <></>;
+  if (!reviewDetail) return null;
 
   const { rating, tags_neg, tags_pos, title, content } = reviewDetail;
 

@@ -31,7 +31,7 @@ function ReviewsForBook({ bookId }: Props) {
   const { bookData } = useBook(bookId);
   const { handleChangeLike } = useLikeReview(bookId);
 
-  if (!bookData) return <></>;
+  if (!bookData) return null;
 
   return (
     <div className='safe-bottom flex w-full flex-col gap-[36px] pt-[36px]'>

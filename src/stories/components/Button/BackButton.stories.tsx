@@ -21,7 +21,7 @@ export const Normal: Story = {
 
 export const Theme: Story = {
   args: {
-    type: 'green',
+    type: 'bg',
     extraClass: undefined,
     fill: undefined,
     onClick: undefined,

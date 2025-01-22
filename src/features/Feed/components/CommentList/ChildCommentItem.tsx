@@ -60,7 +60,7 @@ function ChildCommentItem({
     isFirst: isFirstChild,
   });
 
-  if (!profile || !childCommentData) return <></>;
+  if (!profile || !childCommentData) return null;
 
   return (
     <div className='flex w-full flex-col gap-[12px] pl-[24px]'>

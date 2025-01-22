@@ -21,7 +21,7 @@ function MyMemoPage({ params: { wellId, bookId, memoId } }: Props) {
     bookId,
     memoId
   );
-  if (!memoDetail) return <></>;
+  if (!memoDetail) return null;
 
   const defaultValues = {
     images: memoDetail.images,

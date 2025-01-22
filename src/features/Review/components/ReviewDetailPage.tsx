@@ -19,7 +19,7 @@ function ReviewDetailPage({ reviewId }: Props) {
   const { reviewDetail } = useReviewDetailPage(reviewId);
   const { profile } = useProfile(reviewDetail?.writer);
 
-  if (!reviewDetail || !profile) return <></>;
+  if (!reviewDetail || !profile) return null;
 
   return (
     <>

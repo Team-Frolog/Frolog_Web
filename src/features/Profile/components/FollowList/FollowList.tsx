@@ -34,7 +34,7 @@ function FollowList({ userId }: Props) {
   const { profileDetail } = useProfileDetail(userId);
   const tap = useSearchParams().get('tap') || 'followers';
 
-  if (!profileDetail) return <></>;
+  if (!profileDetail) return null;
 
   return (
     <div className='flex w-full flex-1 flex-col overflow-hidden py-[16px]'>

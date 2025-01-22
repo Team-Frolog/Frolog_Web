@@ -26,7 +26,7 @@ function FrogSelector({ userId }: Props) {
     }
   }, [isExpanded, controls, isNoExpansion]);
 
-  if (!frogs) return <></>;
+  if (!frogs) return null;
 
   return (
     <div className='flex w-full flex-col gap-[12px]'>

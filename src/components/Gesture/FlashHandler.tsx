@@ -4,7 +4,7 @@ import { PAGES } from '@/constants/page';
 import { FlashKeys } from '@/data/ui/flash';
 import useAddBookStore from '@/store/addBookStore';
 import { useSearchParams } from 'next/navigation';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 interface Props {
   /** flash type */
@@ -36,7 +36,7 @@ function FlashHandler({ type, isRedirect }: Props) {
     }, 2500);
   }, []);
 
-  return <></>;
+  return null;
 }
 
 export default FlashHandler;

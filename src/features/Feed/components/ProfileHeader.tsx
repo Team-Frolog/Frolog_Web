@@ -52,7 +52,7 @@ function ProfileHeader({
   const canShowButton =
     (isFeed && !isRootUser) || (!isFeed && !(isDeleted && isRootUser));
 
-  if (!profile) return <></>;
+  if (!profile) return null;
 
   const { username, image, follow } = profile;
 

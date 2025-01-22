@@ -20,7 +20,7 @@ function MemoDetailPage({ memoId }: Props) {
   const { memoDetail } = useMemoDetailPage(memoId);
   const { profile } = useProfile(memoDetail?.writer);
 
-  if (!memoDetail || !profile) return <></>;
+  if (!memoDetail || !profile) return null;
 
   return (
     <>
