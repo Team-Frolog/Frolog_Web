@@ -1,10 +1,12 @@
 // common
 export { default as AddIcon } from './common/add-icon.svg';
 export { default as BackIcon } from './common/back.svg';
+export { default as BackBgIcon } from './common/back-bg.svg';
 export { default as CancelIcon } from './common/x-icon.svg';
 export { default as ExpandIcon } from './common/expand.svg';
 export { default as ScrollToTopIcon } from './common/scroll-to-top.svg';
 export { default as MenuArrowIcon } from './common/menu-arrow.svg';
+export { default as RightArrowIcon } from './common/right-arrow.svg';
 
 // toast
 export { default as ToastErrorIcon } from './toast/toast-error.svg';
@@ -39,7 +41,6 @@ export { default as PlusIcon } from './well/circle-plus.svg';
 export { default as EditIcon } from './well/well-edit.svg';
 export { default as WellAddIcon } from './well/well-add-button.svg';
 export { default as StoreIcon } from './well/store-button.svg';
-export { default as WellBackIcon } from './well/well-back.svg';
 
 // test
 export { default as ShareIcon } from './test/share-icon.svg';

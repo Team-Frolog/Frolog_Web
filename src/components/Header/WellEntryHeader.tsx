@@ -27,7 +27,7 @@ function WellEntryHeader({
     <header className={`flex h-fit w-full ${bgColor || 'bg-white'}`}>
       {hasBackButton && (
         <BackButton
-          type='green'
+          type='bg'
           safeArea='back-button'
           onClick={() => router.back()}
         />

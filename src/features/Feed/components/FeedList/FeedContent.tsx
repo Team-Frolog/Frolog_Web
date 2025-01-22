@@ -39,7 +39,10 @@ function FeedContent({ feedData, isFeed = true }: Props) {
         </>
       ) : (
         <>
-          <div className='flex-col-center w-full gap-[8px]'>
+          <div
+            className='flex-col-center w-full gap-[8px]'
+            onClick={(e) => e.preventDefault()}
+          >
             <TagSlider
               type='pros'
               tagKeys={(feedData as GetReviewRes).tags_pos}

@@ -11,8 +11,8 @@ jest.mock('public/icons', () => ({
   BackIcon: (props: SVGProps<SVGSVGElement>) => (
     <svg data-testid='back-icon' {...props} />
   ),
-  WellBackIcon: (props: SVGProps<SVGSVGElement>) => (
-    <svg data-testid='well-back-icon' {...props} />
+  BackBgIcon: (props: SVGProps<SVGSVGElement>) => (
+    <svg data-testid='back-bg-icon' {...props} />
   ),
 }));
 
@@ -55,11 +55,11 @@ describe('BackButton', () => {
   });
 
   test('type을 변경한 경우, 버튼이 변경되어야 한다.', () => {
-    render(<BackButton type='green' />);
+    render(<BackButton type='bg' />);
 
-    const wellBackIcon = screen.getByTestId('well-back-icon');
+    const BackBgIcon = screen.getByTestId('back-bg-icon');
 
-    expect(wellBackIcon).toBeInTheDocument();
+    expect(BackBgIcon).toBeInTheDocument();
   });
 
   test('extraClass가 제공된 경우, 추가적으로 클래스가 적용되어야 한다.', () => {

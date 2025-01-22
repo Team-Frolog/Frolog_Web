@@ -50,7 +50,7 @@ function SideWellHeader({
     >
       {hasBackButton && (
         <BackButton
-          type='green'
+          type='bg'
           safeArea='back-button'
           onClick={() => router.back()}
         />
