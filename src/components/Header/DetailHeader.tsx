@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useUserId } from '@/store/sessionStore';
 import { RightArrowIcon, WellIcon } from 'public/icons';
 import { motion } from 'framer-motion';
+import { PAGES } from '@/constants/page';
 
 interface Props {
   /** 프로필 대상 유저의 id */
@@ -27,7 +28,7 @@ function DetailHeader({ profileUserId }: Props) {
             whileTap={{ scale: 0.9 }}
             onClick={() =>
               runWhenLoggedIn(
-                () => router.push(`/${profileUserId}/well`),
+                () => router.push(`/${profileUserId}${PAGES.PROFILE}`),
                 'feed'
               )
             }

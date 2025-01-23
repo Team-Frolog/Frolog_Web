@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Menu } from '@/features/Profile';
 
 const meta = {
-  title: 'Menu',
+  title: 'Profile/Menu/Menu',
   component: Menu,
   tags: ['autodocs'],
 } satisfies Meta<typeof Menu>;
