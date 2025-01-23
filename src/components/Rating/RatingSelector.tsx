@@ -14,7 +14,7 @@ interface Props {
   /** 컴포넌트 사용처 */
   type: 'form' | 'default';
   /** 별점 값 */
-  rating?: number | undefined;
+  rating?: number;
   /** 에러 여부 */
   isError?: boolean;
   /** 리뷰 개수 */
@@ -78,7 +78,7 @@ function RatingSelector({
           key={index}
           rating={starRating}
           size={40}
-          defaultColor={isError ? 'rgba(255, 100, 100, 0.5)' : undefined}
+          defaultColor={isError ? 'rgba(255, 100, 100, 0.5)' : ''}
           onClick={type === 'form' ? (e) => handleRating(e, index) : undefined}
         />
       );

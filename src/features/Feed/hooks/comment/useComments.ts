@@ -40,7 +40,7 @@ export const useComments = (id: string, isReview: boolean) => {
   const { mutate: handleAddComment } = useMutation({
     mutationFn: (req: PostComments) => addNewComment(req, isReview),
     onSuccess: (_, req) => {
-      setCommentUser(undefined);
+      setCommentUser(null);
       setComment('');
       if (req.parent) {
         queryClient.invalidateQueries({

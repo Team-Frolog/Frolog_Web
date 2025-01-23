@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 interface Props {
   /** 해당 도서에 대한 현재 유저의 리뷰 개수 */
-  reviewCount: number | undefined;
+  reviewCount?: number;
   /** 다 읽은 책 추가 핸들러 */
   handleAddReadBook: () => void;
   /** 읽는 중인 책 추가 핸들러 */

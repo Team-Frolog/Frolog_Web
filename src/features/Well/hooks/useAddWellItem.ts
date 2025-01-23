@@ -7,11 +7,13 @@ import { PAGES } from '@/constants/page';
 import useAddBookStore from '@/store/addBookStore';
 import { addWellItem } from '../api/well.api';
 
+interface Props {
+  userId?: string;
+  stopPending?: () => void;
+}
+
 /** 우물 아이템 추가 핸들링 훅 */
-export const useAddWellItem = (
-  userId: string | undefined,
-  stopPending?: () => void
-) => {
+export const useAddWellItem = ({ userId, stopPending }: Props) => {
   const router = useRouter();
   const {
     wellId,

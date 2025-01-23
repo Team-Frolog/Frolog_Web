@@ -23,7 +23,7 @@ interface Props {
   /** 로그인한 유저인지 여부 */
   isRootUser: boolean;
   /** 첫 우물인지 여부 */
-  isDefaultWell: boolean | undefined;
+  isDefaultWell?: boolean;
 }
 
 /** 우물 아이템 리스트 컴포넌트 */
@@ -62,11 +62,12 @@ const WellItemList = React.memo(
       return undefined;
     };
 
-    useEffect(() => {
-      return () => {
+    useEffect(
+      () => () => {
         setIsLoading(false);
-      };
-    }, []);
+      },
+      []
+    );
 
     useEffect(() => {
       if (wellItems) {

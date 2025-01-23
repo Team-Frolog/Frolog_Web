@@ -17,14 +17,15 @@ export const useAddReview = (
   setError: UseFormSetError<ReviewFormType>
 ) => {
   const { openFlash } = useFlash();
-  const { handleAddWellItem, resetAll } = useAddWellItem(userId);
+  const { handleAddWellItem, resetAll } = useAddWellItem({ userId });
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       setIsLoading(false);
-    };
-  }, []);
+    },
+    []
+  );
 
   const { mutate: handleAddReview } = useMutation({
     mutationFn: async (data: ReviewFormType) => {

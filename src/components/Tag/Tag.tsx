@@ -34,7 +34,7 @@ function Tag({ tagValue, size, type, onClick, isSelected = true }: Props) {
   return (
     <button
       type='button'
-      onClick={onClick || undefined}
+      onClick={onClick}
       className={`${tagSize} ${getBgColor()} ${onClick ? 'cursor-pointer' : 'cursor-default'}`}
     >
       {tagValue}

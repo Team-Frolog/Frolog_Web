@@ -19,7 +19,7 @@ interface Props {
 function AboutBook({ bookId }: Props) {
   const { bookData } = useBook(bookId);
   const [open, setOpen] = useState(false);
-  useScroll({ categoryColor: undefined });
+  useScroll({});
 
   return (
     <>

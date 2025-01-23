@@ -36,7 +36,7 @@ export async function middleware(req: NextRequest) {
   const isLoggedIn = req.cookies.get('isLoggedIn');
 
   let response = NextResponse.next();
-  let newSessionToken = undefined;
+  let newSessionToken: string | undefined = undefined;
 
   if (sessionToken && isRemember?.value === 'false' && !isLoggedIn) {
     response = NextResponse.redirect(new URL('/default', req.url));

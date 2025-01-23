@@ -6,7 +6,7 @@ import RatingSelector from '@/components/Rating/RatingSelector';
 import { GetReviewRes } from '@frolog/frolog-api';
 
 interface Props {
-  reviewDetail: GetReviewRes | undefined;
+  reviewDetail?: GetReviewRes;
 }
 
 /** 리뷰 상세 컴포넌트 */

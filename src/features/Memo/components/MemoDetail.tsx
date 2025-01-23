@@ -7,7 +7,7 @@ import ImageSlot from './MemoForm/ImageForm/ImageSlot';
 
 interface Props {
   /** 메모 데이터 객체 */
-  memoData: GetMemoRes | undefined;
+  memoData?: GetMemoRes;
 }
 
 /** 메모 상세 컴포넌트 */

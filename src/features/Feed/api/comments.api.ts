@@ -42,7 +42,7 @@ export const getComments = async ({
     if (isReview) {
       result = await searchReviewComments.fetch({
         review_id: id,
-        limit: page !== undefined ? DEFAULT_LIMIT : undefined,
+        limit: page ? DEFAULT_LIMIT : undefined,
         page,
         depth,
         parent: parentId,
@@ -50,7 +50,7 @@ export const getComments = async ({
     } else {
       result = await searchMemoComments.fetch({
         memo_id: id,
-        limit: page !== undefined ? DEFAULT_LIMIT : undefined,
+        limit: page ? DEFAULT_LIMIT : undefined,
         page,
         depth,
         parent: parentId,

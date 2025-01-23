@@ -8,7 +8,7 @@ import { useWallet } from '@/features/Store/hooks/useWallet';
 import BackButton from '../Button/BackButton';
 
 interface Props {
-  userId: string | undefined;
+  userId?: string;
 }
 
 /** 상점 페이지 헤더

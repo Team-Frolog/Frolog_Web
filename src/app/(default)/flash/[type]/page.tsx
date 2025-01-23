@@ -48,7 +48,7 @@ function FlashPage({ params: { type } }: Props) {
             <LinkButton route={PAGES.HOME}>확인</LinkButton>
           </div>
         </div>
-      ) : undefined}
+      ) : null}
     </Flash>
   );
 }

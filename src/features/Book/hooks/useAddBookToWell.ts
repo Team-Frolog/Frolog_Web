@@ -14,7 +14,7 @@ export const useAddBookToWell = (isbn: string) => {
   const [isPending, setIsPending] = useState(false); // 우물을 선택한 경우 완료되기까지 pending 여부
   const router = useRouter();
   const { handleAddWellItem, wellId, setWellId, setIsThroughSearch } =
-    useAddWellItem(userId, () => setIsPending(false));
+    useAddWellItem({ userId, stopPending: () => setIsPending(false) });
 
   const { data: reviewCount } = useQuery({
     queryKey: [QUERY_KEY.reviewCount, isbn],
