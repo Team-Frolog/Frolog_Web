@@ -21,7 +21,7 @@ export const Default: Story = {
   args: {
     userId: '1',
     wellId: '',
-    hasEditButton: true,
+    isRootUser: true,
     hasBackButton: true,
   },
 };
