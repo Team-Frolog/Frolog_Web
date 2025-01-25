@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/auth';
+import { authOptions } from '@/utils/auth/nextAuth';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import dynamic from 'next/dynamic';

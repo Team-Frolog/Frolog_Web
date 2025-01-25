@@ -4,7 +4,7 @@ import MemoListSkeleton from '@/components/Fallback/Skeleton/MemoListSkeleton';
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/auth';
+import { authOptions } from '@/utils/auth/nextAuth';
 import { Metadata } from 'next';
 import { SearchMemo } from '@frolog/frolog-api';
 import { DEFAULT_LIMIT } from '@/constants/api';

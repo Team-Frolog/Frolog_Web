@@ -6,7 +6,7 @@ import { QUERY_KEY } from '@/constants/query';
 import { Menu } from '@/features/Profile';
 import { WellList } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
-import { authOptions } from '@/utils/auth/auth';
+import { authOptions } from '@/utils/auth/nextAuth';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
 import { GetProfileDetail } from '@frolog/frolog-api';
 import {

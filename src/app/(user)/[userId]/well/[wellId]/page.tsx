@@ -2,7 +2,7 @@ import React from 'react';
 import { WellDetailPage } from '@/features/Well';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/auth';
+import { authOptions } from '@/utils/auth/nextAuth';
 import {
   dehydrate,
   HydrationBoundary,

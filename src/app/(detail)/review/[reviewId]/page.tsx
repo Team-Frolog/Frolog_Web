@@ -8,7 +8,7 @@ import {
 } from '@tanstack/react-query';
 import { GetReview } from '@frolog/frolog-api';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/auth';
+import { authOptions } from '@/utils/auth/nextAuth';
 import { QUERY_KEY } from '@/constants/query';
 
 interface Props {
