@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import MainLayout from '@/layouts/MainLayout';
 import BookInfo from '@/components/Book/BookInfo';
 import { useProfile } from '@/hooks/useProfile';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import DetailHeader from '@/components/Header/DetailHeader';
+import { useUserActionActions } from '@/store/userActionStore';
 import { useMemoDetailPage } from '../hooks/useMemoDetailPage';
 import MemoDetail from './MemoDetail';
 
@@ -19,6 +20,14 @@ function MemoDetailPage({ memoId }: Props) {
   useScroll({ categoryColor: undefined });
   const { memoDetail } = useMemoDetailPage(memoId);
   const { profile } = useProfile(memoDetail?.writer);
+  const { setIsInFeed } = useUserActionActions();
+
+  useEffect(
+    () => () => {
+      setIsInFeed(false);
+    },
+    []
+  );
 
   if (!memoDetail || !profile) return null;
 

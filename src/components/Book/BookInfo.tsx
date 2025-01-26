@@ -4,10 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { useBook } from '@/features/Book';
+import { useIsInFeed } from '@/store/userActionStore';
 import { IMAGES } from '@/constants/images';
 import Book from './Book';
 
 interface Props {
+  /** 도서 id */
   bookId: string;
   /** 도서를 클릭하여 도서 상세 페이지로 넘어갈 수 있는지의 여부 */
   canClick?: boolean;
@@ -16,11 +18,13 @@ interface Props {
 /** 도서 상세 페이지, 리뷰/메모 리스트 내 도서 정보 컴포넌트 (도서 커버, 배경 포함) */
 function BookInfo({ bookId, canClick = false }: Props) {
   const { bookData } = useBook(bookId);
+  const isInFeed = useIsInFeed();
 
   return (
     <Link
       id='book-info'
       prefetch
+      replace={isInFeed}
       href={canClick ? `/book/${bookId}` : ''}
       className={`flex-col-center relative w-full gap-[20px] bg-white pb-[24px] pt-[48px] text-gray-800 ${canClick ? '' : 'pointer-events-none'}`}
     >

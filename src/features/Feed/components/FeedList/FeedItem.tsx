@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
+import { useUserActionActions } from '@/store/userActionStore';
 import ProfileHeader from '../ProfileHeader';
 import BookInfo from './BookInfo';
 import FeedContent from './FeedContent';
@@ -26,6 +27,7 @@ function FeedItem({
   onSaveScroll,
 }: Props) {
   const { handleChangeLike } = useLikeFeed(!isMemo);
+  const { setIsInFeed } = useUserActionActions();
 
   return (
     <div className='w-full'>
@@ -40,7 +42,10 @@ function FeedItem({
           prefetch
           href={isMemo ? `/memo/${feedData.id}` : `/review/${feedData.id}`}
           className='flex w-full flex-col'
-          onClick={onSaveScroll}
+          onClick={() => {
+            onSaveScroll();
+            setIsInFeed(true);
+          }}
         >
           <BookInfo isMemo={isMemo} feedData={feedData} />
           <FeedContent feedData={feedData} />

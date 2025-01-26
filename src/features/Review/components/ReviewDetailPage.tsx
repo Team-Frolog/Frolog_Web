@@ -1,11 +1,12 @@
 'use client';
 
-import { ReviewDetail, useReviewDetailPage } from '@/features/Review';
 import React from 'react';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import MainLayout from '@/layouts/MainLayout';
 import BookInfo from '@/components/Book/BookInfo';
 import { useProfile } from '@/hooks/useProfile';
+import { useUserActionActions } from '@/store/userActionStore';
+import { ReviewDetail, useReviewDetailPage } from '@/features/Review';
 import DetailHeader from '@/components/Header/DetailHeader';
 
 interface Props {
@@ -18,6 +19,14 @@ function ReviewDetailPage({ reviewId }: Props) {
   useScroll({ categoryColor: undefined });
   const { reviewDetail } = useReviewDetailPage(reviewId);
   const { profile } = useProfile(reviewDetail?.writer);
+  const { setIsInFeed } = useUserActionActions();
+
+  useEffect(
+    () => () => {
+      setIsInFeed(false);
+    },
+    []
+  );
 
   if (!reviewDetail || !profile) return null;
 
