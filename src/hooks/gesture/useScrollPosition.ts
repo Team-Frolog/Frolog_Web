@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
-import useUserActionStore from '@/store/userActionStore';
+import { useScrollPos, useUserActionActions } from '@/store/userActionStore';
 
 export const useScrollPosition = (condition: boolean) => {
-  const { lastScrollPos, setScrollPos } = useUserActionStore((state) => ({
-    lastScrollPos: state.lastScrollPos,
-    setScrollPos: state.actions.setScrollPos,
-  }));
+  const lastScrollPos = useScrollPos();
+  const { setScrollPos } = useUserActionActions();
 
   useEffect(() => {
     if (!lastScrollPos || !condition) return;
