@@ -60,7 +60,6 @@ function FeedItem({
             startCommentLoading();
             onSaveScroll();
           }}
-          onSaveScroll={onSaveScroll}
         />
       </div>
     </div>

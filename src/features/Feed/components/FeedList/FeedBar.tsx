@@ -1,12 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowIcon, ChatIcon } from 'public/icons';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import LikeButton from '@/components/Button/LikeButton';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
 import { useRouter } from 'next/navigation';
+import { AddBookToWell } from '@/features/Book';
 import { isGetMemoRes } from '../../utils/typeGuard';
 
 interface Props {
@@ -16,60 +17,63 @@ interface Props {
   onClickLike: () => void;
   /** 댓글 클릭 핸들러 */
   onClickComment: () => void;
-  /** 스크롤 저장 핸들러  */
-  onSaveScroll: () => void;
 }
 
 /** 피드 아이템 중 댓글, 좋아요, 우물에 담기 등이 포함된 하단 바 */
-function FeedBar({
-  feedData,
-  onClickLike,
-  onClickComment,
-  onSaveScroll,
-}: Props) {
+function FeedBar({ feedData, onClickLike, onClickComment }: Props) {
   const router = useRouter();
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className='flex w-full items-center justify-between rounded-b-[20px] border-t border-t-gray-400 bg-white px-page py-[12px]'>
-      <div className='flex gap-[20px]'>
-        <LikeButton
-          isLiked={feedData.like ?? false}
-          likeCount={feedData.like_count || 0}
-          onClickLike={() => runWhenLoggedIn(onClickLike, 'feed')}
-        />
+    <>
+      <div className='flex w-full items-center justify-between rounded-b-[20px] border-t border-t-gray-400 bg-white px-page py-[12px]'>
+        <div className='flex gap-[20px]'>
+          <LikeButton
+            isLiked={feedData.like ?? false}
+            likeCount={feedData.like_count || 0}
+            onClickLike={() => runWhenLoggedIn(onClickLike, 'feed')}
+          />
+          <motion.button
+            whileTap={{ scale: 1.1 }}
+            type='button'
+            className='flex items-center gap-[4px]'
+            onClick={() =>
+              runWhenLoggedIn(() => {
+                onClickComment();
+                router.push(
+                  `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}`
+                );
+              }, 'feed')
+            }
+          >
+            <ChatIcon />
+            <span className='text-body-md text-gray-600'>
+              {feedData.comment_count || 0}
+            </span>
+          </motion.button>
+        </div>
         <motion.button
-          whileTap={{ scale: 1.1 }}
           type='button'
-          className='flex items-center gap-[4px]'
+          whileTap={{ scale: 1.1 }}
           onClick={() =>
             runWhenLoggedIn(() => {
-              onClickComment();
-              router.push(
-                `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}`
-              );
+              setOpen(true);
             }, 'feed')
           }
+          className='flex items-center gap-[4px] text-body-md text-main'
         >
-          <ChatIcon />
-          <span className='text-body-md text-gray-600'>
-            {feedData.comment_count || 0}
-          </span>
+          나도 읽어볼래요 <ArrowIcon fill='#00CE4C' width={24} height={24} />
         </motion.button>
       </div>
-      <motion.button
-        type='button'
-        whileTap={{ scale: 1.1 }}
-        onClick={() =>
-          runWhenLoggedIn(() => {
-            onSaveScroll();
-            router.push(`/book/${feedData.isbn}`);
-          }, 'feed')
-        }
-        className='flex items-center gap-[4px] text-body-md text-gray-600'
-      >
-        우물에 담기 <ArrowIcon fill='#727384' width={24} height={24} />
-      </motion.button>
-    </div>
+      <AnimatePresence>
+        {open && (
+          <AddBookToWell
+            bookId={feedData.isbn}
+            closeSheet={() => setOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
