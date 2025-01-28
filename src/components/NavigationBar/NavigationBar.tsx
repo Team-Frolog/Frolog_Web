@@ -9,12 +9,19 @@ import { useUserId } from '@/store/sessionStore';
 import { NavigationTap } from '@/constants/taps';
 import NavItem from './NavItem';
 
+interface NavItemProps {
+  label: NavigationTap;
+  href: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  onClick?: () => void;
+}
+
 function NavigationBar() {
   const userId = useUserId();
   const currentTap = useCurrentTap();
   const { setScrollPos } = useUserActionStore((state) => state.actions);
 
-  const navItems = [
+  const navItems: NavItemProps[] = [
     {
       label: NavigationTap.WELL,
       href: PAGES.HOME,
@@ -38,7 +45,12 @@ function NavigationBar() {
     },
   ];
 
-  const renderNavItem = ({ label, href, icon: Icon, onClick }: any) => (
+  const renderNavItem = ({
+    label,
+    href,
+    icon: Icon,
+    onClick,
+  }: NavItemProps) => (
     <NavItem
       key={label}
       label={label}
