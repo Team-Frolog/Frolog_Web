@@ -8,6 +8,7 @@ import { useScroll } from '@/hooks/gesture/useScroll';
 import React, { Suspense } from 'react';
 import BookInfoSkeleton from '@/components/Fallback/Skeleton/BookInfoSkeleton';
 import { useBook } from '@/features/Book';
+import NavigationBar from '@/components/NavigationBar/NavigationBar';
 
 interface Props {
   children: React.ReactNode;
@@ -45,6 +46,7 @@ function ReviewMemoLayout({ children, params: { bookId } }: Props) {
           </div>
         </div>
       </MainLayout>
+      <NavigationBar />
     </>
   );
 }
