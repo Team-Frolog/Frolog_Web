@@ -4,3 +4,10 @@ export const taps: Record<Taps, string> = {
   search: '책검색',
   profile: '프로필',
 } as const;
+
+export enum NavigationTap {
+  WELL = 'well',
+  FEED = 'feed',
+  SEARCH = 'search',
+  PROFILE = 'profile',
+}

@@ -1,77 +1,62 @@
 'use client';
 
 import React from 'react';
-import { usePathname } from 'next/navigation';
 import { FeedIcon, ProfileIcon, SearchIcon, WellIcon } from 'public/icons';
 import { PAGES } from '@/constants/page';
-import useUserActionStore from '@/store/userActionStore';
+
+import useUserActionStore, { useCurrentTap } from '@/store/userActionStore';
 import { useUserId } from '@/store/sessionStore';
+import { NavigationTap } from '@/constants/taps';
 import NavItem from './NavItem';
 
 function NavigationBar() {
   const userId = useUserId();
-  const pathname = usePathname();
+  const currentTap = useCurrentTap();
   const { setScrollPos } = useUserActionStore((state) => state.actions);
+
+  const navItems = [
+    {
+      label: NavigationTap.WELL,
+      href: PAGES.HOME,
+      icon: WellIcon,
+    },
+    {
+      label: NavigationTap.FEED,
+      href: PAGES.FEED,
+      icon: FeedIcon,
+      onClick: () => setScrollPos(null),
+    },
+    {
+      label: NavigationTap.SEARCH,
+      href: PAGES.SEARCH_HOME,
+      icon: SearchIcon,
+    },
+    {
+      label: NavigationTap.PROFILE,
+      href: `/${userId}/profile`,
+      icon: ProfileIcon,
+    },
+  ];
+
+  const renderNavItem = ({ label, href, icon: Icon, onClick }: any) => (
+    <NavItem
+      key={label}
+      label={label}
+      href={href}
+      isActive={currentTap === label}
+      onClick={onClick}
+      icon={
+        <Icon fill={currentTap === label ? '#313239' : '#B3B6C5'} height={22} />
+      }
+    />
+  );
 
   return (
     <div
       id='navBar'
       className='z-50 flex w-full shrink-0 items-center justify-around border-t border-gray-300 bg-white px-[20px] pb-[24px] pt-[10px]'
     >
-      <NavItem
-        label='well'
-        href={PAGES.HOME}
-        isActive={
-          pathname === PAGES.HOME ||
-          pathname === PAGES.DEFAULT ||
-          pathname.includes(PAGES.WELL)
-        }
-        icon={
-          <WellIcon
-            fill={
-              pathname === PAGES.HOME ||
-              pathname === PAGES.DEFAULT ||
-              pathname.includes(PAGES.WELL)
-                ? '#313239'
-                : '#B3B6C5'
-            }
-            height={22}
-          />
-        }
-      />
-      <NavItem
-        label='feed'
-        href={PAGES.FEED}
-        isActive={pathname === PAGES.FEED}
-        onClick={() => setScrollPos(null)}
-        icon={
-          <FeedIcon
-            fill={pathname === PAGES.FEED ? '#313239' : '#B3B6C5'}
-            height={22}
-          />
-        }
-      />
-
-      <NavItem
-        label='search'
-        href={PAGES.SEARCH_HOME}
-        isActive={pathname === PAGES.SEARCH_HOME}
-        icon={
-          <SearchIcon
-            fill={pathname === PAGES.SEARCH_HOME ? '#313239' : '#B3B6C5'}
-          />
-        }
-      />
-      <NavItem
-        label='profile'
-        href={`/${userId}/profile`}
-        isActive={pathname.includes(PAGES.PROFILE)}
-        icon={
-          <ProfileIcon
-            fill={pathname.includes(PAGES.PROFILE) ? '#313239' : '#B3B6C5'}
-          />
-        }
-      />
+      {navItems.map(renderNavItem)}
     </div>
   );
 }
