@@ -19,7 +19,7 @@ function NavigationBar() {
       className='z-50 flex w-full shrink-0 items-center justify-around border-t border-gray-300 bg-white px-[20px] pb-[24px] pt-[10px]'
     >
       <NavItem
-        label='우물'
+        label='well'
         href={PAGES.HOME}
         isActive={
           pathname === PAGES.HOME ||
@@ -40,7 +40,7 @@ function NavigationBar() {
         }
       />
       <NavItem
-        label='피드'
+        label='feed'
         href={PAGES.FEED}
         isActive={pathname === PAGES.FEED}
         onClick={() => setScrollPos(null)}
@@ -53,7 +53,7 @@ function NavigationBar() {
       />
 
       <NavItem
-        label='책검색'
+        label='search'
         href={PAGES.SEARCH_HOME}
         isActive={pathname === PAGES.SEARCH_HOME}
         icon={
@@ -63,7 +63,7 @@ function NavigationBar() {
         }
       />
       <NavItem
-        label='프로필'
+        label='profile'
         href={`/${userId}/profile`}
         isActive={pathname.includes(PAGES.PROFILE)}
         icon={

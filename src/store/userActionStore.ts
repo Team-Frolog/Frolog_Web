@@ -6,9 +6,12 @@ interface UserActionState {
   lastScrollPos: number | null;
   /** 피드 내 리뷰/메모인지 여부 - 리뷰/메모에서 도서 상세로 이동 시 replace/push 조건으로 활용 */
   isInFeed: boolean;
+  /** 현재 탐색 중인 탭 */
+  currentTap: Taps | null;
   actions: {
     setScrollPos: (value: number | null) => void;
     setIsInFeed: (value: boolean) => void;
+    setCurrentTap: (value: Taps | null) => void;
   };
 }
 
@@ -18,12 +21,16 @@ const useUserActionStore = create<UserActionState>()(
     (set) => ({
       lastScrollPos: null,
       isInFeed: false,
+      currentTap: 'well',
       actions: {
         setScrollPos: (value) => {
           set((state) => ({ ...state, lastScrollPos: value }));
         },
         setIsInFeed: (value) => {
           set((state) => ({ ...state, isInFeed: value }));
+        },
+        setCurrentTap: (value) => {
+          set((state) => ({ ...state, currentTap: value }));
         },
       },
     }),
@@ -33,6 +40,7 @@ const useUserActionStore = create<UserActionState>()(
       partialize: (state) => ({
         lastScrollPos: state.lastScrollPos,
         isInFeed: state.isInFeed,
+        currentTap: state.currentTap,
       }),
     }
   )
@@ -41,6 +49,8 @@ const useUserActionStore = create<UserActionState>()(
 export const useScrollPos = () =>
   useUserActionStore((state) => state.lastScrollPos);
 export const useIsInFeed = () => useUserActionStore((state) => state.isInFeed);
+export const useCurrentTap = () =>
+  useUserActionStore((state) => state.currentTap);
 export const useUserActionActions = () =>
   useUserActionStore((state) => state.actions);
 
