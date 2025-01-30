@@ -7,8 +7,7 @@ import {
 } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
 import React from 'react';
-// import WellBubble from 'public/images/well/well-bubble.svg';
-import WellBubble from 'public/images/christmas/well/christmas-reading.svg';
+import WellBubble from 'public/images/well/well-bubble.svg';
 import Image from 'next/image';
 import { CATEGORY } from '@/constants/category';
 
@@ -32,8 +31,7 @@ function DefaultWellPage() {
                 alt='wave'
                 width={390}
                 height={12}
-                // className='absolute -top-[12px] left-0 h-[12px] w-full'
-                className='absolute -left-[0px] -top-[12px] h-[65px] w-full'
+                className='absolute -top-[12px] left-0 h-[12px] w-full'
                 loading='eager'
               />
               <WellBubble
@@ -50,8 +48,7 @@ function DefaultWellPage() {
                 alt='wave'
                 width={390}
                 height={12}
-                // className='absolute -top-[12px] left-0 h-[12px] w-full'
-                className='absolute -left-[0px] -top-[12px] h-[65px] w-full'
+                className='absolute -top-[12px] left-0 h-[12px] w-full'
                 loading='eager'
               />
               <span className='text-body-sm-bold text-category-text-economic_business'>
