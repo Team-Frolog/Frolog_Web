@@ -1,3 +1,4 @@
+import { Taps } from '@/types/taps';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 

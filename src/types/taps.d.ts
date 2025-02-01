@@ -1,1 +1,1 @@
-type Taps = 'well' | 'feed' | 'search' | 'profile';
+export type Taps = 'well' | 'feed' | 'search' | 'profile';

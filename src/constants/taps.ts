@@ -1,3 +1,5 @@
+import { Taps } from '@/types/taps';
+
 export const taps: Record<Taps, string> = {
   well: '우물',
   feed: '피드',
