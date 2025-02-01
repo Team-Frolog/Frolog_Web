@@ -3,10 +3,10 @@
 import React from 'react';
 import { FeedIcon, ProfileIcon, SearchIcon, WellIcon } from 'public/icons';
 import { PAGES } from '@/constants/page';
-
-import useUserActionStore, { useCurrentTap } from '@/store/userActionStore';
+import { usePathname, useSearchParams } from 'next/navigation';
+import useUserActionStore from '@/store/userActionStore';
 import { useUserId } from '@/store/sessionStore';
-import { NavigationTap } from '@/constants/taps';
+import { NavigationTap, TapKey } from '@/constants/taps';
 import NavItem from './NavItem';
 
 interface NavItemProps {
@@ -14,11 +14,13 @@ interface NavItemProps {
   href: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   onClick?: () => void;
+  tapKey: TapKey;
 }
 
 function NavigationBar() {
   const userId = useUserId();
-  const currentTap = useCurrentTap();
+  const pathname = usePathname();
+  const currentTapKey = useSearchParams().get('tap');
   const { setScrollPos } = useUserActionStore((state) => state.actions);
 
   const navItems: NavItemProps[] = [
@@ -26,22 +28,26 @@ function NavigationBar() {
       label: NavigationTap.WELL,
       href: PAGES.HOME,
       icon: WellIcon,
+      tapKey: TapKey.WELL,
     },
     {
       label: NavigationTap.FEED,
       href: PAGES.FEED,
       icon: FeedIcon,
       onClick: () => setScrollPos(null),
+      tapKey: TapKey.FEED,
     },
     {
       label: NavigationTap.SEARCH,
       href: PAGES.SEARCH_HOME,
       icon: SearchIcon,
+      tapKey: TapKey.SEARCH,
     },
     {
       label: NavigationTap.PROFILE,
       href: `/${userId}/profile`,
       icon: ProfileIcon,
+      tapKey: TapKey.PROFILE,
     },
   ];
 
@@ -50,18 +56,25 @@ function NavigationBar() {
     href,
     icon: Icon,
     onClick,
-  }: NavItemProps) => (
-    <NavItem
-      key={label}
-      label={label}
-      href={href}
-      isActive={currentTap === label}
-      onClick={onClick}
-      icon={
-        <Icon fill={currentTap === label ? '#313239' : '#B3B6C5'} height={22} />
-      }
-    />
-  );
+    tapKey,
+  }: NavItemProps) => {
+    const isActive =
+      pathname === href ||
+      currentTapKey === tapKey ||
+      (label === NavigationTap.WELL && pathname === '/default');
+
+    return (
+      <NavItem
+        key={label}
+        label={label}
+        href={href}
+        tapKey={tapKey}
+        isActive={isActive}
+        onClick={onClick}
+        icon={<Icon fill={isActive ? '#313239' : '#B3B6C5'} height={22} />}
+      />
+    );
+  };
 
   return (
     <div

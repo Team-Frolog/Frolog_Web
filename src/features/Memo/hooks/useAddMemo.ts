@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { TapKey } from '@/constants/taps';
 import { useUserId } from '@/store/sessionStore';
 import { addNewMemo } from '../api/memo.api';
 import { MemoFormType } from '../types/form';
@@ -12,12 +13,14 @@ export const useAddMemo = (wellId: string, bookId: string) => {
   const router = useRouter();
   const userId = useUserId();
   const [isLoading, setIsLoading] = useState(false);
+  const currentTap = useSearchParams().get('tap') || TapKey.WELL;
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       setIsLoading(false);
-    };
-  }, []);
+    },
+    []
+  );
 
   const { mutate: handleAddMemo } = useMutation({
     mutationFn: async (data: MemoFormType) => {
@@ -35,7 +38,9 @@ export const useAddMemo = (wellId: string, bookId: string) => {
       return result;
     },
     onSuccess: () =>
-      router.replace(`/${userId}/well/${wellId}/book/${bookId}/memo`),
+      router.replace(
+        `/${userId}/well/${wellId}/book/${bookId}/memo?tap=${currentTap}`
+      ),
   });
 
   return { handleAddMemo, isLoading };

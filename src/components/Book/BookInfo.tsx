@@ -1,12 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
 import { useBook } from '@/features/Book';
 import { useIsInFeed } from '@/store/userActionStore';
 import { IMAGES } from '@/constants/images';
 import Book from './Book';
+import CustomLink from '../Link/CustomLink';
 
 interface Props {
   /** 도서 id */
@@ -21,7 +21,7 @@ function BookInfo({ bookId, canClick = false }: Props) {
   const isInFeed = useIsInFeed();
 
   return (
-    <Link
+    <CustomLink
       id='book-info'
       prefetch
       replace={isInFeed}
@@ -47,7 +47,7 @@ function BookInfo({ bookId, canClick = false }: Props) {
           {bookData?.author} | {bookData?.publisher}
         </span>
       </div>
-    </Link>
+    </CustomLink>
   );
 }
 

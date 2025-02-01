@@ -32,7 +32,7 @@ function FollowList({ userId }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const { profileDetail } = useProfileDetail(userId);
-  const tap = useSearchParams().get('tap') || 'followers';
+  const tap = useSearchParams().get('currentTap') || 'followers';
 
   if (!profileDetail) return null;
 
@@ -54,7 +54,7 @@ function FollowList({ userId }: Props) {
         currentTap={tap}
         defaultTap='followers'
         onChangeTap={(label: string) =>
-          router.replace(`${pathname}?tap=${label}`)
+          router.replace(`${pathname}?currentTap=${label}`)
         }
       />
       {tap === 'followings' ? (

@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import CustomLink from '@/components/Link/CustomLink';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
 import { useUserActionActions } from '@/store/userActionStore';
 import ProfileHeader from '../ProfileHeader';
@@ -38,7 +38,7 @@ function FeedItem({
         onClick={onSaveScroll}
       />
       <div className='flex w-full flex-col'>
-        <Link
+        <CustomLink
           prefetch
           href={isMemo ? `/memo/${feedData.id}` : `/review/${feedData.id}`}
           className='flex w-full flex-col'
@@ -49,7 +49,7 @@ function FeedItem({
         >
           <BookInfo isMemo={isMemo} feedData={feedData} />
           <FeedContent feedData={feedData} />
-        </Link>
+        </CustomLink>
 
         <FeedBar
           feedData={feedData}

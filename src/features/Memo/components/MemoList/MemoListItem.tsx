@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import CustomLink from '@/components/Link/CustomLink';
 import { useUserId } from '@/store/sessionStore';
 import uniqueId from 'lodash/uniqueId';
 import DeleteButton from '@/components/Button/DeleteButton';
@@ -28,7 +28,7 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
 
   return (
     <div className={`review-item px-0 ${isRootUser ? 'pb-0' : 'pb-[36px]'}`}>
-      <Link
+      <CustomLink
         prefetch
         className='flex w-full flex-col gap-[20px]'
         href={isRootUser ? `memo/${memoData.id}` : `/memo/${memoData.id}`}
@@ -62,7 +62,7 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
             </span>
           </div>
         </div>
-      </Link>
+      </CustomLink>
       {isRootUser && (
         <DeleteButton
           type='memo'

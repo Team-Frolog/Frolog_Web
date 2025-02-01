@@ -13,3 +13,10 @@ export enum NavigationTap {
   SEARCH = 'search',
   PROFILE = 'profile',
 }
+
+export enum TapKey {
+  WELL = 'a3q11',
+  FEED = 'yd3ts',
+  SEARCH = '22h5f',
+  PROFILE = 'iqqlo',
+}

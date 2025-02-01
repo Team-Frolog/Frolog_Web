@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { ChildArrowIcon, MenuIcon } from 'public/icons';
 import Image from 'next/image';
+import { TapKey } from '@/constants/taps';
 import { IMAGES } from '@/constants/images';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useReport } from '@/hooks/useReport';
@@ -48,6 +49,7 @@ function ProfileHeader({
   const { profile } = useProfile(userId);
   const { handleReport } = useReport(userId);
   const { handleFollow } = useFollowUser();
+  const currentTap = useSearchParams().get('tap') || TapKey.SEARCH;
   const isFeed = type === 'feed';
   const canShowButton =
     (isFeed && !isRootUser) || (!isFeed && !(isDeleted && isRootUser));
@@ -72,7 +74,7 @@ function ProfileHeader({
             if (onClick) {
               onClick();
             }
-            router.push(`/${profile.id}/profile`);
+            router.push(`/${profile.id}/profile?tap=${currentTap}`);
           })
         }
         className='flex items-center gap-[8px]'

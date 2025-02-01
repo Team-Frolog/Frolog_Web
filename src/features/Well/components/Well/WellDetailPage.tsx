@@ -55,7 +55,7 @@ function WellDetailPage({
           <ScrollToTop isOnNav={isRootUser ? 'nav' : 'floating'} />
         )}
       </MainLayout>
-      {isRootUser && <NavigationBar />}
+      <NavigationBar />
     </>
   );
 }

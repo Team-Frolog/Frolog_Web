@@ -3,8 +3,9 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import useNewItemStore from '@/store/newItemStore';
+import { TapKey } from '@/constants/taps';
 import { staggerItemVariants } from '@/styles/variants/variants';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { GetWellItemRes } from '@frolog/frolog-api';
 import { CATEGORY } from '@/constants/category';
 import WellBubble from 'public/images/well/well-bubble.svg';
@@ -45,6 +46,7 @@ function WellItem({
   const height = page > 400 ? page * 0.15 : 55;
   const isReading = status === 'reading';
   const hasMemo = memo_cnt > 0;
+  const currentTap = useSearchParams().get('tap') || TapKey.WELL;
 
   useEffect(() => {
     return () => {
@@ -62,8 +64,8 @@ function WellItem({
           startLoading();
           router.push(
             isReading
-              ? `${wellId}/book/${isbn}/memo`
-              : `${wellId}/book/${isbn}/review`
+              ? `${wellId}/book/${isbn}/memo?tap=${currentTap}`
+              : `${wellId}/book/${isbn}/review?tap=${currentTap}`
           );
         }}
         variants={

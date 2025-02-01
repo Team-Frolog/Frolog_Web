@@ -6,6 +6,7 @@ import {
 import { UseFormReset } from 'react-hook-form';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { STORAGE_KEY } from '@/constants/storage';
+import { TapKey } from '@/constants/taps';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useRouter } from 'next/navigation';
 import { QUERY_KEY } from '@/constants/query';
@@ -50,7 +51,7 @@ export const useProfileEdit = (
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.profileDetail, userId],
       });
-      router.replace(`/${userId}/profile`);
+      router.replace(`/${userId}/profile?tap=${TapKey.PROFILE}`);
       router.back();
     },
   });

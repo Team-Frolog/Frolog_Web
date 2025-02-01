@@ -1,42 +1,26 @@
 import React from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import useUserActionStore from '@/store/userActionStore';
-import { NavigationTap, taps } from '@/constants/taps';
-import { useUserId } from '@/store/sessionStore';
-
-const MotionLink = motion(Link);
+import { TapKey, taps } from '@/constants/taps';
+import { Taps } from '@/types/taps';
+import CustomLink from '../Link/CustomLink';
 
 interface Props {
   href: string;
   icon: React.ReactNode;
   label: Taps;
+  tapKey: TapKey;
   isActive: boolean;
   onClick?: () => void;
 }
 
 /** Navigation Bar 아이템 */
-function NavItem({ href, icon, label, isActive, onClick }: Props) {
-  const userId = useUserId();
-  const { setCurrentTap } = useUserActionStore((state) => state.actions);
-
-  const handleClick = () => {
-    if (onClick) {
-      onClick();
-    }
-
-    const isProfileTap = label === NavigationTap.PROFILE;
-    if (!isProfileTap || userId) {
-      setCurrentTap(label);
-    }
-  };
-
+function NavItem({ href, icon, label, tapKey, isActive, onClick }: Props) {
   return (
-    <MotionLink
+    <CustomLink
       whileTap={{ scale: 1.2 }}
       href={href}
+      tapKey={tapKey}
       className='navItem'
-      onClick={handleClick}
+      onClick={onClick}
     >
       {icon}
       <span
@@ -44,7 +28,7 @@ function NavItem({ href, icon, label, isActive, onClick }: Props) {
       >
         {taps[label]}
       </span>
-    </MotionLink>
+    </CustomLink>
   );
 }
 

@@ -7,7 +7,7 @@ import Tag from '@/components/Tag/Tag';
 import { GetBookRes } from '@frolog/frolog-api';
 import { getTagById } from '@/utils/getTags';
 import { IMAGES } from '@/constants/images';
-import Link from 'next/link';
+import CustomLink from '@/components/Link/CustomLink';
 
 interface Props {
   bookData: GetBookRes;
@@ -29,7 +29,7 @@ function BookListItem({ bookData }: Props) {
   } = bookData;
 
   return (
-    <Link
+    <CustomLink
       prefetch
       href={`/book/${isbn}`}
       className='flex w-full cursor-pointer gap-[20px] text-gray-800'
@@ -88,7 +88,7 @@ function BookListItem({ bookData }: Props) {
           </span>
         </div>
       </div>
-    </Link>
+    </CustomLink>
   );
 }
 

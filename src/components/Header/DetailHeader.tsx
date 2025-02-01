@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { TapKey } from '@/constants/taps';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
-import { useRouter } from 'next/navigation';
 import { useUserId } from '@/store/sessionStore';
 import { RightArrowIcon, WellIcon } from 'public/icons';
 import { motion } from 'framer-motion';
@@ -18,6 +19,7 @@ function DetailHeader({ profileUserId }: Props) {
   const router = useRouter();
   const userId = useUserId();
   const isRootUser = userId === profileUserId;
+  const currentTap = useSearchParams().get('tap') || TapKey.FEED;
 
   return (
     <ResponsiveHeaderLayout onClick={() => router.back()}>
@@ -28,7 +30,10 @@ function DetailHeader({ profileUserId }: Props) {
             whileTap={{ scale: 0.9 }}
             onClick={() =>
               runWhenLoggedIn(
-                () => router.push(`/${profileUserId}${PAGES.PROFILE}`),
+                () =>
+                  router.push(
+                    `/${profileUserId}${PAGES.PROFILE}?tap=${currentTap}`
+                  ),
                 'feed'
               )
             }
