@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { FROGS } from '@/constants/frogs';
 import { motion } from 'framer-motion';
 import { useUserId } from '@/store/sessionStore';
+import CustomMotionLink from '@/components/Link/CustomMotionLink';
 import { IMAGES } from '@/constants/images';
 import useNewItemStore from '@/store/newItemStore';
 import { leafVariants, frogVariants } from '@/styles/variants/variants';
@@ -13,7 +13,6 @@ import { PAGES } from '@/constants/page';
 import GuideChat from './GuideChat';
 
 const MotionImage = motion.create(Image);
-const MotionLink = motion.create(Link);
 
 interface Props {
   /** 개구리 id */
@@ -49,13 +48,13 @@ function FrogOnBook({ message, frogId = 'default', zIndex }: Props) {
           message={message}
           marginBottom={FROGS[frogId].marginBottom}
         />
-        <MotionLink
+        <CustomMotionLink
           href={PAGES.STORE}
           whileTap={{ scale: 0.95 }}
           className={userId ? '' : 'pointer-events-none'}
         >
           <Image src={FROGS[frogId].src} alt='frog' width={150} height={150} />
-        </MotionLink>
+        </CustomMotionLink>
       </motion.div>
     </div>
   );

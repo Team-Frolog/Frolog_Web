@@ -3,7 +3,7 @@
 import { tapVariants } from '@/styles/variants/variants';
 import { getButtonColor } from '@/utils/getButtonColor';
 import React from 'react';
-import CustomLink from '../Link/CustomLink';
+import CustomMotionLink from '../Link/CustomMotionLink';
 
 interface Props {
   children: React.ReactNode;
@@ -24,14 +24,14 @@ function LinkButton({
   const buttonType = getButtonColor(theme);
 
   return (
-    <CustomLink
+    <CustomMotionLink
       variants={tapVariants}
       whileTap='tap'
       href={route}
       className={`block text-center ${buttonType} ${disabled ? 'button-disabled' : ''} ${extraClass}`}
     >
       {children}
-    </CustomLink>
+    </CustomMotionLink>
   );
 }
 

@@ -1,11 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+import CustomMotionLink from '@/components/Link/CustomMotionLink';
+import { TapKey } from '@/constants/taps';
 import { WellAddIcon } from 'public/icons';
 import React from 'react';
-
-const MotionLink = motion(Link);
 
 interface Props {
   /** 유저 id */
@@ -16,13 +14,13 @@ interface Props {
 function WellAddButton({ userId }: Props) {
   return (
     <div className='flex h-fit w-fit flex-col items-center gap-[8px] place-self-center'>
-      <MotionLink
+      <CustomMotionLink
         whileTap={{ scale: 0.95 }}
-        href={`/${userId}/well/create`}
+        href={`/${userId}/well/create?tap=${TapKey.WELL}`}
         className='h-[161px] w-[161px]'
       >
         <WellAddIcon className='h-full w-full' />
-      </MotionLink>
+      </CustomMotionLink>
       <span className='text-body-lg-bold'>새 우물 파기</span>
     </div>
   );
