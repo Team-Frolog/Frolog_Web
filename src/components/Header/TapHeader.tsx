@@ -18,7 +18,6 @@ function TapHeader() {
         <div className='flex gap-[24px]'>
           <CustomLink
             id={pathname.includes('memo') ? 'selected' : 'unselected'}
-            type='button'
             replace
             href={`${pathname.replace(/review/, 'memo')}`}
             className='text-heading-md-bold'
@@ -30,7 +29,6 @@ function TapHeader() {
           </CustomLink>
           <CustomLink
             id={pathname.includes('review') ? 'selected' : 'unselected'}
-            type='button'
             replace
             href={`${pathname.replace(/memo/, 'review')}`}
             className='text-heading-md-bold'
