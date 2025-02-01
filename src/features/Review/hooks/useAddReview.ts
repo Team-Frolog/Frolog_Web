@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from '@/modules/Toast';
 import { ERROR_ALERT } from '@/constants/message';
 import { useFlash } from '@/hooks/useFlash';
+import { useUserActionActions } from '@/store/userActionStore';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { addNewReview } from '../api/review.api';
 import { ReviewFormType } from '..';
@@ -17,6 +18,7 @@ export const useAddReview = (
   setError: UseFormSetError<ReviewFormType>
 ) => {
   const { openFlash } = useFlash();
+  const { setCurrentTap } = useUserActionActions();
   const { handleAddWellItem, resetAll } = useAddWellItem({ userId });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -50,6 +52,7 @@ export const useAddReview = (
     onSuccess: (res) => {
       if (res.result) {
         handleAddWellItem({ well_id: wellId, isbn, status: 'done' });
+        setCurrentTap('well');
         resetAll();
         openFlash({
           type: 'review',

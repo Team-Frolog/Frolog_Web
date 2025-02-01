@@ -80,7 +80,7 @@ async function UserProfilePage({ params: { userId } }: Props) {
           )}
         </div>
       </MainLayout>
-      {isRootUser && <NavigationBar />}
+      <NavigationBar />
     </>
   );
 }

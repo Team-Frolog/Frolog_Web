@@ -100,8 +100,7 @@ const WellItemList = React.memo(
                 alt='wave'
                 width={390}
                 height={12}
-                className='absolute -left-[0px] -top-[12px] h-[68px] w-full'
-                // className='absolute -top-[12px] left-0 h-[12px] w-full'
+                className='absolute -top-[12px] left-0 h-[12px] w-full'
                 loading='eager'
               />
               <span className='text-body-sm-bold text-category-text-economic_business'>
