@@ -2,7 +2,7 @@ import React from 'react';
 import { NewReviewPage } from '@/features/Review';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/auth';
+import { authOptions } from '@/utils/auth/nextAuth';
 import {
   dehydrate,
   HydrationBoundary,

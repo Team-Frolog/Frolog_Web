@@ -38,7 +38,7 @@ function WellOutline({ welltype, fill }: Props) {
     case 9:
       return <Well9 fill={fill} />;
     default:
-      return <></>;
+      return null;
   }
 }
 

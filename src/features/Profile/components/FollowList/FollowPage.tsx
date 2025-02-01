@@ -13,7 +13,7 @@ interface Props {
 function FollowPage({ userId }: Props) {
   const { profile } = useProfile(userId);
 
-  if (!profile) return <></>;
+  if (!profile) return null;
 
   return (
     <>

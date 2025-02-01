@@ -51,7 +51,7 @@ function CommentItem({ commentData, contentId }: Props) {
   );
   const setCommentUser = useCommentStore((state) => state.setCommentUser);
 
-  if (!profile || !commentData) return <></>;
+  if (!profile || !commentData) return null;
 
   return (
     <>

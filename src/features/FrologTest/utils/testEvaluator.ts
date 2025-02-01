@@ -1,5 +1,10 @@
 /* eslint-disable prefer-destructuring */
 type NumberObj = { [key: number]: number };
+export enum FrologTestType {
+  EMOTION = '1',
+  THINKING = '2',
+  ACHIEVEMENT = '3',
+}
 
 /** 독서 성향 테스트 질문별 가중치 */
 export const weight: NumberObj = {
@@ -15,9 +20,9 @@ export const weight: NumberObj = {
 /** 독서 성향 테스트 결과 계산 함수 */
 export const testEvaluator = (answers: number[]) => {
   const totalScore: NumberObj = {
-    1: 0,
-    2: 0,
-    3: 0,
+    [FrologTestType.EMOTION]: 0,
+    [FrologTestType.THINKING]: 0,
+    [FrologTestType.ACHIEVEMENT]: 0,
   };
 
   answers.forEach((answer, index) => {
@@ -27,7 +32,8 @@ export const testEvaluator = (answers: number[]) => {
     totalScore[answer] += questionWeight;
   });
 
-  const maxScore = Math.max(totalScore[1], totalScore[2], totalScore[3]);
+  // 최대 점수 계산
+  const maxScore = Math.max(...Object.values(totalScore));
   const maxScoreTypes = Object.keys(totalScore).filter(
     (type) => totalScore[Number(type)] === maxScore
   );
@@ -40,11 +46,20 @@ export const testEvaluator = (answers: number[]) => {
   } else {
     const secondQuestion = answers[1]; // 2번 질문
 
-    if (secondQuestion === 1 && maxScoreTypes.includes('1')) {
+    if (
+      secondQuestion === 1 &&
+      maxScoreTypes.includes(FrologTestType.EMOTION)
+    ) {
       resultType = 1;
-    } else if (secondQuestion === 2 && maxScoreTypes.includes('2')) {
+    } else if (
+      secondQuestion === 2 &&
+      maxScoreTypes.includes(FrologTestType.THINKING)
+    ) {
       resultType = 2;
-    } else if (secondQuestion === 3 && maxScoreTypes.includes('3')) {
+    } else if (
+      secondQuestion === 3 &&
+      maxScoreTypes.includes(FrologTestType.ACHIEVEMENT)
+    ) {
       resultType = 3;
     } else {
       // 1번 질문의 답변으로 결정
@@ -57,11 +72,11 @@ export const testEvaluator = (answers: number[]) => {
 
 export const getTestTypeById = (type: string) => {
   switch (type) {
-    case '1':
+    case FrologTestType.EMOTION:
       return '감정형';
-    case '2':
+    case FrologTestType.THINKING:
       return '사고형';
-    case '3':
+    case FrologTestType.ACHIEVEMENT:
       return '성취형';
     default:
       return '?';

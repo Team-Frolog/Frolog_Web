@@ -1,13 +1,14 @@
 import { ProfileHeader, FeedContent } from '@/features/Feed';
 import { GetReviewRes } from '@frolog/frolog-api';
-import Link from 'next/link';
 import React from 'react';
+import CustomLink from '@/components/Link/CustomLink';
 import LikeButton from '@/components/Button/LikeButton';
+import { TapKey } from '@/constants/taps';
 import { motion } from 'framer-motion';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { ChatIcon } from 'public/icons';
 import { formatDate } from '@/utils/date';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import ReviewItemHeader from './ReviewItemHeader';
 
 interface Props {
@@ -21,18 +22,19 @@ interface Props {
  */
 function ReviewItem({ reviewData, category, onClickLike }: Props) {
   const router = useRouter();
+  const currentTap = useSearchParams().get('tap') || TapKey.SEARCH;
 
   return (
     <div className='w-full'>
       <ProfileHeader type='feed' userId={reviewData.writer} hasFollow />
       <div className='flex w-full flex-col'>
-        <Link
+        <CustomLink
           href={`/review/${reviewData.id}`}
           className='flex w-full flex-col'
         >
           <ReviewItemHeader rating={reviewData.rating} category={category} />
           <FeedContent feedData={reviewData} isFeed={false} />
-        </Link>
+        </CustomLink>
 
         <div className='flex w-full items-center justify-between bg-white px-page py-[12px]'>
           <span className='text-body-md text-gray-600'>
@@ -52,7 +54,9 @@ function ReviewItem({ reviewData, category, onClickLike }: Props) {
               onClick={() =>
                 runWhenLoggedIn(
                   () =>
-                    router.push(`/feed/${reviewData.id}/comments?type=review`),
+                    router.push(
+                      `/feed/${reviewData.id}/comments?type=review&tap=${currentTap}`
+                    ),
                   'feed'
                 )
               }

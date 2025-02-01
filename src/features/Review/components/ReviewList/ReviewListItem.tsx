@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Rating from '@/components/Rating/Rating';
 import TagSlider from '@/components/Tag/TagSlider';
 import { GetReviewRes } from '@frolog/frolog-api';
 import { formatDate } from '@/utils/date';
 import DeleteButton from '@/components/Button/DeleteButton';
 import { useUserId } from '@/store/sessionStore';
+import CustomLink from '@/components/Link/CustomLink';
 
 interface Props {
   /** 리뷰 데이터 객체 */
@@ -28,7 +28,7 @@ function ReviewListItem({ reviewData, setReviewId, onDelete, userId }: Props) {
   return (
     <div className={`review-item px-0 ${isRootUser && 'pb-0'}`}>
       <div className='flex w-full flex-col gap-[12px]'>
-        <Link
+        <CustomLink
           prefetch
           href={
             isRootUser ? `review/${reviewData.id}` : `/review/${reviewData.id}`
@@ -36,8 +36,8 @@ function ReviewListItem({ reviewData, setReviewId, onDelete, userId }: Props) {
           className='flex w-full cursor-pointer flex-col gap-[12px] px-[24px]'
         >
           <Rating rating={reviewData.rating} textClass='text-heading-lg-bold' />
-          <h3 className='break-all text-title-xl-bold'>{reviewData.title}</h3>
-        </Link>
+          <h3 className='break-all text-body-xl-bold'>{reviewData.title}</h3>
+        </CustomLink>
 
         <div className='flex-col-center w-full gap-[8px]'>
           <TagSlider type='pros' tagKeys={reviewData.tags_pos} />

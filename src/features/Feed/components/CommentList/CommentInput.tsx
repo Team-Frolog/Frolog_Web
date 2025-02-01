@@ -65,7 +65,7 @@ function CommentInput({
           <motion.button
             whileTap={{ scale: 1.1 }}
             type='button'
-            onClick={() => setCommentUser(undefined)}
+            onClick={() => setCommentUser(null)}
           >
             <CancelIcon fill='#727384' width={16} height={16} />
           </motion.button>

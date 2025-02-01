@@ -1,17 +1,26 @@
 import { IMAGES } from '@/constants/images';
 import Image from 'next/image';
 import React from 'react';
-import { testResult, HeaderButtons, StartButton } from '@/features/FrologTest';
+import {
+  testResult,
+  HeaderButtons,
+  StartButton,
+  FrologTestType,
+} from '@/features/FrologTest';
 import { Metadata } from 'next';
 
 interface Props {
   params: {
-    id: '1' | '2' | '3';
+    id: FrologTestType;
   };
 }
 
 export async function generateStaticParams() {
-  return [{ id: '1' }, { id: '2' }, { id: '3' }];
+  return [
+    { id: FrologTestType.EMOTION },
+    { id: FrologTestType.THINKING },
+    { id: FrologTestType.ACHIEVEMENT },
+  ];
 }
 
 export const metadata: Metadata = {

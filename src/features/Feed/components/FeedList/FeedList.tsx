@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import FeedListSkeleton from '@/components/Fallback/Skeleton/FeedListSkeleton';
 import { useObserver } from '@/hooks/gesture/useObserver';
-import { STORAGE_KEY } from '@/constants/storage';
+import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import FeedItem from './FeedItem';
 import { useFeed } from '../../hooks/feed/useFeed';
@@ -20,7 +20,6 @@ function FeedList() {
     hasNextPage,
     isFetched,
     isEmpty,
-    isLoading,
     isFetchingNextPage,
     isCommentLoading,
     setIsCommentLoading,
@@ -29,40 +28,7 @@ function FeedList() {
     hasNextPage,
     fetchNextPage,
   });
-
-  useEffect(() => {
-    const getStorage = sessionStorage.getItem(STORAGE_KEY.SCROLL_INFO);
-    if (!getStorage || !isFetched) {
-      return;
-    }
-
-    const main = window.document.getElementById('main');
-
-    main?.scrollTo({
-      top: JSON.parse(getStorage).anchorPosition,
-    });
-
-    sessionStorage.removeItem(STORAGE_KEY.SCROLL_INFO);
-  }, [isFetched]);
-
-  const saveScroll = () => {
-    const main = window.document.getElementById('main');
-
-    sessionStorage.setItem(
-      STORAGE_KEY.SCROLL_INFO,
-      JSON.stringify({
-        anchorPosition: main?.scrollTop,
-      })
-    );
-  };
-
-  if (isLoading) {
-    return (
-      <div className='flex h-fit w-full flex-col gap-[36px]'>
-        <FeedListSkeleton />
-      </div>
-    );
-  }
+  const { saveScroll } = useScrollPosition(isFetched);
 
   return (
     <div className='flex h-fit w-full flex-col justify-between gap-[36px]'>
@@ -74,7 +40,7 @@ function FeedList() {
               isMemo={!!feed.memo}
               feedData={feed.memo ? feed.memo : feed.review!}
               startCommentLoading={() => setIsCommentLoading(true)}
-              onSaveScroll={() => saveScroll()}
+              onSaveScroll={saveScroll}
             />
           ))}
         </div>

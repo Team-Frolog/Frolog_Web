@@ -4,7 +4,7 @@ import MemoListSkeleton from '@/components/Fallback/Skeleton/MemoListSkeleton';
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/auth';
+import { authOptions } from '@/utils/auth/nextAuth';
 import { Metadata } from 'next';
 import { SearchMemo } from '@frolog/frolog-api';
 import { DEFAULT_LIMIT } from '@/constants/api';
@@ -14,6 +14,7 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import { QUERY_KEY } from '@/constants/query';
+import { TapKey } from '@/constants/taps';
 
 export const metadata: Metadata = {
   title: '메모',
@@ -70,7 +71,7 @@ async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
       {userId === session?.user.id && (
         <div className='add-button-wrapper'>
           <AddButton
-            route={`/${userId}/well/${wellId}/new-memo/${bookId}`}
+            route={`/${userId}/well/${wellId}/new-memo/${bookId}?tap=${TapKey.WELL}`}
             text='메모 추가하기'
           />
         </div>

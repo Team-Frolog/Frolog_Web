@@ -1,17 +1,20 @@
 import { PostWellItemReq } from '@frolog/frolog-api';
 import { useMutation } from '@tanstack/react-query';
 import useNewItemStore from '@/store/newItemStore';
+import { TapKey } from '@/constants/taps';
 import { usePathname, useRouter } from 'next/navigation';
 import { toast } from '@/modules/Toast';
 import { PAGES } from '@/constants/page';
 import useAddBookStore from '@/store/addBookStore';
 import { addWellItem } from '../api/well.api';
 
+interface Props {
+  userId?: string;
+  stopPending?: () => void;
+}
+
 /** 우물 아이템 추가 핸들링 훅 */
-export const useAddWellItem = (
-  userId: string | undefined,
-  stopPending?: () => void
-) => {
+export const useAddWellItem = ({ userId, stopPending }: Props) => {
   const router = useRouter();
   const {
     wellId,
@@ -60,7 +63,7 @@ export const useAddWellItem = (
           stopPending();
         }
         if (!isAfterReview) {
-          router.push(`/${userId}/well/${wellId}`);
+          router.push(`/${userId}/well/${wellId}?tap=${TapKey.WELL}`);
           resetAll();
         }
       }

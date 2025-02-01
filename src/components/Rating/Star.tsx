@@ -6,7 +6,7 @@ interface Props {
   /** 사이즈 (px) */
   size?: number;
   /** 별 색상 */
-  color?: string | undefined;
+  color?: string;
   /** 채워지지 않은 상태의 별 색상 */
   defaultColor?: string;
   /** 별점 선택 핸들러 */
@@ -28,7 +28,7 @@ function Star({ rating, color, defaultColor, size = 20, onClick }: Props) {
   return (
     <div
       className={`relative inline-block ${onClick && 'cursor-pointer'}`}
-      onClick={onClick || undefined}
+      onClick={onClick}
     >
       <svg
         className={`h-[${size}px] w-[${size}px]`}

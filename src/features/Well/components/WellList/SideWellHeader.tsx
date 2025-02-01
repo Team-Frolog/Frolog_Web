@@ -4,13 +4,10 @@ import WellEntryHeader from '@/components/Header/WellEntryHeader';
 import { useRouter } from 'next/navigation';
 import { StoreIcon } from 'public/icons';
 import React from 'react';
-import { motion } from 'framer-motion';
 import BackButton from '@/components/Button/BackButton';
 import { useProfile } from '@/hooks/useProfile';
 import { PAGES } from '@/constants/page';
-import Link from 'next/link';
-
-const MotionLink = motion(Link);
+import CustomMotionLink from '@/components/Link/CustomMotionLink';
 
 interface Props {
   /** 유저 id */
@@ -50,13 +47,13 @@ function SideWellHeader({
     >
       {hasBackButton && (
         <BackButton
-          type='green'
+          type='bg'
           safeArea='back-button'
           onClick={() => router.back()}
         />
       )}
       {hasStoreButton && (
-        <MotionLink
+        <CustomMotionLink
           id='store-button'
           type='button'
           prefetch
@@ -65,7 +62,7 @@ function SideWellHeader({
           className='absolute right-[24px] top-[24px] z-70'
         >
           <StoreIcon />
-        </MotionLink>
+        </CustomMotionLink>
       )}
     </WellEntryHeader>
   );

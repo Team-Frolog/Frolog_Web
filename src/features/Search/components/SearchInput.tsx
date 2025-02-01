@@ -1,6 +1,7 @@
 'use client';
 
 import { PAGES } from '@/constants/page';
+import { TapKey } from '@/constants/taps';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ClearIcon, SearchIcon } from 'public/icons';
 import React, { useState, KeyboardEvent } from 'react';
@@ -15,6 +16,7 @@ function SearchInput({ isMain = false }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams().get('query');
   const [searchValue, setSearchValue] = useState(searchParams || '');
+  const currentTap = useSearchParams().get('tap') || TapKey.SEARCH;
 
   const handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchValue.trim() !== '') {
@@ -23,7 +25,7 @@ function SearchInput({ isMain = false }: Props) {
         // eslint-disable-next-line no-useless-escape
         .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gim, '');
       setSearchValue(value);
-      router.replace(`${PAGES.SEARCH}?query=${value}`);
+      router.replace(`${PAGES.SEARCH}?query=${value}&tap=${currentTap}`);
     }
   };
 

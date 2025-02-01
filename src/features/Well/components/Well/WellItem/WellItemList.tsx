@@ -23,7 +23,7 @@ interface Props {
   /** 로그인한 유저인지 여부 */
   isRootUser: boolean;
   /** 첫 우물인지 여부 */
-  isDefaultWell: boolean | undefined;
+  isDefaultWell?: boolean;
 }
 
 /** 우물 아이템 리스트 컴포넌트 */
@@ -62,11 +62,12 @@ const WellItemList = React.memo(
       return undefined;
     };
 
-    useEffect(() => {
-      return () => {
+    useEffect(
+      () => () => {
         setIsLoading(false);
-      };
-    }, []);
+      },
+      []
+    );
 
     useEffect(() => {
       if (wellItems) {
@@ -99,8 +100,7 @@ const WellItemList = React.memo(
                 alt='wave'
                 width={390}
                 height={12}
-                className='absolute -left-[0px] -top-[12px] h-[68px] w-full'
-                // className='absolute -top-[12px] left-0 h-[12px] w-full'
+                className='absolute -top-[12px] left-0 h-[12px] w-full'
                 loading='eager'
               />
               <span className='text-body-sm-bold text-category-text-economic_business'>

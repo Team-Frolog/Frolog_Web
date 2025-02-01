@@ -1,0 +1,49 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - dev
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    outputs:
+      status: ${{ job.status }}
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key:
+            ${{ runner.os }}-node-${{
+            hashFiles('**/package-lock.json')}}-storybook
+
+      - name: depedency install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          echo "@team-frolog:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.SHARED_PACKAGE_TOKEN }}" >> .npmrc
+          npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.SHARED_PACKAGE_TOKEN }}
+
+      - name: lint check
+        run: npm run lint
+
+      - name: prettier check
+        run: npm run prettier
+
+      - name: test check
+        run: npm run test
+
+      - name: publish to chromatic
+        id: chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}

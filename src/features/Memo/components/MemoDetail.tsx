@@ -7,12 +7,12 @@ import ImageSlot from './MemoForm/ImageForm/ImageSlot';
 
 interface Props {
   /** 메모 데이터 객체 */
-  memoData: GetMemoRes | undefined;
+  memoData?: GetMemoRes;
 }
 
 /** 메모 상세 컴포넌트 */
 function MemoDetail({ memoData }: Props) {
-  if (!memoData) return <></>;
+  if (!memoData) return null;
 
   return (
     <div className='flex w-full flex-col gap-[36px] bg-white'>

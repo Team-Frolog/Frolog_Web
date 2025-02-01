@@ -22,7 +22,7 @@ export const useSearch = () => {
     data,
     fetchNextPage,
     hasNextPage,
-    isFetching,
+    isFetched,
     isLoading,
     isFetchingNextPage,
   } = useInfiniteQuery({
@@ -71,7 +71,7 @@ export const useSearch = () => {
     isEmpty,
     fetchNextPage,
     hasNextPage,
-    isFetching,
+    isFetched,
     isSearched,
     isLoading,
     isFetchingNextPage,

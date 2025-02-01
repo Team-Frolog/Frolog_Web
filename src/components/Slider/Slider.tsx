@@ -11,7 +11,7 @@ interface Props {
   /** 슬라이더 내부 슬라이드의 추가적인 클래스 */
   slideClass?: string;
   /** 흐림 효과 여부 */
-  hasFaded?: boolean;
+  hasFade?: boolean;
   /** justify-between 여부 */
   isBetween?: boolean;
 }
@@ -19,14 +19,14 @@ interface Props {
 /** 태그, 이미지, 프로필에 활용되는 draggable 슬라이드
  * @param sliderClass - slider 적용 클래스
  * @param slideClass - slide 적용 클래스
- * @param hasFaded - 흐림 효과 여부 (태그 슬라이더)
+ * @param hasFade - 흐림 효과 여부 (태그 슬라이더)
  * @param isBetween - 슬라이더 내 justify-between 여부 (프로필)
  */
 function Slider({
   children,
   sliderClass,
   slideClass,
-  hasFaded: hasFade = false,
+  hasFade = false,
   isBetween = false,
 }: Props) {
   const { sliderRef, motionDivRef, drag, widthClass } = useSlideDrag(isBetween);

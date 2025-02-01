@@ -1,11 +1,12 @@
-import LinkButton from '@/components/Button/LinkButton';
 import ProfileSkeleton from '@/components/Fallback/Skeleton/ProfileSkeleton';
+import WellListSkeleton from '@/components/Fallback/Skeleton/WellListSkeleton';
 import WellEntryHeader from '@/components/Header/WellEntryHeader';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import { QUERY_KEY } from '@/constants/query';
 import { Menu } from '@/features/Profile';
+import { WellList } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
-import { authOptions } from '@/utils/auth/auth';
+import { authOptions } from '@/utils/auth/nextAuth';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
 import { GetProfileDetail } from '@frolog/frolog-api';
 import {
@@ -16,7 +17,7 @@ import {
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 const Profile = dynamic(
   () => import('@/features/Profile/components/Profile/Profile'),
@@ -65,22 +66,21 @@ async function UserProfilePage({ params: { userId } }: Props) {
     <>
       <MainLayout extraClass='bg-white'>
         <WellEntryHeader title='프로필' hasBackButton={!isRootUser} />
-        <div
-          className={`flex w-full flex-1 flex-col gap-[32px] pb-[32px] ${isRootUser ? 'justify-start' : 'justify-between'}`}
-        >
+        <div className='flex h-fit w-full flex-col gap-[36px] pb-[32px]'>
           <HydrationBoundary state={dehydrate(queryClient)}>
             <Profile userId={userId} isRootUser={isRootUser} />
           </HydrationBoundary>
 
-          {isRootUser && <Menu />}
-          {!isRootUser && (
-            <div className='flex px-page'>
-              <LinkButton route={`/${userId}/well`}>우물 놀러가기</LinkButton>
-            </div>
+          {isRootUser ? (
+            <Menu />
+          ) : (
+            <Suspense fallback={<WellListSkeleton />}>
+              <WellList userId={userId} isRootUser={isRootUser} />
+            </Suspense>
           )}
         </div>
       </MainLayout>
-      {isRootUser && <NavigationBar />}
+      <NavigationBar />
     </>
   );
 }

@@ -1,55 +1,42 @@
 'use client';
 
-import { ReviewDetail, useReviewDetailPage } from '@/features/Review';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useScroll } from '@/hooks/gesture/useScroll';
 import MainLayout from '@/layouts/MainLayout';
-import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
 import BookInfo from '@/components/Book/BookInfo';
 import { useProfile } from '@/hooks/useProfile';
-import { useRouter } from 'next/navigation';
-import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
-import { useScroll } from '@/hooks/gesture/useScroll';
-import { useUserId } from '@/store/sessionStore';
+import { useUserActionActions } from '@/store/userActionStore';
+import { ReviewDetail, useReviewDetailPage } from '@/features/Review';
+import DetailHeader from '@/components/Header/DetailHeader';
 
 interface Props {
+  /** 리뷰 id */
   reviewId: string;
 }
 
 /** 리뷰 상세 페이지 */
 function ReviewDetailPage({ reviewId }: Props) {
   useScroll({ categoryColor: undefined });
-  const router = useRouter();
-  const userId = useUserId();
   const { reviewDetail } = useReviewDetailPage(reviewId);
   const { profile } = useProfile(reviewDetail?.writer);
-  const isRootUser = userId === profile?.id;
+  const { setIsInFeed } = useUserActionActions();
 
-  if (!reviewDetail || !profile) return <></>;
+  useEffect(
+    () => () => {
+      setIsInFeed(false);
+    },
+    []
+  );
+
+  if (!reviewDetail || !profile) return null;
 
   return (
     <>
-      <ResponsiveHeaderLayout onClick={() => router.back()}>
-        {!isRootUser && (
-          <div className='flex flex-1 justify-end'>
-            <button
-              type='button'
-              onClick={() =>
-                runWhenLoggedIn(
-                  () => router.push(`/${profile.id}/well`),
-                  'feed'
-                )
-              }
-              className='text-body-lg-bold text-main'
-            >
-              우물에 놀러가기
-            </button>
-          </div>
-        )}
-      </ResponsiveHeaderLayout>
+      <DetailHeader profileUserId={profile.id} />
       <MainLayout>
         <div className='flex w-full flex-col gap-[36px] bg-gray-900'>
           <h1 className='w-fit max-w-[350px] px-page text-heading-md-bold text-white'>
-            {profile?.username}의 리뷰
+            {profile.username}의 리뷰
           </h1>
           <BookInfo bookId={reviewDetail.isbn} canClick />
         </div>

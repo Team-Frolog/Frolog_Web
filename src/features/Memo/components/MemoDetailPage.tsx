@@ -1,14 +1,12 @@
 'use client';
 
-import React from 'react';
-import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
+import React, { useEffect } from 'react';
 import MainLayout from '@/layouts/MainLayout';
 import BookInfo from '@/components/Book/BookInfo';
 import { useProfile } from '@/hooks/useProfile';
-import { useRouter } from 'next/navigation';
-import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { useScroll } from '@/hooks/gesture/useScroll';
-import { useUserId } from '@/store/sessionStore';
+import DetailHeader from '@/components/Header/DetailHeader';
+import { useUserActionActions } from '@/store/userActionStore';
 import { useMemoDetailPage } from '../hooks/useMemoDetailPage';
 import MemoDetail from './MemoDetail';
 
@@ -19,35 +17,23 @@ interface Props {
 
 /** 메모 상세 페이지 */
 function MemoDetailPage({ memoId }: Props) {
-  const router = useRouter();
-  const userId = useUserId();
   useScroll({ categoryColor: undefined });
   const { memoDetail } = useMemoDetailPage(memoId);
   const { profile } = useProfile(memoDetail?.writer);
-  const isRootUser = userId === profile?.id;
+  const { setIsInFeed } = useUserActionActions();
 
-  if (!memoDetail || !profile) return <></>;
+  useEffect(
+    () => () => {
+      setIsInFeed(false);
+    },
+    []
+  );
+
+  if (!memoDetail || !profile) return null;
 
   return (
     <>
-      <ResponsiveHeaderLayout onClick={() => router.back()}>
-        {!isRootUser && (
-          <div className='flex flex-1 justify-end'>
-            <button
-              type='button'
-              onClick={() =>
-                runWhenLoggedIn(
-                  () => router.push(`/${profile.id}/well`),
-                  'feed'
-                )
-              }
-              className='text-body-lg-bold text-main'
-            >
-              우물에 놀러가기
-            </button>
-          </div>
-        )}
-      </ResponsiveHeaderLayout>
+      <DetailHeader profileUserId={profile.id} />
       <MainLayout extraClass='bg-white'>
         <div className='flex w-full flex-col gap-[36px] bg-gray-900'>
           <h1 className='w-fit max-w-[350px] px-page text-heading-md-bold text-white'>

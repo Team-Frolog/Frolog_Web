@@ -1,11 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { IMAGES } from '@/constants/images';
 import { useFollowUser } from '@/features/Feed';
 import { getImageSrc } from '@/utils/getImageSrc';
 import { GetProfileRes } from '@frolog/frolog-api';
 import { useUserId } from '@/store/sessionStore';
+import CustomLink from '@/components/Link/CustomLink';
 
 interface Props {
   /** 리스트 조회 대상이 되는 유저 id */
@@ -23,7 +23,7 @@ function FollowItem({ userId, targetUser }: Props) {
 
   return (
     <div className='flex w-full items-center justify-between'>
-      <Link
+      <CustomLink
         href={`/${targetUser.id}/profile`}
         className='flex items-center gap-[8px]'
       >
@@ -43,7 +43,7 @@ function FollowItem({ userId, targetUser }: Props) {
         <h5 className='text-body-lg-bold text-gray-600'>
           {targetUser.username}
         </h5>
-      </Link>
+      </CustomLink>
       {!isRootUser && (
         <button
           type='button'

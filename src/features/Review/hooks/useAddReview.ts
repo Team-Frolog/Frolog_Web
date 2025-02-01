@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { TapKey } from '@/constants/taps';
 import { UseFormSetError, UseFormWatch } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from '@/modules/Toast';
@@ -17,14 +18,15 @@ export const useAddReview = (
   setError: UseFormSetError<ReviewFormType>
 ) => {
   const { openFlash } = useFlash();
-  const { handleAddWellItem, resetAll } = useAddWellItem(userId);
+  const { handleAddWellItem, resetAll } = useAddWellItem({ userId });
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       setIsLoading(false);
-    };
-  }, []);
+    },
+    []
+  );
 
   const { mutate: handleAddReview } = useMutation({
     mutationFn: async (data: ReviewFormType) => {
@@ -52,7 +54,7 @@ export const useAddReview = (
         resetAll();
         openFlash({
           type: 'review',
-          callbackUrl: `/${userId}/well/${wellId}`,
+          callbackUrl: `/${userId}/well/${wellId}?tap=${TapKey.WELL}`,
         });
       }
     },

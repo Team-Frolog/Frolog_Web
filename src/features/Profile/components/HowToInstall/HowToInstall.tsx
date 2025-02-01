@@ -11,7 +11,7 @@ import Instruction from './Instruction';
 /** 프롤로그 앱 설치 방법 컴포넌트 */
 function HowToInstall() {
   const router = useRouter();
-  const tap = useSearchParams().get('tap') || 'ios';
+  const tap = useSearchParams().get('currentTap') || 'ios';
 
   return (
     <>
@@ -31,7 +31,7 @@ function HowToInstall() {
         currentTap={tap}
         defaultTap='ios'
         onChangeTap={(label: string) =>
-          router.replace(`${PAGES.INSTALL}?tap=${label}`)
+          router.replace(`${PAGES.INSTALL}?currentTap=${label}`)
         }
       />
       <MainLayout extraClass='bg-white flex w-full flex-col gap-[36px] px-page py-[36px] text-gray-800'>

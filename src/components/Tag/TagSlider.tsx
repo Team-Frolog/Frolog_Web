@@ -24,6 +24,7 @@ function TagSlider({ type, tagKeys }: Props) {
 
   return (
     <Slider
+      hasFade
       sliderClass='relative flex w-[98%] overflow-hidden'
       slideClass='gap-[4px]'
     >

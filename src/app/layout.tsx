@@ -5,7 +5,7 @@ import QueryProvider from '@/providers/QueryProvider';
 import GAProvider from '@/providers/GAProvider';
 import NextAuthProvider from '@/providers/NextAuthProvider';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/auth';
+import { authOptions } from '@/utils/auth/nextAuth';
 import SessionHandler from '@/providers/SessionHandler';
 import { metadata } from '@/data/metadata';
 

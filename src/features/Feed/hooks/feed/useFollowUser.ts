@@ -4,7 +4,7 @@ import { QUERY_KEY } from '@/constants/query';
 import { changeFollowUser } from '../../api/activity.api';
 
 /** 유저 팔로우 핸들러가 있는 훅 */
-export const useFollowUser = (userId?: string | undefined) => {
+export const useFollowUser = (userId?: string) => {
   const queryClient = useQueryClient();
 
   const { mutate: handleFollow } = useMutation({

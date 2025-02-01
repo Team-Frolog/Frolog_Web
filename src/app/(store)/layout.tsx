@@ -2,7 +2,7 @@ import React from 'react';
 import MainLayout from '@/layouts/MainLayout';
 import StoreHeader from '@/components/Header/StoreHeader';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/auth';
+import { authOptions } from '@/utils/auth/nextAuth';
 
 interface Props {
   children: React.ReactNode;

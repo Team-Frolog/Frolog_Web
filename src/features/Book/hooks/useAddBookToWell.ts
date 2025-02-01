@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useUserId } from '@/store/sessionStore';
-import { useRouter } from 'next/navigation';
+import { TapKey } from '@/constants/taps';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { QUERY_KEY } from '@/constants/query';
 import { getReviewCount } from '../api/book.api';
@@ -14,7 +15,8 @@ export const useAddBookToWell = (isbn: string) => {
   const [isPending, setIsPending] = useState(false); // 우물을 선택한 경우 완료되기까지 pending 여부
   const router = useRouter();
   const { handleAddWellItem, wellId, setWellId, setIsThroughSearch } =
-    useAddWellItem(userId, () => setIsPending(false));
+    useAddWellItem({ userId, stopPending: () => setIsPending(false) });
+  const currentTap = useSearchParams().get('tap') || TapKey.SEARCH;
 
   const { data: reviewCount } = useQuery({
     queryKey: [QUERY_KEY.reviewCount, isbn],
@@ -33,7 +35,9 @@ export const useAddBookToWell = (isbn: string) => {
       }
       // 1-2. 리뷰가 없는 경우 - 리뷰 작성 후 쌓기
       else {
-        router.push(`/${userId}/well/${wellId}/new-review/${isbn}`);
+        router.push(
+          `/${userId}/well/${wellId}/new-review/${isbn}?tap=${currentTap}`
+        );
       }
     }
     // case 2. 검색에서 접근
@@ -52,7 +56,9 @@ export const useAddBookToWell = (isbn: string) => {
         setStep('select-well');
         setCallback(() => (id: string) => {
           setWellId(id);
-          router.push(`/${userId}/well/${id}/new-review/${isbn}`);
+          router.push(
+            `/${userId}/well/${id}/new-review/${isbn}?tap=${currentTap}`
+          );
         });
       }
     }

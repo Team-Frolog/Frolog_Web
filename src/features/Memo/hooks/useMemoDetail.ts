@@ -1,6 +1,7 @@
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useUserId } from '@/store/sessionStore';
 import { QUERY_KEY } from '@/constants/query';
+import { TapKey } from '@/constants/taps';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { editMemoDetail, getMemoDetail } from '../api/memo.api';
 import { MemoFormType } from '../types/form';
@@ -14,6 +15,7 @@ export const useMemoDetail = (
   const router = useRouter();
   const userId = useUserId();
   const queryClient = useQueryClient();
+  const currentTap = useSearchParams().get('tap') || TapKey.WELL;
 
   const { data: memoDetail } = useQuery({
     queryKey: [QUERY_KEY.memoDetail, memoId],
@@ -34,7 +36,9 @@ export const useMemoDetail = (
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.memoDetail, memoId],
       });
-      router.replace(`/${userId}/well/${wellId}/book/${bookId}/memo`);
+      router.replace(
+        `/${userId}/well/${wellId}/book/${bookId}/memo?tap=${currentTap}`
+      );
       router.back();
     },
   });

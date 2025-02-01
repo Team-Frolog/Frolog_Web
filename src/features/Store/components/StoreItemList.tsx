@@ -15,7 +15,7 @@ function StoreItemList({ userId }: Props) {
   const { points } = useWallet(userId);
   const { storeItems, handlePurchase } = useStore(userId, points);
 
-  if (!storeItems || points === undefined) return <></>;
+  if (!storeItems || points === undefined) return null;
 
   return (
     <div className='flex w-full flex-col gap-[12px]'>

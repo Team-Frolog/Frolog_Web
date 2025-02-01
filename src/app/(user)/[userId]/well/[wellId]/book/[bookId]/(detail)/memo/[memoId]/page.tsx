@@ -1,6 +1,6 @@
 import { QUERY_KEY } from '@/constants/query';
 import { MyMemoPage } from '@/features/Memo';
-import { authOptions } from '@/utils/auth/auth';
+import { authOptions } from '@/utils/auth/nextAuth';
 import { GetMemo } from '@frolog/frolog-api';
 import {
   dehydrate,

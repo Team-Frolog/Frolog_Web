@@ -16,7 +16,7 @@ interface Props {
 function TermsDetailPage({ params: { type } }: Props) {
   const viewData = terms.find((item) => item.name === type);
 
-  if (!viewData) return <></>;
+  if (!viewData) return null;
 
   return (
     <MainLayout extraClass='flex bg-white px-page pb-[30px]'>

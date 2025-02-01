@@ -1,6 +1,6 @@
 'use client';
 
-import { BackIcon, WellBackIcon } from 'public/icons';
+import { BackIcon, BackBgIcon } from 'public/icons';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
@@ -10,7 +10,7 @@ interface Props {
   fill?: string;
   extraClass?: string;
   /** 버튼의 테마 */
-  type?: 'normal' | 'green';
+  type?: 'normal' | 'bg';
   /** pwa 관련 클래스
    * - back-button: side-hedaer
    * - back-fixed: error, notfound page
@@ -50,7 +50,7 @@ function BackButton({
           onClick={onClick}
           className='absolute left-[12px] top-[12px] z-70'
         >
-          <WellBackIcon />
+          <BackBgIcon />
         </motion.button>
       )}
     </>

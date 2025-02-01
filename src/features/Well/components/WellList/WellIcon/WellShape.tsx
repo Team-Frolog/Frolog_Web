@@ -36,7 +36,7 @@ function WellShape({ welltype }: Props) {
     case 9:
       return <Well9 className='h-full w-full object-cover' />;
     default:
-      return <></>;
+      return null;
   }
 }
 

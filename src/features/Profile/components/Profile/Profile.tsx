@@ -17,7 +17,7 @@ interface Props {
 function Profile({ userId, isRootUser = false }: Props) {
   const { profileDetail } = useProfileDetail(userId);
 
-  if (!profileDetail) return <></>;
+  if (!profileDetail) return null;
 
   return (
     <div className='flex w-full flex-col gap-[28px]'>

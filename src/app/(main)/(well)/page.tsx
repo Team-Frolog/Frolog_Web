@@ -1,6 +1,6 @@
 import React from 'react';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/auth';
+import { authOptions } from '@/utils/auth/nextAuth';
 import { SideWellHeader } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
 import dynamic from 'next/dynamic';

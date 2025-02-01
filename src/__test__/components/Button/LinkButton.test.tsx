@@ -1,12 +1,22 @@
 import { render, screen } from '@testing-library/react';
 import { getButtonColor } from '@/utils/getButtonColor';
 import LinkButton from '@/components/Button/LinkButton';
+import { useSearchParams } from 'next/navigation';
 
 jest.mock('@/utils/getButtonColor', () => ({
   getButtonColor: jest.fn(() => 'button-normal'),
 }));
 
+jest.mock('next/navigation', () => ({
+  useSearchParams: jest.fn(),
+}));
+
 describe('LinkButton', () => {
+  beforeEach(() => {
+    (useSearchParams as jest.Mock).mockReturnValue({
+      get: jest.fn().mockReturnValue('mockedTapKey'),
+    });
+  });
   test('props로 전달한 route가 적절히 등록되어야 한다.', () => {
     render(
       <LinkButton route='/test-route' theme='normal'>
@@ -17,7 +27,7 @@ describe('LinkButton', () => {
     const linkElement = screen.getByRole('link', { name: 'Test Link' });
 
     expect(linkElement).toBeInTheDocument();
-    expect(linkElement).toHaveAttribute('href', '/test-route');
+    expect(linkElement).toHaveAttribute('href', '/test-route?tap=mockedTapKey');
   });
 
   test('theme을 전달한 경우 적절한 button color가 적용되어야 한다.', () => {
