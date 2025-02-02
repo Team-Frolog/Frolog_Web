@@ -61,7 +61,8 @@ function NavigationBar() {
     const isActive =
       pathname === href ||
       currentTapKey === navKey ||
-      (label === NavigationTap.WELL && pathname === '/default');
+      (label === NavigationTap.WELL &&
+        (pathname === '/default' || pathname === '/others'));
 
     return (
       <NavItem
