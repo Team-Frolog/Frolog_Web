@@ -1,5 +1,5 @@
 import React from 'react';
-import { TapKey, taps } from '@/constants/taps';
+import { NavItemKey, navItem } from '@/constants/nav';
 import { Taps } from '@/types/taps';
 import CustomMotionLink from '../Link/CustomMotionLink';
 
@@ -7,18 +7,18 @@ interface Props {
   href: string;
   icon: React.ReactNode;
   label: Taps;
-  tapKey: TapKey;
+  navKey: NavItemKey;
   isActive: boolean;
   onClick?: () => void;
 }
 
 /** Navigation Bar 아이템 */
-function NavItem({ href, icon, label, tapKey, isActive, onClick }: Props) {
+function NavItem({ href, icon, label, navKey, isActive, onClick }: Props) {
   return (
     <CustomMotionLink
       whileTap={{ scale: 1.2 }}
       href={href}
-      tapKey={tapKey}
+      navKey={navKey}
       className='navItem'
       onClick={onClick}
     >
@@ -26,7 +26,7 @@ function NavItem({ href, icon, label, tapKey, isActive, onClick }: Props) {
       <span
         className={`text-body-sm-bold ${isActive ? 'text-gray-800' : 'text-gray-500'}`}
       >
-        {taps[label]}
+        {navItem[label]}
       </span>
     </CustomMotionLink>
   );

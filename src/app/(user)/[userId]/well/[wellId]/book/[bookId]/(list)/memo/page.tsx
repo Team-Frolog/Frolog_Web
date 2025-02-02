@@ -14,7 +14,7 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import { QUERY_KEY } from '@/constants/query';
-import { TapKey } from '@/constants/taps';
+import { NavItemKey } from '@/constants/nav';
 
 export const metadata: Metadata = {
   title: '메모',
@@ -71,7 +71,7 @@ async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
       {userId === session?.user.id && (
         <div className='add-button-wrapper'>
           <AddButton
-            route={`/${userId}/well/${wellId}/new-memo/${bookId}?tap=${TapKey.WELL}`}
+            route={`/${userId}/well/${wellId}/new-memo/${bookId}?nav=${NavItemKey.WELL}`}
             text='메모 추가하기'
           />
         </div>

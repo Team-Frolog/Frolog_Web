@@ -1,7 +1,7 @@
 'use client';
 
 import CustomMotionLink from '@/components/Link/CustomMotionLink';
-import { TapKey } from '@/constants/taps';
+import { NavItemKey } from '@/constants/nav';
 import { WellAddIcon } from 'public/icons';
 import React from 'react';
 
@@ -16,7 +16,7 @@ function WellAddButton({ userId }: Props) {
     <div className='flex h-fit w-fit flex-col items-center gap-[8px] place-self-center'>
       <CustomMotionLink
         whileTap={{ scale: 0.95 }}
-        href={`/${userId}/well/create?tap=${TapKey.WELL}`}
+        href={`/${userId}/well/create?nav=${NavItemKey.WELL}`}
         className='h-[161px] w-[161px]'
       >
         <WellAddIcon className='h-full w-full' />

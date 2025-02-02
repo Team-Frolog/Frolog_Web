@@ -6,7 +6,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { CATEGORY } from '@/constants/category';
 import { GetWellRes } from '@frolog/frolog-api';
-import { TapKey } from '@/constants/taps';
+import { NavItemKey } from '@/constants/nav';
 import { FROGS } from '@/constants/frogs';
 import NewTag from '@/components/Tag/NewTag';
 import { sizeOfBg } from '../../../data/wellSize';
@@ -30,7 +30,7 @@ function WellIcon({ wellData, type = 'list', onClick }: Props) {
   const controls = useAnimation();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const shapeRef = useRef<HTMLDivElement | null>(null);
-  const currentTap = useSearchParams().get('tap') || TapKey.WELL;
+  const currentNav = useSearchParams().get('nav') || NavItemKey.WELL;
 
   /** 우물 접근 모션 실행 함수 */
   const handleIntoWell = (wellId: string) => {
@@ -48,7 +48,7 @@ function WellIcon({ wellData, type = 'list', onClick }: Props) {
       });
 
       setTimeout(() => {
-        router.push(`/${owner}/well/${wellId}?tap=${currentTap}`);
+        router.push(`/${owner}/well/${wellId}?nav=${currentNav}`);
       }, 1000);
     }
   };

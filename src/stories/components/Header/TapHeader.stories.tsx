@@ -1,11 +1,11 @@
-import TapHeader from '@/components/Header/TapHeader';
+import TabHeader from '@/components/Header/TabHeader';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Common/Header/TapHeader',
-  component: TapHeader,
+  title: 'Common/Header/TabHeader',
+  component: TabHeader,
   tags: ['autodocs'],
-} satisfies Meta<typeof TapHeader>;
+} satisfies Meta<typeof TabHeader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

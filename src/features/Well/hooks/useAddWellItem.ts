@@ -1,7 +1,7 @@
 import { PostWellItemReq } from '@frolog/frolog-api';
 import { useMutation } from '@tanstack/react-query';
 import useNewItemStore from '@/store/newItemStore';
-import { TapKey } from '@/constants/taps';
+import { NavItemKey } from '@/constants/nav';
 import { usePathname, useRouter } from 'next/navigation';
 import { toast } from '@/modules/Toast';
 import { PAGES } from '@/constants/page';
@@ -63,7 +63,7 @@ export const useAddWellItem = ({ userId, stopPending }: Props) => {
           stopPending();
         }
         if (!isAfterReview) {
-          router.push(`/${userId}/well/${wellId}?tap=${TapKey.WELL}`);
+          router.push(`/${userId}/well/${wellId}?nav=${NavItemKey.WELL}`);
           resetAll();
         }
       }

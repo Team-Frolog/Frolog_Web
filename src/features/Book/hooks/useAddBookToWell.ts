@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useUserId } from '@/store/sessionStore';
-import { TapKey } from '@/constants/taps';
+import { NavItemKey } from '@/constants/nav';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { QUERY_KEY } from '@/constants/query';
@@ -16,7 +16,7 @@ export const useAddBookToWell = (isbn: string) => {
   const router = useRouter();
   const { handleAddWellItem, wellId, setWellId, setIsThroughSearch } =
     useAddWellItem({ userId, stopPending: () => setIsPending(false) });
-  const currentTap = useSearchParams().get('tap') || TapKey.SEARCH;
+  const currentNav = useSearchParams().get('nav') || NavItemKey.SEARCH;
 
   const { data: reviewCount } = useQuery({
     queryKey: [QUERY_KEY.reviewCount, isbn],
@@ -36,7 +36,7 @@ export const useAddBookToWell = (isbn: string) => {
       // 1-2. 리뷰가 없는 경우 - 리뷰 작성 후 쌓기
       else {
         router.push(
-          `/${userId}/well/${wellId}/new-review/${isbn}?tap=${currentTap}`
+          `/${userId}/well/${wellId}/new-review/${isbn}?nav=${currentNav}`
         );
       }
     }
@@ -57,7 +57,7 @@ export const useAddBookToWell = (isbn: string) => {
         setCallback(() => (id: string) => {
           setWellId(id);
           router.push(
-            `/${userId}/well/${id}/new-review/${isbn}?tap=${currentTap}`
+            `/${userId}/well/${id}/new-review/${isbn}?nav=${currentNav}`
           );
         });
       }

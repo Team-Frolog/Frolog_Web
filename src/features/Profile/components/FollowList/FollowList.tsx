@@ -3,7 +3,7 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import FollowListSkeleton from '@/components/Fallback/Skeleton/FollowListSkeleton';
-import Tap from '@/components/Tap/Tap';
+import Tab from '@/components/Tab/Tab';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useProfileDetail } from '../../hooks/useProfileDetail';
 
@@ -32,14 +32,14 @@ function FollowList({ userId }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const { profileDetail } = useProfileDetail(userId);
-  const tap = useSearchParams().get('currentTap') || 'followers';
+  const tab = useSearchParams().get('currentTab') || 'followers';
 
   if (!profileDetail) return null;
 
   return (
     <div className='flex w-full flex-1 flex-col overflow-hidden py-[16px]'>
-      <Tap
-        taps={[
+      <Tab
+        tabs={[
           {
             id: 1,
             label: 'followers',
@@ -51,13 +51,13 @@ function FollowList({ userId }: Props) {
             name: `팔로잉 ${profileDetail.following_cnt}`,
           },
         ]}
-        currentTap={tap}
-        defaultTap='followers'
-        onChangeTap={(label: string) =>
-          router.replace(`${pathname}?currentTap=${label}`)
+        currentTab={tab}
+        defaultTab='followers'
+        onChangeTab={(label: string) =>
+          router.replace(`${pathname}?currentTab=${label}`)
         }
       />
-      {tap === 'followings' ? (
+      {tab === 'followings' ? (
         <Followings userId={userId} />
       ) : (
         <Followers userId={userId} />

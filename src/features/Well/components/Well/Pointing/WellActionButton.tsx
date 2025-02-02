@@ -2,7 +2,7 @@
 
 import { ArrowIcon, PlusIcon } from 'public/icons';
 import { motion } from 'framer-motion';
-import { TapKey } from '@/constants/taps';
+import { NavItemKey } from '@/constants/nav';
 import { PAGES } from '@/constants/page';
 import React from 'react';
 import { useRouter } from 'next/navigation';
@@ -46,7 +46,7 @@ function WellActionButton({
             if (wellId) {
               setWellId(wellId);
             }
-            router.push(`${href}?tap=${TapKey.WELL}`);
+            router.push(`${href}?nav=${NavItemKey.WELL}`);
           }}
           className='absolute inset-x-0 top-0 z-50 mx-auto cursor-pointer'
         >

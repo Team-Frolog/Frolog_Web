@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { TapKey } from '@/constants/taps';
+import { NavItemKey } from '@/constants/nav';
 import { useUserId } from '@/store/sessionStore';
 import { addNewMemo } from '../api/memo.api';
 import { MemoFormType } from '../types/form';
@@ -13,7 +13,7 @@ export const useAddMemo = (wellId: string, bookId: string) => {
   const router = useRouter();
   const userId = useUserId();
   const [isLoading, setIsLoading] = useState(false);
-  const currentTap = useSearchParams().get('tap') || TapKey.WELL;
+  const currentNav = useSearchParams().get('nav') || NavItemKey.WELL;
 
   useEffect(
     () => () => {
@@ -39,7 +39,7 @@ export const useAddMemo = (wellId: string, bookId: string) => {
     },
     onSuccess: () =>
       router.replace(
-        `/${userId}/well/${wellId}/book/${bookId}/memo?tap=${currentTap}`
+        `/${userId}/well/${wellId}/book/${bookId}/memo?nav=${currentNav}`
       ),
   });
 

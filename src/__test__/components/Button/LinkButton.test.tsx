@@ -27,7 +27,7 @@ describe('LinkButton', () => {
     const linkElement = screen.getByRole('link', { name: 'Test Link' });
 
     expect(linkElement).toBeInTheDocument();
-    expect(linkElement).toHaveAttribute('href', '/test-route?tap=mockedTapKey');
+    expect(linkElement).toHaveAttribute('href', '/test-route?nav=mockedTapKey');
   });
 
   test('theme을 전달한 경우 적절한 button color가 적용되어야 한다.', () => {

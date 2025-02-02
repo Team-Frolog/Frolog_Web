@@ -42,7 +42,7 @@ function UserStatistics({ profileDetail }: Props) {
             <span className='text-body-sm text-gray-600'>최고 높이(권)</span>
           </div>
           <Link
-            href={`/${profileDetail.id}/profile/follows?currentTap=followers`}
+            href={`/${profileDetail.id}/profile/follows?currentTab=followers`}
             className='flex-column items-center justify-center'
           >
             <h3 className='text-title-xl-bold text-gray-800'>
@@ -51,7 +51,7 @@ function UserStatistics({ profileDetail }: Props) {
             <span className='text-body-sm text-gray-600'>팔로워</span>
           </Link>
           <Link
-            href={`/${profileDetail.id}/profile/follows?currentTap=followings`}
+            href={`/${profileDetail.id}/profile/follows?currentTab=followings`}
             className='flex-column items-center justify-center'
           >
             <h3 className='text-title-xl-bold text-gray-800'>

@@ -6,7 +6,7 @@ import { PAGES } from '@/constants/page';
 import { usePathname, useSearchParams } from 'next/navigation';
 import useUserActionStore from '@/store/userActionStore';
 import { useUserId } from '@/store/sessionStore';
-import { NavigationTap, TapKey } from '@/constants/taps';
+import { NavigationTap, NavItemKey } from '@/constants/nav';
 import NavItem from './NavItem';
 
 interface NavItemProps {
@@ -14,13 +14,13 @@ interface NavItemProps {
   href: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   onClick?: () => void;
-  tapKey: TapKey;
+  navKey: NavItemKey;
 }
 
 function NavigationBar() {
   const userId = useUserId();
   const pathname = usePathname();
-  const currentTapKey = useSearchParams().get('tap');
+  const currentTapKey = useSearchParams().get('nav');
   const { setScrollPos } = useUserActionStore((state) => state.actions);
 
   const navItems: NavItemProps[] = [
@@ -28,26 +28,26 @@ function NavigationBar() {
       label: NavigationTap.WELL,
       href: PAGES.HOME,
       icon: WellIcon,
-      tapKey: TapKey.WELL,
+      navKey: NavItemKey.WELL,
     },
     {
       label: NavigationTap.FEED,
       href: PAGES.FEED,
       icon: FeedIcon,
       onClick: () => setScrollPos(null),
-      tapKey: TapKey.FEED,
+      navKey: NavItemKey.FEED,
     },
     {
       label: NavigationTap.SEARCH,
       href: PAGES.SEARCH_HOME,
       icon: SearchIcon,
-      tapKey: TapKey.SEARCH,
+      navKey: NavItemKey.SEARCH,
     },
     {
       label: NavigationTap.PROFILE,
       href: `/${userId}/profile`,
       icon: ProfileIcon,
-      tapKey: TapKey.PROFILE,
+      navKey: NavItemKey.PROFILE,
     },
   ];
 
@@ -56,11 +56,11 @@ function NavigationBar() {
     href,
     icon: Icon,
     onClick,
-    tapKey,
+    navKey,
   }: NavItemProps) => {
     const isActive =
       pathname === href ||
-      currentTapKey === tapKey ||
+      currentTapKey === navKey ||
       (label === NavigationTap.WELL && pathname === '/default');
 
     return (
@@ -68,7 +68,7 @@ function NavigationBar() {
         key={label}
         label={label}
         href={href}
-        tapKey={tapKey}
+        navKey={navKey}
         isActive={isActive}
         onClick={onClick}
         icon={<Icon fill={isActive ? '#313239' : '#B3B6C5'} height={22} />}

@@ -4,7 +4,7 @@ import React from 'react';
 import TitleHeader from '@/components/Header/TitleHeader';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { FormProvider, useForm } from 'react-hook-form';
-import { TapKey } from '@/constants/taps';
+import { NavItemKey } from '@/constants/nav';
 import { ReviewForm as ReviewFormType } from '../types/review';
 import { useReviewDetail } from '../hooks/useReviewDetail';
 import ReviewForm from './ReviewForm/ReviewForm';
@@ -22,7 +22,7 @@ function MyReviewPage({ params: { bookId, reviewId } }: Props) {
   const isEditing = !!useSearchParams().get('edit');
   const router = useRouter();
   const pathname = usePathname();
-  const currentTap = useSearchParams().get('tap') || TapKey.WELL;
+  const currentNav = useSearchParams().get('nav') || NavItemKey.WELL;
 
   const methods = useForm<ReviewFormType>({
     mode: 'onBlur',
@@ -69,7 +69,7 @@ function MyReviewPage({ params: { bookId, reviewId } }: Props) {
           theme='light'
           type={isEditing ? 'edit' : 'default'}
           isDisabled={false}
-          onClick={() => router.push(`${pathname}?edit=true&tap=${currentTap}`)}
+          onClick={() => router.push(`${pathname}?edit=true&nav=${currentNav}`)}
           onClickBack={
             isEditing ? () => handleClickBack() : () => router.back()
           }
