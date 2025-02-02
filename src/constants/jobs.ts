@@ -11,4 +11,4 @@ export const JOBS = [
   { id: 10, value: '공공 부문/공무원' },
   { id: 11, value: '서비스업' },
   { id: 12, value: '기타' },
-];
+] as const;

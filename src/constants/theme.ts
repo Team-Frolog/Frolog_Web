@@ -35,4 +35,4 @@ export const PAGE_THEME: {
   '/quit': LIGHT,
   '/store': LIGHT,
   '/mission': LIGHT,
-};
+} as const;
