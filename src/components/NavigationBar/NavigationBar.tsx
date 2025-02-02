@@ -6,11 +6,11 @@ import { PAGES } from '@/constants/page';
 import { usePathname, useSearchParams } from 'next/navigation';
 import useUserActionStore from '@/store/userActionStore';
 import { useUserId } from '@/store/sessionStore';
-import { NavigationTap, NavItemKey } from '@/constants/nav';
+import { NavItemLabel, NavItemKey } from '@/constants/nav';
 import NavItem from './NavItem';
 
 interface NavItemProps {
-  label: NavigationTap;
+  label: NavItemLabel;
   href: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   onClick?: () => void;
@@ -25,26 +25,26 @@ function NavigationBar() {
 
   const navItems: NavItemProps[] = [
     {
-      label: NavigationTap.WELL,
+      label: NavItemLabel.WELL,
       href: PAGES.HOME,
       icon: WellIcon,
       navKey: NavItemKey.WELL,
     },
     {
-      label: NavigationTap.FEED,
+      label: NavItemLabel.FEED,
       href: PAGES.FEED,
       icon: FeedIcon,
       onClick: () => setScrollPos(null),
       navKey: NavItemKey.FEED,
     },
     {
-      label: NavigationTap.SEARCH,
+      label: NavItemLabel.SEARCH,
       href: PAGES.SEARCH_HOME,
       icon: SearchIcon,
       navKey: NavItemKey.SEARCH,
     },
     {
-      label: NavigationTap.PROFILE,
+      label: NavItemLabel.PROFILE,
       href: `/${userId}/profile`,
       icon: ProfileIcon,
       navKey: NavItemKey.PROFILE,
@@ -61,7 +61,7 @@ function NavigationBar() {
     const isActive =
       pathname === href ||
       currentTapKey === navKey ||
-      (label === NavigationTap.WELL &&
+      (label === NavItemLabel.WELL &&
         (pathname === '/default' || pathname === '/others'));
 
     return (

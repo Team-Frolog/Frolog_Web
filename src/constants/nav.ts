@@ -7,7 +7,7 @@ export const navItem: Record<Taps, string> = {
   profile: '프로필',
 } as const;
 
-export enum NavigationTap {
+export enum NavItemLabel {
   WELL = 'well',
   FEED = 'feed',
   SEARCH = 'search',

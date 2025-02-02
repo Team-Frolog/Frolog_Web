@@ -49,4 +49,4 @@ export const IMAGES = {
   ground: `${BASE_PATH}/etc/ground.webp`,
   ground_sm: `${BASE_PATH}/etc/ground-sm.webp`,
   default_profile: `${BASE_PATH}/etc/default-profile.svg`,
-};
+} as const;
