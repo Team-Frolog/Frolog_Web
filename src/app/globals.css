@@ -88,6 +88,7 @@ body {
   position: relative;
   display: flex;
   overflow: auto;
+  -webkit-transform:translate3d(0,0,0);
 
   /* PC view setting */
   @media screen and (min-width: 430px) {

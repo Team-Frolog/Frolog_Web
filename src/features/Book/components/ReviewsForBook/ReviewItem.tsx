@@ -3,7 +3,7 @@ import { GetReviewRes } from '@frolog/frolog-api';
 import React from 'react';
 import CustomLink from '@/components/Link/CustomLink';
 import LikeButton from '@/components/Button/LikeButton';
-import { TapKey } from '@/constants/taps';
+import { NavItemKey } from '@/constants/nav';
 import { motion } from 'framer-motion';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { ChatIcon } from 'public/icons';
@@ -22,7 +22,7 @@ interface Props {
  */
 function ReviewItem({ reviewData, category, onClickLike }: Props) {
   const router = useRouter();
-  const currentTap = useSearchParams().get('tap') || TapKey.SEARCH;
+  const currentNav = useSearchParams().get('nav') || NavItemKey.SEARCH;
 
   return (
     <div className='w-full'>
@@ -55,7 +55,7 @@ function ReviewItem({ reviewData, category, onClickLike }: Props) {
                 runWhenLoggedIn(
                   () =>
                     router.push(
-                      `/feed/${reviewData.id}/comments?type=review&tap=${currentTap}`
+                      `/feed/${reviewData.id}/comments?type=review&nav=${currentNav}`
                     ),
                   'feed'
                 )

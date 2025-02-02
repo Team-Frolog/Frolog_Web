@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Tap from '@/components/Tap/Tap';
+import Tab from '@/components/Tab/Tab';
 import MainLayout from '@/layouts/MainLayout';
 import { PAGES } from '@/constants/page';
 import { aos, ios } from '../../data/howToInstall';
@@ -11,12 +11,12 @@ import Instruction from './Instruction';
 /** 프롤로그 앱 설치 방법 컴포넌트 */
 function HowToInstall() {
   const router = useRouter();
-  const tap = useSearchParams().get('currentTap') || 'ios';
+  const tab = useSearchParams().get('currentTab') || 'ios';
 
   return (
     <>
-      <Tap
-        taps={[
+      <Tab
+        tabs={[
           {
             id: 1,
             label: 'ios',
@@ -28,14 +28,14 @@ function HowToInstall() {
             name: 'AOS',
           },
         ]}
-        currentTap={tap}
-        defaultTap='ios'
-        onChangeTap={(label: string) =>
-          router.replace(`${PAGES.INSTALL}?currentTap=${label}`)
+        currentTab={tab}
+        defaultTab='ios'
+        onChangeTab={(label: string) =>
+          router.replace(`${PAGES.INSTALL}?currentTab=${label}`)
         }
       />
       <MainLayout extraClass='bg-white flex w-full flex-col gap-[36px] px-page py-[36px] text-gray-800'>
-        <Instruction data={tap === 'ios' ? ios : aos} />
+        <Instruction data={tab === 'ios' ? ios : aos} />
       </MainLayout>
     </>
   );

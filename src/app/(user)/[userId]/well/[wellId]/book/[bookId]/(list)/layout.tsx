@@ -2,13 +2,14 @@
 
 import MainLayout from '@/layouts/MainLayout';
 import BookInfo from '@/components/Book/BookInfo';
-import TapHeader from '@/components/Header/TapHeader';
+import TabHeader from '@/components/Header/TabHeader';
 import { CATEGORY } from '@/constants/category';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import React, { Suspense } from 'react';
 import BookInfoSkeleton from '@/components/Fallback/Skeleton/BookInfoSkeleton';
 import { useBook } from '@/features/Book';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
+import { memoReviewTabs } from '@/constants/tabs';
 
 interface Props {
   children: React.ReactNode;
@@ -29,7 +30,7 @@ function ReviewMemoLayout({ children, params: { bookId } }: Props) {
 
   return (
     <>
-      <TapHeader />
+      <TabHeader isResponsive tabs={memoReviewTabs} />
       <MainLayout extraClass='bg-gray-900'>
         <Suspense fallback={<BookInfoSkeleton />}>
           <BookInfo bookId={bookId} canClick />

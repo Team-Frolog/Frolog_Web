@@ -1,16 +1,17 @@
-import TapHeader from '@/components/Header/TapHeader';
+import TabHeader from '@/components/Header/TabHeader';
+import { memoReviewTabs } from '@/constants/tabs';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Common/Header/TapHeader',
-  component: TapHeader,
+  title: 'Common/Header/TabHeader',
+  component: TabHeader,
   tags: ['autodocs'],
-} satisfies Meta<typeof TapHeader>;
+} satisfies Meta<typeof TabHeader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const MemoTap: Story = {
+export const MemoTab: Story = {
   parameters: {
     nextjs: {
       appDirectory: true,
@@ -19,10 +20,13 @@ export const MemoTap: Story = {
       },
     },
   },
-  args: {},
+  args: {
+    isResponsive: true,
+    tabs: memoReviewTabs,
+  },
 };
 
-export const ReviewTap: Story = {
+export const ReviewTab: Story = {
   parameters: {
     nextjs: {
       appDirectory: true,
@@ -31,5 +35,8 @@ export const ReviewTap: Story = {
       },
     },
   },
-  args: {},
+  args: {
+    isResponsive: true,
+    tabs: memoReviewTabs,
+  },
 };

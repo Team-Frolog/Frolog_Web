@@ -1,6 +1,6 @@
 import { Taps } from '@/types/taps';
 
-export const taps: Record<Taps, string> = {
+export const navItem: Record<Taps, string> = {
   well: '우물',
   feed: '피드',
   search: '책검색',
@@ -14,7 +14,7 @@ export enum NavigationTap {
   PROFILE = 'profile',
 }
 
-export enum TapKey {
+export enum NavItemKey {
   WELL = 'a3q11',
   FEED = 'yd3ts',
   SEARCH = '22h5f',

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { TapKey } from '@/constants/taps';
+import { NavItemKey } from '@/constants/nav';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { useUserId } from '@/store/sessionStore';
@@ -19,7 +19,7 @@ function DetailHeader({ profileUserId }: Props) {
   const router = useRouter();
   const userId = useUserId();
   const isRootUser = userId === profileUserId;
-  const currentTap = useSearchParams().get('tap') || TapKey.FEED;
+  const currentNav = useSearchParams().get('nav') || NavItemKey.FEED;
 
   return (
     <ResponsiveHeaderLayout onClick={() => router.back()}>
@@ -32,7 +32,7 @@ function DetailHeader({ profileUserId }: Props) {
               runWhenLoggedIn(
                 () =>
                   router.push(
-                    `/${profileUserId}${PAGES.PROFILE}?tap=${currentTap}`
+                    `/${profileUserId}${PAGES.PROFILE}?nav=${currentNav}`
                   ),
                 'feed'
               )

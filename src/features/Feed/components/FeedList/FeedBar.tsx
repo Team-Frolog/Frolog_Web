@@ -5,7 +5,7 @@ import { ArrowIcon, ChatIcon } from 'public/icons';
 import { AnimatePresence, motion } from 'framer-motion';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import LikeButton from '@/components/Button/LikeButton';
-import { TapKey } from '@/constants/taps';
+import { NavItemKey } from '@/constants/nav';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
 import { useRouter } from 'next/navigation';
 import { AddBookToWell } from '@/features/Book';
@@ -42,7 +42,7 @@ function FeedBar({ feedData, onClickLike, onClickComment }: Props) {
               runWhenLoggedIn(() => {
                 onClickComment();
                 router.push(
-                  `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}&tap=${TapKey.FEED}`
+                  `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}&nav=${NavItemKey.FEED}`
                 );
               }, 'feed')
             }

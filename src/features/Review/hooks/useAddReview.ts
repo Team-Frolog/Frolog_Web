@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { TapKey } from '@/constants/taps';
+import { NavItemKey } from '@/constants/nav';
 import { UseFormSetError, UseFormWatch } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from '@/modules/Toast';
@@ -54,7 +54,7 @@ export const useAddReview = (
         resetAll();
         openFlash({
           type: 'review',
-          callbackUrl: `/${userId}/well/${wellId}?tap=${TapKey.WELL}`,
+          callbackUrl: `/${userId}/well/${wellId}?nav=${NavItemKey.WELL}`,
         });
       }
     },

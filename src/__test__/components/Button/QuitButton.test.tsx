@@ -25,7 +25,7 @@ describe('QuitButton', () => {
 
     const link = screen.getByRole('link');
 
-    expect(link).toHaveAttribute('href', '/test?tap=mockedTapKey');
+    expect(link).toHaveAttribute('href', '/test?nav=mockedTapKey');
   });
 
   it('props로 전달한 classes가 className에 적용되어야 한다.', () => {
