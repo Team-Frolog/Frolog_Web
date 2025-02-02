@@ -19,6 +19,7 @@ export const useScroll = ({
 }: Props) => {
   const [scrollY, setScrollY] = useState(0);
   const [targetElement, setTargetElement] = useState<HTMLElement | null>(null);
+  const isSafari = /Safari/i.test(window.navigator.userAgent);
 
   /** 색상 모드 설정 함수 */
   const setMode = useCallback(
@@ -68,28 +69,16 @@ export const useScroll = ({
     []
   );
 
-  /** main 태그에 스크롤 이벤트 등록 */
+  /** 사파리 - 스크롤 변화에 따른 모드 업데이트 */
   useEffect(() => {
-    const mainElement = document.getElementById('main');
-    if (!mainElement) return;
-
-    const handleScroll = () => updateScroll();
-    mainElement.addEventListener('scroll', handleScroll);
-
-    return () => {
-      mainElement.removeEventListener('scroll', handleScroll);
-      resetHeaderStyles();
-    };
-  }, [updateScroll]);
-
-  /** 스크롤 변화에 따른 모드 업데이트 */
-  useEffect(() => {
-    if (scrollY < 150) {
-      setMode('dark');
-    } else if (scrollY < 350) {
-      setMode('light');
-    } else {
-      setMode('category');
+    if (isSafari) {
+      if (scrollY < 150) {
+        setMode('dark');
+      } else if (scrollY < 350) {
+        setMode('light');
+      } else {
+        setMode('category');
+      }
     }
   }, [scrollY, setMode]);
 
@@ -108,10 +97,8 @@ export const useScroll = ({
 
   /** 타겟 요소에 대한 observer 설정 */
   useEffect(() => {
-    if (!targetElement) return;
-
-    const isMobileSafari = /iPhone.*Safari/i.test(window.navigator.userAgent);
     const mainElement = document.getElementById('main');
+    if (!targetElement || !mainElement) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -133,17 +120,19 @@ export const useScroll = ({
       }
     );
 
-    // 모바일 사파리의 경우 observer가 아닌 스크롤 이벤트 별도 등록 (observer 지원 X)
-    if (isMobileSafari) {
-      window.addEventListener('scroll', updateScroll);
+    // 사파리의 경우 observer가 아닌 스크롤 이벤트 별도 등록 (observer 지원 X)
+    if (isSafari) {
+      mainElement.addEventListener('scroll', () => updateScroll());
+    } else {
+      observer.observe(targetElement);
     }
-    observer.observe(targetElement);
 
     return () => {
-      if (isMobileSafari) {
+      if (isSafari) {
         window.removeEventListener('scroll', updateScroll);
+      } else {
+        observer.unobserve(targetElement);
       }
-      observer.unobserve(targetElement);
       resetHeaderStyles();
     };
   }, [targetElement, setMode]);
