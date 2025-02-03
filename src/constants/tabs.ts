@@ -8,7 +8,7 @@ export interface GroupTab {
 export const memoReviewTabs: GroupTab[] = [
   { path: '/memo', label: '메모' },
   { path: '/review', label: '리뷰' },
-];
+] as const;
 
 export const wellTabs: GroupTab[] = [
   { path: PAGES.HOME, label: '내우물' },

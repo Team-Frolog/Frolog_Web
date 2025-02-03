@@ -18,6 +18,7 @@ function FeedList() {
     feedData,
     fetchNextPage,
     hasNextPage,
+    isLoading,
     isFetched,
     isEmpty,
     isFetchingNextPage,
@@ -29,6 +30,14 @@ function FeedList() {
     fetchNextPage,
   });
   const { saveScroll } = useScrollPosition(isFetched);
+
+  if (isLoading) {
+    return (
+      <div className='flex h-fit w-full flex-col gap-[36px]'>
+        <FeedListSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className='flex h-fit w-full flex-col justify-between gap-[36px]'>
