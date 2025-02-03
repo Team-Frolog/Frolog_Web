@@ -1,3 +1,5 @@
+import { PAGES } from './page';
+
 export interface GroupTab {
   path: string;
   label: string;
@@ -9,6 +11,6 @@ export const memoReviewTabs: GroupTab[] = [
 ];
 
 export const wellTabs: GroupTab[] = [
-  { path: '/', label: '내우물' },
-  { path: '/others', label: '탐색' },
+  { path: PAGES.HOME, label: '내우물' },
+  { path: PAGES.EXPLORE, label: '탐색' },
 ];

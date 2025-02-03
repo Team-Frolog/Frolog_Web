@@ -2,7 +2,7 @@ import { PAGES } from '@/constants/page';
 import { SearchInput } from '@/features/Search';
 import React from 'react';
 
-function OthersPage() {
+function ExplorePage() {
   return (
     <div className='flex w-full flex-col'>
       <div className='flex px-[24px]'>
@@ -15,4 +15,4 @@ function OthersPage() {
   );
 }
 
-export default OthersPage;
+export default ExplorePage;

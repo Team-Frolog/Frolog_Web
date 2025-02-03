@@ -31,7 +31,7 @@ export const PAGES = {
   QUIT: '/quit',
   MISSION: '/mission',
   TERMS: '/terms',
-  OTHERS: '/others',
+  EXPLORE: '/explore',
   WELL_SEARCH: '/well-search',
 } as const;
 

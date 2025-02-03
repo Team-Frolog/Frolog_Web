@@ -62,7 +62,7 @@ function NavigationBar() {
       pathname === href ||
       currentTapKey === navKey ||
       (label === NavItemLabel.WELL &&
-        (pathname === '/default' || pathname === '/others'));
+        (pathname === PAGES.DEFAULT || pathname === PAGES.EXPLORE));
 
     return (
       <NavItem
