@@ -116,4 +116,4 @@ export const CATEGORY: Category = {
     band: '#CAFFA0',
     wave: `${BASE_URL}/essay.svg`,
   },
-};
+} as const;

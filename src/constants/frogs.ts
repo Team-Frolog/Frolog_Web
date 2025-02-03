@@ -134,11 +134,11 @@ export const FROGS_SILHOUETTE: {
   santa: `${BASE_PATH}/christmas/character/silhouette/santa-silhouette.webp`,
   tree: `${BASE_PATH}/christmas/character/silhouette/tree-silhouette.webp`,
   ggudolph: `${BASE_PATH}/christmas/character/silhouette/ggudolph-silhouette.webp`,
-};
+} as const;
 
 export const SHEET_FROG = {
   error: `${BASE_PATH}/frog/sheet/frog-sheet-error.svg`,
   book: `${BASE_PATH}/frog/sheet/frog-with-book.svg`,
   wink: `${BASE_PATH}/frog/sheet/wink-frog.svg`,
   normal: `${BASE_PATH}/frog/sheet/frog-normal.svg`,
-};
+} as const;

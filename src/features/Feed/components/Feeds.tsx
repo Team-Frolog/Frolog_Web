@@ -1,10 +1,9 @@
 'use client';
 
-import React, { Suspense } from 'react';
+import React from 'react';
 import PullToRefresh from '@/components/Gesture/PullToRefresh';
 import WellEntryHeader from '@/components/Header/WellEntryHeader';
 import MainLayout from '@/layouts/MainLayout';
-import FeedListSkeleton from '@/components/Fallback/Skeleton/FeedListSkeleton';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import ScrollToTop from '@/components/Gesture/ScrollToTop';
 import FeedList from './FeedList/FeedList';
@@ -27,15 +26,7 @@ function Feeds() {
               피드
             </h1>
           </div>
-          <Suspense
-            fallback={
-              <div className='flex h-fit w-full flex-col gap-[36px]'>
-                <FeedListSkeleton />
-              </div>
-            }
-          >
-            <FeedList />
-          </Suspense>
+          <FeedList />
         </MainLayout>
       </div>
       {isRendering && <ScrollToTop />}

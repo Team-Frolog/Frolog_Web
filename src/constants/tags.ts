@@ -17,7 +17,7 @@ export const PROS_TAG: TagData[] = [
   { id: 'warm', value: '마음이 따듯해지는' },
   { id: 'small_talk', value: '대화 소재로 딱' },
   { id: 'various', value: '해석이 무궁무진' },
-];
+] as const;
 
 export const CONS_TAG: TagData[] = [
   { id: 'biased', value: '민초급 호불호' },
@@ -33,4 +33,4 @@ export const CONS_TAG: TagData[] = [
   { id: 'issuing', value: '논란이 될 만한' },
   { id: 'hard_terms', value: '전문용어 폭탄' },
   { id: 'mistranslated', value: '번역이 어색한' },
-];
+] as const;

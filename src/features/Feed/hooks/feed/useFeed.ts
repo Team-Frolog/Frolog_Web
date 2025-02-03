@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@/constants/query';
 import { getFeed } from '../../api/feed.api';
 
@@ -14,9 +14,10 @@ export const useFeed = () => {
     fetchNextPage,
     refetch,
     hasNextPage,
+    isLoading,
     isFetched,
     isFetchingNextPage,
-  } = useSuspenseInfiniteQuery({
+  } = useInfiniteQuery({
     queryKey: [QUERY_KEY.feed],
     queryFn: ({ pageParam }) => getFeed({ page: pageParam }),
     initialPageParam: 0,
@@ -47,5 +48,6 @@ export const useFeed = () => {
     refetch,
     isCommentLoading,
     setIsCommentLoading,
+    isLoading,
   };
 };
