@@ -7,12 +7,13 @@ import { ClearIcon, SearchIcon } from 'public/icons';
 import React, { useState, KeyboardEvent } from 'react';
 
 interface Props {
-  /** 검색 메인 페이지인지 여부 */
-  isMain?: boolean;
+  placeholder: string;
+  /** 클릭 시 이동할 경로 (책 검색 페이지, 우물 탐색 페이지의 경우) */
+  route?: string;
 }
 
 /** 검색 input 컴포넌트 */
-function SearchInput({ isMain = false }: Props) {
+function SearchInput({ placeholder, route }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams().get('query');
   const [searchValue, setSearchValue] = useState(searchParams || '');
@@ -37,12 +38,12 @@ function SearchInput({ isMain = false }: Props) {
       />
       <input
         type='text'
-        autoFocus={!isMain}
+        autoFocus={!route}
         enterKeyHint='search'
-        placeholder='책 제목 또는 저자를 검색해 보세요.'
+        placeholder={placeholder}
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
-        onFocus={isMain ? () => router.push(PAGES.SEARCH) : undefined}
+        onFocus={route ? () => router.push(route) : undefined}
         onKeyDown={handleEnter}
         className='input-common input-light w-full px-[48px] placeholder:text-gray-600 focus:border-main'
       />
