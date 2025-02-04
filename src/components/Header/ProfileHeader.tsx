@@ -12,7 +12,8 @@ import { useReport } from '@/hooks/useReport';
 import { useProfile } from '@/hooks/useProfile';
 import { useUserId } from '@/store/sessionStore';
 import { getImageSrc } from '@/utils/getImageSrc';
-import { useFollowUser } from '../hooks/feed/useFollowUser';
+import { useFollowUser } from '@/features/Feed';
+import ProfileHeaderSkeleton from '../Fallback/Skeleton/ProfileHeaderSkeleton';
 
 interface Props {
   /** 사용 위치 */
@@ -43,10 +44,10 @@ function ProfileHeader({
   hasFollow = false,
   isChildComment = false,
 }: Props) {
-  const sessionUserId = useUserId();
   const router = useRouter();
+  const sessionUserId = useUserId();
   const isRootUser = sessionUserId === userId;
-  const { profile } = useProfile(userId);
+  const { profile, isLoading } = useProfile(userId);
   const { handleReport } = useReport(userId);
   const { handleFollow } = useFollowUser();
   const currentNav = useSearchParams().get('nav') || NavItemKey.SEARCH;
@@ -54,7 +55,7 @@ function ProfileHeader({
   const canShowButton =
     (isFeed && !isRootUser) || (!isFeed && !(isDeleted && isRootUser));
 
-  if (!profile) return null;
+  if (!profile || isLoading) return <ProfileHeaderSkeleton />;
 
   const { username, image, follow } = profile;
 
