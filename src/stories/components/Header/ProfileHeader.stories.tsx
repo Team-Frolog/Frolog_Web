@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ProfileHeader } from '@/features/Feed';
+import ProfileHeader from '@/components/Header/ProfileHeader';
 
 const meta = {
-  title: 'Feed/ProfileHeader',
+  title: 'Common/Header/ProfileHeader',
   component: ProfileHeader,
   tags: ['autodocs'],
   decorators: [

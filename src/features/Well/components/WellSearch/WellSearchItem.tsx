@@ -1,8 +1,8 @@
 'use client';
 
-import Slider from '@/components/Slider/Slider';
-import { ProfileHeader } from '@/features/Feed';
 import React from 'react';
+import ProfileHeader from '@/components/Header/ProfileHeader';
+import Slider from '@/components/Slider/Slider';
 
 /** 우물 탐색/검색 아이템 컴포넌트 */
 function WellSearchItem() {

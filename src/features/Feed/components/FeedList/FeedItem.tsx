@@ -2,7 +2,7 @@ import React from 'react';
 import CustomLink from '@/components/Link/CustomLink';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
 import { useUserActionActions } from '@/store/userActionStore';
-import ProfileHeader from '../ProfileHeader';
+import ProfileHeader from '@/components/Header/ProfileHeader';
 import BookInfo from './BookInfo';
 import FeedContent from './FeedContent';
 import FeedBar from './FeedBar';

@@ -8,7 +8,7 @@ import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
 import { useProfile } from '@/hooks/useProfile';
 import { formatDate } from '@/utils/date';
-import ProfileHeader from '../ProfileHeader';
+import ProfileHeader from '@/components/Header/ProfileHeader';
 import ChildCommentItem from './ChildCommentItem';
 import { useChildComments } from '../../hooks/child/useChildComments';
 import { Comments } from '../../types/comment';
