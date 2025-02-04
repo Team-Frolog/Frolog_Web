@@ -1,13 +1,14 @@
 import React from 'react';
+import MainLayout from '@/layouts/MainLayout';
 import WellSearchItem from './WellSearchItem';
 
 function WellSearchResult() {
   return (
-    <div className='flex w-full flex-col gap-[36px]'>
+    <MainLayout extraClass='gap-[36px] pb-[36px] pt-[24px] bg-gray-300'>
       <WellSearchItem />
       <WellSearchItem />
       <WellSearchItem />
-    </div>
+    </MainLayout>
   );
 }
 

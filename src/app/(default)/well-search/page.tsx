@@ -15,7 +15,7 @@ function WellSearchPage() {
           theme='gray'
           hasButton={false}
         />
-        <div className='sticky left-0 top-[60px] z-60 flex w-full flex-col gap-[16px] px-[24px] pb-[12px]'>
+        <div className='sticky left-0 top-[60px] z-60 flex w-full flex-col gap-[16px] bg-gray-300 px-[24px] pb-[12px]'>
           <SearchInput
             navKey={NavItemKey.WELL}
             searchUrl={PAGES.WELL_SEARCH}
