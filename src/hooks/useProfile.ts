@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 
 /** 프로필 개요 쿼리 훅 */
 export const useProfile = (userId: string | undefined) => {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: [QUERY_KEY.profile, userId],
     queryFn: () => new GetProfile(baseOptions).fetch({ id: userId! }),
     enabled: userId !== undefined,
@@ -13,5 +13,5 @@ export const useProfile = (userId: string | undefined) => {
     refetchOnWindowFocus: true,
   });
 
-  return { profile: data };
+  return { profile: data, isLoading };
 };

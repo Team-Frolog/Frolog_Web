@@ -1,3 +1,4 @@
+export { default as WellSearchResult } from './components/WellSearch/WellSearchResult';
 export { default as WellDetailPage } from './components/Well/WellDetailPage';
 export { useWells } from './hooks/useWells';
 export { default as WellItemList } from '@/features/Well/components/Well/WellItem/WellItemList';

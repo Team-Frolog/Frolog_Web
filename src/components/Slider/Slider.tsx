@@ -6,8 +6,6 @@ import { motion } from 'framer-motion';
 
 interface Props {
   children: React.ReactNode;
-  /** 가장 바깥 슬라이더의 추가적인 클래스 */
-  sliderClass?: string;
   /** 슬라이더 내부 슬라이드의 추가적인 클래스 */
   slideClass?: string;
   /** 흐림 효과 여부 */
@@ -17,14 +15,12 @@ interface Props {
 }
 
 /** 태그, 이미지, 프로필에 활용되는 draggable 슬라이드
- * @param sliderClass - slider 적용 클래스
  * @param slideClass - slide 적용 클래스
  * @param hasFade - 흐림 효과 여부 (태그 슬라이더)
  * @param isBetween - 슬라이더 내 justify-between 여부 (프로필)
  */
 function Slider({
   children,
-  sliderClass,
   slideClass,
   hasFade = false,
   isBetween = false,
@@ -32,7 +28,7 @@ function Slider({
   const { sliderRef, motionDivRef, drag, widthClass } = useSlideDrag(isBetween);
 
   return (
-    <div ref={sliderRef} className={sliderClass}>
+    <div ref={sliderRef} className='relative flex w-full overflow-hidden'>
       {hasFade && (
         <>
           <div

@@ -4,10 +4,10 @@ import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useProfile } from '@/hooks/useProfile';
 import useCommentStore from '@/store/commentStore';
+import ProfileHeader from '@/components/Header/ProfileHeader';
 import LikeButton from '@/components/Button/LikeButton';
 import { motion } from 'framer-motion';
 import { formatDate } from '@/utils/date';
-import ProfileHeader from '../ProfileHeader';
 import { Comments } from '../../types/comment';
 import { useChangeChildComment } from '../../hooks/child/useChangeChildComment';
 
