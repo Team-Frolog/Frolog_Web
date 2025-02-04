@@ -12,6 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    isMain: false,
+    placeholder: '책 제목 또는 저자를 검색해 보세요',
+    route: undefined,
   },
 };

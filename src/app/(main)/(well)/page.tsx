@@ -1,8 +1,6 @@
 import React from 'react';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/nextAuth';
-import { SideWellHeader } from '@/features/Well';
-import MainLayout from '@/layouts/MainLayout';
 import dynamic from 'next/dynamic';
 import WellListSkeleton from '@/components/Fallback/Skeleton/WellListSkeleton';
 import { Metadata } from 'next';
@@ -54,12 +52,9 @@ async function WellPage() {
   });
 
   return (
-    <MainLayout extraClass='bg-gray-300'>
-      <SideWellHeader userId={userId} hasStoreButton bgColor='bg-gray-300' />
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        {userId && <WellList userId={userId} isRootUser />}
-      </HydrationBoundary>
-    </MainLayout>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      {userId && <WellList userId={userId} isRootUser />}
+    </HydrationBoundary>
   );
 }
 

@@ -7,11 +7,7 @@ interface Props {
 
 /** 이미지 전용 슬라이더 */
 function ImageSlider({ children }: Props) {
-  return (
-    <Slider sliderClass='flex w-full overflow-hidden' slideClass='gap-[8px]'>
-      {children}
-    </Slider>
-  );
+  return <Slider slideClass='gap-[8px]'>{children}</Slider>;
 }
 
 export default ImageSlider;

@@ -23,11 +23,7 @@ function TagSlider({ type, tagKeys }: Props) {
   const tagData = getTags(type, tagKeys);
 
   return (
-    <Slider
-      hasFade
-      sliderClass='relative flex w-[98%] overflow-hidden'
-      slideClass='gap-[4px]'
-    >
+    <Slider hasFade slideClass='gap-[4px]'>
       {tagData.map((item) => (
         <Tag key={item.id} type={type} size='small' tagValue={item.value} />
       ))}
