@@ -22,7 +22,6 @@ const searchWell = new SearchWell(baseOptions);
 const fetchWell = new GetWell(baseOptions);
 const searchWellItem = new SearchWellItem(baseOptions);
 const editWellObj = new EditWell(baseOptions);
-const postNewFeature = new PostNewFeatureRequest(baseOptions);
 const postWellItem = new PostWellItem(baseOptions);
 const getWellNameAvailability = new GetWellNameAvailability(baseOptions);
 
@@ -72,7 +71,9 @@ export const editWell = async (req: EditWellReq) => {
 };
 
 export const registerStoreAlarm = async () => {
-  const response = await postNewFeature.fetch({ type: 'store' });
+  const response = await new PostNewFeatureRequest(baseOptions).fetch({
+    type: 'store',
+  });
   return response;
 };
 
