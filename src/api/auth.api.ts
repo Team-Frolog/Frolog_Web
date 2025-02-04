@@ -14,9 +14,6 @@ import {
 import { getSession } from 'next-auth/react';
 import { baseOptions } from './options';
 
-const getEmailAvailability = new GetEmailAvailability(baseOptions);
-const requestEmailCode = new RequestEmailCode(baseOptions);
-const verifyEmailCode = new VerifyEmailCode(baseOptions);
 const signOutInstance = new SignOut(baseOptions);
 
 // TODO: 처리 안됨
@@ -42,7 +39,7 @@ export const signOut = async () => {
 
 export const checkEmail = async (req: GetEmailAvailabilityReq) => {
   try {
-    const data = await getEmailAvailability.fetch(req);
+    const data = await new GetEmailAvailability(baseOptions).fetch(req);
     return data.result;
   } catch (err) {
     Sentry.captureException(err);
@@ -52,7 +49,7 @@ export const checkEmail = async (req: GetEmailAvailabilityReq) => {
 
 export const requestCode = async (req: RequestEmailCodeReq) => {
   try {
-    const data = await requestEmailCode.fetch(req);
+    const data = await new RequestEmailCode(baseOptions).fetch(req);
     return data;
   } catch (err) {
     Sentry.captureException(err);
@@ -62,7 +59,7 @@ export const requestCode = async (req: RequestEmailCodeReq) => {
 
 export const verifyCode = async (req: VerifyEmailCodeReq) => {
   try {
-    const data = await verifyEmailCode.fetch(req);
+    const data = await new VerifyEmailCode(baseOptions).fetch(req);
     return data;
   } catch (err) {
     Sentry.captureException(err);
