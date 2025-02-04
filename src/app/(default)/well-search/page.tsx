@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavItemKey } from '@/constants/nav';
 import TitleHeader from '@/components/Header/TitleHeader';
 import { SearchInput } from '@/features/Search';
 import { WellSearchResult } from '@/features/Well';
@@ -16,6 +17,7 @@ function WellSearchPage() {
         />
         <div className='sticky left-0 top-[60px] z-60 flex w-full flex-col gap-[16px] px-[24px] pb-[12px]'>
           <SearchInput
+            navKey={NavItemKey.WELL}
             searchUrl={PAGES.WELL_SEARCH}
             placeholder='우물 키워드를 검색해보세요'
           />
