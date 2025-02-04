@@ -14,8 +14,6 @@ import {
 import { getSession } from 'next-auth/react';
 import { baseOptions } from './options';
 
-const signOutInstance = new SignOut(baseOptions);
-
 // TODO: 처리 안됨
 export const signOut = async () => {
   try {
@@ -26,7 +24,7 @@ export const signOut = async () => {
         id: session?.user.id,
         refresh_token: session?.user.refreshToken,
       };
-      const data = await signOutInstance.fetch(req);
+      const data = await new SignOut(baseOptions).fetch(req);
 
       return data.result;
     }
