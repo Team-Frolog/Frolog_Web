@@ -8,7 +8,6 @@ import {
   EditWellReq,
   GetWell,
   GetWellNameAvailability,
-  PostNewFeatureRequest,
   PostWell,
   PostWellItem,
   PostWellItemReq,
@@ -67,13 +66,6 @@ export const getWellItems = async (page: number, well_id: string) => {
 
 export const editWell = async (req: EditWellReq) => {
   const response = await editWellObj.fetch(req);
-  return response;
-};
-
-export const registerStoreAlarm = async () => {
-  const response = await new PostNewFeatureRequest(baseOptions).fetch({
-    type: 'store',
-  });
   return response;
 };
 
