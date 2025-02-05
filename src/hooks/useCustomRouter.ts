@@ -1,7 +1,10 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { NavItemKey } from '@/constants/nav';
 
-export const useCustomRouter = (defaultNav?: keyof typeof NavItemKey) => {
+export const useCustomRouter = (
+  defaultNav?: keyof typeof NavItemKey,
+  isForceDefaultNav?: boolean
+) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentNav =
@@ -9,7 +12,12 @@ export const useCustomRouter = (defaultNav?: keyof typeof NavItemKey) => {
 
   const generatePath = (path: string) => {
     const separator = path.includes('?') ? '&' : '?';
-    return currentNav ? `${path}${separator}nav=${currentNav}` : path;
+
+    if (isForceDefaultNav) {
+      return `${path}${separator}nav=${NavItemKey[defaultNav]}`;
+    } else {
+      return currentNav ? `${path}${separator}nav=${currentNav}` : path;
+    }
   };
 
   const navigate = (path: string) => router.push(generatePath(path));

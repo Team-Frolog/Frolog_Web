@@ -2,6 +2,7 @@ import { PostWellItemReq } from '@frolog/frolog-api';
 import { useMutation } from '@tanstack/react-query';
 import useNewItemStore from '@/store/newItemStore';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
+import { getPath } from '@/utils/getPath';
 import { usePathname } from 'next/navigation';
 import { toast } from '@/modules/Toast';
 import { PAGES } from '@/constants/page';
@@ -62,8 +63,8 @@ export const useAddWellItem = ({ userId, stopPending }: Props) => {
         if (stopPending) {
           stopPending();
         }
-        if (!isAfterReview) {
-          navigate(`/${userId}/well/${wellId}`);
+        if (!isAfterReview && wellId) {
+          navigate(getPath.wellDetail(userId!, wellId));
           resetAll();
         }
       }

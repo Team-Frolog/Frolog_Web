@@ -6,7 +6,7 @@ import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { useUserId } from '@/store/sessionStore';
 import { RightArrowIcon, WellIcon } from 'public/icons';
 import { motion } from 'framer-motion';
-import { PAGES } from '@/constants/page';
+import { getPath } from '@/utils/getPath';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 
 interface Props {
@@ -28,7 +28,7 @@ function DetailHeader({ profileUserId }: Props) {
             whileTap={{ scale: 0.9 }}
             onClick={() =>
               runWhenLoggedIn(
-                () => navigate(`/${profileUserId}${PAGES.PROFILE}`),
+                () => navigate(getPath.profile(profileUserId)),
                 'feed'
               )
             }

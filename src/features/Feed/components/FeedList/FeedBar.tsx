@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { ArrowIcon, ChatIcon } from 'public/icons';
 import { AnimatePresence, motion } from 'framer-motion';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
+import { getPath } from '@/utils/getPath';
 import LikeButton from '@/components/Button/LikeButton';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
@@ -41,7 +42,10 @@ function FeedBar({ feedData, onClickLike, onClickComment }: Props) {
               runWhenLoggedIn(() => {
                 onClickComment();
                 navigate(
-                  `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}`
+                  getPath.comments(
+                    feedData.id,
+                    isGetMemoRes(feedData) ? 'memo' : 'review'
+                  )
                 );
               }, 'feed')
             }

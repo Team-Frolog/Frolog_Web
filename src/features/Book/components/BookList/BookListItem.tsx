@@ -8,6 +8,7 @@ import { GetBookRes } from '@frolog/frolog-api';
 import { getTagById } from '@/utils/getTags';
 import { IMAGES } from '@/constants/images';
 import CustomLink from '@/components/Link/CustomLink';
+import { getPath } from '@/utils/getPath';
 
 interface Props {
   bookData: GetBookRes;
@@ -31,7 +32,7 @@ function BookListItem({ bookData }: Props) {
   return (
     <CustomLink
       prefetch
-      href={`/book/${isbn}`}
+      href={getPath.book(isbn)}
       className='flex w-full cursor-pointer gap-[20px] text-gray-800'
     >
       <div className='flex h-fit'>

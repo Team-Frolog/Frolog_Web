@@ -1,5 +1,6 @@
 import { useUserId } from '@/store/sessionStore';
 import { QUERY_KEY } from '@/constants/query';
+import { getPath } from '@/utils/getPath';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { editMemoDetail, getMemoDetail } from '../api/memo.api';
@@ -34,7 +35,7 @@ export const useMemoDetail = (
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.memoDetail, memoId],
       });
-      replace(`/${userId}/well/${wellId}/book/${bookId}/memo`);
+      replace(getPath.memoList(userId!, wellId, bookId));
       router.back();
     },
   });

@@ -4,6 +4,7 @@ import React from 'react';
 import CustomLink from '@/components/Link/CustomLink';
 import ProfileHeader from '@/components/Header/ProfileHeader';
 import LikeButton from '@/components/Button/LikeButton';
+import { getPath } from '@/utils/getPath';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { motion } from 'framer-motion';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
@@ -28,7 +29,7 @@ function ReviewItem({ reviewData, category, onClickLike }: Props) {
       <ProfileHeader type='feed' userId={reviewData.writer} hasFollow />
       <div className='flex w-full flex-col'>
         <CustomLink
-          href={`/review/${reviewData.id}`}
+          href={getPath.review(reviewData.id)}
           className='flex w-full flex-col'
         >
           <ReviewItemHeader rating={reviewData.rating} category={category} />
@@ -52,7 +53,7 @@ function ReviewItem({ reviewData, category, onClickLike }: Props) {
               className='flex items-center gap-[4px]'
               onClick={() =>
                 runWhenLoggedIn(
-                  () => navigate(`/feed/${reviewData.id}/comments?type=review`),
+                  () => navigate(getPath.comments(reviewData.id, 'review')),
                   'feed'
                 )
               }

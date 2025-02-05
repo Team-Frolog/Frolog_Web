@@ -6,7 +6,7 @@ import {
 import { UseFormReset } from 'react-hook-form';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { STORAGE_KEY } from '@/constants/storage';
-import { NavItemKey } from '@/constants/nav';
+import { getPath } from '@/utils/getPath';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { QUERY_KEY } from '@/constants/query';
@@ -51,7 +51,7 @@ export const useProfileEdit = (
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.profileDetail, userId],
       });
-      replace(`/${userId}/profile?nav=${NavItemKey.PROFILE}`);
+      replace(getPath.profile(userId));
       router.back();
     },
   });

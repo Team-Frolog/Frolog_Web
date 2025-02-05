@@ -4,8 +4,10 @@ import React from 'react';
 import CustomLink from '@/components/Link/CustomLink';
 import { useUserId } from '@/store/sessionStore';
 import uniqueId from 'lodash/uniqueId';
+import { getPath } from '@/utils/getPath';
 import DeleteButton from '@/components/Button/DeleteButton';
 import { formatDate } from '@/utils/date';
+import { getImageSrc } from '@/utils/getImageSrc';
 import ImageSlider from '../MemoForm/ImageForm/ImageSlider';
 import { Memo } from '../../models/memo.model';
 import ImageSlot from '../MemoForm/ImageForm/ImageSlot';
@@ -31,7 +33,7 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
       <CustomLink
         prefetch
         className='flex w-full flex-col gap-[20px]'
-        href={isRootUser ? `memo/${memoData.id}` : `/memo/${memoData.id}`}
+        href={isRootUser ? `memo/${memoData.id}` : getPath.memo(memoData.id)}
       >
         {memoData.images.length !== 0 && (
           <ImageSlider>
@@ -39,7 +41,7 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
               <ImageSlot
                 key={uniqueId()}
                 isReadOnly
-                src={`https://images.frolog.kr/memo/${img}.webp`}
+                src={getImageSrc(img, 'memo')}
                 index={index}
               />
             ))}

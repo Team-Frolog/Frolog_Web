@@ -6,6 +6,7 @@ import { ChildArrowIcon, MenuIcon } from 'public/icons';
 import Image from 'next/image';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { IMAGES } from '@/constants/images';
+import { getPath } from '@/utils/getPath';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useReport } from '@/hooks/useReport';
 import { useProfile } from '@/hooks/useProfile';
@@ -73,7 +74,7 @@ function ProfileHeader({
             if (onClick) {
               onClick();
             }
-            navigate(`/${profile.id}/profile`);
+            navigate(getPath.profile(profile.id));
           })
         }
         className='flex items-center gap-[8px]'

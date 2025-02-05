@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
+import { getPath } from '@/utils/getPath';
 import { useUserId } from '@/store/sessionStore';
 import { addNewMemo } from '../api/memo.api';
 import { MemoFormType } from '../types/form';
@@ -35,7 +36,7 @@ export const useAddMemo = (wellId: string, bookId: string) => {
       const result = addNewMemo(req);
       return result;
     },
-    onSuccess: () => replace(`/${userId}/well/${wellId}/book/${bookId}/memo`),
+    onSuccess: () => replace(getPath.memoList(userId!, wellId, bookId)),
   });
 
   return { handleAddMemo, isLoading };

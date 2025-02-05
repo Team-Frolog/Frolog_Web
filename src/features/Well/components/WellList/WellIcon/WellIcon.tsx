@@ -5,6 +5,7 @@ import React, { useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { CATEGORY } from '@/constants/category';
+import { getPath } from '@/utils/getPath';
 import { GetWellRes } from '@frolog/frolog-api';
 import { FROGS } from '@/constants/frogs';
 import NewTag from '@/components/Tag/NewTag';
@@ -46,7 +47,7 @@ function WellIcon({ wellData, type = 'list', onClick }: Props) {
       });
 
       setTimeout(() => {
-        navigate(`/${owner}/well/${wellId}`);
+        navigate(getPath.wellDetail(owner, wellId));
       }, 1000);
     }
   };

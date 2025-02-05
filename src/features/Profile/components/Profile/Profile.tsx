@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { getPath } from '@/utils/getPath';
 import LinkButton from '@/components/Button/LinkButton';
 import UserStatistics from './UserStatistics';
 import UserType from './UserType';
@@ -25,7 +26,7 @@ function Profile({ userId, isRootUser = false }: Props) {
       <UserType profileDetail={profileDetail} />
       {isRootUser && (
         <div className='flex px-page'>
-          <LinkButton route={`/${userId}/profile/edit`} theme='gray'>
+          <LinkButton route={getPath.profileEdit(userId)} theme='gray'>
             프로필 편집
           </LinkButton>
         </div>

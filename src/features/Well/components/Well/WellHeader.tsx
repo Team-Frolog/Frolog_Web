@@ -6,6 +6,7 @@ import BackButton from '@/components/Button/BackButton';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { PAGES } from '@/constants/page';
+import { getPath } from '@/utils/getPath';
 
 interface Props {
   /** 우물 소유 유저 id */
@@ -38,9 +39,9 @@ function WellHeader({
           extraClass='absolute top-[28px] left-[28px] z-20'
         />
       )}
-      {isRootUser && (
+      {isRootUser && userId && wellId && (
         <Link
-          href={`/${userId}/well/${wellId}/edit`}
+          href={getPath.wellEdit(userId, wellId)}
           className='absolute right-[28px] top-[28px] z-20'
         >
           <EditIcon />
