@@ -8,12 +8,14 @@ import { useCustomRouter } from '@/hooks/useCustomRouter';
 
 interface Props {
   placeholder: string;
-  /** 클릭 시 이동할 경로 (책 검색 페이지, 우물 탐색 페이지의 경우) */
+  /** 검색 경로 */
+  searchUrl?: string;
+  /** input 클릭 시 이동할 경로 (책 검색 페이지, 우물 탐색 페이지의 경우) */
   route?: string;
 }
 
 /** 검색 input 컴포넌트 */
-function SearchInput({ placeholder, route }: Props) {
+function SearchInput({ placeholder, searchUrl = PAGES.SEARCH, route }: Props) {
   const { replace, navigate } = useCustomRouter('SEARCH');
   const searchParams = useSearchParams().get('query');
   const [searchValue, setSearchValue] = useState(searchParams || '');
@@ -25,7 +27,7 @@ function SearchInput({ placeholder, route }: Props) {
         // eslint-disable-next-line no-useless-escape
         .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gim, '');
       setSearchValue(value);
-      replace(`${PAGES.SEARCH}?query=${value}`);
+      replace(`${searchUrl}?query=${value}`);
     }
   };
 

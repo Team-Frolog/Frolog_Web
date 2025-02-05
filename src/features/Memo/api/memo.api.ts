@@ -24,8 +24,6 @@ const postMemo = new PostMemo(baseOptions);
 const uploadMemoImg = new UploadMemoImage(baseOptions);
 const deleteMemoImg = new DeleteMemoImage(baseOptions);
 const getMemo = new GetMemo(baseOptions);
-const editMemo = new EditMemo(baseOptions);
-const deleteMemoObj = new DeleteMemo(baseOptions);
 
 export const getMemos = async (isbn: string, userId: string, page: number) => {
   try {
@@ -69,11 +67,11 @@ export const deleteMemoImage = async (req: DeleteMemoImageReq) => {
 };
 
 export const editMemoDetail = async (req: EditMemoReq) => {
-  const response = await editMemo.fetch(req);
+  const response = await new EditMemo(baseOptions).fetch(req);
   return response;
 };
 
 export const deleteMemo = async (req: DeleteMemoReq) => {
-  const response = await deleteMemoObj.fetch(req);
+  const response = await new DeleteMemo(baseOptions).fetch(req);
   return response;
 };

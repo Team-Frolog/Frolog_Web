@@ -8,7 +8,6 @@ import {
   EditWellReq,
   GetWell,
   GetWellNameAvailability,
-  PostNewFeatureRequest,
   PostWell,
   PostWellItem,
   PostWellItemReq,
@@ -22,7 +21,6 @@ const searchWell = new SearchWell(baseOptions);
 const fetchWell = new GetWell(baseOptions);
 const searchWellItem = new SearchWellItem(baseOptions);
 const editWellObj = new EditWell(baseOptions);
-const postNewFeature = new PostNewFeatureRequest(baseOptions);
 const postWellItem = new PostWellItem(baseOptions);
 const getWellNameAvailability = new GetWellNameAvailability(baseOptions);
 
@@ -68,11 +66,6 @@ export const getWellItems = async (page: number, well_id: string) => {
 
 export const editWell = async (req: EditWellReq) => {
   const response = await editWellObj.fetch(req);
-  return response;
-};
-
-export const registerStoreAlarm = async () => {
-  const response = await postNewFeature.fetch({ type: 'store' });
   return response;
 };
 

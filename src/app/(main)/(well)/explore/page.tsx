@@ -1,3 +1,4 @@
+import WellSearchItemSkeleton from '@/components/Fallback/Skeleton/WellSearchItemSkeleton';
 import { PAGES } from '@/constants/page';
 import { SearchInput } from '@/features/Search';
 import WellSearchItem from '@/features/Well/components/WellSearch/WellSearchItem';
@@ -12,7 +13,10 @@ function ExplorePage() {
           placeholder='우물 키워드를 검색해보세요'
         />
       </div>
-      <WellSearchItem />
+      <div className='flex w-full flex-col gap-[36px]'>
+        <WellSearchItem />
+        <WellSearchItemSkeleton />
+      </div>
     </div>
   );
 }

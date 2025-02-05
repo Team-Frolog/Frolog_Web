@@ -5,7 +5,7 @@ export const useCustomRouter = (defaultNav?: keyof typeof NavItemKey) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentNav =
-    searchParams.get('nav') || defaultNav ? NavItemKey[defaultNav!] : '';
+    searchParams.get('nav') ?? (defaultNav ? NavItemKey[defaultNav] : '');
 
   const generatePath = (path: string) => {
     const separator = path.includes('?') ? '&' : '?';
