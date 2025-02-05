@@ -1,11 +1,10 @@
 'use client';
 
 import React from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { ChildArrowIcon, MenuIcon } from 'public/icons';
 import Image from 'next/image';
-import { NavItemKey } from '@/constants/nav';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { IMAGES } from '@/constants/images';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useReport } from '@/hooks/useReport';
@@ -44,12 +43,11 @@ function ProfileHeader({
   isChildComment = false,
 }: Props) {
   const sessionUserId = useUserId();
-  const router = useRouter();
+  const { navigate } = useCustomRouter('SEARCH');
   const isRootUser = sessionUserId === userId;
   const { profile } = useProfile(userId);
   const { handleReport } = useReport(userId);
   const { handleFollow } = useFollowUser();
-  const currentNav = useSearchParams().get('nav') || NavItemKey.SEARCH;
   const isFeed = type === 'feed';
   const canShowButton =
     (isFeed && !isRootUser) || (!isFeed && !(isDeleted && isRootUser));
@@ -74,7 +72,7 @@ function ProfileHeader({
             if (onClick) {
               onClick();
             }
-            router.push(`/${profile.id}/profile?nav=${currentNav}`);
+            navigate(`/${profile.id}/profile`);
           })
         }
         className='flex items-center gap-[8px]'

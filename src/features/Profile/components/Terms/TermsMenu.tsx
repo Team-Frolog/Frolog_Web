@@ -1,15 +1,10 @@
-'use client';
-
 import React from 'react';
 import { terms } from '@/data/terms/terms';
-import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import MenuItem from '../Menu/MenuItem';
 
 /** 약관 메뉴 */
 function TermsMenu() {
-  const router = useRouter();
-
   return (
     <div className='flex w-full flex-col gap-[32px]'>
       {terms.map(
@@ -18,7 +13,7 @@ function TermsMenu() {
             <MenuItem
               key={item.id}
               name={item.title}
-              onClick={() => router.push(`${PAGES.TERMS}/${item.name}`)}
+              href={`${PAGES.TERMS}/${item.name}`}
             />
           )
       )}

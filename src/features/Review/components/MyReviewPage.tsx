@@ -2,9 +2,9 @@
 
 import React from 'react';
 import TitleHeader from '@/components/Header/TitleHeader';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { FormProvider, useForm } from 'react-hook-form';
-import { NavItemKey } from '@/constants/nav';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { ReviewForm as ReviewFormType } from '../types/review';
 import { useReviewDetail } from '../hooks/useReviewDetail';
 import ReviewForm from './ReviewForm/ReviewForm';
@@ -20,9 +20,8 @@ interface Props {
 /** 사용자 본인의 리뷰 페이지 */
 function MyReviewPage({ params: { bookId, reviewId } }: Props) {
   const isEditing = !!useSearchParams().get('edit');
-  const router = useRouter();
+  const { navigate, router } = useCustomRouter('WELL');
   const pathname = usePathname();
-  const currentNav = useSearchParams().get('nav') || NavItemKey.WELL;
 
   const methods = useForm<ReviewFormType>({
     mode: 'onBlur',
@@ -69,7 +68,7 @@ function MyReviewPage({ params: { bookId, reviewId } }: Props) {
           theme='light'
           type={isEditing ? 'edit' : 'default'}
           isDisabled={false}
-          onClick={() => router.push(`${pathname}?edit=true&nav=${currentNav}`)}
+          onClick={() => navigate(`${pathname}?edit=true`)}
           onClickBack={
             isEditing ? () => handleClickBack() : () => router.back()
           }

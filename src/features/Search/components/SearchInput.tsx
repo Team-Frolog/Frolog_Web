@@ -1,10 +1,10 @@
 'use client';
 
 import { PAGES } from '@/constants/page';
-import { NavItemKey } from '@/constants/nav';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { ClearIcon, SearchIcon } from 'public/icons';
 import React, { useState, KeyboardEvent } from 'react';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 
 interface Props {
   placeholder: string;
@@ -14,10 +14,9 @@ interface Props {
 
 /** 검색 input 컴포넌트 */
 function SearchInput({ placeholder, route }: Props) {
-  const router = useRouter();
+  const { replace, navigate } = useCustomRouter('SEARCH');
   const searchParams = useSearchParams().get('query');
   const [searchValue, setSearchValue] = useState(searchParams || '');
-  const currentNav = useSearchParams().get('nav') || NavItemKey.SEARCH;
 
   const handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchValue.trim() !== '') {
@@ -26,7 +25,7 @@ function SearchInput({ placeholder, route }: Props) {
         // eslint-disable-next-line no-useless-escape
         .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gim, '');
       setSearchValue(value);
-      router.replace(`${PAGES.SEARCH}?query=${value}&nav=${currentNav}`);
+      replace(`${PAGES.SEARCH}?query=${value}`);
     }
   };
 
@@ -43,7 +42,7 @@ function SearchInput({ placeholder, route }: Props) {
         placeholder={placeholder}
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
-        onFocus={route ? () => router.push(route) : undefined}
+        onFocus={route ? () => navigate(route) : undefined}
         onKeyDown={handleEnter}
         className='input-common input-light w-full px-[48px] placeholder:text-gray-600 focus:border-main'
       />

@@ -8,7 +8,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { STORAGE_KEY } from '@/constants/storage';
 import { NavItemKey } from '@/constants/nav';
 import { bottomSheet } from '@/modules/BottomSheet';
-import { useRouter } from 'next/navigation';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { QUERY_KEY } from '@/constants/query';
 import { editProfile, getProfileDetail } from '../api/profile.api';
 import { compareForm } from '../utils/compareForm';
@@ -21,7 +21,7 @@ export const useProfileEdit = (
   isDirty: boolean
 ) => {
   const [isEdited, setIsEdited] = useState(false); // 성향 테스트 재시도 완료 여부
-  const router = useRouter();
+  const { replace, router } = useCustomRouter('PROFILE');
   const queryClient = useQueryClient();
 
   const { data: profileDetail } = useQuery({
@@ -51,7 +51,7 @@ export const useProfileEdit = (
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.profileDetail, userId],
       });
-      router.replace(`/${userId}/profile?nav=${NavItemKey.PROFILE}`);
+      replace(`/${userId}/profile?nav=${NavItemKey.PROFILE}`);
       router.back();
     },
   });

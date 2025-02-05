@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useUserId } from '@/store/sessionStore';
-import { NavItemKey } from '@/constants/nav';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { useAddWellItem } from '@/features/Well/hooks/useAddWellItem';
 import { QUERY_KEY } from '@/constants/query';
 import { getReviewCount } from '../api/book.api';
@@ -10,13 +9,12 @@ import { getReviewCount } from '../api/book.api';
 /** 도서를 우물에 추가하는 로직을 처리하는 훅 */
 export const useAddBookToWell = (isbn: string) => {
   const userId = useUserId();
+  const { navigate } = useCustomRouter('SEARCH');
   const [step, setStep] = useState<string | null>('state');
   const [callback, setCallback] = useState<(value?: any) => void>(() => {});
   const [isPending, setIsPending] = useState(false); // 우물을 선택한 경우 완료되기까지 pending 여부
-  const router = useRouter();
   const { handleAddWellItem, wellId, setWellId, setIsThroughSearch } =
     useAddWellItem({ userId, stopPending: () => setIsPending(false) });
-  const currentNav = useSearchParams().get('nav') || NavItemKey.SEARCH;
 
   const { data: reviewCount } = useQuery({
     queryKey: [QUERY_KEY.reviewCount, isbn],
@@ -35,9 +33,7 @@ export const useAddBookToWell = (isbn: string) => {
       }
       // 1-2. 리뷰가 없는 경우 - 리뷰 작성 후 쌓기
       else {
-        router.push(
-          `/${userId}/well/${wellId}/new-review/${isbn}?nav=${currentNav}`
-        );
+        navigate(`/${userId}/well/${wellId}/new-review/${isbn}`);
       }
     }
     // case 2. 검색에서 접근
@@ -56,9 +52,7 @@ export const useAddBookToWell = (isbn: string) => {
         setStep('select-well');
         setCallback(() => (id: string) => {
           setWellId(id);
-          router.push(
-            `/${userId}/well/${id}/new-review/${isbn}?nav=${currentNav}`
-          );
+          navigate(`/${userId}/well/${id}/new-review/${isbn}`);
         });
       }
     }

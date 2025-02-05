@@ -1,8 +1,8 @@
 import { PostWellItemReq } from '@frolog/frolog-api';
 import { useMutation } from '@tanstack/react-query';
 import useNewItemStore from '@/store/newItemStore';
-import { NavItemKey } from '@/constants/nav';
-import { usePathname, useRouter } from 'next/navigation';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
+import { usePathname } from 'next/navigation';
 import { toast } from '@/modules/Toast';
 import { PAGES } from '@/constants/page';
 import useAddBookStore from '@/store/addBookStore';
@@ -15,7 +15,7 @@ interface Props {
 
 /** 우물 아이템 추가 핸들링 훅 */
 export const useAddWellItem = ({ userId, stopPending }: Props) => {
-  const router = useRouter();
+  const { navigate } = useCustomRouter('WELL');
   const {
     wellId,
     isThroughSearch,
@@ -63,7 +63,7 @@ export const useAddWellItem = ({ userId, stopPending }: Props) => {
           stopPending();
         }
         if (!isAfterReview) {
-          router.push(`/${userId}/well/${wellId}?nav=${NavItemKey.WELL}`);
+          navigate(`/${userId}/well/${wellId}`);
           resetAll();
         }
       }
