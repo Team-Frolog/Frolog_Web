@@ -1,11 +1,13 @@
 import { SVGProps } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { useRouter } from 'next/navigation';
 import { CATEGORY } from '@/constants/category';
 import AddButton from '@/components/Button/AddButton';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 
-jest.mock('next/navigation', () => ({
-  useRouter: jest.fn(),
+jest.mock('@/hooks/useCustomRouter', () => ({
+  useCustomRouter: jest.fn(() => ({
+    navigate: jest.fn(), // navigate 함수를 Jest mock 함수로 정의
+  })),
 }));
 
 jest.mock('public/icons', () => ({
@@ -15,10 +17,10 @@ jest.mock('public/icons', () => ({
 }));
 
 describe('AddButton', () => {
-  const mockPush = jest.fn();
+  const mockNavigate = jest.fn();
 
   beforeEach(() => {
-    (useRouter as jest.Mock).mockReturnValue({ push: mockPush });
+    (useCustomRouter as jest.Mock).mockReturnValue({ navigate: mockNavigate });
   });
 
   test('route가 주어지면 클릭 시 route로 이동해야 한다.', () => {
@@ -27,7 +29,7 @@ describe('AddButton', () => {
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(mockPush).toHaveBeenCalledWith(route);
+    expect(mockNavigate).toHaveBeenCalledWith(route);
   });
 
   test('onClick 핸들러가 주어지면 클릭 시 onClick 핸들러가 실행되어야 한다.', () => {

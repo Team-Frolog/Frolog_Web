@@ -1,10 +1,10 @@
 'use client';
 
-import { NavItemKey } from '@/constants/nav';
 import { PAGES } from '@/constants/page';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { ClearIcon, SearchIcon } from 'public/icons';
 import React, { useState, KeyboardEvent } from 'react';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 
 interface Props {
   placeholder: string;
@@ -12,21 +12,13 @@ interface Props {
   searchUrl?: string;
   /** input 클릭 시 이동할 경로 (책 검색 페이지, 우물 탐색 페이지의 경우) */
   route?: string;
-  /** 현재 navBar 탭의 키 */
-  navKey?: NavItemKey;
 }
 
 /** 검색 input 컴포넌트 */
-function SearchInput({
-  placeholder,
-  searchUrl = PAGES.SEARCH,
-  route,
-  navKey = NavItemKey.SEARCH,
-}: Props) {
-  const router = useRouter();
+function SearchInput({ placeholder, searchUrl = PAGES.SEARCH, route }: Props) {
+  const { replace, navigate } = useCustomRouter('SEARCH');
   const searchParams = useSearchParams().get('query');
   const [searchValue, setSearchValue] = useState(searchParams || '');
-  const currentNav = useSearchParams().get('nav') || navKey;
 
   const handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchValue.trim() !== '') {
@@ -35,7 +27,7 @@ function SearchInput({
         // eslint-disable-next-line no-useless-escape
         .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gim, '');
       setSearchValue(value);
-      router.replace(`${searchUrl}?query=${value}&nav=${currentNav}`);
+      replace(`${searchUrl}?query=${value}`);
     }
   };
 
@@ -52,7 +44,7 @@ function SearchInput({
         placeholder={placeholder}
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
-        onFocus={route ? () => router.push(route) : undefined}
+        onFocus={route ? () => navigate(route) : undefined}
         onKeyDown={handleEnter}
         className='input-common input-light w-full px-[48px] placeholder:text-gray-600 focus:border-main'
       />

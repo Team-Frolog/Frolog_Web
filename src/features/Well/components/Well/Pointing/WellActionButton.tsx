@@ -1,11 +1,10 @@
 'use client';
 
+import React from 'react';
 import { ArrowIcon, PlusIcon } from 'public/icons';
 import { motion } from 'framer-motion';
-import { NavItemKey } from '@/constants/nav';
 import { PAGES } from '@/constants/page';
-import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import useAddBookStore from '@/store/addBookStore';
 import Pointing from './Pointing';
 
@@ -33,7 +32,7 @@ function WellActionButton({
   href = PAGES.SEARCH,
   isPointing = false,
 }: Props) {
-  const router = useRouter();
+  const { navigate } = useCustomRouter('WELL');
   const { setWellId } = useAddBookStore((state) => state.actions);
 
   return (
@@ -46,7 +45,7 @@ function WellActionButton({
             if (wellId) {
               setWellId(wellId);
             }
-            router.push(`${href}?nav=${NavItemKey.WELL}`);
+            navigate(href);
           }}
           className='absolute inset-x-0 top-0 z-50 mx-auto cursor-pointer'
         >

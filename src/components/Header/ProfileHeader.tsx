@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { ChildArrowIcon, MenuIcon } from 'public/icons';
 import Image from 'next/image';
-import { NavItemKey } from '@/constants/nav';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { IMAGES } from '@/constants/images';
+import { getPath } from '@/utils/getPath';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useReport } from '@/hooks/useReport';
 import { useProfile } from '@/hooks/useProfile';
@@ -44,13 +44,12 @@ function ProfileHeader({
   hasFollow = false,
   isChildComment = false,
 }: Props) {
-  const router = useRouter();
   const sessionUserId = useUserId();
+  const { navigate } = useCustomRouter('SEARCH');
   const isRootUser = sessionUserId === userId;
   const { profile, isLoading } = useProfile(userId);
   const { handleReport } = useReport(userId);
   const { handleFollow } = useFollowUser();
-  const currentNav = useSearchParams().get('nav') || NavItemKey.SEARCH;
   const isFeed = type === 'feed';
   const canShowButton =
     (isFeed && !isRootUser) || (!isFeed && !(isDeleted && isRootUser));
@@ -75,7 +74,7 @@ function ProfileHeader({
             if (onClick) {
               onClick();
             }
-            router.push(`/${profile.id}/profile?nav=${currentNav}`);
+            navigate(getPath.profile(profile.id));
           })
         }
         className='flex items-center gap-[8px]'

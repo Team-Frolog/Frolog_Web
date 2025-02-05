@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { MenuArrowIcon } from 'public/icons';
 import React from 'react';

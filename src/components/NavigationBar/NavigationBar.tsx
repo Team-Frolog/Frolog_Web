@@ -3,6 +3,7 @@
 import React from 'react';
 import { FeedIcon, ProfileIcon, SearchIcon, WellIcon } from 'public/icons';
 import { PAGES } from '@/constants/page';
+import { getPath } from '@/utils/getPath';
 import { usePathname, useSearchParams } from 'next/navigation';
 import useUserActionStore from '@/store/userActionStore';
 import { useUserId } from '@/store/sessionStore';
@@ -45,7 +46,7 @@ function NavigationBar() {
     },
     {
       label: NavItemLabel.PROFILE,
-      href: `/${userId}/profile`,
+      href: getPath.profile(userId ?? ''),
       icon: ProfileIcon,
       navKey: NavItemKey.PROFILE,
     },

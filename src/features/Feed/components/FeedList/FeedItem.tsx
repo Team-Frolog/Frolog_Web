@@ -1,6 +1,7 @@
 import React from 'react';
 import CustomLink from '@/components/Link/CustomLink';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
+import { getPath } from '@/utils/getPath';
 import { useUserActionActions } from '@/store/userActionStore';
 import ProfileHeader from '@/components/Header/ProfileHeader';
 import BookInfo from './BookInfo';
@@ -40,7 +41,9 @@ function FeedItem({
       <div className='flex w-full flex-col'>
         <CustomLink
           prefetch
-          href={isMemo ? `/memo/${feedData.id}` : `/review/${feedData.id}`}
+          href={
+            isMemo ? getPath.memo(feedData.id) : getPath.review(feedData.id)
+          }
           className='flex w-full flex-col'
           onClick={() => {
             onSaveScroll();

@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import { ArrowIcon, ChatIcon } from 'public/icons';
 import { AnimatePresence, motion } from 'framer-motion';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
+import { getPath } from '@/utils/getPath';
 import LikeButton from '@/components/Button/LikeButton';
-import { NavItemKey } from '@/constants/nav';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
-import { useRouter } from 'next/navigation';
 import { AddBookToWell } from '@/features/Book';
 import { isGetMemoRes } from '../../utils/typeGuard';
 
@@ -22,7 +22,7 @@ interface Props {
 
 /** 피드 아이템 중 댓글, 좋아요, 우물에 담기 등이 포함된 하단 바 */
 function FeedBar({ feedData, onClickLike, onClickComment }: Props) {
-  const router = useRouter();
+  const { navigate } = useCustomRouter('FEED');
   const [open, setOpen] = useState(false);
 
   return (
@@ -41,8 +41,11 @@ function FeedBar({ feedData, onClickLike, onClickComment }: Props) {
             onClick={() =>
               runWhenLoggedIn(() => {
                 onClickComment();
-                router.push(
-                  `/feed/${feedData.id}/comments?type=${isGetMemoRes(feedData) ? 'memo' : 'review'}&nav=${NavItemKey.FEED}`
+                navigate(
+                  getPath.comments(
+                    feedData.id,
+                    isGetMemoRes(feedData) ? 'memo' : 'review'
+                  )
                 );
               }, 'feed')
             }
