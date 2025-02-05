@@ -1,6 +1,10 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { NavItemKey } from '@/constants/nav';
 
+/** nav 상태를 붙여주는 커스텀 라우터
+ * @param defaultNav - 기본으로 적용될 nav key
+ * @param isForceDefaultNav - 기본 nav를 강제로 적용할지에 대한 여부
+ */
 export const useCustomRouter = (
   defaultNav?: keyof typeof NavItemKey,
   isForceDefaultNav?: boolean
