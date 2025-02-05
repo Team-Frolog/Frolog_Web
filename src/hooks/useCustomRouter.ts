@@ -13,7 +13,7 @@ export const useCustomRouter = (
   const generatePath = (path: string) => {
     const separator = path.includes('?') ? '&' : '?';
 
-    if (isForceDefaultNav) {
+    if (isForceDefaultNav && defaultNav) {
       return `${path}${separator}nav=${NavItemKey[defaultNav]}`;
     } else {
       return currentNav ? `${path}${separator}nav=${currentNav}` : path;
