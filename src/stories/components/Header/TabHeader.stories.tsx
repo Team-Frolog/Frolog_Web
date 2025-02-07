@@ -1,5 +1,5 @@
 import TabHeader from '@/components/Header/TabHeader';
-import { memoReviewTabs } from '@/constants/tabs';
+import { MEMO_REVIEW_TABS } from '@/constants/tabs';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -22,7 +22,7 @@ export const MemoTab: Story = {
   },
   args: {
     isResponsive: true,
-    tabs: memoReviewTabs,
+    tabs: MEMO_REVIEW_TABS,
   },
 };
 
@@ -37,6 +37,6 @@ export const ReviewTab: Story = {
   },
   args: {
     isResponsive: true,
-    tabs: memoReviewTabs,
+    tabs: MEMO_REVIEW_TABS,
   },
 };

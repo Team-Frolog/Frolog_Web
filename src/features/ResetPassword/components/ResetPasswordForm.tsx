@@ -16,8 +16,8 @@ function ResetPasswordForm() {
     mode: 'onBlur',
     defaultValues:
       typeof window !== 'undefined' &&
-      localStorage.getItem(STORAGE_KEY.FIND_FORM_KEY)
-        ? JSON.parse(localStorage.getItem(STORAGE_KEY.FIND_FORM_KEY)!)
+      localStorage.getItem(STORAGE_KEY.findFormKey)
+        ? JSON.parse(localStorage.getItem(STORAGE_KEY.findFormKey)!)
         : {
             email: '',
             password: '',
@@ -29,12 +29,13 @@ function ResetPasswordForm() {
   const { moveStep, resetStep } = useStepActions();
   const { step, resetPassword } = useResetPassword(methods.getValues);
 
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem(STORAGE_KEY.FIND_FORM_KEY);
+  useEffect(
+    () => () => {
+      localStorage.removeItem(STORAGE_KEY.findFormKey);
       resetStep();
-    };
-  }, []);
+    },
+    []
+  );
 
   return (
     <FormProvider {...methods}>

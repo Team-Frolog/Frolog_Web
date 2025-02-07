@@ -1,5 +1,5 @@
 import Star from '@/components/Rating/Star';
-import { ratingMessage } from '@/constants/rating';
+import { RATING_MESSAGE } from '@/constants/rating';
 
 interface Props {
   curRating: number;
@@ -30,11 +30,11 @@ export const generateRatingStars = ({ curRating, size, color }: Props) => {
 
 /** 별점별 메시지를 반환하는 함수 */
 export const getRatingMsg = (rating: number) => {
-  if (rating in ratingMessage) {
-    return ratingMessage[rating];
+  if (rating in RATING_MESSAGE) {
+    return RATING_MESSAGE[rating];
   }
 
-  const keys = Object.keys(ratingMessage).map(Number);
+  const keys = Object.keys(RATING_MESSAGE).map(Number);
   let closestKey = keys[0];
 
   for (let i = 1; i < keys.length; i++) {
@@ -47,5 +47,5 @@ export const getRatingMsg = (rating: number) => {
     }
   }
 
-  return ratingMessage[closestKey];
+  return RATING_MESSAGE[closestKey];
 };

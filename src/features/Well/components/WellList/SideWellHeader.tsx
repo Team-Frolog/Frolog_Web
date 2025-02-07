@@ -8,7 +8,7 @@ import BackButton from '@/components/Button/BackButton';
 import { PAGES } from '@/constants/page';
 import CustomMotionLink from '@/components/Link/CustomMotionLink';
 import TabHeader from '@/components/Header/TabHeader';
-import { wellTabs } from '@/constants/tabs';
+import { WELL_TABS } from '@/constants/tabs';
 
 interface Props {
   /** 상점 버튼 유무 */
@@ -29,7 +29,7 @@ function SideWellHeader({
 
   return (
     <WellEntryHeader bgColor={bgColor}>
-      <TabHeader tabs={wellTabs} theme='light' />
+      <TabHeader tabs={WELL_TABS} theme='light' />
       {hasBackButton && (
         <BackButton
           type='bg'

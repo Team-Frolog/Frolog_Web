@@ -9,7 +9,7 @@ import React, { Suspense } from 'react';
 import BookInfoSkeleton from '@/components/Fallback/Skeleton/BookInfoSkeleton';
 import { useBook } from '@/features/Book';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
-import { memoReviewTabs } from '@/constants/tabs';
+import { MEMO_REVIEW_TABS } from '@/constants/tabs';
 
 interface Props {
   children: React.ReactNode;
@@ -30,7 +30,7 @@ function ReviewMemoLayout({ children, params: { bookId } }: Props) {
 
   return (
     <>
-      <TabHeader isResponsive tabs={memoReviewTabs} />
+      <TabHeader isResponsive tabs={MEMO_REVIEW_TABS} />
       <MainLayout extraClass='bg-gray-900'>
         <Suspense fallback={<BookInfoSkeleton />}>
           <BookInfo bookId={bookId} canClick />

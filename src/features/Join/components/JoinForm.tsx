@@ -18,8 +18,8 @@ function JoinForm() {
     mode: 'onBlur',
     defaultValues:
       typeof window !== 'undefined' &&
-      localStorage.getItem(STORAGE_KEY.JOIN_FORM_KEY)
-        ? JSON.parse(localStorage.getItem(STORAGE_KEY.JOIN_FORM_KEY)!)
+      localStorage.getItem(STORAGE_KEY.joinFormKey)
+        ? JSON.parse(localStorage.getItem(STORAGE_KEY.joinFormKey)!)
         : defaultValue,
   });
   const { getValues, handleSubmit } = methods;
