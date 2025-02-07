@@ -2,7 +2,7 @@ import { FeedContent } from '@/features/Feed';
 import { GetReviewRes } from '@frolog/frolog-api';
 import React from 'react';
 import CustomLink from '@/components/Link/CustomLink';
-import ProfileHeader from '@/components/Header/ProfileHeader';
+import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
 import LikeButton from '@/components/Button/LikeButton';
 import { getPath } from '@/utils/getPath';
 import { useCustomRouter } from '@/hooks/useCustomRouter';

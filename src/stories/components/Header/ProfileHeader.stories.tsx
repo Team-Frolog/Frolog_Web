@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import ProfileHeader from '@/components/Header/ProfileHeader';
+import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
 
 const meta = {
   title: 'Common/Header/ProfileHeader',
