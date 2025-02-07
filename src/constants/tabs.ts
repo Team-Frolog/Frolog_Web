@@ -14,3 +14,8 @@ export const WELL_TABS: GroupTab[] = [
   { path: PAGES.HOME, label: '내우물' },
   { path: PAGES.EXPLORE, label: '탐색' },
 ];
+
+export const STORE_TABS: GroupTab[] = [
+  { path: PAGES.STORE, label: '상점' },
+  { path: PAGES.MISSION, label: '미션' },
+];
