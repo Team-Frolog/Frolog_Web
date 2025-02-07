@@ -45,25 +45,22 @@ function ProfileHeader({
   isChildComment = false,
 }: Props) {
   const sessionUserId = useUserId();
-  const { navigate } = useCustomRouter('SEARCH');
   const isRootUser = sessionUserId === userId;
+  const isMyComment = type === 'comment' && isRootUser;
+  const { navigate } = useCustomRouter('SEARCH');
   const { profile, isLoading } = useProfile(userId);
   const { handleReport } = useReport(userId);
   const { handleFollow } = useFollowUser();
-  const isFeed = type === 'feed';
-  const canShowButton =
-    (isFeed && !isRootUser) || (!isFeed && !(isDeleted && isRootUser));
+
+  const canShowButton = !(
+    (type === 'feed' && isRootUser) ||
+    (type === 'comment' && isDeleted && isRootUser) ||
+    (type === 'explore' && isRootUser)
+  );
 
   if (!profile || isLoading) return <ProfileHeaderSkeleton />;
 
   const { username, image, follow } = profile;
-
-  const getSheetKey = () => {
-    if (isRootUser) {
-      return 'delete_this_comment';
-    }
-    return isFeed ? 'report_this_feed' : 'report_this_comment';
-  };
 
   return (
     <div className='flex w-full items-center justify-between px-page'>
@@ -131,8 +128,10 @@ function ProfileHeader({
             onClick={() =>
               runWhenLoggedIn(() =>
                 bottomSheet.open({
-                  sheetKey: getSheetKey(),
-                  onClick: !isFeed && isRootUser ? onDelete : handleReport,
+                  sheetKey: isRootUser
+                    ? 'delete_this_comment'
+                    : 'report_this_user',
+                  onClick: isMyComment ? onDelete : handleReport,
                 })
               )
             }
