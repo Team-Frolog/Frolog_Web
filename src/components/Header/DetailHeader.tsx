@@ -31,7 +31,7 @@ function DetailHeader({ profileUserId }: Props) {
                 'feed'
               )
             }
-            className='flex items-center gap-[6px] text-body-sm-bold text-main'
+            className='flex items-center gap-[6px] text-body-lg-bold text-main'
           >
             우물 놀러가기
           </motion.button>
