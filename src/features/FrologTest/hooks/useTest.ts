@@ -26,7 +26,7 @@ export const useTest = () => {
   /** 사용자 선택 답안을 관리하는 useState (sessionStorage 활용) */
   const [answers, setAnswers] = useState<number[]>(() => {
     if (typeof window !== 'undefined') {
-      const savedAnswers = sessionStorage.getItem(STORAGE_KEY.TEST_ANSWER_KEY);
+      const savedAnswers = sessionStorage.getItem(STORAGE_KEY.testAnswerKey);
       return savedAnswers ? JSON.parse(savedAnswers) : [];
     }
     return [];
@@ -37,10 +37,7 @@ export const useTest = () => {
     setAnswers((prev) => {
       const newArr = [...prev];
       newArr[step - 1] = id;
-      sessionStorage.setItem(
-        STORAGE_KEY.TEST_ANSWER_KEY,
-        JSON.stringify(newArr)
-      );
+      sessionStorage.setItem(STORAGE_KEY.testAnswerKey, JSON.stringify(newArr));
       return newArr;
     });
 
@@ -57,7 +54,7 @@ export const useTest = () => {
   const postTestResult = async (type: string) => {
     // 콜백이 있는 경우 = 프로필 수정 중 테스트인 경우, 결과를 session에 저장
     if (callback) {
-      sessionStorage.setItem(STORAGE_KEY.TEST_RESULT_FOR_EDIT, type);
+      sessionStorage.setItem(STORAGE_KEY.testResultForEdit, type);
       return;
     }
 
@@ -85,7 +82,7 @@ export const useTest = () => {
       setTestData(questions[step - 1]);
       const currentAnswers = answers.slice(0, step);
       sessionStorage.setItem(
-        STORAGE_KEY.TEST_ANSWER_KEY,
+        STORAGE_KEY.testAnswerKey,
         JSON.stringify(currentAnswers)
       );
       setAnswers(currentAnswers);

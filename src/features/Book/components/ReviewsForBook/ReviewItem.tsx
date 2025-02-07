@@ -2,7 +2,7 @@ import { FeedContent } from '@/features/Feed';
 import { GetReviewRes } from '@frolog/frolog-api';
 import React from 'react';
 import CustomLink from '@/components/Link/CustomLink';
-import ProfileHeader from '@/components/Header/ProfileHeader';
+import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
 import LikeButton from '@/components/Button/LikeButton';
 import { getPath } from '@/utils/getPath';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
@@ -22,7 +22,7 @@ interface Props {
  * - 피드와 동일한 ProfileHeader, FeedContent 컴포넌트를 활용합니다.
  */
 function ReviewItem({ reviewData, category, onClickLike }: Props) {
-  const { navigate } = useCustomRouter('SEARCH');
+  const { navigate } = useCustomRouter('search');
 
   return (
     <div className='w-full'>

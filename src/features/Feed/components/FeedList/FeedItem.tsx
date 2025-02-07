@@ -3,7 +3,7 @@ import CustomLink from '@/components/Link/CustomLink';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
 import { getPath } from '@/utils/getPath';
 import { useUserActionActions } from '@/store/userActionStore';
-import ProfileHeader from '@/components/Header/ProfileHeader';
+import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
 import BookInfo from './BookInfo';
 import FeedContent from './FeedContent';
 import FeedBar from './FeedBar';

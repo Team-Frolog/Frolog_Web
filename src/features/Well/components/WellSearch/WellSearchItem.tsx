@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import ProfileHeader from '@/components/Header/ProfileHeader';
+import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
 import Slider from '@/components/Slider/Slider';
 
 /** 우물 탐색/검색 아이템 컴포넌트 */

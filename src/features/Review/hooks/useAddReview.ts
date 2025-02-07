@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getPath } from '@/utils/getPath';
 import { UseFormSetError, UseFormWatch } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { NavItemKey } from '@/constants/nav';
+import { NAV_ITEM } from '@/constants/nav';
 import { toast } from '@/modules/Toast';
 import { ERROR_ALERT } from '@/constants/message';
 import { useFlash } from '@/hooks/useFlash';
@@ -55,7 +55,7 @@ export const useAddReview = (
         resetAll();
         openFlash({
           type: 'review',
-          callbackUrl: `${getPath.wellDetail(userId, wellId)}?nav=${NavItemKey.WELL}`,
+          callbackUrl: `${getPath.wellDetail(userId, wellId)}?nav=${NAV_ITEM.well.key}`,
         });
       }
     },

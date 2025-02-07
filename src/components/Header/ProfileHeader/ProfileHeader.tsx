@@ -2,18 +2,16 @@
 
 import React from 'react';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
-import { ChildArrowIcon, MenuIcon } from 'public/icons';
-import Image from 'next/image';
+import { MenuIcon } from 'public/icons';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
-import { IMAGES } from '@/constants/images';
 import { getPath } from '@/utils/getPath';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useReport } from '@/hooks/useReport';
 import { useProfile } from '@/hooks/useProfile';
 import { useUserId } from '@/store/sessionStore';
-import { getImageSrc } from '@/utils/getImageSrc';
 import { useFollowUser } from '@/features/Feed';
-import ProfileHeaderSkeleton from '../Fallback/Skeleton/ProfileHeaderSkeleton';
+import ProfileHeaderSkeleton from '../../Fallback/Skeleton/ProfileHeaderSkeleton';
+import ProfileImage from './ProfileImage';
 
 interface Props {
   /** 사용 위치 */
@@ -45,25 +43,22 @@ function ProfileHeader({
   isChildComment = false,
 }: Props) {
   const sessionUserId = useUserId();
-  const { navigate } = useCustomRouter('SEARCH');
   const isRootUser = sessionUserId === userId;
+  const isMyComment = type === 'comment' && isRootUser;
+  const { navigate } = useCustomRouter('search');
   const { profile, isLoading } = useProfile(userId);
   const { handleReport } = useReport(userId);
   const { handleFollow } = useFollowUser();
-  const isFeed = type === 'feed';
-  const canShowButton =
-    (isFeed && !isRootUser) || (!isFeed && !(isDeleted && isRootUser));
+
+  const canShowButton = !(
+    (type === 'feed' && isRootUser) ||
+    (type === 'comment' && isDeleted && isRootUser) ||
+    (type === 'explore' && isRootUser)
+  );
 
   if (!profile || isLoading) return <ProfileHeaderSkeleton />;
 
   const { username, image, follow } = profile;
-
-  const getSheetKey = () => {
-    if (isRootUser) {
-      return 'delete_this_comment';
-    }
-    return isFeed ? 'report_this_feed' : 'report_this_comment';
-  };
 
   return (
     <div className='flex w-full items-center justify-between px-page'>
@@ -79,36 +74,7 @@ function ProfileHeader({
         }
         className='flex items-center gap-[8px]'
       >
-        {isChildComment ? (
-          <div className='flex items-center gap-[4px]'>
-            <ChildArrowIcon />
-            <div className='relative flex h-[32px] w-[32px] shrink-0'>
-              <Image
-                src={
-                  image
-                    ? getImageSrc(image, 'profile')!
-                    : IMAGES.default_profile
-                }
-                alt='profile image'
-                layout='fill'
-                unoptimized
-                className='rounded-[50%] object-cover'
-              />
-            </div>
-          </div>
-        ) : (
-          <div className='relative flex h-[40px] w-[40px] shrink-0'>
-            <Image
-              src={
-                image ? getImageSrc(image, 'profile')! : IMAGES.default_profile
-              }
-              alt='profile image'
-              layout='fill'
-              className='rounded-[50%] object-cover'
-            />
-          </div>
-        )}
-
+        <ProfileImage imageUrl={image} isChildComment={isChildComment} />
         <h5 className='text-body-lg-bold text-gray-600'>{username}</h5>
       </button>
       <div className='flex items-center gap-[8px]'>
@@ -131,8 +97,10 @@ function ProfileHeader({
             onClick={() =>
               runWhenLoggedIn(() =>
                 bottomSheet.open({
-                  sheetKey: getSheetKey(),
-                  onClick: !isFeed && isRootUser ? onDelete : handleReport,
+                  sheetKey: isRootUser
+                    ? 'delete_this_comment'
+                    : 'report_this_user',
+                  onClick: isMyComment ? onDelete : handleReport,
                 })
               )
             }

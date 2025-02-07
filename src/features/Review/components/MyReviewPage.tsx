@@ -20,7 +20,7 @@ interface Props {
 /** 사용자 본인의 리뷰 페이지 */
 function MyReviewPage({ params: { bookId, reviewId } }: Props) {
   const isEditing = !!useSearchParams().get('edit');
-  const { navigate, router } = useCustomRouter('WELL');
+  const { navigate, router } = useCustomRouter('well');
   const pathname = usePathname();
 
   const methods = useForm<ReviewFormType>({

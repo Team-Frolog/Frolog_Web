@@ -32,7 +32,7 @@ function WellActionButton({
   href = PAGES.SEARCH,
   isPointing = false,
 }: Props) {
-  const { navigate } = useCustomRouter('WELL');
+  const { navigate } = useCustomRouter('well');
   const { setWellId } = useAddBookStore((state) => state.actions);
 
   return (

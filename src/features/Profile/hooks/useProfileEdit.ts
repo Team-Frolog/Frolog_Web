@@ -21,7 +21,7 @@ export const useProfileEdit = (
   isDirty: boolean
 ) => {
   const [isEdited, setIsEdited] = useState(false); // 성향 테스트 재시도 완료 여부
-  const { replace, router } = useCustomRouter('PROFILE');
+  const { replace, router } = useCustomRouter('profile');
   const queryClient = useQueryClient();
 
   const { data: profileDetail } = useQuery({
@@ -59,10 +59,8 @@ export const useProfileEdit = (
   /** 첫 진입 or 테스트 재시도 후 진입 시 초기 처리 */
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const originData = sessionStorage.getItem(
-        STORAGE_KEY.PROFILE_EDIT_FORM_KEY
-      );
-      const testType = sessionStorage.getItem(STORAGE_KEY.TEST_RESULT_FOR_EDIT);
+      const originData = sessionStorage.getItem(STORAGE_KEY.profileEditFormKey);
+      const testType = sessionStorage.getItem(STORAGE_KEY.testResultForEdit);
 
       // 성향 테스트 다녀 온 뒤 결과 업데이트
       if (originData) {
@@ -72,8 +70,8 @@ export const useProfileEdit = (
             testType || JSON.parse(originData!).reading_preference,
         };
         reset(originValues);
-        sessionStorage.removeItem(STORAGE_KEY.PROFILE_EDIT_FORM_KEY);
-        sessionStorage.removeItem(STORAGE_KEY.TEST_RESULT_FOR_EDIT);
+        sessionStorage.removeItem(STORAGE_KEY.profileEditFormKey);
+        sessionStorage.removeItem(STORAGE_KEY.testResultForEdit);
         setIsEdited(true);
       }
       // 성향 테스트 안함, 기존 프로필 데이터 있는 경우

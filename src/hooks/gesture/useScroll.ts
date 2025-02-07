@@ -19,7 +19,6 @@ export const useScroll = ({
 }: Props) => {
   const [scrollY, setScrollY] = useState(0);
   const [targetElement, setTargetElement] = useState<HTMLElement | null>(null);
-  const isSafari = /Safari/i.test(window.navigator.userAgent);
 
   /** 색상 모드 설정 함수 */
   const setMode = useCallback(
@@ -71,6 +70,8 @@ export const useScroll = ({
 
   /** 사파리 - 스크롤 변화에 따른 모드 업데이트 */
   useEffect(() => {
+    const isSafari = /Safari/i.test(window.navigator.userAgent);
+
     if (isSafari) {
       if (scrollY < 150) {
         setMode('dark');
@@ -121,6 +122,8 @@ export const useScroll = ({
     );
 
     // 사파리의 경우 observer가 아닌 스크롤 이벤트 별도 등록 (observer 지원 X)
+    const isSafari = /Safari/i.test(window.navigator.userAgent);
+
     if (isSafari) {
       mainElement.addEventListener('scroll', () => updateScroll());
     } else {

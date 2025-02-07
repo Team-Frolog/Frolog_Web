@@ -4,7 +4,6 @@ import React from 'react';
 import ResponsiveHeaderLayout from '@/layouts/ResponsiveHeaderLayout';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { useUserId } from '@/store/sessionStore';
-import { RightArrowIcon, WellIcon } from 'public/icons';
 import { motion } from 'framer-motion';
 import { getPath } from '@/utils/getPath';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
@@ -15,7 +14,7 @@ interface Props {
 }
 
 function DetailHeader({ profileUserId }: Props) {
-  const { navigate, router } = useCustomRouter('FEED');
+  const { navigate, router } = useCustomRouter('feed');
   const userId = useUserId();
   const isRootUser = userId === profileUserId;
 
@@ -32,13 +31,9 @@ function DetailHeader({ profileUserId }: Props) {
                 'feed'
               )
             }
-            className='flex items-center gap-[6px]'
+            className='flex items-center gap-[6px] text-body-lg-bold text-main'
           >
-            <div className='flex flex-col items-center gap-[2px] text-body-sm-bold text-main'>
-              <WellIcon fill='#00ce4c' />
-              <span>우물</span>
-            </div>
-            <RightArrowIcon />
+            우물 놀러가기
           </motion.button>
         </div>
       )}

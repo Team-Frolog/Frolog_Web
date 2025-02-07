@@ -39,7 +39,7 @@ function WellItem({
   setTarget,
   startLoading,
 }: Props) {
-  const { navigate } = useCustomRouter('WELL');
+  const { navigate } = useCustomRouter('well');
   const { newItemId, setNewItemId } = useNewItemStore();
   const { id, status, title, page, category, isbn, memo_cnt } = wellBook;
   const height = page > 400 ? page * 0.15 : 55;

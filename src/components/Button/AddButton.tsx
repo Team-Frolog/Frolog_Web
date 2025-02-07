@@ -20,7 +20,7 @@ interface Props {
  * - route가 전달된 경우 route로 이동하고, onClick이 전달된 경우 onClick을 실행합니다.
  * */
 function AddButton({ route, text, categoryId, onClick }: Props) {
-  const { navigate } = useCustomRouter('WELL');
+  const { navigate } = useCustomRouter('well');
 
   const handleClick = () => {
     if (route) {

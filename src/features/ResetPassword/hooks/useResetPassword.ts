@@ -17,10 +17,10 @@ export const useResetPassword = (getValues: () => FindForm) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (step === 1) {
-        localStorage.removeItem(STORAGE_KEY.FIND_FORM_KEY);
+        localStorage.removeItem(STORAGE_KEY.findFormKey);
       } else {
         localStorage.setItem(
-          STORAGE_KEY.FIND_FORM_KEY,
+          STORAGE_KEY.findFormKey,
           JSON.stringify(getValues())
         );
       }
