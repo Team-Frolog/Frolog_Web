@@ -26,7 +26,7 @@ interface Props {
 /** 우물 아이콘 컴포넌트 */
 function WellIcon({ wellData, type = 'list', onClick }: Props) {
   const { id, name, frog, owner, color, shape, date } = wellData;
-  const { navigate } = useCustomRouter('WELL');
+  const { navigate } = useCustomRouter('well');
   const controls = useAnimation();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const shapeRef = useRef<HTMLDivElement | null>(null);

@@ -45,7 +45,7 @@ function ProfileHeader({
   const sessionUserId = useUserId();
   const isRootUser = sessionUserId === userId;
   const isMyComment = type === 'comment' && isRootUser;
-  const { navigate } = useCustomRouter('SEARCH');
+  const { navigate } = useCustomRouter('search');
   const { profile, isLoading } = useProfile(userId);
   const { handleReport } = useReport(userId);
   const { handleFollow } = useFollowUser();

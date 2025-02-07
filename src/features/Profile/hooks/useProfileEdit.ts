@@ -21,7 +21,7 @@ export const useProfileEdit = (
   isDirty: boolean
 ) => {
   const [isEdited, setIsEdited] = useState(false); // 성향 테스트 재시도 완료 여부
-  const { replace, router } = useCustomRouter('PROFILE');
+  const { replace, router } = useCustomRouter('profile');
   const queryClient = useQueryClient();
 
   const { data: profileDetail } = useQuery({

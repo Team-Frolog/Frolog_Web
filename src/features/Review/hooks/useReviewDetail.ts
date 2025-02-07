@@ -30,7 +30,7 @@ export const useReviewDetail = ({
   watch,
   setError,
 }: Props) => {
-  const { replace, router } = useCustomRouter('WELL');
+  const { replace, router } = useCustomRouter('well');
   const queryClient = useQueryClient();
 
   const { data } = useQuery({

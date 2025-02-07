@@ -1,8 +1,8 @@
-import { NavItemKey } from '@/constants/nav';
 import Link, { LinkProps } from 'next/link';
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import { HTMLMotionProps, motion } from 'framer-motion';
+import { NavItemKey } from '@/types/nav';
 
 const MotionLink = motion.create(Link);
 

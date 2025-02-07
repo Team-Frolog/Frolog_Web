@@ -1,12 +1,12 @@
 import React from 'react';
-import { NavItemKey, navItem } from '@/constants/nav';
-import { Taps } from '@/types/taps';
+import { NAV_ITEM } from '@/constants/nav';
+import { NavItemKey, NavItemLabel } from '@/types/nav';
 import CustomMotionLink from '../Link/CustomMotionLink';
 
 interface Props {
   href: string;
   icon: React.ReactNode;
-  label: Taps;
+  label: NavItemLabel;
   navKey: NavItemKey;
   isActive: boolean;
   onClick?: () => void;
@@ -26,7 +26,7 @@ function NavItem({ href, icon, label, navKey, isActive, onClick }: Props) {
       <span
         className={`text-body-sm-bold ${isActive ? 'text-gray-800' : 'text-gray-500'}`}
       >
-        {navItem[label]}
+        {NAV_ITEM[label].name}
       </span>
     </CustomMotionLink>
   );

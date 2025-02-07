@@ -16,7 +16,7 @@ interface Props {
 
 /** 우물 아이템 추가 핸들링 훅 */
 export const useAddWellItem = ({ userId, stopPending }: Props) => {
-  const { navigate } = useCustomRouter('WELL');
+  const { navigate } = useCustomRouter('well');
   const {
     wellId,
     isThroughSearch,

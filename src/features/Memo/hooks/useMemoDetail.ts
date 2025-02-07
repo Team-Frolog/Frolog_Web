@@ -12,7 +12,7 @@ export const useMemoDetail = (
   bookId: string,
   memoId: string
 ) => {
-  const { replace, router } = useCustomRouter('WELL');
+  const { replace, router } = useCustomRouter('well');
   const userId = useUserId();
   const queryClient = useQueryClient();
 

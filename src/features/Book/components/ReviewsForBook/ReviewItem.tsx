@@ -22,7 +22,7 @@ interface Props {
  * - 피드와 동일한 ProfileHeader, FeedContent 컴포넌트를 활용합니다.
  */
 function ReviewItem({ reviewData, category, onClickLike }: Props) {
-  const { navigate } = useCustomRouter('SEARCH');
+  const { navigate } = useCustomRouter('search');
 
   return (
     <div className='w-full'>

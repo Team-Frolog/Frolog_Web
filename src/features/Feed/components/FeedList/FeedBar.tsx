@@ -22,7 +22,7 @@ interface Props {
 
 /** 피드 아이템 중 댓글, 좋아요, 우물에 담기 등이 포함된 하단 바 */
 function FeedBar({ feedData, onClickLike, onClickComment }: Props) {
-  const { navigate } = useCustomRouter('FEED');
+  const { navigate } = useCustomRouter('feed');
   const [open, setOpen] = useState(false);
 
   return (

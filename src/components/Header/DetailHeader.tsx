@@ -14,7 +14,7 @@ interface Props {
 }
 
 function DetailHeader({ profileUserId }: Props) {
-  const { navigate, router } = useCustomRouter('FEED');
+  const { navigate, router } = useCustomRouter('feed');
   const userId = useUserId();
   const isRootUser = userId === profileUserId;
 

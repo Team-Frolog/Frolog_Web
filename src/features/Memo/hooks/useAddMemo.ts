@@ -10,7 +10,7 @@ import { MemoFormType } from '../types/form';
 
 /** 메모 작성 핸들링 훅 */
 export const useAddMemo = (wellId: string, bookId: string) => {
-  const { replace } = useCustomRouter('WELL');
+  const { replace } = useCustomRouter('well');
   const userId = useUserId();
   const [isLoading, setIsLoading] = useState(false);
 
