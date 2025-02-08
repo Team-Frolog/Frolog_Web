@@ -19,6 +19,8 @@ interface Props {
   isError?: boolean;
   /** 리뷰 개수 */
   review_cnt?: number;
+  /** 컴포넌트 전체에 적용될 추가 onClick */
+  onClick?: () => void;
   setValue?: UseFormSetValue<ReviewFormType>;
   watch?: UseFormWatch<ReviewFormType>;
   clearErrors?: UseFormClearErrors<ReviewFormType>;
@@ -37,6 +39,7 @@ function RatingSelector({
   isError,
   clearErrors,
   review_cnt,
+  onClick,
 }: Props) {
   const currentRating = type === 'form' ? watch!('rating') : rating;
 
@@ -86,7 +89,10 @@ function RatingSelector({
   };
 
   return (
-    <div className='flex-col-center w-full justify-center gap-[8px] text-gray-800'>
+    <div
+      onClick={onClick}
+      className='flex-col-center w-full justify-center gap-[8px] text-gray-800'
+    >
       <div className='flex-column items-center'>
         {review_cnt !== undefined && (
           <span className='text-body-sm text-gray-600'>
