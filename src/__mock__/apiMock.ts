@@ -1,3 +1,4 @@
+import { DEFAULT_LIMIT } from '@/constants/api';
 import { http, HttpResponse } from 'msw';
 
 export const handlers = [
@@ -5,14 +6,20 @@ export const handlers = [
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/v1/well/userwell/search`,
     ({ request }) => {
       const url = new URL(request.url);
+      const page = Number(url.searchParams.get('page')) || 1;
+      const limit = Number(url.searchParams.get('limit')) || DEFAULT_LIMIT;
       const searchQuery = url.searchParams.get('query');
-      const totalData = 10;
+      const totalData = 50;
+
       const wellsData = Array.from({ length: totalData }, (_, index) => ({
         id: 'jeLY5v4',
         wells: [
           {
             id: 'zg1GyvV',
-            name: searchQuery === null ? '첫우물' : `${searchQuery} ${index}`,
+            name:
+              searchQuery === null
+                ? `첫우물 ${index}`
+                : `${searchQuery} ${index}`,
             owner: 'jeLY5v4',
             frog: 'default',
             color: 'religion',
@@ -23,11 +30,15 @@ export const handlers = [
         ],
       }));
 
+      const startIndex = (page - 1) * limit;
+      const endIndex = startIndex + limit;
+      const paginatedData = wellsData.slice(startIndex, endIndex);
+
       return HttpResponse.json({
-        userwells: wellsData,
+        wells: paginatedData,
         count: totalData,
-        limit: 3,
-        page: 0,
+        limit,
+        page,
       });
     }
   ),
