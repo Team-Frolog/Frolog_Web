@@ -3,12 +3,12 @@
 import React from 'react';
 import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
 import Slider from '@/components/Slider/Slider';
-import { UserWell } from '@/features/Well/types/well';
 import WellIcon from '@/features/Well/components/WellList/WellIcon/WellIcon';
+import { GetWellRes } from '@frolog/frolog-api';
 
 interface Props {
   userId: string;
-  wells: UserWell[];
+  wells: GetWellRes[];
 }
 
 /** 우물 탐색/검색 아이템 컴포넌트 */
