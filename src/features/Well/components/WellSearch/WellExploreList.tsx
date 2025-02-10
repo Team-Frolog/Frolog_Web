@@ -28,7 +28,7 @@ function WellExploreList() {
       },
       select: (fetchedData) => ({
         pages: fetchedData
-          ? fetchedData.pages.flatMap((page) => page.userwells)
+          ? fetchedData.pages.flatMap((page) => page.wells)
           : [],
         pageParams: fetchedData.pageParams,
       }),
