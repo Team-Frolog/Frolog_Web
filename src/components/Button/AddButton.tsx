@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { AddIcon } from 'public/icons';
 import { CATEGORY } from '@/constants/category';
 import Button from './Button';
@@ -20,11 +20,11 @@ interface Props {
  * - route가 전달된 경우 route로 이동하고, onClick이 전달된 경우 onClick을 실행합니다.
  * */
 function AddButton({ route, text, categoryId, onClick }: Props) {
-  const router = useRouter();
+  const { navigate } = useCustomRouter('well');
 
   const handleClick = () => {
     if (route) {
-      router.push(route);
+      navigate(route);
     } else if (onClick) {
       onClick();
     }

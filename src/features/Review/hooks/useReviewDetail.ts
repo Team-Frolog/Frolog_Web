@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { UseFormReset, UseFormSetError, UseFormWatch } from 'react-hook-form';
 import { bottomSheet } from '@/modules/BottomSheet';
@@ -30,7 +30,7 @@ export const useReviewDetail = ({
   watch,
   setError,
 }: Props) => {
-  const router = useRouter();
+  const { replace, router } = useCustomRouter('well');
   const queryClient = useQueryClient();
 
   const { data } = useQuery({
@@ -61,7 +61,7 @@ export const useReviewDetail = ({
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.reviewDetail, reviewId],
       });
-      router.replace(pathname);
+      replace(pathname);
       router.back();
     },
   });

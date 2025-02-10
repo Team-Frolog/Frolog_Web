@@ -18,8 +18,6 @@ const searchReviewComments = new SearchReviewComment(baseOptions);
 const searchMemoComments = new SearchMemoComment(baseOptions);
 const postReviewComment = new PostReviewComment(baseOptions);
 const postMemoComment = new PostMemoComment(baseOptions);
-const deleteMemoComment = new DeleteMemoComment(baseOptions);
-const deleteReviewComment = new DeleteReviewComment(baseOptions);
 
 interface GetComments {
   id: string;
@@ -89,12 +87,12 @@ export const deleteComment = async (
 ) => {
   let result;
   if (isReview) {
-    result = await deleteReviewComment.fetch({
+    result = await new DeleteReviewComment(baseOptions).fetch({
       review_id: req.id,
       id: req.commentId,
     });
   } else {
-    result = await deleteMemoComment.fetch({
+    result = await new DeleteMemoComment(baseOptions).fetch({
       memo_id: req.id,
       id: req.commentId,
     });

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
-import { NavItemKey } from '@/constants/nav';
+import { getPath } from '@/utils/getPath';
 import AddButton from '@/components/Button/AddButton';
 import ReviewListItem from './ReviewListItem';
 import FirstReviewItem from './FirstReviewItem';
@@ -27,7 +27,7 @@ function ReviewList({ bookId, wellId, userId, isRootUser }: Props) {
       {isRootUser && isEmpty && (
         <div className='add-button-wrapper'>
           <AddButton
-            route={`/${userId}/well/${wellId}/new-review/${bookId}?nav=${NavItemKey.WELL}`}
+            route={getPath.newReview(userId, wellId, bookId)}
             text='리뷰 추가하기'
           />
         </div>

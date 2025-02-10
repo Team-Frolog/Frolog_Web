@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import React from 'react';
+import { getPath } from '@/utils/getPath';
 import { useBook } from '@/features/Book';
 import { useIsInFeed } from '@/store/userActionStore';
 import { IMAGES } from '@/constants/images';
@@ -25,7 +26,7 @@ function BookInfo({ bookId, canClick = false }: Props) {
       id='book-info'
       prefetch
       replace={isInFeed}
-      href={canClick ? `/book/${bookId}` : ''}
+      href={canClick ? getPath.book(bookId) : ''}
       className={`flex-col-center relative w-full gap-[20px] bg-white pb-[24px] pt-[48px] text-gray-800 ${canClick ? '' : 'pointer-events-none'}`}
     >
       <div className='absolute left-0 top-0 z-0 h-[230px] w-full mobile:h-[200px]'>

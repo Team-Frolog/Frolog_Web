@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import ProfileHeader from '@/components/Header/ProfileHeader';
+import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
 import Slider from '@/components/Slider/Slider';
 import { UserWell } from '@/features/Well/types/well';
 import WellIcon from '@/features/Well/components/WellList/WellIcon/WellIcon';

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { IMAGES } from '@/constants/images';
+import { getPath } from '@/utils/getPath';
 import { GetProfileDetailRes } from '@frolog/frolog-api';
 import { getImageSrc } from '@/utils/getImageSrc';
 import { formatUnit } from '../../utils/formatUnit';
@@ -42,7 +43,7 @@ function UserStatistics({ profileDetail }: Props) {
             <span className='text-body-sm text-gray-600'>최고 높이(권)</span>
           </div>
           <Link
-            href={`/${profileDetail.id}/profile/follows?currentTab=followers`}
+            href={`${getPath.follows(profileDetail.id)}?currentTab=followers`}
             className='flex-column items-center justify-center'
           >
             <h3 className='text-title-xl-bold text-gray-800'>
@@ -51,7 +52,7 @@ function UserStatistics({ profileDetail }: Props) {
             <span className='text-body-sm text-gray-600'>팔로워</span>
           </Link>
           <Link
-            href={`/${profileDetail.id}/profile/follows?currentTab=followings`}
+            href={`${getPath.follows(profileDetail.id)}?currentTab=followings`}
             className='flex-column items-center justify-center'
           >
             <h3 className='text-title-xl-bold text-gray-800'>

@@ -1,7 +1,7 @@
-import { NavItemKey } from '@/constants/nav';
 import Link, { LinkProps } from 'next/link';
 import React, { HTMLAttributes } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { NavItemKey } from '@/types/nav';
 
 interface Props extends LinkProps, HTMLAttributes<HTMLAnchorElement> {
   /** 이동할 경로 */

@@ -23,7 +23,7 @@ function FormHeader() {
     if (pathname === PAGES.ONBOARDING) {
       router.push(PAGES.HOME);
     } else {
-      localStorage.removeItem(STORAGE_KEY.JOIN_FORM_KEY);
+      localStorage.removeItem(STORAGE_KEY.joinFormKey);
       router.back();
     }
   };
