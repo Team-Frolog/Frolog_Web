@@ -19,4 +19,6 @@ export const QUERY_KEY = {
   followers: 'followers',
   searchResult: 'searchResult',
   points: 'points',
+  explore: 'explore',
+  searchWells: 'searchWells',
 } as const;

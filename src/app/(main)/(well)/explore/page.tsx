@@ -1,7 +1,6 @@
 import WellSearchItemSkeleton from '@/components/Fallback/Skeleton/WellSearchItemSkeleton';
 import { PAGES } from '@/constants/page';
 import { SearchInput } from '@/features/Search';
-import WellSearchItem from '@/features/Well/components/WellSearch/WellSearchItem';
 import React from 'react';
 
 function ExplorePage() {
@@ -14,7 +13,7 @@ function ExplorePage() {
         />
       </div>
       <div className='flex w-full flex-col gap-[36px]'>
-        <WellSearchItem />
+        {/* <WellSearchItem /> */}
         <WellSearchItemSkeleton />
       </div>
     </div>
