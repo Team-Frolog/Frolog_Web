@@ -4,11 +4,9 @@ import { toast } from '@/modules/Toast';
 import * as Sentry from '@sentry/nextjs';
 import { ResetPassword, ResetPasswordReq } from '@frolog/frolog-api';
 
-const resetPassword = new ResetPassword(baseOptions);
-
 export const requestResetPassword = async (req: ResetPasswordReq) => {
   try {
-    const data = await resetPassword.fetch(req);
+    const data = await new ResetPassword(baseOptions).fetch(req);
     return data.result;
   } catch (err) {
     Sentry.captureException(err);

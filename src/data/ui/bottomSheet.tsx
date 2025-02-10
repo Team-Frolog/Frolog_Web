@@ -122,19 +122,12 @@ export const sheetData: {
       </>
     ),
   },
-  report_this_feed: {
-    getTitle: () => <>이 피드를 신고할까요?</>,
+  report_this_user: {
+    getTitle: () => <>이 사용자를 신고할까요?</>,
     type: 'error',
     buttonText: '네, 신고할게요',
     extraButtonText: '아니요, 취소할게요',
-    description: () => <>피드를 신고하면 다시 되돌릴 수 없어요</>,
-  },
-  report_this_comment: {
-    getTitle: () => <>이 댓글을 신고할까요?</>,
-    type: 'error',
-    buttonText: '네, 신고할게요',
-    extraButtonText: '아니요, 취소할게요',
-    description: () => <>댓글을 신고하면 다시 되돌릴 수 없어요</>,
+    description: () => <>사용자를 신고하면 다시 되돌릴 수 없어요</>,
   },
   delete_this_comment: {
     getTitle: () => <>이 댓글을 삭제할까요?</>,

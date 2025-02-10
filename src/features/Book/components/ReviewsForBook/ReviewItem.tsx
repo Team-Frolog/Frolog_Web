@@ -2,14 +2,14 @@ import { FeedContent } from '@/features/Feed';
 import { GetReviewRes } from '@frolog/frolog-api';
 import React from 'react';
 import CustomLink from '@/components/Link/CustomLink';
-import ProfileHeader from '@/components/Header/ProfileHeader';
+import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
 import LikeButton from '@/components/Button/LikeButton';
-import { NavItemKey } from '@/constants/nav';
+import { getPath } from '@/utils/getPath';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { motion } from 'framer-motion';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { ChatIcon } from 'public/icons';
 import { formatDate } from '@/utils/date';
-import { useRouter, useSearchParams } from 'next/navigation';
 import ReviewItemHeader from './ReviewItemHeader';
 
 interface Props {
@@ -22,15 +22,14 @@ interface Props {
  * - 피드와 동일한 ProfileHeader, FeedContent 컴포넌트를 활용합니다.
  */
 function ReviewItem({ reviewData, category, onClickLike }: Props) {
-  const router = useRouter();
-  const currentNav = useSearchParams().get('nav') || NavItemKey.SEARCH;
+  const { navigate } = useCustomRouter('search');
 
   return (
     <div className='w-full'>
       <ProfileHeader type='feed' userId={reviewData.writer} hasFollow />
       <div className='flex w-full flex-col'>
         <CustomLink
-          href={`/review/${reviewData.id}`}
+          href={getPath.review(reviewData.id)}
           className='flex w-full flex-col'
         >
           <ReviewItemHeader rating={reviewData.rating} category={category} />
@@ -54,10 +53,7 @@ function ReviewItem({ reviewData, category, onClickLike }: Props) {
               className='flex items-center gap-[4px]'
               onClick={() =>
                 runWhenLoggedIn(
-                  () =>
-                    router.push(
-                      `/feed/${reviewData.id}/comments?type=review&nav=${currentNav}`
-                    ),
+                  () => navigate(getPath.comments(reviewData.id, 'review')),
                   'feed'
                 )
               }

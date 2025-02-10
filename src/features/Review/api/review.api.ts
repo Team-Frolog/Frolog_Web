@@ -15,10 +15,8 @@ import {
 } from '@frolog/frolog-api';
 
 const postReview = new PostReview(baseOptions);
-const patchEditReview = new EditReview(baseOptions);
 const getReview = new GetReview(baseOptions);
 const searchReview = new SearchReview(baseOptions);
-const deleteMyReview = new DeleteReview(baseOptions);
 
 export const addNewReview = async (req: PostReviewReq) => {
   const result = await postReview.fetch(req);
@@ -31,7 +29,7 @@ export const getReviewDetail = async (reviewId: string) => {
 };
 
 export const editReview = async (req: EditReviewReq) => {
-  const result = await patchEditReview.fetch(req);
+  const result = await new EditReview(baseOptions).fetch(req);
   return result;
 };
 
@@ -52,6 +50,6 @@ export const getReviewList = async (req: SearchReviewReq) => {
 };
 
 export const deleteReview = async (reviewId: string) => {
-  const result = await deleteMyReview.fetch({ id: reviewId });
+  const result = await new DeleteReview(baseOptions).fetch({ id: reviewId });
   return result;
 };

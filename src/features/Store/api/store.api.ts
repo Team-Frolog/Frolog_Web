@@ -8,7 +8,6 @@ import {
 
 const searchStoreItems = new SearchStoreItem(baseOptions);
 const getWallet = new GetWallet(baseOptions);
-const purchaseStoreItem = new PurchaseStoreItem(baseOptions);
 
 export const getStoreItems = async (req: SearchStoreItemReq) => {
   const result = await searchStoreItems.fetch(req);
@@ -21,6 +20,6 @@ export const getUserPoints = async (id: string) => {
 };
 
 export const purchaseItem = async (key: string) => {
-  const result = await purchaseStoreItem.fetch({ key });
+  const result = await new PurchaseStoreItem(baseOptions).fetch({ key });
   return result;
 };

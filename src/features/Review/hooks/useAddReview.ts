@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { NavItemKey } from '@/constants/nav';
+import { getPath } from '@/utils/getPath';
 import { UseFormSetError, UseFormWatch } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
+import { NAV_ITEM } from '@/constants/nav';
 import { toast } from '@/modules/Toast';
 import { ERROR_ALERT } from '@/constants/message';
 import { useFlash } from '@/hooks/useFlash';
@@ -54,7 +55,7 @@ export const useAddReview = (
         resetAll();
         openFlash({
           type: 'review',
-          callbackUrl: `/${userId}/well/${wellId}?nav=${NavItemKey.WELL}`,
+          callbackUrl: `${getPath.wellDetail(userId, wellId)}?nav=${NAV_ITEM.well.key}`,
         });
       }
     },

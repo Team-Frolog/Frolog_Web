@@ -6,15 +6,12 @@ import {
   SignUpReq,
 } from '@frolog/frolog-api';
 
-const signUpObj = new SignUp(baseOptions);
-const getUserNameAvailability = new GetUsernameAvailability(baseOptions);
-
 export const signUp = async (formData: SignUpReq) => {
-  const data = await signUpObj.fetch(formData);
+  const data = await new SignUp(baseOptions).fetch(formData);
   return data;
 };
 
 export const checkNickname = async (req: GetUsernameAvailabilityReq) => {
-  const data = await getUserNameAvailability.fetch(req);
+  const data = await new GetUsernameAvailability(baseOptions).fetch(req);
   return data.result;
 };

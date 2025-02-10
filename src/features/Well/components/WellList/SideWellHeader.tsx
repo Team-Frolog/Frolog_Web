@@ -7,8 +7,8 @@ import React from 'react';
 import BackButton from '@/components/Button/BackButton';
 import { PAGES } from '@/constants/page';
 import CustomMotionLink from '@/components/Link/CustomMotionLink';
-import TabHeader from '@/components/Header/TabHeader';
-import { wellTabs } from '@/constants/tabs';
+import { WELL_TABS } from '@/constants/tabs';
+import TabMenu from '@/components/Tab/TabMenu';
 
 interface Props {
   /** 상점 버튼 유무 */
@@ -29,7 +29,9 @@ function SideWellHeader({
 
   return (
     <WellEntryHeader bgColor={bgColor}>
-      <TabHeader tabs={wellTabs} theme='light' />
+      <header className='flex h-fit w-full px-page py-[20px] pt-[50px]'>
+        <TabMenu tabs={WELL_TABS} theme='light' />
+      </header>
       {hasBackButton && (
         <BackButton
           type='bg'

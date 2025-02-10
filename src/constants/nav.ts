@@ -1,22 +1,30 @@
-import { Taps } from '@/types/taps';
+import { NavItemKey, NavItemLabel } from '@/types/nav';
 
-export const navItem: Record<Taps, string> = {
-  well: '우물',
-  feed: '피드',
-  search: '책검색',
-  profile: '프로필',
+interface NavItem {
+  key: NavItemKey;
+  label: NavItemLabel;
+  name: string;
+}
+
+export const NAV_ITEM: Record<NavItemLabel, NavItem> = {
+  well: {
+    key: 'a3q11',
+    label: 'well',
+    name: '우물',
+  },
+  feed: {
+    key: 'yd3ts',
+    label: 'feed',
+    name: '피드',
+  },
+  search: {
+    key: '22h5f',
+    label: 'search',
+    name: '책검색',
+  },
+  profile: {
+    key: 'iqqlo',
+    label: 'profile',
+    name: '프로필',
+  },
 } as const;
-
-export enum NavItemLabel {
-  WELL = 'well',
-  FEED = 'feed',
-  SEARCH = 'search',
-  PROFILE = 'profile',
-}
-
-export enum NavItemKey {
-  WELL = 'a3q11',
-  FEED = 'yd3ts',
-  SEARCH = '22h5f',
-  PROFILE = 'iqqlo',
-}

@@ -16,7 +16,7 @@ function ProgressHeader() {
 
   const handleClickBack = () => {
     if (step === 1) {
-      sessionStorage.removeItem(STORAGE_KEY.TEST_ANSWER_KEY);
+      sessionStorage.removeItem(STORAGE_KEY.testAnswerKey);
       router.back();
     } else {
       moveStep(-1);
