@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -8,10 +8,11 @@ interface Props {
 
 function MSWProvider({ children }: Props) {
   const [mswReady, setMswReady] = useState<boolean>(false);
+  const isWorkerStarted = useRef(false);
 
   useEffect(() => {
     const init = async () => {
-      if (typeof window === 'undefined') return;
+      if (typeof window === 'undefined' && isWorkerStarted.current) return;
 
       const { setupWorker } = await import('msw/browser');
       const { handlers } = await import('@/__mock__/apiMock');
@@ -21,8 +22,10 @@ function MSWProvider({ children }: Props) {
       setMswReady(true);
     };
 
-    if (!mswReady) init();
-  }, [mswReady]);
+    init();
+  }, []);
+
+  if (!mswReady) return null;
 
   return <>{children}</>;
 }
