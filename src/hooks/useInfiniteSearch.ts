@@ -1,6 +1,5 @@
 import { QUERY_KEY } from '@/constants/query';
-import { UserWell } from '@/features/Well/types/well';
-import { SearchBookRes } from '@frolog/frolog-api';
+import { GetWellRes, SearchBookRes } from '@frolog/frolog-api';
 import { useQueryClient, useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { useRef, useEffect } from 'react';
@@ -9,7 +8,7 @@ interface SearchWellRes {
   count: number;
   limit: number;
   page: number;
-  wells: UserWell[];
+  wells: GetWellRes[];
 }
 
 interface Props<TRes, TItem> {
