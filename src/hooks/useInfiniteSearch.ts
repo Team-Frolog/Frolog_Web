@@ -8,7 +8,10 @@ interface SearchWellRes {
   count: number;
   limit: number;
   page: number;
-  wells: GetWellRes[];
+  wells: {
+    id: string;
+    wells: GetWellRes[];
+  }[];
 }
 
 interface Props<TRes, TItem> {
