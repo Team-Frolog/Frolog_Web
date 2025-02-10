@@ -1,6 +1,6 @@
 'use client';
 
-import WellitemSkeleton from '@/components/Fallback/Skeleton/WellitemSkeleton';
+import WellSearchItemSkeleton from '@/components/Fallback/Skeleton/WellSearchItemSkeleton';
 import { QUERY_KEY } from '@/constants/query';
 import WellSearchItem from '@/features/Well/components/WellSearch/WellSearchItem';
 import { useObserver } from '@/hooks/gesture/useObserver';
@@ -46,7 +46,7 @@ function WellExploreList() {
         <WellSearchItem key={id} userId={id} wells={wells} />
       ))}
       {isFetchingNextPage || isLoading ? (
-        <WellitemSkeleton />
+        <WellSearchItemSkeleton />
       ) : (
         <div ref={setTarget} id='observer' className='h-[10px]' />
       )}
