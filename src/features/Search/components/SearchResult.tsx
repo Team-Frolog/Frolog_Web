@@ -10,7 +10,7 @@ import MainLayout from '@/layouts/MainLayout';
 import { useUserId } from '@/store/sessionStore';
 import SearchResultSkeleton from '@/components/Fallback/Skeleton/SearchResultSkeleton';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
-import { useSearch } from '../hooks/useSearch';
+import { useSearchBook } from '../hooks/useSearchBook';
 import SearchResultEmpty from './SearchResultEmpty';
 import { useObserver } from '../../../hooks/gesture/useObserver';
 import NoBookButton from './NoBookButton';
@@ -27,7 +27,7 @@ function SearchResult() {
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useSearch();
+  } = useSearchBook();
   const userId = useUserId();
   const router = useRouter();
   const [isOpenRegister, setIsOpenRegister] = useState(false);
