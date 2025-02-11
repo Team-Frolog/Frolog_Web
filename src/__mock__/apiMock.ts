@@ -19,7 +19,7 @@ export const handlers = [
             name:
               searchQuery === null
                 ? `첫우물 ${index}`
-                : `${searchQuery} ${index}`,
+                : `${searchQuery} ${index} ${searchQuery} 검색`,
             owner: 'jeLY5v4',
             frog: 'default',
             color: 'religion',
