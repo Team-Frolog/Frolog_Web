@@ -6,6 +6,7 @@ interface Category {
     bg: string;
     text: string;
     band: string;
+    btnText: string;
     wave: string;
   };
 }
@@ -16,6 +17,7 @@ export const CATEGORY: Category = {
     bg: '#FE2F2F',
     text: '#FABBC8',
     band: '#FF7171',
+    btnText: '#F5F6F9',
     wave: `${BASE_URL}/religion.svg`,
   },
   art: {
@@ -23,6 +25,7 @@ export const CATEGORY: Category = {
     bg: '#FE49A9',
     text: '#FFB5DC',
     band: '#FF7CC2',
+    btnText: '#F5F6F9',
     wave: `${BASE_URL}/art.svg`,
   },
   cartoon: {
@@ -30,6 +33,7 @@ export const CATEGORY: Category = {
     bg: '#FF8BCA',
     text: '#AE4039',
     band: '#FFADDA',
+    btnText: '#F5F6F9',
     wave: `${BASE_URL}/cartoon.svg`,
   },
   humanities: {
@@ -37,6 +41,7 @@ export const CATEGORY: Category = {
     bg: '#B85FFF',
     text: '#F3B3EE',
     band: '#D095FF',
+    btnText: '#F5F6F9',
     wave: `${BASE_URL}/humanities.svg`,
   },
   novel: {
@@ -44,6 +49,7 @@ export const CATEGORY: Category = {
     bg: '#CAA2FF',
     text: '#6C5A84',
     band: '#D9BBFF',
+    btnText: '#313239',
     wave: `${BASE_URL}/novel.svg`,
   },
   foreign_languages: {
@@ -51,6 +57,7 @@ export const CATEGORY: Category = {
     bg: '#92666C',
     text: '#FFC5CC',
     band: '#B78E93',
+    btnText: '#F5F6F9',
     wave: `${BASE_URL}/foreign_languages.svg`,
   },
   self_development: {
@@ -58,6 +65,7 @@ export const CATEGORY: Category = {
     bg: '#FF7B35',
     text: '#FFC8AB',
     band: '#FFA474',
+    btnText: '#F5F6F9',
     wave: `${BASE_URL}/self_development.svg`,
   },
   sociology: {
@@ -65,6 +73,7 @@ export const CATEGORY: Category = {
     bg: '#FFA144',
     text: '#FFDDBB',
     band: '#FFC183',
+    btnText: '#F5F6F9',
     wave: `${BASE_URL}/sociology.svg`,
   },
   unknown: {
@@ -72,13 +81,15 @@ export const CATEGORY: Category = {
     bg: '#FFDA4A',
     text: '#A78500',
     band: '#FFE88C',
+    btnText: '#313239',
     wave: `${BASE_URL}/unknown.svg`,
   },
   science: {
     name: '과학',
     bg: '#4E72FF',
-    text: '#BBC4E9',
+    text: '#D6DAED',
     band: '#9BACF1',
+    btnText: '#F5F6F9',
     wave: `${BASE_URL}/science.svg`,
   },
   it: {
@@ -86,6 +97,7 @@ export const CATEGORY: Category = {
     bg: '#84ADFF',
     text: '#3C4F77',
     band: '#AAC7FF',
+    btnText: '#313239',
     wave: `${BASE_URL}/it.svg`,
   },
   economic_business: {
@@ -93,6 +105,7 @@ export const CATEGORY: Category = {
     bg: '#85DCFF',
     text: '#0073A0',
     band: '#9DE3FF',
+    btnText: '#313239',
     wave: `${BASE_URL}/economic_business.svg`,
   },
   life: {
@@ -100,6 +113,7 @@ export const CATEGORY: Category = {
     bg: '#75F3C9',
     text: '#00754E',
     band: '#B0FFE5',
+    btnText: '#313239',
     wave: `${BASE_URL}/life.svg`,
   },
   travel: {
@@ -107,6 +121,7 @@ export const CATEGORY: Category = {
     bg: '#00CE4C',
     text: '#00722A',
     band: '#6EED9C',
+    btnText: '#F5F6F9',
     wave: `${BASE_URL}/travel.svg`,
   },
   essay: {
@@ -114,6 +129,7 @@ export const CATEGORY: Category = {
     bg: '#A0FF56',
     text: '#419400',
     band: '#CAFFA0',
+    btnText: '#313239',
     wave: `${BASE_URL}/essay.svg`,
   },
 } as const;
