@@ -47,9 +47,9 @@ describe('AddButton', () => {
 
     const button = screen.getByRole('button');
     expect(button).toHaveClass(`bg-category-bg-${categoryId}`);
-    expect(button).toHaveClass(`text-category-text-${categoryId}`);
+    expect(button).toHaveClass(`text-category-btnText-${categoryId}`);
 
     const icon = screen.getByTestId('add-icon');
-    expect(icon).toHaveAttribute('fill', CATEGORY[categoryId].text);
+    expect(icon).toHaveAttribute('fill', CATEGORY[categoryId].btnText);
   });
 });
