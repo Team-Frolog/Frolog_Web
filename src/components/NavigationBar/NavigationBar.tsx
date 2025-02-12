@@ -36,7 +36,7 @@ function NavigationBar() {
       label: NAV_ITEM.feed.label,
       href: PAGES.FEED,
       icon: FeedIcon,
-      onClick: () => setScrollPos(null),
+      onClick: () => setScrollPos(null, 'feed'),
       navKey: NAV_ITEM.feed.key,
     },
     {

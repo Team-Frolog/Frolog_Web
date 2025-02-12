@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useObserver } from '@/hooks/gesture/useObserver';
+import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
 import { useUserId } from '@/store/sessionStore';
 import { useReviewForBook } from '@/features/Review';
 import NoReviewForBook from './NoReviewForBook';
@@ -30,6 +31,10 @@ function ReviewsForBook({ bookId }: Props) {
   const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
   const { bookData } = useBook(bookId);
   const { handleChangeLike } = useLikeReview(bookId);
+  const { saveScroll } = useScrollPosition({
+    condition: isFetched,
+    key: 'book',
+  });
 
   if (!bookData) return null;
 
@@ -42,6 +47,7 @@ function ReviewsForBook({ bookId }: Props) {
             key={reviews[0].id}
             reviewData={reviews[0]}
             category={bookData?.category}
+            onSaveScroll={saveScroll}
             onClickLike={() => {}}
           />
           <NeedToLoginBlur />
@@ -53,6 +59,7 @@ function ReviewsForBook({ bookId }: Props) {
             key={review.id}
             reviewData={review}
             category={bookData?.category}
+            onSaveScroll={saveScroll}
             onClickLike={() =>
               handleChangeLike({ id: review.id, value: !review.like })
             }

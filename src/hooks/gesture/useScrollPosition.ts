@@ -1,24 +1,33 @@
 import { useEffect } from 'react';
-import { useScrollPos, useUserActionActions } from '@/store/userActionStore';
+import {
+  LastScrollPos,
+  useScrollPos,
+  useUserActionActions,
+} from '@/store/userActionStore';
 
-export const useScrollPosition = (condition: boolean) => {
+interface Props {
+  key: keyof LastScrollPos;
+  condition: boolean;
+}
+
+export const useScrollPosition = ({ key, condition }: Props) => {
   const lastScrollPos = useScrollPos();
   const { setScrollPos } = useUserActionActions();
 
   useEffect(() => {
-    if (!lastScrollPos || !condition) return;
+    if (!lastScrollPos[key] || !condition) return;
 
     const main = window.document.getElementById('main');
 
     if (main) {
-      main.scrollTo({ top: lastScrollPos });
-      setScrollPos(null);
+      main.scrollTo({ top: lastScrollPos[key]! });
+      setScrollPos(null, key);
     }
   }, [condition]);
 
   const saveScroll = () => {
     const main = window.document.getElementById('main');
-    setScrollPos(main?.scrollTop ?? null);
+    setScrollPos(main?.scrollTop ?? null, key);
   };
 
   return { saveScroll };

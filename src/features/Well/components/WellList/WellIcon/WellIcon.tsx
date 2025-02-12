@@ -44,14 +44,15 @@ function WellIcon({
       const buttonRect = buttonRef.current.getBoundingClientRect();
 
       shapeRef.current.style.top = `${buttonRect.top}px`;
-      shapeRef.current.style.left = `${buttonRect.left}px`;
       shapeRef.current.style.width = `${buttonRect.width}px`;
       shapeRef.current.style.height = `${buttonRect.height}px`;
 
-      controls.start({
-        scale: 18,
-        transition: { duration: 1, ease: 'easeInOut' },
-      });
+      setTimeout(() => {
+        controls.start({
+          scale: 18,
+          transition: { duration: 1, ease: 'easeInOut' },
+        });
+      }, 300);
 
       setTimeout(() => {
         navigate(getPath.wellDetail(owner, wellId));

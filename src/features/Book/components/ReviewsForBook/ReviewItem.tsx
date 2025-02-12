@@ -15,21 +15,33 @@ import ReviewItemHeader from './ReviewItemHeader';
 interface Props {
   reviewData: GetReviewRes;
   category: string;
+  onSaveScroll: () => void;
   onClickLike: () => void;
 }
 
 /** 도서 상세 > 리뷰 모음의 리뷰 아이템 컴포넌트
  * - 피드와 동일한 ProfileHeader, FeedContent 컴포넌트를 활용합니다.
  */
-function ReviewItem({ reviewData, category, onClickLike }: Props) {
+function ReviewItem({
+  reviewData,
+  category,
+  onSaveScroll,
+  onClickLike,
+}: Props) {
   const { navigate } = useCustomRouter('search');
 
   return (
     <div className='w-full'>
-      <ProfileHeader type='feed' userId={reviewData.writer} hasFollow />
+      <ProfileHeader
+        type='feed'
+        onClick={onSaveScroll}
+        userId={reviewData.writer}
+        hasFollow
+      />
       <div className='flex w-full flex-col'>
         <CustomLink
           href={getPath.review(reviewData.id)}
+          onClick={() => onSaveScroll()}
           className='flex w-full flex-col'
         >
           <ReviewItemHeader rating={reviewData.rating} category={category} />
@@ -52,10 +64,10 @@ function ReviewItem({ reviewData, category, onClickLike }: Props) {
               type='button'
               className='flex items-center gap-[4px]'
               onClick={() =>
-                runWhenLoggedIn(
-                  () => navigate(getPath.comments(reviewData.id, 'review')),
-                  'feed'
-                )
+                runWhenLoggedIn(() => {
+                  onSaveScroll();
+                  navigate(getPath.comments(reviewData.id, 'review'));
+                }, 'feed')
               }
             >
               <ChatIcon />

@@ -12,10 +12,11 @@ import { getPath } from '@/utils/getPath';
 
 interface Props {
   bookData: GetBookRes;
+  onSaveScroll?: () => void;
 }
 
 /** 도서 검색 결과 아이템 컴포넌트 */
-function BookListItem({ bookData }: Props) {
+function BookListItem({ bookData, onSaveScroll }: Props) {
   const {
     isbn,
     author,
@@ -33,6 +34,7 @@ function BookListItem({ bookData }: Props) {
     <CustomLink
       prefetch
       href={getPath.book(isbn)}
+      onClick={onSaveScroll}
       className='flex w-full cursor-pointer gap-[20px] text-gray-800'
     >
       <div className='flex h-fit'>

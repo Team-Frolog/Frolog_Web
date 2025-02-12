@@ -8,9 +8,10 @@ import { AnimatePresence } from 'framer-motion';
 import { bottomSheet } from '@/modules/BottomSheet';
 import MainLayout from '@/layouts/MainLayout';
 import { useUserId } from '@/store/sessionStore';
+import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
 import SearchResultSkeleton from '@/components/Fallback/Skeleton/SearchResultSkeleton';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
-import { useSearch } from '../hooks/useSearch';
+import { useSearchBook } from '../hooks/useSearchBook';
 import SearchResultEmpty from './SearchResultEmpty';
 import { useObserver } from '../../../hooks/gesture/useObserver';
 import NoBookButton from './NoBookButton';
@@ -27,10 +28,15 @@ function SearchResult() {
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useSearch();
+  } = useSearchBook();
   const userId = useUserId();
   const router = useRouter();
   const [isOpenRegister, setIsOpenRegister] = useState(false);
+
+  const { saveScroll } = useScrollPosition({
+    condition: isFetched,
+    key: 'search',
+  });
 
   const { setTarget } = useObserver({
     hasNextPage,
@@ -58,7 +64,11 @@ function SearchResult() {
       {!isEmpty && (
         <>
           {searchResult.map((item) => (
-            <BookListItem key={item.isbn} bookData={item} />
+            <BookListItem
+              key={item.isbn}
+              onSaveScroll={() => saveScroll()}
+              bookData={item}
+            />
           ))}
         </>
       )}

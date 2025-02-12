@@ -29,7 +29,10 @@ function FeedList() {
     hasNextPage,
     fetchNextPage,
   });
-  const { saveScroll } = useScrollPosition(isFetched);
+  const { saveScroll } = useScrollPosition({
+    condition: isFetched,
+    key: 'feed',
+  });
 
   if (isLoading) {
     return (

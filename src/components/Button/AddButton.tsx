@@ -31,14 +31,14 @@ function AddButton({ route, text, categoryId, onClick }: Props) {
   };
 
   const color = categoryId
-    ? `bg-category-bg-${categoryId} text-category-text-${categoryId}`
+    ? `bg-category-bg-${categoryId} text-category-btnText-${categoryId}`
     : 'light';
 
   return (
     <Button onClick={handleClick} theme={color}>
       <div className='flex-center gap-[8px]'>
         <AddIcon
-          fill={categoryId ? CATEGORY[categoryId].text : '#727484'}
+          fill={categoryId ? CATEGORY[categoryId].btnText : '#727484'}
           width={25}
           height={24}
         />

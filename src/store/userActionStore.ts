@@ -1,13 +1,19 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+export interface LastScrollPos {
+  feed: number | null;
+  search: number | null;
+  book: number | null;
+}
+
 interface UserActionState {
   /** 마지막 스크롤 위치 - 스크롤 유지에 활용 */
-  lastScrollPos: number | null;
+  lastScrollPos: LastScrollPos;
   /** 피드 내 리뷰/메모인지 여부 - 리뷰/메모에서 도서 상세로 이동 시 replace/push 조건으로 활용 */
   isInFeed: boolean;
   actions: {
-    setScrollPos: (value: number | null) => void;
+    setScrollPos: (value: number | null, key: keyof LastScrollPos) => void;
     setIsInFeed: (value: boolean) => void;
   };
 }
@@ -16,11 +22,20 @@ interface UserActionState {
 const useUserActionStore = create<UserActionState>()(
   persist(
     (set) => ({
-      lastScrollPos: null,
+      lastScrollPos: {
+        feed: null,
+        search: null,
+        book: null,
+      },
       isInFeed: false,
       actions: {
-        setScrollPos: (value) => {
-          set((state) => ({ ...state, lastScrollPos: value }));
+        setScrollPos: (value, key) => {
+          set((state) => ({
+            lastScrollPos: {
+              ...state.lastScrollPos,
+              [key]: value,
+            },
+          }));
         },
         setIsInFeed: (value) => {
           set((state) => ({ ...state, isInFeed: value }));
