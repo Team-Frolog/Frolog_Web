@@ -20,7 +20,7 @@ export const useScrollPosition = ({ key, condition }: Props) => {
     const main = window.document.getElementById('main');
 
     if (main) {
-      main.scrollTo({ top: lastScrollPos[key] });
+      main.scrollTo({ top: lastScrollPos[key]! });
       setScrollPos(null, key);
     }
   }, [condition]);
