@@ -14,13 +14,14 @@ function WellSearchResult() {
     hasNextPage,
     isLoading,
     isFetchingNextPage,
+    isEmpty,
   } = useSearchWells();
   const { setTarget } = useObserver({
     hasNextPage,
     fetchNextPage,
   });
 
-  if (!searchResult) return null;
+  if (isEmpty || isLoading) return <WellSearchItemSkeleton />;
 
   return (
     <MainLayout extraClass='gap-[36px] pb-[36px] pt-[24px] bg-gray-300'>

@@ -38,7 +38,7 @@ function WellExploreList() {
     fetchNextPage,
   });
 
-  if (!data) return null;
+  if (!data || isLoading) return <WellSearchItemSkeleton />;
 
   return (
     <div className='flex w-full flex-col gap-[36px]'>
