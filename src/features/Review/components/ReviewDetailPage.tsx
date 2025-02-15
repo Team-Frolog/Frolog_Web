@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import MainLayout from '@/layouts/MainLayout';
 import BookInfo from '@/components/Book/BookInfo';
-import { useProfile } from '@/hooks/useProfile';
+import { useProfile } from '@/hooks/user/useProfile';
 import { useUserActionActions } from '@/store/userActionStore';
 import { ReviewDetail, useReviewDetailPage } from '@/features/Review';
 import DetailHeader from '@/components/Header/DetailHeader';

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useFormTitle } from '@/hooks/useFormTitle';
+import { useFormTitle } from '@/hooks/form/useFormTitle';
 import { usePathname, useRouter } from 'next/navigation';
 import { STORAGE_KEY } from '@/constants/storage';
 import { PAGES } from '@/constants/page';

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import TitleHeader from '@/components/Header/TitleHeader';
-import { useProfile } from '@/hooks/useProfile';
+import { useProfile } from '@/hooks/user/useProfile';
 import FollowList from './FollowList';
 
 interface Props {

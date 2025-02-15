@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useProfile } from '@/hooks/useProfile';
+import { useProfile } from '@/hooks/user/useProfile';
 import useCommentStore from '@/store/commentStore';
 import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
 import LikeButton from '@/components/Button/LikeButton';

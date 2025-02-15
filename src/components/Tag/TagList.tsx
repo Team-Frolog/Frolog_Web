@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { CONS_TAG, PROS_TAG } from '@/constants/tags';
 import { Tag as TagType } from '@/types/tag';
-import { useTags } from '@/hooks/useTags';
+import { useTags } from '@/hooks/form/useTags';
 import { motion, useAnimationControls } from 'framer-motion';
 import { ExpandIcon } from 'public/icons';
 import { useFormContext } from 'react-hook-form';

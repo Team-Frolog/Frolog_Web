@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import useCommentStore from '@/store/commentStore';
 import LikeButton from '@/components/Button/LikeButton';
-import { useProfile } from '@/hooks/useProfile';
+import { useProfile } from '@/hooks/user/useProfile';
 import { formatDate } from '@/utils/date';
 import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
 import ChildCommentItem from './ChildCommentItem';
