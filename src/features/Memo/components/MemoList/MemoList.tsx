@@ -3,6 +3,7 @@
 import React from 'react';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import { useObserver } from '@/hooks/gesture/useObserver';
+import Observer from '@/components/Gesture/Observer';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import MemoListSkeleton from '@/components/Fallback/Skeleton/MemoListSkeleton';
 import MemoListItem from './MemoListItem';
@@ -48,11 +49,13 @@ function MemoList({ bookId, userId }: Props) {
             userId={userId}
           />
         ))}
-        {!isFetchingNextPage && (
-          <div ref={setTarget} id='observer' className='h-[10px]' />
-        )}
+        <WithConditionalRendering
+          condition={isFetchingNextPage}
+          fallback={<Observer setTarget={setTarget} />}
+        >
+          <MemoListSkeleton />
+        </WithConditionalRendering>
       </WithConditionalRendering>
-      {isFetchingNextPage && <MemoListSkeleton />}
     </div>
   );
 }

@@ -2,8 +2,8 @@ import React from 'react';
 
 interface Props {
   condition: boolean;
-  fallback: React.ReactNode;
   children: React.ReactNode;
+  fallback?: React.ReactNode;
 }
 
 function WithConditionalRendering({ condition, fallback, children }: Props) {

@@ -7,6 +7,8 @@ import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
 import { bottomSheet } from '@/modules/BottomSheet';
 import MainLayout from '@/layouts/MainLayout';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
+import Observer from '@/components/Gesture/Observer';
 import { useUserId } from '@/store/sessionStore';
 import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
 import SearchResultSkeleton from '@/components/Fallback/Skeleton/SearchResultSkeleton';
@@ -54,31 +56,39 @@ function SearchResult() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className='flex w-full flex-col items-end gap-[36px] bg-white px-[24px] pt-[24px]'>
+        <SearchResultSkeleton />
+      </div>
+    );
+  }
+
   return (
     <MainLayout
       ref={mainRef}
       isCenter={false}
-      extraClass='px-[24px] h-fit bg-white pb-[36px] pt-[24px] items-end gap-[36px] bg-white'
+      extraClass='px-[24px] h-fit pb-[36px] pt-[24px] items-end gap-[36px] bg-white'
     >
-      {isSearched && isEmpty && isFetched && <SearchResultEmpty />}
-      {!isEmpty && (
-        <>
-          {searchResult.map((item) => (
-            <BookListItem
-              key={item.isbn}
-              onSaveScroll={() => saveScroll()}
-              bookData={item}
-            />
-          ))}
-        </>
-      )}
-
-      {isSearched && <NoBookButton onClick={handleNoBookClick} />}
-      {isFetchingNextPage || isLoading ? (
-        <SearchResultSkeleton />
-      ) : (
-        <div ref={setTarget} id='observer' className='h-[10px]' />
-      )}
+      <WithConditionalRendering
+        condition={!isEmpty}
+        fallback={<SearchResultEmpty />}
+      >
+        {searchResult.map((item) => (
+          <BookListItem
+            key={item.isbn}
+            onSaveScroll={() => saveScroll()}
+            bookData={item}
+          />
+        ))}
+        {isSearched && <NoBookButton onClick={handleNoBookClick} />}
+        <WithConditionalRendering
+          condition={isFetchingNextPage}
+          fallback={<Observer setTarget={setTarget} />}
+        >
+          <SearchResultSkeleton />
+        </WithConditionalRendering>
+      </WithConditionalRendering>
 
       <AnimatePresence>
         {isOpenRegister && (

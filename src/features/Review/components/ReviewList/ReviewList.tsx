@@ -2,6 +2,7 @@
 
 import React from 'react';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import { getPath } from '@/utils/getPath';
 import AddButton from '@/components/Button/AddButton';
 import ReviewListItem from './ReviewListItem';
@@ -17,7 +18,7 @@ interface Props {
 
 /** 리뷰 리스트 컴포넌트 */
 function ReviewList({ bookId, wellId, userId, isRootUser }: Props) {
-  const { reviews, setReviewId, deleteReview, isEmpty, isFetched } = useReviews(
+  const { reviews, setReviewId, deleteReview, isEmpty } = useReviews(
     bookId,
     userId
   );
@@ -33,21 +34,21 @@ function ReviewList({ bookId, wellId, userId, isRootUser }: Props) {
         </div>
       )}
       <div className='z-10 flex w-full flex-1 flex-col gap-[12px]'>
-        {isEmpty && isFetched && (
-          <EmptyContentFrog title='책을 다 읽으셨으면 이제 리뷰를 써보세요!' />
-        )}
-        {!isEmpty && isFetched && (
-          <>
-            <ReviewListItem
-              key={reviews[0].id}
-              reviewData={reviews[0]}
-              onDelete={deleteReview}
-              setReviewId={setReviewId}
-              userId={userId}
-            />
-            <FirstReviewItem />
-          </>
-        )}
+        <WithConditionalRendering
+          condition={!isEmpty}
+          fallback={
+            <EmptyContentFrog title='책을 다 읽으셨으면 이제 리뷰를 써보세요!' />
+          }
+        >
+          <ReviewListItem
+            key={reviews[0].id}
+            reviewData={reviews[0]}
+            onDelete={deleteReview}
+            setReviewId={setReviewId}
+            userId={userId}
+          />
+          <FirstReviewItem />
+        </WithConditionalRendering>
       </div>
     </>
   );

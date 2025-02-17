@@ -3,6 +3,7 @@
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useObserver } from '@/hooks/gesture/useObserver';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import MainLayout from '@/layouts/MainLayout';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import CommentItem from './CommentItem';
@@ -23,7 +24,6 @@ function CommentList({ contentId }: Props) {
   const {
     comments,
     isEmpty,
-    isFetched,
     handleAddComment,
     comment,
     setComment,
@@ -39,12 +39,14 @@ function CommentList({ contentId }: Props) {
   return (
     <>
       <MainLayout extraClass='bg-white'>
-        {isEmpty && isFetched && (
-          <div className='flex flex-1 items-center justify-center'>
-            <EmptyContentFrog title='첫 댓글을 남겨보세요!' />
-          </div>
-        )}
-        {!isEmpty && isFetched && (
+        <WithConditionalRendering
+          condition={!isEmpty}
+          fallback={
+            <div className='flex flex-1 items-center justify-center'>
+              <EmptyContentFrog title='첫 댓글을 남겨보세요!' />
+            </div>
+          }
+        >
           <div className='flex w-full flex-col gap-[36px] py-[16px]'>
             {comments.map((item) => (
               <CommentItem
@@ -54,7 +56,7 @@ function CommentList({ contentId }: Props) {
               />
             ))}
           </div>
-        )}
+        </WithConditionalRendering>
         <div ref={setTarget} id='observer' className='h-[10px]' />
       </MainLayout>
       <CommentInput

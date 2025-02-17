@@ -36,7 +36,7 @@ export const useFeed = () => {
     staleTime: Infinity,
   });
 
-  const isEmpty = !data?.pages.length;
+  const isEmpty = isFetched && data?.pages.length === 0;
 
   return {
     feedData: data ? data.pages : [],
