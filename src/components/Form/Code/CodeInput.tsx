@@ -1,6 +1,7 @@
 'use client';
 
 import Timer from '@/components/Form/Code/Timer';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import { useCodeTime } from '@/store/authStore';
 import React from 'react';
 
@@ -76,13 +77,13 @@ function CodeInput({ code, setCode, handleSendCode, isSendFailed }: Props) {
           </button>
         </div>
       </div>
-      {(expiredTime === 0 || isSendFailed) && (
+      <WithConditionalRendering condition={expiredTime === 0 || isSendFailed}>
         <span className='text-body-md text-error'>
           {expiredTime === 0
             ? '입력 유효시간이 지났어요. 다시 인증해주세요.'
             : '다시 시도해주세요.'}
         </span>
-      )}
+      </WithConditionalRendering>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import React, { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { bottomSheet } from '@/modules/BottomSheet';
 import BackButton from '../Button/BackButton';
+import WithConditionalRendering from '../HOC/WithConditionalRendering';
 
 interface Props {
   /** 헤더의 성격 */
@@ -83,7 +84,7 @@ function TitleHeader({
       >
         {title}
       </h2>
-      {hasButton && (
+      <WithConditionalRendering condition={hasButton}>
         <button
           type={type === 'default' ? 'button' : 'submit'}
           onClick={type === 'default' ? onClick : undefined}
@@ -91,7 +92,7 @@ function TitleHeader({
         >
           {type === 'default' ? '수정' : '저장'}
         </button>
-      )}
+      </WithConditionalRendering>
     </header>
   );
 }

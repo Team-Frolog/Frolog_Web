@@ -4,6 +4,7 @@ import React from 'react';
 import { WellIcon, useWells } from '@/features/Well';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 
 interface Props {
   /** 루트 유저 id */
@@ -24,9 +25,11 @@ function WellSelectSheet({ callback, userId, isPending, startPending }: Props) {
 
   return (
     <div className='grid max-h-[400px] w-full grid-cols-2 justify-center justify-items-center gap-[20px] overflow-y-auto py-[20px] pb-[40px] scrollbar-hide'>
-      {!isFetched && <WellItemsSkeleton />}
-      {isFetched &&
-        wells.map((well) => (
+      <WithConditionalRendering
+        condition={isFetched}
+        fallback={<WellItemsSkeleton />}
+      >
+        {wells.map((well) => (
           <WellIcon
             type='select'
             key={well.id}
@@ -41,6 +44,7 @@ function WellSelectSheet({ callback, userId, isPending, startPending }: Props) {
             }
           />
         ))}
+      </WithConditionalRendering>
       {!isFetchingNextPage && (
         <div ref={setTarget} id='observer' className='h-[10px]' />
       )}

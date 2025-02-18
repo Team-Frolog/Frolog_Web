@@ -25,14 +25,15 @@ function ReviewList({ bookId, wellId, userId, isRootUser }: Props) {
 
   return (
     <>
-      {isRootUser && isEmpty && (
+      <WithConditionalRendering condition={isRootUser && isEmpty}>
         <div className='add-button-wrapper'>
           <AddButton
             route={getPath.newReview(userId, wellId, bookId)}
             text='리뷰 추가하기'
           />
         </div>
-      )}
+      </WithConditionalRendering>
+
       <div className='z-10 flex w-full flex-1 flex-col gap-[12px]'>
         <WithConditionalRendering
           condition={!isEmpty}

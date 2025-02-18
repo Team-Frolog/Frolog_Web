@@ -8,6 +8,7 @@ import { getPath } from '@/utils/getPath';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useReport } from '@/hooks/user/useReport';
 import { useProfile } from '@/hooks/user/useProfile';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import { useUserId } from '@/store/sessionStore';
 import { useFollowUser } from '@/features/Feed';
 import ProfileHeaderSkeleton from '../../Fallback/Skeleton/ProfileHeaderSkeleton';
@@ -78,7 +79,7 @@ function ProfileHeader({
         <h5 className='text-body-lg-bold text-gray-600'>{username}</h5>
       </button>
       <div className='flex items-center gap-[8px]'>
-        {hasFollow && !isRootUser && (
+        <WithConditionalRendering condition={hasFollow && !isRootUser}>
           <button
             type='button'
             onClick={() =>
@@ -90,8 +91,8 @@ function ProfileHeader({
           >
             {follow ? '팔로잉' : '팔로우'}
           </button>
-        )}
-        {canShowButton && (
+        </WithConditionalRendering>
+        <WithConditionalRendering condition={canShowButton}>
           <button
             type='button'
             onClick={() =>
@@ -107,7 +108,7 @@ function ProfileHeader({
           >
             <MenuIcon />
           </button>
-        )}
+        </WithConditionalRendering>
       </div>
     </div>
   );
