@@ -49,12 +49,11 @@ function MemoList({ bookId, userId }: Props) {
             userId={userId}
           />
         ))}
-        <WithConditionalRendering
-          condition={isFetchingNextPage}
-          fallback={<Observer setTarget={setTarget} />}
-        >
-          <MemoListSkeleton />
-        </WithConditionalRendering>
+        <Observer
+          setTarget={setTarget}
+          isFetching={isFetchingNextPage}
+          fallback={<MemoListSkeleton />}
+        />
       </WithConditionalRendering>
     </div>
   );

@@ -71,7 +71,10 @@ function ReviewsForBook({ bookId }: Props) {
           </>
         )}
       </WithConditionalRendering>
-      {!isFetchingNextPage && userId && <Observer setTarget={setTarget} />}
+      <Observer
+        isFetching={isFetchingNextPage || !userId}
+        setTarget={setTarget}
+      />
     </div>
   );
 }

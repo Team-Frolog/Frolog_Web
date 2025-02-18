@@ -5,6 +5,7 @@ import { WellIcon, useWells } from '@/features/Well';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
+import Observer from '@/components/Gesture/Observer';
 
 interface Props {
   /** 루트 유저 id */
@@ -45,9 +46,7 @@ function WellSelectSheet({ callback, userId, isPending, startPending }: Props) {
           />
         ))}
       </WithConditionalRendering>
-      {!isFetchingNextPage && (
-        <div ref={setTarget} id='observer' className='h-[10px]' />
-      )}
+      <Observer isFetching={isFetchingNextPage} setTarget={setTarget} />
     </div>
   );
 }

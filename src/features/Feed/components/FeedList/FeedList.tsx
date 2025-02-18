@@ -57,12 +57,11 @@ function FeedList() {
         ))}
       </div>
 
-      <WithConditionalRendering
-        condition={isFetchingNextPage}
-        fallback={<Observer setTarget={setTarget} />}
-      >
-        <FeedListSkeleton />
-      </WithConditionalRendering>
+      <Observer
+        setTarget={setTarget}
+        isFetching={isFetchingNextPage}
+        fallback={<FeedListSkeleton />}
+      />
 
       <WithConditionalRendering condition={isFetched}>
         <Image

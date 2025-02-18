@@ -82,12 +82,11 @@ function SearchResult() {
           />
         ))}
         {isSearched && <NoBookButton onClick={handleNoBookClick} />}
-        <WithConditionalRendering
-          condition={isFetchingNextPage}
-          fallback={<Observer setTarget={setTarget} />}
-        >
-          <SearchResultSkeleton />
-        </WithConditionalRendering>
+        <Observer
+          setTarget={setTarget}
+          isFetching={isFetchingNextPage}
+          fallback={<SearchResultSkeleton />}
+        />
       </WithConditionalRendering>
 
       <AnimatePresence>

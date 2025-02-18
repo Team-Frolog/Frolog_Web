@@ -4,6 +4,7 @@ import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
+import Observer from '@/components/Gesture/Observer';
 import MainLayout from '@/layouts/MainLayout';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import CommentItem from './CommentItem';
@@ -57,7 +58,7 @@ function CommentList({ contentId }: Props) {
             ))}
           </div>
         </WithConditionalRendering>
-        <div ref={setTarget} id='observer' className='h-[10px]' />
+        <Observer setTarget={setTarget} isFetching={false} />
       </MainLayout>
       <CommentInput
         contentId={contentId}

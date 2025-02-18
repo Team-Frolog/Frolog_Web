@@ -48,12 +48,11 @@ function Followings({ userId }: Props) {
             targetUser={following}
           />
         ))}
-        <WithConditionalRendering
-          condition={isFetchingNextPage}
-          fallback={<Observer setTarget={setTarget} />}
-        >
-          <FollowListSkeleton />
-        </WithConditionalRendering>
+        <Observer
+          setTarget={setTarget}
+          isFetching={isFetchingNextPage}
+          fallback={<FollowListSkeleton />}
+        />
       </div>
     </WithConditionalRendering>
   );
