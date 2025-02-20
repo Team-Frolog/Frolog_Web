@@ -1,5 +1,5 @@
 import React from 'react';
-import { useVerification } from '@/hooks/auth/useVerification';
+import { useVerification } from '@/hooks/form/useVerification';
 import { useFormContext } from 'react-hook-form';
 import Button from '../../Button/Button';
 

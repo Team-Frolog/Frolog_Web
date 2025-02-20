@@ -79,7 +79,7 @@ export const useMemos = (bookId: string, userId: string) => {
     },
   });
 
-  const isEmpty = data?.pages.length === 0;
+  const isEmpty = isFetched && data?.pages.length === 0;
 
   return {
     memoList: data?.pages,
@@ -88,7 +88,6 @@ export const useMemos = (bookId: string, userId: string) => {
     isEmpty,
     hasNextPage,
     fetchNextPage,
-    isFetched,
     isFetchingNextPage,
   };
 };

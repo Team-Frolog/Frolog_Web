@@ -3,6 +3,7 @@
 import { useUserId } from '@/store/sessionStore';
 import useCommentStore from '@/store/commentStore';
 import { CancelIcon, EnterIcon } from 'public/icons';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { PostCommentMutation } from '../../types/comment';
@@ -59,7 +60,7 @@ function CommentInput({
 
   return (
     <div className='safe-bottom z-70 flex h-max w-full shrink-0 flex-col'>
-      {commentUser && (
+      <WithConditionalRendering condition={!!commentUser}>
         <div className='flex items-center justify-between bg-gray-200 px-page py-[8px] text-body-md text-gray-600'>
           <span>{commentUser?.name}님에게 댓글 남기는 중</span>
           <motion.button
@@ -70,7 +71,8 @@ function CommentInput({
             <CancelIcon fill='#727384' width={16} height={16} />
           </motion.button>
         </div>
-      )}
+      </WithConditionalRendering>
+
       <div className='flex bg-white px-page py-[20px]'>
         <div className='relative flex w-full'>
           <input

@@ -67,7 +67,7 @@ export const useInfiniteSearch = <
     staleTime: 1000 * 5,
   });
 
-  const isEmpty = !data?.pages.length;
+  const isEmpty = isFetched && data?.pages.length === 0;
   const isSearched = searchValue !== null;
 
   /** 재 검색 시 스크롤 상단으로 이동 */

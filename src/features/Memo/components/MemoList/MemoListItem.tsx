@@ -5,6 +5,7 @@ import CustomLink from '@/components/Link/CustomLink';
 import { useUserId } from '@/store/sessionStore';
 import uniqueId from 'lodash/uniqueId';
 import { getPath } from '@/utils/getPath';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import DeleteButton from '@/components/Button/DeleteButton';
 import { formatDate } from '@/utils/date';
 import { getImageSrc } from '@/utils/getImageSrc';
@@ -35,7 +36,7 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
         className='flex w-full flex-col gap-[20px]'
         href={isRootUser ? `memo/${memoData.id}` : getPath.memo(memoData.id)}
       >
-        {memoData.images.length !== 0 && (
+        <WithConditionalRendering condition={memoData.images.length !== 0}>
           <ImageSlider>
             {memoData.images.map((img, index) => (
               <ImageSlot
@@ -46,7 +47,7 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
               />
             ))}
           </ImageSlider>
-        )}
+        </WithConditionalRendering>
 
         <div className='flex w-full flex-col gap-[20px] px-page pt-0'>
           <p className='whitespace-pre-wrap break-all text-body-lg'>

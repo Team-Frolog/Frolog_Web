@@ -16,6 +16,7 @@ import {
 import { QUERY_KEY } from '@/constants/query';
 import { NAV_ITEM } from '@/constants/nav';
 import { getPath } from '@/utils/getPath';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 
 export const metadata: Metadata = {
   title: '메모',
@@ -69,14 +70,15 @@ async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
 
   return (
     <>
-      {userId === session?.user.id && (
+      <WithConditionalRendering condition={userId === session?.user.id}>
         <div className='add-button-wrapper'>
           <AddButton
             route={`${getPath.newMemo(userId, wellId, bookId)}?nav=${NAV_ITEM.well.key}`}
             text='메모 추가하기'
           />
         </div>
-      )}
+      </WithConditionalRendering>
+
       <ErrorBoundary fallback={<></>}>
         <HydrationBoundary state={dehydrate(queryClient)}>
           <MemoList bookId={bookId} userId={userId} />

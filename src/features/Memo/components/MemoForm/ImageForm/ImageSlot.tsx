@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import { DeleteImgIcon, ImgPlusIcon } from 'public/icons';
 import debounce from 'lodash/debounce';
 import ImagePreview from './ImagePreview';
@@ -60,49 +61,50 @@ function ImageSlot({
       }}
     >
       <div className='relative flex h-full w-full items-center justify-center rounded-[8px] bg-gray-200'>
-        {src ? (
-          <>
-            <div className='h-full w-full'>
-              <Image
-                src={src}
-                alt={`memo-img-${index}`}
-                layout='fill'
-                priority
-                loading='eager'
-                className='object-cover'
-                placeholder='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Ww8AAj8BXkQ+xPEAAAAASUVORK5CYII='
-                onClick={
-                  isReadOnly
-                    ? undefined
-                    : (e) => {
-                        e.stopPropagation();
-                        setIsPreviewOpen(true);
-                      }
-                }
+        <WithConditionalRendering
+          condition={Boolean(src)}
+          fallback={
+            <>
+              <input
+                type='file'
+                accept='image/*'
+                onChange={onChange}
+                className='absolute left-0 top-0 h-full w-full cursor-pointer opacity-0'
               />
-            </div>
-
-            {onDelete && (
-              <button
-                type='button'
-                onClick={onDelete}
-                className='absolute right-[8px] top-[8px] cursor-pointer'
-              >
-                <DeleteImgIcon />
-              </button>
-            )}
-          </>
-        ) : (
-          <>
-            <input
-              type='file'
-              accept='image/*'
-              onChange={onChange}
-              className='absolute left-0 top-0 h-full w-full cursor-pointer opacity-0'
+              <ImgPlusIcon />
+            </>
+          }
+        >
+          <div className='h-full w-full'>
+            <Image
+              src={src!}
+              alt={`memo-img-${index}`}
+              layout='fill'
+              priority
+              loading='eager'
+              className='object-cover'
+              placeholder='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Ww8AAj8BXkQ+xPEAAAAASUVORK5CYII='
+              onClick={
+                isReadOnly
+                  ? undefined
+                  : (e) => {
+                      e.stopPropagation();
+                      setIsPreviewOpen(true);
+                    }
+              }
             />
-            <ImgPlusIcon />
-          </>
-        )}
+          </div>
+
+          {onDelete && (
+            <button
+              type='button'
+              onClick={onDelete}
+              className='absolute right-[8px] top-[8px] cursor-pointer'
+            >
+              <DeleteImgIcon />
+            </button>
+          )}
+        </WithConditionalRendering>
       </div>
       {isPreviewOpen && (
         <ImagePreview

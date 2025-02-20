@@ -4,6 +4,7 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { textareaType } from '@/data/ui/textareaType';
 import RatingSelector from '@/components/Rating/RatingSelector';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import TagList from '@/components/Tag/TagList';
 import Textarea from '@/components/Form/Input/Textarea';
 import Button from '@/components/Button/Button';
@@ -41,13 +42,14 @@ function ReviewForm({ type, isDisabled }: ReviewFormProps) {
         </div>
         <Textarea type='bold' option={textareaType.oneLiner} />
         <Textarea option={textareaType.review} />
-        {type === 'new' && (
+
+        <WithConditionalRendering condition={type === 'new'}>
           <div className='w-full p-page'>
             <Button type='submit' disabled={isDisabled}>
               저장하기
             </Button>
           </div>
-        )}
+        </WithConditionalRendering>
       </div>
     </>
   );

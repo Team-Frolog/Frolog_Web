@@ -7,6 +7,7 @@ import { useUserId } from '@/store/sessionStore';
 import { motion } from 'framer-motion';
 import { getPath } from '@/utils/getPath';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
+import WithConditionalRendering from '../HOC/WithConditionalRendering';
 
 interface Props {
   /** 프로필 대상 유저의 id */
@@ -20,7 +21,7 @@ function DetailHeader({ profileUserId }: Props) {
 
   return (
     <ResponsiveHeaderLayout onClick={() => router.back()}>
-      {!isRootUser && (
+      <WithConditionalRendering condition={!isRootUser}>
         <div className='flex flex-1 justify-end'>
           <motion.button
             type='button'
@@ -36,7 +37,7 @@ function DetailHeader({ profileUserId }: Props) {
             우물 놀러가기
           </motion.button>
         </div>
-      )}
+      </WithConditionalRendering>
     </ResponsiveHeaderLayout>
   );
 }

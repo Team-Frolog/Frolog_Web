@@ -3,14 +3,14 @@ import BookListItemSkeleton from './BookListItemSkeleton';
 
 function SearchResultSkeleton() {
   return (
-    <div className='flex w-full flex-1 flex-col gap-[36px]'>
+    <>
       <BookListItemSkeleton />
       <BookListItemSkeleton />
       <BookListItemSkeleton />
       <BookListItemSkeleton />
       <BookListItemSkeleton />
       <BookListItemSkeleton />
-    </div>
+    </>
   );
 }
 
