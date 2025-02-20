@@ -3,6 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
+import Observer from '@/components/Gesture/Observer';
 import FeedListSkeleton from '@/components/Fallback/Skeleton/FeedListSkeleton';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
@@ -20,7 +22,6 @@ function FeedList() {
     hasNextPage,
     isLoading,
     isFetched,
-    isEmpty,
     isFetchingNextPage,
     isCommentLoading,
     setIsCommentLoading,
@@ -44,26 +45,25 @@ function FeedList() {
 
   return (
     <div className='flex h-fit w-full flex-col justify-between gap-[36px]'>
-      {!isEmpty && (
-        <div className='flex-column gap-[36px]'>
-          {feedData.map((feed) => (
-            <FeedItem
-              key={feed.memo ? feed.memo.id : feed.review?.id}
-              isMemo={!!feed.memo}
-              feedData={feed.memo ? feed.memo : feed.review!}
-              startCommentLoading={() => setIsCommentLoading(true)}
-              onSaveScroll={saveScroll}
-            />
-          ))}
-        </div>
-      )}
+      <div className='flex-column gap-[36px]'>
+        {feedData.map((feed) => (
+          <FeedItem
+            key={feed.memo ? feed.memo.id : feed.review?.id}
+            isMemo={!!feed.memo}
+            feedData={feed.memo ? feed.memo : feed.review!}
+            startCommentLoading={() => setIsCommentLoading(true)}
+            onSaveScroll={saveScroll}
+          />
+        ))}
+      </div>
 
-      {isFetchingNextPage ? (
-        <FeedListSkeleton />
-      ) : (
-        <div ref={setTarget} id='observer' className='h-[10px]' />
-      )}
-      {feedData && isFetched && (
+      <Observer
+        setTarget={setTarget}
+        isFetching={isFetchingNextPage}
+        fallback={<FeedListSkeleton />}
+      />
+
+      <WithConditionalRendering condition={isFetched}>
         <Image
           src={IMAGES.frog.more_feed}
           alt='more feed'
@@ -71,7 +71,8 @@ function FeedList() {
           height={172}
           className='mx-auto'
         />
-      )}
+      </WithConditionalRendering>
+
       {isCommentLoading && <LoadingOverlay theme='dark' />}
     </div>
   );

@@ -4,6 +4,7 @@ import { motion, useAnimationControls } from 'framer-motion';
 import { ExpandIcon } from 'public/icons';
 import { useFrogs } from '@/features/Well/hooks/useFrogs';
 import FrologItem from '@/components/FrologItem/FrologItem';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 
 interface Props {
   /** 유저 id */
@@ -37,7 +38,7 @@ function FrogSelector({ userId }: Props) {
         transition={{ duration: 0.3 }}
         className='relative grid grid-cols-3 gap-[9px] overflow-hidden'
       >
-        {!isNoExpansion && (
+        <WithConditionalRendering condition={!isNoExpansion}>
           <div
             className={`absolute bottom-0 left-0 h-[90px] w-full transition-all duration-300 ${isExpanded ? '-z-10 opacity-100' : 'z-10 opacity-100'}`}
             style={{
@@ -45,7 +46,8 @@ function FrogSelector({ userId }: Props) {
                 'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 95.41%)',
             }}
           />
-        )}
+        </WithConditionalRendering>
+
         {frogs.map((frog) => (
           <FrologItem
             key={frog.key}
@@ -56,7 +58,8 @@ function FrogSelector({ userId }: Props) {
           />
         ))}
       </motion.div>
-      {!isNoExpansion && (
+
+      <WithConditionalRendering condition={!isNoExpansion}>
         <button
           type='button'
           className='flex w-full justify-center bg-white'
@@ -66,7 +69,7 @@ function FrogSelector({ userId }: Props) {
             className={`transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
           />
         </button>
-      )}
+      </WithConditionalRendering>
     </div>
   );
 }

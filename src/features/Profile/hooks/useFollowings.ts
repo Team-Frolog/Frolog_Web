@@ -28,7 +28,7 @@ export const useFollowings = (userId: string) => {
     staleTime: 0,
   });
 
-  const isEmpty = followings?.pages.length === 0;
+  const isEmpty = isFetched && followings?.pages.length === 0;
 
   return {
     followings: followings ? followings.pages : [],

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReadOnlyTextarea from '@/components/Form/Input/ReadOnlyTextarea';
 import { textareaType } from '@/data/ui/textareaType';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import { getImageSrc } from '@/utils/getImageSrc';
 import { GetMemoRes } from '@frolog/frolog-api';
 import ImageSlider from './MemoForm/ImageForm/ImageSlider';
@@ -17,7 +18,7 @@ function MemoDetail({ memoData }: Props) {
 
   return (
     <div className='flex w-full flex-col gap-[36px] bg-white'>
-      {memoData.images.length !== 0 && (
+      <WithConditionalRendering condition={memoData.images.length !== 0}>
         <ImageSlider>
           {memoData.images.map((img, index) => (
             <ImageSlot
@@ -27,7 +28,8 @@ function MemoDetail({ memoData }: Props) {
             />
           ))}
         </ImageSlider>
-      )}
+      </WithConditionalRendering>
+
       <ReadOnlyTextarea
         option={textareaType.memo}
         content={memoData.content}

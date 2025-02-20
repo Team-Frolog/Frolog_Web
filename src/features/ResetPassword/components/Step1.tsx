@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { useEmailValidation } from '@/hooks/auth/useEmailValidation';
+import { useEmailValidation } from '@/hooks/form/useEmailValidation';
 import { useStepActions } from '@/store/stepStore';
 import FormInput from '@/components/Form/Input/FormInput';
 import SendButton from '@/components/Form/Button/SendButton';
