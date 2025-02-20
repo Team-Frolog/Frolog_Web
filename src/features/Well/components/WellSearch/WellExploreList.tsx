@@ -6,14 +6,18 @@ import { useExploreWells } from '@/features/Well/hooks/useExploreWells';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import React from 'react';
 
-function WellExploreList() {
+interface Props {
+  refTime: string;
+}
+
+function WellExploreList({ refTime }: Props) {
   const {
     exploreResult,
     fetchNextPage,
     hasNextPage,
     isLoading,
     isFetchingNextPage,
-  } = useExploreWells();
+  } = useExploreWells(refTime);
 
   const { setTarget } = useObserver({
     hasNextPage,

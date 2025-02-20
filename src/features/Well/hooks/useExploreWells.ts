@@ -2,7 +2,7 @@ import { QUERY_KEY } from '@/constants/query';
 import { getUserWellList } from '@/features/Well/api/well.api';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-export const useExploreWells = () => {
+export const useExploreWells = (refTime: string) => {
   const {
     data: exploreResult,
     fetchNextPage,
@@ -11,7 +11,8 @@ export const useExploreWells = () => {
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: [QUERY_KEY.explore],
-    queryFn: ({ pageParam }) => getUserWellList({ page: pageParam }),
+    queryFn: ({ pageParam }) =>
+      getUserWellList({ page: pageParam, ref_time: refTime }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const totalPages = Math.ceil(lastPage.count / lastPage.limit);

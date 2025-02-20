@@ -26,6 +26,7 @@ async function ExplorePage() {
   const session = await getServerSession(authOptions);
   const userId = session?.user.id;
   const queryClient = new QueryClient();
+  const refTime = new Date().toISOString();
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: [QUERY_KEY.explore, userId],
@@ -33,7 +34,11 @@ async function ExplorePage() {
       new SearchUserWell({
         baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
         accessToken: session?.user.accessToken,
-      }).fetch({ limit: DEFAULT_LIMIT, page: pageParam }),
+      }).fetch({
+        limit: DEFAULT_LIMIT,
+        page: pageParam,
+        ref_time: refTime,
+      }),
     initialPageParam: 0,
     staleTime: 1000 * 10,
   });
@@ -48,7 +53,7 @@ async function ExplorePage() {
           />
         </div>
         <div className='flex w-full flex-col gap-[36px]'>
-          <WellExploreList />
+          <WellExploreList refTime={refTime} />
         </div>
       </div>
     </HydrationBoundary>
