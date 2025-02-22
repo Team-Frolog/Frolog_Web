@@ -11,8 +11,11 @@ import WithConditionalRendering from '@/components/HOC/WithConditionalRendering'
 import SearchResultEmpty from '@/features/Search/components/SearchResultEmpty';
 import { SEARCH_ITEM } from '@/constants/searchItem';
 
-function WellSearchResult() {
-  const refTime = new Date().toISOString();
+interface Props {
+  refTime: string;
+}
+
+function WellSearchResult({ refTime }: Props) {
   const {
     searchResult,
     fetchNextPage,

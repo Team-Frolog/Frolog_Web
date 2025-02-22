@@ -5,6 +5,7 @@ import { WellSearchResult } from '@/features/Well';
 import { PAGES } from '@/constants/page';
 
 async function WellSearchPage() {
+  const refTime = new Date().toISOString();
   return (
     <>
       <div className='flex h-fit w-full flex-col'>
@@ -21,7 +22,7 @@ async function WellSearchPage() {
           />
         </div>
       </div>
-      <WellSearchResult />
+      <WellSearchResult refTime={refTime} />
     </>
   );
 }
