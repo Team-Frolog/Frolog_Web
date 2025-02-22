@@ -1,6 +1,7 @@
 'use client';
 
 import WellSearchItemSkeleton from '@/components/Fallback/Skeleton/WellSearchItemSkeleton';
+import Observer from '@/components/Gesture/Observer';
 import WellSearchItem from '@/features/Well/components/WellSearch/WellSearchItem';
 import { useExploreWells } from '@/features/Well/hooks/useExploreWells';
 import { useObserver } from '@/hooks/gesture/useObserver';
@@ -31,11 +32,11 @@ function WellExploreList({ refTime }: Props) {
       {exploreResult.pages.map(({ id, wells }) => (
         <WellSearchItem key={id} userId={id} wells={wells} />
       ))}
-      {isFetchingNextPage || isLoading ? (
-        <WellSearchItemSkeleton />
-      ) : (
-        <div ref={setTarget} id='observer' className='h-[10px]' />
-      )}
+      <Observer
+        setTarget={setTarget}
+        fallback={<WellSearchItemSkeleton />}
+        isFetching={isFetchingNextPage}
+      />
     </div>
   );
 }
