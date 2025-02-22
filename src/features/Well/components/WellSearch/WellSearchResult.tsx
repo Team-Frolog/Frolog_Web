@@ -9,6 +9,7 @@ import WellSearchItemSkeleton from '@/components/Fallback/Skeleton/WellSearchIte
 import Observer from '@/components/Gesture/Observer';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import SearchResultEmpty from '@/features/Search/components/SearchResultEmpty';
+import { SEARCH_ITEM } from '@/constants/searchItem';
 
 function WellSearchResult() {
   const refTime = new Date().toISOString();
@@ -31,7 +32,12 @@ function WellSearchResult() {
     <MainLayout extraClass='gap-[36px] pb-[36px] pt-[24px] bg-gray-300'>
       <WithConditionalRendering
         condition={!isEmpty}
-        fallback={<SearchResultEmpty />}
+        fallback={
+          <SearchResultEmpty
+            target={SEARCH_ITEM.well.target}
+            content={SEARCH_ITEM.well.content}
+          />
+        }
       >
         {searchResult.map((resultItem) => (
           <WellSearchItem
