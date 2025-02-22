@@ -6,6 +6,7 @@ import { useRef, useEffect } from 'react';
 
 interface Props<TRes, TItem> {
   queryKey: string;
+  params?: { mode?: 'search' | 'random'; ref_time: string };
   queryFn: ({ q, page }: { q: string; page: number }) => Promise<TRes>;
   returnData: (page: TRes) => TItem[];
 }
@@ -15,6 +16,7 @@ export const useInfiniteSearch = <
   TItem,
 >({
   queryKey,
+  params,
   queryFn,
   returnData,
 }: Props<TRes, TItem>) => {
@@ -48,7 +50,11 @@ export const useInfiniteSearch = <
         } as TRes;
       }
 
-      const res = await queryFn({ q: searchValue, page: pageParam });
+      const req = params
+        ? { q: searchValue, page: pageParam, ...params }
+        : { q: searchValue, page: pageParam };
+
+      const res = await queryFn(req);
       return res;
     },
     initialPageParam: 0,
