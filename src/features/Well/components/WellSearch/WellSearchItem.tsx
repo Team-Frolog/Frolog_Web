@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
 import Slider from '@/components/Slider/Slider';
 import WellIcon from '@/features/Well/components/WellList/WellIcon/WellIcon';
@@ -18,17 +18,22 @@ function WellSearchItem({ userId, wells }: Props) {
 
   // 우물 검색 키워드 강조 함수
   const highlightName = (name: string) => {
-    if (searchValue === null) return;
+    if (searchValue === null) return name;
 
-    const splitedWord = name.split(searchValue);
-    const convertedWord = splitedWord.map((value, index) => (
-      <Fragment key={value + index}>
-        {value !== '' && <span className='text-main'>{searchValue}</span>}
-        {value}
-      </Fragment>
-    ));
+    const regex = new RegExp(`(${searchValue})`, 'gi');
+    const parts = name.split(regex);
 
-    return convertedWord;
+    const converted = parts.map((item, index) =>
+      item.toLowerCase() === searchValue.toLowerCase() ? (
+        <span key={item + index} className='text-main'>
+          {item}
+        </span>
+      ) : (
+        <>{item}</>
+      )
+    );
+
+    return converted;
   };
 
   return (
