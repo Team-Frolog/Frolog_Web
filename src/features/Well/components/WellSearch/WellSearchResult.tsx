@@ -11,11 +11,7 @@ import WithConditionalRendering from '@/components/HOC/WithConditionalRendering'
 import SearchResultEmpty from '@/features/Search/components/SearchResultEmpty';
 import { SEARCH_ITEM } from '@/constants/searchItem';
 
-interface Props {
-  refTime: string;
-}
-
-function WellSearchResult({ refTime }: Props) {
+function WellSearchResult() {
   const {
     searchResult,
     fetchNextPage,
@@ -23,7 +19,7 @@ function WellSearchResult({ refTime }: Props) {
     isLoading,
     isEmpty,
     isFetchingNextPage,
-  } = useSearchWells(refTime);
+  } = useSearchWells();
   const { setTarget } = useObserver({
     hasNextPage,
     fetchNextPage,
