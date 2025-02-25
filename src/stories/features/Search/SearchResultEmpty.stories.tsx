@@ -11,5 +11,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    target: '기본값',
+    content: '기본 내용',
+  },
 };

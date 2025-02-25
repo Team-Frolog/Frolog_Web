@@ -4,7 +4,7 @@ import { SearchInput } from '@/features/Search';
 import { WellSearchResult } from '@/features/Well';
 import { PAGES } from '@/constants/page';
 
-function WellSearchPage() {
+async function WellSearchPage() {
   return (
     <>
       <div className='flex h-fit w-full flex-col'>

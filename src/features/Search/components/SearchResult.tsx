@@ -12,6 +12,7 @@ import Observer from '@/components/Gesture/Observer';
 import { useUserId } from '@/store/sessionStore';
 import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
 import SearchResultSkeleton from '@/components/Fallback/Skeleton/SearchResultSkeleton';
+import { SEARCH_ITEM } from '@/constants/searchItem';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
 import { useSearchBook } from '../hooks/useSearchBook';
 import SearchResultEmpty from './SearchResultEmpty';
@@ -72,7 +73,12 @@ function SearchResult() {
     >
       <WithConditionalRendering
         condition={!isEmpty}
-        fallback={<SearchResultEmpty />}
+        fallback={
+          <SearchResultEmpty
+            target={SEARCH_ITEM.book.target}
+            content={SEARCH_ITEM.book.content}
+          />
+        }
       >
         {searchResult.map((item) => (
           <BookListItem

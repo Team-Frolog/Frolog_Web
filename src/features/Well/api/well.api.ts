@@ -12,6 +12,8 @@ import {
   PostWellItem,
   PostWellItemReq,
   PostWellReq,
+  SearchUserWell,
+  SearchUserWellReq,
   SearchWell,
   SearchWellItem,
 } from '@frolog/frolog-api';
@@ -23,6 +25,7 @@ const searchWellItem = new SearchWellItem(baseOptions);
 const editWellObj = new EditWell(baseOptions);
 const postWellItem = new PostWellItem(baseOptions);
 const getWellNameAvailability = new GetWellNameAvailability(baseOptions);
+const searchUserWell = new SearchUserWell(baseOptions);
 
 export const addNewWell = async (req: PostWellReq) => {
   const response = await postWell.fetch(req);
@@ -62,6 +65,22 @@ export const getWellItems = async (page: number, well_id: string) => {
     sort: 'newest',
   });
   return response;
+};
+
+export const getUserWellList = async (req: SearchUserWellReq) => {
+  try {
+    const response = await searchUserWell.fetch(req);
+    return response;
+  } catch (err) {
+    toast.error(ERROR_ALERT);
+    Sentry.captureException(err);
+    return {
+      userwells: [],
+      count: 0,
+      limit: DEFAULT_LIMIT,
+      page: 0,
+    };
+  }
 };
 
 export const editWell = async (req: EditWellReq) => {
