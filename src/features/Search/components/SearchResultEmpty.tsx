@@ -12,7 +12,7 @@ function SearchResultEmpty({ target, content }: Props) {
   return (
     <div className='flex w-full flex-1 flex-col items-center justify-center gap-[20px]'>
       <h5 className='text-title-xl-bold text-gray-800'>
-        일치하는 {target}을
+        일치하는 {target}
         <br />
         찾지 못했어요!
       </h5>
@@ -23,7 +23,7 @@ function SearchResultEmpty({ target, content }: Props) {
         height={120}
       />
       <span className='text-body-lg text-gray-600'>
-        {content}을 다시 검색해주세요
+        {content} 다시 검색해주세요
       </span>
     </div>
   );

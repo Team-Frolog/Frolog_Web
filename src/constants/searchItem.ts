@@ -7,11 +7,11 @@ interface SearchItem {
 
 export const SEARCH_ITEM: SearchItem = {
   book: {
-    target: '책',
-    content: '책 제목이나 저자명',
+    target: '책을',
+    content: '책 제목이나 저자명을',
   },
   well: {
-    target: '우물',
-    content: '찾으시는 우물 이름',
+    target: '결과를',
+    content: '',
   },
 };
