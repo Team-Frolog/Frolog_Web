@@ -8,8 +8,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/nextAuth';
 import SessionHandler from '@/providers/SessionHandler';
 import { metadata } from '@/data/metadata';
-import MSWProvider from '@/providers/MSWProvider';
-import { Fragment } from 'react';
 
 export { metadata };
 
@@ -27,9 +25,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
-  const isDev = process.env.NEXT_PUBLIC_ENVIRONMENT === 'dev';
-
-  const AppWrapper = isDev ? MSWProvider : Fragment;
 
   return (
     <html lang='ko'>
@@ -43,11 +38,9 @@ export default async function RootLayout({
           <body
             className={`${pretendard.variable} ${pretendard.className} text-gray-800`}
           >
-            <AppWrapper>
-              <div id='root'>{children}</div>
-              <div id='portal' />
-              <div id='toast-root' />
-            </AppWrapper>
+            <div id='root'>{children}</div>
+            <div id='portal' />
+            <div id='toast-root' />
           </body>
         </NextAuthProvider>
       </QueryProvider>

@@ -5,13 +5,13 @@ import { LoginForm as LoginFormType } from '../types/login';
 
 interface Props {
   /** 로그인 실패 flag 변수 setter */
-  setIsFaild: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsFailed: React.Dispatch<React.SetStateAction<boolean>>;
   /** 로그인 핸들러 */
   userLogin: (data: LoginFormType) => Promise<void>;
 }
 
 /** 로그인 폼 */
-function LoginForm({ setIsFaild, userLogin }: Props) {
+function LoginForm({ setIsFailed, userLogin }: Props) {
   const {
     register,
     trigger,
@@ -46,7 +46,7 @@ function LoginForm({ setIsFaild, userLogin }: Props) {
             if (errors.email) {
               trigger('email');
             }
-            setIsFaild(false);
+            setIsFailed(false);
           },
         })}
       />
@@ -59,7 +59,7 @@ function LoginForm({ setIsFaild, userLogin }: Props) {
         errorMessage={errors.password && String(errors.password.message)}
         {...register('password', {
           onChange: () => {
-            setIsFaild(false);
+            setIsFailed(false);
           },
         })}
       />

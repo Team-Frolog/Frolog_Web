@@ -1,27 +1,22 @@
 import { QUERY_KEY } from '@/constants/query';
-import { GetWellRes, SearchBookRes } from '@frolog/frolog-api';
+import { SearchBookRes, SearchUserWellRes } from '@frolog/frolog-api';
 import { useQueryClient, useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { useRef, useEffect } from 'react';
 
-interface SearchWellRes {
-  count: number;
-  limit: number;
-  page: number;
-  wells: GetWellRes[];
-}
-
 interface Props<TRes, TItem> {
   queryKey: string;
+  params?: { mode?: 'search' | 'random'; ref_time: string };
   queryFn: ({ q, page }: { q: string; page: number }) => Promise<TRes>;
   returnData: (page: TRes) => TItem[];
 }
 
 export const useInfiniteSearch = <
-  TRes extends SearchBookRes | SearchWellRes,
+  TRes extends SearchBookRes | SearchUserWellRes,
   TItem,
 >({
   queryKey,
+  params,
   queryFn,
   returnData,
 }: Props<TRes, TItem>) => {
@@ -54,7 +49,12 @@ export const useInfiniteSearch = <
           page: 0,
         } as TRes;
       }
-      const res = await queryFn({ q: searchValue, page: pageParam });
+
+      const req = params
+        ? { q: searchValue, page: pageParam, ...params }
+        : { q: searchValue, page: pageParam };
+
+      const res = await queryFn(req);
       return res;
     },
     initialPageParam: 0,

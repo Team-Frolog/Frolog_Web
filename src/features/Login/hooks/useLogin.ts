@@ -15,10 +15,10 @@ export const useLogin = (type: 'login' | 'test') => {
   const callbackUrl = () => sessionStorage.getItem(STORAGE_KEY.loginCallback); // 로그인 후 이동할 callback url
   const [isSaved, setIsSaved] = useState<boolean>(false); // 자동 로그인 여부
   const [isLoading, setIsLoading] = useState(false);
-  const [isFaild, setIsFaild] = useState<boolean>(false); // 로그인 실패 여부
+  const [isFailed, setIsFailed] = useState<boolean>(false); // 로그인 실패 여부
 
   const userLogin = async (data: LoginForm) => {
-    setIsFaild(false);
+    setIsFailed(false);
     setIsLoading(true);
 
     const result = await signIn('credentials', {
@@ -39,10 +39,10 @@ export const useLogin = (type: 'login' | 'test') => {
         localStorage.removeItem(STORAGE_KEY.tempAccountKey);
       }
     } else {
-      setIsFaild(true);
+      setIsFailed(true);
       setIsLoading(false);
     }
   };
 
-  return { isSaved, setIsSaved, isFaild, userLogin, setIsFaild, isLoading };
+  return { isSaved, setIsSaved, isFailed, userLogin, setIsFailed, isLoading };
 };

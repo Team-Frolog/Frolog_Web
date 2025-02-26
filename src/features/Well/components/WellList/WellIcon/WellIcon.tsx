@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useRef } from 'react';
+import React, { ReactNode, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { CATEGORY } from '@/constants/category';
@@ -19,12 +19,19 @@ interface Props {
   type?: 'list' | 'select';
   /** 우물 정보 데이터 객체 */
   wellData: GetWellRes;
+  /** 우물 검색 키워드 */
+  highlightedName?: ReactNode;
   /** 클릭 핸들러 */
   onClick?: () => void;
 }
 
 /** 우물 아이콘 컴포넌트 */
-function WellIcon({ wellData, type = 'list', onClick }: Props) {
+function WellIcon({
+  wellData,
+  type = 'list',
+  highlightedName,
+  onClick,
+}: Props) {
   const { id, name, frog, owner, color, shape, date } = wellData;
   const { navigate } = useCustomRouter('well');
   const controls = useAnimation();
@@ -92,7 +99,7 @@ function WellIcon({ wellData, type = 'list', onClick }: Props) {
         </div>
       </motion.button>
       <h5 className='break-all text-center text-body-lg-bold text-gray-800'>
-        {name}
+        {highlightedName || name}
       </h5>
     </div>
   );
