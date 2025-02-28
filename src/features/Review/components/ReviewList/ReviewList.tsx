@@ -35,21 +35,20 @@ function ReviewList({ bookId, wellId, userId, isRootUser }: Props) {
       </WithConditionalRendering>
 
       <div className='z-10 flex w-full flex-1 flex-col gap-[12px]'>
-        <WithConditionalRendering
-          condition={!isEmpty}
-          fallback={
-            <EmptyContentFrog title='책을 다 읽으셨으면 이제 리뷰를 써보세요!' />
-          }
-        >
-          <ReviewListItem
-            key={reviews[0].id}
-            reviewData={reviews[0]}
-            onDelete={deleteReview}
-            setReviewId={setReviewId}
-            userId={userId}
-          />
-          <FirstReviewItem />
-        </WithConditionalRendering>
+        {isEmpty ? (
+          <EmptyContentFrog title='책을 다 읽으셨으면 이제 리뷰를 써보세요!' />
+        ) : (
+          <>
+            <ReviewListItem
+              key={reviews[0].id}
+              reviewData={reviews[0]}
+              onDelete={deleteReview}
+              setReviewId={setReviewId}
+              userId={userId}
+            />
+            <FirstReviewItem />
+          </>
+        )}
       </div>
     </>
   );
