@@ -6,6 +6,8 @@ import { getImageSrc } from '@/utils/getImageSrc';
 import { GetProfileRes } from '@frolog/frolog-api';
 import { useUserId } from '@/store/sessionStore';
 import CustomLink from '@/components/Link/CustomLink';
+import { getPath } from '@/utils/getPath';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 
 interface Props {
   /** 리스트 조회 대상이 되는 유저 id */
@@ -24,7 +26,7 @@ function FollowItem({ userId, targetUser }: Props) {
   return (
     <div className='flex w-full items-center justify-between'>
       <CustomLink
-        href={`/${targetUser.id}/profile`}
+        href={getPath.profile(targetUser.id)}
         className='flex items-center gap-[8px]'
       >
         <div className='relative flex h-[40px] w-[40px]'>
@@ -44,7 +46,7 @@ function FollowItem({ userId, targetUser }: Props) {
           {targetUser.username}
         </h5>
       </CustomLink>
-      {!isRootUser && (
+      <WithConditionalRendering condition={!isRootUser}>
         <button
           type='button'
           onClick={() =>
@@ -54,7 +56,7 @@ function FollowItem({ userId, targetUser }: Props) {
         >
           {isFollowing ? '팔로잉' : '팔로우'}
         </button>
-      )}
+      </WithConditionalRendering>
     </div>
   );
 }

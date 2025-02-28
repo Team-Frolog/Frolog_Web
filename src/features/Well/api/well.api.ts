@@ -8,11 +8,12 @@ import {
   EditWellReq,
   GetWell,
   GetWellNameAvailability,
-  PostNewFeatureRequest,
   PostWell,
   PostWellItem,
   PostWellItemReq,
   PostWellReq,
+  SearchUserWell,
+  SearchUserWellReq,
   SearchWell,
   SearchWellItem,
 } from '@frolog/frolog-api';
@@ -22,9 +23,9 @@ const searchWell = new SearchWell(baseOptions);
 const fetchWell = new GetWell(baseOptions);
 const searchWellItem = new SearchWellItem(baseOptions);
 const editWellObj = new EditWell(baseOptions);
-const postNewFeature = new PostNewFeatureRequest(baseOptions);
 const postWellItem = new PostWellItem(baseOptions);
 const getWellNameAvailability = new GetWellNameAvailability(baseOptions);
+const searchUserWell = new SearchUserWell(baseOptions);
 
 export const addNewWell = async (req: PostWellReq) => {
   const response = await postWell.fetch(req);
@@ -66,13 +67,24 @@ export const getWellItems = async (page: number, well_id: string) => {
   return response;
 };
 
-export const editWell = async (req: EditWellReq) => {
-  const response = await editWellObj.fetch(req);
-  return response;
+export const getUserWellList = async (req: SearchUserWellReq) => {
+  try {
+    const response = await searchUserWell.fetch(req);
+    return response;
+  } catch (err) {
+    toast.error(ERROR_ALERT);
+    Sentry.captureException(err);
+    return {
+      userwells: [],
+      count: 0,
+      limit: DEFAULT_LIMIT,
+      page: 0,
+    };
+  }
 };
 
-export const registerStoreAlarm = async () => {
-  const response = await postNewFeature.fetch({ type: 'store' });
+export const editWell = async (req: EditWellReq) => {
+  const response = await editWellObj.fetch(req);
   return response;
 };
 

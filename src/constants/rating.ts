@@ -1,4 +1,4 @@
-export const ratingMessage: {
+export const RATING_MESSAGE: {
   [key: number]: string;
 } = {
   '1': '다시는 만나지 말자...',

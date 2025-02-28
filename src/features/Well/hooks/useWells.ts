@@ -24,7 +24,7 @@ export const useWells = (userId: string) => {
       staleTime: 0,
     });
 
-  const isEmpty = data ? data.pages.length === 0 : 0;
+  const isEmpty = isFetched && data?.pages.length === 0;
 
   return {
     wells: data?.pages,

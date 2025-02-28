@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import ErrorToast from '@/components/Toast/ErrorToast';
 import { AnimatePresence } from 'framer-motion';
 import Button from '@/components/Button/Button';
-import { useVerification } from '@/hooks/auth/useVerification';
+import { useVerification } from '@/hooks/form/useVerification';
 import { useFormContext } from 'react-hook-form';
 import { useCodeTime } from '@/store/authStore';
 import CodeInput from './CodeInput';

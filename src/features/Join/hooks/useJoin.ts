@@ -27,7 +27,7 @@ export const useJoin = (getValues: () => JoinForm) => {
   /** 로그인 처리 핸들러 */
   const { mutate: handleLogin } = useMutation({
     mutationFn: async (username: string) => {
-      const account = localStorage.getItem(STORAGE_KEY.TEMP_ACCOUNT_KEY);
+      const account = localStorage.getItem(STORAGE_KEY.tempAccountKey);
 
       if (account) {
         const res = await userLogin(JSON.parse(account));
@@ -43,22 +43,23 @@ export const useJoin = (getValues: () => JoinForm) => {
     },
   });
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       setIsLoading(false);
-      localStorage.removeItem(STORAGE_KEY.JOIN_FORM_KEY);
+      localStorage.removeItem(STORAGE_KEY.joinFormKey);
       resetStep();
-    };
-  }, []);
+    },
+    []
+  );
 
   // step별 폼 상태 저장
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (step === 1) {
-        localStorage.removeItem(STORAGE_KEY.JOIN_FORM_KEY);
+        localStorage.removeItem(STORAGE_KEY.joinFormKey);
       } else {
         localStorage.setItem(
-          STORAGE_KEY.JOIN_FORM_KEY,
+          STORAGE_KEY.joinFormKey,
           JSON.stringify(getValues())
         );
       }
@@ -78,9 +79,9 @@ export const useJoin = (getValues: () => JoinForm) => {
     },
     onSuccess: (_result, formData) => {
       resetToken();
-      localStorage.removeItem(STORAGE_KEY.JOIN_FORM_KEY);
+      localStorage.removeItem(STORAGE_KEY.joinFormKey);
       localStorage.setItem(
-        STORAGE_KEY.TEMP_ACCOUNT_KEY,
+        STORAGE_KEY.tempAccountKey,
         JSON.stringify({ email: formData.email, password: formData.password })
       );
       handleLogin(formData.username!);

@@ -29,6 +29,7 @@ function AboutBook({ bookId }: Props) {
             type='default'
             rating={bookData?.avg_rating}
             review_cnt={bookData?.review_cnt}
+            onClick={() => runWhenLoggedIn(() => setOpen(true))}
           />
           <AddButton
             text='내 우물에 추가하기'

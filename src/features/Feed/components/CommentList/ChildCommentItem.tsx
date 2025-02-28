@@ -2,12 +2,13 @@
 
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useProfile } from '@/hooks/useProfile';
+import { useProfile } from '@/hooks/user/useProfile';
 import useCommentStore from '@/store/commentStore';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
+import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
 import LikeButton from '@/components/Button/LikeButton';
 import { motion } from 'framer-motion';
 import { formatDate } from '@/utils/date';
-import ProfileHeader from '../ProfileHeader';
 import { Comments } from '../../types/comment';
 import { useChangeChildComment } from '../../hooks/child/useChangeChildComment';
 
@@ -74,21 +75,20 @@ function ChildCommentItem({
       <p
         className={`break-all px-page text-body-lg ${deleted ? 'text-gray-500' : 'text-gray-800'}`}
       >
-        {deleted ? (
-          '삭제된 댓글입니다.'
-        ) : (
-          <>
-            <strong className='mr-[8px] font-normal text-main'>
-              {memtionProfile?.username}
-            </strong>
-            {content}
-          </>
-        )}
+        <WithConditionalRendering
+          condition={!deleted}
+          fallback={<>삭제된 댓글입니다.</>}
+        >
+          <strong className='mr-[8px] font-normal text-main'>
+            {memtionProfile?.username}
+          </strong>
+          {content}
+        </WithConditionalRendering>
       </p>
       <div
         className={`flex items-center px-page ${deleted ? 'justify-end' : 'justify-between'}`}
       >
-        {!deleted && (
+        <WithConditionalRendering condition={!deleted}>
           <div className='flex gap-[8px]'>
             <LikeButton
               isLiked={like ?? false}
@@ -110,10 +110,11 @@ function ChildCommentItem({
               댓글 달기
             </motion.button>
           </div>
-        )}
+        </WithConditionalRendering>
+
         <span className='text-body-md text-gray-600'>{formatDate(date)}</span>
       </div>
-      {hasMoreButton && (
+      <WithConditionalRendering condition={Boolean(hasMoreButton)}>
         <motion.button
           type='button'
           whileTap={{ scale: 1.1 }}
@@ -122,7 +123,7 @@ function ChildCommentItem({
         >
           댓글 {moreCount}개 더보기
         </motion.button>
-      )}
+      </WithConditionalRendering>
     </div>
   );
 }

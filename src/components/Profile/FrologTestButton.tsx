@@ -23,7 +23,7 @@ function FrologTestButton() {
         onClick={() => {
           router.push(`${PAGES.TEST}?callbackUrl=${pathname}`);
           sessionStorage.setItem(
-            STORAGE_KEY.PROFILE_EDIT_FORM_KEY,
+            STORAGE_KEY.profileEditFormKey,
             JSON.stringify(getValues())
           );
         }}

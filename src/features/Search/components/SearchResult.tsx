@@ -7,10 +7,14 @@ import { PAGES } from '@/constants/page';
 import { AnimatePresence } from 'framer-motion';
 import { bottomSheet } from '@/modules/BottomSheet';
 import MainLayout from '@/layouts/MainLayout';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
+import Observer from '@/components/Gesture/Observer';
 import { useUserId } from '@/store/sessionStore';
+import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
 import SearchResultSkeleton from '@/components/Fallback/Skeleton/SearchResultSkeleton';
+import { SEARCH_ITEM } from '@/constants/searchItem';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
-import { useSearch } from '../hooks/useSearch';
+import { useSearchBook } from '../hooks/useSearchBook';
 import SearchResultEmpty from './SearchResultEmpty';
 import { useObserver } from '../../../hooks/gesture/useObserver';
 import NoBookButton from './NoBookButton';
@@ -27,10 +31,15 @@ function SearchResult() {
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useSearch();
+  } = useSearchBook();
   const userId = useUserId();
   const router = useRouter();
   const [isOpenRegister, setIsOpenRegister] = useState(false);
+
+  const { saveScroll } = useScrollPosition({
+    condition: isFetched,
+    key: 'search',
+  });
 
   const { setTarget } = useObserver({
     hasNextPage,
@@ -48,27 +57,43 @@ function SearchResult() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className='flex w-full flex-col items-end gap-[36px] bg-white px-[24px] pt-[24px]'>
+        <SearchResultSkeleton />
+      </div>
+    );
+  }
+
   return (
     <MainLayout
       ref={mainRef}
       isCenter={false}
-      extraClass='px-[24px] h-fit bg-white pb-[36px] pt-[24px] items-end gap-[36px] bg-white'
+      extraClass='px-[24px] h-fit pb-[36px] pt-[24px] items-end gap-[36px] bg-white'
     >
-      {isSearched && isEmpty && isFetched && <SearchResultEmpty />}
-      {!isEmpty && (
-        <>
-          {searchResult.map((item) => (
-            <BookListItem key={item.isbn} bookData={item} />
-          ))}
-        </>
-      )}
-
-      {isSearched && <NoBookButton onClick={handleNoBookClick} />}
-      {isFetchingNextPage || isLoading ? (
-        <SearchResultSkeleton />
-      ) : (
-        <div ref={setTarget} id='observer' className='h-[10px]' />
-      )}
+      <WithConditionalRendering
+        condition={!isEmpty}
+        fallback={
+          <SearchResultEmpty
+            target={SEARCH_ITEM.book.target}
+            content={SEARCH_ITEM.book.content}
+          />
+        }
+      >
+        {searchResult.map((item) => (
+          <BookListItem
+            key={item.isbn}
+            onSaveScroll={() => saveScroll()}
+            bookData={item}
+          />
+        ))}
+        {isSearched && <NoBookButton onClick={handleNoBookClick} />}
+        <Observer
+          setTarget={setTarget}
+          isFetching={isFetchingNextPage}
+          fallback={<SearchResultSkeleton />}
+        />
+      </WithConditionalRendering>
 
       <AnimatePresence>
         {isOpenRegister && (

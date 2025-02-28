@@ -32,11 +32,7 @@ function UserType({ profileDetail }: Props) {
   const { occupation, birth_date, gender } = infoMap;
 
   return (
-    <Slider
-      isBetween
-      sliderClass='flex w-full overflow-hidden'
-      slideClass='gap-[8px]'
-    >
+    <Slider isBetween slideClass='gap-[8px]'>
       <div className='flex-column items-center gap-[4px]'>
         <div
           className={

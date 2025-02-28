@@ -3,9 +3,8 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import useNewItemStore from '@/store/newItemStore';
-import { NavItemKey } from '@/constants/nav';
 import { staggerItemVariants } from '@/styles/variants/variants';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { GetWellItemRes } from '@frolog/frolog-api';
 import { CATEGORY } from '@/constants/category';
 import WellBubble from 'public/images/well/well-bubble.svg';
@@ -40,13 +39,12 @@ function WellItem({
   setTarget,
   startLoading,
 }: Props) {
-  const router = useRouter();
+  const { navigate } = useCustomRouter('well');
   const { newItemId, setNewItemId } = useNewItemStore();
   const { id, status, title, page, category, isbn, memo_cnt } = wellBook;
   const height = page > 400 ? page * 0.15 : 55;
   const isReading = status === 'reading';
   const hasMemo = memo_cnt > 0;
-  const currentNav = useSearchParams().get('nav') || NavItemKey.WELL;
 
   useEffect(() => {
     return () => {
@@ -62,10 +60,10 @@ function WellItem({
         whileTap={{ y: -10 }}
         onClick={() => {
           startLoading();
-          router.push(
+          navigate(
             isReading
-              ? `${wellId}/book/${isbn}/memo?nav=${currentNav}`
-              : `${wellId}/book/${isbn}/review?nav=${currentNav}`
+              ? `${wellId}/book/${isbn}/memo`
+              : `${wellId}/book/${isbn}/review`
           );
         }}
         variants={

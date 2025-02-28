@@ -3,6 +3,7 @@
 import React from 'react';
 import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton';
 import { useObserver } from '@/hooks/gesture/useObserver';
+import Observer from '@/components/Gesture/Observer';
 import WellListMessage from '@/features/Well/components/WellList/WellListMessage';
 import WellAddButton from './WellAddButton';
 import WellIcon from './WellIcon/WellIcon';
@@ -29,11 +30,11 @@ function WellList({ userId, isRootUser }: Props) {
       <div className='grid grid-cols-2 gap-[24px] px-page py-[12px]'>
         {isRootUser && <WellAddButton userId={userId!} />}
         {wells?.map((well) => <WellIcon key={well.id} wellData={well} />)}
-        {isFetchingNextPage ? (
-          <WellItemsSkeleton />
-        ) : (
-          <div ref={setTarget} id='observer' className='h-[10px]' />
-        )}
+        <Observer
+          setTarget={setTarget}
+          isFetching={isFetchingNextPage}
+          fallback={<WellItemsSkeleton />}
+        />
       </div>
       {isRootUser && (
         <WellListMessage message='우물에 책을 추가해 플레이리스트처럼 만드세요' />

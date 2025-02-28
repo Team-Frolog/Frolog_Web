@@ -1,5 +1,6 @@
 const DARK = 'dark';
 const LIGHT = 'light';
+const GRAY = 'gray';
 const HALF = 'half-gradient';
 
 export const PAGE_THEME: {
@@ -35,4 +36,5 @@ export const PAGE_THEME: {
   '/quit': LIGHT,
   '/store': LIGHT,
   '/mission': LIGHT,
+  '/well-search': GRAY,
 } as const;

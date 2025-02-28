@@ -1,12 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useRef } from 'react';
+import React, { ReactNode, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { CATEGORY } from '@/constants/category';
+import { getPath } from '@/utils/getPath';
 import { GetWellRes } from '@frolog/frolog-api';
-import { NavItemKey } from '@/constants/nav';
 import { FROGS } from '@/constants/frogs';
 import NewTag from '@/components/Tag/NewTag';
 import { sizeOfBg } from '../../../data/wellSize';
@@ -19,18 +19,24 @@ interface Props {
   type?: 'list' | 'select';
   /** 우물 정보 데이터 객체 */
   wellData: GetWellRes;
+  /** 우물 검색 키워드 */
+  highlightedName?: ReactNode;
   /** 클릭 핸들러 */
   onClick?: () => void;
 }
 
 /** 우물 아이콘 컴포넌트 */
-function WellIcon({ wellData, type = 'list', onClick }: Props) {
+function WellIcon({
+  wellData,
+  type = 'list',
+  highlightedName,
+  onClick,
+}: Props) {
   const { id, name, frog, owner, color, shape, date } = wellData;
-  const router = useRouter();
+  const { navigate } = useCustomRouter('well');
   const controls = useAnimation();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const shapeRef = useRef<HTMLDivElement | null>(null);
-  const currentNav = useSearchParams().get('nav') || NavItemKey.WELL;
 
   /** 우물 접근 모션 실행 함수 */
   const handleIntoWell = (wellId: string) => {
@@ -38,17 +44,18 @@ function WellIcon({ wellData, type = 'list', onClick }: Props) {
       const buttonRect = buttonRef.current.getBoundingClientRect();
 
       shapeRef.current.style.top = `${buttonRect.top}px`;
-      shapeRef.current.style.left = `${buttonRect.left}px`;
       shapeRef.current.style.width = `${buttonRect.width}px`;
       shapeRef.current.style.height = `${buttonRect.height}px`;
 
-      controls.start({
-        scale: 18,
-        transition: { duration: 1, ease: 'easeInOut' },
-      });
+      setTimeout(() => {
+        controls.start({
+          scale: 18,
+          transition: { duration: 1, ease: 'easeInOut' },
+        });
+      }, 300);
 
       setTimeout(() => {
-        router.push(`/${owner}/well/${wellId}?nav=${currentNav}`);
+        navigate(getPath.wellDetail(owner, wellId));
       }, 1000);
     }
   };
@@ -92,7 +99,7 @@ function WellIcon({ wellData, type = 'list', onClick }: Props) {
         </div>
       </motion.button>
       <h5 className='break-all text-center text-body-lg-bold text-gray-800'>
-        {name}
+        {highlightedName || name}
       </h5>
     </div>
   );

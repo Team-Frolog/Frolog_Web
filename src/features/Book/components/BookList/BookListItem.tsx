@@ -8,13 +8,16 @@ import { GetBookRes } from '@frolog/frolog-api';
 import { getTagById } from '@/utils/getTags';
 import { IMAGES } from '@/constants/images';
 import CustomLink from '@/components/Link/CustomLink';
+import { getPath } from '@/utils/getPath';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 
 interface Props {
   bookData: GetBookRes;
+  onSaveScroll?: () => void;
 }
 
 /** 도서 검색 결과 아이템 컴포넌트 */
-function BookListItem({ bookData }: Props) {
+function BookListItem({ bookData, onSaveScroll }: Props) {
   const {
     isbn,
     author,
@@ -31,7 +34,8 @@ function BookListItem({ bookData }: Props) {
   return (
     <CustomLink
       prefetch
-      href={`/book/${isbn}`}
+      href={getPath.book(isbn)}
+      onClick={onSaveScroll}
       className='flex w-full cursor-pointer gap-[20px] text-gray-800'
     >
       <div className='flex h-fit'>
@@ -46,13 +50,13 @@ function BookListItem({ bookData }: Props) {
       </div>
       <div className='flex flex-1 flex-col gap-[16px]'>
         <div className='flex-column gap-[4px]'>
-          {has_review && (
+          <WithConditionalRendering condition={Boolean(has_review)}>
             <div className='flex'>
               <span className='box-border rounded-[20px] bg-main px-[8px] py-[4px] text-caption-bold text-white'>
                 내가 리뷰한 책
               </span>
             </div>
-          )}
+          </WithConditionalRendering>
 
           <h5 className='text-body-xl-bold'>{title}</h5>
           <span className='flex text-caption-bold text-gray-600'>
@@ -62,26 +66,27 @@ function BookListItem({ bookData }: Props) {
         <div className='flex-column gap-[8px]'>
           <Rating rating={avg_rating || null} />
           <div className='flex-column gap-[4px]'>
-            {avg_rating !== 0 ? (
-              <>
+            <WithConditionalRendering
+              condition={avg_rating !== 0}
+              fallback={
                 <Tag
-                  type='pros'
-                  tagValue={getTagById('pros', tags_pos[0])!}
+                  type='default'
+                  tagValue='첫 리뷰 작성자가 되어보세요!'
                   size='small'
                 />
-                <Tag
-                  type='cons'
-                  tagValue={getTagById('cons', tags_neg[0])!}
-                  size='small'
-                />
-              </>
-            ) : (
+              }
+            >
               <Tag
-                type='default'
-                tagValue='첫 리뷰 작성자가 되어보세요!'
+                type='pros'
+                tagValue={getTagById('pros', tags_pos[0])!}
                 size='small'
               />
-            )}
+              <Tag
+                type='cons'
+                tagValue={getTagById('cons', tags_neg[0])!}
+                size='small'
+              />
+            </WithConditionalRendering>
           </div>
           <span className='text-caption-bold text-gray-600'>
             총 {review_cnt}개의 리뷰

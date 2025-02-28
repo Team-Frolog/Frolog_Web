@@ -3,7 +3,7 @@
 import FormInput from '@/components/Form/Input/FormInput';
 import SendButton from '@/components/Form/Button/SendButton';
 import PasswordForm from '@/components/Form/Password/PasswordForm';
-import { useEmailValidation } from '@/hooks/auth/useEmailValidation';
+import { useEmailValidation } from '@/hooks/form/useEmailValidation';
 import { useStepActions } from '@/store/stepStore';
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';

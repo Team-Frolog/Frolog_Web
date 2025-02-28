@@ -12,11 +12,17 @@ const nextConfig = {
     middleware: true,
     scrollRestoration: true,
   },
-  webpack: (config) => {
+  webpack: (config, context) => {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
+
+    if (context?.isServer) {
+      config.resolve.alias['msw/browser'] = false;
+    } else {
+      config.resolve.alias['msw/node'] = false;
+    }
 
     return config;
   },

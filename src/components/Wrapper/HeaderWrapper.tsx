@@ -15,7 +15,9 @@ function HeaderWrapper({ children, isResponsive }: Props) {
       {children}
     </ResponsiveHeaderLayout>
   ) : (
-    <div>{children}</div>
+    <header className='flex h-fit w-full px-page py-[20px] pt-[50px]'>
+      {children}
+    </header>
   );
 }
 

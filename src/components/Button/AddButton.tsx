@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { AddIcon } from 'public/icons';
 import { CATEGORY } from '@/constants/category';
 import Button from './Button';
@@ -20,25 +20,25 @@ interface Props {
  * - route가 전달된 경우 route로 이동하고, onClick이 전달된 경우 onClick을 실행합니다.
  * */
 function AddButton({ route, text, categoryId, onClick }: Props) {
-  const router = useRouter();
+  const { navigate } = useCustomRouter('well');
 
   const handleClick = () => {
     if (route) {
-      router.push(route);
+      navigate(route);
     } else if (onClick) {
       onClick();
     }
   };
 
   const color = categoryId
-    ? `bg-category-bg-${categoryId} text-category-text-${categoryId}`
+    ? `bg-category-bg-${categoryId} text-category-btnText-${categoryId}`
     : 'light';
 
   return (
     <Button onClick={handleClick} theme={color}>
       <div className='flex-center gap-[8px]'>
         <AddIcon
-          fill={categoryId ? CATEGORY[categoryId].text : '#727484'}
+          fill={categoryId ? CATEGORY[categoryId].btnText : '#727484'}
           width={25}
           height={24}
         />

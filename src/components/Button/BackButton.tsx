@@ -4,6 +4,7 @@ import { BackIcon, BackBgIcon } from 'public/icons';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import WithConditionalRendering from '../HOC/WithConditionalRendering';
 
 interface Props {
   onClick?: () => void;
@@ -33,7 +34,20 @@ function BackButton({
   const router = useRouter();
   return (
     <>
-      {type === 'normal' ? (
+      <WithConditionalRendering
+        condition={type === 'normal'}
+        fallback={
+          <motion.button
+            id={safeArea}
+            type='button'
+            whileTap={{ scale: 0.9 }}
+            onClick={onClick}
+            className='absolute left-[12px] top-[12px] z-70'
+          >
+            <BackBgIcon />
+          </motion.button>
+        }
+      >
         <button
           id={safeArea}
           type='button'
@@ -42,17 +56,7 @@ function BackButton({
         >
           <BackIcon id='icon' fill={fill} />
         </button>
-      ) : (
-        <motion.button
-          id={safeArea}
-          type='button'
-          whileTap={{ scale: 0.9 }}
-          onClick={onClick}
-          className='absolute left-[12px] top-[12px] z-70'
-        >
-          <BackBgIcon />
-        </motion.button>
-      )}
+      </WithConditionalRendering>
     </>
   );
 }

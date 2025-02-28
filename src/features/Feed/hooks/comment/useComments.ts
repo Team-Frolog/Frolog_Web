@@ -35,7 +35,7 @@ export const useComments = (id: string, isReview: boolean) => {
       staleTime: 0,
     });
 
-  const isEmpty = !data?.pages.length;
+  const isEmpty = isFetched && data?.pages.length === 0;
 
   const { mutate: handleAddComment } = useMutation({
     mutationFn: (req: PostComments) => addNewComment(req, isReview),

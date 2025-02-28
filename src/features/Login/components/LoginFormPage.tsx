@@ -15,7 +15,7 @@ import LoginButton from './LoginButton';
 
 /** 로그인 페이지 */
 function LoginFormPage() {
-  const { isSaved, setIsSaved, userLogin, isFaild, setIsFaild, isLoading } =
+  const { isSaved, setIsSaved, userLogin, isFailed, setIsFailed, isLoading } =
     useLogin('login');
 
   return (
@@ -31,7 +31,7 @@ function LoginFormPage() {
     >
       {isLoading && <LoadingOverlay theme='dark' />}
       <div className='flex-column gap-[20px] py-[32px]'>
-        <LoginForm setIsFaild={setIsFaild} userLogin={userLogin} />
+        <LoginForm setIsFailed={setIsFailed} userLogin={userLogin} />
         <div className='flex w-full items-center justify-between'>
           <RememberMe isSaved={isSaved} setIsSaved={setIsSaved} />
           <Link href={PAGES.FIND_PASSWORD} className='text-body-sm text-main'>
@@ -41,7 +41,9 @@ function LoginFormPage() {
       </div>
       <div className='flex-col-center w-full gap-[12px] pb-[24px]'>
         <AnimatePresence>
-          {isFaild && <ErrorToast errorMsg='로그인 정보를 다시 확인해주세요' />}
+          {isFailed && (
+            <ErrorToast errorMsg='로그인 정보를 다시 확인해주세요' />
+          )}
         </AnimatePresence>
         <LoginButton />
       </div>

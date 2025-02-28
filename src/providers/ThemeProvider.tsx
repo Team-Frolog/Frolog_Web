@@ -2,7 +2,7 @@
 
 import { PAGE_THEME } from '@/constants/theme';
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 /** 페이지별 배경 테마를 조절하는 컴포넌트 */
 function ThemeProvider() {
@@ -21,7 +21,7 @@ function ThemeProvider() {
     return theme;
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (typeof window !== 'undefined') {
       const body = document.querySelector('body')!;
       body.classList.remove('dark');

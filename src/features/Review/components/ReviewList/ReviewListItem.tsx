@@ -8,6 +8,7 @@ import { formatDate } from '@/utils/date';
 import DeleteButton from '@/components/Button/DeleteButton';
 import { useUserId } from '@/store/sessionStore';
 import CustomLink from '@/components/Link/CustomLink';
+import { getPath } from '@/utils/getPath';
 
 interface Props {
   /** 리뷰 데이터 객체 */
@@ -31,7 +32,9 @@ function ReviewListItem({ reviewData, setReviewId, onDelete, userId }: Props) {
         <CustomLink
           prefetch
           href={
-            isRootUser ? `review/${reviewData.id}` : `/review/${reviewData.id}`
+            isRootUser
+              ? `review/${reviewData.id}`
+              : getPath.review(reviewData.id)
           }
           className='flex w-full cursor-pointer flex-col gap-[12px] px-[24px]'
         >

@@ -5,13 +5,12 @@ import { useRouter } from 'next/navigation';
 import { StoreIcon } from 'public/icons';
 import React from 'react';
 import BackButton from '@/components/Button/BackButton';
-import { useProfile } from '@/hooks/useProfile';
 import { PAGES } from '@/constants/page';
 import CustomMotionLink from '@/components/Link/CustomMotionLink';
+import { WELL_TABS } from '@/constants/tabs';
+import TabMenu from '@/components/Tab/TabMenu';
 
 interface Props {
-  /** 유저 id */
-  userId?: string;
   /** 상점 버튼 유무 */
   hasStoreButton?: boolean;
   /** 뒤로가기 버튼 유무 */
@@ -22,29 +21,17 @@ interface Props {
 
 /** 사이드 형태의 우물 입구 헤더 컴포넌트 */
 function SideWellHeader({
-  userId,
   bgColor,
   hasStoreButton = false,
   hasBackButton = false,
 }: Props) {
   const router = useRouter();
-  const { profile } = useProfile(userId);
 
   return (
-    <WellEntryHeader
-      title={
-        profile ? (
-          <>
-            {profile.username}의
-            <br />
-            우물
-          </>
-        ) : (
-          '우물'
-        )
-      }
-      bgColor={bgColor}
-    >
+    <WellEntryHeader bgColor={bgColor}>
+      <header className='flex h-fit w-full px-page py-[20px] pt-[50px]'>
+        <TabMenu tabs={WELL_TABS} theme='light' />
+      </header>
       {hasBackButton && (
         <BackButton
           type='bg'

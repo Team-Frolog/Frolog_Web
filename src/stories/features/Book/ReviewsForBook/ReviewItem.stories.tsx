@@ -38,6 +38,7 @@ export const Default: Story = {
       comment_count: 0,
     },
     category: 'novel',
+    onSaveScroll: () => {},
     onClickLike: () => {},
   },
 };

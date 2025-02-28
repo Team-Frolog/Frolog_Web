@@ -25,7 +25,7 @@ export const useReviewForBook = (isbn: string) => {
       refetchOnWindowFocus: false,
     });
 
-  const isEmpty = !data.pages.length;
+  const isEmpty = isFetched && data.pages.length === 0;
 
   return {
     reviews: data.pages,

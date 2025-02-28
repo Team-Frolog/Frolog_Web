@@ -9,6 +9,7 @@ import {
 import { ReviewFormType } from '@/features/Review';
 import { generateRatingStars, getRatingMsg } from '@/utils/star';
 import Star from './Star';
+import WithConditionalRendering from '../HOC/WithConditionalRendering';
 
 interface Props {
   /** 컴포넌트 사용처 */
@@ -19,6 +20,8 @@ interface Props {
   isError?: boolean;
   /** 리뷰 개수 */
   review_cnt?: number;
+  /** 컴포넌트 전체에 적용될 추가 onClick */
+  onClick?: () => void;
   setValue?: UseFormSetValue<ReviewFormType>;
   watch?: UseFormWatch<ReviewFormType>;
   clearErrors?: UseFormClearErrors<ReviewFormType>;
@@ -37,6 +40,7 @@ function RatingSelector({
   isError,
   clearErrors,
   review_cnt,
+  onClick,
 }: Props) {
   const currentRating = type === 'form' ? watch!('rating') : rating;
 
@@ -86,13 +90,17 @@ function RatingSelector({
   };
 
   return (
-    <div className='flex-col-center w-full justify-center gap-[8px] text-gray-800'>
+    <div
+      onClick={onClick}
+      className='flex-col-center w-full justify-center gap-[8px] text-gray-800'
+    >
       <div className='flex-column items-center'>
-        {review_cnt !== undefined && (
+        <WithConditionalRendering condition={review_cnt !== undefined}>
           <span className='text-body-sm text-gray-600'>
             총 {review_cnt}개의 리뷰
           </span>
-        )}
+        </WithConditionalRendering>
+
         <h1
           className={`text-heading-xl-bold ${isError ? 'text-error' : 'text-gray-800'}`}
         >
@@ -109,11 +117,11 @@ function RatingSelector({
             ? '아직 리뷰가 없어요'
             : '별점을 남겨주세요'}
       </h4>
-      {!currentRating && type === 'default' ? (
-        <></>
-      ) : (
+      <WithConditionalRendering
+        condition={!!currentRating || type !== 'default'}
+      >
         <div className='flex gap-[10px]'>{renderStars()}</div>
-      )}
+      </WithConditionalRendering>
     </div>
   );
 }

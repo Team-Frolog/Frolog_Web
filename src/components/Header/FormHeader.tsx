@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useFormTitle } from '@/hooks/useFormTitle';
+import { useFormTitle } from '@/hooks/form/useFormTitle';
 import { usePathname, useRouter } from 'next/navigation';
 import { STORAGE_KEY } from '@/constants/storage';
 import { PAGES } from '@/constants/page';
@@ -23,7 +23,7 @@ function FormHeader() {
     if (pathname === PAGES.ONBOARDING) {
       router.push(PAGES.HOME);
     } else {
-      localStorage.removeItem(STORAGE_KEY.JOIN_FORM_KEY);
+      localStorage.removeItem(STORAGE_KEY.joinFormKey);
       router.back();
     }
   };

@@ -17,7 +17,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@frolog/frolog-api": "^1.0.2",
+    "@frolog/frolog-api": "^1.1.1",
     "@sentry/nextjs": "^8.35.0",
     "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query": "^5.40.1",
@@ -58,7 +58,7 @@
     "@tailwindcss/typography": "^0.5.13",
     "@team-frolog/eslint-config-web": "^1.0.1",
     "@team-frolog/prettier-config-web": "^0.0.1",
-    "@team-frolog/tailwind-config": "^0.0.3",
+    "@team-frolog/tailwind-config": "^0.0.4",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",

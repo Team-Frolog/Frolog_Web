@@ -3,14 +3,16 @@
 import React from 'react';
 import { FeedIcon, ProfileIcon, SearchIcon, WellIcon } from 'public/icons';
 import { PAGES } from '@/constants/page';
+import { getPath } from '@/utils/getPath';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { NavItemLabel, NavItemKey } from '@/types/nav';
 import useUserActionStore from '@/store/userActionStore';
 import { useUserId } from '@/store/sessionStore';
-import { NavigationTap, NavItemKey } from '@/constants/nav';
+import { NAV_ITEM } from '@/constants/nav';
 import NavItem from './NavItem';
 
 interface NavItemProps {
-  label: NavigationTap;
+  label: NavItemLabel;
   href: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   onClick?: () => void;
@@ -25,29 +27,29 @@ function NavigationBar() {
 
   const navItems: NavItemProps[] = [
     {
-      label: NavigationTap.WELL,
+      label: NAV_ITEM.well.label,
       href: PAGES.HOME,
       icon: WellIcon,
-      navKey: NavItemKey.WELL,
+      navKey: NAV_ITEM.well.key,
     },
     {
-      label: NavigationTap.FEED,
+      label: NAV_ITEM.feed.label,
       href: PAGES.FEED,
       icon: FeedIcon,
-      onClick: () => setScrollPos(null),
-      navKey: NavItemKey.FEED,
+      onClick: () => setScrollPos(null, 'feed'),
+      navKey: NAV_ITEM.feed.key,
     },
     {
-      label: NavigationTap.SEARCH,
+      label: NAV_ITEM.search.label,
       href: PAGES.SEARCH_HOME,
       icon: SearchIcon,
-      navKey: NavItemKey.SEARCH,
+      navKey: NAV_ITEM.search.key,
     },
     {
-      label: NavigationTap.PROFILE,
-      href: `/${userId}/profile`,
+      label: NAV_ITEM.profile.label,
+      href: getPath.profile(userId ?? ''),
       icon: ProfileIcon,
-      navKey: NavItemKey.PROFILE,
+      navKey: NAV_ITEM.profile.key,
     },
   ];
 
@@ -61,7 +63,8 @@ function NavigationBar() {
     const isActive =
       pathname === href ||
       currentTapKey === navKey ||
-      (label === NavigationTap.WELL && pathname === '/default');
+      (label === NAV_ITEM.well.label &&
+        (pathname === PAGES.DEFAULT || pathname === PAGES.EXPLORE));
 
     return (
       <NavItem

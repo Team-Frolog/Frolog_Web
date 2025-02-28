@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { bottomSheet } from '@/modules/BottomSheet';
 import BackButton from '../Button/BackButton';
+import WithConditionalRendering from '../HOC/WithConditionalRendering';
 
 interface Props {
   /** 헤더의 성격 */
@@ -14,8 +15,8 @@ interface Props {
   isDisabled?: boolean;
   /** 타이틀명 */
   title: string;
-  /** 다크/라이트 테마 */
-  theme: 'dark' | 'light';
+  /** 테마 색상 */
+  theme: 'dark' | 'light' | 'gray';
   /** 추가 버튼 핸들러 함수 */
   onClick?: () => void;
   /** 뒤로가기 핸들러 (주어지지 않은 경우 내부 함수 사용) */
@@ -35,8 +36,19 @@ function TitleHeader({
   hasButton = true,
 }: Props) {
   const router = useRouter();
-  const themeColor =
-    theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-gray-800';
+
+  const getThemeColor = useCallback((th: 'dark' | 'light' | 'gray') => {
+    switch (th) {
+      case 'dark':
+        return 'bg-gray-900 text-white';
+      case 'light':
+        return 'bg-white text-gray-800';
+      case 'gray':
+        return 'bg-gray-300 text-gray-800';
+      default:
+        return '';
+    }
+  }, []);
 
   /** 기본 뒤로가기 핸들러 함수
    * - type이 edit, write인 경우(수정 중, 작성 중), 이탈 확인 바텀시트를 렌더링합니다.
@@ -60,7 +72,7 @@ function TitleHeader({
   return (
     <header
       id='header'
-      className={`header-sticky duration-50 z-70 flex justify-between px-[24px] py-[20px] transition-all ${themeColor} ${type === 'no_border' ? 'border-0' : 'border-b-[0.5px] border-gray-400'}`}
+      className={`header-sticky duration-50 z-70 flex justify-between px-[24px] py-[20px] transition-all ${getThemeColor(theme)} ${type === 'no_border' ? 'border-0' : 'border-b-[0.5px] border-gray-400'}`}
     >
       <BackButton
         onClick={onClickBack || handleClick}
@@ -72,7 +84,7 @@ function TitleHeader({
       >
         {title}
       </h2>
-      {hasButton && (
+      <WithConditionalRendering condition={hasButton}>
         <button
           type={type === 'default' ? 'button' : 'submit'}
           onClick={type === 'default' ? onClick : undefined}
@@ -80,7 +92,7 @@ function TitleHeader({
         >
           {type === 'default' ? '수정' : '저장'}
         </button>
-      )}
+      </WithConditionalRendering>
     </header>
   );
 }

@@ -31,6 +31,8 @@ export const PAGES = {
   QUIT: '/quit',
   MISSION: '/mission',
   TERMS: '/terms',
+  EXPLORE: '/explore',
+  WELL_SEARCH: '/well-search',
 } as const;
 
 export const PAGE_CONFIG: PageConfig = {

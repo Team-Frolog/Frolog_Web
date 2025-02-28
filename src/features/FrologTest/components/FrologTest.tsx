@@ -13,12 +13,13 @@ function FrologTest() {
   const { resetStep } = useStepActions();
   const { testData, answers, handleClickAnswer, step, isLoading } = useTest();
 
-  useEffect(() => {
-    return () => {
-      sessionStorage.removeItem(STORAGE_KEY.TEST_ANSWER_KEY);
+  useEffect(
+    () => () => {
+      sessionStorage.removeItem(STORAGE_KEY.testAnswerKey);
       resetStep();
-    };
-  }, []);
+    },
+    []
+  );
 
   if (isLoading === 'true') {
     return <LoadingPage />;

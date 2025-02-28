@@ -22,7 +22,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    userId: '0',
     hasBackButton: false,
     hasStoreButton: true,
     bgColor: 'bg-gray-200',
@@ -31,7 +30,6 @@ export const Default: Story = {
 
 export const Others: Story = {
   args: {
-    userId: '0',
     hasBackButton: true,
     hasStoreButton: false,
     bgColor: 'bg-gray-200',

@@ -2,18 +2,17 @@
 
 import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { NavItemKey } from '@/constants/nav';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
+import { getPath } from '@/utils/getPath';
 import { useUserId } from '@/store/sessionStore';
 import { addNewMemo } from '../api/memo.api';
 import { MemoFormType } from '../types/form';
 
 /** 메모 작성 핸들링 훅 */
 export const useAddMemo = (wellId: string, bookId: string) => {
-  const router = useRouter();
+  const { replace } = useCustomRouter('well');
   const userId = useUserId();
   const [isLoading, setIsLoading] = useState(false);
-  const currentNav = useSearchParams().get('nav') || NavItemKey.WELL;
 
   useEffect(
     () => () => {
@@ -37,10 +36,7 @@ export const useAddMemo = (wellId: string, bookId: string) => {
       const result = addNewMemo(req);
       return result;
     },
-    onSuccess: () =>
-      router.replace(
-        `/${userId}/well/${wellId}/book/${bookId}/memo?nav=${currentNav}`
-      ),
+    onSuccess: () => replace(getPath.memoList(userId!, wellId, bookId)),
   });
 
   return { handleAddMemo, isLoading };
