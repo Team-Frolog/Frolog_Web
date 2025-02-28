@@ -56,7 +56,7 @@ export const useReviews = (bookId: string, userId: string) => {
     },
   });
 
-  const isEmpty = isFetched && data?.reviews?.length === 0;
+  const isEmpty = data.reviews.length === 0;
 
   return {
     deleteReview: mutate,

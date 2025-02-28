@@ -46,7 +46,11 @@ function TabMenu({ tabs, theme = 'dark' }: Props) {
             key={tab.path}
             id={isSelected(tab.path) ? 'selected' : 'unselected'}
             replace
-            href={tab.path}
+            href={
+              isSelected(tab.path)
+                ? tab.path
+                : `${pathname.replace(tabs[0].path, tab.path).replace(tabs[1].path, tab.path)}`
+            }
             className='text-heading-md-bold'
             style={{
               color: isSelected(tab.path) ? selected : unselected,
