@@ -10,10 +10,11 @@ import { useSearchParams } from 'next/navigation';
 interface Props {
   userId: string;
   wells: GetWellRes[];
+  onSaveScroll: () => void;
 }
 
 /** 우물 탐색/검색 아이템 컴포넌트 */
-function WellSearchItem({ userId, wells }: Props) {
+function WellSearchItem({ userId, wells, onSaveScroll }: Props) {
   const searchValue = useSearchParams().get('query') || null;
 
   // 우물 검색 키워드 강조 함수
@@ -37,7 +38,7 @@ function WellSearchItem({ userId, wells }: Props) {
   };
 
   return (
-    <div className='flex w-full flex-col'>
+    <div className='flex w-full flex-col' onClick={onSaveScroll}>
       <ProfileHeader type='feed' hasFollow userId={userId} />{' '}
       <div className='pt-[30px]'>
         <div className='relative flex w-full rounded-[20px] bg-white py-[24px]'>

@@ -10,6 +10,8 @@ import Observer from '@/components/Gesture/Observer';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import SearchResultEmpty from '@/features/Search/components/SearchResultEmpty';
 import { SEARCH_ITEM } from '@/constants/searchItem';
+import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
+import WellSearchItemListSkeleton from '@/components/Fallback/Skeleton/WellSearchItemListSkeleton';
 
 function WellSearchResult() {
   const {
@@ -18,14 +20,21 @@ function WellSearchResult() {
     hasNextPage,
     isLoading,
     isEmpty,
+    isFetched,
     isFetchingNextPage,
   } = useSearchWells();
+
   const { setTarget } = useObserver({
     hasNextPage,
     fetchNextPage,
   });
 
-  if (isLoading) return <WellSearchItemSkeleton />;
+  const { saveScroll } = useScrollPosition({
+    condition: isFetched,
+    key: 'wellSearch',
+  });
+
+  if (isLoading) return <WellSearchItemListSkeleton />;
 
   return (
     <MainLayout extraClass='gap-[36px] pb-[36px] pt-[24px] bg-gray-300'>
@@ -43,6 +52,7 @@ function WellSearchResult() {
             key={resultItem.id}
             userId={resultItem.id}
             wells={resultItem.wells}
+            onSaveScroll={saveScroll}
           />
         ))}
         <Observer

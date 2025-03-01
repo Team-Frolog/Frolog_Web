@@ -5,6 +5,8 @@ export interface LastScrollPos {
   feed: number | null;
   search: number | null;
   book: number | null;
+  explore: number | null;
+  wellSearch: number | null;
 }
 
 interface UserActionState {
@@ -26,6 +28,8 @@ const useUserActionStore = create<UserActionState>()(
         feed: null,
         search: null,
         book: null,
+        explore: null,
+        wellSearch: null,
       },
       isInFeed: false,
       actions: {

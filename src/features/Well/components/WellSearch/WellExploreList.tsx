@@ -1,10 +1,12 @@
 'use client';
 
+import WellSearchItemListSkeleton from '@/components/Fallback/Skeleton/WellSearchItemListSkeleton';
 import WellSearchItemSkeleton from '@/components/Fallback/Skeleton/WellSearchItemSkeleton';
 import Observer from '@/components/Gesture/Observer';
 import WellSearchItem from '@/features/Well/components/WellSearch/WellSearchItem';
 import { useExploreWells } from '@/features/Well/hooks/useExploreWells';
 import { useObserver } from '@/hooks/gesture/useObserver';
+import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
 import React from 'react';
 
 interface Props {
@@ -17,6 +19,7 @@ function WellExploreList({ refTime }: Props) {
     fetchNextPage,
     hasNextPage,
     isLoading,
+    isFetched,
     isFetchingNextPage,
   } = useExploreWells(refTime);
 
@@ -25,12 +28,22 @@ function WellExploreList({ refTime }: Props) {
     fetchNextPage,
   });
 
-  if (!exploreResult || isLoading) return <WellSearchItemSkeleton />;
+  const { saveScroll } = useScrollPosition({
+    condition: isFetched,
+    key: 'explore',
+  });
+
+  if (!exploreResult || isLoading) return <WellSearchItemListSkeleton />;
 
   return (
     <div className='flex w-full flex-col gap-[36px]'>
       {exploreResult.pages.map(({ id, wells }) => (
-        <WellSearchItem key={id} userId={id} wells={wells} />
+        <WellSearchItem
+          key={id}
+          userId={id}
+          wells={wells}
+          onSaveScroll={saveScroll}
+        />
       ))}
       <Observer
         setTarget={setTarget}
