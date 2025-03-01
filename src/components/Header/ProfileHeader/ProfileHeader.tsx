@@ -4,6 +4,7 @@ import React from 'react';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import { MenuIcon } from 'public/icons';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
+import { NAV_ITEM } from '@/constants/nav';
 import { getPath } from '@/utils/getPath';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useReport } from '@/hooks/user/useReport';
@@ -70,7 +71,12 @@ function ProfileHeader({
             if (onClick) {
               onClick();
             }
-            navigate(getPath.profile(profile.id));
+            const profileUrl = getPath.profile(profile.id);
+            navigate(
+              isRootUser
+                ? `${profileUrl}?nav=${NAV_ITEM.profile.key}`
+                : profileUrl
+            );
           })
         }
         className='flex items-center gap-[8px]'
