@@ -5,7 +5,7 @@ import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import Observer from '@/components/Gesture/Observer';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
-import MemoListSkeleton from '@/components/Fallback/Skeleton/MemoListSkeleton';
+import MemoListSkeleton from '@/components/Fallback/Skeleton/Memo/MemoListSkeleton';
 import MemoListItem from './MemoListItem';
 import { useMemos } from '../../hooks/useMemos';
 import { Memo } from '../../models/memo.model';

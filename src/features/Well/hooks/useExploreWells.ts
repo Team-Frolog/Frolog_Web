@@ -7,6 +7,7 @@ export const useExploreWells = (refTime: string) => {
     data: exploreResult,
     fetchNextPage,
     hasNextPage,
+    isFetched,
     isLoading,
     isFetchingNextPage,
   } = useInfiniteQuery({
@@ -29,6 +30,7 @@ export const useExploreWells = (refTime: string) => {
 
   return {
     exploreResult,
+    isFetched,
     fetchNextPage,
     hasNextPage,
     isLoading,

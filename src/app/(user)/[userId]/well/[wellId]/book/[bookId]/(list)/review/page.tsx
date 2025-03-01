@@ -1,5 +1,5 @@
 import React from 'react';
-import ReviewListSkeleton from '@/components/Fallback/Skeleton/ReviewListSkeleton';
+import ReviewListSkeleton from '@/components/Fallback/Skeleton/Review/ReviewListSkeleton';
 import dynamic from 'next/dynamic';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
 import { Metadata } from 'next';

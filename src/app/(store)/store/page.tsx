@@ -5,7 +5,7 @@ import { authOptions } from '@/utils/auth/nextAuth';
 import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import dynamic from 'next/dynamic';
-import StoreItemSkeleton from '@/components/Fallback/Skeleton/StoreItemSkeleton';
+import StoreItemSkeleton from '@/components/Fallback/Skeleton/Store/StoreItemSkeleton';
 import {
   dehydrate,
   HydrationBoundary,

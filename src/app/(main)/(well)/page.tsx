@@ -2,7 +2,7 @@ import React from 'react';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/nextAuth';
 import dynamic from 'next/dynamic';
-import WellListSkeleton from '@/components/Fallback/Skeleton/WellListSkeleton';
+import WellListSkeleton from '@/components/Fallback/Skeleton/Well/WellListSkeleton';
 import { Metadata } from 'next';
 import {
   dehydrate,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Feeds } from '@/features/Feed';
 import { Metadata } from 'next';
+import WellEntryHeader from '@/components/Header/WellEntryHeader';
 
 export const metadata: Metadata = {
   title: '피드',
@@ -8,7 +9,14 @@ export const metadata: Metadata = {
 };
 
 async function FeedPage() {
-  return <Feeds />;
+  return (
+    <>
+      <WellEntryHeader />
+      <div className='flex w-full flex-1 flex-col overflow-hidden bg-gray-300'>
+        <Feeds />
+      </div>
+    </>
+  );
 }
 
 export default FeedPage;

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
-import FollowListSkeleton from '@/components/Fallback/Skeleton/FollowListSkeleton';
+import FollowListSkeleton from '@/components/Fallback/Skeleton/Profile/FollowListSkeleton';
 import Tab from '@/components/Tab/Tab';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useProfileDetail } from '../../hooks/useProfileDetail';

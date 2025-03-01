@@ -1,4 +1,4 @@
-import WellListSkeleton from '@/components/Fallback/Skeleton/WellListSkeleton';
+import WellListSkeleton from '@/components/Fallback/Skeleton/Well/WellListSkeleton';
 import { DEFAULT_LIMIT } from '@/constants/api';
 import { PAGES } from '@/constants/page';
 import { QUERY_KEY } from '@/constants/query';
@@ -51,11 +51,10 @@ async function ExplorePage() {
           placeholder='우물 키워드를 검색해보세요'
         />
       </div>
-      <div className='flex w-full flex-col gap-[36px]'>
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <WellExploreList refTime={refTime} />
-        </HydrationBoundary>
-      </div>
+
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <WellExploreList refTime={refTime} />
+      </HydrationBoundary>
     </div>
   );
 }
