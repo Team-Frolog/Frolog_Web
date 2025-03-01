@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileHeaderSkeleton from './ProfileHeaderSkeleton';
+import ProfileHeaderSkeleton from '../Profile/ProfileHeaderSkeleton';
 
 function WellSearchItemSkeleton() {
   return (

@@ -5,7 +5,7 @@ import { staggerContainerVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
 import { GetWellRes } from '@frolog/frolog-api';
 import { getRandomEmptyMessage } from '@/features/Well/utils/getRandomMessage';
-import WellitemSkeleton from '@/components/Fallback/Skeleton/WellitemSkeleton';
+import WellItemSkeleton from '@/components/Fallback/Skeleton/Well/WellItemSkeleton';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
@@ -97,7 +97,7 @@ const WellItemList = React.memo(
             condition={!isEmpty}
             fallback={<EmptyWellItem isRootUser={isRootUser} />}
           >
-            {isFetchingNextPage && <WellitemSkeleton />}
+            {isFetchingNextPage && <WellItemSkeleton />}
             <div className='flex w-full flex-col'>
               {wellItems?.map((item, i) => (
                 <WellItem

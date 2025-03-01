@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton';
+import WellItemsSkeleton from '@/components/Fallback/Skeleton/Well/WellItemsSkeleton';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import Observer from '@/components/Gesture/Observer';
 import WellListMessage from '@/features/Well/components/WellList/WellListMessage';

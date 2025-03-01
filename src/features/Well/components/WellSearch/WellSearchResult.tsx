@@ -5,13 +5,13 @@ import MainLayout from '@/layouts/MainLayout';
 import { useSearchWells } from '@/features/Well/hooks/useSearchWells';
 import WellSearchItem from '@/features/Well/components/WellSearch/WellSearchItem';
 import { useObserver } from '@/hooks/gesture/useObserver';
-import WellSearchItemSkeleton from '@/components/Fallback/Skeleton/WellSearchItemSkeleton';
+import WellSearchItemSkeleton from '@/components/Fallback/Skeleton/Well/WellSearchItemSkeleton';
 import Observer from '@/components/Gesture/Observer';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import SearchResultEmpty from '@/features/Search/components/SearchResultEmpty';
 import { SEARCH_ITEM } from '@/constants/searchItem';
 import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
-import WellSearchItemListSkeleton from '@/components/Fallback/Skeleton/WellSearchItemListSkeleton';
+import WellSearchItemListSkeleton from '@/components/Fallback/Skeleton/Well/WellSearchItemListSkeleton';
 
 function WellSearchResult() {
   const {

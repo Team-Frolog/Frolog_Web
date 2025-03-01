@@ -1,7 +1,7 @@
 'use client';
 
-import WellSearchItemListSkeleton from '@/components/Fallback/Skeleton/WellSearchItemListSkeleton';
-import WellSearchItemSkeleton from '@/components/Fallback/Skeleton/WellSearchItemSkeleton';
+import WellSearchItemListSkeleton from '@/components/Fallback/Skeleton/Well/WellSearchItemListSkeleton';
+import WellSearchItemSkeleton from '@/components/Fallback/Skeleton/Well/WellSearchItemSkeleton';
 import Observer from '@/components/Gesture/Observer';
 import WellSearchItem from '@/features/Well/components/WellSearch/WellSearchItem';
 import { useExploreWells } from '@/features/Well/hooks/useExploreWells';

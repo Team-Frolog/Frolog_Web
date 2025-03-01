@@ -1,4 +1,4 @@
-import WellListSkeleton from '@/components/Fallback/Skeleton/WellListSkeleton';
+import WellListSkeleton from '@/components/Fallback/Skeleton/Well/WellListSkeleton';
 import { DEFAULT_LIMIT } from '@/constants/api';
 import { PAGES } from '@/constants/page';
 import { QUERY_KEY } from '@/constants/query';

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { IMAGES } from '@/constants/images';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import Observer from '@/components/Gesture/Observer';
-import FeedListSkeleton from '@/components/Fallback/Skeleton/FeedListSkeleton';
+import FeedListSkeleton from '@/components/Fallback/Skeleton/Feed/FeedListSkeleton';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';

@@ -5,7 +5,7 @@ import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import Observer from '@/components/Gesture/Observer';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import { useObserver } from '@/hooks/gesture/useObserver';
-import FollowListSkeleton from '@/components/Fallback/Skeleton/FollowListSkeleton';
+import FollowListSkeleton from '@/components/Fallback/Skeleton/Profile/FollowListSkeleton';
 import { useFollowings } from '../../hooks/useFollowings';
 import FollowItem from './FollowItem';
 

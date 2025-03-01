@@ -5,7 +5,7 @@ import BookInfo from '@/components/Book/BookInfo';
 import { CATEGORY } from '@/constants/category';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import React, { Suspense } from 'react';
-import BookInfoSkeleton from '@/components/Fallback/Skeleton/BookInfoSkeleton';
+import BookInfoSkeleton from '@/components/Fallback/Skeleton/Book/BookInfoSkeleton';
 import { useBook } from '@/features/Book';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import { MEMO_REVIEW_TABS } from '@/constants/tabs';

@@ -1,5 +1,5 @@
 import React from 'react';
-import BookListItemSkeleton from './BookListItemSkeleton';
+import BookListItemSkeleton from '../Book/BookListItemSkeleton';
 
 function SearchResultSkeleton() {
   return (

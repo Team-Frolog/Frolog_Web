@@ -12,7 +12,7 @@ import { useProfile } from '@/hooks/user/useProfile';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import { useUserId } from '@/store/sessionStore';
 import { useFollowUser } from '@/features/Feed';
-import ProfileHeaderSkeleton from '../../Fallback/Skeleton/ProfileHeaderSkeleton';
+import ProfileHeaderSkeleton from '../../Fallback/Skeleton/Profile/ProfileHeaderSkeleton';
 import ProfileImage from './ProfileImage';
 
 interface Props {
