@@ -3,10 +3,12 @@
 import WellSearchItemListSkeleton from '@/components/Fallback/Skeleton/Well/WellSearchItemListSkeleton';
 import WellSearchItemSkeleton from '@/components/Fallback/Skeleton/Well/WellSearchItemSkeleton';
 import Observer from '@/components/Gesture/Observer';
+import ScrollToTop from '@/components/Gesture/ScrollToTop';
 import WellSearchItem from '@/features/Well/components/WellSearch/WellSearchItem';
 import { useExploreWells } from '@/features/Well/hooks/useExploreWells';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
+import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import React from 'react';
 
 interface Props {
@@ -33,6 +35,8 @@ function WellExploreList({ refTime }: Props) {
     key: 'explore',
   });
 
+  const { isRendering } = useScrollToTop();
+
   if (!exploreResult || isLoading) return <WellSearchItemListSkeleton />;
 
   return (
@@ -50,6 +54,7 @@ function WellExploreList({ refTime }: Props) {
         fallback={<WellSearchItemSkeleton />}
         isFetching={isFetchingNextPage}
       />
+      {isRendering && <ScrollToTop />}
     </div>
   );
 }

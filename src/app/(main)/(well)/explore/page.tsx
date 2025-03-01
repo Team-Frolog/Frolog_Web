@@ -51,11 +51,10 @@ async function ExplorePage() {
           placeholder='우물 키워드를 검색해보세요'
         />
       </div>
-      <div className='flex w-full flex-col gap-[36px]'>
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <WellExploreList refTime={refTime} />
-        </HydrationBoundary>
-      </div>
+
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <WellExploreList refTime={refTime} />
+      </HydrationBoundary>
     </div>
   );
 }

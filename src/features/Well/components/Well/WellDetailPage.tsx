@@ -30,12 +30,11 @@ function WellDetailPage({
   const isRootUser = userId === sessionUserId;
   const isDefaultWell = defaultWellId === wellId;
   const { well } = useWell(wellId);
-  const { isRendering, containerRef } = useScrollToTop();
+  const { isRendering } = useScrollToTop();
 
   return (
     <>
       <MainLayout
-        ref={containerRef}
         extraClass={`bg-shape-${well?.shape} bg-gray-300 overscroll-none`}
       >
         <WellHeader
