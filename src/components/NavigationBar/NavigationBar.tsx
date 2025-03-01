@@ -60,11 +60,13 @@ function NavigationBar() {
     onClick,
     navKey,
   }: NavItemProps) => {
-    const isActive =
-      pathname === href ||
-      currentTapKey === navKey ||
-      (label === NAV_ITEM.well.label &&
-        (pathname === PAGES.DEFAULT || pathname === PAGES.EXPLORE));
+    const isCurrentPath = pathname === href && pathname !== PAGES.PROFILE;
+    const isSelectedTab = currentTapKey === navKey;
+    const isWellSection =
+      label === NAV_ITEM.well.label &&
+      (pathname === PAGES.DEFAULT || pathname === PAGES.EXPLORE);
+
+    const isActive = isCurrentPath || isSelectedTab || isWellSection;
 
     return (
       <NavItem

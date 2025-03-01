@@ -11,7 +11,7 @@ import WithConditionalRendering from '@/components/HOC/WithConditionalRendering'
 import Observer from '@/components/Gesture/Observer';
 import { useUserId } from '@/store/sessionStore';
 import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
-import SearchResultSkeleton from '@/components/Fallback/Skeleton/SearchResultSkeleton';
+import SearchResultSkeleton from '@/components/Fallback/Skeleton/Search/SearchResultSkeleton';
 import { SEARCH_ITEM } from '@/constants/searchItem';
 import BookRegisterSheet from './RegisterSheet/BookRegisterSheet';
 import { useSearchBook } from '../hooks/useSearchBook';

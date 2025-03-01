@@ -3,7 +3,7 @@
 import React from 'react';
 import { WellIcon, useWells } from '@/features/Well';
 import { useObserver } from '@/hooks/gesture/useObserver';
-import WellItemsSkeleton from '@/components/Fallback/Skeleton/WellItemsSkeleton';
+import WellItemsSkeleton from '@/components/Fallback/Skeleton/Well/WellItemsSkeleton';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import Observer from '@/components/Gesture/Observer';
 

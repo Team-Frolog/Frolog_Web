@@ -1,6 +1,6 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import AddButton from '@/components/Button/AddButton';
-import MemoListSkeleton from '@/components/Fallback/Skeleton/MemoListSkeleton';
+import MemoListSkeleton from '@/components/Fallback/Skeleton/Memo/MemoListSkeleton';
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { getServerSession } from 'next-auth';

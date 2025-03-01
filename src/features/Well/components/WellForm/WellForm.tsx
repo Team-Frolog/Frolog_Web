@@ -2,7 +2,7 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
-import FrogSelectorSkeleton from '@/components/Fallback/Skeleton/FrogSelectorSkeleton';
+import FrogSelectorSkeleton from '@/components/Fallback/Skeleton/Store/FrogSelectorSkeleton';
 import TitleHeader from '@/components/Header/TitleHeader';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import { FormProvider, useForm } from 'react-hook-form';

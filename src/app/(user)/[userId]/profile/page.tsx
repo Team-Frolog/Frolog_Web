@@ -1,5 +1,5 @@
-import ProfileSkeleton from '@/components/Fallback/Skeleton/ProfileSkeleton';
-import WellListSkeleton from '@/components/Fallback/Skeleton/WellListSkeleton';
+import ProfileSkeleton from '@/components/Fallback/Skeleton/Profile/ProfileSkeleton';
+import WellListSkeleton from '@/components/Fallback/Skeleton/Well/WellListSkeleton';
 import WellEntryHeader from '@/components/Header/WellEntryHeader';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import { QUERY_KEY } from '@/constants/query';

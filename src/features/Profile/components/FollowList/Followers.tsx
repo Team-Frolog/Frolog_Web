@@ -3,7 +3,7 @@ import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import Observer from '@/components/Gesture/Observer';
-import FollowListSkeleton from '@/components/Fallback/Skeleton/FollowListSkeleton';
+import FollowListSkeleton from '@/components/Fallback/Skeleton/Profile/FollowListSkeleton';
 import { useFollowers } from '../../hooks/useFollowers';
 import FollowItem from './FollowItem';
 

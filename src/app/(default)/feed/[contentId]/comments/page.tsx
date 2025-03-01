@@ -1,4 +1,4 @@
-import CommentListSkeleton from '@/components/Fallback/Skeleton/CommentListSkeleton';
+import CommentListSkeleton from '@/components/Fallback/Skeleton/Comment/CommentListSkeleton';
 import BackHeader from '@/components/Header/BackHeader';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';

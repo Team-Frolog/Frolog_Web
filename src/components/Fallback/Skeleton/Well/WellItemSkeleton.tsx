@@ -1,6 +1,6 @@
 import React from 'react';
 
-function WellitemSkeleton() {
+function WellItemSkeleton() {
   return (
     <div className='flex w-full flex-col'>
       <div className='skeleton-box skeleton-animation h-[55px] w-full' />
@@ -13,4 +13,4 @@ function WellitemSkeleton() {
   );
 }
 
-export default WellitemSkeleton;
+export default WellItemSkeleton;

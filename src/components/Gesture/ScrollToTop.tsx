@@ -19,7 +19,7 @@ function ScrollToTop() {
       type='button'
       whileTap={{ scale: 0.95 }}
       onClick={handleScroll}
-      className='absolute right-[24px] z-50'
+      className='fixed right-[24px] z-50'
     >
       <ScrollToTopIcon />
     </motion.button>
