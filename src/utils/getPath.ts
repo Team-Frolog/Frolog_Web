@@ -5,6 +5,7 @@ export const getPath = {
   book: (isbn: string) => `/book/${isbn}`,
   profile: (userId: string) => `/${userId}${PAGES.PROFILE}`,
   profileEdit: (userId: string) => `/${userId}${PAGES.PROFILE}/edit`,
+  profileSetting: (userId: string) => `/${userId}${PAGES.PROFILE}/setting`,
   follows: (userId: string) => `/${userId}${PAGES.PROFILE}/follows`,
   comments: (itemId: string, type: 'review' | 'memo') =>
     `${PAGES.FEED}/${itemId}/comments?type=${type}`,
