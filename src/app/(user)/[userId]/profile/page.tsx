@@ -1,9 +1,6 @@
 import ProfileSkeleton from '@/components/Fallback/Skeleton/Profile/ProfileSkeleton';
-import WellListSkeleton from '@/components/Fallback/Skeleton/Well/WellListSkeleton';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import { QUERY_KEY } from '@/constants/query';
-import { Menu } from '@/features/Profile';
-import { WellList } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
 import { authOptions } from '@/utils/auth/nextAuth';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
@@ -16,8 +13,8 @@ import {
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import dynamic from 'next/dynamic';
-import React, { Suspense } from 'react';
 import ProfilePageHeader from '@/features/Profile/components/Profile/ProfilePageHeader';
+import RootUserFeed from '@/features/Profile/components/Feed/RootUserFeed';
 
 const Profile = dynamic(
   () => import('@/features/Profile/components/Profile/Profile'),
@@ -70,14 +67,7 @@ async function UserProfilePage({ params: { userId } }: Props) {
           <HydrationBoundary state={dehydrate(queryClient)}>
             <Profile userId={userId} isRootUser={isRootUser} />
           </HydrationBoundary>
-
-          {isRootUser ? (
-            <Menu />
-          ) : (
-            <Suspense fallback={<WellListSkeleton />}>
-              <WellList userId={userId} isRootUser={isRootUser} />
-            </Suspense>
-          )}
+          <RootUserFeed />
         </div>
       </MainLayout>
       <NavigationBar />
