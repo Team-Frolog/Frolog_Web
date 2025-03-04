@@ -76,6 +76,12 @@ function WellForm({ type, userId, wellId }: Props) {
           />
           <FrogSelector userId={userId} />
           <ShapeForm />
+          <button
+            type='button'
+            className='flex w-full items-center justify-center border-t-[0.5px] border-gray-400 py-[24px] text-error'
+          >
+            우물 삭제
+          </button>
         </div>
       </form>
       {isLoading && <LoadingOverlay theme='light' />}
