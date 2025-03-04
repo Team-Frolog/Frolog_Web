@@ -12,6 +12,8 @@ import { useLikeFeed } from '../../hooks/feed/useLikeFeed';
 interface Props {
   /** 메모인지 여부 */
   isMemo: boolean;
+  /** 사용자 피드 여부 */
+  isRootUser?: boolean;
   /** 피드 데이터 객체 */
   feedData: GetReviewRes | GetMemoRes;
   /** 댓글 클릭 시 로딩 시작 핸들러 */
@@ -23,6 +25,7 @@ interface Props {
 /** 피드 아이템 컴포넌트 */
 function FeedItem({
   isMemo,
+  isRootUser = false,
   feedData,
   startCommentLoading,
   onSaveScroll,
@@ -32,12 +35,14 @@ function FeedItem({
 
   return (
     <div className='w-full'>
-      <ProfileHeader
-        type='feed'
-        userId={feedData.writer}
-        hasFollow
-        onClick={onSaveScroll}
-      />
+      {!isRootUser && (
+        <ProfileHeader
+          type='feed'
+          userId={feedData.writer}
+          hasFollow
+          onClick={onSaveScroll}
+        />
+      )}
       <div className='flex w-full flex-col'>
         <CustomLink
           prefetch
@@ -50,12 +55,17 @@ function FeedItem({
             setIsInFeed(true);
           }}
         >
-          <BookInfo isMemo={isMemo} feedData={feedData} />
+          <BookInfo
+            isMemo={isMemo}
+            feedData={feedData}
+            hasToolTip={!isRootUser}
+          />
           <FeedContent feedData={feedData} />
         </CustomLink>
 
         <FeedBar
           feedData={feedData}
+          isRootUser={isRootUser}
           onClickLike={() =>
             handleChangeLike({ id: feedData.id, value: !feedData.like })
           }

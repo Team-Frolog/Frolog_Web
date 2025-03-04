@@ -27,7 +27,7 @@ function MemoList({ bookId, userId }: Props) {
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useMemos(bookId, userId);
+  } = useMemos(userId, bookId);
 
   const { setTarget } = useObserver({
     hasNextPage,
