@@ -11,6 +11,7 @@ import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import { MEMO_REVIEW_TABS } from '@/constants/tabs';
 import HeaderWrapper from '@/components/Wrapper/HeaderWrapper';
 import TabMenu from '@/components/Tab/TabMenu';
+import DeleteBookButton from '@/components/Button/DeleteBookButton';
 
 interface Props {
   children: React.ReactNode;
@@ -32,7 +33,10 @@ function ReviewMemoLayout({ children, params: { bookId } }: Props) {
   return (
     <>
       <HeaderWrapper isResponsive>
-        <TabMenu tabs={MEMO_REVIEW_TABS} />
+        <div className='flex w-full items-center justify-between'>
+          <TabMenu tabs={MEMO_REVIEW_TABS} />
+          <DeleteBookButton />
+        </div>
       </HeaderWrapper>
       <MainLayout extraClass='bg-gray-900'>
         <Suspense fallback={<BookInfoSkeleton />}>
