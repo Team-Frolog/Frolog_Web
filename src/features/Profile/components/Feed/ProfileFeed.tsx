@@ -2,8 +2,8 @@
 
 import ProfileFeedListSkeleton from '@/components/Fallback/Skeleton/Profile/ProfileFeedListSkeleton';
 import Tab from '@/components/Tab/Tab';
+import { useTab } from '@/hooks/useTab';
 import dynamic from 'next/dynamic';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 
 const ProfileMemoList = dynamic(
@@ -21,9 +21,7 @@ interface Props {
 }
 
 function ProfileFeed({ userId }: Props) {
-  const tab = useSearchParams().get('currentTab') || 'memo';
-  const pathname = usePathname();
-  const router = useRouter();
+  const { tab, changeTab } = useTab('memo');
 
   return (
     <>
@@ -34,9 +32,7 @@ function ProfileFeed({ userId }: Props) {
         ]}
         currentTab={tab}
         defaultTab='memo'
-        onChangeTab={(label: string) =>
-          router.replace(`${pathname}?currentTab=${label}`)
-        }
+        onChangeTab={changeTab}
       />
       {tab === 'memo' ? (
         <ProfileMemoList userId={userId} />
