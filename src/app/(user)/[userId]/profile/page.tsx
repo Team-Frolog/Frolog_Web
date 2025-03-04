@@ -14,7 +14,7 @@ import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import dynamic from 'next/dynamic';
 import ProfilePageHeader from '@/features/Profile/components/Profile/ProfilePageHeader';
-import RootUserFeed from '@/features/Profile/components/Feed/RootUserFeed';
+import { ProfileFeed } from '@/features/Profile';
 
 const Profile = dynamic(
   () => import('@/features/Profile/components/Profile/Profile'),
@@ -67,7 +67,7 @@ async function UserProfilePage({ params: { userId } }: Props) {
           <HydrationBoundary state={dehydrate(queryClient)}>
             <Profile userId={userId} isRootUser={isRootUser} />
           </HydrationBoundary>
-          <RootUserFeed />
+          <ProfileFeed userId={userId} />
         </div>
       </MainLayout>
       <NavigationBar />
