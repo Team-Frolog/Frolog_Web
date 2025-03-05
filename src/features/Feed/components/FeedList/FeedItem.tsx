@@ -1,13 +1,7 @@
 import React from 'react';
-import CustomLink from '@/components/Link/CustomLink';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
-import { getPath } from '@/utils/getPath';
-import { useUserActionActions } from '@/store/userActionStore';
 import ProfileHeader from '@/components/Header/ProfileHeader/ProfileHeader';
-import BookInfo from './BookInfo';
-import FeedContent from './FeedContent';
-import FeedBar from './FeedBar';
-import { useLikeFeed } from '../../hooks/feed/useLikeFeed';
+import FeedItemInfo from '@/components/Feed/FeedItemInfo';
 
 interface Props {
   /** 메모인지 여부 */
@@ -27,9 +21,6 @@ function FeedItem({
   startCommentLoading,
   onSaveScroll,
 }: Props) {
-  const { handleChangeLike } = useLikeFeed(!isMemo);
-  const { setIsInFeed } = useUserActionActions();
-
   return (
     <div className='w-full'>
       <ProfileHeader
@@ -38,33 +29,12 @@ function FeedItem({
         hasFollow
         onClick={onSaveScroll}
       />
-      <div className='flex w-full flex-col'>
-        <CustomLink
-          prefetch
-          href={
-            isMemo ? getPath.memo(feedData.id) : getPath.review(feedData.id)
-          }
-          className='flex w-full flex-col'
-          onClick={() => {
-            onSaveScroll();
-            setIsInFeed(true);
-          }}
-        >
-          <BookInfo isMemo={isMemo} feedData={feedData} />
-          <FeedContent feedData={feedData} />
-        </CustomLink>
-
-        <FeedBar
-          feedData={feedData}
-          onClickLike={() =>
-            handleChangeLike({ id: feedData.id, value: !feedData.like })
-          }
-          onClickComment={() => {
-            startCommentLoading();
-            onSaveScroll();
-          }}
-        />
-      </div>
+      <FeedItemInfo
+        isMemo={isMemo}
+        feedData={feedData}
+        startCommentLoading={startCommentLoading}
+        onSaveScroll={onSaveScroll}
+      />
     </div>
   );
 }

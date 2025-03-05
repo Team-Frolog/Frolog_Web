@@ -19,14 +19,15 @@ export interface MemoData {
 }
 
 /** 메모 리스트 쿼리 훅 */
-export const useMemos = (bookId: string, userId: string) => {
+export const useMemos = (userId: string, bookId?: string) => {
   const [memoId, setMemoId] = useState<string>('');
+
   const queryClient = useQueryClient();
 
   const { data, hasNextPage, fetchNextPage, isFetched, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
       queryKey: [QUERY_KEY.memoList, bookId, userId],
-      queryFn: async ({ pageParam }) => getMemos(bookId, userId, pageParam),
+      queryFn: async ({ pageParam }) => getMemos(userId, pageParam, bookId),
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {
         const totalPages = Math.ceil(lastPage.count / lastPage.limit);
@@ -89,5 +90,6 @@ export const useMemos = (bookId: string, userId: string) => {
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
+    isFetched,
   };
 };
