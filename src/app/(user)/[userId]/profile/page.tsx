@@ -15,6 +15,9 @@ import { getServerSession } from 'next-auth';
 import dynamic from 'next/dynamic';
 import ProfilePageHeader from '@/features/Profile/components/Profile/ProfilePageHeader';
 import { ProfileFeed } from '@/features/Profile';
+import WellListSkeleton from '@/components/Fallback/Skeleton/Well/WellListSkeleton';
+import { WellList } from '@/features/Well';
+import { Suspense } from 'react';
 
 const Profile = dynamic(
   () => import('@/features/Profile/components/Profile/Profile'),
@@ -67,7 +70,13 @@ async function UserProfilePage({ params: { userId } }: Props) {
           <HydrationBoundary state={dehydrate(queryClient)}>
             <Profile userId={userId} isRootUser={isRootUser} />
           </HydrationBoundary>
-          <ProfileFeed userId={userId} />
+          {isRootUser ? (
+            <ProfileFeed userId={userId} />
+          ) : (
+            <Suspense fallback={<WellListSkeleton />}>
+              <WellList userId={userId} isRootUser={isRootUser} />
+            </Suspense>
+          )}
         </div>
       </MainLayout>
       <NavigationBar />
