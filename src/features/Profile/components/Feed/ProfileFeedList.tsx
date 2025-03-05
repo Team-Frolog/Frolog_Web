@@ -5,7 +5,7 @@ import ProfileFeedListSkeleton from '@/components/Fallback/Skeleton/Profile/Prof
 import Observer from '@/components/Gesture/Observer';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
-import FeedItem from '@/features/Feed/components/FeedList/FeedItem';
+import ProfileFeedItem from '@/features/Profile/components/Feed/ProfileFeedItem';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
@@ -49,10 +49,9 @@ function ProfileFeedList({
         fallback={<EmptyContentFrog title={`첫 ${message}를 남겨보세요!'`} />}
       >
         {dataList.map((item) => (
-          <FeedItem
+          <ProfileFeedItem
             key={item.id}
             isMemo={isMemo}
-            isRootUser
             feedData={item}
             startCommentLoading={() => setIsCommentLoading(true)}
             onSaveScroll={saveScroll}
