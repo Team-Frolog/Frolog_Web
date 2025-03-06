@@ -14,6 +14,8 @@ import { isGetMemoRes } from '../../utils/typeGuard';
 interface Props {
   /** 피드 데이터 객체 */
   feedData: GetReviewRes | GetMemoRes;
+  /** 사용자 피드 여부 */
+  isRootUser?: boolean;
   /** 좋아요 핸들러 */
   onClickLike: () => void;
   /** 댓글 클릭 핸들러 */
@@ -21,7 +23,12 @@ interface Props {
 }
 
 /** 피드 아이템 중 댓글, 좋아요, 우물에 담기 등이 포함된 하단 바 */
-function FeedBar({ feedData, onClickLike, onClickComment }: Props) {
+function FeedBar({
+  feedData,
+  isRootUser = false,
+  onClickLike,
+  onClickComment,
+}: Props) {
   const { navigate } = useCustomRouter('feed');
   const [open, setOpen] = useState(false);
 
@@ -56,18 +63,20 @@ function FeedBar({ feedData, onClickLike, onClickComment }: Props) {
             </span>
           </motion.button>
         </div>
-        <motion.button
-          type='button'
-          whileTap={{ scale: 1.1 }}
-          onClick={() =>
-            runWhenLoggedIn(() => {
-              setOpen(true);
-            }, 'feed')
-          }
-          className='flex items-center gap-[4px] text-body-md text-main'
-        >
-          나도 읽어볼래요 <ArrowIcon fill='#00CE4C' width={24} height={24} />
-        </motion.button>
+        {isRootUser === false && (
+          <motion.button
+            type='button'
+            whileTap={{ scale: 1.1 }}
+            onClick={() =>
+              runWhenLoggedIn(() => {
+                setOpen(true);
+              }, 'feed')
+            }
+            className='flex items-center gap-[4px] text-body-md text-main'
+          >
+            나도 읽어볼래요 <ArrowIcon fill='#00CE4C' width={24} height={24} />
+          </motion.button>
+        )}
       </div>
       <AnimatePresence>
         {open && (
