@@ -11,16 +11,17 @@ import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import { MEMO_REVIEW_TABS } from '@/constants/tabs';
 import HeaderWrapper from '@/components/Wrapper/HeaderWrapper';
 import TabMenu from '@/components/Tab/TabMenu';
-import DeleteBookButton from '@/components/Button/DeleteBookButton';
+import DeleteWellItem from '@/features/Well/components/DeleteWellItem';
 
 interface Props {
   children: React.ReactNode;
   params: {
+    wellId: string;
     bookId: string;
   };
 }
 
-function ReviewMemoLayout({ children, params: { bookId } }: Props) {
+function ReviewMemoLayout({ children, params: { wellId, bookId } }: Props) {
   const { bookData } = useBook(bookId);
   const category = bookData?.category || 'novel';
 
@@ -35,7 +36,7 @@ function ReviewMemoLayout({ children, params: { bookId } }: Props) {
       <HeaderWrapper isResponsive>
         <div className='flex w-full items-center justify-between'>
           <TabMenu tabs={MEMO_REVIEW_TABS} />
-          <DeleteBookButton />
+          <DeleteWellItem wellId={wellId} bookId={bookId} />
         </div>
       </HeaderWrapper>
       <MainLayout extraClass='bg-gray-900'>

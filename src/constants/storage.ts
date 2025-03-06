@@ -8,4 +8,5 @@ export const STORAGE_KEY = {
   testResultForEdit: '@FROLOG_TEST_RESULT_FOR_EDIT',
   profileEditFormKey: '@FROLOG_PROFILE_EDIT_FORM',
   profileIsEdited: '@FROLOG_PROFILE_IS_EDITED',
+  selectedWellItemId: '@FROLOG_SELECTED_WELL_ITEM_ID',
 } as const;
