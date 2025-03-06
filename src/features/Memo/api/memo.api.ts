@@ -25,7 +25,7 @@ const uploadMemoImg = new UploadMemoImage(baseOptions);
 const deleteMemoImg = new DeleteMemoImage(baseOptions);
 const getMemo = new GetMemo(baseOptions);
 
-export const getMemos = async (isbn: string, userId: string, page: number) => {
+export const getMemos = async (userId: string, page: number, isbn?: string) => {
   try {
     const response = await searchMemo.fetch({
       isbn,

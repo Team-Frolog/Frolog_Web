@@ -1,10 +1,6 @@
 import ProfileSkeleton from '@/components/Fallback/Skeleton/Profile/ProfileSkeleton';
-import WellListSkeleton from '@/components/Fallback/Skeleton/Well/WellListSkeleton';
-import WellEntryHeader from '@/components/Header/WellEntryHeader';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import { QUERY_KEY } from '@/constants/query';
-import { Menu } from '@/features/Profile';
-import { WellList } from '@/features/Well';
 import MainLayout from '@/layouts/MainLayout';
 import { authOptions } from '@/utils/auth/nextAuth';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
@@ -17,7 +13,11 @@ import {
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import dynamic from 'next/dynamic';
-import React, { Suspense } from 'react';
+import ProfilePageHeader from '@/features/Profile/components/Profile/ProfilePageHeader';
+import { ProfileFeed } from '@/features/Profile';
+import WellListSkeleton from '@/components/Fallback/Skeleton/Well/WellListSkeleton';
+import { WellList } from '@/features/Well';
+import { Suspense } from 'react';
 
 const Profile = dynamic(
   () => import('@/features/Profile/components/Profile/Profile'),
@@ -65,14 +65,13 @@ async function UserProfilePage({ params: { userId } }: Props) {
   return (
     <>
       <MainLayout extraClass='bg-white'>
-        <WellEntryHeader title='프로필' hasBackButton={!isRootUser} />
+        <ProfilePageHeader isRootUser={isRootUser} userId={userId} />
         <div className='flex h-fit w-full flex-col gap-[36px] pb-[32px]'>
           <HydrationBoundary state={dehydrate(queryClient)}>
             <Profile userId={userId} isRootUser={isRootUser} />
           </HydrationBoundary>
-
           {isRootUser ? (
-            <Menu />
+            <ProfileFeed userId={userId} />
           ) : (
             <Suspense fallback={<WellListSkeleton />}>
               <WellList userId={userId} isRootUser={isRootUser} />
