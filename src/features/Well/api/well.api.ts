@@ -4,6 +4,8 @@ import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
 import * as Sentry from '@sentry/nextjs';
 import {
+  DeleteWell,
+  DeleteWellReq,
   EditWell,
   EditWellReq,
   GetWell,
@@ -85,6 +87,11 @@ export const getUserWellList = async (req: SearchUserWellReq) => {
 
 export const editWell = async (req: EditWellReq) => {
   const response = await editWellObj.fetch(req);
+  return response;
+};
+
+export const deleteWell = async (req: DeleteWellReq) => {
+  const response = await new DeleteWell(baseOptions).fetch(req);
   return response;
 };
 
