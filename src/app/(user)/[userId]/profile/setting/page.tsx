@@ -1,6 +1,10 @@
 import TitleHeader from '@/components/Header/TitleHeader';
-import { Menu } from '@/features/Profile';
 import MainLayout from '@/layouts/MainLayout';
+import dynamic from 'next/dynamic';
+
+const Menu = dynamic(() => import('@/features/Profile/components/Menu/Menu'), {
+  ssr: false,
+});
 
 async function ProfileSettingPage() {
   return (
