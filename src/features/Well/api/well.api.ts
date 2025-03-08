@@ -20,7 +20,6 @@ import {
   SearchWell,
   SearchWellItem,
 } from '@frolog/frolog-api';
-import { PAGES } from '@/constants/page';
 
 const postWell = new PostWell(baseOptions);
 const searchWell = new SearchWell(baseOptions);
@@ -63,10 +62,6 @@ export const getWell = async (id: string) => {
   } catch (err: any) {
     if (err instanceof FetchError && err.status === 404) {
       toast.error('존재하지 않는 우물입니다.');
-
-      setTimeout(() => {
-        window.location.replace(PAGES.HOME);
-      }, 1500);
     } else {
       throw err;
     }
