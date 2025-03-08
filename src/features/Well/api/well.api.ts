@@ -8,6 +8,7 @@ import {
   DeleteWellReq,
   EditWell,
   EditWellReq,
+  FetchError,
   GetWell,
   GetWellNameAvailability,
   PostWell,
@@ -19,6 +20,7 @@ import {
   SearchWell,
   SearchWellItem,
 } from '@frolog/frolog-api';
+import { PAGES } from '@/constants/page';
 
 const postWell = new PostWell(baseOptions);
 const searchWell = new SearchWell(baseOptions);
@@ -55,8 +57,20 @@ export const getWellList = async (owner: string, page: number) => {
 };
 
 export const getWell = async (id: string) => {
-  const response = await fetchWell.fetch({ id });
-  return response;
+  try {
+    const response = await fetchWell.fetch({ id });
+    return response;
+  } catch (err: any) {
+    if (err instanceof FetchError && err.status === 404) {
+      toast.error('존재하지 않는 우물입니다.');
+
+      setTimeout(() => {
+        window.location.replace(PAGES.HOME);
+      }, 1500);
+    } else {
+      throw err;
+    }
+  }
 };
 
 export const getWellItems = async (page: number, well_id: string) => {
