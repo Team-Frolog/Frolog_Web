@@ -1,6 +1,6 @@
 import React from 'react';
-import { FollowPage } from '@/features/Profile';
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
 export const metadata: Metadata = {
   title: '팔로우',
@@ -15,6 +15,10 @@ export const metadata: Metadata = {
     },
   },
 };
+
+const FollowPage = dynamic(
+  () => import('@/features/Profile/components/FollowList/FollowPage')
+);
 
 interface Props {
   params: {

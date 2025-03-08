@@ -10,7 +10,6 @@ import { useProfileDetail } from '../../hooks/useProfileDetail';
 const Followers = dynamic(
   () => import('@/features/Profile/components/FollowList/Followers'),
   {
-    ssr: false,
     loading: () => <FollowListSkeleton />,
   }
 );
@@ -18,7 +17,6 @@ const Followers = dynamic(
 const Followings = dynamic(
   () => import('@/features/Profile/components/FollowList/Followings'),
   {
-    ssr: false,
     loading: () => <FollowListSkeleton />,
   }
 );

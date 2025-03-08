@@ -2,7 +2,11 @@
 
 import { createRoot } from 'react-dom/client';
 import { BottomSheetKeys } from '@/data/ui/bottomSheet';
-import BottomSheetContainer from './BottomSheetContainer';
+import dynamic from 'next/dynamic';
+
+const BottomSheetContainer = dynamic(() => import('./BottomSheetContainer'), {
+  ssr: false,
+});
 
 export interface BottomSheetProps {
   /** 바텀시트 데이터 객체 키 */
