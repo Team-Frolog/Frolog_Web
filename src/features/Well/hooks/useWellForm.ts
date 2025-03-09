@@ -10,7 +10,13 @@ import { ERROR_ALERT } from '@/constants/message';
 import { useUserId } from '@/store/sessionStore';
 import { PAGES } from '@/constants/page';
 import { QUERY_KEY } from '@/constants/query';
-import { addNewWell, checkWellName, editWell, getWell } from '../api/well.api';
+import {
+  addNewWell,
+  checkWellName,
+  deleteWell,
+  editWell,
+  getWell,
+} from '../api/well.api';
 import { WellFormType } from '../components/WellForm/WellForm';
 
 interface Props {
@@ -39,11 +45,12 @@ export const useWellForm = ({ type, reset, setError, wellId }: Props) => {
     staleTime: 0,
   });
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       setIsLoading(false);
-    };
-  }, []);
+    },
+    []
+  );
 
   // 우물 수정인 경우 마운트 후 데이터 세팅
   useEffect(() => {
@@ -96,6 +103,14 @@ export const useWellForm = ({ type, reset, setError, wellId }: Props) => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.wellDetail, wellId],
       });
+      router.replace(PAGES.HOME);
+    },
+  });
+
+  const { mutate: handleDeleteWell } = useMutation({
+    mutationFn: (id: string) => deleteWell({ id }),
+    onSuccess: () => {
+      // TODO: 히스토리 빼기
       router.replace(PAGES.HOME);
     },
   });
@@ -160,6 +175,7 @@ export const useWellForm = ({ type, reset, setError, wellId }: Props) => {
   return {
     originalName: wellData?.name,
     handleWellFrom,
+    handleDeleteWell,
     handleClickBack,
     isLoading,
     setIsNameChecked,

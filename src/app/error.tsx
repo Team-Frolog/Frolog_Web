@@ -7,6 +7,7 @@ import { IMAGES } from '@/constants/images';
 import Button from '@/components/Button/Button';
 import BackButton from '@/components/Button/BackButton';
 import Flash from '@/components/Flash/Flash';
+import { PAGES } from '@/constants/page';
 
 export default function Error({
   error,
@@ -36,8 +37,14 @@ export default function Error({
           priority
         />
         <div className='absolute bottom-0 left-0 flex w-full p-page'>
-          <Button type='button' onClick={() => reset()}>
-            새로고침
+          <Button
+            type='button'
+            onClick={() => {
+              reset();
+              window.location.href = PAGES.HOME;
+            }}
+          >
+            홈으로
           </Button>
         </div>
       </div>

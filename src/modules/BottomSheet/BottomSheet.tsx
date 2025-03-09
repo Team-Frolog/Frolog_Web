@@ -56,7 +56,9 @@ function BottomSheet({
           <h2 className='text-center text-title-xl-bold'>
             {getTitle(titleProp)}
           </h2>
-          {description && <p className='text-body-lg'>{description()}</p>}
+          {description && (
+            <p className='text-center text-body-lg'>{description()}</p>
+          )}
           {children}
         </div>
         {buttonText && (
