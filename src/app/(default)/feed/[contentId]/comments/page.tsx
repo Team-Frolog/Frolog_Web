@@ -11,6 +11,7 @@ interface Props {
 }
 
 export const metadata: Metadata = {
+  title: '댓글',
   robots: {
     index: false,
     follow: false,
