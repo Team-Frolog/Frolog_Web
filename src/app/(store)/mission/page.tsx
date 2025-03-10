@@ -3,20 +3,6 @@ import Image from 'next/image';
 import React from 'react';
 import { IMAGES } from '@/constants/images';
 
-export const metadata: Metadata = {
-  title: '미션',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
-
 function MissionPage() {
   return (
     <>
@@ -61,3 +47,23 @@ function MissionPage() {
 }
 
 export default MissionPage;
+
+export const metadata: Metadata = {
+  title: '미션',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: '미션',
+  },
+  twitter: {
+    title: '미션',
+  },
+};

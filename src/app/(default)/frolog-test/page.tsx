@@ -24,4 +24,10 @@ export const metadata: Metadata = {
       noimageindex: true,
     },
   },
+  openGraph: {
+    title: '독서 성향 테스트',
+  },
+  twitter: {
+    title: '독서 성향 테스트',
+  },
 };

@@ -74,4 +74,10 @@ export const metadata: Metadata = {
       noimageindex: true,
     },
   },
+  openGraph: {
+    title: '우물 탐색',
+  },
+  twitter: {
+    title: '우물 탐색',
+  },
 };

@@ -37,4 +37,10 @@ export const metadata: Metadata = {
       noimageindex: true,
     },
   },
+  openGraph: {
+    title: '설정',
+  },
+  twitter: {
+    title: '설정',
+  },
 };

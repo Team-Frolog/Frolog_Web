@@ -13,20 +13,6 @@ import {
 import { SearchReview } from '@frolog/frolog-api';
 import { QUERY_KEY } from '@/constants/query';
 
-export const metadata: Metadata = {
-  title: '리뷰',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
-
 const ReviewList = dynamic(
   () => import('@/features/Review/components/ReviewList/ReviewList'),
   {
@@ -71,3 +57,23 @@ async function ReviewPage({ params: { userId, wellId, bookId } }: Props) {
 }
 
 export default ReviewPage;
+
+export const metadata: Metadata = {
+  title: '리뷰 목록',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: '리뷰 목록',
+  },
+  twitter: {
+    title: '리뷰 목록',
+  },
+};

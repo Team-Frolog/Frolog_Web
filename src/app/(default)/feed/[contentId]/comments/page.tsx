@@ -22,6 +22,12 @@ export const metadata: Metadata = {
       noimageindex: true,
     },
   },
+  openGraph: {
+    title: '댓글',
+  },
+  twitter: {
+    title: '댓글',
+  },
 };
 
 const CommentList = dynamic(

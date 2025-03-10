@@ -8,13 +8,9 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import { GetWell, SearchWellItem } from '@frolog/frolog-api';
+import { GetProfile, GetWell, SearchWellItem } from '@frolog/frolog-api';
 import { WELLITEM_LIMIT } from '@/constants/api';
 import { QUERY_KEY } from '@/constants/query';
-
-export const metadata: Metadata = {
-  title: '우물',
-};
 
 interface Props {
   params: {
@@ -66,3 +62,33 @@ async function UserWellDetailPage({ params: { userId, wellId } }: Props) {
 }
 
 export default UserWellDetailPage;
+
+export const generateMetadata = async ({
+  params: { wellId, userId },
+}: Props): Promise<Metadata> => {
+  const session = await getServerSession(authOptions);
+
+  const wellData = await new GetWell({
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    accessToken: session?.user.accessToken,
+  }).fetch({ id: wellId });
+
+  const userInfo = await new GetProfile({
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    accessToken: session?.user.accessToken,
+  }).fetch({ id: userId });
+
+  return {
+    title: wellData.name,
+    description: `${wellData.item_cnt}권의 책이 쌓인 ${userInfo.username}님의 우물`,
+    openGraph: {
+      title: wellData.name,
+      description: `${wellData.item_cnt}권의 책이 쌓인 ${userInfo.username}님의 우물`,
+      url: `https://www.frolog.kr/${userId}/well/${wellId}`,
+    },
+    twitter: {
+      title: wellData.name,
+      description: `${wellData.item_cnt}권의 책이 쌓인 ${userInfo.username}님의 우물`,
+    },
+  };
+};
