@@ -11,20 +11,6 @@ import {
 import { GetBook } from '@frolog/frolog-api';
 import { QUERY_KEY } from '@/constants/query';
 
-export const metadata: Metadata = {
-  title: '새로운 리뷰',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
-
 interface Props {
   params: {
     wellId: string;
@@ -55,3 +41,23 @@ async function AddNewReviewPage({ params }: Props) {
 }
 
 export default AddNewReviewPage;
+
+export const metadata: Metadata = {
+  title: '새로운 리뷰',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: '새로운 리뷰',
+  },
+  twitter: {
+    title: '새로운 리뷰',
+  },
+};

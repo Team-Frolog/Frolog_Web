@@ -27,20 +27,6 @@ const Profile = dynamic(
   }
 );
 
-export const metadata: Metadata = {
-  title: '프로필',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
-
 interface Props {
   params: {
     userId: string;
@@ -85,3 +71,23 @@ async function UserProfilePage({ params: { userId } }: Props) {
 }
 
 export default UserProfilePage;
+
+export const generateMetadata = async ({
+  params: { userId },
+}: Props): Promise<Metadata> => {
+  const { isRootUser } = await getIsRootUser(userId);
+
+  return {
+    title: isRootUser ? '내 프로필' : '프로필',
+    robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+        index: false,
+        follow: false,
+        noimageindex: true,
+      },
+    },
+  };
+};

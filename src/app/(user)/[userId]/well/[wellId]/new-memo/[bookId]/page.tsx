@@ -2,20 +2,6 @@ import React from 'react';
 import { NewMemoPage } from '@/features/Memo';
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: '새로운 메모',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
-
 interface Props {
   params: {
     wellId: string;
@@ -28,3 +14,23 @@ function AddNewMemoPage({ params }: Props) {
 }
 
 export default AddNewMemoPage;
+
+export const metadata: Metadata = {
+  title: '새로운 메모',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: '새로운 메모',
+  },
+  twitter: {
+    title: '새로운 메모',
+  },
+};

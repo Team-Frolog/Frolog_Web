@@ -8,22 +8,9 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import { GetReview } from '@frolog/frolog-api';
+import { GetBook, GetReview } from '@frolog/frolog-api';
 import { QUERY_KEY } from '@/constants/query';
 
-export const metadata: Metadata = {
-  title: '리뷰',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
 interface Props {
   params: {
     bookId: string;
@@ -53,3 +40,37 @@ async function WellBookReviewPage({ params }: Props) {
 }
 
 export default WellBookReviewPage;
+
+export const generateMetadata = async ({
+  params: { bookId, reviewId },
+}: Props): Promise<Metadata> => {
+  const session = await getServerSession(authOptions);
+
+  const reviewData = await new GetReview({
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    accessToken: session?.user.accessToken,
+  }).fetch({ id: reviewId });
+
+  const reviewSummary = `${reviewData.title} | ${reviewData.content}`;
+
+  const bookInfo = await new GetBook({
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    accessToken: session?.user.accessToken,
+  }).fetch({ isbn: bookId });
+
+  return {
+    title: `${bookInfo.title} - 리뷰`,
+    description: reviewSummary.slice(0, 60),
+    openGraph: {
+      title: `${bookInfo.title} - 리뷰`,
+      images: bookInfo.image ?? '/opengraph-image.png',
+      description: reviewSummary.slice(0, 60),
+      url: `https://www.frolog.kr/review/${reviewId}`,
+    },
+    twitter: {
+      title: `${bookInfo.title} - 리뷰`,
+      images: bookInfo.image ?? '/twitter-image.png',
+      description: reviewSummary.slice(0, 60),
+    },
+  };
+};

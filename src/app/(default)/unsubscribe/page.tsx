@@ -6,19 +6,6 @@ import Flash from '@/components/Flash/Flash';
 
 export type FlashType = 'review' | 'new_well' | 'first_new_well';
 
-export const metadata: Metadata = {
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
-
 interface Props {
   searchParams?: { [key: string]: string | undefined };
 }
@@ -32,3 +19,16 @@ async function UnsubscribePage({ searchParams }: Props) {
 }
 
 export default UnsubscribePage;
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+};

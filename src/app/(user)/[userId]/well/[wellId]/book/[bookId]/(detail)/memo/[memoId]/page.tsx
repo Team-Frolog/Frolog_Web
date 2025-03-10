@@ -11,20 +11,6 @@ import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import React from 'react';
 
-export const metadata: Metadata = {
-  title: '메모',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
-
 interface Props {
   params: {
     wellId: string;
@@ -55,3 +41,23 @@ async function WellBookMemoPage({ params }: Props) {
 }
 
 export default WellBookMemoPage;
+
+export const metadata: Metadata = {
+  title: '메모',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: '메모',
+  },
+  twitter: {
+    title: '메모',
+  },
+};

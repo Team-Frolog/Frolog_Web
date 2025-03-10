@@ -82,12 +82,12 @@ function NavigationBar() {
   };
 
   return (
-    <div
+    <nav
       id='navBar'
       className='z-50 flex w-full shrink-0 items-center justify-around border-t border-gray-300 bg-white px-[20px] pb-[24px] pt-[10px]'
     >
       {navItems.map(renderNavItem)}
-    </div>
+    </nav>
   );
 }
 

@@ -21,10 +21,6 @@ interface Props {
   };
 }
 
-export const metadata: Metadata = {
-  title: '도서 정보',
-};
-
 async function BookPage({ params: { id } }: Props) {
   const session = await getServerSession(authOptions);
   const queryClient = new QueryClient();
@@ -69,3 +65,32 @@ async function BookPage({ params: { id } }: Props) {
 }
 
 export default BookPage;
+
+export const generateMetadata = async ({
+  params: { id },
+}: Props): Promise<Metadata> => {
+  const session = await getServerSession(authOptions);
+
+  const bookInfo = await new GetBook({
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    accessToken: session?.user.accessToken,
+  }).fetch({ isbn: id });
+
+  const summary = bookInfo.desc.slice(0, 60);
+
+  return {
+    title: bookInfo.title,
+    description: summary,
+    openGraph: {
+      title: bookInfo.title,
+      images: bookInfo.image ?? '/opengraph-image.png',
+      description: summary,
+      url: `https://www.frolog.kr/book/${id}`,
+    },
+    twitter: {
+      images: bookInfo.image ?? '/twitter-image.png',
+      title: bookInfo.title,
+      description: summary,
+    },
+  };
+};

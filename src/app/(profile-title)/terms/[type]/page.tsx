@@ -4,9 +4,6 @@ import TermsText from '@/components/Markdown/TermsText';
 import { Metadata } from 'next';
 import MainLayout from '@/layouts/MainLayout';
 
-export const metadata: Metadata = {
-  title: '이용약관',
-};
 interface Props {
   params: {
     type: string;
@@ -26,3 +23,13 @@ function TermsDetailPage({ params: { type } }: Props) {
 }
 
 export default TermsDetailPage;
+
+export const metadata: Metadata = {
+  title: '이용약관',
+  openGraph: {
+    title: '이용약관',
+  },
+  twitter: {
+    title: '이용약관',
+  },
+};
