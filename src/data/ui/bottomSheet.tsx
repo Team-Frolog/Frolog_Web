@@ -136,6 +136,25 @@ export const sheetData: {
     extraButtonText: '아니요, 유지할게요',
     description: () => <>댓글을 삭제하면 다시 되돌릴 수 없어요</>,
   },
+  delete_this_well: {
+    getTitle: () => (
+      <>
+        우물을
+        <br />
+        정말 삭제할까요?
+      </>
+    ),
+    type: 'error',
+    buttonText: '네, 삭제할게요',
+    extraButtonText: '아니요, 유지할게요',
+    description: () => (
+      <>
+        우물을 삭제해도
+        <br />
+        작성한 리뷰와 메모는 다시 불러올 수 있어요.
+      </>
+    ),
+  },
   logout: {
     getTitle: () => <>로그아웃 하나요?</>,
     type: 'error',

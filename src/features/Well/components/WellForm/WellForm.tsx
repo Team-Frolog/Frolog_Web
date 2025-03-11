@@ -6,6 +6,7 @@ import FrogSelectorSkeleton from '@/components/Fallback/Skeleton/Store/FrogSelec
 import TitleHeader from '@/components/Header/TitleHeader';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import { FormProvider, useForm } from 'react-hook-form';
+import { bottomSheet } from '@/modules/BottomSheet';
 import WellNameInput from './WellNameInput';
 import ShapeForm from './Shape/ShapeForm';
 import { useWellForm } from '../../hooks/useWellForm';
@@ -52,6 +53,7 @@ function WellForm({ type, userId, wellId }: Props) {
     originalName,
     handleWellFrom,
     handleClickBack,
+    handleDeleteWell,
     isLoading,
     setIsNameChecked,
   } = useWellForm({ type, reset, setError, wellId });
@@ -76,6 +78,20 @@ function WellForm({ type, userId, wellId }: Props) {
           />
           <FrogSelector userId={userId} />
           <ShapeForm />
+          {type === 'edit' && (
+            <button
+              type='button'
+              onClick={() => {
+                bottomSheet.open({
+                  sheetKey: 'delete_this_well',
+                  onClick: () => handleDeleteWell(wellId!),
+                });
+              }}
+              className='flex w-full items-center justify-center border-t-[0.5px] border-gray-400 py-[24px] text-error'
+            >
+              우물 삭제
+            </button>
+          )}
         </div>
       </form>
       {isLoading && <LoadingOverlay theme='light' />}
