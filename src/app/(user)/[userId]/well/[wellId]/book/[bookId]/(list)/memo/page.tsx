@@ -18,20 +18,6 @@ import { NAV_ITEM } from '@/constants/nav';
 import { getPath } from '@/utils/getPath';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 
-export const metadata: Metadata = {
-  title: '메모',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
-
 const MemoList = dynamic(
   () => import('@/features/Memo/components/MemoList/MemoList'),
   {
@@ -89,3 +75,23 @@ async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
 }
 
 export default MemoPage;
+
+export const metadata: Metadata = {
+  title: '메모 목록',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: '메모 목록',
+  },
+  twitter: {
+    title: '메모 목록',
+  },
+};
