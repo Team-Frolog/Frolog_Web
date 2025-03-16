@@ -12,17 +12,23 @@ import { MEMO_REVIEW_TABS } from '@/constants/tabs';
 import HeaderWrapper from '@/components/Wrapper/HeaderWrapper';
 import TabMenu from '@/components/Tab/TabMenu';
 import DeleteWellItem from '@/features/Well/components/DeleteWellItem';
+import { useUserId } from '@/store/sessionStore';
 
 interface Props {
   children: React.ReactNode;
   params: {
+    userId: string;
     wellId: string;
     bookId: string;
   };
 }
 
-function ReviewMemoLayout({ children, params: { wellId, bookId } }: Props) {
+function ReviewMemoLayout({
+  children,
+  params: { userId, wellId, bookId },
+}: Props) {
   const { bookData } = useBook(bookId);
+  const rootUserId = useUserId();
   const category = bookData?.category || 'novel';
 
   useScroll({
@@ -36,7 +42,9 @@ function ReviewMemoLayout({ children, params: { wellId, bookId } }: Props) {
       <HeaderWrapper isResponsive>
         <div className='flex w-full items-center justify-between'>
           <TabMenu tabs={MEMO_REVIEW_TABS} />
-          <DeleteWellItem wellId={wellId} bookId={bookId} />
+          {userId === rootUserId && (
+            <DeleteWellItem wellId={wellId} bookId={bookId} />
+          )}
         </div>
       </HeaderWrapper>
       <MainLayout extraClass='bg-gray-900'>

@@ -147,7 +147,7 @@ export const sheetData: {
     type: 'error',
     buttonText: '이 우물에서 책 삭제',
     extraButtonText: '모든 우물에서 책 삭제',
-    description: () => <>책을 삭제하면 작성한 리뷰와 메모도 함께 사라져요.</>,
+    description: () => <>우물에서 책을 지워도 프로필에서 볼 수 있어요!</>,
   },
   logout: {
     getTitle: () => <>로그아웃 하나요?</>,

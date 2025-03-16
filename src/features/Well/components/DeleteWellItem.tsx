@@ -9,8 +9,8 @@ interface Props {
 }
 
 function DeleteWellItem({ wellId, bookId }: Props) {
-  console.log(bookId); // 임시
-  const { handleDeleteWellItem } = useDeleteWellItem();
+  const { handleDeleteWellItem, handleDeleteThisBook } =
+    useDeleteWellItem(wellId);
 
   return (
     <button
@@ -18,8 +18,8 @@ function DeleteWellItem({ wellId, bookId }: Props) {
       onClick={() => {
         bottomSheet.open({
           sheetKey: 'delete_this_book',
-          onClick: () => handleDeleteWellItem(wellId),
-          onClickSubButton: () => {},
+          onClick: () => handleDeleteWellItem(),
+          onClickSubButton: () => handleDeleteThisBook(bookId),
         });
       }}
     >

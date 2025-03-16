@@ -17,7 +17,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@frolog/frolog-api": "^1.1.1",
+    "@frolog/frolog-api": "^1.2.0",
     "@sentry/nextjs": "^8.35.0",
     "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query": "^5.40.1",

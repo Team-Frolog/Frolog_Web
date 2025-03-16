@@ -6,6 +6,8 @@ import * as Sentry from '@sentry/nextjs';
 import {
   DeleteWellItem,
   DeleteWellItemReq,
+  DeleteWellItemsByCondition,
+  DeleteWellItemsByConditionReq,
   EditWell,
   EditWellReq,
   GetWell,
@@ -102,5 +104,10 @@ export const checkWellName = async (name: string) => {
 
 export const deleteWellItem = async (req: DeleteWellItemReq) => {
   const response = await new DeleteWellItem(baseOptions).fetch(req);
+  return response;
+};
+
+export const deleteThisBook = async (req: DeleteWellItemsByConditionReq) => {
+  const response = await new DeleteWellItemsByCondition(baseOptions).fetch(req);
   return response;
 };
