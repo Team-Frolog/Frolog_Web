@@ -13,7 +13,7 @@ function MissionPage() {
             <span className='text-body-lg-bold'>1일 최대 20p</span>
             <span className='self-end text-body-lg'>1회 20p</span>
             <Image
-              src={IMAGES.frog.add.done}
+              src={IMAGES.frog.done_frog}
               alt='read book frog'
               width={127}
               height={62}
@@ -27,7 +27,7 @@ function MissionPage() {
             <span className='text-body-lg-bold'>1일 최대 20p</span>
             <span className='self-end text-body-lg'>1회 10p</span>
             <Image
-              src={IMAGES.frog.add.reading}
+              src={IMAGES.frog.reading_frog}
               alt='reading book frog'
               width={127}
               height={62}

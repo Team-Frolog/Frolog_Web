@@ -105,7 +105,7 @@ export const sheetData: {
     description: () => <>추후에 상점이 오픈될 때, 알려드릴게요.</>,
   },
   add_book: {
-    getTitle: () => <>책을 다 읽으셨나요?</>,
+    getTitle: () => <>지금 이 책은...</>,
     type: 'normal',
   },
   select_books: {

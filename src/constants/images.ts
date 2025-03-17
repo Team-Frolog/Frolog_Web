@@ -22,14 +22,16 @@ export const IMAGES = {
       notfound_page: `${BASE_PATH}/frog/fallback/not-found-frog.webp`,
     },
     first_congrats: `${BASE_PATH}/frog/first-review-congrats.svg`,
-    add: {
-      reading: `${BASE_PATH}/frog/frog-reading.svg`,
-      done: `${BASE_PATH}/frog/frog-done.svg`,
+    reading: {
+      before: `${BASE_PATH}/frog/book/before-reading.svg`,
+      after: `${BASE_PATH}/frog/book/after-reading.svg`,
     },
     memo_frog: `${BASE_PATH}/frog/memo-frog.webp`,
     more_feed: `${BASE_PATH}/frog/morefeed-frog.svg`,
     more_frogs: `${BASE_PATH}/frog/more-character-frog.svg`,
     mission_frog: `${BASE_PATH}/frog/mission-frog.svg`,
+    reading_frog: `${BASE_PATH}/frog/frog-reading.svg`,
+    done_frog: `${BASE_PATH}/frog/frog-done.svg`,
   },
   test: {
     result: {
