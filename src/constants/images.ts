@@ -30,8 +30,6 @@ export const IMAGES = {
     more_feed: `${BASE_PATH}/frog/morefeed-frog.svg`,
     more_frogs: `${BASE_PATH}/frog/more-character-frog.svg`,
     mission_frog: `${BASE_PATH}/frog/mission-frog.svg`,
-    reading_frog: `${BASE_PATH}/frog/frog-reading.svg`,
-    done_frog: `${BASE_PATH}/frog/frog-done.svg`,
   },
   test: {
     result: {
