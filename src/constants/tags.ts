@@ -34,3 +34,18 @@ export const CONS_TAG: TagData[] = [
   { id: 'hard_terms', value: '전문용어 폭탄' },
   { id: 'mistranslated', value: '번역이 어색한' },
 ] as const;
+
+export const REASON_TAG: TagData[] = [
+  { id: '1', value: '자기계발을 위해' },
+  { id: '2', value: '새로운 동기부여' },
+  { id: '3', value: '위로와 힐링이 필요' },
+  { id: '4', value: '누가 추천해줘서' },
+  { id: '5', value: 'SNS에서 화제' },
+  { id: '6', value: '베스트셀러' },
+  { id: '7', value: '일/공부에 도움' },
+  { id: '8', value: '재테크/경제 공부를 위해' },
+  { id: '9', value: '제목이 끌려서' },
+  { id: '10', value: '표지가 예뻐서' },
+  { id: '11', value: '서점에서 우연히 발견' },
+  { id: '12', value: '도서관에서 빌림' },
+];
