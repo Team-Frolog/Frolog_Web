@@ -37,6 +37,15 @@ interface Props {
 async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
   const session = await getServerSession(authOptions);
   const queryClient = new QueryClient();
+  const memoList = await new SearchMemo({
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    accessToken: session?.user.accessToken,
+  }).fetch({
+    isbn: bookId,
+    writer: userId,
+    limit: DEFAULT_LIMIT,
+    page: 0,
+  });
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: [QUERY_KEY.memoList, bookId, userId],
@@ -58,10 +67,17 @@ async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
     <>
       <WithConditionalRendering condition={userId === session?.user.id}>
         <div className='add-button-wrapper'>
-          <AddButton
-            route={`${getPath.newMemo(userId, wellId, bookId)}?nav=${NAV_ITEM.well.key}`}
-            text='메모 추가하기'
-          />
+          {memoList.count === 0 ? (
+            <AddButton
+              route={`${getPath.newFirstMemo(bookId)}?nav=${NAV_ITEM.well.key}`}
+              text='이 책을 읽기로 결심한 이유는?'
+            />
+          ) : (
+            <AddButton
+              route={`${getPath.newMemo(userId, wellId, bookId)}?nav=${NAV_ITEM.well.key}`}
+              text='메모 추가하기'
+            />
+          )}
         </div>
       </WithConditionalRendering>
 
