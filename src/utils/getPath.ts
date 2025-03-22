@@ -21,4 +21,5 @@ export const getPath = {
   memo: (memoId: string) => `/memo/${memoId}`,
   memoList: (userId: string, wellId: string, isbn: string) =>
     `/${userId}/well/${wellId}/book/${isbn}/memo`,
+  newFirstMemo: (bookId: string) => `/new-first-memo/${bookId}`,
 };

@@ -60,6 +60,24 @@ export const sheetData: {
     extraButtonText: '아니요, 유지할게요',
     description: () => <>메모를 한 번 삭제하면 복구할 수 없어요.</>,
   },
+  first_memo: {
+    getTitle: () => (
+      <>
+        이 책을 읽기로
+        <br />
+        결심한 이유가 무엇인가요?
+      </>
+    ),
+    type: 'normal',
+    frog: SHEET_FROG.wink,
+    buttonText: '메모 작성하러 가기',
+    description: () => (
+      <>
+        이 책을 선택한 이유와 나만의 목표를 적어보세요.
+        <br />그 동기가 독서의 첫걸음이 될 거예요!
+      </>
+    ),
+  },
   select_well: {
     getTitle: () => (
       <>

@@ -1,13 +1,15 @@
 /* eslint-disable arrow-body-style */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import useNewItemStore from '@/store/newItemStore';
 import { staggerItemVariants } from '@/styles/variants/variants';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { GetWellItemRes } from '@frolog/frolog-api';
 import { CATEGORY } from '@/constants/category';
 import WellBubble from 'public/images/well/well-bubble.svg';
+import BottomSheet from '@/modules/BottomSheet/BottomSheet';
+import { getPath } from '@/utils/getPath';
 import MemoLeaf from './MemoLeaf';
 
 interface Props {
@@ -42,11 +44,18 @@ function WellItem({
   const { navigate } = useCustomRouter('well');
   const { newItemId, setNewItemId } = useNewItemStore();
   const { id, status, title, page, category, isbn, memo_cnt } = wellBook;
+  const [isFirstMemo, setIsFirstMemo] = useState(false);
   const height = page > 400 ? page * 0.15 : 55;
   const isReading = status === 'reading';
   const hasMemo = memo_cnt > 0;
 
   useEffect(() => {
+    if (newItemId === id && memo_cnt === 0) {
+      setTimeout(() => {
+        setIsFirstMemo(true);
+      }, 2000);
+    }
+
     return () => {
       if (newItemId === id) {
         setNewItemId(null);
@@ -105,6 +114,15 @@ function WellItem({
       <div
         className={`absolute h-[20px] w-full bg-category-bg-${category} bottom-0 left-0 z-0`}
       />
+      <AnimatePresence>
+        {isFirstMemo && (
+          <BottomSheet
+            sheetKey='first_memo'
+            onClick={() => navigate(getPath.newFirstMemo(isbn))}
+            onClose={() => setIsFirstMemo(false)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
