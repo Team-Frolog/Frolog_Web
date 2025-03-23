@@ -28,6 +28,7 @@ export const IMAGES = {
       after: `${BASE_PATH}/frog/book/after-reading.svg`,
     },
     memo_frog: `${BASE_PATH}/frog/memo-frog.webp`,
+    first_memo_frog: `${BASE_PATH}/frog/first-memo-frog.webp`,
     more_feed: `${BASE_PATH}/frog/morefeed-frog.svg`,
     more_frogs: `${BASE_PATH}/frog/more-character-frog.svg`,
     mission_frog: `${BASE_PATH}/frog/mission-frog.svg`,
