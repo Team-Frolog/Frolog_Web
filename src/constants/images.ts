@@ -6,6 +6,7 @@ export const IMAGES = {
     congrats: `${BASE_PATH}/frog/flash/congrats.webp`,
     new_well: `${BASE_PATH}/frog/flash/new-well-congrats.webp`,
     well_done: `${BASE_PATH}/frog/flash/well-done-frog.webp`,
+    first_memo: `${BASE_PATH}/frog/flash/first-memo-congrats.webp`,
     evaluation: {
       loading: `${BASE_PATH}/frog/flash/frog-evaluating.webp`,
       done: `${BASE_PATH}/frog/flash/frog-evaluating-done.webp`,
