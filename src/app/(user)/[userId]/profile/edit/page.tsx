@@ -1,5 +1,4 @@
 import React from 'react';
-import { ProfileEditForm } from '@/features/Profile';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/nextAuth';
@@ -10,20 +9,11 @@ import {
 } from '@tanstack/react-query';
 import { GetProfileDetail } from '@frolog/frolog-api';
 import { QUERY_KEY } from '@/constants/query';
+import dynamic from 'next/dynamic';
 
-export const metadata: Metadata = {
-  title: '프로필 수정',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
+const ProfileEditForm = dynamic(
+  () => import('@/features/Profile/components/Profile/ProfileEditForm')
+);
 
 interface Props {
   params: {
@@ -53,3 +43,23 @@ async function ProfileEditPage({ params: { userId } }: Props) {
 }
 
 export default ProfileEditPage;
+
+export const metadata: Metadata = {
+  title: '프로필 수정',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: '프로필 수정',
+  },
+  twitter: {
+    title: '프로필 수정',
+  },
+};

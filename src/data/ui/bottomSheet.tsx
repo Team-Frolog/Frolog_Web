@@ -149,6 +149,25 @@ export const sheetData: {
     extraButtonText: '모든 우물에서 책 삭제',
     description: () => <>우물에서 책을 지워도 프로필에서 볼 수 있어요!</>,
   },
+  delete_this_well: {
+    getTitle: () => (
+      <>
+        우물을
+        <br />
+        정말 삭제할까요?
+      </>
+    ),
+    type: 'error',
+    buttonText: '네, 삭제할게요',
+    extraButtonText: '아니요, 유지할게요',
+    description: () => (
+      <>
+        우물을 삭제해도
+        <br />
+        작성한 리뷰와 메모는 다시 불러올 수 있어요.
+      </>
+    ),
+  },
   logout: {
     getTitle: () => <>로그아웃 하나요?</>,
     type: 'error',

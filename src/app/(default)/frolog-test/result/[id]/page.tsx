@@ -23,10 +23,6 @@ export async function generateStaticParams() {
   ];
 }
 
-export const metadata: Metadata = {
-  title: '독서 성향 테스트 결과',
-};
-
 function TestResultPage({ params: { id } }: Props) {
   const testData = testResult[Number(id)];
 
@@ -75,3 +71,23 @@ function TestResultPage({ params: { id } }: Props) {
 }
 
 export default TestResultPage;
+
+export const metadata: Metadata = {
+  title: '독서 성향 테스트 결과',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: '독서 성향 테스트 결과',
+  },
+  twitter: {
+    title: '독서 성향 테스트 결과',
+  },
+};

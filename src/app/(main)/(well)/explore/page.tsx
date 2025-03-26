@@ -10,6 +10,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
+import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import dynamic from 'next/dynamic';
 import React from 'react';
@@ -60,3 +61,23 @@ async function ExplorePage() {
 }
 
 export default ExplorePage;
+
+export const metadata: Metadata = {
+  title: '우물 탐색',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: '우물 탐색',
+  },
+  twitter: {
+    title: '우물 탐색',
+  },
+};

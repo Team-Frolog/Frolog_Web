@@ -17,10 +17,6 @@ interface Props {
   };
 }
 
-export const metadata: Metadata = {
-  title: '독서 메모',
-};
-
 async function MemoPage({ params: { memoId } }: Props) {
   const session = await getServerSession(authOptions);
   const queryClient = new QueryClient();
@@ -43,3 +39,13 @@ async function MemoPage({ params: { memoId } }: Props) {
 }
 
 export default MemoPage;
+
+export const metadata: Metadata = {
+  title: '메모',
+  openGraph: {
+    title: '메모',
+  },
+  twitter: {
+    title: '메모',
+  },
+};

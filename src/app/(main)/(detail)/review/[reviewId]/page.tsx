@@ -17,10 +17,6 @@ interface Props {
   };
 }
 
-export const metadata: Metadata = {
-  title: '독서 리뷰',
-};
-
 async function ReviewPage({ params: { reviewId } }: Props) {
   const session = await getServerSession(authOptions);
   const queryClient = new QueryClient();
@@ -43,3 +39,13 @@ async function ReviewPage({ params: { reviewId } }: Props) {
 }
 
 export default ReviewPage;
+
+export const metadata: Metadata = {
+  title: '리뷰',
+  openGraph: {
+    title: '리뷰',
+  },
+  twitter: {
+    title: '리뷰',
+  },
+};

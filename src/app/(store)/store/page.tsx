@@ -14,20 +14,6 @@ import {
 import { SearchStoreItem } from '@frolog/frolog-api';
 import { QUERY_KEY } from '@/constants/query';
 
-export const metadata: Metadata = {
-  title: '상점',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
-
 const StoreItemList = dynamic(
   () => import('@/features/Store/components/StoreItemList'),
   {
@@ -68,3 +54,23 @@ async function StorePage() {
 }
 
 export default StorePage;
+
+export const metadata: Metadata = {
+  title: '상점',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: '상점',
+  },
+  twitter: {
+    title: '상점',
+  },
+};

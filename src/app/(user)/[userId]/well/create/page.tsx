@@ -11,20 +11,6 @@ import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import React from 'react';
 
-export const metadata: Metadata = {
-  title: '우물 생성',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
-};
-
 interface Props {
   params: {
     userId: string;
@@ -53,3 +39,23 @@ async function WellCreatePage({ params: { userId } }: Props) {
 }
 
 export default WellCreatePage;
+
+export const metadata: Metadata = {
+  title: '우물 생성',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: '우물 생성',
+  },
+  twitter: {
+    title: '우물 생성',
+  },
+};

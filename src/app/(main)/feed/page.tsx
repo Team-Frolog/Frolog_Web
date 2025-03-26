@@ -3,11 +3,6 @@ import { Feeds } from '@/features/Feed';
 import { Metadata } from 'next';
 import WellEntryHeader from '@/components/Header/WellEntryHeader';
 
-export const metadata: Metadata = {
-  title: '피드',
-  description: '다른 사람들이 작성한 리뷰와 메모 둘러보기',
-};
-
 async function FeedPage() {
   return (
     <>
@@ -20,3 +15,14 @@ async function FeedPage() {
 }
 
 export default FeedPage;
+
+export const metadata: Metadata = {
+  title: '피드',
+  description: '다른 사람들이 작성한 리뷰와 메모 둘러보기',
+  openGraph: {
+    title: '피드',
+  },
+  twitter: {
+    title: '피드',
+  },
+};

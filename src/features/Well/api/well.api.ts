@@ -8,8 +8,11 @@ import {
   DeleteWellItemReq,
   DeleteWellItemsByCondition,
   DeleteWellItemsByConditionReq,
+  DeleteWell,
+  DeleteWellReq,
   EditWell,
   EditWellReq,
+  FetchError,
   GetWell,
   GetWellNameAvailability,
   PostWell,
@@ -57,8 +60,16 @@ export const getWellList = async (owner: string, page: number) => {
 };
 
 export const getWell = async (id: string) => {
-  const response = await fetchWell.fetch({ id });
-  return response;
+  try {
+    const response = await fetchWell.fetch({ id });
+    return response;
+  } catch (err: any) {
+    if (err instanceof FetchError && err.status === 404) {
+      toast.error('존재하지 않는 우물입니다.');
+    } else {
+      throw err;
+    }
+  }
 };
 
 export const getWellItems = async (page: number, well_id: string) => {
@@ -89,6 +100,11 @@ export const getUserWellList = async (req: SearchUserWellReq) => {
 
 export const editWell = async (req: EditWellReq) => {
   const response = await editWellObj.fetch(req);
+  return response;
+};
+
+export const deleteWell = async (req: DeleteWellReq) => {
+  const response = await new DeleteWell(baseOptions).fetch(req);
   return response;
 };
 

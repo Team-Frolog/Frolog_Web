@@ -11,6 +11,7 @@ interface Props {
 }
 
 export const metadata: Metadata = {
+  title: '댓글',
   robots: {
     index: false,
     follow: false,
@@ -20,6 +21,12 @@ export const metadata: Metadata = {
       follow: false,
       noimageindex: true,
     },
+  },
+  openGraph: {
+    title: '댓글',
+  },
+  twitter: {
+    title: '댓글',
   },
 };
 
