@@ -7,6 +7,7 @@ export { default as ExpandIcon } from './common/expand.svg';
 export { default as ScrollToTopIcon } from './common/scroll-to-top.svg';
 export { default as MenuArrowIcon } from './common/menu-arrow.svg';
 export { default as RightArrowIcon } from './common/right-arrow.svg';
+export { default as MoreDotButton } from './common/more-button.svg';
 
 // toast
 export { default as ToastErrorIcon } from './toast/toast-error.svg';

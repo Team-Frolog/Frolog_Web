@@ -136,6 +136,19 @@ export const sheetData: {
     extraButtonText: '아니요, 유지할게요',
     description: () => <>댓글을 삭제하면 다시 되돌릴 수 없어요</>,
   },
+  delete_this_book: {
+    getTitle: () => (
+      <>
+        우물에서 이 책을
+        <br />
+        정말 삭제할까요?
+      </>
+    ),
+    type: 'error',
+    buttonText: '이 우물에서 책 삭제',
+    extraButtonText: '모든 우물에서 책 삭제',
+    description: () => <>우물에서 책을 지워도 프로필에서 볼 수 있어요!</>,
+  },
   delete_this_well: {
     getTitle: () => (
       <>
