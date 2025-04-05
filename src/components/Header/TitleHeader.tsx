@@ -3,6 +3,7 @@
 import React, { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { bottomSheet } from '@/modules/BottomSheet';
+import WithWebViewTheme from '@/components/HOC/WithWebViewTheme';
 import BackButton from '../Button/BackButton';
 import WithConditionalRendering from '../HOC/WithConditionalRendering';
 
@@ -17,6 +18,7 @@ interface Props {
   title: string;
   /** 테마 색상 */
   theme: 'dark' | 'light' | 'gray';
+  webviewBgColor?: string;
   /** 추가 버튼 핸들러 함수 */
   onClick?: () => void;
   /** 뒤로가기 핸들러 (주어지지 않은 경우 내부 함수 사용) */
@@ -31,6 +33,7 @@ function TitleHeader({
   isDisabled,
   theme,
   title,
+  webviewBgColor = 'white',
   onClick,
   onClickBack,
   hasButton = true,
@@ -70,30 +73,32 @@ function TitleHeader({
   };
 
   return (
-    <header
-      id='header'
-      className={`header-sticky duration-50 z-70 flex justify-between px-[24px] py-[20px] transition-all ${getThemeColor(theme)} ${type === 'no_border' ? 'border-0' : 'border-b-[0.5px] border-gray-400'}`}
-    >
-      <BackButton
-        onClick={onClickBack || handleClick}
-        fill={theme === 'light' ? '#727484' : '#B3B6C5'}
-      />
-      <h2
-        id='selected'
-        className='absolute inset-x-0 top-1/2 mx-auto w-[70%] -translate-y-1/2 truncate text-center text-body-xl-bold'
+    <WithWebViewTheme bgColor={webviewBgColor}>
+      <header
+        id='header'
+        className={`header-sticky duration-50 z-70 flex justify-between px-[24px] py-[20px] transition-all ${getThemeColor(theme)} ${type === 'no_border' ? 'border-0' : 'border-b-[0.5px] border-gray-400'}`}
       >
-        {title}
-      </h2>
-      <WithConditionalRendering condition={hasButton}>
-        <button
-          type={type === 'default' ? 'button' : 'submit'}
-          onClick={type === 'default' ? onClick : undefined}
-          className={`text-body-lg-bold text-main ${(type === 'edit' || type === 'write') && isDisabled && 'pointer-events-none opacity-50'}`}
+        <BackButton
+          onClick={onClickBack || handleClick}
+          fill={theme === 'light' ? '#727484' : '#B3B6C5'}
+        />
+        <h2
+          id='selected'
+          className='absolute inset-x-0 top-1/2 mx-auto w-[70%] -translate-y-1/2 truncate text-center text-body-xl-bold'
         >
-          {type === 'default' ? '수정' : '저장'}
-        </button>
-      </WithConditionalRendering>
-    </header>
+          {title}
+        </h2>
+        <WithConditionalRendering condition={hasButton}>
+          <button
+            type={type === 'default' ? 'button' : 'submit'}
+            onClick={type === 'default' ? onClick : undefined}
+            className={`text-body-lg-bold text-main ${(type === 'edit' || type === 'write') && isDisabled && 'pointer-events-none opacity-50'}`}
+          >
+            {type === 'default' ? '수정' : '저장'}
+          </button>
+        </WithConditionalRendering>
+      </header>
+    </WithWebViewTheme>
   );
 }
 

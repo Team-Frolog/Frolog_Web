@@ -14,6 +14,7 @@ async function WellSearchPage() {
           type='no_border'
           theme='gray'
           hasButton={false}
+          webviewBgColor='bg-gray-300'
         />
         <div className='sticky left-0 top-[60px] z-60 flex w-full flex-col gap-[16px] bg-gray-300 px-[24px] pb-[12px]'>
           <SearchInput

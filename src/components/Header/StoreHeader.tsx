@@ -4,6 +4,7 @@ import React from 'react';
 import { STORE_TABS } from '@/constants/tabs';
 import { useRouter } from 'next/navigation';
 import { useWallet } from '@/features/Store/hooks/useWallet';
+import WithWebViewTheme from '@/components/HOC/WithWebViewTheme';
 import BackButton from '../Button/BackButton';
 import TabMenu from '../Tab/TabMenu';
 
@@ -20,15 +21,17 @@ function StoreHeader({ userId }: Props) {
   const { points } = useWallet(userId);
 
   return (
-    <header className='duration-50 block h-fit w-full gap-3 bg-white p-[24px] transition-all'>
-      <BackButton fill='#727384' onClick={() => router.back()} />
-      <div className='flex items-center justify-between'>
-        <TabMenu tabs={STORE_TABS} theme='light' />
-        <div className='h-fit rounded-[50px] bg-gray-300 px-[14px] py-[8px] text-title-lg-bold'>
-          {points?.toLocaleString()} P
+    <WithWebViewTheme bgColor='white'>
+      <header className='duration-50 block h-fit w-full gap-3 bg-white p-[24px] transition-all'>
+        <BackButton fill='#727384' onClick={() => router.back()} />
+        <div className='flex items-center justify-between'>
+          <TabMenu tabs={STORE_TABS} theme='light' />
+          <div className='h-fit rounded-[50px] bg-gray-300 px-[14px] py-[8px] text-title-lg-bold'>
+            {points?.toLocaleString()} P
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </WithWebViewTheme>
   );
 }
 
