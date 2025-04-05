@@ -57,7 +57,7 @@ async function UserProfilePage({ params: { userId } }: Props) {
             <Profile userId={userId} isRootUser={isRootUser} />
           </HydrationBoundary>
           {isRootUser ? (
-            <ProfileFeed userId={userId} />
+            <ProfileFeed />
           ) : (
             <Suspense fallback={<WellListSkeleton />}>
               <WellList userId={userId} isRootUser={isRootUser} />
