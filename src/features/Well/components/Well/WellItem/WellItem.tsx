@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import useNewItemStore from '@/store/newItemStore';
+import { WellItemMoverIcon } from 'public/icons';
 import { staggerItemVariants } from '@/styles/variants/variants';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { STORAGE_KEY } from '@/constants/storage';
@@ -28,6 +29,8 @@ interface Props {
   setTarget?: React.Dispatch<
     React.SetStateAction<HTMLDivElement | null | undefined>
   >;
+  /** 우물 순서 변경 모드 여부 */
+  isMovable?: boolean;
 }
 
 /** 우물 도서 아이템 컴포넌트 */
@@ -39,6 +42,7 @@ function WellItem({
   isLastItem,
   setTarget,
   startLoading,
+  isMovable = false,
 }: Props) {
   const { navigate } = useCustomRouter('well');
   const { newItemId, setNewItemId } = useNewItemStore();
@@ -95,7 +99,12 @@ function WellItem({
             className='absolute left-[24px] top-[8px]'
           />
         )}
-        {hasMemo && (
+        {isMovable && (
+          <button type='button' className='absolute right-[24px] top-[8px]'>
+            <WellItemMoverIcon />
+          </button>
+        )}
+        {!isMovable && hasMemo && (
           <MemoLeaf bg={CATEGORY[category].text} line={CATEGORY[category].bg} />
         )}
         <span

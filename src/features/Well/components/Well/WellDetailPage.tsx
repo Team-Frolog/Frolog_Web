@@ -4,10 +4,12 @@ import React from 'react';
 import ScrollToTop from '@/components/Gesture/ScrollToTop';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
+import { useSearchParams } from 'next/navigation';
 import MainLayout from '@/layouts/MainLayout';
 import { useWell } from '../../hooks/useWell';
 import WellItemList from './WellItem/WellItemList';
-import WellHeader from './WellHeader';
+import WellHeader from './WellHeader/WellHeader';
+import WellOrderEditHeader from './WellHeader/WellOrderEditHeader';
 
 interface Props {
   /** 우물 소유 유저 id */
@@ -31,23 +33,29 @@ function WellDetailPage({
   const isDefaultWell = defaultWellId === wellId;
   const { well } = useWell(wellId);
   const { isRendering } = useScrollToTop();
+  const isMovable = useSearchParams().get('mode') === 'movable';
 
   return (
     <>
       <MainLayout
         extraClass={`bg-shape-${well?.shape} bg-gray-300 overscroll-none`}
       >
-        <WellHeader
-          userId={userId}
-          wellId={wellId}
-          isRootUser={isRootUser}
-          hasBackButton={!isDefaultWell}
-        />
+        {isMovable ? (
+          <WellOrderEditHeader />
+        ) : (
+          <WellHeader
+            userId={userId}
+            wellId={wellId}
+            isRootUser={isRootUser}
+            hasBackButton={!isDefaultWell}
+          />
+        )}
         {well && (
           <WellItemList
             isRootUser={isRootUser}
             wellData={well}
             isDefaultWell={isDefaultWell}
+            isMovable={isMovable}
           />
         )}
         {isRendering && <ScrollToTop />}

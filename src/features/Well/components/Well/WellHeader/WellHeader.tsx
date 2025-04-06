@@ -5,7 +5,7 @@ import { EditIcon } from 'public/icons';
 import BackButton from '@/components/Button/BackButton';
 import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/page';
-import WellEditSheet from '../WellEdit/WellEditSheet';
+import WellEditSheet from './WellEditSheet';
 
 interface Props {
   /** 우물 소유 유저 id */

@@ -24,11 +24,13 @@ interface Props {
   isRootUser: boolean;
   /** 첫 우물인지 여부 */
   isDefaultWell?: boolean;
+  /** 우물 순서 변경 모드 여부 */
+  isMovable: boolean;
 }
 
 /** 우물 아이템 리스트 컴포넌트 */
 const WellItemList = React.memo(
-  ({ wellData, isRootUser, isDefaultWell }: Props) => {
+  ({ wellData, isRootUser, isDefaultWell, isMovable }: Props) => {
     const {
       wellItems,
       fetchNextPage,
@@ -86,6 +88,7 @@ const WellItemList = React.memo(
           itemCount={item_cnt}
           isRootUser={isRootUser}
           isPointing={isDefaultWell && wellItems.length < 2}
+          isMovable={isMovable}
         />
         <motion.div
           className='relative flex h-fit w-full flex-1 flex-col-reverse items-center'
@@ -109,6 +112,7 @@ const WellItemList = React.memo(
                   setTarget={setTarget}
                   zIndex={i + 1}
                   startLoading={() => setIsLoading(true)}
+                  isMovable={isMovable}
                 />
               ))}
             </div>
@@ -117,6 +121,7 @@ const WellItemList = React.memo(
             frogId={wellData.frog}
             message={message}
             zIndex={wellItems.length + 1}
+            isMovable={isMovable}
           />
           {isTimeToMakeSecond && (
             <WellActionButton
