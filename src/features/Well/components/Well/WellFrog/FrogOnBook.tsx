@@ -42,7 +42,7 @@ function FrogOnBook({ message, frogId = 'default', zIndex }: Props) {
       <motion.div
         style={{ zIndex: zIndex + 1 }}
         variants={newItemId ? frogVariants : undefined}
-        className='flex-col-center relative z-[999px] pt-[20px]'
+        className='flex-col-center relative pt-[20px]'
       >
         <GuideChat
           message={message}

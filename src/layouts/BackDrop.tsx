@@ -29,7 +29,7 @@ function BackDrop({ children, align }: Props) {
       animate='animate'
       exit='exit'
       className={`${alignmentClass} safe-screen fixed inset-x-0 left-0 top-0 z-90 mx-auto w-[450px] mobile:inset-0 mobile:left-0 mobile:w-full`}
-      style={{ zIndex: '90' }}
+      style={{ zIndex: 90 }}
     >
       {children}
     </motion.div>

@@ -108,6 +108,10 @@ export const sheetData: {
     getTitle: () => <>책을 다 읽으셨나요?</>,
     type: 'normal',
   },
+  edit_well: {
+    getTitle: () => <>무엇을 수정할까요?</>,
+    type: 'normal',
+  },
   select_books: {
     getTitle: () => <>기존 리뷰를 우물에 담을까요?</>,
     type: 'normal',

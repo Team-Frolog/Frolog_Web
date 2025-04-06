@@ -1,12 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { EditIcon } from 'public/icons';
 import BackButton from '@/components/Button/BackButton';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { PAGES } from '@/constants/page';
-import { getPath } from '@/utils/getPath';
+import WellEditSheet from '../WellEdit/WellEditSheet';
 
 interface Props {
   /** 우물 소유 유저 id */
@@ -28,6 +27,7 @@ function WellHeader({
 }: Props) {
   const router = useRouter();
   const isMyWell = isRootUser && userId && wellId;
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className='safe-header absolute left-[50%] z-20 flex w-[450px] translate-x-[-50%] gap-[20px] pt-[70px] mobile:left-0 mobile:w-full mobile:translate-x-0'>
@@ -41,13 +41,20 @@ function WellHeader({
         />
       )}
       {isMyWell && (
-        <Link
-          href={getPath.wellEdit(userId, wellId)}
+        <button
+          type='button'
+          onClick={() => setIsOpen(true)}
           className='absolute right-[28px] top-[28px] z-20'
         >
           <EditIcon />
-        </Link>
+        </button>
       )}
+      <WellEditSheet
+        isOpen={isOpen}
+        closeSheet={() => setIsOpen(false)}
+        userId={userId}
+        wellId={wellId}
+      />
     </div>
   );
 }
