@@ -1,6 +1,7 @@
 /* eslint-disable arrow-body-style */
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useUserId } from '@/store/sessionStore';
 import { AnimatePresence, motion } from 'framer-motion';
 import useNewItemStore from '@/store/newItemStore';
 import { staggerItemVariants } from '@/styles/variants/variants';
@@ -41,6 +42,7 @@ function WellItem({
   setTarget,
   startLoading,
 }: Props) {
+  const userId = useUserId();
   const { navigate } = useCustomRouter('well');
   const { newItemId, setNewItemId } = useNewItemStore();
   const { id, status, title, page, category, isbn, memo_cnt } = wellBook;
@@ -118,7 +120,9 @@ function WellItem({
         {isFirstMemo && (
           <BottomSheet
             sheetKey='first_memo'
-            onClick={() => navigate(getPath.newFirstMemo(isbn))}
+            onClick={() =>
+              navigate(getPath.newFirstMemo(userId!, wellId, isbn))
+            }
             onClose={() => setIsFirstMemo(false)}
           />
         )}

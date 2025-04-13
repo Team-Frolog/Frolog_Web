@@ -4,12 +4,14 @@ import NewFirstMemo from '@/features/Memo/components/FirstMemo/NewFirstMemoPage'
 
 interface Props {
   params: {
+    userId: string;
+    wellId: string;
     bookId: string;
   };
 }
 
-function NewFirstMemoPage({ params: { bookId } }: Props) {
-  return <NewFirstMemo bookId={bookId} />;
+function NewFirstMemoPage({ params: { bookId, userId, wellId } }: Props) {
+  return <NewFirstMemo userId={userId} wellId={wellId} bookId={bookId} />;
 }
 
 export default NewFirstMemoPage;

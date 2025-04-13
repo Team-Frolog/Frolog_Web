@@ -69,7 +69,7 @@ async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
         <div className='add-button-wrapper'>
           {memoList.count === 0 ? (
             <AddButton
-              route={`${getPath.newFirstMemo(bookId)}?nav=${NAV_ITEM.well.key}`}
+              route={`${getPath.newFirstMemo(userId, wellId, bookId)}?nav=${NAV_ITEM.well.key}`}
               text='이 책을 읽기로 결심한 이유는?'
             />
           ) : (

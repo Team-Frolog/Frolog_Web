@@ -7,15 +7,21 @@ import FirstMemoForm from './FirstMemoForm';
 import { useFirstMemoForm } from '../../hooks/useFirstMemoForm';
 
 interface Props {
+  userId: string;
+  wellId: string;
   bookId: string;
 }
 
-function NewFirstMemoPage({ bookId }: Props) {
-  const { isLoading } = useFirstMemoForm();
+function NewFirstMemoPage({ userId, wellId, bookId }: Props) {
+  const { isLoading, handleSubmitForm } = useFirstMemoForm(
+    userId,
+    wellId,
+    bookId
+  );
 
   return (
     <GenericForm<FirstMemoFormType>
-      onSubmit={() => {}}
+      onSubmit={handleSubmitForm}
       className='safe-screen flex w-full flex-1 flex-col bg-white'
       formOptions={{
         mode: 'onBlur',

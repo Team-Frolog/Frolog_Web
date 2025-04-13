@@ -9,6 +9,7 @@ import WithConditionalRendering from '@/components/HOC/WithConditionalRendering'
 import DeleteButton from '@/components/Button/DeleteButton';
 import { formatDate } from '@/utils/date';
 import { getImageSrc } from '@/utils/getImageSrc';
+import TagSlider from '@/components/Tag/TagSlider';
 import ImageSlider from '../MemoForm/ImageForm/ImageSlider';
 import { Memo } from '../../models/memo.model';
 import ImageSlot from '../MemoForm/ImageForm/ImageSlot';
@@ -48,6 +49,11 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
             ))}
           </ImageSlider>
         </WithConditionalRendering>
+        {memoData.tags && memoData.tags.length > 0 && (
+          <div className='flex-col-center w-full gap-[8px]'>
+            <TagSlider type='pros' tagKeys={memoData.tags} isFirstMemo />
+          </div>
+        )}
 
         <div className='flex w-full flex-col gap-[20px] px-page pt-0'>
           <p className='whitespace-pre-wrap break-all text-body-lg'>

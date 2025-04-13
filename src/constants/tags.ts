@@ -36,16 +36,16 @@ export const CONS_TAG: TagData[] = [
 ] as const;
 
 export const REASON_TAG: TagData[] = [
-  { id: '1', value: '자기계발을 위해' },
-  { id: '2', value: '새로운 동기부여' },
-  { id: '3', value: '위로와 힐링이 필요' },
-  { id: '4', value: '누가 추천해줘서' },
-  { id: '5', value: 'SNS에서 화제' },
-  { id: '6', value: '베스트셀러' },
-  { id: '7', value: '일/공부에 도움' },
-  { id: '8', value: '재테크/경제 공부를 위해' },
-  { id: '9', value: '제목이 끌려서' },
-  { id: '10', value: '표지가 예뻐서' },
-  { id: '11', value: '서점에서 우연히 발견' },
-  { id: '12', value: '도서관에서 빌림' },
+  { id: 'self_dev', value: '자기계발을 위해' },
+  { id: 'new_motive', value: '새로운 동기부여' },
+  { id: 'healing', value: '위로와 힐링이 필요' },
+  { id: 'recommend', value: '누가 추천해줘서' },
+  { id: 'sns_buzz', value: 'SNS에서 화제' },
+  { id: 'bestseller', value: '베스트셀러' },
+  { id: 'work_help', value: '일/공부에 도움' },
+  { id: 'finance', value: '재테크/경제 공부를 위해' },
+  { id: 'title_hit', value: '제목이 끌려서' },
+  { id: 'nice_cover', value: '표지가 예뻐서' },
+  { id: 'bookstore', value: '서점에서 우연히 발견' },
+  { id: 'library', value: '도서관에서 빌림' },
 ];

@@ -1,8 +1,11 @@
-import { MemoFormType } from '@/features/Memo';
 import { ReviewFormType } from '@/features/Review';
 
 export interface TextareaType {
-  fieldName: keyof ReviewFormType | keyof MemoFormType | 'self_intro';
+  fieldName:
+    | keyof ReviewFormType
+    | keyof MemoFormType
+    | keyof FirstMemoFormType
+    | 'self_intro';
   title: string;
   maxLength: number;
   minLength: number;
