@@ -14,10 +14,11 @@ import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import dynamic from 'next/dynamic';
 import ProfilePageHeader from '@/features/Profile/components/Profile/ProfilePageHeader';
-import { ProfileFeed } from '@/features/Profile';
 import WellListSkeleton from '@/components/Fallback/Skeleton/Well/WellListSkeleton';
 import { WellList } from '@/features/Well';
 import { Suspense } from 'react';
+import ProfileFeedListSkeleton from '@/components/Fallback/Skeleton/Profile/ProfileFeedListSkeleton';
+import { ProfileFeed } from '@/features/Profile';
 
 const Profile = dynamic(
   () => import('@/features/Profile/components/Profile/Profile'),
@@ -57,7 +58,9 @@ async function UserProfilePage({ params: { userId } }: Props) {
             <Profile userId={userId} isRootUser={isRootUser} />
           </HydrationBoundary>
           {isRootUser ? (
-            <ProfileFeed />
+            <Suspense fallback={<ProfileFeedListSkeleton />}>
+              <ProfileFeed userId={userId} />
+            </Suspense>
           ) : (
             <Suspense fallback={<WellListSkeleton />}>
               <WellList userId={userId} isRootUser={isRootUser} />
