@@ -15,7 +15,7 @@ function ProfileFeed({ userId }: Props) {
   return (
     <div className='relative flex flex-wrap gap-[20px] px-page'>
       {profileFeed.map((item) => (
-        <ProfileFeedItem key={item.bookId} feedData={item} />
+        <ProfileFeedItem key={item.bookInfo.isbn} feedData={item} />
       ))}
     </div>
   );

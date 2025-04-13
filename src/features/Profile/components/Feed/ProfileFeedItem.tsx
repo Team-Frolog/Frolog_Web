@@ -11,7 +11,8 @@ interface Props {
 
 /** 사용자 프로필 피드 아이템 */
 function ProfileFeedItem({ feedData }: Props) {
-  const { image, category } = feedData.bookInfo;
+  const { memoCount, reviewCount, wellId } = feedData;
+  const { image, category, isbn } = feedData.bookInfo;
 
   return (
     <div className='flex w-[calc(50%-10px)] flex-col overflow-hidden rounded-[12px]'>
@@ -31,13 +32,15 @@ function ProfileFeedItem({ feedData }: Props) {
       <div className='flex flex-col gap-[1px]'>
         <FeedItemDetail
           title='메모'
-          count={feedData.memoCount}
+          count={memoCount}
           category={category}
+          path={`well/${wellId}/book/${isbn}/memo`}
         />
         <FeedItemDetail
           title='리뷰'
-          count={feedData.reviewCount}
+          count={reviewCount}
           category={category}
+          path={`well/${wellId}/book/${isbn}/review`}
         />
       </div>
     </div>
