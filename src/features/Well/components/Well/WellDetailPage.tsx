@@ -7,9 +7,7 @@ import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import { useSearchParams } from 'next/navigation';
 import MainLayout from '@/layouts/MainLayout';
 import { useWell } from '../../hooks/useWell';
-import WellItemList from './WellItem/WellItemList';
-import WellHeader from './WellHeader/WellHeader';
-import WellOrderEditHeader from './WellHeader/WellOrderEditHeader';
+import WellDetail from './WellDetail';
 
 interface Props {
   /** 우물 소유 유저 id */
@@ -40,22 +38,13 @@ function WellDetailPage({
       <MainLayout
         extraClass={`bg-shape-${well?.shape} bg-gray-300 overscroll-none`}
       >
-        {isMovable ? (
-          <WellOrderEditHeader />
-        ) : (
-          <WellHeader
-            userId={userId}
-            wellId={wellId}
-            isRootUser={isRootUser}
-            hasBackButton={!isDefaultWell}
-          />
-        )}
         {well && (
-          <WellItemList
+          <WellDetail
             isRootUser={isRootUser}
             wellData={well}
             isDefaultWell={isDefaultWell}
             isMovable={isMovable}
+            userId={userId}
           />
         )}
         {isRendering && <ScrollToTop />}

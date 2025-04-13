@@ -3,7 +3,7 @@ import { QUERY_KEY } from '@/constants/query';
 import { getWellItems } from '../api/well.api';
 
 /** 우물 아이템 쿼리 훅 */
-export const useWellItems = (wellId: string) => {
+export const useWellItems = (wellId?: string) => {
   const {
     data,
     fetchNextPage,
@@ -13,7 +13,7 @@ export const useWellItems = (wellId: string) => {
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: [QUERY_KEY.wellItems, wellId],
-    queryFn: ({ pageParam }) => getWellItems(pageParam, wellId),
+    queryFn: ({ pageParam }) => getWellItems(pageParam, wellId!),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const totalPages = Math.ceil(lastPage.count / lastPage.limit);

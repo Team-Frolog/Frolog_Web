@@ -1,7 +1,9 @@
-/* eslint-disable arrow-body-style */
-import React, { useEffect } from 'react';
+'use client';
+
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useDrag, useDrop } from 'react-dnd';
 import useNewItemStore from '@/store/newItemStore';
 import { WellItemMoverIcon } from 'public/icons';
 import { staggerItemVariants } from '@/styles/variants/variants';
@@ -13,35 +15,28 @@ import WellBubble from 'public/images/well/well-bubble.svg';
 import MemoLeaf from './MemoLeaf';
 
 interface Props {
-  /** 도서 데이터 객체 */
   wellBook: GetWellItemRes;
-  /** 우물 id */
   wellId: string;
-  /** 최상단 아이템인지 여부 */
   isTopItem: boolean;
-  /** 아이템의 z-index */
-  zIndex: number;
-  /** 로딩 시작 핸들러 */
+  index: number;
   startLoading: () => void;
-  /** 최하단 아이템인지 여부 */
   isLastItem?: boolean;
-  /** 무한스크롤을 위한 observer 타겟 세팅 핸들러 */
   setTarget?: React.Dispatch<
     React.SetStateAction<HTMLDivElement | null | undefined>
   >;
-  /** 우물 순서 변경 모드 여부 */
   isMovable?: boolean;
+  handleMoveItem?: (itemId: string, from: number, to: number) => void;
 }
 
-/** 우물 도서 아이템 컴포넌트 */
 function WellItem({
   wellId,
   wellBook,
   isTopItem,
-  zIndex,
+  index,
   isLastItem,
   setTarget,
   startLoading,
+  handleMoveItem,
   isMovable = false,
 }: Props) {
   const { navigate } = useCustomRouter('well');
@@ -50,17 +45,37 @@ function WellItem({
   const height = page > 400 ? page * 0.15 : 55;
   const isReading = status === 'reading';
   const hasMemo = memo_cnt > 0;
+  const dragHandleRef = useRef<HTMLButtonElement>(null);
+  const dropRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    return () => {
-      if (newItemId === id) {
-        setNewItemId(null);
+    if (newItemId === id) {
+      setNewItemId(null);
+    }
+  }, []);
+
+  const [, drag] = useDrag({
+    type: 'wellItem',
+    item: { index },
+  });
+
+  const [, drop] = useDrop({
+    accept: 'wellItem',
+    hover(draggedItem: { index: number }) {
+      if (draggedItem.index !== index) {
+        handleMoveItem?.(id, draggedItem.index, index);
+        draggedItem.index = index;
       }
-    };
+    },
+  });
+
+  useEffect(() => {
+    if (dragHandleRef.current) drag(dragHandleRef);
+    if (dropRef.current) drop(dropRef);
   }, []);
 
   return (
-    <div className='relative flex w-full'>
+    <div className='relative flex w-full' ref={dropRef}>
       <motion.div
         whileTap={{ y: -10 }}
         onClick={() => {
@@ -75,7 +90,7 @@ function WellItem({
         variants={
           newItemId === id && isTopItem ? staggerItemVariants : undefined
         }
-        style={{ zIndex, height }}
+        style={{ zIndex: index + 1, height }}
         className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[12px]`}
       >
         {isLastItem && (
@@ -100,7 +115,14 @@ function WellItem({
           />
         )}
         {isMovable && (
-          <button type='button' className='absolute right-[24px] top-[8px]'>
+          <button
+            ref={dragHandleRef}
+            type='button'
+            onPointerDown={(e) => {
+              e.stopPropagation();
+            }}
+            className='absolute right-[24px] top-[8px]'
+          >
             <WellItemMoverIcon />
           </button>
         )}

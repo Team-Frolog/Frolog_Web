@@ -23,6 +23,8 @@ import {
   SearchUserWellReq,
   SearchWell,
   SearchWellItem,
+  ChangeWellItemOrderBulkReq,
+  ChangeWellItemOrderBulk,
 } from '@frolog/frolog-api';
 
 const postWell = new PostWell(baseOptions);
@@ -125,5 +127,10 @@ export const deleteWellItem = async (req: DeleteWellItemReq) => {
 
 export const deleteThisBook = async (req: DeleteWellItemsByConditionReq) => {
   const response = await new DeleteWellItemsByCondition(baseOptions).fetch(req);
+  return response;
+};
+
+export const updateWellItemOrder = async (req: ChangeWellItemOrderBulkReq) => {
+  const response = await new ChangeWellItemOrderBulk(baseOptions).fetch(req);
   return response;
 };
