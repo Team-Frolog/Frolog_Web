@@ -15,7 +15,9 @@ function FeedItemDetail({ title, count, category }: Props) {
     >
       <h3 className='text-body-md-bold'>{title}</h3>
       <div className='flex items-center'>
-        <p className='text-body-sm-bold'>{count ? `${count}개` : '쓰러가기'}</p>
+        <p className='text-body-sm-bold'>
+          {count !== 0 ? `${count}개` : '쓰러가기'}
+        </p>
         <MenuArrowIcon fill='currentColor' />
       </div>
     </button>
