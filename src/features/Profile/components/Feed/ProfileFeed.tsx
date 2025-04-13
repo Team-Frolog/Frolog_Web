@@ -1,15 +1,22 @@
 'use client';
 
 import ProfileFeedItem from '@/features/Profile/components/Feed/ProfileFeedItem';
-import React from 'react';
+import { useProfileFeed } from '@/features/Profile/hooks/useProfileFeed';
 
-function ProfileFeed() {
+interface Props {
+  userId: string;
+}
+
+function ProfileFeed({ userId }: Props) {
+  const { profileFeed } = useProfileFeed(userId);
+
+  if (!profileFeed) return null;
+
   return (
     <div className='relative flex flex-wrap gap-[20px] px-page'>
-      <ProfileFeedItem />
-      <ProfileFeedItem />
-      <ProfileFeedItem />
-      <ProfileFeedItem />
+      {profileFeed.map((item) => (
+        <ProfileFeedItem key={item.bookId} feedData={item} />
+      ))}
     </div>
   );
 }
