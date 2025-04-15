@@ -8,7 +8,6 @@ import { REASON_TAG } from '@/constants/tags';
 import { textareaType } from '@/data/ui/textareaType';
 import { useBook } from '@/features/Book';
 import { useRouter } from 'next/navigation';
-import FormInput from '@/components/Form/Input/FormInput';
 import PublicToggle from '../MemoForm/PublicToggle';
 import { IMAGES } from '../../../../constants/images';
 
@@ -20,7 +19,7 @@ interface Props {
 function FirstMemoForm({ isLoading, bookId }: Props) {
   const router = useRouter();
   const { bookData } = useBook(bookId);
-  const { watch, register, setValue } = useFormContext();
+  const { watch, setValue } = useFormContext();
   const { keywords, memo } = watch();
 
   const handleSelectKeywords = (id: string) => {
@@ -67,13 +66,6 @@ function FirstMemoForm({ isLoading, bookId }: Props) {
                 isSelected={keywords.includes(item.id)}
               />
             ))}
-            <FormInput
-              fieldName='reason'
-              hasCount
-              placeholder='직접입력'
-              theme='light'
-              {...register('reason')}
-            />
           </div>
         </div>
         <Textarea option={textareaType.firstMemo} />

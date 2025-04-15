@@ -145,6 +145,7 @@ function withAuth(
   response: NextResponse
 ) {
   if (!isLoggedIn) {
+    console.log('call!');
     return NextResponse.redirect(new URL('/onboarding', req.url));
   }
   return response;

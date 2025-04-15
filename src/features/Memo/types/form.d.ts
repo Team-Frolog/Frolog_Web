@@ -6,7 +6,6 @@ interface MemoFormType {
 
 interface FirstMemoFormType {
   keywords: string[];
-  reason: string;
   memo: string;
   isPublic: boolean;
 }

@@ -1,23 +1,23 @@
-'use client';
-
 import GenericForm from '@/components/Form/GenericForm';
 import React from 'react';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import FirstMemoForm from './FirstMemoForm';
-import { useFirstMemoForm } from '../../hooks/useFirstMemoForm';
+import { useFirstMemoDetail } from '../../hooks/useFirstMemoDetail';
 
 interface Props {
-  userId: string;
-  wellId: string;
   bookId: string;
+  memoId: string;
 }
 
-function NewFirstMemoPage({ userId, wellId, bookId }: Props) {
-  const { isLoading, handleSubmitForm } = useFirstMemoForm(
-    userId,
-    wellId,
-    bookId
-  );
+function EditFirstMemoPage({ bookId, memoId }: Props) {
+  const { isLoading, handleSubmitForm, firstMemoData } =
+    useFirstMemoDetail(memoId);
+
+  const defaultValues = {
+    keywords: firstMemoData?.tags,
+    memo: firstMemoData?.content,
+    isPublic: firstMemoData?.is_public,
+  };
 
   return (
     <GenericForm<FirstMemoFormType>
@@ -25,11 +25,7 @@ function NewFirstMemoPage({ userId, wellId, bookId }: Props) {
       className='safe-screen flex w-full flex-1 flex-col bg-white'
       formOptions={{
         mode: 'onBlur',
-        defaultValues: {
-          keywords: [],
-          memo: '',
-          isPublic: true,
-        },
+        defaultValues,
       }}
     >
       <FirstMemoForm isLoading={isLoading} bookId={bookId} />
@@ -38,4 +34,4 @@ function NewFirstMemoPage({ userId, wellId, bookId }: Props) {
   );
 }
 
-export default NewFirstMemoPage;
+export default EditFirstMemoPage;
