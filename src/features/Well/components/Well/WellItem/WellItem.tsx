@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useDrag, useDrop } from 'react-dnd';
 import useNewItemStore from '@/store/newItemStore';
 import { WellItemMoverIcon } from 'public/icons';
 import { staggerItemVariants } from '@/styles/variants/variants';
@@ -25,7 +24,8 @@ interface Props {
     React.SetStateAction<HTMLDivElement | null | undefined>
   >;
   isMovable?: boolean;
-  handleMoveItem?: (itemId: string, from: number, to: number) => void;
+  draggableHandle: any;
+  isDragging?: boolean;
 }
 
 function WellItem({
@@ -36,8 +36,9 @@ function WellItem({
   isLastItem,
   setTarget,
   startLoading,
-  handleMoveItem,
+  draggableHandle,
   isMovable = false,
+  isDragging = false,
 }: Props) {
   const { navigate } = useCustomRouter('well');
   const { newItemId, setNewItemId } = useNewItemStore();
@@ -45,8 +46,6 @@ function WellItem({
   const height = page > 400 ? page * 0.15 : 55;
   const isReading = status === 'reading';
   const hasMemo = memo_cnt > 0;
-  const dragHandleRef = useRef<HTMLButtonElement>(null);
-  const dropRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (newItemId === id) {
@@ -54,28 +53,13 @@ function WellItem({
     }
   }, []);
 
-  const [, drag] = useDrag({
-    type: 'wellItem',
-    item: { index },
-  });
-
-  const [, drop] = useDrop({
-    accept: 'wellItem',
-    hover(draggedItem: { index: number }) {
-      if (draggedItem.index !== index) {
-        handleMoveItem?.(id, draggedItem.index, index);
-        draggedItem.index = index;
-      }
-    },
-  });
-
-  useEffect(() => {
-    if (dragHandleRef.current) drag(dragHandleRef);
-    if (dropRef.current) drop(dropRef);
-  }, []);
-
   return (
-    <div className='relative flex w-full' ref={dropRef}>
+    <div
+      className='relative flex w-full'
+      style={{
+        boxShadow: isDragging ? '0px 4px 10px 0px rgba(0, 0, 0, 0.25)' : '',
+      }}
+    >
       <motion.div
         whileTap={{ y: -10 }}
         onClick={() => {
@@ -116,7 +100,7 @@ function WellItem({
         )}
         {isMovable && (
           <button
-            ref={dragHandleRef}
+            {...draggableHandle}
             type='button'
             onPointerDown={(e) => {
               e.stopPropagation();

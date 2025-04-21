@@ -5,9 +5,7 @@ import {
   GetWellItemRes,
   GetWellRes,
 } from '@frolog/frolog-api';
-import { DndProvider } from 'react-dnd';
 import { usePathname } from 'next/navigation';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { getPath } from '@/utils/getPath';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { useWellItems } from '../../hooks/useWellItems';
@@ -61,24 +59,20 @@ function WellDetail({
     }
   }, [originalItems]);
 
-  const handleMoveItem = (
-    itemId: string,
-    fromIndex: number,
-    toIndex: number
-  ) => {
+  const handleMoveItem = (result: any) => {
     const prevChanges = orderChanges;
     prevChanges.push({
       well_id: wellData.id,
-      id: itemId,
-      order: toIndex,
+      id: result.draggableId,
+      order: originalItems.length - +result.destination.index - 1,
     });
     console.log(prevChanges);
     setOrderChanges(prevChanges);
 
     setItems((prevItems) => {
       const updated = [...prevItems];
-      const [moved] = updated.splice(fromIndex, 1);
-      updated.splice(toIndex, 0, moved);
+      const [moved] = updated.splice(result.source.index, 1);
+      updated.splice(result.destination.index, 0, moved);
       return updated;
     });
   };
@@ -118,21 +112,20 @@ function WellDetail({
         isPointing={isDefaultWell && wellItems.length < 2}
         isMovable={isMovable}
       />
-      <DndProvider backend={HTML5Backend}>
-        <WellItemList
-          wellData={wellData}
-          items={items}
-          wellItems={wellItems}
-          isRootUser={isRootUser}
-          isDefaultWell={isDefaultWell}
-          isMovable={isMovable}
-          isFetchingNextPage={isFetchingNextPage}
-          isFetched={isFetched}
-          isEmpty={isEmpty}
-          setTarget={setTarget}
-          handleMoveItem={handleMoveItem}
-        />
-      </DndProvider>
+
+      <WellItemList
+        wellData={wellData}
+        items={items}
+        wellItems={wellItems}
+        isRootUser={isRootUser}
+        isDefaultWell={isDefaultWell}
+        isMovable={isMovable}
+        isFetchingNextPage={isFetchingNextPage}
+        isFetched={isFetched}
+        isEmpty={isEmpty}
+        setTarget={setTarget}
+        handleMoveItem={handleMoveItem}
+      />
     </>
   );
 }

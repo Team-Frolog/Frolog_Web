@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { staggerContainerVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { GetWellItemRes, GetWellRes } from '@frolog/frolog-api';
 import { getRandomEmptyMessage } from '@/features/Well/utils/getRandomMessage';
 import WellItemSkeleton from '@/components/Fallback/Skeleton/Well/WellItemSkeleton';
@@ -33,7 +34,7 @@ interface Props {
   setTarget: React.Dispatch<
     React.SetStateAction<HTMLDivElement | null | undefined>
   >;
-  handleMoveItem: (itemId: string, fromIndex: number, toIndex: number) => void;
+  handleMoveItem: (result: any) => void;
 }
 
 /** 우물 아이템 리스트 컴포넌트 */
@@ -91,6 +92,21 @@ const WellItemList = React.memo(
       }
     }, [wellItems]);
 
+    const [enabled, setEnabled] = useState(false);
+
+    useEffect(() => {
+      const animation = requestAnimationFrame(() => setEnabled(true));
+
+      return () => {
+        cancelAnimationFrame(animation);
+        setEnabled(false);
+      };
+    }, []);
+
+    if (!enabled) {
+      return null;
+    }
+
     return (
       <>
         <motion.div
@@ -104,40 +120,59 @@ const WellItemList = React.memo(
             fallback={<EmptyWellItem isRootUser={isRootUser} />}
           >
             {isFetchingNextPage && <WellItemSkeleton />}
-            <div className='flex w-full flex-col'>
-              {isMovable
-                ? items?.map((item, i) => (
-                    <WellItem
-                      key={item.id}
-                      wellBook={item}
-                      wellId={wellData.id}
-                      isTopItem={i === 0}
-                      isLastItem={
-                        wellItems.length === i + 1 && !isFetchingNextPage
-                      }
-                      setTarget={setTarget}
-                      index={i}
-                      startLoading={() => setIsLoading(true)}
-                      isMovable={isMovable}
-                      handleMoveItem={handleMoveItem}
-                    />
-                  ))
-                : wellItems?.map((item, i) => (
-                    <WellItem
-                      key={item.id}
-                      wellBook={item}
-                      wellId={wellData.id}
-                      isTopItem={i === 0}
-                      isLastItem={
-                        wellItems.length === i + 1 && !isFetchingNextPage
-                      }
-                      setTarget={setTarget}
-                      index={i}
-                      startLoading={() => setIsLoading(true)}
-                      isMovable={isMovable}
-                    />
-                  ))}
-            </div>
+            <DragDropContext onDragEnd={handleMoveItem}>
+              <Droppable droppableId='wellItems'>
+                {(rootProvided) => (
+                  <div
+                    className='wellItems'
+                    {...rootProvided.droppableProps}
+                    ref={rootProvided.innerRef}
+                    style={{ width: '100%', display: 'flex' }}
+                  >
+                    <div className='flex w-full flex-col'>
+                      {items?.map((item, i) => (
+                        <Draggable
+                          draggableId={item.id}
+                          index={i}
+                          key={item.id}
+                        >
+                          {(provided, snapshot) => (
+                            <div
+                              {...provided.draggableProps}
+                              ref={provided.innerRef}
+                              style={{
+                                width: '100%',
+                                display: 'flex',
+                                ...provided.draggableProps.style,
+                                left: 0,
+                              }}
+                            >
+                              <WellItem
+                                key={item.id}
+                                wellBook={item}
+                                draggableHandle={provided.dragHandleProps}
+                                wellId={wellData.id}
+                                isTopItem={i === 0}
+                                isLastItem={
+                                  wellItems.length === i + 1 &&
+                                  !isFetchingNextPage
+                                }
+                                setTarget={setTarget}
+                                index={i}
+                                isDragging={snapshot.isDragging}
+                                startLoading={() => setIsLoading(true)}
+                                isMovable={isMovable}
+                              />
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {rootProvided.placeholder}
+                    </div>
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
           </WithConditionalRendering>
           <FrogOnBook
             frogId={wellData.frog}
