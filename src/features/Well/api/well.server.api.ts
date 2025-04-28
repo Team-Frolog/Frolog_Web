@@ -11,7 +11,9 @@ import {
 import * as Sentry from '@sentry/nextjs';
 import { getServerSession } from 'next-auth';
 
-export const getWellList = async (page: number) => {
+export const getWellList = async (page: number, isRootUser?: boolean) => {
+  if (!isRootUser) return;
+
   try {
     const session = await getServerSession(authOptions);
 
