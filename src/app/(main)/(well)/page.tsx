@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/nextAuth';
-import dynamic from 'next/dynamic';
 import WellListSkeleton from '@/components/Fallback/Skeleton/Well/WellListSkeleton';
 import { Metadata } from 'next';
 import {
@@ -9,17 +8,26 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import { SearchWell } from '@frolog/frolog-api';
-import { DEFAULT_LIMIT } from '@/constants/api';
-import { QUERY_KEY } from '@/constants/query';
+import { getWellList } from '@/features/Well/api/well.server.api';
+import { WellList } from '@/features/Well';
 
-const WellList = dynamic(
-  () => import('@/features/Well/components/WellList/WellList'),
-  {
-    ssr: false,
-    loading: () => <WellListSkeleton />,
-  }
-);
+async function WellPage() {
+  const session = await getServerSession(authOptions);
+  const userId = session?.user.id;
+  const queryClient = new QueryClient();
+
+  const wellList = await getWellList(0);
+
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Suspense fallback={<WellListSkeleton />}>
+        <WellList userId={userId} isRootUser initialWells={wellList} />
+      </Suspense>
+    </HydrationBoundary>
+  );
+}
+
+export default WellPage;
 
 export const metadata: Metadata = {
   title: '나의 우물',
@@ -34,28 +42,3 @@ export const metadata: Metadata = {
     },
   },
 };
-
-async function WellPage() {
-  const session = await getServerSession(authOptions);
-  const userId = session?.user.id;
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: [QUERY_KEY.wellList, userId],
-    queryFn: ({ pageParam }) =>
-      new SearchWell({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.accessToken,
-      }).fetch({ owner: userId, limit: DEFAULT_LIMIT, page: pageParam }),
-    initialPageParam: 0,
-    staleTime: 1000 * 10,
-  });
-
-  return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      {userId && <WellList userId={userId} isRootUser />}
-    </HydrationBoundary>
-  );
-}
-
-export default WellPage;

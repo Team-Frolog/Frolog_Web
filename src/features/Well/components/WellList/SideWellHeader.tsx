@@ -1,7 +1,4 @@
-'use client';
-
 import WellEntryHeader from '@/components/Header/WellEntryHeader';
-import { useRouter } from 'next/navigation';
 import { StoreIcon } from 'public/icons';
 import React from 'react';
 import BackButton from '@/components/Button/BackButton';
@@ -25,20 +22,12 @@ function SideWellHeader({
   hasStoreButton = false,
   hasBackButton = false,
 }: Props) {
-  const router = useRouter();
-
   return (
     <WellEntryHeader bgColor={bgColor}>
       <header className='flex h-fit w-full px-page py-[20px] pt-[50px]'>
         <TabMenu tabs={WELL_TABS} theme='light' />
       </header>
-      {hasBackButton && (
-        <BackButton
-          type='bg'
-          safeArea='back-button'
-          onClick={() => router.back()}
-        />
-      )}
+      {hasBackButton && <BackButton type='bg' safeArea='back-button' />}
       {hasStoreButton && (
         <CustomMotionLink
           id='store-button'

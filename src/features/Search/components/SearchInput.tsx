@@ -3,8 +3,9 @@
 import { PAGES } from '@/constants/page';
 import { useSearchParams } from 'next/navigation';
 import { ClearIcon, SearchIcon } from 'public/icons';
-import React, { useState, KeyboardEvent } from 'react';
+import React, { useState, KeyboardEvent, useEffect } from 'react';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
+import useAddBookStore from '@/store/addBookStore';
 
 interface Props {
   placeholder: string;
@@ -19,6 +20,14 @@ function SearchInput({ placeholder, searchUrl = PAGES.SEARCH, route }: Props) {
   const { replace, navigate } = useCustomRouter('search');
   const searchParams = useSearchParams().get('query');
   const [searchValue, setSearchValue] = useState(searchParams || '');
+
+  const {
+    actions: { resetWellId },
+  } = useAddBookStore();
+
+  useEffect(() => {
+    resetWellId();
+  }, []);
 
   const handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchValue.trim() !== '') {

@@ -1,6 +1,3 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
 import React from 'react';
 import WithWebViewTheme from '@/components/HOC/WithWebViewTheme';
 import BackButton from '../Button/BackButton';
@@ -22,18 +19,10 @@ function WellEntryHeader({
   bgColor,
   hasBackButton = false,
 }: Props) {
-  const router = useRouter();
-
   return (
     <WithWebViewTheme bgColor='black'>
       <header className={`flex h-fit w-full ${bgColor || 'bg-white'}`}>
-        {hasBackButton && (
-          <BackButton
-            type='bg'
-            safeArea='back-button'
-            onClick={() => router.back()}
-          />
-        )}
+        {hasBackButton && <BackButton type='bg' safeArea='back-button' />}
         <div className='safe-header pointer-events-none absolute left-0 z-60 flex w-full justify-between gap-[80px]'>
           <div className='side-header-left' />
           <div className='side-header-right' />

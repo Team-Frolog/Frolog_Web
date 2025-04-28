@@ -14,6 +14,7 @@ import { GetBook, SearchReview } from '@frolog/frolog-api';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/nextAuth';
 import { QUERY_KEY } from '@/constants/query';
+import { getBookInfo } from '@/features/Book/api/book.server.api';
 
 interface Props {
   params: {
@@ -24,16 +25,7 @@ interface Props {
 async function BookPage({ params: { id } }: Props) {
   const session = await getServerSession(authOptions);
   const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: [QUERY_KEY.bookInfo, id],
-    queryFn: () =>
-      new GetBook({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.accessToken,
-      }).fetch({ isbn: id }),
-    staleTime: 1000 * 10,
-  });
+  const bookInfo = await getBookInfo(id, session?.user.accessToken);
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: [QUERY_KEY.reviewList, id],
@@ -57,8 +49,8 @@ async function BookPage({ params: { id } }: Props) {
       />
       <MainLayout>
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <BookInfo bookId={id} />
-          <AboutBook bookId={id} />
+          <BookInfo bookId={id} bookData={bookInfo} />
+          <AboutBook bookId={id} bookData={bookInfo} />
         </HydrationBoundary>
       </MainLayout>
     </>
