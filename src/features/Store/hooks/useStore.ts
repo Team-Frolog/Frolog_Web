@@ -10,7 +10,11 @@ import {
 import { getStoreItems, purchaseItem } from '../api/store.api';
 
 /** 상점 아이템 조회 및 구매 핸들링 훅 */
-export const useStore = (userId: string, points?: number) => {
+export const useStore = (
+  storeItemList: GetStoreItemRes[],
+  userId?: string,
+  points?: number
+) => {
   const queryClient = useQueryClient();
 
   const { data } = useSuspenseQuery({
@@ -18,6 +22,12 @@ export const useStore = (userId: string, points?: number) => {
     queryFn: () => getStoreItems({ type: 'frog', limit: 100 }),
     refetchOnWindowFocus: false,
     staleTime: Infinity,
+    initialData: {
+      items: storeItemList,
+      count: storeItemList.length,
+      limit: 100,
+      page: 1,
+    },
   });
 
   const { mutate: purchase } = useMutation({

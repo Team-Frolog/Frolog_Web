@@ -1,18 +1,10 @@
-'use client';
-
 import MainLayout from '@/layouts/MainLayout';
 import BookInfo from '@/components/Book/BookInfo';
-import { CATEGORY } from '@/constants/category';
-import { useScroll } from '@/hooks/gesture/useScroll';
 import React, { Suspense } from 'react';
 import BookInfoSkeleton from '@/components/Fallback/Skeleton/Book/BookInfoSkeleton';
-import { useBook } from '@/features/Book';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
-import { MEMO_REVIEW_TABS } from '@/constants/tabs';
-import HeaderWrapper from '@/components/Wrapper/HeaderWrapper';
-import TabMenu from '@/components/Tab/TabMenu';
-import DeleteWellItem from '@/features/Well/components/DeleteWellItem';
-import { useUserId } from '@/store/sessionStore';
+import { getBookInfo } from '@/features/Book/api/book.server.api';
+import ReviewMemoHeader from '@/components/Header/ReviewMemoHeader';
 
 interface Props {
   children: React.ReactNode;
@@ -23,30 +15,21 @@ interface Props {
   };
 }
 
-function ReviewMemoLayout({
+async function ReviewMemoLayout({
   children,
   params: { userId, wellId, bookId },
 }: Props) {
-  const { bookData } = useBook(bookId);
-  const rootUserId = useUserId();
+  const bookData = await getBookInfo(bookId);
   const category = bookData?.category || 'novel';
-
-  useScroll({
-    categoryColor: CATEGORY[category].bg,
-    foreground: CATEGORY[category].text,
-    unSelected: CATEGORY[category].band,
-  });
 
   return (
     <>
-      <HeaderWrapper isResponsive>
-        <div className='flex w-full items-center justify-between'>
-          <TabMenu tabs={MEMO_REVIEW_TABS} />
-          {userId === rootUserId && (
-            <DeleteWellItem wellId={wellId} bookId={bookId} />
-          )}
-        </div>
-      </HeaderWrapper>
+      <ReviewMemoHeader
+        userId={userId}
+        wellId={wellId}
+        bookId={bookId}
+        category={category}
+      />
       <MainLayout extraClass='bg-gray-900'>
         <Suspense fallback={<BookInfoSkeleton />}>
           <BookInfo bookId={bookId} canClick />

@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import WithWebViewTheme from '@/components/HOC/WithWebViewTheme';
 import BackButton from '../Button/BackButton';
 
@@ -10,12 +7,10 @@ import BackButton from '../Button/BackButton';
  * - 댓글 페이지에서 활용됩니다.
  */
 function BackHeader() {
-  const router = useRouter();
-
   return (
     <WithWebViewTheme bgColor='white'>
       <header className='header-sticky duration-50 z-70 flex justify-between border-b-[0.5px] border-gray-400 bg-white p-[24px] transition-all'>
-        <BackButton onClick={() => router.back()} fill='#727484' />
+        <BackButton fill='#727484' />
       </header>
     </WithWebViewTheme>
   );

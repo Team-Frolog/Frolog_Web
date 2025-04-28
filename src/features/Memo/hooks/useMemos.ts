@@ -19,7 +19,11 @@ export interface MemoData {
 }
 
 /** 메모 리스트 쿼리 훅 */
-export const useMemos = (userId: string, bookId?: string) => {
+export const useMemos = (
+  userId: string,
+  bookId: string,
+  initialMemoList: SearchMemoRes
+) => {
   const [memoId, setMemoId] = useState<string>('');
 
   const queryClient = useQueryClient();
@@ -40,6 +44,10 @@ export const useMemos = (userId: string, bookId?: string) => {
           : [],
         pageParams: fetchedData.pageParams,
       }),
+      initialData: {
+        pages: [initialMemoList],
+        pageParams: [0],
+      },
       staleTime: 1000 * 5,
     });
 

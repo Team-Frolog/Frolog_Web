@@ -1,8 +1,13 @@
-import { DEFAULT_LIMIT } from '@/constants/api';
+import { DEFAULT_LIMIT, WELLITEM_LIMIT } from '@/constants/api';
 import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
 import { authOptions } from '@/utils/auth/nextAuth';
-import { SearchUserWell, SearchWell } from '@frolog/frolog-api';
+import {
+  GetWell,
+  SearchUserWell,
+  SearchWell,
+  SearchWellItem,
+} from '@frolog/frolog-api';
 import * as Sentry from '@sentry/nextjs';
 import { getServerSession } from 'next-auth';
 
@@ -55,6 +60,45 @@ export const getExploreWellList = async (page: number, refTime: string) => {
       userwells: [],
       count: 0,
       limit: DEFAULT_LIMIT,
+      page: 0,
+    };
+  }
+};
+
+export const getWellDetail = async (wellId: string) => {
+  const session = await getServerSession(authOptions);
+
+  const response = await new GetWell({
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    accessToken: session?.user.accessToken,
+  }).fetch({ id: wellId });
+
+  return response;
+};
+
+export const getWellItemList = async (wellId: string) => {
+  try {
+    const session = await getServerSession(authOptions);
+
+    const response = await new SearchWellItem({
+      baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+      accessToken: session?.user.accessToken,
+    }).fetch({
+      page: 0,
+      well_id: wellId,
+      limit: WELLITEM_LIMIT,
+      sort: 'newest',
+    });
+
+    return response;
+  } catch (err) {
+    toast.error(ERROR_ALERT);
+    Sentry.captureException(err);
+
+    return {
+      items: [],
+      count: 0,
+      limit: WELLITEM_LIMIT,
       page: 0,
     };
   }

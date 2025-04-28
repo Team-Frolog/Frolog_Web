@@ -1,15 +1,7 @@
-import { QUERY_KEY } from '@/constants/query';
+import { getMyFrogList } from '@/features/Store/api/store.server.api';
 import { WellForm } from '@/features/Well';
-import { authOptions } from '@/utils/auth/nextAuth';
-import { SearchStoreItem } from '@frolog/frolog-api';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
 import { Metadata } from 'next';
-import { getServerSession } from 'next-auth';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 interface Props {
   params: {
@@ -18,23 +10,12 @@ interface Props {
 }
 
 async function WellCreatePage({ params: { userId } }: Props) {
-  const session = await getServerSession(authOptions);
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: [QUERY_KEY.myFrogs, userId],
-    queryFn: () =>
-      new SearchStoreItem({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.accessToken,
-      }).fetch({ owner: userId, type: 'frog' }),
-    staleTime: 1000 * 10,
-  });
+  const myFrogList = await getMyFrogList(userId);
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <WellForm type='write' userId={userId} />
-    </HydrationBoundary>
+    <Suspense fallback={<></>}>
+      <WellForm type='write' myFrogList={myFrogList} />
+    </Suspense>
   );
 }
 
