@@ -64,7 +64,7 @@ function WellDetail({
     prevChanges.push({
       well_id: wellData.id,
       id: result.draggableId,
-      order: originalItems.length - +result.destination.index - 1,
+      order: +result.destination.index,
     });
     console.log(prevChanges);
     setOrderChanges(prevChanges);
@@ -83,6 +83,7 @@ function WellDetail({
         well_id: wellData.id,
         changes: orderChanges,
       });
+      setOrderChanges([]);
       router.replace(getPath.wellDetail(userId, wellData.id));
     } catch (error) {
       console.error('순서 저장 실패:', error);
