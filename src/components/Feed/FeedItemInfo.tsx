@@ -37,7 +37,11 @@ function FeedItemInfo({
     <div className='flex w-full flex-col'>
       <CustomLink
         prefetch
-        href={isMemo ? getPath.memo(feedData.id) : getPath.review(feedData.id)}
+        href={
+          isGetMemoRes(feedData)
+            ? getPath.memo(feedData.id, feedData.is_first)
+            : getPath.review(feedData.id)
+        }
         className='flex w-full flex-col'
         onClick={() => {
           onSaveScroll();

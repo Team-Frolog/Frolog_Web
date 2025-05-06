@@ -40,7 +40,7 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
             ? memoData.is_first
               ? `first-memo/${memoData.id}`
               : `memo/${memoData.id}`
-            : getPath.memo(memoData.id)
+            : getPath.memo(memoData.id, memoData.is_first)
         }
       >
         <WithConditionalRendering condition={memoData.images.length !== 0}>

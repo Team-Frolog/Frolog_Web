@@ -15,9 +15,15 @@ interface Props {
   params: {
     memoId: string;
   };
+  searchParams: {
+    isFirstMemo?: string;
+  };
 }
 
-async function MemoPage({ params: { memoId } }: Props) {
+async function MemoPage({
+  params: { memoId },
+  searchParams: { isFirstMemo },
+}: Props) {
   const session = await getServerSession(authOptions);
   const queryClient = new QueryClient();
 
@@ -33,7 +39,7 @@ async function MemoPage({ params: { memoId } }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <MemoDetailPage memoId={memoId} />
+      <MemoDetailPage memoId={memoId} isFirstMemo={isFirstMemo === 'true'} />
     </HydrationBoundary>
   );
 }

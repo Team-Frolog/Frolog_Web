@@ -18,7 +18,8 @@ export const getPath = {
   newMemo: (userId: string, wellId: string, isbn: string) =>
     `/${userId}/well/${wellId}/new-memo/${isbn}`,
   review: (reviewId: string) => `/review/${reviewId}`,
-  memo: (memoId: string) => `/memo/${memoId}`,
+  memo: (memoId: string, isFirst?: boolean) =>
+    `/memo/${memoId}${isFirst ? `?isFirstMemo=true` : ''}`,
   memoList: (userId: string, wellId: string, isbn: string) =>
     `/${userId}/well/${wellId}/book/${isbn}/memo`,
   newFirstMemo: (userId: string, wellId: string, isbn: string) =>

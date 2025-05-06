@@ -1,1 +1,1 @@
-export type Tag = 'pros' | 'cons';
+export type Tag = 'pros' | 'cons' | 'firstMemo';
