@@ -12,13 +12,12 @@ import React from 'react';
 
 interface Props {
   params: {
-    userId: string;
     bookId: string;
     memoId: string;
   };
 }
 
-async function MyFirstMemoPage({ params: { userId, bookId, memoId } }: Props) {
+async function MyFirstMemoPage({ params: { bookId, memoId } }: Props) {
   const session = await getServerSession(authOptions);
   const queryClient = new QueryClient();
 
@@ -34,7 +33,7 @@ async function MyFirstMemoPage({ params: { userId, bookId, memoId } }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <EditFirstMemoPage userId={userId} bookId={bookId} memoId={memoId} />
+      <EditFirstMemoPage bookId={bookId} memoId={memoId} />
     </HydrationBoundary>
   );
 }

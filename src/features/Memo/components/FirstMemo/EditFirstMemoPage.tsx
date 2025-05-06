@@ -1,3 +1,5 @@
+'use client';
+
 import GenericForm from '@/components/Form/GenericForm';
 import React from 'react';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';

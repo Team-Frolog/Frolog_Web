@@ -35,7 +35,13 @@ function MemoListItem({ memoData, setMemoId, onDelete, userId }: Props) {
       <CustomLink
         prefetch
         className='flex w-full flex-col gap-[20px]'
-        href={isRootUser ? `memo/${memoData.id}` : getPath.memo(memoData.id)}
+        href={
+          isRootUser
+            ? memoData.is_first
+              ? `first-memo/${memoData.id}`
+              : `memo/${memoData.id}`
+            : getPath.memo(memoData.id)
+        }
       >
         <WithConditionalRendering condition={memoData.images.length !== 0}>
           <ImageSlider>
