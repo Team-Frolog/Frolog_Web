@@ -1,6 +1,4 @@
 import { DEFAULT_LIMIT, WELLITEM_LIMIT } from '@/constants/api';
-import { ERROR_ALERT } from '@/constants/message';
-import { toast } from '@/modules/Toast';
 import { authOptions } from '@/utils/auth/nextAuth';
 import {
   GetWell,
@@ -28,7 +26,6 @@ export const getWellList = async (page: number, isRootUser?: boolean) => {
 
     return response;
   } catch (err) {
-    toast.error(ERROR_ALERT);
     Sentry.captureException(err);
 
     return {
@@ -55,7 +52,6 @@ export const getExploreWellList = async (page: number, refTime: string) => {
 
     return response;
   } catch (err) {
-    toast.error(ERROR_ALERT);
     Sentry.captureException(err);
 
     return {
@@ -94,7 +90,6 @@ export const getWellItemList = async (wellId: string) => {
 
     return response;
   } catch (err) {
-    toast.error(ERROR_ALERT);
     Sentry.captureException(err);
 
     return {
