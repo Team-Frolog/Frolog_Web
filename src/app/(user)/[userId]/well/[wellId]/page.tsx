@@ -3,11 +3,6 @@ import { WellDetailPage } from '@/features/Well';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/nextAuth';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
 import { GetProfile, GetWell } from '@frolog/frolog-api';
 import {
   getWellDetail,
@@ -23,20 +18,17 @@ interface Props {
 
 async function UserWellDetailPage({ params: { userId, wellId } }: Props) {
   const session = await getServerSession(authOptions);
-  const queryClient = new QueryClient();
   const wellDetail = await getWellDetail(wellId);
   const wellItemList = await getWellItemList(wellId);
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <WellDetailPage
-        userId={userId}
-        initialWellItemList={wellItemList}
-        wellDetail={wellDetail}
-        sessionUserId={session?.user.id}
-        defaultWellId={session?.user.defaultWellId}
-      />
-    </HydrationBoundary>
+    <WellDetailPage
+      userId={userId}
+      initialWellItemList={wellItemList}
+      wellDetail={wellDetail}
+      sessionUserId={session?.user.id}
+      defaultWellId={session?.user.defaultWellId}
+    />
   );
 }
 

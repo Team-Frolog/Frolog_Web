@@ -9,13 +9,15 @@ import ImageEditor from './ImageEditor';
 import { useProfileEdit } from '../../hooks/useProfileEdit';
 import { ProfileEditFormType } from '../../types/editForm';
 import { profileEditDefaultValue } from '../../data/editForm';
+import { GetProfileDetailRes } from '@frolog/frolog-api';
 
 interface Props {
   userId: string;
+  profileDetail: GetProfileDetailRes;
 }
 
 /** 프로필 수정 폼 */
-function ProfileEditForm({ userId }: Props) {
+function ProfileEditForm({ userId, profileDetail }: Props) {
   const methods = useForm<ProfileEditFormType>({
     mode: 'onBlur',
     defaultValues: profileEditDefaultValue,
@@ -26,7 +28,7 @@ function ProfileEditForm({ userId }: Props) {
     formState: { isDirty },
   } = methods;
   const { handleClickBack, handleEditProfile, original_username } =
-    useProfileEdit(userId, reset, isDirty);
+    useProfileEdit(userId, reset, isDirty, profileDetail);
 
   return (
     <FormProvider {...methods}>

@@ -10,25 +10,22 @@ import { getPath } from '@/utils/getPath';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { QUERY_KEY } from '@/constants/query';
-import { editProfile, getProfileDetail } from '../api/profile.api';
+import { editProfile } from '../api/profile.api';
 import { compareForm } from '../utils/compareForm';
 import { ProfileEditFormType } from '../types/editForm';
+import { GetProfileDetailRes } from '@frolog/frolog-api';
 
 /** 프로필 수정 핸들링 훅 */
 export const useProfileEdit = (
   userId: string,
   reset: UseFormReset<ProfileEditFormType>,
-  isDirty: boolean
+  isDirty: boolean,
+  profileDetail: GetProfileDetailRes
 ) => {
   const [isEdited, setIsEdited] = useState(false); // 성향 테스트 재시도 완료 여부
   const { replace, router } = useCustomRouter('profile');
   const queryClient = useQueryClient();
 
-  const { data: profileDetail } = useQuery({
-    queryKey: [QUERY_KEY.profileDetail, userId],
-    queryFn: () => getProfileDetail(userId),
-    staleTime: 0,
-  });
   const original_username = profileDetail?.username;
 
   /** 프로필 수정 핸들러 */

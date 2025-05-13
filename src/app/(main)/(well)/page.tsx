@@ -3,27 +3,19 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/nextAuth';
 import WellListSkeleton from '@/components/Fallback/Skeleton/Well/WellListSkeleton';
 import { Metadata } from 'next';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
 import { getWellList } from '@/features/Well/api/well.server.api';
 import { WellList } from '@/features/Well';
 
 async function WellPage() {
   const session = await getServerSession(authOptions);
   const userId = session?.user.id;
-  const queryClient = new QueryClient();
 
   const wellList = await getWellList(0);
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <Suspense fallback={<WellListSkeleton />}>
-        <WellList userId={userId} isRootUser initialWells={wellList} />
-      </Suspense>
-    </HydrationBoundary>
+    <Suspense fallback={<WellListSkeleton />}>
+      <WellList userId={userId} isRootUser initialWells={wellList!} />
+    </Suspense>
   );
 }
 
