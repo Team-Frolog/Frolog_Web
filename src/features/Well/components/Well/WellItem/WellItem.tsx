@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import useNewItemStore from '@/store/newItemStore';
 import { staggerItemVariants } from '@/styles/variants/variants';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
+import { STORAGE_KEY } from '@/constants/storage';
 import { GetWellItemRes } from '@frolog/frolog-api';
 import { CATEGORY } from '@/constants/category';
 import WellBubble from 'public/images/well/well-bubble.svg';
@@ -77,6 +78,7 @@ function WellItem({
         whileTap={{ y: -10 }}
         onClick={() => {
           startLoading();
+          sessionStorage.setItem(STORAGE_KEY.selectedWellItemId, id);
           navigate(
             isReading
               ? `${wellId}/book/${isbn}/memo`

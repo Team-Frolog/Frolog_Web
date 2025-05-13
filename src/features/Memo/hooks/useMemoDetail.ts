@@ -34,6 +34,7 @@ export const useMemoDetail = (
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.memoDetail, memoId],
       });
+
       replace(getPath.memoList(userId!, wellId, bookId));
       router.back();
     },

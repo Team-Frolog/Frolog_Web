@@ -53,6 +53,7 @@ async function BookPage({ params: { id } }: Props) {
         theme='dark'
         title='도서 상세 페이지'
         hasButton={false}
+        webviewBgColor='black'
       />
       <MainLayout>
         <HydrationBoundary state={dehydrate(queryClient)}>

@@ -4,6 +4,10 @@ import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
 import * as Sentry from '@sentry/nextjs';
 import {
+  DeleteWellItem,
+  DeleteWellItemReq,
+  DeleteWellItemsByCondition,
+  DeleteWellItemsByConditionReq,
   DeleteWell,
   DeleteWellReq,
   EditWell,
@@ -112,4 +116,14 @@ export const addWellItem = async (req: PostWellItemReq) => {
 export const checkWellName = async (name: string) => {
   const response = await getWellNameAvailability.fetch({ name });
   return response.result;
+};
+
+export const deleteWellItem = async (req: DeleteWellItemReq) => {
+  const response = await new DeleteWellItem(baseOptions).fetch(req);
+  return response;
+};
+
+export const deleteThisBook = async (req: DeleteWellItemsByConditionReq) => {
+  const response = await new DeleteWellItemsByCondition(baseOptions).fetch(req);
+  return response;
 };

@@ -1,5 +1,6 @@
 'use client';
 
+import WithWebViewTheme from '@/components/HOC/WithWebViewTheme';
 import { PAGES } from '@/constants/page';
 import { usePathname, useRouter } from 'next/navigation';
 import { BackIcon } from 'public/icons';
@@ -37,16 +38,18 @@ function ProfileTitleHeader() {
   };
 
   return (
-    <header className='block w-full gap-[12px] bg-white px-page pb-[20px] pt-[24px]'>
-      <button
-        type='button'
-        className='cursor-pointer'
-        onClick={() => router.back()}
-      >
-        <BackIcon fill='#727384' />
-      </button>
-      {renderTitle()}
-    </header>
+    <WithWebViewTheme bgColor='white'>
+      <header className='block w-full gap-[12px] bg-white px-page pb-[20px] pt-[24px]'>
+        <button
+          type='button'
+          className='cursor-pointer'
+          onClick={() => router.back()}
+        >
+          <BackIcon fill='#727384' />
+        </button>
+        {renderTitle()}
+      </header>
+    </WithWebViewTheme>
   );
 }
 
