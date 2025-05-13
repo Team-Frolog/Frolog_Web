@@ -12,10 +12,11 @@ import MemoDetail from './MemoDetail';
 interface Props {
   memoData: GetMemoRes;
   profile: GetProfileRes;
+  isFirstMemo?: boolean;
 }
 
 /** 메모 상세 페이지 */
-function MemoDetailPage({ memoData, profile }: Props) {
+function MemoDetailPage({ memoData, profile, isFirstMemo }: Props) {
   useScroll({ categoryColor: undefined });
   const { setIsInFeed } = useUserActionActions();
 
@@ -38,7 +39,7 @@ function MemoDetailPage({ memoData, profile }: Props) {
           </h1>
           <BookInfo bookId={memoData.isbn} canClick />
         </div>
-        <MemoDetail memoData={memoData} />
+        <MemoDetail memoData={memoData} isFirstMemo={isFirstMemo} />
       </MainLayout>
     </>
   );

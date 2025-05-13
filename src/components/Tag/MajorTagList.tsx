@@ -20,7 +20,11 @@ function MajorTagList({ type, tagKeys }: Props) {
   return (
     <div className='flex w-full flex-col gap-[8px]'>
       <span className='text-body-md text-gray-700'>
-        {type === 'pros' ? '장점' : '단점'} 키워드
+        {type === 'pros'
+          ? '장점 키워드'
+          : type === 'cons'
+            ? '단점 키워드'
+            : '이 책을 고른 이유'}
       </span>
       <div className='flex w-full flex-wrap gap-[16px] overflow-hidden'>
         {tags.length > 0 ? (

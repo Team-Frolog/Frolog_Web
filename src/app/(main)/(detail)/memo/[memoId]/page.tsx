@@ -8,15 +8,21 @@ interface Props {
   params: {
     memoId: string;
   };
+  searchParams: {
+    isFirstMemo?: string;
+  };
 }
 
-async function MemoPage({ params: { memoId } }: Props) {
+async function MemoPage({
+  params: { memoId },
+  searchParams: { isFirstMemo },
+}: Props) {
   const memoData = await getMemoDetail(memoId);
   const profile = await getProfile(memoData.writer);
 
   return (
     <Suspense fallback={<></>}>
-      <MemoDetailPage profile={profile} memoData={memoData} />
+      <MemoDetailPage profile={profile} memoData={memoData} isFirstMemo={isFirstMemo === 'true'} />
     </Suspense>
   );
 }

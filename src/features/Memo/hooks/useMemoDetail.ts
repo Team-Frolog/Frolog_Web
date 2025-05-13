@@ -5,7 +5,6 @@ import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { GetMemoRes } from '@frolog/frolog-api';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { editMemoDetail, getMemoDetail } from '../api/memo.api';
-import { MemoFormType } from '../types/form';
 
 /** 메모 상세 쿼리 및 수정 핸들링 훅 */
 export const useMemoDetail = (

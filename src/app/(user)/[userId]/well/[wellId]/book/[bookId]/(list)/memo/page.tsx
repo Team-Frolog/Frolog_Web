@@ -27,10 +27,17 @@ async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
     <>
       <WithConditionalRendering condition={userId === session?.user.id}>
         <div className='add-button-wrapper'>
-          <AddButton
-            route={`${getPath.newMemo(userId, wellId, bookId)}?nav=${NAV_ITEM.well.key}`}
-            text='메모 추가하기'
-          />
+          {memoList.count === 0 ? (
+            <AddButton
+              route={`${getPath.newFirstMemo(userId, wellId, bookId)}?nav=${NAV_ITEM.well.key}`}
+              text='이 책을 읽기로 결심한 이유는?'
+            />
+          ) : (
+            <AddButton
+              route={`${getPath.newMemo(userId, wellId, bookId)}?nav=${NAV_ITEM.well.key}`}
+              text='메모 추가하기'
+            />
+          )}
         </div>
       </WithConditionalRendering>
 

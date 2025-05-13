@@ -1,8 +1,11 @@
-import { MemoFormType } from '@/features/Memo';
 import { ReviewFormType } from '@/features/Review';
 
 export interface TextareaType {
-  fieldName: keyof ReviewFormType | keyof MemoFormType | 'self_intro';
+  fieldName:
+    | keyof ReviewFormType
+    | keyof MemoFormType
+    | keyof FirstMemoFormType
+    | 'self_intro';
   title: string;
   maxLength: number;
   minLength: number;
@@ -34,7 +37,7 @@ export const textareaType: {
     required: '리뷰를 작성해주세요',
     errorMessage: '좋은 시작이에요! 생각이 더 궁금해요. (최소 10자)',
     placeholder:
-      '리뷰를 쓰면 책 내용을 더 잘 기억할 수 있어요!\n떠오른 생각들을 남겨 주세요!  (10자 이상)',
+      '리뷰를 쓰면 책 내용을 더 잘 기억할 수 있어요!\n떠오른 생각들을 남겨 주세요! (10자 이상)',
   },
   memo: {
     fieldName: 'memo',
@@ -45,6 +48,17 @@ export const textareaType: {
     required: false,
     errorMessage: '',
     placeholder: '인상깊은 구절을 메모하세요',
+  },
+  firstMemo: {
+    fieldName: 'memo',
+    title: '메모',
+    maxLength: 400,
+    minLength: 0,
+    minRow: 2,
+    required: false,
+    errorMessage: '',
+    placeholder:
+      '이 책을 선택한 이유와 나만의 목표를 적어보세요.\n그 동기가 독서의 첫걸음이 될 거예요!',
   },
   intro: {
     fieldName: 'self_intro',
