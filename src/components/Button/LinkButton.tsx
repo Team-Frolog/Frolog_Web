@@ -11,6 +11,7 @@ interface Props {
   disabled?: boolean;
   theme?: 'normal' | 'light' | 'gray';
   extraClass?: string;
+  isReplace?: boolean;
 }
 
 /** 기본 버튼 컴포넌트와 같은 스타일의 Link */
@@ -20,6 +21,7 @@ function LinkButton({
   disabled = false,
   theme = 'normal',
   extraClass,
+  isReplace = false,
 }: Props) {
   const buttonType = getButtonColor(theme);
 
@@ -28,6 +30,7 @@ function LinkButton({
       variants={tapVariants}
       whileTap='tap'
       href={route}
+      replace={isReplace}
       className={`block text-center ${buttonType} ${disabled ? 'button-disabled' : ''} ${extraClass}`}
     >
       {children}

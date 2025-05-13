@@ -34,6 +34,14 @@ function FeedContent({ feedData, isFeed = true }: Props) {
               ))}
             </ImageSlider>
           )}
+          {feedData.tags && feedData.tags.length > 0 && (
+            <div
+              className='flex-col-center w-full gap-[8px]'
+              onClick={(e) => e.preventDefault()}
+            >
+              <TagSlider type='pros' tagKeys={feedData.tags} isFirstMemo />
+            </div>
+          )}
           <p className='whitespace-pre-wrap break-all px-page text-body-lg'>
             {feedData.content}
           </p>

@@ -11,7 +11,6 @@ import TitleHeader from '@/components/Header/TitleHeader';
 import { bottomSheet } from '@/modules/BottomSheet';
 import PublicToggle from './PublicToggle';
 import ImageForm from './ImageForm/ImageForm';
-import { MemoFormType } from '../../types/form';
 
 interface Props {
   /** 폼의 초기값 */
