@@ -52,13 +52,19 @@ function WellItem({
   const hasMemo = memo_cnt > 0;
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
     if (newItemId === id && memo_cnt === 0) {
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setIsFirstMemo(true);
       }, 2000);
     }
 
     return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      
       if (newItemId === id) {
         setNewItemId(null);
       }
