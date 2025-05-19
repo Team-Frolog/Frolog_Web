@@ -6,6 +6,7 @@ export const IMAGES = {
     congrats: `${BASE_PATH}/frog/flash/congrats.webp`,
     new_well: `${BASE_PATH}/frog/flash/new-well-congrats.webp`,
     well_done: `${BASE_PATH}/frog/flash/well-done-frog.webp`,
+    first_memo: `${BASE_PATH}/frog/flash/first-memo-congrats.webp`,
     evaluation: {
       loading: `${BASE_PATH}/frog/flash/frog-evaluating.webp`,
       done: `${BASE_PATH}/frog/flash/frog-evaluating-done.webp`,
@@ -22,14 +23,16 @@ export const IMAGES = {
       notfound_page: `${BASE_PATH}/frog/fallback/not-found-frog.webp`,
     },
     first_congrats: `${BASE_PATH}/frog/first-review-congrats.svg`,
-    add: {
-      reading: `${BASE_PATH}/frog/frog-reading.svg`,
-      done: `${BASE_PATH}/frog/frog-done.svg`,
+    reading: {
+      before: `${BASE_PATH}/frog/book/before-reading.svg`,
+      after: `${BASE_PATH}/frog/book/after-reading.svg`,
     },
     memo_frog: `${BASE_PATH}/frog/memo-frog.webp`,
+    first_memo_frog: `${BASE_PATH}/frog/first-memo-frog.webp`,
     more_feed: `${BASE_PATH}/frog/morefeed-frog.svg`,
     more_frogs: `${BASE_PATH}/frog/more-character-frog.svg`,
     mission_frog: `${BASE_PATH}/frog/mission-frog.svg`,
+    first_memo_banner: `${BASE_PATH}/frog/first-memo-form-banner.svg`,
   },
   test: {
     result: {
