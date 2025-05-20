@@ -3,12 +3,8 @@
 import ProfileFeedItem from '@/features/Profile/components/Feed/ProfileFeedItem';
 import { useProfileFeed } from '@/features/Profile/hooks/useProfileFeed';
 
-interface Props {
-  userId: string;
-}
-
-function ProfileFeed({ userId }: Props) {
-  const { profileFeed } = useProfileFeed(userId);
+function ProfileFeed() {
+  const { profileFeed } = useProfileFeed();
 
   if (!profileFeed) return null;
 
