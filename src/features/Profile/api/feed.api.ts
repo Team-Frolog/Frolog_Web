@@ -1,8 +1,21 @@
-import { ProfileFeedRes } from '@/app/api/mock/profileFeed/route';
+import { baseOptions } from '@/api/options';
+import { GetProfileFeed } from '@frolog/frolog-api';
+import * as Sentry from '@sentry/nextjs';
 
-export const getUserProfileFeed = async () => {
-  const response = await fetch('/api/mock/profileFeed');
-  const data: ProfileFeedRes[] = await response.json();
+const getUserProfileFeed = new GetProfileFeed(baseOptions);
 
-  return data;
+export const getProfileFeed = async (id: string) => {
+  try {
+    const response = await getUserProfileFeed.fetch({ id });
+    return response;
+  } catch (error) {
+    console.log(error);
+    Sentry.captureException(error);
+    return {
+      feed: [],
+      count: 0,
+      limit: 0,
+      page: 0,
+    };
+  }
 };
