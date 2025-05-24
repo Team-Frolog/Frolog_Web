@@ -41,7 +41,7 @@ function BackButton({
             id={safeArea}
             type='button'
             whileTap={{ scale: 0.9 }}
-            onClick={onClick}
+            onClick={onClick || (() => router.back())}
             className='absolute left-[12px] top-[12px] z-70'
           >
             <BackBgIcon />

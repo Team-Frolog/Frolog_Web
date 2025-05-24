@@ -1,3 +1,5 @@
+'use client';
+
 import Slider from '@/components/Slider/Slider';
 import { getTestTypeById } from '@/features/FrologTest';
 import { GetProfileDetailRes } from '@frolog/frolog-api';

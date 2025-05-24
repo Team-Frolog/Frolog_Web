@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useCallback, useMemo } from 'react';
 import { GroupTab } from '@/constants/tabs';
 import { usePathname } from 'next/navigation';

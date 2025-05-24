@@ -1,30 +1,15 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import AddButton from '@/components/Button/AddButton';
 import MemoListSkeleton from '@/components/Fallback/Skeleton/Memo/MemoListSkeleton';
-import React from 'react';
-import dynamic from 'next/dynamic';
+import React, { Suspense } from 'react';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/nextAuth';
 import { Metadata } from 'next';
-import { SearchMemo } from '@frolog/frolog-api';
-import { DEFAULT_LIMIT } from '@/constants/api';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
-import { QUERY_KEY } from '@/constants/query';
 import { NAV_ITEM } from '@/constants/nav';
 import { getPath } from '@/utils/getPath';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
-
-const MemoList = dynamic(
-  () => import('@/features/Memo/components/MemoList/MemoList'),
-  {
-    ssr: false,
-    loading: () => <MemoListSkeleton />,
-  }
-);
+import { MemoList } from '@/features/Memo';
+import { getMemoList } from '@/features/Memo/api/memo.server.api';
 
 interface Props {
   params: {
@@ -36,32 +21,7 @@ interface Props {
 
 async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
   const session = await getServerSession(authOptions);
-  const queryClient = new QueryClient();
-  const memoList = await new SearchMemo({
-    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-    accessToken: session?.user.accessToken,
-  }).fetch({
-    isbn: bookId,
-    writer: userId,
-    limit: DEFAULT_LIMIT,
-    page: 0,
-  });
-
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: [QUERY_KEY.memoList, bookId, userId],
-    queryFn: ({ pageParam }) =>
-      new SearchMemo({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.accessToken,
-      }).fetch({
-        isbn: bookId,
-        writer: userId,
-        limit: DEFAULT_LIMIT,
-        page: pageParam,
-      }),
-    initialPageParam: 0,
-    staleTime: 1000 * 10,
-  });
+  const memoList = await getMemoList(bookId, userId);
 
   return (
     <>
@@ -82,9 +42,13 @@ async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
       </WithConditionalRendering>
 
       <ErrorBoundary fallback={<></>}>
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <MemoList bookId={bookId} userId={userId} />
-        </HydrationBoundary>
+        <Suspense fallback={<MemoListSkeleton />}>
+          <MemoList
+            bookId={bookId}
+            userId={userId}
+            initialMemoList={memoList}
+          />
+        </Suspense>
       </ErrorBoundary>
     </>
   );

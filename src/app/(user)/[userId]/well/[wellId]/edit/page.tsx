@@ -1,14 +1,8 @@
-import { QUERY_KEY } from '@/constants/query';
+import { getMyFrogList } from '@/features/Store/api/store.server.api';
 import { WellForm } from '@/features/Well';
-import { GetWell } from '@frolog/frolog-api';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
+import { getWellDetail } from '@/features/Well/api/well.server.api';
 import { Metadata } from 'next';
-import { getServerSession } from 'next-auth';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 interface Props {
   params: {
@@ -18,23 +12,18 @@ interface Props {
 }
 
 async function WellEditPage({ params: { wellId, userId } }: Props) {
-  const session = await getServerSession();
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: [QUERY_KEY.wellDetail, wellId],
-    queryFn: () =>
-      new GetWell({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.accessToken,
-      }).fetch({ id: wellId }),
-    staleTime: 1000 * 10,
-  });
+  const myFrogList = await getMyFrogList(userId);
+  const wellData = await getWellDetail(wellId);
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <WellForm type='edit' wellId={wellId} userId={userId} />
-    </HydrationBoundary>
+    <Suspense fallback={<></>}>
+      <WellForm
+        type='edit'
+        wellId={wellId}
+        myFrogList={myFrogList}
+        wellData={wellData}
+      />
+    </Suspense>
   );
 }
 
