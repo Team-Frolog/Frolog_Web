@@ -1,4 +1,4 @@
-import { GetBook } from "@frolog/frolog-api";
+import { GetBook } from '@frolog/frolog-api';
 
 export const getBookInfo = async (isbn: string, accessToken?: string) => {
   const response = await new GetBook({

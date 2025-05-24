@@ -8,7 +8,6 @@ import { GetWellRes, SearchWellItemRes } from '@frolog/frolog-api';
 import MainLayout from '@/layouts/MainLayout';
 import WellHeader from './WellHeader';
 import WellItemList from './WellItem/WellItemList';
-import { useWell } from '../../hooks/useWell';
 
 interface Props {
   /** 우물 소유 유저 id */

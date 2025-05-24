@@ -22,7 +22,11 @@ async function MemoPage({
 
   return (
     <Suspense fallback={<></>}>
-      <MemoDetailPage profile={profile} memoData={memoData} isFirstMemo={isFirstMemo === 'true'} />
+      <MemoDetailPage
+        profile={profile}
+        memoData={memoData}
+        isFirstMemo={isFirstMemo === 'true'}
+      />
     </Suspense>
   );
 }
