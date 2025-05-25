@@ -1,14 +1,24 @@
 import { useParams } from 'next/navigation';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { getProfileFeed } from '../api/feed.api';
 
 export const useProfileFeed = () => {
   const { userId } = useParams();
 
-  const { data } = useSuspenseQuery({
+  const { data } = useSuspenseInfiniteQuery({
     queryKey: ['profileFeed', userId],
-    queryFn: () => getProfileFeed(userId as string),
+    queryFn: ({ pageParam }) => getProfileFeed(userId as string, pageParam),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      const totalPages = Math.ceil(lastPage.count / lastPage.limit);
+      const isLastPage = totalPages === lastPage.page + 1 || totalPages === 0;
+      return isLastPage ? undefined : lastPage.page + 1;
+    },
+    select: (fetchedData) => ({
+      pages: fetchedData.pages.flatMap((page) => page.items),
+      pageParams: fetchedData.pageParams,
+    }),
   });
 
-  return { profileFeed: data };
+  return { profileFeed: data.pages };
 };

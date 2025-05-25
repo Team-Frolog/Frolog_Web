@@ -1,18 +1,18 @@
-import { ProfileFeedRes } from '@/app/api/mock/profileFeed/route';
 import { CATEGORY } from '@/constants/category';
 import FeedItemDetail from '@/features/Profile/components/Feed/FeedItemDetail';
+import { GetProfileFeedItem } from '@frolog/frolog-api';
 import Image from 'next/image';
 
 import React from 'react';
 
 interface Props {
-  feedData: ProfileFeedRes;
+  feedData: GetProfileFeedItem;
 }
 
 /** 사용자 프로필 피드 아이템 */
 function ProfileFeedItem({ feedData }: Props) {
   const { memoCount, reviewCount, wellId } = feedData;
-  const { image, category, isbn } = feedData.bookInfo;
+  const { image, category, isbn } = feedData.book;
 
   return (
     <div className='flex w-[calc(50%-10px)] flex-col overflow-hidden rounded-[12px]'>
@@ -23,7 +23,7 @@ function ProfileFeedItem({ feedData }: Props) {
         {CATEGORY[category].name}
       </div>
       <Image
-        src={image}
+        src={image ?? ''}
         alt='book cover'
         width={191}
         height={272}

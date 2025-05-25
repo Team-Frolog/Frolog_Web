@@ -5,13 +5,14 @@ import { useProfileFeed } from '@/features/Profile/hooks/useProfileFeed';
 
 function ProfileFeed() {
   const { profileFeed } = useProfileFeed();
+  console.log(profileFeed);
 
   if (!profileFeed) return null;
 
   return (
     <div className='relative flex flex-wrap gap-[20px] px-page'>
       {profileFeed.map((item) => (
-        <ProfileFeedItem key={item.bookInfo.isbn} feedData={item} />
+        <ProfileFeedItem key={item.book.isbn} feedData={item} />
       ))}
     </div>
   );
