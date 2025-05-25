@@ -7,6 +7,7 @@ import Observer from '@/components/Gesture/Observer';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import NoProfileFeed from './NoProfileFeed';
 import { GetProfileFeedRes } from '@frolog/frolog-api';
+import ProfileFeedListSkeleton from '@/components/Fallback/Skeleton/Profile/ProfileFeedListSkeleton';
 
 interface Props {
   initialProfileFeed: GetProfileFeedRes;
@@ -36,7 +37,11 @@ function ProfileFeed({ initialProfileFeed }: Props) {
           <ProfileFeedItem key={item.book.isbn} feedData={item} />
         ))}
       </WithConditionalRendering>
-      <Observer isFetching={isFetchingNextPage} setTarget={setTarget} />
+      <Observer
+        isFetching={isFetchingNextPage}
+        setTarget={setTarget}
+        fallback={<ProfileFeedListSkeleton />}
+      />
     </div>
   );
 }
