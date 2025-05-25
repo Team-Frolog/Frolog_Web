@@ -6,17 +6,20 @@ import { useObserver } from '@/hooks/gesture/useObserver';
 import Observer from '@/components/Gesture/Observer';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import NoProfileFeed from './NoProfileFeed';
+import { GetProfileFeedRes } from '@frolog/frolog-api';
 
-function ProfileFeed() {
+interface Props {
+  initialProfileFeed: GetProfileFeedRes;
+}
+
+function ProfileFeed({ initialProfileFeed }: Props) {
   const {
     profileFeed,
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
     isEmpty,
-  } = useProfileFeed();
-
-  console.log(isEmpty);
+  } = useProfileFeed(initialProfileFeed);
 
   const { setTarget } = useObserver({
     hasNextPage,
