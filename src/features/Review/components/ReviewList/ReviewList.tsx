@@ -4,6 +4,7 @@ import React from 'react';
 import EmptyContentFrog from '@/components/Fallback/EmptyContentFrog';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import { getPath } from '@/utils/getPath';
+import { SearchReviewRes } from '@frolog/frolog-api';
 import AddButton from '@/components/Button/AddButton';
 import ReviewListItem from './ReviewListItem';
 import FirstReviewItem from './FirstReviewItem';
@@ -13,14 +14,16 @@ interface Props {
   bookId: string;
   userId: string;
   wellId: string;
+  reviewList: SearchReviewRes;
   isRootUser: boolean;
 }
 
 /** 리뷰 리스트 컴포넌트 */
-function ReviewList({ bookId, wellId, userId, isRootUser }: Props) {
+function ReviewList({ bookId, wellId, userId, reviewList, isRootUser }: Props) {
   const { reviews, setReviewId, deleteReview, isEmpty } = useReviews(
     bookId,
-    userId
+    userId,
+    reviewList
   );
 
   return (

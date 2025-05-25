@@ -1,9 +1,13 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { SearchWellItemRes } from '@frolog/frolog-api';
 import { QUERY_KEY } from '@/constants/query';
 import { getWellItems } from '../api/well.api';
 
 /** 우물 아이템 쿼리 훅 */
-export const useWellItems = (wellId: string) => {
+export const useWellItems = (
+  wellId: string,
+  initialWellItemList: SearchWellItemRes
+) => {
   const {
     data,
     fetchNextPage,
@@ -19,6 +23,10 @@ export const useWellItems = (wellId: string) => {
       const totalPages = Math.ceil(lastPage.count / lastPage.limit);
       const isLastPage = totalPages === lastPage.page + 1 || totalPages === 0;
       return isLastPage ? undefined : lastPage.page + 1;
+    },
+    initialData: {
+      pages: [initialWellItemList],
+      pageParams: [0],
     },
     select: (fetchedData) => ({
       pages: fetchedData ? fetchedData.pages.flatMap((page) => page.items) : [],

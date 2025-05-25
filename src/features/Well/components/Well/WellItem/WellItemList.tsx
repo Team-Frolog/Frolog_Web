@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { staggerContainerVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
-import { GetWellRes } from '@frolog/frolog-api';
+import { GetWellRes, SearchWellItemRes } from '@frolog/frolog-api';
 import { getRandomEmptyMessage } from '@/features/Well/utils/getRandomMessage';
 import WellItemSkeleton from '@/components/Fallback/Skeleton/Well/WellItemSkeleton';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
@@ -24,11 +24,13 @@ interface Props {
   isRootUser: boolean;
   /** 첫 우물인지 여부 */
   isDefaultWell?: boolean;
+  /** 우물 아이템 리스트 */
+  initialWellItemList: SearchWellItemRes;
 }
 
 /** 우물 아이템 리스트 컴포넌트 */
 const WellItemList = React.memo(
-  ({ wellData, isRootUser, isDefaultWell }: Props) => {
+  ({ wellData, isRootUser, isDefaultWell, initialWellItemList }: Props) => {
     const {
       wellItems,
       fetchNextPage,
@@ -36,7 +38,7 @@ const WellItemList = React.memo(
       isFetchingNextPage,
       isEmpty,
       isFetched,
-    } = useWellItems(wellData.id);
+    } = useWellItems(wellData.id, initialWellItemList);
     const { id, name, item_cnt } = wellData;
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState<string | undefined>(undefined);

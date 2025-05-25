@@ -1,15 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { MemoDetailPage } from '@/features/Memo';
 import { Metadata } from 'next';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
-import { GetMemo } from '@frolog/frolog-api';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/nextAuth';
-import { QUERY_KEY } from '@/constants/query';
+import { getMemoDetail } from '@/features/Memo/api/memo.server.api';
+import { getProfile } from '@/features/Profile/api/profile.server.api';
 
 interface Props {
   params: {
@@ -24,23 +17,17 @@ async function MemoPage({
   params: { memoId },
   searchParams: { isFirstMemo },
 }: Props) {
-  const session = await getServerSession(authOptions);
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: [QUERY_KEY.memoDetail, memoId],
-    queryFn: () =>
-      new GetMemo({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.accessToken,
-      }).fetch({ id: memoId }),
-    staleTime: 1000 * 10,
-  });
+  const memoData = await getMemoDetail(memoId);
+  const profile = await getProfile(memoData.writer);
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <MemoDetailPage memoId={memoId} isFirstMemo={isFirstMemo === 'true'} />
-    </HydrationBoundary>
+    <Suspense fallback={<></>}>
+      <MemoDetailPage
+        profile={profile}
+        memoData={memoData}
+        isFirstMemo={isFirstMemo === 'true'}
+      />
+    </Suspense>
   );
 }
 
