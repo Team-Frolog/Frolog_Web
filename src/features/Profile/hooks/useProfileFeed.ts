@@ -28,7 +28,7 @@ export const useProfileFeed = (initialProfileFeed: GetProfileFeedRes) => {
       }),
     });
 
-  const isEmpty = isFetched && data.pages.length === 0;
+  const isEmpty = data.pages.length === 0;
 
   return {
     profileFeed: data.pages,

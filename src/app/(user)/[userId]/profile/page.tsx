@@ -11,7 +11,7 @@ import { WellList } from '@/features/Well';
 import { Suspense } from 'react';
 import { getProfileDetail } from '@/features/Profile/api/profile.server.api';
 import { getWellList } from '@/features/Well/api/well.server.api';
-import { getProfileFeed } from '@/features/Profile/api/feed.api';
+import { getProfileFeed } from '@/features/Profile/api/feed.server.api';
 
 export const dynamic = 'force-dynamic';
 
