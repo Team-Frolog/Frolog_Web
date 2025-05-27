@@ -5,9 +5,9 @@ import { useProfileFeed } from '@/features/Profile/hooks/useProfileFeed';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import Observer from '@/components/Gesture/Observer';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
-import NoProfileFeed from './NoProfileFeed';
 import { GetProfileFeedRes } from '@frolog/frolog-api';
 import ProfileFeedListSkeleton from '@/components/Fallback/Skeleton/Profile/ProfileFeedListSkeleton';
+import NoProfileFeed from '@/features/Profile/components/Feed/NoProfileFeed';
 
 interface Props {
   initialProfileFeed: GetProfileFeedRes;

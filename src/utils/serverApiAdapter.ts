@@ -11,12 +11,12 @@ import { authOptions } from '@/utils/auth/nextAuth';
 // });
 
 export const serverApiAdapter = async <Res, Req>(
-  fetchClass: any,
+  FetchClass: any,
   req: Req
 ): Promise<Res> => {
   const session = await getServerSession(authOptions);
 
-  const response = await new fetchClass({
+  const response = await new FetchClass({
     baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
     accessToken: session?.user.accessToken,
   }).fetch(req);
