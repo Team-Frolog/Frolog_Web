@@ -22,4 +22,5 @@ export const QUERY_KEY = {
   explore: 'explore',
   searchWells: 'searchWells',
   firstMemoDetail: 'firstMemoDetail',
+  profileFeed: 'profileFeed',
 } as const;

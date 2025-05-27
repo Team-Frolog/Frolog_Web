@@ -2,13 +2,14 @@ import { useParams } from 'next/navigation';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { getProfileFeed } from '../api/feed.api';
 import { GetProfileFeedRes } from '@frolog/frolog-api';
+import { QUERY_KEY } from '@/constants/query';
 
 export const useProfileFeed = (initialProfileFeed: GetProfileFeedRes) => {
   const { userId } = useParams();
 
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isFetched } =
     useSuspenseInfiniteQuery({
-      queryKey: ['profileFeed', userId],
+      queryKey: [QUERY_KEY.profileFeed, userId],
       queryFn: ({ pageParam }) => getProfileFeed(userId as string, pageParam),
       initialPageParam: 0,
       initialData: {
