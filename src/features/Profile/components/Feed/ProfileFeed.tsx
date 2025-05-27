@@ -33,18 +33,15 @@ function ProfileFeed({ initialProfileFeed }: Props) {
         condition={!isEmpty}
         fallback={<NoProfileFeed />}
       >
-        {profileFeed.map((item, index) => (
-          <>
-            <ProfileFeedItem key={item.book.isbn} feedData={item} />
-            {index === profileFeed.length - 2 && (
-              <Observer
-                isFetching={isFetchingNextPage}
-                setTarget={setTarget}
-                fallback={<ProfileFeedListSkeleton />}
-              />
-            )}
-          </>
+        {profileFeed.map((item) => (
+          <ProfileFeedItem key={item.book.isbn} feedData={item} />
         ))}
+        <Observer
+          extraClassName='absolute bottom-[20px] left-0 right-0'
+          isFetching={isFetchingNextPage}
+          setTarget={setTarget}
+          fallback={<ProfileFeedListSkeleton />}
+        />
       </WithConditionalRendering>
     </div>
   );
