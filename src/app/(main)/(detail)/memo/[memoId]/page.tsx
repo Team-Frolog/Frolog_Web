@@ -3,6 +3,7 @@ import { MemoDetailPage } from '@/features/Memo';
 import { Metadata } from 'next';
 import { getMemoDetail } from '@/features/Memo/api/memo.server.api';
 import { getProfile } from '@/features/Profile/api/profile.server.api';
+import { getBookInfo } from '@/features/Book/api/book.server.api';
 
 interface Props {
   params: {
@@ -18,13 +19,17 @@ async function MemoPage({
   searchParams: { isFirstMemo },
 }: Props) {
   const memoData = await getMemoDetail(memoId);
-  const profile = await getProfile(memoData.writer);
+  const [profile, bookData] = await Promise.all([
+    getProfile(memoData.writer),
+    getBookInfo(memoData.isbn)
+  ]);
 
   return (
     <Suspense fallback={<></>}>
       <MemoDetailPage
         profile={profile}
         memoData={memoData}
+        bookData={bookData}
         isFirstMemo={isFirstMemo === 'true'}
       />
     </Suspense>

@@ -3,6 +3,7 @@ import { ReviewDetailPage } from '@/features/Review';
 import { Metadata } from 'next';
 import { getReviewDetail } from '@/features/Review/api/review.server.api';
 import { getProfile } from '@/features/Profile/api/profile.server.api';
+import { getBookInfo } from '@/features/Book/api/book.server.api';
 
 interface Props {
   params: {
@@ -12,11 +13,14 @@ interface Props {
 
 async function ReviewPage({ params: { reviewId } }: Props) {
   const reviewData = await getReviewDetail(reviewId);
-  const profile = await getProfile(reviewData.writer);
+  const [profile, bookData] = await Promise.all([
+    getProfile(reviewData.writer),
+    getBookInfo(reviewData.isbn)
+  ]);
 
   return (
     <Suspense fallback={<></>}>
-      <ReviewDetailPage reviewData={reviewData} profile={profile} />
+      <ReviewDetailPage reviewData={reviewData} bookData={bookData} profile={profile} />
     </Suspense>
   );
 }
