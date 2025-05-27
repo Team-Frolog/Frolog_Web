@@ -1,4 +1,3 @@
-import ProfileSkeleton from '@/components/Fallback/Skeleton/Profile/ProfileSkeleton';
 import ProfileFeedListSkeleton from '@/components/Fallback/Skeleton/Profile/ProfileFeedListSkeleton';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import MainLayout from '@/layouts/MainLayout';
@@ -32,13 +31,11 @@ async function UserProfilePage({ params: { userId } }: Props) {
       <MainLayout extraClass='bg-white'>
         <ProfilePageHeader isRootUser={isRootUser} userId={userId} />
         <div className='flex h-fit w-full flex-col gap-[36px] pb-[32px]'>
-          <Suspense fallback={<ProfileSkeleton />}>
-            <Profile
-              userId={userId}
-              profileDetail={profileDetail}
-              isRootUser={isRootUser}
-            />
-          </Suspense>
+          <Profile
+            userId={userId}
+            profileDetail={profileDetail}
+            isRootUser={isRootUser}
+          />
           {isRootUser ? (
             <Suspense fallback={<ProfileFeedListSkeleton />}>
               <ProfileFeed initialProfileFeed={initialProfileFeed} />
