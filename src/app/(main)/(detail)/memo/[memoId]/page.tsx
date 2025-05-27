@@ -21,7 +21,7 @@ async function MemoPage({
   const memoData = await getMemoDetail(memoId);
   const [profile, bookData] = await Promise.all([
     getProfile(memoData.writer),
-    getBookInfo(memoData.isbn)
+    getBookInfo(memoData.isbn),
   ]);
 
   return (

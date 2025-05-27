@@ -15,12 +15,16 @@ async function ReviewPage({ params: { reviewId } }: Props) {
   const reviewData = await getReviewDetail(reviewId);
   const [profile, bookData] = await Promise.all([
     getProfile(reviewData.writer),
-    getBookInfo(reviewData.isbn)
+    getBookInfo(reviewData.isbn),
   ]);
 
   return (
     <Suspense fallback={<></>}>
-      <ReviewDetailPage reviewData={reviewData} bookData={bookData} profile={profile} />
+      <ReviewDetailPage
+        reviewData={reviewData}
+        bookData={bookData}
+        profile={profile}
+      />
     </Suspense>
   );
 }
