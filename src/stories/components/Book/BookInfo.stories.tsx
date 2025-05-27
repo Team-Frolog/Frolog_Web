@@ -37,6 +37,6 @@ export const Default: Story = {
       avg_rating: 4.5,
       tags_pos: ['easy'],
       tags_neg: ['shallow'],
-    }
+    },
   },
 };
