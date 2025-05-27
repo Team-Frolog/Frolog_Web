@@ -2,8 +2,9 @@ import { CATEGORY } from '@/constants/category';
 import FeedItemDetail from '@/features/Profile/components/Feed/FeedItemDetail';
 import { GetProfileFeedItem } from '@frolog/frolog-api';
 import Image from 'next/image';
-
 import React from 'react';
+import { getPath } from '@/utils/getPath';
+import { useUserId } from '@/store/sessionStore';
 
 interface Props {
   feedData: GetProfileFeedItem;
@@ -11,6 +12,7 @@ interface Props {
 
 /** 사용자 프로필 피드 아이템 */
 function ProfileFeedItem({ feedData }: Props) {
+  const userId = useUserId();
   const { memoCount, reviewCount, wellId } = feedData;
   const { image, category, isbn } = feedData.book;
 
@@ -34,13 +36,13 @@ function ProfileFeedItem({ feedData }: Props) {
           title='메모'
           count={memoCount}
           category={category}
-          path={`well/${wellId}/book/${isbn}/memo`}
+          path={getPath.rootUserMemo(userId!, wellId!, isbn)}
         />
         <FeedItemDetail
           title='리뷰'
           count={reviewCount}
           category={category}
-          path={`well/${wellId}/book/${isbn}/review`}
+          path={getPath.rootUserReview(userId!, wellId!, isbn)}
         />
       </div>
     </div>
