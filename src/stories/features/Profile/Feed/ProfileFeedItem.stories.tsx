@@ -1,21 +1,11 @@
 import { Suspense } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { http, HttpResponse } from 'msw';
 import ProfileFeedItem from '@/features/Profile/components/Feed/ProfileFeedItem';
 
 const meta = {
   title: 'Profile/Feed/ProfileFeedItem',
   component: ProfileFeedItem,
   tags: ['autodocs'],
-  parameters: {
-    msw: {
-      handlers: [
-        http.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/v1/`, () =>
-          HttpResponse.json({})
-        ),
-      ],
-    },
-  },
   decorators: [
     (Story) => (
       <Suspense fallback={<div>Loading...</div>}>
@@ -31,26 +21,26 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     feedData: {
-      memoCount: 3,
-      reviewCount: 3,
-      bookInfo: {
-        isbn: '9791193074657',
-        category: 'unknown',
-        page: 0,
-        title: '세 눈 개구리 (바꿀 수 있어!, 2020 환경부 우수환경도서)',
-        author: '올가 데 디오스',
+      memoCount: 0,
+      reviewCount: 1,
+      book: {
+        isbn: '9791140706327',
+        category: 'science',
+        page: 319,
+        title:
+          '신은 주사위 놀이를 하지 않는다 (로또부터 진화까지, 우연한 일들의 법칙)',
+        author: '데이비드 핸드',
         image:
-          'https://shopping-phinf.pstatic.net/main_5292231/52922317605.20250211071513.jpg',
-        publisher: '노란상상',
-        pub_date: '2025-02-13',
-        desc: '2020년 환경부 우수 환경도서\n\n〈몬스터 마을〉 시리즈 세 번째 이야기\n“세상을 바꾸기 위해 목소리 내 보는 거야!”\n지금까지 이렇게 크게 소리쳤던 개구리가 있었을까?\n\n‘작지만, 용감한!’\n‘우리와 같지만, 남다른!’\n아주 특별한 세 눈 개구리 한 마리가 세상을 바꾸다!\n\n“정말이지, 이런 개구리는 처음이야!”\n줄무늬 수영복을 꼭 입어야만 하는 세 눈 개구리!\n\n회색 구름이 하늘을 뒤덮고 있는 어느 마을이 있었습니다. 그 마을의 어느 연못 역시 하늘처럼 지저분한 색의 물이 흐르고 있었지요. 그 연못에는 작은 올챙이 한 마리가 열심히 헤엄치며, 개구리가 되어 가고 있었습니다. 바로 우리의 주인공, ‘아주 특별한 세 눈 개구리’였습니다. 이렇게 자라난 세 눈 개구리는 우리가 알고 있는 개구리와는 조금 달랐습니다. 예민한 피부를 갖고 있었기에, 그 더러운 물에 맨몸으로 헤엄칠 수가 없었습니다. 그래서 세 눈 개구리는 줄무늬 수영복을 꼭 입어야 했지요.',
+          'https://shopping-phinf.pstatic.net/main_4279079/42790790619.20230928092017.jpg',
+        publisher: '더퀘스트',
+        pub_date: '2023-10-11',
+        desc: '통계학으로 ‘대영제국훈장’을 받은 데이비드 핸드,\n우연을 필연으로 만드는 다섯 가지 법칙을 말하다!\n\n흔히 로또에 당첨되는 게 ‘하늘의 별 따기’라고 하지만, 로또 1등에 당첨되는 사람은 매주 꼬박꼬박 나온다. 반대로 철없는 아이가 옥상에서 던진 물건에 길을 걷다가 맞는 불행한 사람도 있다. 사람들은 자신들이 좌지우지할 수 없는 ‘우연한’ 일들을 겪으면, 그 배후에 소위 ‘운’이 작용했다고 믿고, 운세를 자신에게 유리하게 바꾸려고 노력한다. \n왕립통계학회 회장을 역임하고 대영제국훈장을 받은 세계적인 통계학자 데이비드 핸드는 《신은 주사위 놀이를 하지 않는다》를 통해 언뜻 보기엔 ‘말도 안 되는 일들’ 배후에 엄밀한 수학, 통계학적 법칙이 존재함을 말한다. 그는 〈신비한 TV, 서프라이즈〉에 등장할 법한 미스터리한 사건들을 예로 들며, 그 뒤에 숨겨진 다섯 가지 ‘우연의 법칙’을 설명한다. 더불어 우리가 점괘나 종교나 미신에 의존하지 않더라도 충분히 세상 돌아가는 원리를 이해하고 대처할 수 있음을 역설한다. 《세상물정의 물리학》의 저자이자 성균관대 물리학과 교수인 김범준과 과학 도서 애호가인 개그맨 이윤석이 강력하게 추천한 이 책은, ‘로또에 100퍼센트 당첨되는 방법(그리고 현명하게 번호 고르는 전략)’을 비롯해 ‘도박이나 스포츠에서 말하는 소위 끗발의 존재’ ‘월드컵의 결과를 맞히는 문어와 노스트라다무스의 예언 비법’ ‘왜 경제 위기는 아무도 예측하지 못하고 주가는 그토록 널뛰기하는지’ ‘생명은 어떻게 우연한 선택을 통해 진화하는지’ ‘창조주가 없이도 지적인 생명체가 나타날 수 있는지’ 등 다양한 영역을 넘나드는 흥미로운 소재들을 다룬다. \n출간 즉시 자연 과학 도서로는 이례적으로 〈아마존〉과 《뉴욕타임스》 베스트셀러가 되었고, 《워싱턴포스트》 《허핑턴포스트》 등 유력 매체의 찬사를 받은 《신은 주사위 놀이를 하지 않는다》는 기이한 사례들로 가득해 흥미진진할 뿐 아니라, 이 우주의 규칙이 얼마나 경이롭고 아름다운지를 보여주는 책이다. 기적은 우연이 아니다.',
         review_cnt: 1,
         avg_rating: 5,
-        tags_pos: ['easy', 'squeeze_time', 'killing_time', 'smart'],
-        tags_neg: ['wasting_time'],
+        tags_pos: ['squeeze_time', 'smart'],
+        tags_neg: [],
       },
-      bookId: '9791193074657',
-      wellId: 'dJoQleX',
+      wellId: 'VJDxDJx',
     },
   },
 };
