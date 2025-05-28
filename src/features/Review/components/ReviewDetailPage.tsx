@@ -7,15 +7,16 @@ import BookInfo from '@/components/Book/BookInfo';
 import { useUserActionActions } from '@/store/userActionStore';
 import { ReviewDetail } from '@/features/Review';
 import DetailHeader from '@/components/Header/DetailHeader';
-import { GetReviewRes, GetProfileRes } from '@frolog/frolog-api';
+import { GetReviewRes, GetProfileRes, GetBookRes } from '@frolog/frolog-api';
 
 interface Props {
   reviewData: GetReviewRes;
   profile: GetProfileRes;
+  bookData: GetBookRes;
 }
 
 /** 리뷰 상세 페이지 */
-function ReviewDetailPage({ reviewData, profile }: Props) {
+function ReviewDetailPage({ reviewData, profile, bookData }: Props) {
   useScroll({ categoryColor: undefined });
   const { setIsInFeed } = useUserActionActions();
 
@@ -36,7 +37,7 @@ function ReviewDetailPage({ reviewData, profile }: Props) {
           <h1 className='w-fit max-w-[350px] px-page text-heading-md-bold text-white'>
             {profile.username}의 리뷰
           </h1>
-          <BookInfo bookId={reviewData.isbn} canClick />
+          <BookInfo bookId={reviewData.isbn} bookData={bookData} canClick />
         </div>
         <ReviewDetail reviewDetail={reviewData} />
       </MainLayout>

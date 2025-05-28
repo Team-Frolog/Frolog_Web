@@ -32,7 +32,7 @@ async function ReviewMemoLayout({
       />
       <MainLayout extraClass='bg-gray-900'>
         <Suspense fallback={<BookInfoSkeleton />}>
-          <BookInfo bookId={bookId} canClick />
+          <BookInfo bookId={bookId} bookData={bookData} canClick />
         </Suspense>
 
         <div className='flex w-full flex-1 flex-col bg-white'>
