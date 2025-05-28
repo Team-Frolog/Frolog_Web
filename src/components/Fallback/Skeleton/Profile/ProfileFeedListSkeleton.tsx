@@ -3,12 +3,12 @@ import React from 'react';
 
 function ProfileFeedListSkeleton() {
   return (
-    <div className='relative flex flex-wrap gap-[20px] px-page'>
+    <>
       <ProfileFeedSkeleton />
       <ProfileFeedSkeleton />
       <ProfileFeedSkeleton />
       <ProfileFeedSkeleton />
-    </div>
+    </>
   );
 }
 

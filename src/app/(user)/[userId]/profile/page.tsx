@@ -1,4 +1,4 @@
-import ProfileSkeleton from '@/components/Fallback/Skeleton/Profile/ProfileSkeleton';
+import ProfileFeedListSkeleton from '@/components/Fallback/Skeleton/Profile/ProfileFeedListSkeleton';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import MainLayout from '@/layouts/MainLayout';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
@@ -10,6 +10,7 @@ import { WellList } from '@/features/Well';
 import { Suspense } from 'react';
 import { getProfileDetail } from '@/features/Profile/api/profile.server.api';
 import { getWellList } from '@/features/Well/api/well.server.api';
+import { getProfileFeed } from '@/features/Profile/api/feed.server.api';
 
 export const dynamic = 'force-dynamic';
 
@@ -23,21 +24,22 @@ async function UserProfilePage({ params: { userId } }: Props) {
   const { isRootUser } = await getIsRootUser(userId);
   const profileDetail = await getProfileDetail(userId);
   const initialWells = await getWellList(0, isRootUser);
+  const initialProfileFeed = await getProfileFeed(userId, 0);
 
   return (
     <>
       <MainLayout extraClass='bg-white'>
         <ProfilePageHeader isRootUser={isRootUser} userId={userId} />
         <div className='flex h-fit w-full flex-col gap-[36px] pb-[32px]'>
-          <Suspense fallback={<ProfileSkeleton />}>
-            <Profile
-              userId={userId}
-              profileDetail={profileDetail}
-              isRootUser={isRootUser}
-            />
-          </Suspense>
+          <Profile
+            userId={userId}
+            profileDetail={profileDetail}
+            isRootUser={isRootUser}
+          />
           {isRootUser ? (
-            <ProfileFeed />
+            <Suspense fallback={<ProfileFeedListSkeleton />}>
+              <ProfileFeed initialProfileFeed={initialProfileFeed} />
+            </Suspense>
           ) : (
             <Suspense fallback={<WellListSkeleton />}>
               <WellList
