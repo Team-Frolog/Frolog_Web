@@ -5,6 +5,7 @@ import Image from 'next/image';
 import React from 'react';
 import { getPath } from '@/utils/getPath';
 import { useUserId } from '@/store/sessionStore';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 
 interface Props {
   feedData: GetProfileFeedItem;
@@ -13,6 +14,8 @@ interface Props {
 /** 사용자 프로필 피드 아이템 */
 function ProfileFeedItem({ feedData }: Props) {
   const userId = useUserId();
+  const { navigate } = useCustomRouter();
+
   const { memoCount, reviewCount, wellId } = feedData;
   const { image, category, isbn } = feedData.book;
 
@@ -29,7 +32,8 @@ function ProfileFeedItem({ feedData }: Props) {
         alt='book cover'
         width={191}
         height={272}
-        className='flex-[8]'
+        className='flex-[8] cursor-pointer'
+        onClick={() => navigate(getPath.rootUserMemo(userId!, wellId!, isbn))}
       />
       <div className='flex flex-col gap-[1px]'>
         <FeedItemDetail
