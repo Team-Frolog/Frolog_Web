@@ -22,7 +22,7 @@ function MissionPage() {
           </div>
         </div>
       </div>
-      <div className='flex-column gap-[4px] rounded-[20px] bg-[#FF8BCA] px-[20px] pt-[20px] text-white'>
+      <div className='flex-column w-full gap-[4px] rounded-[20px] bg-[#FF8BCA] px-[20px] pt-[20px] text-white'>
         <h5 className='text-title-xl-bold'>다 읽은 책 추가</h5>
         <div className='flex-column'>
           <span className='text-body-lg-bold'>1일 최대 20p</span>
