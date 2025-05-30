@@ -4,6 +4,7 @@ import {
   useQueryClient,
   useSuspenseInfiniteQuery,
 } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import { GetMemoRes, SearchMemoRes } from '@frolog/frolog-api';
 import { QUERY_KEY } from '@/constants/query';
 import { deleteMemo, getMemos } from '../api/memo.api';
@@ -19,14 +20,20 @@ export interface MemoData {
 }
 
 /** 메모 리스트 쿼리 훅 */
-export const useMemos = (bookId: string, userId: string) => {
+export const useMemos = (
+  userId: string,
+  bookId: string,
+  initialMemoList: SearchMemoRes
+) => {
+  const router = useRouter();
   const [memoId, setMemoId] = useState<string>('');
+
   const queryClient = useQueryClient();
 
   const { data, hasNextPage, fetchNextPage, isFetched, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
       queryKey: [QUERY_KEY.memoList, bookId, userId],
-      queryFn: async ({ pageParam }) => getMemos(bookId, userId, pageParam),
+      queryFn: async ({ pageParam }) => getMemos(userId, pageParam, bookId),
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {
         const totalPages = Math.ceil(lastPage.count / lastPage.limit);
@@ -39,6 +46,10 @@ export const useMemos = (bookId: string, userId: string) => {
           : [],
         pageParams: fetchedData.pageParams,
       }),
+      initialData: {
+        pages: [initialMemoList],
+        pageParams: [0],
+      },
       staleTime: 1000 * 5,
     });
 
@@ -75,6 +86,9 @@ export const useMemos = (bookId: string, userId: string) => {
       );
     },
     onSettled: () => {
+      if (data.pages.length <= 1) {
+        router.refresh();
+      }
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY, bookId, userId] });
     },
   });
@@ -89,5 +103,6 @@ export const useMemos = (bookId: string, userId: string) => {
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
+    isFetched,
   };
 };

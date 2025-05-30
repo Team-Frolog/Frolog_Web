@@ -9,7 +9,11 @@ import { SearchReviewRes } from '@frolog/frolog-api';
 import { deleteReview, getReviewList } from '../api/review.api';
 
 /** 리뷰 리스트 쿼리 훅 */
-export const useReviews = (bookId: string, userId: string) => {
+export const useReviews = (
+  bookId: string,
+  userId: string,
+  reviewList: SearchReviewRes
+) => {
   const [reviewId, setReviewId] = useState<string>('');
   const queryClient = useQueryClient();
 
@@ -21,6 +25,7 @@ export const useReviews = (bookId: string, userId: string) => {
         writer: userId,
       }),
     staleTime: 1000 * 5,
+    initialData: reviewList,
   });
 
   const { mutate } = useMutation({

@@ -5,6 +5,7 @@ export const getPath = {
   book: (isbn: string) => `/book/${isbn}`,
   profile: (userId: string) => `/${userId}${PAGES.PROFILE}`,
   profileEdit: (userId: string) => `/${userId}${PAGES.PROFILE}/edit`,
+  profileSetting: (userId: string) => `/${userId}${PAGES.PROFILE}/setting`,
   follows: (userId: string) => `/${userId}${PAGES.PROFILE}/follows`,
   comments: (itemId: string, type: 'review' | 'memo') =>
     `${PAGES.FEED}/${itemId}/comments?type=${type}`,
@@ -17,7 +18,14 @@ export const getPath = {
   newMemo: (userId: string, wellId: string, isbn: string) =>
     `/${userId}/well/${wellId}/new-memo/${isbn}`,
   review: (reviewId: string) => `/review/${reviewId}`,
-  memo: (memoId: string) => `/memo/${memoId}`,
+  memo: (memoId: string, isFirst?: boolean) =>
+    `/memo/${memoId}${isFirst ? `?isFirstMemo=true` : ''}`,
   memoList: (userId: string, wellId: string, isbn: string) =>
     `/${userId}/well/${wellId}/book/${isbn}/memo`,
+  newFirstMemo: (userId: string, wellId: string, isbn: string) =>
+    `/${userId}/well/${wellId}/new-first-memo/${isbn}`,
+  rootUserMemo: (userId: string, wellId: string, isbn: string) =>
+    `/${userId}/well/${wellId}/book/${isbn}/memo`,
+  rootUserReview: (userId: string, wellId: string, isbn: string) =>
+    `/${userId}/well/${wellId}/book/${isbn}/review`,
 };

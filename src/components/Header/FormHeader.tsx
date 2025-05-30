@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { STORAGE_KEY } from '@/constants/storage';
 import { PAGES } from '@/constants/page';
 import { BackIcon } from 'public/icons';
+import WithWebViewTheme from '@/components/HOC/WithWebViewTheme';
 
 /** 각종 폼에 할용되는 타이틀 헤더
  * - FormLayout에 적용됩니다.
@@ -29,16 +30,18 @@ function FormHeader() {
   };
 
   return (
-    <header className='block w-full gap-3 p-[24px] pb-0'>
-      <button
-        type='button'
-        className='cursor-pointer'
-        onClick={handleClickBack}
-      >
-        <BackIcon fill='#B3B6C5' />
-      </button>
-      <h3 className='text-heading-md-bold'>{title}</h3>
-    </header>
+    <WithWebViewTheme bgColor='black'>
+      <header className='block w-full gap-3 p-[24px] pb-0'>
+        <button
+          type='button'
+          className='cursor-pointer'
+          onClick={handleClickBack}
+        >
+          <BackIcon fill='#B3B6C5' />
+        </button>
+        <h3 className='text-heading-md-bold'>{title}</h3>
+      </header>
+    </WithWebViewTheme>
   );
 }
 

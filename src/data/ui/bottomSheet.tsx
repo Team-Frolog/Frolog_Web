@@ -60,6 +60,24 @@ export const sheetData: {
     extraButtonText: '아니요, 유지할게요',
     description: () => <>메모를 한 번 삭제하면 복구할 수 없어요.</>,
   },
+  first_memo: {
+    getTitle: () => (
+      <>
+        이 책을 읽기로
+        <br />
+        결심한 이유가 무엇인가요?
+      </>
+    ),
+    type: 'normal',
+    frog: SHEET_FROG.wink,
+    buttonText: '메모 작성하러 가기',
+    description: () => (
+      <>
+        이 책을 선택한 이유와 나만의 목표를 적어보세요.
+        <br />그 동기가 독서의 첫걸음이 될 거예요!
+      </>
+    ),
+  },
   select_well: {
     getTitle: () => (
       <>
@@ -105,7 +123,7 @@ export const sheetData: {
     description: () => <>추후에 상점이 오픈될 때, 알려드릴게요.</>,
   },
   add_book: {
-    getTitle: () => <>책을 다 읽으셨나요?</>,
+    getTitle: () => <>지금 이 책은...</>,
     type: 'normal',
   },
   select_books: {
@@ -135,6 +153,38 @@ export const sheetData: {
     buttonText: '네, 삭제할게요',
     extraButtonText: '아니요, 유지할게요',
     description: () => <>댓글을 삭제하면 다시 되돌릴 수 없어요</>,
+  },
+  delete_this_book: {
+    getTitle: () => (
+      <>
+        우물에서 이 책을
+        <br />
+        정말 삭제할까요?
+      </>
+    ),
+    type: 'error',
+    buttonText: '이 우물에서 책 삭제',
+    extraButtonText: '모든 우물에서 책 삭제',
+    description: () => <>우물에서 책을 지워도 프로필에서 볼 수 있어요!</>,
+  },
+  delete_this_well: {
+    getTitle: () => (
+      <>
+        우물을
+        <br />
+        정말 삭제할까요?
+      </>
+    ),
+    type: 'error',
+    buttonText: '네, 삭제할게요',
+    extraButtonText: '아니요, 유지할게요',
+    description: () => (
+      <>
+        우물을 삭제해도
+        <br />
+        작성한 리뷰와 메모는 다시 불러올 수 있어요.
+      </>
+    ),
   },
   logout: {
     getTitle: () => <>로그아웃 하나요?</>,

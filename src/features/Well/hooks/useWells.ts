@@ -1,9 +1,10 @@
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { SearchWellRes } from '@frolog/frolog-api';
 import { QUERY_KEY } from '@/constants/query';
 import { getWellList } from '../api/well.api';
 
 /** 우물 리스트 쿼리 훅 */
-export const useWells = (userId: string) => {
+export const useWells = (userId: string, initialWells?: SearchWellRes) => {
   const { data, hasNextPage, fetchNextPage, isFetched, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
       queryKey: [QUERY_KEY.wellList, userId],
@@ -20,6 +21,12 @@ export const useWells = (userId: string) => {
           : [],
         pageParams: fetchedData.pageParams,
       }),
+      initialData: initialWells
+        ? {
+            pages: [initialWells],
+            pageParams: [0],
+          }
+        : undefined,
       refetchOnWindowFocus: false,
       staleTime: 0,
     });

@@ -1,27 +1,33 @@
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import { UseFormReset, UseFormSetError } from 'react-hook-form';
+import { UseFormSetError } from 'react-hook-form';
 import { useFlash } from '@/hooks/useFlash';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { toast } from '@/modules/Toast';
 import { ERROR_ALERT } from '@/constants/message';
 import { useUserId } from '@/store/sessionStore';
 import { PAGES } from '@/constants/page';
+import { GetWellRes } from '@frolog/frolog-api';
 import { QUERY_KEY } from '@/constants/query';
-import { addNewWell, checkWellName, editWell, getWell } from '../api/well.api';
+import {
+  addNewWell,
+  checkWellName,
+  deleteWell,
+  editWell,
+} from '../api/well.api';
 import { WellFormType } from '../components/WellForm/WellForm';
 
 interface Props {
   type: 'write' | 'edit';
-  reset: UseFormReset<WellFormType>;
   setError: UseFormSetError<WellFormType>;
   wellId?: string;
+  wellData?: GetWellRes;
 }
 
 /** 우물 폼 관련 훅 */
-export const useWellForm = ({ type, reset, setError, wellId }: Props) => {
+export const useWellForm = ({ type, setError, wellId, wellData }: Props) => {
   const router = useRouter();
   const isSecond = useSearchParams().get('isSecond');
   const userId = useUserId();
@@ -31,33 +37,12 @@ export const useWellForm = ({ type, reset, setError, wellId }: Props) => {
   const { openFlash } = useFlash();
   const queryClient = useQueryClient();
 
-  const { data: wellData } = useQuery({
-    queryKey: [QUERY_KEY.wellDetail, wellId],
-    queryFn: () => getWell(wellId!),
-    enabled: type === 'edit' && !!wellId,
-    refetchOnWindowFocus: false,
-    staleTime: 0,
-  });
-
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       setIsLoading(false);
-    };
-  }, []);
-
-  // 우물 수정인 경우 마운트 후 데이터 세팅
-  useEffect(() => {
-    if (wellData) {
-      const { name, frog, color, shape } = wellData;
-
-      reset({
-        name,
-        frog,
-        color,
-        shape,
-      });
-    }
-  }, [wellData]);
+    },
+    []
+  );
 
   /** 우물 생성 핸들러 */
   const { mutate: handleAddWell } = useMutation({
@@ -96,6 +81,14 @@ export const useWellForm = ({ type, reset, setError, wellId }: Props) => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.wellDetail, wellId],
       });
+      router.replace(PAGES.HOME);
+    },
+  });
+
+  const { mutate: handleDeleteWell } = useMutation({
+    mutationFn: (id: string) => deleteWell({ id }),
+    onSuccess: () => {
+      // TODO: 히스토리 빼기
       router.replace(PAGES.HOME);
     },
   });
@@ -145,7 +138,7 @@ export const useWellForm = ({ type, reset, setError, wellId }: Props) => {
 
         Object.keys(data).forEach((key) => {
           const typedKey = key as keyof WellFormType;
-          if (data[typedKey] === wellData[typedKey]) {
+          if (data[typedKey] === wellData?.[typedKey]) {
             updatedFields[typedKey] = undefined;
           }
         });
@@ -160,6 +153,7 @@ export const useWellForm = ({ type, reset, setError, wellId }: Props) => {
   return {
     originalName: wellData?.name,
     handleWellFrom,
+    handleDeleteWell,
     handleClickBack,
     isLoading,
     setIsNameChecked,

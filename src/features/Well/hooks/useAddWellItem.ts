@@ -17,12 +17,13 @@ interface Props {
 /** 우물 아이템 추가 핸들링 훅 */
 export const useAddWellItem = ({ userId, stopPending }: Props) => {
   const { navigate } = useCustomRouter('well');
+  const pathname = usePathname();
+
   const {
     wellId,
     isThroughSearch,
     actions: { resetAll, setWellId, resetWellId, setIsThroughSearch },
   } = useAddBookStore();
-  const pathname = usePathname();
   const setNewItemId = useNewItemStore((state) => state.setNewItemId);
 
   const { mutate: handleAddWellItem } = useMutation({

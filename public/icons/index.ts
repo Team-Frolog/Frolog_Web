@@ -7,6 +7,7 @@ export { default as ExpandIcon } from './common/expand.svg';
 export { default as ScrollToTopIcon } from './common/scroll-to-top.svg';
 export { default as MenuArrowIcon } from './common/menu-arrow.svg';
 export { default as RightArrowIcon } from './common/right-arrow.svg';
+export { default as MoreDotButton } from './common/more-button.svg';
 
 // toast
 export { default as ToastErrorIcon } from './toast/toast-error.svg';
@@ -55,3 +56,6 @@ export { default as MemoLight } from './memo/memo-light.svg';
 export { default as MemoPin } from './memo/memo-pin.svg';
 export { default as ImgPlusIcon } from './memo/icon-plus.svg';
 export { default as DeleteImgIcon } from './memo/x-light.svg';
+
+// profile
+export {default as SettingIcon} from './profile/icon-setting-mono.svg';

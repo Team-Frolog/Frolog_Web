@@ -7,10 +7,6 @@ import { IMAGES } from '@/constants/images';
 import { TestStartButton, FinishLight } from '@/features/Join';
 import { PAGES } from '@/constants/page';
 
-export const metadata: Metadata = {
-  title: '회원가입',
-};
-
 function JoinFinishPage() {
   return (
     <div className='safe-screen relative flex w-full flex-col justify-between overflow-hidden'>
@@ -42,3 +38,13 @@ function JoinFinishPage() {
 }
 
 export default JoinFinishPage;
+
+export const metadata: Metadata = {
+  title: '회원가입',
+  openGraph: {
+    title: '회원가입',
+  },
+  twitter: {
+    title: '회원가입',
+  },
+};

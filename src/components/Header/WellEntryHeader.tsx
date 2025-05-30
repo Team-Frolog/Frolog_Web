@@ -1,7 +1,5 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
 import React from 'react';
+import WithWebViewTheme from '@/components/HOC/WithWebViewTheme';
 import BackButton from '../Button/BackButton';
 
 interface Props {
@@ -21,30 +19,24 @@ function WellEntryHeader({
   bgColor,
   hasBackButton = false,
 }: Props) {
-  const router = useRouter();
-
   return (
-    <header className={`flex h-fit w-full ${bgColor || 'bg-white'}`}>
-      {hasBackButton && (
-        <BackButton
-          type='bg'
-          safeArea='back-button'
-          onClick={() => router.back()}
-        />
-      )}
-      <div className='safe-header pointer-events-none absolute left-0 z-60 flex w-full justify-between gap-[80px]'>
-        <div className='side-header-left' />
-        <div className='side-header-right' />
-      </div>
-      {title && (
-        <div className='flex h-fit w-full px-page py-[20px] pt-[50px]'>
-          <h1 className='w-fit max-w-[250px] text-start text-heading-md-bold'>
-            {title}
-          </h1>
+    <WithWebViewTheme bgColor='black'>
+      <header className={`flex h-fit w-full ${bgColor || 'bg-white'}`}>
+        {hasBackButton && <BackButton type='bg' safeArea='back-button' />}
+        <div className='safe-header pointer-events-none absolute left-0 z-60 flex w-full justify-between gap-[80px]'>
+          <div className='side-header-left' />
+          <div className='side-header-right' />
         </div>
-      )}
-      {children}
-    </header>
+        {title && (
+          <div className='flex h-fit w-full px-page py-[20px] pt-[50px]'>
+            <h1 className='w-fit max-w-[250px] text-start text-heading-md-bold'>
+              {title}
+            </h1>
+          </div>
+        )}
+        {children}
+      </header>
+    </WithWebViewTheme>
   );
 }
 

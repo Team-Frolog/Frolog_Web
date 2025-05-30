@@ -4,8 +4,15 @@ import { ERROR_ALERT } from '@/constants/message';
 import { toast } from '@/modules/Toast';
 import * as Sentry from '@sentry/nextjs';
 import {
+  DeleteWellItem,
+  DeleteWellItemReq,
+  DeleteWellItemsByCondition,
+  DeleteWellItemsByConditionReq,
+  DeleteWell,
+  DeleteWellReq,
   EditWell,
   EditWellReq,
+  FetchError,
   GetWell,
   GetWellNameAvailability,
   PostWell,
@@ -53,8 +60,16 @@ export const getWellList = async (owner: string, page: number) => {
 };
 
 export const getWell = async (id: string) => {
-  const response = await fetchWell.fetch({ id });
-  return response;
+  try {
+    const response = await fetchWell.fetch({ id });
+    return response;
+  } catch (err: any) {
+    if (err instanceof FetchError && err.status === 404) {
+      toast.error('존재하지 않는 우물입니다.');
+    } else {
+      throw err;
+    }
+  }
 };
 
 export const getWellItems = async (page: number, well_id: string) => {
@@ -88,6 +103,11 @@ export const editWell = async (req: EditWellReq) => {
   return response;
 };
 
+export const deleteWell = async (req: DeleteWellReq) => {
+  const response = await new DeleteWell(baseOptions).fetch(req);
+  return response;
+};
+
 export const addWellItem = async (req: PostWellItemReq) => {
   const response = await postWellItem.fetch(req);
   return response;
@@ -96,4 +116,14 @@ export const addWellItem = async (req: PostWellItemReq) => {
 export const checkWellName = async (name: string) => {
   const response = await getWellNameAvailability.fetch({ name });
   return response.result;
+};
+
+export const deleteWellItem = async (req: DeleteWellItemReq) => {
+  const response = await new DeleteWellItem(baseOptions).fetch(req);
+  return response;
+};
+
+export const deleteThisBook = async (req: DeleteWellItemsByConditionReq) => {
+  const response = await new DeleteWellItemsByCondition(baseOptions).fetch(req);
+  return response;
 };

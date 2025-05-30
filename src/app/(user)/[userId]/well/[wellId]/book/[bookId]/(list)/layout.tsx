@@ -1,42 +1,38 @@
-'use client';
-
 import MainLayout from '@/layouts/MainLayout';
 import BookInfo from '@/components/Book/BookInfo';
-import { CATEGORY } from '@/constants/category';
-import { useScroll } from '@/hooks/gesture/useScroll';
 import React, { Suspense } from 'react';
 import BookInfoSkeleton from '@/components/Fallback/Skeleton/Book/BookInfoSkeleton';
-import { useBook } from '@/features/Book';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
-import { MEMO_REVIEW_TABS } from '@/constants/tabs';
-import HeaderWrapper from '@/components/Wrapper/HeaderWrapper';
-import TabMenu from '@/components/Tab/TabMenu';
+import { getBookInfo } from '@/features/Book/api/book.server.api';
+import ReviewMemoHeader from '@/components/Header/ReviewMemoHeader';
 
 interface Props {
   children: React.ReactNode;
   params: {
+    userId: string;
+    wellId: string;
     bookId: string;
   };
 }
 
-function ReviewMemoLayout({ children, params: { bookId } }: Props) {
-  const { bookData } = useBook(bookId);
+async function ReviewMemoLayout({
+  children,
+  params: { userId, wellId, bookId },
+}: Props) {
+  const bookData = await getBookInfo(bookId);
   const category = bookData?.category || 'novel';
-
-  useScroll({
-    categoryColor: CATEGORY[category].bg,
-    foreground: CATEGORY[category].text,
-    unSelected: CATEGORY[category].band,
-  });
 
   return (
     <>
-      <HeaderWrapper isResponsive>
-        <TabMenu tabs={MEMO_REVIEW_TABS} />
-      </HeaderWrapper>
+      <ReviewMemoHeader
+        userId={userId}
+        wellId={wellId}
+        bookId={bookId}
+        category={category}
+      />
       <MainLayout extraClass='bg-gray-900'>
         <Suspense fallback={<BookInfoSkeleton />}>
-          <BookInfo bookId={bookId} canClick />
+          <BookInfo bookId={bookId} bookData={bookData} canClick />
         </Suspense>
 
         <div className='flex w-full flex-1 flex-col bg-white'>

@@ -9,12 +9,21 @@ import { isGetMemoRes } from '../../utils/typeGuard';
 interface Props {
   /** 컨텐츠가 메모인지 여부 */
   isMemo: boolean;
+  /** 첫 메모인지 여부 */
+  isFirstMemo?: boolean;
   /** 피드 데이터 객체 */
   feedData: GetReviewRes | GetMemoRes;
+  /** 툴팁 유무 */
+  hasToolTip?: boolean;
 }
 
 /** 피드 아이템 중 도서 정보 부분 컴포넌트 */
-function BookInfo({ feedData, isMemo }: Props) {
+function BookInfo({
+  feedData,
+  isMemo,
+  isFirstMemo = false,
+  hasToolTip = true,
+}: Props) {
   const { bookData } = useBook(feedData.isbn);
   if (!bookData) return null;
 
@@ -25,7 +34,9 @@ function BookInfo({ feedData, isMemo }: Props) {
       <div
         className={`relative flex h-fit w-full gap-[16px] rounded-t-[20px] bg-category-bg-${category} px-page pt-[24px]`}
       >
-        <div className={`tooltip-feed border-b-category-bg-${category}`} />
+        {hasToolTip && (
+          <div className={`tooltip-feed border-b-category-bg-${category}`} />
+        )}
         <div className='flex'>
           <Image
             src={image || IMAGES.book.cover}
@@ -61,7 +72,11 @@ function BookInfo({ feedData, isMemo }: Props) {
           <div className='w-full'>
             {isMemo ? (
               <Image
-                src={IMAGES.frog.memo_frog}
+                src={
+                  isFirstMemo
+                    ? IMAGES.frog.first_memo_frog
+                    : IMAGES.frog.memo_frog
+                }
                 alt='memo frog'
                 width={252}
                 height={56}

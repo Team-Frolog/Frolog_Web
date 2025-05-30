@@ -1,22 +1,16 @@
 'use client';
 
-import React from 'react';
-import dynamic from 'next/dynamic';
+import React, { Suspense } from 'react';
 import FrogSelectorSkeleton from '@/components/Fallback/Skeleton/Store/FrogSelectorSkeleton';
 import TitleHeader from '@/components/Header/TitleHeader';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import { FormProvider, useForm } from 'react-hook-form';
+import { GetStoreItemRes, GetWellRes } from '@frolog/frolog-api';
+import { bottomSheet } from '@/modules/BottomSheet';
 import WellNameInput from './WellNameInput';
 import ShapeForm from './Shape/ShapeForm';
 import { useWellForm } from '../../hooks/useWellForm';
-
-const FrogSelector = dynamic(
-  () => import('@/features/Well/components/WellForm/Frog/FrogSelector'),
-  {
-    ssr: false,
-    loading: () => <FrogSelectorSkeleton />,
-  }
-);
+import FrogSelector from './Frog/FrogSelector';
 
 export interface WellFormType {
   name: string;
@@ -28,21 +22,25 @@ export interface WellFormType {
 interface Props {
   /** 폼 타입 (생성/수정) */
   type: 'write' | 'edit';
-  /** 현재 유저 id */
-  userId: string;
   /** 우물 수정인 경우 우물 id */
   wellId?: string;
+  myFrogList: GetStoreItemRes[];
+  wellData?: GetWellRes;
 }
 
 /** 우물 생성/수정 폼 컴포넌트 */
-function WellForm({ type, userId, wellId }: Props) {
+function WellForm({ type, wellId, myFrogList, wellData }: Props) {
   const methods = useForm<WellFormType>({
     mode: 'onChange',
-    defaultValues: { name: '', frog: 'default', color: 'religion', shape: 1 },
+    defaultValues: {
+      name: wellData?.name ?? '',
+      frog: wellData?.frog ?? 'default',
+      color: wellData?.color ?? 'religion',
+      shape: wellData?.shape ?? 1,
+    },
   });
 
   const {
-    reset,
     setError,
     handleSubmit,
     formState: { isDirty },
@@ -52,9 +50,10 @@ function WellForm({ type, userId, wellId }: Props) {
     originalName,
     handleWellFrom,
     handleClickBack,
+    handleDeleteWell,
     isLoading,
     setIsNameChecked,
-  } = useWellForm({ type, reset, setError, wellId });
+  } = useWellForm({ type, setError, wellId, wellData });
 
   return (
     <FormProvider {...methods}>
@@ -74,8 +73,24 @@ function WellForm({ type, userId, wellId }: Props) {
             originalName={originalName}
             setIsNameChecked={setIsNameChecked}
           />
-          <FrogSelector userId={userId} />
+          <Suspense fallback={<FrogSelectorSkeleton />}>
+            <FrogSelector myFrogList={myFrogList} />
+          </Suspense>
           <ShapeForm />
+          {type === 'edit' && (
+            <button
+              type='button'
+              onClick={() => {
+                bottomSheet.open({
+                  sheetKey: 'delete_this_well',
+                  onClick: () => handleDeleteWell(wellId!),
+                });
+              }}
+              className='flex w-full items-center justify-center border-t-[0.5px] border-gray-400 py-[24px] text-error'
+            >
+              우물 삭제
+            </button>
+          )}
         </div>
       </form>
       {isLoading && <LoadingOverlay theme='light' />}

@@ -1,6 +1,22 @@
 import React from 'react';
-import { FollowPage } from '@/features/Profile';
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
+
+const FollowPage = dynamic(
+  () => import('@/features/Profile/components/FollowList/FollowPage')
+);
+
+interface Props {
+  params: {
+    userId: string;
+  };
+}
+
+function FollowsPage({ params: { userId } }: Props) {
+  return <FollowPage userId={userId} />;
+}
+
+export default FollowsPage;
 
 export const metadata: Metadata = {
   title: '팔로우',
@@ -14,16 +30,10 @@ export const metadata: Metadata = {
       noimageindex: true,
     },
   },
+  openGraph: {
+    title: '팔로우',
+  },
+  twitter: {
+    title: '팔로우',
+  },
 };
-
-interface Props {
-  params: {
-    userId: string;
-  };
-}
-
-function FollowsPage({ params: { userId } }: Props) {
-  return <FollowPage userId={userId} />;
-}
-
-export default FollowsPage;

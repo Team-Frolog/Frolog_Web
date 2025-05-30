@@ -14,6 +14,7 @@ import { GetBook, SearchReview } from '@frolog/frolog-api';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/nextAuth';
 import { QUERY_KEY } from '@/constants/query';
+import { getBookInfo } from '@/features/Book/api/book.server.api';
 
 interface Props {
   params: {
@@ -21,23 +22,10 @@ interface Props {
   };
 }
 
-export const metadata: Metadata = {
-  title: '도서 정보',
-};
-
 async function BookPage({ params: { id } }: Props) {
   const session = await getServerSession(authOptions);
   const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: [QUERY_KEY.bookInfo, id],
-    queryFn: () =>
-      new GetBook({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.accessToken,
-      }).fetch({ isbn: id }),
-    staleTime: 1000 * 10,
-  });
+  const bookInfo = await getBookInfo(id, session?.user.accessToken);
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: [QUERY_KEY.reviewList, id],
@@ -57,11 +45,12 @@ async function BookPage({ params: { id } }: Props) {
         theme='dark'
         title='도서 상세 페이지'
         hasButton={false}
+        webviewBgColor='black'
       />
       <MainLayout>
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <BookInfo bookId={id} />
-          <AboutBook bookId={id} />
+          <BookInfo bookId={id} bookData={bookInfo} />
+          <AboutBook bookId={id} bookData={bookInfo} />
         </HydrationBoundary>
       </MainLayout>
     </>
@@ -69,3 +58,32 @@ async function BookPage({ params: { id } }: Props) {
 }
 
 export default BookPage;
+
+export const generateMetadata = async ({
+  params: { id },
+}: Props): Promise<Metadata> => {
+  const session = await getServerSession(authOptions);
+
+  const bookInfo = await new GetBook({
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    accessToken: session?.user.accessToken,
+  }).fetch({ isbn: id });
+
+  const summary = bookInfo.desc.slice(0, 60);
+
+  return {
+    title: bookInfo.title,
+    description: summary,
+    openGraph: {
+      title: bookInfo.title,
+      images: bookInfo.image ?? '/opengraph-image.png',
+      description: summary,
+      url: `https://www.frolog.kr/book/${id}`,
+    },
+    twitter: {
+      images: bookInfo.image ?? '/twitter-image.png',
+      title: bookInfo.title,
+      description: summary,
+    },
+  };
+};

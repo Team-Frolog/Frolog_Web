@@ -1,15 +1,9 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { ReviewDetailPage } from '@/features/Review';
 import { Metadata } from 'next';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
-import { GetReview } from '@frolog/frolog-api';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/nextAuth';
-import { QUERY_KEY } from '@/constants/query';
+import { getReviewDetail } from '@/features/Review/api/review.server.api';
+import { getProfile } from '@/features/Profile/api/profile.server.api';
+import { getBookInfo } from '@/features/Book/api/book.server.api';
 
 interface Props {
   params: {
@@ -17,29 +11,32 @@ interface Props {
   };
 }
 
-export const metadata: Metadata = {
-  title: '독서 리뷰',
-};
-
 async function ReviewPage({ params: { reviewId } }: Props) {
-  const session = await getServerSession(authOptions);
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: [QUERY_KEY.reviewDetail, reviewId],
-    queryFn: () =>
-      new GetReview({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.accessToken,
-      }).fetch({ id: reviewId }),
-    staleTime: 1000 * 10,
-  });
+  const reviewData = await getReviewDetail(reviewId);
+  const [profile, bookData] = await Promise.all([
+    getProfile(reviewData.writer),
+    getBookInfo(reviewData.isbn),
+  ]);
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <ReviewDetailPage reviewId={reviewId} />
-    </HydrationBoundary>
+    <Suspense fallback={<></>}>
+      <ReviewDetailPage
+        reviewData={reviewData}
+        bookData={bookData}
+        profile={profile}
+      />
+    </Suspense>
   );
 }
 
 export default ReviewPage;
+
+export const metadata: Metadata = {
+  title: '리뷰',
+  openGraph: {
+    title: '리뷰',
+  },
+  twitter: {
+    title: '리뷰',
+  },
+};

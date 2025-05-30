@@ -1,13 +1,17 @@
 /* eslint-disable arrow-body-style */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { useUserId } from '@/store/sessionStore';
+import { AnimatePresence, motion } from 'framer-motion';
 import useNewItemStore from '@/store/newItemStore';
 import { staggerItemVariants } from '@/styles/variants/variants';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
+import { STORAGE_KEY } from '@/constants/storage';
 import { GetWellItemRes } from '@frolog/frolog-api';
 import { CATEGORY } from '@/constants/category';
 import WellBubble from 'public/images/well/well-bubble.svg';
+import BottomSheet from '@/modules/BottomSheet/BottomSheet';
+import { getPath } from '@/utils/getPath';
 import MemoLeaf from './MemoLeaf';
 
 interface Props {
@@ -39,15 +43,29 @@ function WellItem({
   setTarget,
   startLoading,
 }: Props) {
+  const userId = useUserId();
   const { navigate } = useCustomRouter('well');
   const { newItemId, setNewItemId } = useNewItemStore();
   const { id, status, title, page, category, isbn, memo_cnt } = wellBook;
+  const [isFirstMemo, setIsFirstMemo] = useState(false);
   const height = page > 400 ? page * 0.15 : 55;
   const isReading = status === 'reading';
   const hasMemo = memo_cnt > 0;
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (newItemId === id && memo_cnt === 0) {
+      timeoutId = setTimeout(() => {
+        setIsFirstMemo(true);
+      }, 2000);
+    }
+
     return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
       if (newItemId === id) {
         setNewItemId(null);
       }
@@ -60,6 +78,7 @@ function WellItem({
         whileTap={{ y: -10 }}
         onClick={() => {
           startLoading();
+          sessionStorage.setItem(STORAGE_KEY.selectedWellItemId, id);
           navigate(
             isReading
               ? `${wellId}/book/${isbn}/memo`
@@ -105,6 +124,17 @@ function WellItem({
       <div
         className={`absolute h-[20px] w-full bg-category-bg-${category} bottom-0 left-0 z-0`}
       />
+      <AnimatePresence>
+        {isFirstMemo && (
+          <BottomSheet
+            sheetKey='first_memo'
+            onClick={() =>
+              navigate(getPath.newFirstMemo(userId!, wellId, isbn))
+            }
+            onClose={() => setIsFirstMemo(false)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

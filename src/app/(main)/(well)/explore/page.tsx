@@ -1,47 +1,14 @@
 import WellListSkeleton from '@/components/Fallback/Skeleton/Well/WellListSkeleton';
-import { DEFAULT_LIMIT } from '@/constants/api';
 import { PAGES } from '@/constants/page';
-import { QUERY_KEY } from '@/constants/query';
 import { SearchInput } from '@/features/Search';
-import { authOptions } from '@/utils/auth/nextAuth';
-import { SearchUserWell } from '@frolog/frolog-api';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
-import { getServerSession } from 'next-auth';
-import dynamic from 'next/dynamic';
-import React from 'react';
-
-const WellExploreList = dynamic(
-  () => import('@/features/Well/components/WellSearch/WellExploreList'),
-  {
-    ssr: false,
-    loading: () => <WellListSkeleton />,
-  }
-);
+import { getExploreWellList } from '@/features/Well/api/well.server.api';
+import WellExploreList from '@/features/Well/components/WellSearch/WellExploreList';
+import { Metadata } from 'next';
+import React, { Suspense } from 'react';
 
 async function ExplorePage() {
-  const session = await getServerSession(authOptions);
-  const userId = session?.user.id;
-  const queryClient = new QueryClient();
   const refTime = new Date().toISOString();
-
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: [QUERY_KEY.explore, userId],
-    queryFn: ({ pageParam }) =>
-      new SearchUserWell({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.accessToken,
-      }).fetch({
-        limit: DEFAULT_LIMIT,
-        page: pageParam,
-        ref_time: refTime,
-      }),
-    initialPageParam: 0,
-    staleTime: 1000 * 10,
-  });
+  const wellList = await getExploreWellList(0, refTime);
 
   return (
     <div className='flex w-full flex-col'>
@@ -52,11 +19,31 @@ async function ExplorePage() {
         />
       </div>
 
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <WellExploreList refTime={refTime} />
-      </HydrationBoundary>
+      <Suspense fallback={<WellListSkeleton />}>
+        <WellExploreList refTime={refTime} wellList={wellList} />
+      </Suspense>
     </div>
   );
 }
 
 export default ExplorePage;
+
+export const metadata: Metadata = {
+  title: '우물 탐색',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: '우물 탐색',
+  },
+  twitter: {
+    title: '우물 탐색',
+  },
+};
