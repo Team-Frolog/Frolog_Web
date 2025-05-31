@@ -20,7 +20,7 @@ function ProfilePageHeader({ isRootUser, userId }: Props) {
           type='button'
           whileTap={{ scale: 0.9 }}
           href={getPath.profileSetting(userId)}
-          className='absolute right-[24px] top-[24px] z-70'
+          className='absolute right-[28px] top-[35px] z-70'
         >
           <SettingIcon />
         </CustomMotionLink>

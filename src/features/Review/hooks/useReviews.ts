@@ -61,7 +61,7 @@ export const useReviews = (
     },
   });
 
-  const isEmpty = data.reviews.length === 0;
+  const isEmpty = !data.reviews || data.reviews.length === 0;
 
   return {
     deleteReview: mutate,
