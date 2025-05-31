@@ -1,4 +1,3 @@
-import ProfileFeedListSkeleton from '@/components/Fallback/Skeleton/Profile/ProfileFeedListSkeleton';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import MainLayout from '@/layouts/MainLayout';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
@@ -37,9 +36,7 @@ async function UserProfilePage({ params: { userId } }: Props) {
             isRootUser={isRootUser}
           />
           {isRootUser ? (
-            <Suspense fallback={<ProfileFeedListSkeleton />}>
-              <ProfileFeed initialProfileFeed={initialProfileFeed} />
-            </Suspense>
+            <ProfileFeed initialProfileFeed={initialProfileFeed} />
           ) : (
             <Suspense fallback={<WellListSkeleton />}>
               <WellList
