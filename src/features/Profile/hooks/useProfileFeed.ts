@@ -29,7 +29,8 @@ export const useProfileFeed = (initialProfileFeed: GetProfileFeedRes) => {
       }),
     });
 
-  const isEmpty = data.pages.length === 0;
+  // const isEmpty = data.pages.length === 0;
+  const isEmpty = true;
 
   return {
     profileFeed: data.pages,
