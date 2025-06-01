@@ -29,8 +29,7 @@ export const useProfileFeed = (initialProfileFeed: GetProfileFeedRes) => {
       }),
     });
 
-  // const isEmpty = data.pages.length === 0;
-  const isEmpty = true;
+  const isEmpty = data.pages.length === 0;
 
   return {
     profileFeed: data.pages,
