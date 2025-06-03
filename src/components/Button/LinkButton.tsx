@@ -9,7 +9,7 @@ interface Props {
   children: React.ReactNode;
   route: string;
   disabled?: boolean;
-  theme?: 'normal' | 'light' | 'gray';
+  theme?: 'normal' | 'light' | 'gray' | 'ghost';
   extraClass?: string;
   isReplace?: boolean;
 }

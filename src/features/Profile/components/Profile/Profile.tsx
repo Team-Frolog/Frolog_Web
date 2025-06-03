@@ -21,7 +21,7 @@ function Profile({ userId, isRootUser = false, profileDetail }: Props) {
       <UserType profileDetail={profileDetail} />
       {isRootUser && (
         <div className='flex px-page'>
-          <LinkButton route={getPath.profileEdit(userId)} theme='normal'>
+          <LinkButton route={getPath.profileEdit(userId)} theme='ghost'>
             프로필 편집
           </LinkButton>
         </div>

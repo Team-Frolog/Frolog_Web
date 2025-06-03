@@ -11,6 +11,8 @@ export const getButtonColor = (theme: string) => {
       return 'button-gray';
     case 'light':
       return 'button-light';
+    case 'ghost':
+      return 'button-ghost';
     default:
       return `button-common ${theme}`;
   }

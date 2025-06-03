@@ -19,6 +19,9 @@
   .button-error {
     @apply button-common bg-error text-white;
   }
+  .button-ghost {
+    @apply button-common border border-main bg-white text-main;
+  }
   .add-button-wrapper {
     @apply w-full px-page pb-[24px];
   }
