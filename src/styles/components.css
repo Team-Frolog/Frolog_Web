@@ -26,7 +26,7 @@
     @apply h-[8px] w-[8px] rounded-[50%] bg-main;
   }
   .non-active-circle {
-    @apply h-[8px] w-[8px] rounded-[50%] border-[1.2px] border-gray-600;
+    @apply h-[8px] w-[8px] rounded-[50%] border-[1.2px] border-gray-500;
   }
   .add-button-wrapper {
     @apply w-full px-page pb-[24px];
