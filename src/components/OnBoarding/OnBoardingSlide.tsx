@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { onBoarding } from '@/data/ui/onBoarding';
 import { useRouter } from 'next/navigation';
 import Slider, { Settings } from 'react-slick';
 import Slide1 from 'public/images/onBoarding/slide-1.svg';
+import Slide1SE from 'public/images/onBoarding/slide-1-se.svg';
 import Slide2 from 'public/images/onBoarding/slide-2.svg';
 import Slide3 from 'public/images/onBoarding/slide-3.svg';
-import Slide4 from 'public/images/onBoarding/slide-4.svg';
+import LightBg from 'public/images/flash/light-bg-onboarding.svg';
 import BackButton from '../Button/BackButton';
 
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
 
 /** 온보딩 소개 슬라이드 */
 function OnBoardingSlide({ setActiveSlide }: Props) {
+  const [isSE, setIsSE] = useState(false);
   const router = useRouter();
 
   const settings: Settings = {
@@ -23,73 +25,70 @@ function OnBoardingSlide({ setActiveSlide }: Props) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: false,
+    adaptiveHeight: true,
     beforeChange: (_, next) => {
       setActiveSlide(next + 1);
     },
   };
 
+  useLayoutEffect(() => {
+    const checkWidth = () => {
+      if (window.innerWidth === 375) {
+        setIsSE(true);
+      }
+    };
+    checkWidth();
+
+    window.addEventListener('resize', checkWidth);
+
+    return () => {
+      window.removeEventListener('resize', checkWidth);
+    };
+  }, []);
+
   return (
-    <div className='flex flex-1 shrink flex-col gap-[20px] bg-gray-900 pt-[24px] transition-all duration-200 mobile:gap-[12px] [@media(max-height:820px)]:gap-[12px]'>
+    <div className='flex flex-col gap-[20px] bg-gray-900 pt-[24px] transition-all duration-200'>
       <BackButton
         fill='#B3B6C4'
         onClick={() => router.back()}
         extraClass='px-page'
       />
-      <Slider {...settings} className='flex flex-1 shrink'>
-        <div className='flex h-full w-full flex-1 shrink flex-col justify-between'>
-          <div className='flex h-full flex-col pb-[20px]'>
-            <h1 className='px-page text-heading-md-bold text-main_hightlight mobile:text-title-xl-bold [@media(max-height:700px)]:text-title-xl-bold'>
-              {onBoarding[1].title()}
-            </h1>
-            <div className='flex w-full flex-1 flex-col-reverse'>
-              <Slide1
-                className='h-auto w-full self-end'
-                width={390}
-                height={302}
-              />
-            </div>
+      <Slider {...settings} className='w-full'>
+        <div className='relative !flex h-[calc(80dvh-54px)] flex-col [@media(max-height:750px)]:h-[calc(75dvh-54px)]'>
+          <h1 className='absolute left-1/2 top-[18%] z-50 -translate-x-1/2 text-center text-title-xl-bold text-gray-900 [@media(max-width:375px)]:text-title-lg-bold'>
+            {onBoarding[1].title()}
+          </h1>
+          <div className='w-full translate-y-[2px] [@media(max-height:670px)]:translate-y-[3px]'>
+            <LightBg />
+          </div>
+          <div className='flex flex-1 translate-y-[1px] flex-col justify-end bg-gray-300 [@media(max-height:670px)]:translate-y-[2px]'>
+            {isSE ? (
+              <Slide1SE className='h-auto w-full' />
+            ) : (
+              <Slide1 className='h-auto w-full' />
+            )}
           </div>
         </div>
-        <div className='flex h-full w-full flex-1 shrink flex-col justify-between px-page'>
-          <div className='flex h-full w-full flex-1 flex-col gap-[20px] pb-[20px]'>
-            <h1 className='text-heading-md-bold text-main_hightlight mobile:text-title-xl-bold [@media(max-height:700px)]:text-title-xl-bold'>
-              {onBoarding[2].title()}
-            </h1>
-            <div className='flex flex-1 flex-col-reverse items-center'>
-              <Slide2
-                className='h-full max-h-[337px] w-auto max-w-full self-center [@media(max-height:670px)]:w-[90%]'
-                width={342}
-                height={337}
-              />
-            </div>
+        <div className='relative !flex h-[calc(80dvh-54px)] flex-col [@media(max-height:750px)]:h-[calc(75dvh-54px)]'>
+          <h1 className='absolute left-1/2 top-[18%] z-50 -translate-x-1/2 text-center text-title-xl-bold text-gray-900 [@media(max-width:375px)]:text-title-lg-bold'>
+            {onBoarding[2].title()}
+          </h1>
+          <div className='w-full translate-y-[2px]'>
+            <LightBg />
+          </div>
+          <div className='jutify-center flex flex-1 translate-y-[1px] flex-col bg-gray-300 px-page'>
+            <Slide2 className='my-auto h-auto w-full' />
           </div>
         </div>
-        <div className='flex h-full w-full flex-1 shrink flex-col justify-between px-page'>
-          <div className='flex h-full w-full flex-1 flex-col gap-[20px] pb-[20px]'>
-            <h1 className='text-heading-md-bold text-main_hightlight mobile:text-title-xl-bold [@media(max-height:700px)]:text-title-xl-bold'>
-              {onBoarding[3].title()}
-            </h1>
-            <div className='flex flex-1 flex-col-reverse items-center'>
-              <Slide3
-                className='h-full max-h-[352px] w-auto max-w-full self-center [@media(max-height:670px)]:w-[90%]'
-                width={342}
-                height={352}
-              />
-            </div>
+        <div className='relative !flex h-[calc(80dvh-54px)] flex-col [@media(max-height:750px)]:h-[calc(75dvh-54px)]'>
+          <h1 className='absolute left-1/2 top-[18%] z-50 w-[25dvw] -translate-x-1/2 text-center text-title-xl-bold text-gray-900 mobile:w-[70dvw] [@media(max-width:375px)]:text-title-lg-bold'>
+            {onBoarding[3].title()}
+          </h1>
+          <div className='w-full translate-y-[2px]'>
+            <LightBg />
           </div>
-        </div>
-        <div className='flex h-full w-full flex-1 shrink flex-col justify-between px-page'>
-          <div className='flex h-full w-full flex-1 flex-col gap-[20px]'>
-            <h1 className='text-heading-md-bold text-main_hightlight mobile:text-title-xl-bold [@media(max-height:700px)]:text-title-xl-bold'>
-              {onBoarding[4].title()}
-            </h1>
-            <div className='flex flex-1 flex-col-reverse items-center'>
-              <Slide4
-                className='h-full max-h-[389px] w-auto max-w-full self-center [@media(max-height:670px)]:w-[90%]'
-                width={362}
-                height={389}
-              />
-            </div>
+          <div className='jutify-center flex flex-1 translate-y-[1px] flex-col bg-gray-300 px-page'>
+            <Slide3 className='my-auto h-auto w-full [@media(max-height:670px)]:mx-auto [@media(max-height:670px)]:w-[230px]' />
           </div>
         </div>
       </Slider>
