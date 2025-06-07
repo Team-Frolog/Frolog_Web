@@ -1,9 +1,8 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React from 'react';
 import { onBoarding } from '@/data/ui/onBoarding';
 import { useRouter } from 'next/navigation';
 import Slider, { Settings } from 'react-slick';
 import Slide1 from 'public/images/onBoarding/slide-1.svg';
-import Slide1SE from 'public/images/onBoarding/slide-1-se.svg';
 import Slide2 from 'public/images/onBoarding/slide-2.svg';
 import Slide3 from 'public/images/onBoarding/slide-3.svg';
 import LightBg from 'public/images/flash/light-bg-onboarding.svg';
@@ -15,7 +14,6 @@ interface Props {
 
 /** 온보딩 소개 슬라이드 */
 function OnBoardingSlide({ setActiveSlide }: Props) {
-  const [isSE, setIsSE] = useState(false);
   const router = useRouter();
 
   const settings: Settings = {
@@ -30,21 +28,6 @@ function OnBoardingSlide({ setActiveSlide }: Props) {
       setActiveSlide(next + 1);
     },
   };
-
-  useLayoutEffect(() => {
-    const checkWidth = () => {
-      if (window.innerWidth === 375) {
-        setIsSE(true);
-      }
-    };
-    checkWidth();
-
-    window.addEventListener('resize', checkWidth);
-
-    return () => {
-      window.removeEventListener('resize', checkWidth);
-    };
-  }, []);
 
   return (
     <div className='flex flex-col gap-[20px] bg-gray-900 pt-[24px] transition-all duration-200'>
@@ -62,11 +45,7 @@ function OnBoardingSlide({ setActiveSlide }: Props) {
             <LightBg />
           </div>
           <div className='flex flex-1 translate-y-[1px] flex-col justify-end bg-gray-300 [@media(max-height:670px)]:translate-y-[2px]'>
-            {isSE ? (
-              <Slide1SE className='h-auto w-full' />
-            ) : (
-              <Slide1 className='h-auto w-full' />
-            )}
+            <Slide1 className='h-auto w-full' />
           </div>
         </div>
         <div className='relative !flex h-[calc(80dvh-54px)] flex-col [@media(max-height:750px)]:h-[calc(75dvh-54px)]'>
