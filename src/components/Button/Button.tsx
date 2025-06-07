@@ -8,6 +8,7 @@ import { getButtonColor } from '@/utils/getButtonColor';
 interface Props extends HTMLMotionProps<'button'> {
   children: React.ReactNode;
   theme?: 'normal' | 'error' | 'gray' | 'light' | string;
+  extraClass?: string;
 }
 
 /** 기본 버튼 컴포넌트
@@ -18,6 +19,7 @@ function Button({
   type = 'button',
   disabled = false,
   theme = 'normal',
+  extraClass,
   ...props
 }: Props) {
   const buttonType = getButtonColor(theme);
@@ -26,7 +28,7 @@ function Button({
     <motion.button
       type={type}
       disabled={disabled}
-      className={`${disabled ? 'button-disabled' : ''} ${buttonType}`}
+      className={`${disabled ? 'button-disabled' : ''} ${buttonType} ${extraClass}`}
       variants={tapVariants}
       whileTap='tap'
       {...props}
