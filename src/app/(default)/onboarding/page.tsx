@@ -2,15 +2,36 @@
 
 /* eslint-disable react/no-array-index-key */
 
-import LinkButton from '@/components/Button/LinkButton';
+import Button from '@/components/Button/Button';
 import OnBoardingSlide from '@/components/OnBoarding/OnBoardingSlide';
 import { PAGES } from '@/constants/page';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GoogleIcon from 'public/logo/sns/google.svg';
 
 function OnBoardingPage() {
   const [activeSlide, setActiveSlide] = useState<number>(1);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+
+    if (code) {
+      handleGoogleAuth(code);
+    }
+  }, []);
+
+  const handleClickGoogleLogin = () => {
+    const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    const redirectUri = process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI;
+
+    const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=email profile`;
+    window.location.href = googleLoginUrl;
+  };
+
+  const handleGoogleAuth = async (code: string) => {
+    console.log(code);
+  };
 
   return (
     <div className='safe-screen safe-bottom safe-header flex h-[100dvh] w-full flex-col bg-gray-900'>
@@ -30,14 +51,15 @@ function OnBoardingPage() {
               />
             ))}
         </div>
-        <LinkButton
+        <Button
           disabled={false}
-          route={PAGES.LOGIN}
-          extraClass='relative bg-white text-gray-800 text-body-lg-bold'
+          theme='light'
+          onClick={handleClickGoogleLogin}
+          extraClass='relative text-gray-800 text-body-lg-bold'
         >
           <GoogleIcon className='absolute left-5 top-1/2 -translate-y-1/2' />
           Google로 로그인
-        </LinkButton>
+        </Button>
         <div className='flex justify-center'>
           <Link
             href={PAGES.JOIN}
