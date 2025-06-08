@@ -40,7 +40,7 @@ export { default as ChildArrowIcon } from './feed/comment-child.svg';
 export { default as ArrowIcon } from './well/circle-arrow.svg';
 export { default as PlusIcon } from './well/circle-plus.svg';
 export { default as EditIcon } from './well/well-edit.svg';
-export { default as WellAddIcon } from './well/well-add-button.svg';
+export { default as WellAddIcon } from './well/well-add-icon.svg';
 export { default as StoreIcon } from './well/store-button.svg';
 export { default as WellListIcon } from './well/well-list-icon.svg';
 
