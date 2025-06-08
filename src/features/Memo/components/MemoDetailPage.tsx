@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import MainLayout from '@/layouts/MainLayout';
 import BookInfo from '@/components/Book/BookInfo';
 import { useScroll } from '@/hooks/gesture/useScroll';
-import { GetMemoRes, GetProfileRes } from '@frolog/frolog-api';
+import { GetBookRes, GetMemoRes, GetProfileRes } from '@frolog/frolog-api';
 import DetailHeader from '@/components/Header/DetailHeader';
 import { useUserActionActions } from '@/store/userActionStore';
 import MemoDetail from './MemoDetail';
@@ -12,11 +12,12 @@ import MemoDetail from './MemoDetail';
 interface Props {
   memoData: GetMemoRes;
   profile: GetProfileRes;
+  bookData: GetBookRes;
   isFirstMemo?: boolean;
 }
 
 /** 메모 상세 페이지 */
-function MemoDetailPage({ memoData, profile, isFirstMemo }: Props) {
+function MemoDetailPage({ memoData, profile, bookData, isFirstMemo }: Props) {
   useScroll({ categoryColor: undefined });
   const { setIsInFeed } = useUserActionActions();
 
@@ -37,7 +38,7 @@ function MemoDetailPage({ memoData, profile, isFirstMemo }: Props) {
           <h1 className='w-fit max-w-[350px] px-page text-heading-md-bold text-white'>
             {profile.username}의 메모
           </h1>
-          <BookInfo bookId={memoData.isbn} canClick />
+          <BookInfo bookId={memoData.isbn} bookData={bookData} canClick />
         </div>
         <MemoDetail memoData={memoData} isFirstMemo={isFirstMemo} />
       </MainLayout>

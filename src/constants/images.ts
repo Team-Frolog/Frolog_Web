@@ -33,6 +33,7 @@ export const IMAGES = {
     more_frogs: `${BASE_PATH}/frog/more-character-frog.svg`,
     mission_frog: `${BASE_PATH}/frog/mission-frog.svg`,
     first_memo_banner: `${BASE_PATH}/frog/first-memo-form-banner.svg`,
+    empty_feed: `${BASE_PATH}/frog/empty-profile-feed.svg`,
   },
   test: {
     result: {

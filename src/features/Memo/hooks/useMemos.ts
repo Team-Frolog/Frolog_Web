@@ -93,7 +93,7 @@ export const useMemos = (
     },
   });
 
-  const isEmpty = isFetched && data?.pages.length === 0;
+  const isEmpty = !data.pages || (isFetched && data?.pages.length === 0);
 
   return {
     memoList: data?.pages,
