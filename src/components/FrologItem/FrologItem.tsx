@@ -16,7 +16,7 @@ interface Props {
   /** 아이템 데이터 */
   item: GetStoreItemRes;
   /** 아이템 클릭 시 핸들러 */
-  onClick: () => void;
+  onClick?: () => void;
   /** 아이템 획득 버튼 표시 여부 */
   hasAcquireButton?: boolean;
 }
@@ -40,14 +40,14 @@ function FrologItem({
    */
   const handleClickButton = () => {
     if (type === 'well' || !is_owned || hasAcquireButton) {
-      onClick();
+      onClick?.();
     }
   };
 
   return (
     <motion.button
       type='button'
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scale: onClick ? 0.95 : 1 }}
       onClick={handleClickButton}
       className={`relative flex h-fit flex-col items-center justify-end gap-[12px] rounded-[12px] border bg-white pb-[16px] pt-[20px] ${isSelected ? 'border-main shadow-inner' : 'border-gray-300'}`}
     >
@@ -69,6 +69,9 @@ function FrologItem({
           >
             {is_owned ? '보유중' : `${price}P`}
           </span>
+        )}
+        {type === 'well' && !hasAcquireButton && is_owned && (
+          <span className='text-body-md-bold text-main'>획득완료</span>
         )}
         {hasAcquireButton && (
           <button

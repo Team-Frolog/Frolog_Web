@@ -16,7 +16,7 @@ import WellActionButton from '../Pointing/WellActionButton';
 import FrogOnBook from '../WellFrog/FrogOnBook';
 import WellItem from './WellItem';
 import EmptyWellItem from './EmptyWellItem';
-import NewFrogSheet from '../NewFrogSheet';
+import GettingNewFrog from '../NewFrog/GettingNewFrog';
 
 interface Props {
   /** 우물 정보 데이터 객체 */
@@ -70,6 +70,7 @@ const WellItemList = React.memo(
     };
 
     useEffect(() => {
+      setIsOpenNewFrogSheet(true);
       if (isDefaultWell && wellItems.length === 1) {
         setIsOpenNewFrogSheet(true);
       }
@@ -138,7 +139,7 @@ const WellItemList = React.memo(
           )}
         </motion.div>
         <AnimatePresence>
-          {isOpenNewFrogSheet && <NewFrogSheet />}
+          {isOpenNewFrogSheet && <GettingNewFrog />}
         </AnimatePresence>
         {isLoading && <LoadingOverlay theme='dark' />}
       </>

@@ -217,14 +217,4 @@ export const sheetData: { [key: string]: AlertSheet } = {
     extraButtonText: '취소',
     description: () => <>포인트가 충분하면 캐릭터가 보여요</>,
   },
-  get_new_frog: {
-    getTitle: () => (
-      <>
-        책 1권 추가 완료!
-        <br />
-        보상으로 개구리를 골라주세요
-      </>
-    ),
-    type: 'normal',
-  },
 };
