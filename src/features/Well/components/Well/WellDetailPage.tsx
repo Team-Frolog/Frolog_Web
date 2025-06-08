@@ -43,7 +43,6 @@ function WellDetailPage({
           userId={userId}
           wellId={wellDetail.id}
           isRootUser={isRootUser}
-          hasBackButton={!isDefaultWell}
         />
         {wellDetail && (
           <WellItemList

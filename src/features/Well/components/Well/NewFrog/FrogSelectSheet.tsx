@@ -4,9 +4,14 @@ import FrologItem from '@/components/FrologItem/FrologItem';
 import { SHEET_FROG } from '@/constants/frogs';
 import { motion } from 'framer-motion';
 
-function FrogSelectSheet() {
+interface Props {
+  onAcquire: () => void;
+}
+
+function FrogSelectSheet({ onAcquire }: Props) {
   const handleAcquireFrog = () => {
     // TODO: 개구리 획득 API 연동
+    onAcquire();
   };
 
   return (

@@ -70,7 +70,7 @@ const WellItemList = React.memo(
     };
 
     useEffect(() => {
-      setIsOpenNewFrogSheet(true);
+      // TODO: 어떤 우물에서든 누적 권수인 경우 서버에서 API로 누적 권수 제공받아야 함.
       if (isDefaultWell && wellItems.length === 1) {
         setIsOpenNewFrogSheet(true);
       }

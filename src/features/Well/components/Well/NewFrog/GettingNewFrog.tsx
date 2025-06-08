@@ -8,12 +8,12 @@ import GuideSheet from './GuideSheet';
 
 /** 최초 우물에서 개구리를 획득하는 프로세스를 진행하는 컴포넌트 */
 function GettingNewFrog() {
-  const [isAcquired, setIsAcquired] = useState(true); // 개구리 획득 완료 여부
+  const [isAcquired, setIsAcquired] = useState(false); // 개구리 획득 완료 여부
   const [isOpenGuideSheet, setIsOpenGuideSheet] = useState(false);
 
   return (
     <BackDrop align={isAcquired && !isOpenGuideSheet ? 'center' : 'end'}>
-      {!isAcquired && <FrogSelectSheet />}
+      {!isAcquired && <FrogSelectSheet onAcquire={() => setIsAcquired(true)} />}
       {isAcquired && !isOpenGuideSheet && (
         <NewFrogCongrats
           onNext={() => setIsOpenGuideSheet(true)}
