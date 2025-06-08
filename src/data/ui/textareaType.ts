@@ -5,25 +5,27 @@ export interface TextareaType {
     | keyof ReviewFormType
     | keyof MemoFormType
     | keyof FirstMemoFormType
-    | 'self_intro';
+    | 'self_intro'
+    | 'reasonToUse'
+    | 'feedback';
   title: string;
   maxLength: number;
   minLength: number;
   minRow: number;
   errorMessage: string;
   placeholder: string;
+  hasCounter: boolean;
   required: boolean | string;
 }
 
-export const textareaType: {
-  [key: string]: TextareaType;
-} = {
+export const textareaType: { [key: string]: TextareaType } = {
   oneLiner: {
     fieldName: 'oneLiner',
     title: '한 줄평',
     maxLength: 40,
     minLength: 10,
     minRow: 1,
+    hasCounter: true,
     required: '한 줄평을 작성해주세요',
     errorMessage: '멋진 문장이에요! 좀 더 남겨주세요. (최소 10자)',
     placeholder: '책을 한 문장으로 표현해주세요! (10자 이상)',
@@ -34,6 +36,7 @@ export const textareaType: {
     maxLength: 400,
     minLength: 10,
     minRow: 2,
+    hasCounter: true,
     required: '리뷰를 작성해주세요',
     errorMessage: '좋은 시작이에요! 생각이 더 궁금해요. (최소 10자)',
     placeholder:
@@ -45,6 +48,7 @@ export const textareaType: {
     maxLength: 400,
     minLength: 0,
     minRow: 1,
+    hasCounter: true,
     required: false,
     errorMessage: '',
     placeholder: '인상깊은 구절을 메모하세요',
@@ -55,6 +59,7 @@ export const textareaType: {
     maxLength: 400,
     minLength: 0,
     minRow: 2,
+    hasCounter: true,
     required: false,
     errorMessage: '',
     placeholder:
@@ -66,8 +71,31 @@ export const textareaType: {
     maxLength: 50,
     minLength: 1,
     minRow: 1,
+    hasCounter: true,
     required: '자기소개를 입력해주세요',
     errorMessage: '1-50자로 입력하세요.',
     placeholder: '자기소개를 입력해주세요',
+  },
+  reasonToUse: {
+    fieldName: 'reasonToUse',
+    title: '프롤로그를 사용하는 이유는?',
+    maxLength: 400,
+    minLength: 0,
+    minRow: 1,
+    required: false,
+    errorMessage: '',
+    hasCounter: false,
+    placeholder: '사용하는 이유를 알려주세요',
+  },
+  feedback: {
+    fieldName: 'feedback',
+    title: '프롤로그에게 바라는 점은?',
+    maxLength: 400,
+    minLength: 0,
+    minRow: 1,
+    required: false,
+    errorMessage: '',
+    hasCounter: false,
+    placeholder: '자유롭게 피드백을 입력하세요',
   },
 };

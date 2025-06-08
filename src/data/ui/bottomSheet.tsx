@@ -217,4 +217,9 @@ export const sheetData: { [key: string]: AlertSheet } = {
     extraButtonText: '취소',
     description: () => <>포인트가 충분하면 캐릭터가 보여요</>,
   },
+  survey_form: {
+    getTitle: () => <>프롤로그를 얼마나 만족하셨나요?</>,
+    type: 'normal',
+    buttonText: '제출하기',
+  },
 };
