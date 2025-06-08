@@ -19,6 +19,8 @@ interface Props {
   onClick?: () => void;
   /** 아이템 획득 버튼 표시 여부 */
   hasAcquireButton?: boolean;
+  /** 아이템 획득 버튼 비활성화 여부 */
+  isDisabledAcquireButton?: boolean;
 }
 
 /** 상점, 우물 생성에 활용되는 아이템 컴포넌트
@@ -31,15 +33,16 @@ function FrologItem({
   isSelected,
   onClick,
   hasAcquireButton,
+  isDisabledAcquireButton,
 }: Props) {
   const { is_owned, is_available, key, name, price, date } = item;
 
-  /** 조건에 따라 onClick이 동작하도록 하는 핸들러
-   * - 우물 생성 중인 경우
-   * - 상점이라면 캐릭터를 보유하고 있지 않은 경우
-   */
+  /** 조건에 따라 onClick이 동작하도록 하는 핸들러 */
   const handleClickButton = () => {
-    if (type === 'well' || !is_owned || hasAcquireButton) {
+    const canSelectInWell = type === 'well' || !is_owned; // 우물 생성 중이거나, 상점에서 구매하려고 하는 경우
+    const canAcquire = hasAcquireButton && !isDisabledAcquireButton; // 첫 개구리 획득하려고 하는 경우
+
+    if (canSelectInWell || canAcquire) {
       onClick?.();
     }
   };
@@ -76,8 +79,9 @@ function FrologItem({
         {hasAcquireButton && (
           <button
             type='button'
+            disabled={isDisabledAcquireButton}
             onClick={onClick}
-            className='rounded-[20px] bg-main px-[16px] py-[2px] text-body-md-bold text-white'
+            className={`rounded-[20px] px-[16px] py-[2px] text-body-md-bold text-white ${isDisabledAcquireButton ? 'bg-gray-400' : 'bg-main'}`}
           >
             획득하기
           </button>

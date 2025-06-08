@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import FrologItem from '@/components/FrologItem/FrologItem';
@@ -6,9 +6,16 @@ import { GetStoreItemRes } from '@frolog/frolog-api';
 
 interface Props {
   acquiredFrog: GetStoreItemRes;
+  onNext: () => void;
 }
 
-function NewFrogCongrats({ acquiredFrog }: Props) {
+function NewFrogCongrats({ acquiredFrog, onNext }: Props) {
+  useEffect(() => {
+    setTimeout(() => {
+      onNext();
+    }, 3000);
+  }, []);
+
   const topConfettiVariants = {
     initial: { y: 0, opacity: 0, scale: 0.3 },
     animate: {
