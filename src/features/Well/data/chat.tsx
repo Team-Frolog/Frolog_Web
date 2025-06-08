@@ -1,5 +1,6 @@
 export const chat = {
   not_loggedIn: '로그인을 해야\n책을 기록할 수 있어요',
+  default_well_empty: '책을 한 권 추가해보세요!\n놀라운 일이 생길지도? 🐸',
   first_book:
     '🚨특급 정보 입수!🚨\n책을 하나만 더 추가하면\n새로운 개구리가 나온대요!',
   second_book: '새로운 개구리가 왔나봐요!\n또 다른 우물을 파볼까요?',

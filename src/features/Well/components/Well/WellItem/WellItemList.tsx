@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { staggerContainerVariants } from '@/styles/variants/variants';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { GetWellRes, SearchWellItemRes } from '@frolog/frolog-api';
 import { getRandomEmptyMessage } from '@/features/Well/utils/getRandomMessage';
 import WellItemSkeleton from '@/components/Fallback/Skeleton/Well/WellItemSkeleton';
@@ -16,6 +16,7 @@ import WellActionButton from '../Pointing/WellActionButton';
 import FrogOnBook from '../WellFrog/FrogOnBook';
 import WellItem from './WellItem';
 import EmptyWellItem from './EmptyWellItem';
+import NewFrogSheet from '../NewFrogSheet';
 
 interface Props {
   /** 우물 정보 데이터 객체 */
@@ -40,6 +41,8 @@ const WellItemList = React.memo(
       isFetched,
     } = useWellItems(wellData.id, initialWellItemList);
     const { id, name, item_cnt } = wellData;
+
+    const [isOpenNewFrogSheet, setIsOpenNewFrogSheet] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState<string | undefined>(undefined);
     const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
@@ -52,7 +55,7 @@ const WellItemList = React.memo(
         return undefined;
       } else if (isDefaultWell) {
         if (count === 0) {
-          return getRandomEmptyMessage();
+          return chat.default_well_empty;
         } else if (count === 1) {
           return chat.first_book;
         } else if (count === 2) {
@@ -65,6 +68,12 @@ const WellItemList = React.memo(
       }
       return undefined;
     };
+
+    useEffect(() => {
+      if (isDefaultWell && wellItems.length === 1) {
+        setIsOpenNewFrogSheet(true);
+      }
+    }, [wellItems]);
 
     useEffect(
       () => () => {
@@ -128,6 +137,9 @@ const WellItemList = React.memo(
             />
           )}
         </motion.div>
+        <AnimatePresence>
+          {isOpenNewFrogSheet && <NewFrogSheet />}
+        </AnimatePresence>
         {isLoading && <LoadingOverlay theme='dark' />}
       </>
     );
