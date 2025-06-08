@@ -17,13 +17,21 @@ interface Props {
   item: GetStoreItemRes;
   /** 아이템 클릭 시 핸들러 */
   onClick: () => void;
+  /** 아이템 획득 버튼 표시 여부 */
+  hasAcquireButton?: boolean;
 }
 
 /** 상점, 우물 생성에 활용되는 아이템 컴포넌트
  * - isSelected가 주어지는 경우, 테두리가 칠해집니다.
  * - type='store'인 경우, 가격/보유 여부가 포함됩니다.
  */
-function FrologItem({ type, item, isSelected, onClick }: Props) {
+function FrologItem({
+  type,
+  item,
+  isSelected,
+  onClick,
+  hasAcquireButton,
+}: Props) {
   const { is_owned, is_available, key, name, price, date } = item;
 
   /** 조건에 따라 onClick이 동작하도록 하는 핸들러
@@ -31,7 +39,7 @@ function FrologItem({ type, item, isSelected, onClick }: Props) {
    * - 상점이라면 캐릭터를 보유하고 있지 않은 경우
    */
   const handleClickButton = () => {
-    if (type === 'well' || !is_owned) {
+    if (type === 'well' || !is_owned || hasAcquireButton) {
       onClick();
     }
   };
@@ -53,7 +61,7 @@ function FrologItem({ type, item, isSelected, onClick }: Props) {
         height={108}
         className='w-full'
       />
-      <div className='flex-column'>
+      <div className='flex-column gap-[4px]'>
         <span className='text-body-md text-gray-800'>{name}</span>
         {type === 'store' && (
           <span
@@ -61,6 +69,15 @@ function FrologItem({ type, item, isSelected, onClick }: Props) {
           >
             {is_owned ? '보유중' : `${price}P`}
           </span>
+        )}
+        {hasAcquireButton && (
+          <button
+            type='button'
+            onClick={onClick}
+            className='rounded-[20px] bg-main px-[16px] py-[2px] text-body-md-bold text-white'
+          >
+            획득하기
+          </button>
         )}
       </div>
     </motion.button>
