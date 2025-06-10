@@ -8,9 +8,11 @@ import { PAGES } from '@/constants/page';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import GoogleIcon from 'public/logo/sns/google.svg';
+import { useGoogle } from '@/features/Join/hooks/useGoogle';
 
 function OnBoardingPage() {
   const [activeSlide, setActiveSlide] = useState<number>(1);
+  const { handleGoogleSignIn } = useGoogle();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -30,7 +32,7 @@ function OnBoardingPage() {
   };
 
   const handleGoogleAuth = async (code: string) => {
-    console.log(code);
+    handleGoogleSignIn({ authorization_code: code });
   };
 
   return (

@@ -73,7 +73,8 @@ export const useJoin = (getValues: () => JoinForm) => {
       const res = await signUp(formData);
       return res;
     },
-    onError: () => {
+    onError: (error) => {
+      console.log(error);
       toast.error(ERROR_ALERT);
       setIsLoading(false);
     },
@@ -89,7 +90,9 @@ export const useJoin = (getValues: () => JoinForm) => {
   });
 
   const joinUser = async (data: JoinForm) => {
+    console.log(data);
     const formData = transformJoinForm(data, verifyToken!);
+    console.log(formData);
     handleSignUp(formData);
   };
 
