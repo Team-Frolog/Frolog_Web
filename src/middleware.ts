@@ -16,6 +16,14 @@ const protectedRoutes: string[] = [
   '/quit',
   '/terms',
   '/store',
+  '/feed',
+  '/search',
+  '/memo',
+  '/review',
+  '/explore',
+  '/book',
+  '/search-home',
+  '/mission',
 ]; // 로그인이 필요한 페이지 목록
 const publicRoutes: string[] = [
   '/onboarding',
