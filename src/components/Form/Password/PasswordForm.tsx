@@ -9,7 +9,6 @@ function PasswordForm() {
   const {
     register,
     trigger,
-    watch,
     formState: { errors },
   } = useFormContext();
 
@@ -30,29 +29,6 @@ function PasswordForm() {
           onChange: async () => {
             if (errors.password) {
               trigger('password');
-            }
-            await trigger('passwordCheck');
-          },
-        })}
-      />
-      <FormInput
-        type='password'
-        placeholder='비밀번호를 재입력하세요'
-        fieldName='passwordCheck'
-        errorMessage={
-          errors.passwordCheck && String(errors.passwordCheck.message)
-        }
-        {...register('passwordCheck', {
-          validate: {
-            matches: (value: string) =>
-              value.length === 0 ||
-              value === watch('password') ||
-              '비밀번호가 일치하지 않아요.',
-          },
-          onChange: async (e) => {
-            const { value } = e.target;
-            if (value.length > 0) {
-              await trigger('passwordCheck');
             }
           },
         })}

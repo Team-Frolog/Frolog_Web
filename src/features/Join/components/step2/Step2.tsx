@@ -23,12 +23,11 @@ function Step2() {
   } = useFormContext();
   const email = watch('email');
   const password = watch('password');
-  const passwordCheck = watch('passwordCheck');
 
   useEffect(() => {
-    const disabled = Boolean(!email || !password || !passwordCheck || !isValid);
+    const disabled = Boolean(!email || !password || !isValid);
     setIsDisabled(disabled);
-  }, [email, password, passwordCheck, isValid, errors]);
+  }, [email, password, isValid, errors]);
 
   return (
     <>
