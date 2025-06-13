@@ -1,26 +1,22 @@
 'use client';
 
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
 import Button from '@/components/Button/Button';
 import ProfileForm from '@/components/Profile/ProfileForm';
 
 /** 회원가입 4단계: 정보 입력 폼 */
 function Step4() {
-  const {
-    watch,
-    formState: { errors },
-  } = useFormContext();
-
   return (
     <>
       <ProfileForm />
-      <Button
-        type='submit'
-        disabled={!watch('username') || Boolean(errors.username)}
-      >
-        가입완료
-      </Button>
+      <div className='flex flex-col justify-center gap-[16px]'>
+        <p className='text-center text-body-lg-bold text-white'>
+          맞춤 정보를 바탕으로
+          <br />
+          책과 친구를 추천할게요!
+        </p>
+        <Button type='submit'>가입완료!</Button>
+      </div>
     </>
   );
 }
