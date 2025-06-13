@@ -8,6 +8,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth/nextAuth';
 import SessionHandler from '@/providers/SessionHandler';
 import { metadata } from '@/data/metadata';
+import Script from 'next/script';
 
 export { metadata };
 
@@ -28,6 +29,20 @@ export default async function RootLayout({
 
   return (
     <html lang='ko'>
+      <head>
+        <Script
+          id='gtm-script'
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');
+            `,
+          }}
+        />
+      </head>
       <QueryProvider>
         <ThemeProvider />
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
@@ -38,6 +53,15 @@ export default async function RootLayout({
           <body
             className={`${pretendard.variable} ${pretendard.className} text-gray-800`}
           >
+            <noscript>
+              <iframe
+                src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
+                height='0'
+                width='0'
+                style={{ display: 'none', visibility: 'hidden' }}
+                title='Google Tag Manager'
+              />
+            </noscript>
             <div id='root'>{children}</div>
             <div id='portal' />
             <div id='toast-root' />
