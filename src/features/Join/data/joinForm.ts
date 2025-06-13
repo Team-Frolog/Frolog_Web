@@ -32,15 +32,11 @@ export const defaultValue: JoinForm = {
 
   personal_infos: {
     occupation: {
-      value: '학생',
+      value: '선택',
       visibility: true,
     },
     birth_date: {
       value: getMinDate(),
-      visibility: true,
-    },
-    gender: {
-      value: '남성',
       visibility: true,
     },
   },

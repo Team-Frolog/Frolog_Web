@@ -3,9 +3,16 @@
 import React from 'react';
 import Button from '@/components/Button/Button';
 import ProfileForm from '@/components/Profile/ProfileForm';
+import { useFormContext } from 'react-hook-form';
 
 /** 회원가입 4단계: 정보 입력 폼 */
 function Step4() {
+  const { watch } = useFormContext();
+  const job = watch('personal_infos.occupation.value');
+  const gender = watch('personal_infos.gender.value');
+  const birthDate = watch('personal_infos.birth_date.value');
+
+  const isDisabled = Boolean(!gender || job === '선택' || !birthDate);
   return (
     <>
       <ProfileForm />
@@ -15,7 +22,9 @@ function Step4() {
           <br />
           책과 친구를 추천할게요!
         </p>
-        <Button type='submit'>가입완료!</Button>
+        <Button type='submit' disabled={isDisabled}>
+          가입완료!
+        </Button>
       </div>
     </>
   );
