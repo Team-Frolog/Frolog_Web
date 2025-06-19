@@ -64,7 +64,7 @@ function OnBoardingPage() {
         </Button>
         <div className='flex justify-center'>
           <Link
-            href={PAGES.JOIN}
+            href={PAGES.LOGIN}
             className={`text-body-lg ${activeSlide === 1 ? 'text-white' : 'text-gray-600'}`}
           >
             이메일로 로그인
