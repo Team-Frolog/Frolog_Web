@@ -16,7 +16,7 @@ function FeedItemDetail({ title, count, category, path }: Props) {
     <button
       type='button'
       className={`flex items-center justify-between bg-category-bg-${category} py-[13px] pl-[12px] pr-[4px] text-category-text-${category}`}
-      onClick={() => navigate(path)}
+      onClick={() => navigate(path, { from: 'profile' })}
     >
       <h3 className='text-body-md-bold'>{title}</h3>
       <div className='flex items-center'>

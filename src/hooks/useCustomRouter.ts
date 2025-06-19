@@ -1,6 +1,7 @@
 import { NAV_ITEM } from '@/constants/nav';
 import { NavItemLabel } from '@/types/nav';
 import { useRouter, useSearchParams } from 'next/navigation';
+import useNavigateStore from '@/store/navigateStore';
 
 /** nav 상태를 붙여주는 커스텀 라우터
  * @param defaultNav - 기본으로 적용될 nav key
@@ -14,6 +15,7 @@ export const useCustomRouter = (
   const searchParams = useSearchParams();
   const currentNav =
     searchParams.get('nav') ?? (defaultNav ? NAV_ITEM[defaultNav].key : '');
+  const setNavigateState = useNavigateStore((state) => state.setNavigateState);
 
   const generatePath = (path: string) => {
     const separator = path.includes('?') ? '&' : '?';
@@ -25,7 +27,10 @@ export const useCustomRouter = (
     }
   };
 
-  const navigate = (path: string) => router.push(generatePath(path));
+  const navigate = (path: string, state?: any) => {
+    router.push(generatePath(path));
+    setNavigateState({ navigateState: state });
+  };
   const replace = (path: string) => router.replace(generatePath(path));
 
   return { navigate, replace, router };
