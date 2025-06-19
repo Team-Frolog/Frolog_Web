@@ -22,8 +22,6 @@ export interface Info {
 export interface JoinForm {
   email: string;
   password?: string;
-  passwordCheck?: string;
-  username: string | null;
 
   // 약관 동의 리스트(Array)
   consents: {
