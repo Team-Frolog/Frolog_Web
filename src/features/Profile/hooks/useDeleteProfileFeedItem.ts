@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteProfileFeedItem } from '../api/feed.api';
 import { useParams, useRouter } from 'next/navigation';
 import { getPath } from '@/utils/getPath';
 import { useUserId } from '@/store/sessionStore';
 import { toast } from '@/modules/Toast';
 import { QUERY_KEY } from '@/constants/query';
+import { deleteProfileFeedItem } from '../api/feed.api';
 
 export const useDeleteProfileFeedItem = () => {
   const router = useRouter();
