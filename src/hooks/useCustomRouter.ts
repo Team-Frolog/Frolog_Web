@@ -29,7 +29,7 @@ export const useCustomRouter = (
 
   const navigate = (path: string, state?: any) => {
     router.push(generatePath(path));
-    setNavigateState({ navigateState: state });
+    setNavigateState(state);
   };
   const replace = (path: string) => router.replace(generatePath(path));
 
