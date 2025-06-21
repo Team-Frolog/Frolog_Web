@@ -222,4 +222,18 @@ export const sheetData: {
     extraButtonText: '취소',
     description: () => <>포인트가 충분하면 캐릭터가 보여요</>,
   },
+  delete_profile_feed: {
+    getTitle: () => (
+      <>
+        이 책과 관련된 기록을
+        <br /> 전부 삭제할까요?
+      </>
+    ),
+    type: 'error',
+    buttonText: '네, 전부 삭제할게요',
+    extraButtonText: '아니요, 유지할게요',
+    description: () => (
+      <>이 책과 관련된 모든 기록이 우물과 프로필에서 지워져요.</>
+    ),
+  },
 };
