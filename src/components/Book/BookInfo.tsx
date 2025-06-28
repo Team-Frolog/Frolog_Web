@@ -3,9 +3,9 @@
 import Image from 'next/image';
 import React from 'react';
 import { getPath } from '@/utils/getPath';
-import { useBook } from '@/features/Book';
 import { useIsInFeed } from '@/store/userActionStore';
 import { IMAGES } from '@/constants/images';
+import { GetBookRes } from '@frolog/frolog-api';
 import Book from './Book';
 import CustomLink from '../Link/CustomLink';
 
@@ -14,11 +14,11 @@ interface Props {
   bookId: string;
   /** 도서를 클릭하여 도서 상세 페이지로 넘어갈 수 있는지의 여부 */
   canClick?: boolean;
+  bookData: GetBookRes;
 }
 
 /** 도서 상세 페이지, 리뷰/메모 리스트 내 도서 정보 컴포넌트 (도서 커버, 배경 포함) */
-function BookInfo({ bookId, canClick = false }: Props) {
-  const { bookData } = useBook(bookId);
+function BookInfo({ bookId, bookData, canClick = false }: Props) {
   const isInFeed = useIsInFeed();
 
   return (

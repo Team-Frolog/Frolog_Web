@@ -4,6 +4,7 @@ import React from 'react';
 import TitleHeader from '@/components/Header/TitleHeader';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { FormProvider, useForm } from 'react-hook-form';
+import { GetReviewRes } from '@frolog/frolog-api';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { ReviewForm as ReviewFormType } from '../types/review';
 import { useReviewDetail } from '../hooks/useReviewDetail';
@@ -15,10 +16,11 @@ interface Props {
     bookId: string;
     reviewId: string;
   };
+  reviewData: GetReviewRes;
 }
 
 /** 사용자 본인의 리뷰 페이지 */
-function MyReviewPage({ params: { bookId, reviewId } }: Props) {
+function MyReviewPage({ params: { bookId, reviewId }, reviewData }: Props) {
   const isEditing = !!useSearchParams().get('edit');
   const { navigate, router } = useCustomRouter('well');
   const pathname = usePathname();
@@ -26,17 +28,16 @@ function MyReviewPage({ params: { bookId, reviewId } }: Props) {
   const methods = useForm<ReviewFormType>({
     mode: 'onBlur',
     defaultValues: {
-      rating: 0,
-      oneLiner: '',
-      review: '',
-      pros: [],
-      cons: [],
+      rating: reviewData.rating,
+      oneLiner: reviewData.title,
+      review: reviewData.content,
+      pros: reviewData.tags_pos,
+      cons: reviewData.tags_neg,
     },
   });
   const {
     watch,
     handleSubmit,
-    reset,
     setError,
     formState: { isDirty },
   } = methods;
@@ -50,11 +51,11 @@ function MyReviewPage({ params: { bookId, reviewId } }: Props) {
   } = useReviewDetail({
     bookId,
     reviewId,
-    reset,
     pathname,
     isDirty,
     watch,
     setError,
+    reviewData,
   });
 
   return (

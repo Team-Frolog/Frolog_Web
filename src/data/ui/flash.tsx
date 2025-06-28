@@ -75,6 +75,23 @@ export const flash: {
     marginBottom: -2,
     isRedirect: false,
   },
+  first_memo: {
+    getTitle: () => (
+      <BigTitle
+        type='default'
+        extraClass='text-center mobile:text-heading-md-bold'
+      >
+        우와
+        <br />첫 메모에요!
+      </BigTitle>
+    ),
+    frog: IMAGES.flash.first_memo,
+    ground: IMAGES.ground_sm,
+    hasPopper: true,
+    maxHeight: 282,
+    marginBottom: -2,
+    isRedirect: false,
+  },
   unsubscribe: {
     getTitle: () => (
       <BigTitle

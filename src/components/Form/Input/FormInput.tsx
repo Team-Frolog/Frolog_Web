@@ -12,7 +12,8 @@ type FieldName =
   | 'author'
   | 'name'
   | 'intro'
-  | 'description';
+  | 'description'
+  | 'reason';
 
 export interface FormInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

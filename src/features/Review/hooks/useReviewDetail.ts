@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { UseFormReset, UseFormSetError, UseFormWatch } from 'react-hook-form';
+import { UseFormSetError, UseFormWatch } from 'react-hook-form';
+import { GetReviewRes } from '@frolog/frolog-api';
 import { bottomSheet } from '@/modules/BottomSheet';
 import { QUERY_KEY } from '@/constants/query';
 import { editReview, getReviewDetail } from '../api/review.api';
@@ -13,22 +13,22 @@ import { getBookInfo } from '../api/getBookInfo.api';
 interface Props {
   bookId: string;
   reviewId: string;
-  reset: UseFormReset<ReviewForm>;
   pathname: string;
   isDirty: boolean;
   watch: UseFormWatch<ReviewForm>;
   setError: UseFormSetError<ReviewForm>;
+  reviewData: GetReviewRes;
 }
 
 /** 리뷰 상세 쿼리 훅 */
 export const useReviewDetail = ({
   bookId,
   reviewId,
-  reset,
   pathname,
   isDirty,
   watch,
   setError,
+  reviewData,
 }: Props) => {
   const { replace, router } = useCustomRouter('well');
   const queryClient = useQueryClient();
@@ -37,6 +37,7 @@ export const useReviewDetail = ({
     queryKey: [QUERY_KEY.reviewDetail, reviewId],
     queryFn: () => getReviewDetail(reviewId),
     staleTime: 0,
+    initialData: reviewData,
   });
 
   const { data: bookData } = useQuery({
@@ -92,19 +93,6 @@ export const useReviewDetail = ({
 
     handleEditReview(formData);
   };
-
-  // 컴포넌트 마운트 후 리뷰 폼 데이터 세팅
-  useEffect(() => {
-    if (data) {
-      reset({
-        rating: data.rating,
-        oneLiner: data.title,
-        review: data.content,
-        pros: data.tags_pos,
-        cons: data.tags_neg,
-      });
-    }
-  }, [data, reset]);
 
   /** 리뷰 폼이 변경된 경우 바텀시트로 이탈을 재확인하는 뒤로가기 핸들러 */
   const handleClickBack = () => {

@@ -22,7 +22,7 @@ function Textarea({ type = 'default', option }: TextareaProps) {
     trigger,
     formState: { errors },
   } = useFormContext();
-  const textValue = watch(option.fieldName);
+  const textValue = watch(String(option.fieldName));
   const { length } = textValue;
   const parentRef = useRef<HTMLDivElement>(null);
 
@@ -47,11 +47,11 @@ function Textarea({ type = 'default', option }: TextareaProps) {
         className="grid after:invisible after:w-full after:whitespace-pre-wrap after:break-all after:border after:px-[24px] after:py-[28px] after:text-inherit after:content-[attr(data-cloned-val)_'_'] after:[grid-area:1/1/2/2] [&>textarea]:resize-none [&>textarea]:overflow-hidden [&>textarea]:[grid-area:1/1/2/2]"
       >
         <textarea
-          className={`textarea-common ${errors[option.fieldName] ? 'input-error' : 'textarea-light'} ${type === 'bold' ? 'text-body-lg-bold' : 'text-body-lg'}`}
+          className={`textarea-common ${errors[String(option.fieldName)] ? 'input-error' : 'textarea-light'} ${type === 'bold' ? 'text-body-lg-bold' : 'text-body-lg'}`}
           maxLength={option.maxLength}
           placeholder={option.placeholder}
           rows={option.minRow}
-          {...register(option.fieldName, {
+          {...register(String(option.fieldName), {
             required: option.required,
             minLength: {
               value: option.minLength,
@@ -59,8 +59,8 @@ function Textarea({ type = 'default', option }: TextareaProps) {
             },
             /** 에러가 있는 경우 onChange로 실시간 유효성 체크 */
             onChange: () => {
-              if (errors[option.fieldName]) {
-                trigger(option.fieldName);
+              if (errors[String(option.fieldName)]) {
+                trigger(String(option.fieldName));
               }
             },
           })}
@@ -68,8 +68,8 @@ function Textarea({ type = 'default', option }: TextareaProps) {
       </div>
 
       <span className='px-page text-body-md text-error'>
-        {errors[option.fieldName]
-          ? String(errors[option.fieldName]!.message)
+        {errors[String(option.fieldName)]
+          ? String(errors[String(option.fieldName)]!.message)
           : ''}
       </span>
     </div>

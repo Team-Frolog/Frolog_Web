@@ -7,4 +7,6 @@ export interface Memo {
   images: string[];
   date: string;
   edit: string;
+  is_first?: boolean;
+  tags?: string[];
 }

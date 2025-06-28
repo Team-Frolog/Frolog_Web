@@ -6,7 +6,6 @@ import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { getPath } from '@/utils/getPath';
 import { useUserId } from '@/store/sessionStore';
 import { addNewMemo } from '../api/memo.api';
-import { MemoFormType } from '../types/form';
 
 /** 메모 작성 핸들링 훅 */
 export const useAddMemo = (wellId: string, bookId: string) => {

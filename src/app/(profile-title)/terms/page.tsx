@@ -1,11 +1,7 @@
+import { TermsMenu } from '@/features/Profile';
 import MainLayout from '@/layouts/MainLayout';
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import React from 'react';
-
-const TermsMenu = dynamic(
-  () => import('@/features/Profile/components/Terms/TermsMenu')
-);
 
 function TermsPage() {
   return (

@@ -1,15 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Metadata } from 'next';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/nextAuth';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
-import { GetProfileDetail } from '@frolog/frolog-api';
-import { QUERY_KEY } from '@/constants/query';
 import dynamic from 'next/dynamic';
+import { getProfileDetail } from '@/features/Profile/api/profile.server.api';
 
 const ProfileEditForm = dynamic(
   () => import('@/features/Profile/components/Profile/ProfileEditForm')
@@ -22,23 +14,12 @@ interface Props {
 }
 
 async function ProfileEditPage({ params: { userId } }: Props) {
-  const session = await getServerSession(authOptions);
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: [QUERY_KEY.profileDetail, userId],
-    queryFn: () =>
-      new GetProfileDetail({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.accessToken,
-      }).fetch({ id: userId }),
-    staleTime: 1000 * 10,
-  });
+  const profileDetail = await getProfileDetail(userId);
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <ProfileEditForm userId={userId} />
-    </HydrationBoundary>
+    <Suspense fallback={<></>}>
+      <ProfileEditForm userId={userId} profileDetail={profileDetail} />
+    </Suspense>
   );
 }
 

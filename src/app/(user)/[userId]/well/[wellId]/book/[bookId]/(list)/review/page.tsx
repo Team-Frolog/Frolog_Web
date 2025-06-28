@@ -1,25 +1,9 @@
-import React from 'react';
-import ReviewListSkeleton from '@/components/Fallback/Skeleton/Review/ReviewListSkeleton';
-import dynamic from 'next/dynamic';
+import React, { Suspense } from 'react';
 import { getIsRootUser } from '@/utils/auth/getIsRootUser';
 import { Metadata } from 'next';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/nextAuth';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
-import { SearchReview } from '@frolog/frolog-api';
-import { QUERY_KEY } from '@/constants/query';
-
-const ReviewList = dynamic(
-  () => import('@/features/Review/components/ReviewList/ReviewList'),
-  {
-    ssr: false,
-    loading: () => <ReviewListSkeleton />,
-  }
-);
+import { ReviewList } from '@/features/Review';
+import { getReviewList } from '@/features/Review/api/review.server.api';
+import ReviewListSkeleton from '@/components/Fallback/Skeleton/Review/ReviewListSkeleton';
 
 interface Props {
   params: {
@@ -30,29 +14,19 @@ interface Props {
 }
 
 async function ReviewPage({ params: { userId, wellId, bookId } }: Props) {
-  const session = await getServerSession(authOptions);
   const { isRootUser } = await getIsRootUser(userId);
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: [QUERY_KEY.reviewList, bookId, userId],
-    queryFn: () =>
-      new SearchReview({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-        accessToken: session?.user.accessToken,
-      }).fetch({ isbn: bookId, writer: userId }),
-    staleTime: 1000 * 10,
-  });
+  const reviewList = await getReviewList(bookId, userId);
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <Suspense fallback={<ReviewListSkeleton />}>
       <ReviewList
         bookId={bookId}
         wellId={wellId}
         userId={userId}
+        reviewList={reviewList}
         isRootUser={isRootUser}
       />
-    </HydrationBoundary>
+    </Suspense>
   );
 }
 

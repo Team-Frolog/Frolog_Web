@@ -1,16 +1,21 @@
-import { CONS_TAG, PROS_TAG } from '@/constants/tags';
+import { CONS_TAG, PROS_TAG, REASON_TAG } from '@/constants/tags';
 
 /** 장점/단점 태그를 구하는 함수
  * @param type - 'pros' or 'cons'
  * @param keys - 라벨을 구하고자 하는 태그의 키 값 리스트 (영문)
  */
-export const getTags = (type: 'pros' | 'cons', keys: string[]) => {
+export const getTags = (
+  type: 'pros' | 'cons' | 'firstMemo',
+  keys: string[]
+) => {
   let result;
 
   if (type === 'pros') {
     result = PROS_TAG.filter((tag) => keys.includes(tag.id));
-  } else {
+  } else if (type === 'cons') {
     result = CONS_TAG.filter((tag) => keys.includes(tag.id));
+  } else {
+    result = REASON_TAG.filter((tag) => keys.includes(tag.id));
   }
 
   return result;

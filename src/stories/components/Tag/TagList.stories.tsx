@@ -9,7 +9,7 @@ const meta = {
   argTypes: {
     type: {
       control: { type: 'radio' },
-      options: ['pros', 'cons'],
+      options: ['pros', 'cons', 'firstMemo'],
     },
   },
 } satisfies Meta<typeof TagList>;
@@ -17,7 +17,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const Template = (args: { type: 'pros' | 'cons' }) => {
+const Template = (args: { type: 'pros' | 'cons' | 'firstMemo' }) => {
   const methods = useForm({
     defaultValues: {
       pros: [],

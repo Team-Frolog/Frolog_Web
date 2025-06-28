@@ -3,7 +3,6 @@
 import React from 'react';
 import GenericForm from '@/components/Form/GenericForm';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
-import { MemoFormType } from '../types/form';
 import MemoForm from './MemoForm/MemoForm';
 import { useAddMemo } from '../hooks/useAddMemo';
 

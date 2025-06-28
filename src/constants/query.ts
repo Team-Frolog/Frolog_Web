@@ -21,4 +21,6 @@ export const QUERY_KEY = {
   points: 'points',
   explore: 'explore',
   searchWells: 'searchWells',
+  firstMemoDetail: 'firstMemoDetail',
+  profileFeed: 'profileFeed',
 } as const;

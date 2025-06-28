@@ -2,8 +2,8 @@
 
 import React from 'react';
 import GenericForm from '@/components/Form/GenericForm';
+import { GetMemoRes } from '@frolog/frolog-api';
 import { useMemoDetail } from '../hooks/useMemoDetail';
-import { MemoFormType } from '../types/form';
 import MemoForm from './MemoForm/MemoForm';
 
 interface Props {
@@ -12,21 +12,23 @@ interface Props {
     bookId: string;
     memoId: string;
   };
+  memoData: GetMemoRes;
 }
 
 /** 사용자 본인의 메모 상세 페이지 */
-function MyMemoPage({ params: { wellId, bookId, memoId } }: Props) {
+function MyMemoPage({ params: { wellId, bookId, memoId }, memoData }: Props) {
   const { memoDetail, handleEditMemo, isPending } = useMemoDetail(
     wellId,
     bookId,
-    memoId
+    memoId,
+    memoData
   );
   if (!memoDetail) return null;
 
   const defaultValues = {
-    images: memoDetail.images,
-    memo: memoDetail.content,
-    isPublic: memoDetail.is_public,
+    images: memoData.images,
+    memo: memoData.content,
+    isPublic: memoData.is_public,
   };
 
   return (

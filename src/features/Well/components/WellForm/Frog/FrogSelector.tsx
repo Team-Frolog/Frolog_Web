@@ -2,22 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { motion, useAnimationControls } from 'framer-motion';
 import { ExpandIcon } from 'public/icons';
-import { useFrogs } from '@/features/Well/hooks/useFrogs';
 import FrologItem from '@/components/FrologItem/FrologItem';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
+import { GetStoreItemRes } from '@frolog/frolog-api';
 
 interface Props {
-  /** 유저 id */
-  userId: string;
+  /** 내 개구리 리스트 */
+  myFrogList: GetStoreItemRes[];
 }
 
 /** 개구리 캐릭터 선택 컴포넌트 */
-function FrogSelector({ userId }: Props) {
+function FrogSelector({ myFrogList }: Props) {
   const { watch, setValue } = useFormContext();
-  const { frogs } = useFrogs(userId);
   const controls = useAnimationControls();
   const [isExpanded, setIsExpanded] = useState(false);
-  const isNoExpansion = frogs ? frogs.length <= 3 : true;
+  const isNoExpansion = myFrogList ? myFrogList.length <= 3 : true;
 
   useEffect(() => {
     if (isExpanded || isNoExpansion) {
@@ -27,7 +26,7 @@ function FrogSelector({ userId }: Props) {
     }
   }, [isExpanded, controls, isNoExpansion]);
 
-  if (!frogs) return null;
+  if (!myFrogList) return null;
 
   return (
     <div className='flex w-full flex-col gap-[12px]'>
@@ -48,7 +47,7 @@ function FrogSelector({ userId }: Props) {
           />
         </WithConditionalRendering>
 
-        {frogs.map((frog) => (
+        {myFrogList.map((frog) => (
           <FrologItem
             key={frog.key}
             type='well'

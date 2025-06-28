@@ -9,13 +9,15 @@ import { useExploreWells } from '@/features/Well/hooks/useExploreWells';
 import { useObserver } from '@/hooks/gesture/useObserver';
 import { useScrollPosition } from '@/hooks/gesture/useScrollPosition';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
+import { SearchUserWellRes } from '@frolog/frolog-api';
 import React from 'react';
 
 interface Props {
   refTime: string;
+  wellList: SearchUserWellRes;
 }
 
-function WellExploreList({ refTime }: Props) {
+function WellExploreList({ refTime, wellList }: Props) {
   const {
     exploreResult,
     fetchNextPage,
@@ -23,7 +25,7 @@ function WellExploreList({ refTime }: Props) {
     isLoading,
     isFetched,
     isFetchingNextPage,
-  } = useExploreWells(refTime);
+  } = useExploreWells(refTime, wellList);
 
   const { setTarget } = useObserver({
     hasNextPage,

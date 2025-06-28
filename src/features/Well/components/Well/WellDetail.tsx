@@ -4,6 +4,7 @@ import {
   ChangeWellItemOrderReq,
   GetWellItemRes,
   GetWellRes,
+  SearchWellItemRes,
 } from '@frolog/frolog-api';
 import { usePathname } from 'next/navigation';
 import { getPath } from '@/utils/getPath';
@@ -25,6 +26,7 @@ interface Props {
   /** 우물 순서 변경 모드 여부 */
   isMovable: boolean;
   userId: string;
+  initialWellItemList: SearchWellItemRes;
 }
 function WellDetail({
   userId,
@@ -32,6 +34,7 @@ function WellDetail({
   isRootUser,
   isDefaultWell,
   isMovable,
+  initialWellItemList,
 }: Props) {
   const router = useCustomRouter('well');
   const pathname = usePathname();
@@ -44,7 +47,7 @@ function WellDetail({
     isFetchingNextPage,
     isEmpty,
     isFetched,
-  } = useWellItems(wellData.id);
+  } = useWellItems(wellData.id, initialWellItemList);
 
   const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
   const originalItems = useMemo(() => wellItems, [wellItems]);

@@ -4,7 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { staggerContainerVariants } from '@/styles/variants/variants';
 import { motion } from 'framer-motion';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { GetWellItemRes, GetWellRes } from '@frolog/frolog-api';
+import {
+  GetWellItemRes,
+  GetWellRes,
+  SearchWellItemRes,
+} from '@frolog/frolog-api';
 import { getRandomEmptyMessage } from '@/features/Well/utils/getRandomMessage';
 import WellItemSkeleton from '@/components/Fallback/Skeleton/Well/WellItemSkeleton';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
@@ -14,6 +18,7 @@ import WellActionButton from '../Pointing/WellActionButton';
 import FrogOnBook from '../WellFrog/FrogOnBook';
 import WellItem from './WellItem';
 import EmptyWellItem from './EmptyWellItem';
+import { useWellItems } from '@/features/Well/hooks/useWellItems';
 
 interface Props {
   /** 우물 정보 데이터 객체 */
@@ -122,7 +127,7 @@ const WellItemList = React.memo(
             {isFetchingNextPage && <WellItemSkeleton />}
             <DragDropContext onDragEnd={handleMoveItem}>
               <Droppable droppableId='wellItems'>
-                {(rootProvided) => (
+                {(rootProvided: any) => (
                   <div
                     className='wellItems'
                     {...rootProvided.droppableProps}
@@ -136,7 +141,7 @@ const WellItemList = React.memo(
                           index={i}
                           key={item.id}
                         >
-                          {(provided, snapshot) => (
+                          {(provided: any, snapshot: any) => (
                             <div
                               {...provided.draggableProps}
                               ref={provided.innerRef}

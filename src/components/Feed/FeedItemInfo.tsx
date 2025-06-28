@@ -7,6 +7,7 @@ import { useUserActionActions } from '@/store/userActionStore';
 import { getPath } from '@/utils/getPath';
 import { GetMemoRes, GetReviewRes } from '@frolog/frolog-api';
 import React from 'react';
+import { isGetMemoRes } from '@/features/Feed/utils/typeGuard';
 
 interface Props {
   /** 메모인지 여부 */
@@ -31,11 +32,16 @@ function FeedItemInfo({
 }: Props) {
   const { handleChangeLike } = useLikeFeed(!isMemo);
   const { setIsInFeed } = useUserActionActions();
+
   return (
     <div className='flex w-full flex-col'>
       <CustomLink
         prefetch
-        href={isMemo ? getPath.memo(feedData.id) : getPath.review(feedData.id)}
+        href={
+          isGetMemoRes(feedData)
+            ? getPath.memo(feedData.id, feedData.is_first)
+            : getPath.review(feedData.id)
+        }
         className='flex w-full flex-col'
         onClick={() => {
           onSaveScroll();
@@ -46,6 +52,7 @@ function FeedItemInfo({
           isMemo={isMemo}
           feedData={feedData}
           hasToolTip={!isRootUser}
+          isFirstMemo={isGetMemoRes(feedData) ? feedData.is_first : false}
         />
         <FeedContent feedData={feedData} />
       </CustomLink>

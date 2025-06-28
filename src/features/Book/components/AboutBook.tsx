@@ -5,19 +5,19 @@ import { AnimatePresence } from 'framer-motion';
 import { useScroll } from '@/hooks/gesture/useScroll';
 import RatingSelector from '@/components/Rating/RatingSelector';
 import AddButton from '@/components/Button/AddButton';
+import { GetBookRes } from '@frolog/frolog-api';
 import { runWhenLoggedIn } from '@/utils/runWhenLoggedIn';
 import MajorTagList from '@/components/Tag/MajorTagList';
-import { useBook } from '../hooks/useBook';
 import BookInfoTap from './BookDetail/BookInfoTap';
 import AddBookToWell from './BottomSheet/AddBookToWell';
 
 interface Props {
   bookId: string;
+  bookData: GetBookRes;
 }
 
 /** 도서 상세 페이지 중 정보 부분 컴포넌트 */
-function AboutBook({ bookId }: Props) {
-  const { bookData } = useBook(bookId);
+function AboutBook({ bookId, bookData }: Props) {
   const [open, setOpen] = useState(false);
   useScroll({});
 
@@ -39,7 +39,7 @@ function AboutBook({ bookId }: Props) {
           <MajorTagList type='pros' tagKeys={bookData?.tags_pos} />
           <MajorTagList type='cons' tagKeys={bookData?.tags_neg} />
         </div>
-        <BookInfoTap bookId={bookId} />
+        <BookInfoTap bookId={bookId} bookData={bookData} />
       </div>
       <AnimatePresence>
         {open && (

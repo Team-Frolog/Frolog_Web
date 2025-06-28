@@ -31,6 +31,9 @@ function BookListItem({ bookData, onSaveScroll }: Props) {
     review_cnt,
   } = bookData;
 
+  const hasPosTag = tags_pos.length > 0;
+  const hasNegTag = tags_neg.length > 0;
+
   return (
     <CustomLink
       prefetch
@@ -76,16 +79,20 @@ function BookListItem({ bookData, onSaveScroll }: Props) {
                 />
               }
             >
-              <Tag
-                type='pros'
-                tagValue={getTagById('pros', tags_pos[0])!}
-                size='small'
-              />
-              <Tag
-                type='cons'
-                tagValue={getTagById('cons', tags_neg[0])!}
-                size='small'
-              />
+              {hasPosTag && (
+                <Tag
+                  type='pros'
+                  tagValue={getTagById('pros', tags_pos[0])!}
+                  size='small'
+                />
+              )}
+              {hasNegTag && (
+                <Tag
+                  type='cons'
+                  tagValue={getTagById('cons', tags_neg[0])!}
+                  size='small'
+                />
+              )}
             </WithConditionalRendering>
           </div>
           <span className='text-caption-bold text-gray-600'>

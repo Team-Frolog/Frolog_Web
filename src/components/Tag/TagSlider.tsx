@@ -8,6 +8,8 @@ interface Props {
   type: 'pros' | 'cons';
   /** 태그 키 값 (영문) */
   tagKeys: string[];
+  /** 첫 메모 여부 */
+  isFirstMemo?: boolean;
 }
 
 /** 리뷰 아이템에 활용되는 태그 슬라이더
@@ -15,12 +17,12 @@ interface Props {
  * - 리뷰 리스트
  * - 도서 상세 > 리뷰 모음
  */
-function TagSlider({ type, tagKeys }: Props) {
+function TagSlider({ type, tagKeys, isFirstMemo = false }: Props) {
   if (tagKeys.length === 0) {
     return;
   }
 
-  const tagData = getTags(type, tagKeys);
+  const tagData = getTags(isFirstMemo ? 'firstMemo' : type, tagKeys);
 
   return (
     <Slider hasFade slideClass='gap-[4px]'>
