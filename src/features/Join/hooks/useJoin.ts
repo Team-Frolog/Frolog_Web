@@ -84,7 +84,8 @@ export const useJoin = (getValues: () => JoinForm) => {
         STORAGE_KEY.tempAccountKey,
         JSON.stringify({ email: formData.email, password: formData.password })
       );
-      handleLogin(formData.username!);
+      // todo: 회원 가입후 로그인 처리
+      handleLogin('dev test');
     },
   });
 
