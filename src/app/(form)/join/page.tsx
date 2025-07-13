@@ -1,7 +1,6 @@
 import React from 'react';
 import { JoinForm } from '@/features/Join';
 import { Metadata } from 'next';
-import { useSearchParams } from 'next/navigation';
 import GoogleJoinForm from '@/features/Join/components/GoogleJoinForm';
 
 export const metadata: Metadata = {

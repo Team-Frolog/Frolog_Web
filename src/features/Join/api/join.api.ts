@@ -18,7 +18,7 @@ export const checkNickname = async (req: GetUsernameAvailabilityReq) => {
   return data.result;
 };
 
-export const googleSignUp = async (req: SignInGoogleReq) => {
+export const googleSignIn = async (req: SignInGoogleReq) => {
   const data = await new SignInGoogle(baseOptions).fetch(req);
   return data;
 };

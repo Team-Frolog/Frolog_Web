@@ -1,19 +1,19 @@
 import { useMutation } from '@tanstack/react-query';
 import { SignInGoogleReq, SignInGoogleRes } from '@frolog/frolog-api';
-import { googleSignUp } from '../api/join.api';
 import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import { STORAGE_KEY } from '@/constants/storage';
 import { defaultValue } from '@/features/Join/data/joinForm';
 import { useAuthActions } from '@/store/authStore';
+import { googleSignIn } from '../api/join.api';
 
-const mockGoogleSignUp = async (req: SignInGoogleReq) => {
-  const res = await fetch('/api/mock', {
-    method: 'POST',
-    body: JSON.stringify(req),
-  });
-  return res.json();
-};
+// const mockGoogleSignUp = async (req: SignInGoogleReq) => {
+//   const res = await fetch('/api/mock', {
+//     method: 'POST',
+//     body: JSON.stringify(req),
+//   });
+//   return res.json();
+// };
 
 export const useGoogle = () => {
   const router = useRouter();
@@ -24,10 +24,11 @@ export const useGoogle = () => {
     SignInGoogleReq
   >({
     mutationFn: async (req: SignInGoogleReq) => {
-      const res = await mockGoogleSignUp(req);
+      const res = await googleSignIn(req);
       return res;
     },
     onSuccess: (res) => {
+      console.log(res);
       if (!res.result && !res.is_registered) {
         setEmailVerifiedToken(res.email_verified_token!);
         localStorage.setItem(

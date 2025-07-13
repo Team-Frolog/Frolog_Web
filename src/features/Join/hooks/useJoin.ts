@@ -2,46 +2,46 @@
 
 import { STORAGE_KEY } from '@/constants/storage';
 import { useEffect, useState } from 'react';
-import { PAGES } from '@/constants/page';
-import { useRouter } from 'next/navigation';
+// import { PAGES } from '@/constants/page';
+// import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { SignUpReq, SignUpRes } from '@frolog/frolog-api';
 import { useAuthActions, useVerifyToken } from '@/store/authStore';
 import { toast } from '@/modules/Toast';
 import { useStep, useStepActions } from '@/store/stepStore';
 import { ERROR_ALERT } from '@/constants/message';
-import { useLogin } from '@/features/Login';
+// import { useLogin } from '@/features/Login';
 import { transformJoinForm } from '../utils/transformJoinForm';
 import { signUp } from '../api/join.api';
 import { JoinForm } from '../types/form';
 
 export const useJoin = (getValues: () => JoinForm) => {
-  const router = useRouter();
+  // const router = useRouter();
   const step = useStep();
   const verifyToken = useVerifyToken();
   const { resetToken } = useAuthActions();
-  const { userLogin } = useLogin('test');
+  // const { userLogin } = useLogin('test');
   const { resetStep } = useStepActions();
   const [isLoading, setIsLoading] = useState(false);
 
   /** 로그인 처리 핸들러 */
-  const { mutate: handleLogin } = useMutation({
-    mutationFn: async (username: string) => {
-      const account = localStorage.getItem(STORAGE_KEY.tempAccountKey);
+  // const { mutate: handleLogin } = useMutation({
+  //   mutationFn: async (username: string) => {
+  //     const account = localStorage.getItem(STORAGE_KEY.tempAccountKey);
 
-      if (account) {
-        const res = await userLogin(JSON.parse(account));
-        router.replace(`${PAGES.JOIN_FINISH}?username=${username}`);
-        return res;
-      } else {
-        throw new Error();
-      }
-    },
-    onError: () => {
-      toast.error(ERROR_ALERT);
-      router.back();
-    },
-  });
+  //     if (account) {
+  //       const res = await userLogin(JSON.parse(account));
+  //       router.replace(`${PAGES.JOIN_FINISH}?username=${username}`);
+  //       return res;
+  //     } else {
+  //       throw new Error();
+  //     }
+  //   },
+  //   onError: () => {
+  //     toast.error(ERROR_ALERT);
+  //     router.back();
+  //   },
+  // });
 
   useEffect(
     () => () => {
@@ -85,14 +85,14 @@ export const useJoin = (getValues: () => JoinForm) => {
         STORAGE_KEY.tempAccountKey,
         JSON.stringify({ email: formData.email, password: formData.password })
       );
-      handleLogin(formData.username!);
+      // handleLogin(formData.username!);
     },
   });
 
   const joinUser = async (data: JoinForm) => {
-    console.log(data);
+    console.log('data', data);
     const formData = transformJoinForm(data, verifyToken!);
-    console.log(formData);
+    console.log('formData', formData);
     handleSignUp(formData);
   };
 
