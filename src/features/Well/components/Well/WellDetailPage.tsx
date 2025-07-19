@@ -50,6 +50,7 @@ function WellDetailPage({
             wellData={wellDetail}
             isDefaultWell={isDefaultWell}
             initialWellItemList={initialWellItemList}
+            userId={userId}
           />
         )}
         {isRendering && <ScrollToTop />}

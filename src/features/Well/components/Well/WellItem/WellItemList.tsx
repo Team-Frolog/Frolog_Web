@@ -17,6 +17,8 @@ import FrogOnBook from '../WellFrog/FrogOnBook';
 import WellItem from './WellItem';
 import EmptyWellItem from './EmptyWellItem';
 import GettingNewFrog from '../NewFrog/GettingNewFrog';
+import { useWellItemCount } from '@/features/Well/hooks/useWellItemCount';
+import { useUserFrogsCount } from '@/features/Store/hooks/useUserFrogsCount';
 
 interface Props {
   /** 우물 정보 데이터 객체 */
@@ -27,11 +29,18 @@ interface Props {
   isDefaultWell?: boolean;
   /** 우물 아이템 리스트 */
   initialWellItemList: SearchWellItemRes;
+  userId: string;
 }
 
 /** 우물 아이템 리스트 컴포넌트 */
 const WellItemList = React.memo(
-  ({ wellData, isRootUser, isDefaultWell, initialWellItemList }: Props) => {
+  ({
+    wellData,
+    isRootUser,
+    isDefaultWell,
+    initialWellItemList,
+    userId,
+  }: Props) => {
     const {
       wellItems,
       fetchNextPage,
@@ -41,6 +50,10 @@ const WellItemList = React.memo(
       isFetched,
     } = useWellItems(wellData.id, initialWellItemList);
     const { id, name, item_cnt } = wellData;
+
+    const { wellItemCount, isLoading: isWellItemCountLoading } =
+      useWellItemCount(userId);
+    const { baseFrogsCount } = useUserFrogsCount();
 
     const [isOpenNewFrogSheet, setIsOpenNewFrogSheet] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -70,11 +83,10 @@ const WellItemList = React.memo(
     };
 
     useEffect(() => {
-      // TODO: 어떤 우물에서든 누적 권수인 경우 서버에서 API로 누적 권수 제공받아야 함.
-      if (isDefaultWell && wellItems.length === 1) {
+      if (wellItemCount === 1 && baseFrogsCount === 0) {
         setIsOpenNewFrogSheet(true);
       }
-    }, [wellItems]);
+    }, [wellItems, isWellItemCountLoading, wellItemCount, baseFrogsCount]);
 
     useEffect(
       () => () => {
