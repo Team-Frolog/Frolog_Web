@@ -78,8 +78,8 @@ export const getWellItems = async (page: number, well_id: string) => {
   const response = await searchWellItem.fetch({
     well_id,
     page,
+    sort: 'desc',
     limit: WELLITEM_LIMIT,
-    sort: 'newest',
   });
   return response;
 };

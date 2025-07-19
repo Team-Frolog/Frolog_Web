@@ -63,12 +63,18 @@ function WellDetail({
   }, [originalItems]);
 
   const handleMoveItem = (result: any) => {
-    const prevChanges = orderChanges;
+    const movedItem = items.find((item) => item.id === result.draggableId);
+    if (!movedItem) return;
+
+    const newOrder = items.length - result.destination.index - 1;
+
+    const prevChanges = [...orderChanges];
     prevChanges.push({
       well_id: wellData.id,
       id: result.draggableId,
-      order: +result.destination.index,
+      order: newOrder,
     });
+
     console.log(prevChanges);
     setOrderChanges(prevChanges);
 

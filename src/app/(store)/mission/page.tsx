@@ -16,7 +16,7 @@ function MissionPage() {
                 <span className='self-end text-body-lg'>1회 10p</span>
               </div>
               <Image
-                src={IMAGES.frog.reading.before}
+                src={IMAGES.frog.add.reading}
                 alt='reading book frog'
                 width={127}
                 height={62}
@@ -33,7 +33,7 @@ function MissionPage() {
               <span className='self-end text-body-lg'>1회 20p</span>
             </div>
             <Image
-              src={IMAGES.frog.reading.after}
+              src={IMAGES.frog.add.done}
               alt='read book frog'
               width={127}
               height={62}
