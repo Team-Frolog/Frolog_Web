@@ -222,4 +222,18 @@ export const sheetData: { [key: string]: AlertSheet } = {
     type: 'normal',
     buttonText: '제출하기',
   },
+  delete_profile_feed: {
+    getTitle: () => (
+      <>
+        이 책과 관련된 기록을
+        <br /> 전부 삭제할까요?
+      </>
+    ),
+    type: 'error',
+    buttonText: '네, 전부 삭제할게요',
+    extraButtonText: '아니요, 유지할게요',
+    description: () => (
+      <>이 책과 관련된 모든 기록이 우물과 프로필에서 지워져요.</>
+    ),
+  },
 };

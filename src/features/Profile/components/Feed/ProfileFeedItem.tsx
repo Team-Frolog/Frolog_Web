@@ -33,7 +33,11 @@ function ProfileFeedItem({ feedData }: Props) {
         width={191}
         height={272}
         className='flex-[8] cursor-pointer'
-        onClick={() => navigate(getPath.rootUserMemo(userId!, wellId!, isbn))}
+        onClick={() =>
+          navigate(getPath.rootUserMemo(userId!, wellId!, isbn), {
+            from: 'profile',
+          })
+        }
       />
       <div className='flex flex-col gap-[1px]'>
         <FeedItemDetail
