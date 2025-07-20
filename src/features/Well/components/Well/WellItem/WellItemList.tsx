@@ -19,6 +19,9 @@ import EmptyWellItem from './EmptyWellItem';
 import GettingNewFrog from '../NewFrog/GettingNewFrog';
 import { useWellItemCount } from '@/features/Well/hooks/useWellItemCount';
 import { useUserFrogsCount } from '@/features/Store/hooks/useUserFrogsCount';
+import SurveyFormSheet from '../NewFrog/SurveyFormSheet';
+import { STORAGE_KEY } from '@/constants/storage';
+import { isSurveyCompleted } from '@/hooks/useSurvey';
 
 interface Props {
   /** 우물 정보 데이터 객체 */
@@ -55,6 +58,7 @@ const WellItemList = React.memo(
       useWellItemCount(userId);
     const { baseFrogsCount } = useUserFrogsCount();
 
+    const [isOpenSurveySheet, setIsOpenSurveySheet] = useState(false);
     const [isOpenNewFrogSheet, setIsOpenNewFrogSheet] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState<string | undefined>(undefined);
@@ -83,8 +87,14 @@ const WellItemList = React.memo(
     };
 
     useEffect(() => {
+      // 누적 권수가 1권이고, 개구리를 지급받지 않은 경우
       if (wellItemCount === 1 && baseFrogsCount === 0) {
         setIsOpenNewFrogSheet(true);
+      }
+
+      // 누적 권수가 3권 이상이고, 설문조사를 아직 완료하지 않은 경우
+      if (wellItemCount && wellItemCount >= 3 && !isSurveyCompleted()) {
+        setIsOpenSurveySheet(true);
       }
     }, [wellItems, isWellItemCountLoading, wellItemCount, baseFrogsCount]);
 
@@ -152,6 +162,11 @@ const WellItemList = React.memo(
         </motion.div>
         <AnimatePresence>
           {isOpenNewFrogSheet && <GettingNewFrog />}
+        </AnimatePresence>
+        <AnimatePresence>
+          {isOpenSurveySheet && (
+            <SurveyFormSheet onClose={() => setIsOpenSurveySheet(false)} />
+          )}
         </AnimatePresence>
         {isLoading && <LoadingOverlay theme='dark' />}
       </>

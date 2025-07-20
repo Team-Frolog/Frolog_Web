@@ -9,4 +9,5 @@ export const STORAGE_KEY = {
   profileEditFormKey: '@FROLOG_PROFILE_EDIT_FORM',
   profileIsEdited: '@FROLOG_PROFILE_IS_EDITED',
   selectedWellItemId: '@FROLOG_SELECTED_WELL_ITEM_ID',
+  surveyCompleted: '@FROLOG_SURVEY_COMPLETED',
 } as const;

@@ -5,15 +5,24 @@ import React, { useState } from 'react';
 import FrogSelectSheet from './FrogSelectSheet';
 import NewFrogCongrats from './NewFrogCongrats';
 import GuideSheet from './GuideSheet';
+import { useMutation } from '@tanstack/react-query';
+import { getFirstFrog } from '@/features/Well/api/frog.api';
 
 /** 최초 우물에서 개구리를 획득하는 프로세스를 진행하는 컴포넌트 */
 function GettingNewFrog() {
   const [isAcquired, setIsAcquired] = useState(false); // 개구리 획득 완료 여부
   const [isOpenGuideSheet, setIsOpenGuideSheet] = useState(false);
 
+  const { mutate: handleAcquireFrog } = useMutation({
+    mutationFn: () => getFirstFrog(),
+    onSuccess: () => {
+      setIsAcquired(true);
+    },
+  });
+
   return (
     <BackDrop align={isAcquired && !isOpenGuideSheet ? 'center' : 'end'}>
-      {!isAcquired && <FrogSelectSheet onAcquire={() => setIsAcquired(true)} />}
+      {!isAcquired && <FrogSelectSheet onAcquire={handleAcquireFrog} />}
       {isAcquired && !isOpenGuideSheet && (
         <NewFrogCongrats
           onNext={() => setIsOpenGuideSheet(true)}

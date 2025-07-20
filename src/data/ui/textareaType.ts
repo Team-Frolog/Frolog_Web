@@ -6,8 +6,8 @@ export interface TextareaType {
     | keyof MemoFormType
     | keyof FirstMemoFormType
     | 'self_intro'
-    | 'reasonToUse'
-    | 'feedback';
+    | 'reason'
+    | 'wish';
   title: string;
   maxLength: number;
   minLength: number;
@@ -76,8 +76,8 @@ export const textareaType: { [key: string]: TextareaType } = {
     errorMessage: '1-50자로 입력하세요.',
     placeholder: '자기소개를 입력해주세요',
   },
-  reasonToUse: {
-    fieldName: 'reasonToUse',
+  reason: {
+    fieldName: 'reason',
     title: '프롤로그를 사용하는 이유는?',
     maxLength: 400,
     minLength: 0,
@@ -87,8 +87,8 @@ export const textareaType: { [key: string]: TextareaType } = {
     hasCounter: false,
     placeholder: '사용하는 이유를 알려주세요',
   },
-  feedback: {
-    fieldName: 'feedback',
+  wish: {
+    fieldName: 'wish',
     title: '프롤로그에게 바라는 점은?',
     maxLength: 400,
     minLength: 0,

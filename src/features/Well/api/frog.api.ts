@@ -1,9 +1,6 @@
 import { baseOptions } from '@/api/options';
 import { GetFrogs } from '@frolog/frolog-api';
 
-const getFrogs = new GetFrogs(baseOptions);
-
-export const getFrogList = async (id: string) => {
-  const response = await getFrogs.fetch({ id });
-  return response.frogs;
+export const getFirstFrog = async () => {
+  // TODO: 개구리 지급 api 연동
 };
