@@ -1,4 +1,4 @@
-import { RefreshToken, RefreshTokenRes } from '@frolog/frolog-api';
+import {  RefreshTokenRes } from '@frolog/frolog-api';
 import { encode, getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
@@ -7,7 +7,6 @@ import { getExpFromToken } from './utils/auth/decodeToken';
 const protectedRoutes: string[] = [
   '/frolog-test',
   '/profile',
-  '/join/finish',
   '/flash',
   '/well',
   '/comments',
