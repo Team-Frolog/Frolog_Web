@@ -20,7 +20,7 @@ function JoinFinishPage() {
         route={PAGES.HOME}
         classes='absolute left-[24px] top-[24px] z-100 cursor-pointer'
       />
-      <div className='flex-col-center w-full justify-end gap-[12px]'>
+      <div>
         <Image
           src={IMAGES.ground}
           alt='ground'
@@ -29,7 +29,9 @@ function JoinFinishPage() {
           className='w-full [@media(max-width:350px)]:h-[200px]'
           loading='eager'
         />
-        <LinkButton route={PAGES.HOME}>프롤로그 입장하기</LinkButton>
+        <div className='absolute bottom-5 left-0 flex w-full p-page'>
+          <LinkButton route={PAGES.HOME}>프롤로그 입장하기</LinkButton>
+        </div>
       </div>
       <PopperAnimation />
     </div>
