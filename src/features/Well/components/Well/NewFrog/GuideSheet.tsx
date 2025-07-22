@@ -1,15 +1,24 @@
 import Image from 'next/image';
-import React from 'react';
-import FrologItem from '@/components/FrologItem/FrologItem';
+import React, { useRef } from 'react';
 import { SHEET_FROG } from '@/constants/frogs';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button/Button';
+import FrogList from './FrogList';
+import { useClickOutside } from '@/hooks/popup/useClickOutside';
 
-function GuideSheet() {
-  // TODO: 여기서는 바텀시트 닫기 가능해야 함. 닫기 후 다시 등장하지 않도록 조치 필요
+interface Props {
+  ownedFrog: string;
+  onClose: () => void;
+}
+
+function GuideSheet({ ownedFrog, onClose }: Props) {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useClickOutside(ref, onClose);
 
   return (
     <motion.div
+      ref={ref}
       initial={{ y: '120%' }}
       animate={{ y: '0%' }}
       exit={{ y: '120%' }}
@@ -31,49 +40,7 @@ function GuideSheet() {
           <br />세 개구리 모두 얻으세요!
         </h2>
 
-        <div className='flex gap-[9px]'>
-          {/** TODO: 기본 지급 개구리 리스트 조회 API 연동 */}
-          <FrologItem
-            type='well'
-            item={{
-              key: 'default',
-              type: 'frog',
-              name: '개꾸리',
-              price: 100,
-              disabled: false,
-              is_available: true,
-              is_owned: true, // 획득 완료한 개구리
-            }}
-          />
-          <FrologItem
-            type='well'
-            item={{
-              key: 'default',
-              type: 'frog',
-              name: '개꾸리',
-              price: 100,
-              disabled: false,
-              is_available: true,
-              is_owned: false,
-            }}
-            hasAcquireButton
-            isDisabledAcquireButton
-          />
-          <FrologItem
-            type='well'
-            item={{
-              key: 'default',
-              type: 'frog',
-              name: '개꾸리',
-              price: 100,
-              disabled: false,
-              is_available: true,
-              is_owned: false,
-            }}
-            hasAcquireButton
-            isDisabledAcquireButton
-          />
-        </div>
+        <FrogList ownedFrog={ownedFrog} />
       </div>
       <div className='flex-col-center w-full gap-[20px] pb-[20px]'>
         <Button type='button' theme='normal' onClick={() => {}}>

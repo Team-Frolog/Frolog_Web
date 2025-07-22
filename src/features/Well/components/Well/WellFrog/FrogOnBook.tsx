@@ -11,6 +11,8 @@ import useNewItemStore from '@/store/newItemStore';
 import { leafVariants, frogVariants } from '@/styles/variants/variants';
 import { PAGES } from '@/constants/page';
 import GuideChat from './GuideChat';
+import Pointing from '../Pointing/Pointing';
+import { STORAGE_KEY } from '@/constants/storage';
 
 const MotionImage = motion.create(Image);
 
@@ -27,6 +29,7 @@ interface Props {
 function FrogOnBook({ message, frogId = 'default', zIndex }: Props) {
   const newItemId = useNewItemStore((state) => state.newItemId);
   const userId = useUserId();
+  const isGotFirstFrog = localStorage.getItem(STORAGE_KEY.gotFirstFrog);
 
   return (
     <div className='relative z-20'>
@@ -48,13 +51,25 @@ function FrogOnBook({ message, frogId = 'default', zIndex }: Props) {
           message={message}
           marginBottom={FROGS[frogId].marginBottom}
         />
-        <CustomMotionLink
-          href={PAGES.STORE}
-          whileTap={{ scale: 0.95 }}
-          className={userId ? '' : 'pointer-events-none'}
-        >
-          <Image src={FROGS[frogId].src} alt='frog' width={150} height={150} />
-        </CustomMotionLink>
+        <div className='relative'>
+          <CustomMotionLink
+            href={PAGES.STORE}
+            whileTap={{ scale: 0.95 }}
+            className={userId ? '' : 'pointer-events-none'}
+          >
+            <Image
+              src={FROGS[frogId].src}
+              alt='frog'
+              width={150}
+              height={150}
+            />
+          </CustomMotionLink>
+          {isGotFirstFrog && (
+            <div className='absolute inset-0'>
+              <Pointing />
+            </div>
+          )}
+        </div>
       </motion.div>
     </div>
   );

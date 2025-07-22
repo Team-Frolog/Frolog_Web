@@ -1,6 +1,16 @@
 import { baseOptions } from '@/api/options';
-import { GetFrogs } from '@frolog/frolog-api';
+import { GrantInitialStoreItem } from '@frolog/frolog-api';
 
-export const getFirstFrog = async () => {
-  // TODO: 개구리 지급 api 연동
+export const getFirstFrog = async (key: string, userId?: string) => {
+  if (!userId) {
+    return;
+  }
+
+  const data = await new GrantInitialStoreItem(baseOptions).fetch({
+    id: userId,
+    key,
+    count: 1,
+  });
+
+  return data;
 };

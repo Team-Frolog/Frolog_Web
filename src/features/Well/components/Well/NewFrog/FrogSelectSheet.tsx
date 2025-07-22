@@ -1,19 +1,14 @@
 import Image from 'next/image';
 import React from 'react';
-import FrologItem from '@/components/FrologItem/FrologItem';
 import { SHEET_FROG } from '@/constants/frogs';
 import { motion } from 'framer-motion';
+import FrogList from './FrogList';
 
 interface Props {
-  onAcquire: () => void;
+  onAcquire: (key: string) => void;
 }
 
 function FrogSelectSheet({ onAcquire }: Props) {
-  const handleAcquireFrog = () => {
-    // TODO: 개구리 획득 API 연동
-    onAcquire();
-  };
-
   return (
     <motion.div
       initial={{ y: '120%' }}
@@ -38,51 +33,7 @@ function FrogSelectSheet({ onAcquire }: Props) {
           보상으로 개구리를 골라주세요
         </h2>
 
-        <div className='flex gap-[9px]'>
-          {/** TODO: 기본 지급 개구리 리스트 조회 API 연동 */}
-          <FrologItem
-            type='well'
-            item={{
-              key: 'default',
-              type: 'frog',
-              name: '개꾸리',
-              price: 100,
-              disabled: false,
-              is_available: true,
-              is_owned: false,
-            }}
-            hasAcquireButton
-            onClick={handleAcquireFrog}
-          />
-          <FrologItem
-            type='well'
-            item={{
-              key: 'default',
-              type: 'frog',
-              name: '개꾸리',
-              price: 100,
-              disabled: false,
-              is_available: true,
-              is_owned: false,
-            }}
-            hasAcquireButton
-            onClick={handleAcquireFrog}
-          />
-          <FrologItem
-            type='well'
-            item={{
-              key: 'default',
-              type: 'frog',
-              name: '개꾸리',
-              price: 100,
-              disabled: false,
-              is_available: true,
-              is_owned: false,
-            }}
-            hasAcquireButton
-            onClick={handleAcquireFrog}
-          />
-        </div>
+        <FrogList onAcquire={onAcquire} />
       </div>
     </motion.div>
   );

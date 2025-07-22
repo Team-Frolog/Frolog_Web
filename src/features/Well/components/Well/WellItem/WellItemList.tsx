@@ -58,6 +58,8 @@ const WellItemList = React.memo(
       useWellItemCount(userId);
     const { baseFrogsCount } = useUserFrogsCount();
 
+    const isGotFirstFrog = localStorage.getItem(STORAGE_KEY.gotFirstFrog);
+
     const [isOpenSurveySheet, setIsOpenSurveySheet] = useState(false);
     const [isOpenNewFrogSheet, setIsOpenNewFrogSheet] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -75,7 +77,7 @@ const WellItemList = React.memo(
           return chat.default_well_empty;
         } else if (count === 1) {
           return chat.first_book;
-        } else if (count === 2) {
+        } else if (wellItemCount === 2 && !isGotFirstFrog) {
           return chat.second_book;
         }
       } else {
@@ -161,7 +163,9 @@ const WellItemList = React.memo(
           )}
         </motion.div>
         <AnimatePresence>
-          {isOpenNewFrogSheet && <GettingNewFrog />}
+          {isOpenNewFrogSheet && !isGotFirstFrog && (
+            <GettingNewFrog onClose={() => setIsOpenNewFrogSheet(false)} />
+          )}
         </AnimatePresence>
         <AnimatePresence>
           {isOpenSurveySheet && (
