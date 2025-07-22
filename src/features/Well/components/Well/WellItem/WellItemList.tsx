@@ -12,7 +12,6 @@ import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import { useWellItems } from '@/features/Well/hooks/useWellItems';
 import { chat } from '@/features/Well/data/chat';
 import WellTitle from '../WellTitle';
-import WellActionButton from '../Pointing/WellActionButton';
 import FrogOnBook from '../WellFrog/FrogOnBook';
 import WellItem from './WellItem';
 import EmptyWellItem from './EmptyWellItem';
@@ -50,7 +49,6 @@ const WellItemList = React.memo(
       hasNextPage,
       isFetchingNextPage,
       isEmpty,
-      isFetched,
     } = useWellItems(wellData.id, initialWellItemList);
     const { id, name, item_cnt } = wellData;
 
@@ -65,8 +63,6 @@ const WellItemList = React.memo(
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState<string | undefined>(undefined);
     const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
-    const isTimeToMakeSecond =
-      isDefaultWell && isFetched && wellItems.length >= 2;
 
     /** 우물 내 개구리 말풍선 메세지를 구하는 함수 */
     const getMessage = (count: number) => {
@@ -75,9 +71,7 @@ const WellItemList = React.memo(
       } else if (isDefaultWell) {
         if (count === 0) {
           return chat.default_well_empty;
-        } else if (count === 1) {
-          return chat.first_book;
-        } else if (wellItemCount === 2 && !isGotFirstFrog) {
+        } else if (wellItemCount === 1 && isGotFirstFrog) {
           return chat.second_book;
         }
       } else {
@@ -121,7 +115,7 @@ const WellItemList = React.memo(
           wellId={id}
           itemCount={item_cnt}
           isRootUser={isRootUser}
-          isPointing={isDefaultWell && wellItems.length < 2}
+          isPointing={isDefaultWell && wellItemCount === 0}
         />
         <motion.div
           className='relative flex h-fit w-full flex-1 flex-col-reverse items-center'
@@ -154,13 +148,6 @@ const WellItemList = React.memo(
             message={message}
             zIndex={wellItems.length + 1}
           />
-          {isTimeToMakeSecond && (
-            <WellActionButton
-              btnName='새로운 우물 파기'
-              href='create?isSecond=true'
-              isPointing
-            />
-          )}
         </motion.div>
         <AnimatePresence>
           {isOpenNewFrogSheet && !isGotFirstFrog && (

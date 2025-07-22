@@ -52,20 +52,22 @@ function FrogOnBook({ message, frogId = 'default', zIndex }: Props) {
           marginBottom={FROGS[frogId].marginBottom}
         />
         <div className='relative'>
-          <CustomMotionLink
-            href={PAGES.STORE}
-            whileTap={{ scale: 0.95 }}
-            className={userId ? '' : 'pointer-events-none'}
-          >
-            <Image
-              src={FROGS[frogId].src}
-              alt='frog'
-              width={150}
-              height={150}
-            />
-          </CustomMotionLink>
+          <motion.div whileTap={{ scale: 0.95 }}>
+            <CustomMotionLink
+              href={PAGES.STORE}
+              className={userId ? '' : 'pointer-events-none'}
+              onClick={() => localStorage.removeItem(STORAGE_KEY.gotFirstFrog)}
+            >
+              <Image
+                src={FROGS[frogId].src}
+                alt='frog'
+                width={150}
+                height={150}
+              />
+            </CustomMotionLink>
+          </motion.div>
           {isGotFirstFrog && (
-            <div className='absolute inset-0'>
+            <div className='pointer-events-none absolute inset-0'>
               <Pointing />
             </div>
           )}
