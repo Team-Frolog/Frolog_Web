@@ -17,7 +17,6 @@ export const useGoogle = () => {
     SignInGoogleReq
   >({
     mutationFn: async (req: SignInGoogleReq) => {
-      console.log(req);
       const res = await googleSignIn(req);
       return res;
     },
