@@ -6,14 +6,7 @@ import { STORAGE_KEY } from '@/constants/storage';
 import { defaultValue } from '@/features/Join/data/joinForm';
 import { useAuthActions } from '@/store/authStore';
 import { googleSignIn } from '../api/join.api';
-
-// const mockGoogleSignUp = async (req: SignInGoogleReq) => {
-//   const res = await fetch('/api/mock', {
-//     method: 'POST',
-//     body: JSON.stringify(req),
-//   });
-//   return res.json();
-// };
+import { signIn } from 'next-auth/react';
 
 export const useGoogle = () => {
   const router = useRouter();
@@ -24,11 +17,11 @@ export const useGoogle = () => {
     SignInGoogleReq
   >({
     mutationFn: async (req: SignInGoogleReq) => {
+      console.log(req);
       const res = await googleSignIn(req);
       return res;
     },
-    onSuccess: (res) => {
-      console.log(res);
+    onSuccess: async (res) => {
       if (!res.result && !res.is_registered) {
         setEmailVerifiedToken(res.email_verified_token!);
         localStorage.setItem(
@@ -36,6 +29,25 @@ export const useGoogle = () => {
           JSON.stringify({ ...defaultValue, email: res.email })
         );
         router.push(`${PAGES.JOIN}?type=google`);
+        return;
+      }
+      if (res.result && res.is_registered) {
+        const result = await signIn('credentials', {
+          isGoogle: true,
+          id: res.id,
+          result: res.result,
+          redirect: false,
+          email: res.email,
+          password: '',
+          isRemember: true,
+          accessToken: res.access_token,
+          refreshToken: res.refresh_token,
+        });
+
+        if (result?.ok) {
+          router.push(PAGES.HOME);
+          router.refresh();
+        }
       }
     },
     onError: (error) => {
