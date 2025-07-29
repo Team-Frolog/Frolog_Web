@@ -73,7 +73,7 @@ function FrologItem({
             {is_owned ? '보유중' : `${price}P`}
           </span>
         )}
-        {type === 'well' && !hasAcquireButton && is_owned && (
+        {type === 'well' && is_owned && (
           <span className='text-body-md-bold text-main'>획득완료</span>
         )}
         {hasAcquireButton && (

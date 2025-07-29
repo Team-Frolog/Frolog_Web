@@ -20,7 +20,8 @@ function FrogList({ ownedFrog, onAcquire }: Props) {
           is_available: true,
           is_owned: ownedFrog === 'fro',
         }}
-        hasAcquireButton
+        hasAcquireButton={!ownedFrog || ownedFrog !== 'fro'}
+        isDisabledAcquireButton={Boolean(ownedFrog && ownedFrog !== 'fro')}
         onClick={() => onAcquire?.('fro')}
       />
       <FrologItem
@@ -34,7 +35,8 @@ function FrogList({ ownedFrog, onAcquire }: Props) {
           is_available: true,
           is_owned: ownedFrog === 'roro',
         }}
-        hasAcquireButton
+        hasAcquireButton={!ownedFrog || ownedFrog !== 'roro'}
+        isDisabledAcquireButton={Boolean(ownedFrog && ownedFrog !== 'roro')}
         onClick={() => onAcquire?.('roro')}
       />
       <FrologItem
@@ -48,7 +50,8 @@ function FrogList({ ownedFrog, onAcquire }: Props) {
           is_available: true,
           is_owned: ownedFrog === 'rogy',
         }}
-        hasAcquireButton
+        hasAcquireButton={!ownedFrog || ownedFrog !== 'rogy'}
+        isDisabledAcquireButton={Boolean(ownedFrog && ownedFrog !== 'rogy')}
         onClick={() => onAcquire?.('rogy')}
       />
     </div>
