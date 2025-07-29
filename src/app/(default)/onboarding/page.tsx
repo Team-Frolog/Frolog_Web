@@ -9,10 +9,12 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import GoogleIcon from 'public/logo/sns/google.svg';
 import { useGoogle } from '@/features/Join/hooks/useGoogle';
+import { AnimatePresence } from 'framer-motion';
+import ErrorToast from '@/components/Toast/ErrorToast';
 
 function OnBoardingPage() {
   const [activeSlide, setActiveSlide] = useState<number>(1);
-  const { handleGoogleSignIn } = useGoogle();
+  const { handleGoogleSignIn, isRegistered } = useGoogle();
 
   const handleGoogleAuth = async (code: string) => {
     handleGoogleSignIn({ authorization_code: code });
@@ -69,6 +71,13 @@ function OnBoardingPage() {
           >
             이메일로 로그인
           </Link>
+        </div>
+        <div className='flex-col-center absolute bottom-0 w-full gap-[12px] pb-[24px]'>
+          <AnimatePresence>
+            {isRegistered && (
+              <ErrorToast errorMsg='이메일 로그인으로 가입된 메일이에요' />
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>

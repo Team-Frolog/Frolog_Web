@@ -7,10 +7,13 @@ import { defaultValue } from '@/features/Join/data/joinForm';
 import { useAuthActions } from '@/store/authStore';
 import { googleSignIn } from '../api/join.api';
 import { signIn } from 'next-auth/react';
+import { useState } from 'react';
 
 export const useGoogle = () => {
   const router = useRouter();
   const { setEmailVerifiedToken } = useAuthActions();
+  const [isRegistered, setIsRegistered] = useState(false);
+
   const { mutate: handleGoogleSignIn } = useMutation<
     SignInGoogleRes,
     Error,
@@ -21,6 +24,14 @@ export const useGoogle = () => {
       return res;
     },
     onSuccess: async (res) => {
+      if (res.is_registered && res.login_type === 'local') {
+        setIsRegistered(true);
+        setTimeout(() => {
+          setIsRegistered(false);
+        }, 2000);
+        return;
+      }
+
       if (!res.result && !res.is_registered) {
         setEmailVerifiedToken(res.email_verified_token!);
         localStorage.setItem(
@@ -54,5 +65,5 @@ export const useGoogle = () => {
     },
   });
 
-  return { handleGoogleSignIn };
+  return { handleGoogleSignIn, isRegistered };
 };
