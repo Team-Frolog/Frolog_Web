@@ -98,10 +98,12 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const defaultWellId = sessionToken ? sessionToken.defaultWellId : undefined;
 
+  const referer = req.headers.get('referer');
+
   if (pathname === '/') {
     if (!sessionToken) {
       return NextResponse.redirect(new URL('/default', req.url));
-    } else if (defaultWellId) {
+    } else if (defaultWellId && !referer?.includes('/well')) {
       // 재발급
       const redirectResponse = NextResponse.redirect(
         new URL(`/${sessionToken.id}/well/${defaultWellId}`, req.url)

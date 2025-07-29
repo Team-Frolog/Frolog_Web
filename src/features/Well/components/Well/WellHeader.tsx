@@ -15,6 +15,8 @@ interface Props {
   isRootUser: boolean;
   /** 뒤로가기 버튼 유무 */
   hasHomeButton?: boolean;
+  /** 기본 우물인지 여부 */
+  isDefaultWell?: boolean;
 }
 
 /** 우물 헤더 컴포넌트 */
@@ -23,6 +25,7 @@ function WellHeader({
   wellId,
   isRootUser,
   hasHomeButton = true,
+  isDefaultWell,
 }: Props) {
   const isMyWell = isRootUser && userId && wellId;
 
@@ -36,7 +39,7 @@ function WellHeader({
           <WellListIcon />
         </Link>
       )}
-      {isMyWell && (
+      {isMyWell && !isDefaultWell && (
         <Link
           href={getPath.wellEdit(userId, wellId)}
           className='absolute right-[28px] top-[28px] z-20'

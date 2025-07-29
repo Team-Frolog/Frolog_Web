@@ -41,6 +41,7 @@ function WellDetailPage({
       >
         <WellHeader
           userId={userId}
+          isDefaultWell={isDefaultWell}
           wellId={wellDetail.id}
           isRootUser={isRootUser}
         />
