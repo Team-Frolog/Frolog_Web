@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 import Button from '@/components/Button/Button';
 import FrogList from './FrogList';
 import { useClickOutside } from '@/hooks/popup/useClickOutside';
+import { useRouter } from 'next/navigation';
+import { PAGES } from '@/constants/page';
+import { STORAGE_KEY } from '@/constants/storage';
 
 interface Props {
   ownedFrog: string;
@@ -12,6 +15,7 @@ interface Props {
 }
 
 function GuideSheet({ ownedFrog, onClose }: Props) {
+  const router = useRouter();
   const ref = useRef<HTMLDivElement | null>(null);
 
   useClickOutside(ref, onClose);
@@ -43,7 +47,15 @@ function GuideSheet({ ownedFrog, onClose }: Props) {
         <FrogList ownedFrog={ownedFrog} />
       </div>
       <div className='flex-col-center w-full gap-[20px] pb-[20px]'>
-        <Button type='button' theme='normal' onClick={() => {}}>
+        <Button
+          type='button'
+          theme='normal'
+          onClick={() => {
+            onClose();
+            localStorage.removeItem(STORAGE_KEY.gotFirstFrog);
+            router.push(PAGES.SEARCH);
+          }}
+        >
           책 추가하기
         </Button>
       </div>
