@@ -1,4 +1,4 @@
-import {  RefreshTokenRes } from '@frolog/frolog-api';
+import { RefreshTokenRes } from '@frolog/frolog-api';
 import { encode, getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
@@ -12,6 +12,7 @@ const protectedRoutes: string[] = [
   '/comments',
   '/new-memo',
   '/new-review',
+  '/join/finish',
   '/quit',
   '/terms',
   '/store',
@@ -107,9 +108,11 @@ export async function middleware(req: NextRequest) {
 
   if (pathname === '/') {
     if (!sessionToken) {
+      console.log('home');
       return NextResponse.redirect(new URL('/default', req.url));
     } else if (defaultWellId) {
       // 재발급
+      console.log('home2');
       const redirectResponse = NextResponse.redirect(
         new URL(`/${sessionToken.id}/well/${defaultWellId}`, req.url)
       );
