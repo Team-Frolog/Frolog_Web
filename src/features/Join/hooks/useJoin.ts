@@ -78,8 +78,7 @@ export const useJoin = (getValues: () => JoinForm) => {
 
       return res;
     },
-    onError: (error) => {
-      console.log(error);
+    onError: () => {
       toast.error(ERROR_ALERT);
       setIsLoading(false);
     },

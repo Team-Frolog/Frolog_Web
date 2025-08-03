@@ -8,6 +8,8 @@ import { useAuthActions } from '@/store/authStore';
 import { googleSignIn } from '../api/join.api';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
+import { toast } from '@/modules/Toast';
+import { ERROR_ALERT } from '@/constants/message';
 
 export const useGoogle = () => {
   const router = useRouter();
@@ -41,6 +43,7 @@ export const useGoogle = () => {
         router.push(`${PAGES.JOIN}?type=google`);
         return;
       }
+
       if (res.result && res.is_registered) {
         const result = await signIn('credentials', {
           isGoogle: true,
@@ -60,8 +63,8 @@ export const useGoogle = () => {
         }
       }
     },
-    onError: (error) => {
-      console.log(error);
+    onError: () => {
+      toast.error(ERROR_ALERT);
     },
   });
 
