@@ -6,18 +6,11 @@ import MainLayout from '@/layouts/MainLayout';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
 import ScrollToTop from '@/components/Gesture/ScrollToTop';
 import FeedList from './FeedList/FeedList';
-// import { useQuit } from '@/features/Profile/hooks/useQuit';
 
 /** 피드 페이지 컴포넌트 */
 function Feeds() {
   const ref = useRef<HTMLDivElement | null>(null);
   const { isRendering } = useScrollToTop();
-  // const { reconfirmQuit } = useQuit();
-
-  // reconfirmQuit({
-  //   reason: [1, 2, 3],
-  //   description: 'test',
-  // });
 
   return (
     <>
