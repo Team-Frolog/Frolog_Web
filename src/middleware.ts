@@ -108,11 +108,9 @@ export async function middleware(req: NextRequest) {
 
   if (pathname === '/') {
     if (!sessionToken) {
-      console.log('home');
       return NextResponse.redirect(new URL('/default', req.url));
     } else if (defaultWellId) {
       // 재발급
-      console.log('home2');
       const redirectResponse = NextResponse.redirect(
         new URL(`/${sessionToken.id}/well/${defaultWellId}`, req.url)
       );
