@@ -20,7 +20,7 @@ interface Props {
 /** 도서 상세 페이지, 리뷰/메모 리스트 내 도서 정보 컴포넌트 (도서 커버, 배경 포함) */
 function BookInfo({ bookId, bookData, canClick = false }: Props) {
   const isInFeed = useIsInFeed();
-  const isEmpty = !bookData.title && !bookData.author && !bookData.publisher;
+  const isEmpty = !bookData.title;
 
   return (
     <CustomLink
