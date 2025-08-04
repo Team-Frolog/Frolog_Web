@@ -51,6 +51,7 @@ function WellItem({
   const height = page > 400 ? page * 0.15 : 55;
   const isReading = status === 'reading';
   const hasMemo = memo_cnt > 0;
+  const fallbackCategory = 'economic_business';
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -89,7 +90,7 @@ function WellItem({
           newItemId === id && isTopItem ? staggerItemVariants : undefined
         }
         style={{ zIndex, height }}
-        className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[12px]`}
+        className={`flex h-fit w-full bg-category-bg-${category || fallbackCategory} relative z-auto box-border justify-center pt-[12px]`}
       >
         {isLastItem && (
           <div
@@ -99,7 +100,9 @@ function WellItem({
           />
         )}
         <Image
-          src={CATEGORY[category].wave}
+          src={
+            category ? CATEGORY[category].wave : CATEGORY[fallbackCategory].wave
+          }
           alt='wave'
           width={392}
           height={12}
@@ -108,21 +111,24 @@ function WellItem({
         />
         {isReading && (
           <WellBubble
-            fill={CATEGORY[category].band}
+            fill={CATEGORY[category || fallbackCategory].band}
             className='absolute left-[24px] top-[8px]'
           />
         )}
         {hasMemo && (
-          <MemoLeaf bg={CATEGORY[category].text} line={CATEGORY[category].bg} />
+          <MemoLeaf
+            bg={CATEGORY[category || fallbackCategory].text}
+            line={CATEGORY[category || fallbackCategory].bg}
+          />
         )}
         <span
-          className={`text-category-text-${category} truncate text-center text-body-sm-bold ${isReading || hasMemo ? 'w-[65%]' : 'w-[90%]'}`}
+          className={`text-category-text-${category || fallbackCategory} truncate text-center text-body-sm-bold ${isReading || hasMemo ? 'w-[65%]' : 'w-[90%]'}`}
         >
-          {title}
+          {title || '책 정보 불러오는 중...'}
         </span>
       </motion.div>
       <div
-        className={`absolute h-[20px] w-full bg-category-bg-${category} bottom-0 left-0 z-0`}
+        className={`absolute h-[20px] w-full bg-category-bg-${category || fallbackCategory} bottom-0 left-0 z-0`}
       />
       <AnimatePresence>
         {isFirstMemo && (

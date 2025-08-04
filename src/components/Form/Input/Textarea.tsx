@@ -37,9 +37,11 @@ function Textarea({ type = 'default', option }: TextareaProps) {
     <div className='flex w-full flex-col gap-[8px]'>
       <div className='flex justify-between px-page text-body-md text-gray-700'>
         <span>{option.title}</span>
-        <span>
-          {length}/{option.maxLength}
-        </span>
+        {option.hasCounter && (
+          <span>
+            {length}/{option.maxLength}
+          </span>
+        )}
       </div>
 
       <div

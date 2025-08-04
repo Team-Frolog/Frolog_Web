@@ -21,6 +21,8 @@ export interface BottomSheetProps {
   onClose?: () => void;
   /** 동적 타이틀을 위한 props (optional) */
   titleProp?: string;
+  /** 바텀시트 패딩 */
+  padding?: string;
 }
 
 class BottomSheet {
