@@ -18,10 +18,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    userId: '1',
-    wellId: '',
-    isRootUser: true,
-    hasBackButton: true,
-  },
+  args: { userId: '1', wellId: '', isRootUser: true, hasHomeButton: true },
 };

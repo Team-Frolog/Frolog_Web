@@ -42,7 +42,7 @@ function GuideChat({ message, marginBottom }: Props) {
 
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [message]);
 
   return (
     <motion.div

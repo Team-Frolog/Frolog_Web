@@ -2,23 +2,27 @@
 
 import React, { useEffect, useState } from 'react';
 import { staggerContainerVariants } from '@/styles/variants/variants';
-import { motion } from 'framer-motion';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import {
   GetWellItemRes,
   GetWellRes,
   SearchWellItemRes,
 } from '@frolog/frolog-api';
+import { AnimatePresence, motion } from 'framer-motion';
 import { getRandomEmptyMessage } from '@/features/Well/utils/getRandomMessage';
 import WellItemSkeleton from '@/components/Fallback/Skeleton/Well/WellItemSkeleton';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
 import { chat } from '@/features/Well/data/chat';
-import WellActionButton from '../Pointing/WellActionButton';
 import FrogOnBook from '../WellFrog/FrogOnBook';
 import WellItem from './WellItem';
 import EmptyWellItem from './EmptyWellItem';
-import { useWellItems } from '@/features/Well/hooks/useWellItems';
+import GettingNewFrog from '../NewFrog/GettingNewFrog';
+import { useWellItemCount } from '@/features/Well/hooks/useWellItemCount';
+import { useUserFrogsCount } from '@/features/Store/hooks/useUserFrogsCount';
+import SurveyFormSheet from '../NewFrog/SurveyFormSheet';
+import { STORAGE_KEY } from '@/constants/storage';
+import { isSurveyCompleted } from '@/hooks/useSurvey';
 
 interface Props {
   /** 우물 정보 데이터 객체 */
@@ -40,28 +44,34 @@ interface Props {
     React.SetStateAction<HTMLDivElement | null | undefined>
   >;
   handleMoveItem: (result: any) => void;
+  userId: string;
 }
 
 /** 우물 아이템 리스트 컴포넌트 */
 const WellItemList = React.memo(
   ({
     wellData,
-    wellItems,
     items,
+    wellItems,
     isRootUser,
     isDefaultWell,
     isMovable,
     isFetchingNextPage,
     isEmpty,
-    isFetched,
+    userId,
     setTarget,
     handleMoveItem,
   }: Props) => {
+    const { wellItemCount, isLoading: isWellItemCountLoading } =
+      useWellItemCount(userId);
+    const { baseFrogsCount } = useUserFrogsCount();
+
+    const isGotFirstFrog = localStorage.getItem(STORAGE_KEY.gotFirstFrog);
+
+    const [isOpenSurveySheet, setIsOpenSurveySheet] = useState(false);
+    const [isOpenNewFrogSheet, setIsOpenNewFrogSheet] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState<string | undefined>(undefined);
-
-    const isTimeToMakeSecond =
-      isDefaultWell && isFetched && wellItems.length >= 2;
 
     /** 우물 내 개구리 말풍선 메세지를 구하는 함수 */
     const getMessage = (count: number) => {
@@ -69,10 +79,8 @@ const WellItemList = React.memo(
         return undefined;
       } else if (isDefaultWell) {
         if (count === 0) {
-          return getRandomEmptyMessage();
-        } else if (count === 1) {
-          return chat.first_book;
-        } else if (count === 2) {
+          return chat.default_well_empty;
+        } else if (wellItemCount === 1 && isGotFirstFrog) {
           return chat.second_book;
         }
       } else {
@@ -82,6 +90,18 @@ const WellItemList = React.memo(
       }
       return undefined;
     };
+
+    useEffect(() => {
+      // 누적 권수가 1권이고, 개구리를 지급받지 않은 경우
+      if (wellItemCount === 1 && baseFrogsCount === 0) {
+        setIsOpenNewFrogSheet(true);
+      }
+
+      // 누적 권수가 3권 이상이고, 설문조사를 아직 완료하지 않은 경우
+      if (wellItemCount && wellItemCount >= 3 && !isSurveyCompleted()) {
+        setIsOpenSurveySheet(true);
+      }
+    }, [wellItems, isWellItemCountLoading, wellItemCount, baseFrogsCount]);
 
     useEffect(
       () => () => {
@@ -185,14 +205,17 @@ const WellItemList = React.memo(
             zIndex={wellItems.length + 1}
             isMovable={isMovable}
           />
-          {isTimeToMakeSecond && (
-            <WellActionButton
-              btnName='새로운 우물 파기'
-              href='create?isSecond=true'
-              isPointing
-            />
-          )}
         </motion.div>
+        <AnimatePresence>
+          {isOpenNewFrogSheet && !isGotFirstFrog && (
+            <GettingNewFrog onClose={() => setIsOpenNewFrogSheet(false)} />
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {isOpenSurveySheet && (
+            <SurveyFormSheet onClose={() => setIsOpenSurveySheet(false)} />
+          )}
+        </AnimatePresence>
         {isLoading && <LoadingOverlay theme='dark' />}
       </>
     );

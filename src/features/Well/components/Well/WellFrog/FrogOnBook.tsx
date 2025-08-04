@@ -11,6 +11,8 @@ import useNewItemStore from '@/store/newItemStore';
 import { leafVariants, frogVariants } from '@/styles/variants/variants';
 import { PAGES } from '@/constants/page';
 import GuideChat from './GuideChat';
+import Pointing from '../Pointing/Pointing';
+import { STORAGE_KEY } from '@/constants/storage';
 
 const MotionImage = motion.create(Image);
 
@@ -34,6 +36,7 @@ function FrogOnBook({
 }: Props) {
   const newItemId = useNewItemStore((state) => state.newItemId);
   const userId = useUserId();
+  const isGotFirstFrog = localStorage.getItem(STORAGE_KEY.gotFirstFrog);
 
   return (
     <div className='relative z-20'>
@@ -51,24 +54,16 @@ function FrogOnBook({
         variants={newItemId ? frogVariants : undefined}
         className='flex-col-center relative pt-[20px]'
       >
-        {isMovable ? (
-          <Image
-            src={FROGS[frogId].src}
-            alt='frog'
-            width={150}
-            height={150}
-            className='opacity-50'
-          />
-        ) : (
-          <>
-            <GuideChat
-              message={message}
-              marginBottom={FROGS[frogId].marginBottom}
-            />
+        <GuideChat
+          message={message}
+          marginBottom={FROGS[frogId].marginBottom}
+        />
+        <div className='relative'>
+          <motion.div whileTap={{ scale: 0.95 }}>
             <CustomMotionLink
               href={PAGES.STORE}
-              whileTap={{ scale: 0.95 }}
               className={userId ? '' : 'pointer-events-none'}
+              onClick={() => localStorage.removeItem(STORAGE_KEY.gotFirstFrog)}
             >
               <Image
                 src={FROGS[frogId].src}
@@ -77,8 +72,13 @@ function FrogOnBook({
                 height={150}
               />
             </CustomMotionLink>
-          </>
-        )}
+          </motion.div>
+          {isGotFirstFrog && (
+            <div className='pointer-events-none absolute inset-0'>
+              <Pointing />
+            </div>
+          )}
+        </div>
       </motion.div>
     </div>
   );

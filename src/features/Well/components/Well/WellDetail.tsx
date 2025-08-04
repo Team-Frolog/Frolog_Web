@@ -111,7 +111,6 @@ function WellDetail({
           userId={userId}
           wellId={wellData.id}
           isRootUser={isRootUser}
-          hasBackButton={!isDefaultWell}
         />
       )}
       <WellTitle
@@ -126,6 +125,7 @@ function WellDetail({
       <WellItemList
         wellData={wellData}
         items={items}
+        userId={userId}
         wellItems={wellItems}
         isRootUser={isRootUser}
         isDefaultWell={isDefaultWell}

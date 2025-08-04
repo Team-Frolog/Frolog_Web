@@ -25,6 +25,7 @@ import {
   SearchWellItem,
   ChangeWellItemOrderBulkReq,
   ChangeWellItemOrderBulk,
+  GetUserWellItemCount,
 } from '@frolog/frolog-api';
 
 const postWell = new PostWell(baseOptions);
@@ -35,6 +36,7 @@ const editWellObj = new EditWell(baseOptions);
 const postWellItem = new PostWellItem(baseOptions);
 const getWellNameAvailability = new GetWellNameAvailability(baseOptions);
 const searchUserWell = new SearchUserWell(baseOptions);
+const getUserWellItems = new GetUserWellItemCount(baseOptions);
 
 export const addNewWell = async (req: PostWellReq) => {
   const response = await postWell.fetch(req);
@@ -132,5 +134,9 @@ export const deleteThisBook = async (req: DeleteWellItemsByConditionReq) => {
 
 export const updateWellItemOrder = async (req: ChangeWellItemOrderBulkReq) => {
   const response = await new ChangeWellItemOrderBulk(baseOptions).fetch(req);
+};
+
+export const getUserWellItemsCount = async (userId: string) => {
+  const response = await getUserWellItems.fetch({ id: userId });
   return response;
 };
