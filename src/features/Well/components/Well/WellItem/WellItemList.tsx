@@ -3,11 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { staggerContainerVariants } from '@/styles/variants/variants';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import {
-  GetWellItemRes,
-  GetWellRes,
-  SearchWellItemRes,
-} from '@frolog/frolog-api';
+import { GetWellItemRes, GetWellRes } from '@frolog/frolog-api';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getRandomEmptyMessage } from '@/features/Well/utils/getRandomMessage';
 import WellItemSkeleton from '@/components/Fallback/Skeleton/Well/WellItemSkeleton';
