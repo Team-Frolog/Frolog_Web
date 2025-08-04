@@ -11,9 +11,7 @@ export interface AlertSheet {
 
 export type BottomSheetKeys = keyof typeof sheetData;
 
-export const sheetData: {
-  [key: string]: AlertSheet;
-} = {
+export const sheetData: { [key: string]: AlertSheet } = {
   leave_while_write: {
     getTitle: () => (
       <>
@@ -122,10 +120,7 @@ export const sheetData: {
     frog: SHEET_FROG.wink,
     description: () => <>추후에 상점이 오픈될 때, 알려드릴게요.</>,
   },
-  add_book: {
-    getTitle: () => <>지금 이 책은...</>,
-    type: 'normal',
-  },
+  add_book: { getTitle: () => <>지금 이 책은...</>, type: 'normal' },
   select_books: {
     getTitle: () => <>기존 리뷰를 우물에 담을까요?</>,
     type: 'normal',
@@ -221,6 +216,11 @@ export const sheetData: {
     buttonText: '확인',
     extraButtonText: '취소',
     description: () => <>포인트가 충분하면 캐릭터가 보여요</>,
+  },
+  survey_form: {
+    getTitle: () => <>프롤로그를 얼마나 만족하셨나요?</>,
+    type: 'normal',
+    buttonText: '제출하기',
   },
   delete_profile_feed: {
     getTitle: () => (

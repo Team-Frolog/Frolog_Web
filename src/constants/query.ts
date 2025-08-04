@@ -23,4 +23,6 @@ export const QUERY_KEY = {
   searchWells: 'searchWells',
   firstMemoDetail: 'firstMemoDetail',
   profileFeed: 'profileFeed',
+  wellItemCount: 'wellItemCount',
+  userFrogs: 'userFrogs',
 } as const;

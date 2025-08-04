@@ -1,9 +1,16 @@
 import { baseOptions } from '@/api/options';
-import { GetFrogs } from '@frolog/frolog-api';
+import { GrantInitialStoreItem } from '@frolog/frolog-api';
 
-const getFrogs = new GetFrogs(baseOptions);
+export const getFirstFrog = async (key: string, userId?: string) => {
+  if (!userId) {
+    return;
+  }
 
-export const getFrogList = async (id: string) => {
-  const response = await getFrogs.fetch({ id });
-  return response.frogs;
+  const data = await new GrantInitialStoreItem(baseOptions).fetch({
+    id: userId,
+    key,
+    count: 1,
+  });
+
+  return data;
 };

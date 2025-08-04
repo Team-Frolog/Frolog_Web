@@ -41,9 +41,9 @@ function WellDetailPage({
       >
         <WellHeader
           userId={userId}
+          isDefaultWell={isDefaultWell}
           wellId={wellDetail.id}
           isRootUser={isRootUser}
-          hasBackButton={!isDefaultWell}
         />
         {wellDetail && (
           <WellItemList
@@ -51,6 +51,7 @@ function WellDetailPage({
             wellData={wellDetail}
             isDefaultWell={isDefaultWell}
             initialWellItemList={initialWellItemList}
+            userId={userId}
           />
         )}
         {isRendering && <ScrollToTop />}

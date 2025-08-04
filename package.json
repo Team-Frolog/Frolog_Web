@@ -56,7 +56,7 @@
     "@storybook/react": "^8.4.7",
     "@storybook/test": "^8.4.7",
     "@tailwindcss/typography": "^0.5.13",
-    "@team-frolog/eslint-config-web": "^1.0.1",
+    "@team-frolog/eslint-config-web": "^1.0.4",
     "@team-frolog/prettier-config-web": "^0.0.1",
     "@team-frolog/tailwind-config": "^0.0.4",
     "@testing-library/jest-dom": "^6.6.3",
