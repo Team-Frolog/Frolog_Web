@@ -42,10 +42,7 @@ function BookInfo({ bookId, bookData, canClick = false }: Props) {
         />
       </div>
 
-      <Book
-        imageUrl={bookData.image || IMAGES.book.cover}
-        canClick={canClick}
-      />
+      <Book imageUrl={false || IMAGES.book.cover} canClick={canClick} />
       <div className='flex-col-center w-[80%] gap-[4px]'>
         {isEmpty && (
           <>
@@ -57,10 +54,16 @@ function BookInfo({ bookId, bookData, canClick = false }: Props) {
             </h1>
           </>
         )}
-        <h3 className='text-center text-title-lg-bold'>{bookData?.title}</h3>
-        <span className='flex text-body-sm text-gray-600'>
-          {bookData?.author} | {bookData?.publisher}
-        </span>
+        {!isEmpty && (
+          <>
+            <h3 className='text-center text-title-lg-bold'>
+              {bookData?.title}
+            </h3>
+            <span className='flex text-body-sm text-gray-600'>
+              {bookData?.author} | {bookData?.publisher}
+            </span>
+          </>
+        )}
       </div>
     </CustomLink>
   );
