@@ -5,11 +5,11 @@ import { PAGES } from '@/constants/page';
 import { STORAGE_KEY } from '@/constants/storage';
 import { defaultValue } from '@/features/Join/data/joinForm';
 import { useAuthActions } from '@/store/authStore';
-import { googleSignIn } from '../api/join.api';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { toast } from '@/modules/Toast';
 import { ERROR_ALERT } from '@/constants/message';
+import { googleSignIn } from '../api/join.api';
 
 export const useGoogle = () => {
   const router = useRouter();
