@@ -42,7 +42,10 @@ function BookInfo({ bookId, bookData, canClick = false }: Props) {
         />
       </div>
 
-      <Book imageUrl={false || IMAGES.book.cover} canClick={canClick} />
+      <Book
+        imageUrl={bookData.image || IMAGES.book.cover}
+        canClick={canClick}
+      />
       <div className='flex-col-center w-[80%] gap-[4px]'>
         {isEmpty && (
           <>
