@@ -29,7 +29,7 @@ function ProfileFeedItem({ feedData }: Props) {
         {category ? CATEGORY[category].name : '...'}
       </div>
       <Image
-        src={image ? image : IMAGES.book.cover}
+        src={image || IMAGES.book.cover}
         alt='book cover'
         width={191}
         height={244}
