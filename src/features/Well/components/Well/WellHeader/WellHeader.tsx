@@ -6,7 +6,6 @@ import { WellListIcon } from 'public/icons';
 import Link from 'next/link';
 import { PAGES } from '@/constants/page';
 import WellEditSheet from './WellEditSheet';
-import { getPath } from '@/utils/getPath';
 
 interface Props {
   /** 우물 소유 유저 id */
@@ -43,12 +42,13 @@ function WellHeader({
         </Link>
       )}
       {isMyWell && !isDefaultWell && (
-        <Link
-          href={getPath.wellEdit(userId, wellId)}
+        <button
+          type='button'
+          onClick={() => setIsOpen(true)}
           className='absolute right-[28px] top-[28px] z-20'
         >
           <EditIcon />
-        </Link>
+        </button>
       )}
       <WellEditSheet
         isOpen={isOpen}
