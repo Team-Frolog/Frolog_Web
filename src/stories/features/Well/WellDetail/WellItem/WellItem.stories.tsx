@@ -37,6 +37,8 @@ export const Reading: Story = {
     index: 0,
     startLoading: () => {},
     setTarget: () => {},
+    draggableHandle: null,
+    isDragging: false,
   },
 };
 
@@ -60,6 +62,8 @@ export const HasReview: Story = {
     index: 0,
     startLoading: () => {},
     setTarget: () => {},
+    draggableHandle: null,
+    isDragging: false,
   },
 };
 
@@ -83,6 +87,8 @@ export const HasMemo: Story = {
     index: 0,
     startLoading: () => {},
     setTarget: () => {},
+    draggableHandle: null,
+    isDragging: false,
   },
 };
 
@@ -106,5 +112,7 @@ export const HasAll: Story = {
     index: 0,
     startLoading: () => {},
     setTarget: () => {},
+    draggableHandle: null,
+    isDragging: false,
   },
 };
