@@ -133,7 +133,7 @@ export const deleteThisBook = async (req: DeleteWellItemsByConditionReq) => {
 };
 
 export const updateWellItemOrder = async (req: ChangeWellItemOrderBulkReq) => {
-  const response = await new ChangeWellItemOrderBulk(baseOptions).fetch(req);
+  await new ChangeWellItemOrderBulk(baseOptions).fetch(req);
 };
 
 export const getUserWellItemsCount = async (userId: string) => {

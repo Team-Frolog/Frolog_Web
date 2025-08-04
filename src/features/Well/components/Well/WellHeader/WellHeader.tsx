@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { EditIcon } from 'public/icons';
-import { WellListIcon } from 'public/icons';
+import { EditIcon, WellListIcon } from 'public/icons';
 import Link from 'next/link';
 import { PAGES } from '@/constants/page';
 import WellEditSheet from './WellEditSheet';
