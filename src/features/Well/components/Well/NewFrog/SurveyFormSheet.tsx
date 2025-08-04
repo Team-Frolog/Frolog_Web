@@ -1,10 +1,9 @@
-import FormInput from '@/components/Form/Input/FormInput';
 import Textarea from '@/components/Form/Input/Textarea';
 import { textareaType } from '@/data/ui/textareaType';
 import { useSurvey } from '@/hooks/useSurvey';
 import BottomSheet from '@/modules/BottomSheet/BottomSheet';
 import React from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
 
 interface Props {
   onClose: () => void;
