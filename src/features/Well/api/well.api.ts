@@ -23,6 +23,7 @@ import {
   SearchUserWellReq,
   SearchWell,
   SearchWellItem,
+  GetUserWellItemCount,
 } from '@frolog/frolog-api';
 
 const postWell = new PostWell(baseOptions);
@@ -33,6 +34,7 @@ const editWellObj = new EditWell(baseOptions);
 const postWellItem = new PostWellItem(baseOptions);
 const getWellNameAvailability = new GetWellNameAvailability(baseOptions);
 const searchUserWell = new SearchUserWell(baseOptions);
+const getUserWellItems = new GetUserWellItemCount(baseOptions);
 
 export const addNewWell = async (req: PostWellReq) => {
   const response = await postWell.fetch(req);
@@ -125,5 +127,10 @@ export const deleteWellItem = async (req: DeleteWellItemReq) => {
 
 export const deleteThisBook = async (req: DeleteWellItemsByConditionReq) => {
   const response = await new DeleteWellItemsByCondition(baseOptions).fetch(req);
+  return response;
+};
+
+export const getUserWellItemsCount = async (userId: string) => {
+  const response = await getUserWellItems.fetch({ id: userId });
   return response;
 };
