@@ -124,7 +124,7 @@ function WellItem({
         <span
           className={`text-category-text-${category || fallbackCategory} truncate text-center text-body-sm-bold ${isReading || hasMemo ? 'w-[65%]' : 'w-[90%]'}`}
         >
-          {title || '...'}
+          {title || '책 정보 불러오는 중...'}
         </span>
       </motion.div>
       <div
