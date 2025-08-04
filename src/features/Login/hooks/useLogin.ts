@@ -26,6 +26,7 @@ export const useLogin = (type: 'login' | 'test') => {
       email: data.email,
       password: data.password,
       isRemember: isSaved,
+      social_verified_token: data.social_verified_token,
     });
 
     if (result?.ok) {

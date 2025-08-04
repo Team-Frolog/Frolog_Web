@@ -26,12 +26,16 @@ export const useJoin = (getValues: () => JoinForm) => {
 
   /** 로그인 처리 핸들러 */
   const { mutate: handleLogin } = useMutation({
-    mutationFn: async (username: string) => {
+    mutationFn: async (social_verified_token?: string) => {
       const account = localStorage.getItem(STORAGE_KEY.tempAccountKey);
 
       if (account) {
-        const res = await userLogin(JSON.parse(account));
-        router.replace(`${PAGES.JOIN_FINISH}?username=${username}`);
+        const res = await userLogin({
+          ...JSON.parse(account),
+          social_verified_token,
+        });
+
+        router.replace(PAGES.JOIN_FINISH);
         return res;
       } else {
         throw new Error();
@@ -71,21 +75,24 @@ export const useJoin = (getValues: () => JoinForm) => {
     mutationFn: async (formData: SignUpReq) => {
       setIsLoading(true);
       const res = await signUp(formData);
+
       return res;
     },
     onError: () => {
       toast.error(ERROR_ALERT);
       setIsLoading(false);
     },
-    onSuccess: (_result, formData) => {
+    onSuccess: (result, formData) => {
       resetToken();
       localStorage.removeItem(STORAGE_KEY.joinFormKey);
       localStorage.setItem(
         STORAGE_KEY.tempAccountKey,
-        JSON.stringify({ email: formData.email, password: formData.password })
+        JSON.stringify({
+          email: formData.email,
+          password: formData.password || undefined,
+        })
       );
-      // todo: 회원 가입후 로그인 처리
-      handleLogin('dev test');
+      handleLogin(result.social_verified_token);
     },
   });
 

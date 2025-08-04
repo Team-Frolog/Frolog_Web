@@ -2,21 +2,49 @@
 
 /* eslint-disable react/no-array-index-key */
 
-import LinkButton from '@/components/Button/LinkButton';
+import Button from '@/components/Button/Button';
 import OnBoardingSlide from '@/components/OnBoarding/OnBoardingSlide';
 import { PAGES } from '@/constants/page';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import GoogleIcon from 'public/logo/sns/google.svg';
+import { useGoogle } from '@/features/Join/hooks/useGoogle';
+import { AnimatePresence } from 'framer-motion';
+import ErrorToast from '@/components/Toast/ErrorToast';
 
 function OnBoardingPage() {
   const [activeSlide, setActiveSlide] = useState<number>(1);
+  const { handleGoogleSignIn, isRegistered } = useGoogle();
+
+  const handleGoogleAuth = async (code: string) => {
+    handleGoogleSignIn({ authorization_code: code });
+  };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+
+    if (code) {
+      handleGoogleAuth(code);
+    }
+  }, []);
+
+  const handleClickGoogleLogin = () => {
+    const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    const redirectUri = process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI;
+
+    const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=email profile`;
+    window.location.href = googleLoginUrl;
+  };
 
   return (
-    <div className='safe-screen safe-bottom safe-header flex h-full min-h-[650px] w-full flex-col bg-gray-900'>
+    <div className='safe-screen safe-bottom safe-header flex h-[100dvh] w-full flex-col bg-gray-900'>
       <OnBoardingSlide setActiveSlide={setActiveSlide} />
-      <div className='flex w-full shrink-0 flex-col items-center gap-[20px] px-page py-[32px] pt-[12px] transition-all duration-200'>
+      <div
+        className={`flex h-[22dvh] w-full flex-col items-center gap-[20px] ${activeSlide === 1 ? 'bg-category-bg-science' : 'bg-gray-300'} px-page py-[32px] pt-[12px] transition-all duration-200 [@media(max-height:750px)]:h-[25dvh]`}
+      >
         <div className='flex gap-[8px]'>
-          {Array(4)
+          {Array(3)
             .fill(0)
             .map((_, i) => (
               <div
@@ -27,13 +55,29 @@ function OnBoardingPage() {
               />
             ))}
         </div>
-        <LinkButton disabled={false} route={PAGES.LOGIN}>
-          로그인 하기
-        </LinkButton>
+        <Button
+          disabled={false}
+          theme='light'
+          onClick={handleClickGoogleLogin}
+          extraClass='relative text-gray-800 text-body-lg-bold'
+        >
+          <GoogleIcon className='absolute left-5 top-1/2 -translate-y-1/2' />
+          Google로 로그인
+        </Button>
         <div className='flex justify-center'>
-          <Link href={PAGES.JOIN} className='text-body-lg-bold text-main'>
-            30초만에 회원가입 하기
+          <Link
+            href={PAGES.LOGIN}
+            className={`text-body-lg ${activeSlide === 1 ? 'text-white' : 'text-gray-600'}`}
+          >
+            이메일로 로그인
           </Link>
+        </div>
+        <div className='flex-col-center absolute bottom-0 w-full gap-[12px] pb-[24px]'>
+          <AnimatePresence>
+            {isRegistered && (
+              <ErrorToast errorMsg='이메일 로그인으로 가입된 메일이에요' />
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>
