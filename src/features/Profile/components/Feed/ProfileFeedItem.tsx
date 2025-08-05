@@ -6,6 +6,7 @@ import React from 'react';
 import { getPath } from '@/utils/getPath';
 import { useUserId } from '@/store/sessionStore';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
+import { IMAGES } from '@/constants/images';
 
 interface Props {
   feedData: GetProfileFeedItem;
@@ -23,16 +24,16 @@ function ProfileFeedItem({ feedData }: Props) {
     <div className='flex w-[calc(50%-10px)] flex-col overflow-hidden rounded-[12px]'>
       <div
         className='absolute rounded-br-[12px] rounded-tl-[12px] bg-gray-900 px-[12px] py-[4px]'
-        style={{ color: CATEGORY[category].band }}
+        style={{ color: category ? CATEGORY[category].band : '#fff' }}
       >
-        {CATEGORY[category].name}
+        {category ? CATEGORY[category].name : '...'}
       </div>
       <Image
-        src={image!}
+        src={image || IMAGES.book.cover}
         alt='book cover'
         width={191}
-        height={272}
-        className='flex-[8] cursor-pointer'
+        height={244}
+        className='flex-[8] cursor-pointer object-cover'
         onClick={() =>
           navigate(getPath.rootUserMemo(userId!, wellId!, isbn), {
             from: 'profile',

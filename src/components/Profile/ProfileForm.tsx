@@ -21,7 +21,6 @@ function ProfileForm({ type = 'join', theme = 'dark', username }: Props) {
   return (
     <div className='flex w-full flex-col gap-[36px]'>
       <WithConditionalRendering condition={type === 'join'}>
-        <NicknameInput theme={theme} />
         <JobSelector theme={theme} />
         <GenderSelector theme={theme} />
         <DateSelector theme={theme} />

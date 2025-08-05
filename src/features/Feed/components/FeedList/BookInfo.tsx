@@ -25,17 +25,22 @@ function BookInfo({
   hasToolTip = true,
 }: Props) {
   const { bookData } = useBook(feedData.isbn);
+
   if (!bookData) return null;
+
+  const fallbackCategory = 'cartoon';
 
   const { title, author, publisher, category, image } = bookData;
 
   return (
     <div className='pt-[30px]'>
       <div
-        className={`relative flex h-fit w-full gap-[16px] rounded-t-[20px] bg-category-bg-${category} px-page pt-[24px]`}
+        className={`relative flex h-fit w-full gap-[16px] rounded-t-[20px] bg-category-bg-${category || fallbackCategory} px-page pt-[24px]`}
       >
         {hasToolTip && (
-          <div className={`tooltip-feed border-b-category-bg-${category}`} />
+          <div
+            className={`tooltip-feed border-b-category-bg-${category || fallbackCategory}`}
+          />
         )}
         <div className='flex'>
           <Image
@@ -54,19 +59,23 @@ function BookInfo({
         >
           <div className='flex w-full flex-col gap-[4px]'>
             <h5
-              className={`line-clamp-1 w-full text-body-lg-bold text-category-text-${category}`}
+              className={`line-clamp-1 w-full text-body-lg-bold text-category-text-${category || fallbackCategory}`}
             >
-              {title}
+              {title || '책 정보 불러오는 중...'}
             </h5>
             <ul
-              className={`line-clamp-1 flex text-caption-bold text-category-text-${category}`}
+              className={`line-clamp-1 flex text-caption-bold text-category-text-${category || fallbackCategory}`}
             >
-              <li className="after:content-['|']">
-                <span className='pr-[6px]'>{author}</span>
-              </li>
-              <li>
-                <span className='pl-[6px]'>{publisher}</span>
-              </li>
+              {title && (
+                <>
+                  <li className='after:content-["|"]'>
+                    <span className='pr-[6px]'>{author}</span>
+                  </li>
+                  <li>
+                    <span className='pl-[6px]'>{publisher}</span>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <div className='w-full'>
@@ -86,8 +95,8 @@ function BookInfo({
             ) : (
               <Rating
                 rating={!isGetMemoRes(feedData) ? feedData.rating : null}
-                textClass={`text-heading-lg-bold text-category-text-${category}`}
-                categoryId={category}
+                textClass={`text-heading-lg-bold text-category-text-${category || fallbackCategory}`}
+                categoryId={category || fallbackCategory}
               />
             )}
           </div>

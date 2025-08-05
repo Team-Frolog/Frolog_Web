@@ -27,7 +27,7 @@ function GenderSelector({ theme }: Props) {
         <button
           type='button'
           onClick={() => handleClick('남성')}
-          className={`${buttonStyle} ${(watch('personal_infos.gender.value') === '남성' || typeof window === 'undefined') && selected}`}
+          className={`${buttonStyle} ${watch('personal_infos.gender.value') === '남성' && selected}`}
         >
           남성
         </button>
