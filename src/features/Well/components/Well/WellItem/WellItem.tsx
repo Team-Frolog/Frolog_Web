@@ -1,9 +1,12 @@
+'use client';
+
 /* eslint-disable arrow-body-style */
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useUserId } from '@/store/sessionStore';
 import { AnimatePresence, motion } from 'framer-motion';
 import useNewItemStore from '@/store/newItemStore';
+import { WellItemMoverIcon } from 'public/icons';
 import { staggerItemVariants } from '@/styles/variants/variants';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { STORAGE_KEY } from '@/constants/storage';
@@ -15,33 +18,31 @@ import { getPath } from '@/utils/getPath';
 import MemoLeaf from './MemoLeaf';
 
 interface Props {
-  /** 도서 데이터 객체 */
   wellBook: GetWellItemRes;
-  /** 우물 id */
   wellId: string;
-  /** 최상단 아이템인지 여부 */
   isTopItem: boolean;
-  /** 아이템의 z-index */
-  zIndex: number;
-  /** 로딩 시작 핸들러 */
+  index: number;
   startLoading: () => void;
-  /** 최하단 아이템인지 여부 */
   isLastItem?: boolean;
-  /** 무한스크롤을 위한 observer 타겟 세팅 핸들러 */
   setTarget?: React.Dispatch<
     React.SetStateAction<HTMLDivElement | null | undefined>
   >;
+  isMovable?: boolean;
+  draggableHandle: any;
+  isDragging?: boolean;
 }
 
-/** 우물 도서 아이템 컴포넌트 */
 function WellItem({
   wellId,
   wellBook,
   isTopItem,
-  zIndex,
+  index,
   isLastItem,
   setTarget,
   startLoading,
+  draggableHandle,
+  isMovable = false,
+  isDragging = false,
 }: Props) {
   const userId = useUserId();
   const { navigate } = useCustomRouter('well');
@@ -74,7 +75,12 @@ function WellItem({
   }, []);
 
   return (
-    <div className='relative flex w-full'>
+    <div
+      className='relative flex w-full'
+      style={{
+        boxShadow: isDragging ? '0px 4px 10px 0px rgba(0, 0, 0, 0.25)' : '',
+      }}
+    >
       <motion.div
         whileTap={{ y: -10 }}
         onClick={() => {
@@ -89,8 +95,8 @@ function WellItem({
         variants={
           newItemId === id && isTopItem ? staggerItemVariants : undefined
         }
-        style={{ zIndex, height }}
         className={`flex h-fit w-full bg-category-bg-${category || fallbackCategory} relative z-auto box-border justify-center pt-[12px]`}
+        style={{ zIndex: index + 1, height }}
       >
         {isLastItem && (
           <div
@@ -115,7 +121,19 @@ function WellItem({
             className='absolute left-[24px] top-[8px]'
           />
         )}
-        {hasMemo && (
+        {isMovable && (
+          <button
+            {...draggableHandle}
+            type='button'
+            onPointerDown={(e) => {
+              e.stopPropagation();
+            }}
+            className='absolute right-[24px] top-[8px]'
+          >
+            <WellItemMoverIcon />
+          </button>
+        )}
+        {!isMovable && hasMemo && (
           <MemoLeaf
             bg={CATEGORY[category || fallbackCategory].text}
             line={CATEGORY[category || fallbackCategory].bg}

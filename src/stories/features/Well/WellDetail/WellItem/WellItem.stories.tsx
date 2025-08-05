@@ -34,9 +34,11 @@ export const Reading: Story = {
     wellId: '',
     isTopItem: false,
     isLastItem: false,
-    zIndex: 0,
+    index: 0,
     startLoading: () => {},
     setTarget: () => {},
+    draggableHandle: null,
+    isDragging: false,
   },
 };
 
@@ -57,9 +59,11 @@ export const HasReview: Story = {
     wellId: '',
     isTopItem: false,
     isLastItem: false,
-    zIndex: 0,
+    index: 0,
     startLoading: () => {},
     setTarget: () => {},
+    draggableHandle: null,
+    isDragging: false,
   },
 };
 
@@ -80,9 +84,11 @@ export const HasMemo: Story = {
     wellId: '',
     isTopItem: false,
     isLastItem: false,
-    zIndex: 0,
+    index: 0,
     startLoading: () => {},
     setTarget: () => {},
+    draggableHandle: null,
+    isDragging: false,
   },
 };
 
@@ -103,8 +109,10 @@ export const HasAll: Story = {
     wellId: '',
     isTopItem: false,
     isLastItem: false,
-    zIndex: 0,
+    index: 0,
     startLoading: () => {},
     setTarget: () => {},
+    draggableHandle: null,
+    isDragging: false,
   },
 };

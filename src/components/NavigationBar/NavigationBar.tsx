@@ -47,7 +47,7 @@ function NavigationBar() {
     },
     {
       label: NAV_ITEM.profile.label,
-      href: getPath.profile(userId ?? ''),
+      href: userId ? getPath.profile(userId) : PAGES.PROFILE,
       icon: ProfileIcon,
       navKey: NAV_ITEM.profile.key,
     },

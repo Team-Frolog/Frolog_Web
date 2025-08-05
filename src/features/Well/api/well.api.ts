@@ -23,6 +23,8 @@ import {
   SearchUserWellReq,
   SearchWell,
   SearchWellItem,
+  ChangeWellItemOrderBulkReq,
+  ChangeWellItemOrderBulk,
   GetUserWellItemCount,
 } from '@frolog/frolog-api';
 
@@ -78,8 +80,8 @@ export const getWellItems = async (page: number, well_id: string) => {
   const response = await searchWellItem.fetch({
     well_id,
     page,
+    sort: 'desc',
     limit: WELLITEM_LIMIT,
-    sort: 'newest',
   });
   return response;
 };
@@ -128,6 +130,10 @@ export const deleteWellItem = async (req: DeleteWellItemReq) => {
 export const deleteThisBook = async (req: DeleteWellItemsByConditionReq) => {
   const response = await new DeleteWellItemsByCondition(baseOptions).fetch(req);
   return response;
+};
+
+export const updateWellItemOrder = async (req: ChangeWellItemOrderBulkReq) => {
+  await new ChangeWellItemOrderBulk(baseOptions).fetch(req);
 };
 
 export const getUserWellItemsCount = async (userId: string) => {

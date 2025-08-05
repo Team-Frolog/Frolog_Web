@@ -2,16 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { staggerContainerVariants } from '@/styles/variants/variants';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { GetWellItemRes, GetWellRes } from '@frolog/frolog-api';
 import { AnimatePresence, motion } from 'framer-motion';
-import { GetWellRes, SearchWellItemRes } from '@frolog/frolog-api';
 import { getRandomEmptyMessage } from '@/features/Well/utils/getRandomMessage';
 import WellItemSkeleton from '@/components/Fallback/Skeleton/Well/WellItemSkeleton';
 import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
-import { useObserver } from '@/hooks/gesture/useObserver';
 import LoadingOverlay from '@/components/Spinner/LoadingOverlay';
-import { useWellItems } from '@/features/Well/hooks/useWellItems';
 import { chat } from '@/features/Well/data/chat';
-import WellTitle from '../WellTitle';
 import FrogOnBook from '../WellFrog/FrogOnBook';
 import WellItem from './WellItem';
 import EmptyWellItem from './EmptyWellItem';
@@ -25,12 +23,23 @@ import { isSurveyCompleted } from '@/hooks/useSurvey';
 interface Props {
   /** 우물 정보 데이터 객체 */
   wellData: GetWellRes;
+  /** 우물 아이템 (순서 변경 모드) */
+  items: GetWellItemRes[];
+  /** 우물 아이템 */
+  wellItems: GetWellItemRes[];
   /** 로그인한 유저인지 여부 */
   isRootUser: boolean;
   /** 첫 우물인지 여부 */
   isDefaultWell?: boolean;
-  /** 우물 아이템 리스트 */
-  initialWellItemList: SearchWellItemRes;
+  /** 우물 순서 변경 모드 여부 */
+  isMovable: boolean;
+  isFetchingNextPage: boolean;
+  isEmpty: boolean;
+  isFetched: boolean;
+  setTarget: React.Dispatch<
+    React.SetStateAction<HTMLDivElement | null | undefined>
+  >;
+  handleMoveItem: (result: any) => void;
   userId: string;
 }
 
@@ -38,20 +47,17 @@ interface Props {
 const WellItemList = React.memo(
   ({
     wellData,
+    items,
+    wellItems,
     isRootUser,
     isDefaultWell,
-    initialWellItemList,
+    isMovable,
+    isFetchingNextPage,
+    isEmpty,
     userId,
+    setTarget,
+    handleMoveItem,
   }: Props) => {
-    const {
-      wellItems,
-      fetchNextPage,
-      hasNextPage,
-      isFetchingNextPage,
-      isEmpty,
-    } = useWellItems(wellData.id, initialWellItemList);
-    const { id, name, item_cnt } = wellData;
-
     const { wellItemCount, isLoading: isWellItemCountLoading } =
       useWellItemCount(userId);
     const { baseFrogsCount } = useUserFrogsCount();
@@ -62,7 +68,6 @@ const WellItemList = React.memo(
     const [isOpenNewFrogSheet, setIsOpenNewFrogSheet] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState<string | undefined>(undefined);
-    const { setTarget } = useObserver({ hasNextPage, fetchNextPage });
 
     /** 우물 내 개구리 말풍선 메세지를 구하는 함수 */
     const getMessage = (count: number) => {
@@ -108,15 +113,23 @@ const WellItemList = React.memo(
       }
     }, [wellItems]);
 
+    const [enabled, setEnabled] = useState(false);
+
+    useEffect(() => {
+      const animation = requestAnimationFrame(() => setEnabled(true));
+
+      return () => {
+        cancelAnimationFrame(animation);
+        setEnabled(false);
+      };
+    }, []);
+
+    if (!enabled) {
+      return null;
+    }
+
     return (
       <>
-        <WellTitle
-          title={name}
-          wellId={id}
-          itemCount={item_cnt}
-          isRootUser={isRootUser}
-          isPointing={isDefaultWell && wellItemCount === 0}
-        />
         <motion.div
           className='relative flex h-fit w-full flex-1 flex-col-reverse items-center'
           initial='hidden'
@@ -128,25 +141,65 @@ const WellItemList = React.memo(
             fallback={<EmptyWellItem isRootUser={isRootUser} />}
           >
             {isFetchingNextPage && <WellItemSkeleton />}
-            <div className='flex w-full flex-col'>
-              {wellItems?.map((item, i) => (
-                <WellItem
-                  key={item.id}
-                  wellBook={item}
-                  wellId={wellData.id}
-                  isTopItem={i === 0}
-                  isLastItem={wellItems.length === i + 1 && !isFetchingNextPage}
-                  setTarget={setTarget}
-                  zIndex={i + 1}
-                  startLoading={() => setIsLoading(true)}
-                />
-              ))}
-            </div>
+            <DragDropContext onDragEnd={handleMoveItem}>
+              <Droppable droppableId='wellItems'>
+                {(rootProvided: any) => (
+                  <div
+                    className='wellItems'
+                    {...rootProvided.droppableProps}
+                    ref={rootProvided.innerRef}
+                    style={{ width: '100%', display: 'flex' }}
+                  >
+                    <div className='flex w-full flex-col'>
+                      {items?.map((item, i) => (
+                        <Draggable
+                          draggableId={item.id}
+                          index={i}
+                          key={item.id}
+                        >
+                          {(provided: any, snapshot: any) => (
+                            <div
+                              {...provided.draggableProps}
+                              ref={provided.innerRef}
+                              style={{
+                                width: '100%',
+                                display: 'flex',
+                                ...provided.draggableProps.style,
+                                left: 0,
+                              }}
+                            >
+                              <WellItem
+                                key={item.id}
+                                wellBook={item}
+                                draggableHandle={provided.dragHandleProps}
+                                wellId={wellData.id}
+                                isTopItem={i === 0}
+                                isLastItem={
+                                  wellItems.length === i + 1 &&
+                                  !isFetchingNextPage
+                                }
+                                setTarget={setTarget}
+                                index={i}
+                                isDragging={snapshot.isDragging}
+                                startLoading={() => setIsLoading(true)}
+                                isMovable={isMovable}
+                              />
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {rootProvided.placeholder}
+                    </div>
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
           </WithConditionalRendering>
           <FrogOnBook
             frogId={wellData.frog}
             message={message}
             zIndex={wellItems.length + 1}
+            isMovable={isMovable}
           />
         </motion.div>
         <AnimatePresence>

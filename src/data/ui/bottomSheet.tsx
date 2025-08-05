@@ -120,7 +120,14 @@ export const sheetData: { [key: string]: AlertSheet } = {
     frog: SHEET_FROG.wink,
     description: () => <>추후에 상점이 오픈될 때, 알려드릴게요.</>,
   },
-  add_book: { getTitle: () => <>지금 이 책은...</>, type: 'normal' },
+  add_book: {
+    getTitle: () => <>지금 이 책은...</>,
+    type: 'normal',
+  },
+  edit_well: {
+    getTitle: () => <>무엇을 수정할까요?</>,
+    type: 'normal',
+  },
   select_books: {
     getTitle: () => <>기존 리뷰를 우물에 담을까요?</>,
     type: 'normal',

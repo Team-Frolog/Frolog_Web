@@ -30,7 +30,7 @@ function StateSelectSheet({
         <span>읽기 전/중이에요</span>
         <div className='flex h-full items-end'>
           <Image
-            src={IMAGES.frog.reading.before}
+            src={IMAGES.frog.add.reading}
             alt='reading'
             width={127}
             height={61}
@@ -45,7 +45,7 @@ function StateSelectSheet({
         <span>다 읽었어요</span>
         <div className='flex h-full items-end'>
           <Image
-            src={IMAGES.frog.reading.after}
+            src={IMAGES.frog.add.done}
             alt='done'
             width={127}
             height={61}

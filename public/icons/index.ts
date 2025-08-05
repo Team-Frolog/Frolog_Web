@@ -42,6 +42,7 @@ export { default as PlusIcon } from './well/circle-plus.svg';
 export { default as EditIcon } from './well/well-edit.svg';
 export { default as WellAddIcon } from './well/well-add-icon.svg';
 export { default as StoreIcon } from './well/store-button.svg';
+export { default as WellItemMoverIcon } from './well/well-item-mover.svg';
 export { default as WellListIcon } from './well/well-list-icon.svg';
 
 // test
