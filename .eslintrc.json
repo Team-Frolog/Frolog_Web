@@ -23,6 +23,9 @@
   ], // eslint 미적용될 폴더나 파일
   "rules": {
     "react/display-name": "off",
-    "react/no-array-index-key": "warn"
+    "react/no-array-index-key": "warn",
+    "import/extensions": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "import/order": "warn"
   }
 }

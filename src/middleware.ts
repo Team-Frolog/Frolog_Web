@@ -1,4 +1,4 @@
-import { RefreshToken, RefreshTokenRes } from '@frolog/frolog-api';
+import { RefreshTokenRes } from '@frolog/frolog-api';
 import { encode, getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
@@ -7,15 +7,23 @@ import { getExpFromToken } from './utils/auth/decodeToken';
 const protectedRoutes: string[] = [
   '/frolog-test',
   '/profile',
-  '/join/finish',
   '/flash',
   '/well',
   '/comments',
   '/new-memo',
   '/new-review',
+  '/join/finish',
   '/quit',
   '/terms',
   '/store',
+  '/feed',
+  '/search',
+  '/memo',
+  '/review',
+  '/explore',
+  '/book',
+  '/search-home',
+  '/mission',
 ]; // 로그인이 필요한 페이지 목록
 const publicRoutes: string[] = [
   '/onboarding',
@@ -98,10 +106,12 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const defaultWellId = sessionToken ? sessionToken.defaultWellId : undefined;
 
+  const referer = req.headers.get('referer');
+
   if (pathname === '/') {
     if (!sessionToken) {
       return NextResponse.redirect(new URL('/default', req.url));
-    } else if (defaultWellId) {
+    } else if (defaultWellId && !referer?.includes('/well')) {
       // 재발급
       const redirectResponse = NextResponse.redirect(
         new URL(`/${sessionToken.id}/well/${defaultWellId}`, req.url)

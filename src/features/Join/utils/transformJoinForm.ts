@@ -17,8 +17,7 @@ export const transformJoinForm = (
   return {
     email: joinFormData.email,
     email_verified_token,
-    password: joinFormData.password,
-    username: joinFormData.username!,
+    password: joinFormData.password || undefined,
     consents: transformedConsents,
     personal_infos: transformeInfoToArray(joinFormData.personal_infos),
   };

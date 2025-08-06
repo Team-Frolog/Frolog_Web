@@ -4,10 +4,11 @@ import React from 'react';
 import ScrollToTop from '@/components/Gesture/ScrollToTop';
 import NavigationBar from '@/components/NavigationBar/NavigationBar';
 import { useScrollToTop } from '@/hooks/gesture/useScrollToTop';
-import { GetWellRes, SearchWellItemRes } from '@frolog/frolog-api';
+import { useSearchParams } from 'next/navigation';
 import MainLayout from '@/layouts/MainLayout';
-import WellHeader from './WellHeader';
-import WellItemList from './WellItem/WellItemList';
+import { useWell } from '../../hooks/useWell';
+import WellDetail from './WellDetail';
+import { GetWellRes, SearchWellItemRes } from '@frolog/frolog-api';
 
 interface Props {
   /** 우물 소유 유저 id */
@@ -33,23 +34,21 @@ function WellDetailPage({
   const isRootUser = userId === sessionUserId;
   const isDefaultWell = defaultWellId === wellDetail.id;
   const { isRendering } = useScrollToTop();
+  const { well } = useWell(wellDetail.id);
+  const isMovable = useSearchParams().get('mode') === 'movable';
 
   return (
     <>
       <MainLayout
         extraClass={`bg-shape-${wellDetail?.shape} bg-gray-300 overscroll-none`}
       >
-        <WellHeader
-          userId={userId}
-          wellId={wellDetail.id}
-          isRootUser={isRootUser}
-          hasBackButton={!isDefaultWell}
-        />
-        {wellDetail && (
-          <WellItemList
+        {well && (
+          <WellDetail
             isRootUser={isRootUser}
             wellData={wellDetail}
             isDefaultWell={isDefaultWell}
+            isMovable={isMovable}
+            userId={userId}
             initialWellItemList={initialWellItemList}
           />
         )}

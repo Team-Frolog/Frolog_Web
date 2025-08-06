@@ -11,9 +11,7 @@ export interface AlertSheet {
 
 export type BottomSheetKeys = keyof typeof sheetData;
 
-export const sheetData: {
-  [key: string]: AlertSheet;
-} = {
+export const sheetData: { [key: string]: AlertSheet } = {
   leave_while_write: {
     getTitle: () => (
       <>
@@ -126,6 +124,10 @@ export const sheetData: {
     getTitle: () => <>지금 이 책은...</>,
     type: 'normal',
   },
+  edit_well: {
+    getTitle: () => <>무엇을 수정할까요?</>,
+    type: 'normal',
+  },
   select_books: {
     getTitle: () => <>기존 리뷰를 우물에 담을까요?</>,
     type: 'normal',
@@ -221,5 +223,24 @@ export const sheetData: {
     buttonText: '확인',
     extraButtonText: '취소',
     description: () => <>포인트가 충분하면 캐릭터가 보여요</>,
+  },
+  survey_form: {
+    getTitle: () => <>프롤로그를 얼마나 만족하셨나요?</>,
+    type: 'normal',
+    buttonText: '제출하기',
+  },
+  delete_profile_feed: {
+    getTitle: () => (
+      <>
+        이 책과 관련된 기록을
+        <br /> 전부 삭제할까요?
+      </>
+    ),
+    type: 'error',
+    buttonText: '네, 전부 삭제할게요',
+    extraButtonText: '아니요, 유지할게요',
+    description: () => (
+      <>이 책과 관련된 모든 기록이 우물과 프로필에서 지워져요.</>
+    ),
   },
 };

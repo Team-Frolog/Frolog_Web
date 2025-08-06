@@ -1,9 +1,12 @@
+'use client';
+
 /* eslint-disable arrow-body-style */
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useUserId } from '@/store/sessionStore';
 import { AnimatePresence, motion } from 'framer-motion';
 import useNewItemStore from '@/store/newItemStore';
+import { WellItemMoverIcon } from 'public/icons';
 import { staggerItemVariants } from '@/styles/variants/variants';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { STORAGE_KEY } from '@/constants/storage';
@@ -15,33 +18,31 @@ import { getPath } from '@/utils/getPath';
 import MemoLeaf from './MemoLeaf';
 
 interface Props {
-  /** 도서 데이터 객체 */
   wellBook: GetWellItemRes;
-  /** 우물 id */
   wellId: string;
-  /** 최상단 아이템인지 여부 */
   isTopItem: boolean;
-  /** 아이템의 z-index */
-  zIndex: number;
-  /** 로딩 시작 핸들러 */
+  index: number;
   startLoading: () => void;
-  /** 최하단 아이템인지 여부 */
   isLastItem?: boolean;
-  /** 무한스크롤을 위한 observer 타겟 세팅 핸들러 */
   setTarget?: React.Dispatch<
     React.SetStateAction<HTMLDivElement | null | undefined>
   >;
+  isMovable?: boolean;
+  draggableHandle: any;
+  isDragging?: boolean;
 }
 
-/** 우물 도서 아이템 컴포넌트 */
 function WellItem({
   wellId,
   wellBook,
   isTopItem,
-  zIndex,
+  index,
   isLastItem,
   setTarget,
   startLoading,
+  draggableHandle,
+  isMovable = false,
+  isDragging = false,
 }: Props) {
   const userId = useUserId();
   const { navigate } = useCustomRouter('well');
@@ -51,6 +52,7 @@ function WellItem({
   const height = page > 400 ? page * 0.15 : 55;
   const isReading = status === 'reading';
   const hasMemo = memo_cnt > 0;
+  const fallbackCategory = 'economic_business';
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -73,7 +75,12 @@ function WellItem({
   }, []);
 
   return (
-    <div className='relative flex w-full'>
+    <div
+      className='relative flex w-full'
+      style={{
+        boxShadow: isDragging ? '0px 4px 10px 0px rgba(0, 0, 0, 0.25)' : '',
+      }}
+    >
       <motion.div
         whileTap={{ y: -10 }}
         onClick={() => {
@@ -88,8 +95,8 @@ function WellItem({
         variants={
           newItemId === id && isTopItem ? staggerItemVariants : undefined
         }
-        style={{ zIndex, height }}
-        className={`flex h-fit w-full bg-category-bg-${category} relative z-auto box-border justify-center pt-[12px]`}
+        className={`flex h-fit w-full bg-category-bg-${category || fallbackCategory} relative z-auto box-border justify-center pt-[12px]`}
+        style={{ zIndex: index + 1, height }}
       >
         {isLastItem && (
           <div
@@ -99,7 +106,9 @@ function WellItem({
           />
         )}
         <Image
-          src={CATEGORY[category].wave}
+          src={
+            category ? CATEGORY[category].wave : CATEGORY[fallbackCategory].wave
+          }
           alt='wave'
           width={392}
           height={12}
@@ -108,21 +117,36 @@ function WellItem({
         />
         {isReading && (
           <WellBubble
-            fill={CATEGORY[category].band}
+            fill={CATEGORY[category || fallbackCategory].band}
             className='absolute left-[24px] top-[8px]'
           />
         )}
-        {hasMemo && (
-          <MemoLeaf bg={CATEGORY[category].text} line={CATEGORY[category].bg} />
+        {isMovable && (
+          <button
+            {...draggableHandle}
+            type='button'
+            onPointerDown={(e) => {
+              e.stopPropagation();
+            }}
+            className='absolute right-[24px] top-[8px]'
+          >
+            <WellItemMoverIcon />
+          </button>
+        )}
+        {!isMovable && hasMemo && (
+          <MemoLeaf
+            bg={CATEGORY[category || fallbackCategory].text}
+            line={CATEGORY[category || fallbackCategory].bg}
+          />
         )}
         <span
-          className={`text-category-text-${category} truncate text-center text-body-sm-bold ${isReading || hasMemo ? 'w-[65%]' : 'w-[90%]'}`}
+          className={`text-category-text-${category || fallbackCategory} truncate text-center text-body-sm-bold ${isReading || hasMemo ? 'w-[65%]' : 'w-[90%]'}`}
         >
-          {title}
+          {title || '책 정보 불러오는 중...'}
         </span>
       </motion.div>
       <div
-        className={`absolute h-[20px] w-full bg-category-bg-${category} bottom-0 left-0 z-0`}
+        className={`absolute h-[20px] w-full bg-category-bg-${category || fallbackCategory} bottom-0 left-0 z-0`}
       />
       <AnimatePresence>
         {isFirstMemo && (

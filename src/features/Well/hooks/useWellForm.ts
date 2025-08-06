@@ -59,9 +59,10 @@ export const useWellForm = ({ type, setError, wellId, wellData }: Props) => {
       setIsLoading(false);
     },
     onSuccess: async () => {
+      await update({ defaultWellId: null });
+      router.refresh();
+
       if (isSecond) {
-        await update({ defaultWellId: null });
-        router.refresh();
         openFlash({ type: 'first_new_well', callbackUrl: PAGES.HOME });
       } else {
         openFlash({ type: 'new_well', callbackUrl: PAGES.HOME });

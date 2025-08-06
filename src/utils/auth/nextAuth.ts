@@ -17,14 +17,31 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'Email' },
         password: { label: 'Password' },
         isRemember: { label: 'isRemember' },
+        isGoogle: { label: 'isGoogle' },
+        id: { label: 'id' },
+        result: { label: 'result' },
+        accessToken: { label: 'accessToken' },
+        refreshToken: { label: 'refreshToken' },
+        social_verified_token: { label: 'social_verified_token' },
       },
       async authorize(credentials) {
         if (!credentials) return null;
 
-        const data = await logIn.fetch({
-          email: credentials.email,
-          password: credentials.password,
-        });
+        const data = credentials.isGoogle
+          ? {
+              id: credentials.id,
+              result: credentials.result,
+              access_token: credentials.accessToken,
+              refresh_token: credentials.refreshToken,
+            }
+          : await logIn.fetch({
+              email: credentials.email,
+              password: credentials.password,
+              social_verified_token:
+                credentials.social_verified_token === 'undefined'
+                  ? undefined
+                  : credentials.social_verified_token,
+            });
 
         // 기본 우물 확인
         let defaultWellId = null;

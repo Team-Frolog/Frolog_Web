@@ -17,7 +17,7 @@ export const useWellItems = (
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: [QUERY_KEY.wellItems, wellId],
-    queryFn: ({ pageParam }) => getWellItems(pageParam, wellId),
+    queryFn: ({ pageParam }) => getWellItems(pageParam, wellId!),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const totalPages = Math.ceil(lastPage.count / lastPage.limit);

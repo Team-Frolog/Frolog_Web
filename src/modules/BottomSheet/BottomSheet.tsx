@@ -19,6 +19,7 @@ function BottomSheet({
   onClickSubButton,
   onClose,
   titleProp,
+  padding = 'px-[24px]',
 }: BottomSheetProps) {
   useScrollFreeze();
   const { getTitle, type, frog, buttonText, extraButtonText, description } =
@@ -41,7 +42,7 @@ function BottomSheet({
         animate={{ y: '0%' }}
         exit={{ y: '120%' }}
         transition={{ duration: 0.3 }}
-        className='safe-bottom relative flex h-fit w-full flex-col items-center gap-[40px] rounded-t-[20px] bg-white px-[24px] pb-[20px] pt-[40px] text-gray-800'
+        className={`safe-bottom relative flex h-fit w-full flex-col items-center gap-[40px] rounded-t-[20px] bg-white pb-[20px] pt-[40px] text-gray-800 ${padding}`}
         style={{ paddingTop: '40px', gap: '40px' }}
       >
         <Image
@@ -62,7 +63,11 @@ function BottomSheet({
           {children}
         </div>
         {buttonText && (
-          <div className='flex-col-center w-full gap-[20px] pb-[40px]'>
+          <div
+            className={`flex-col-center w-full gap-[20px] ${
+              padding ? 'px-[24px]' : ''
+            }`}
+          >
             <Button
               type='button'
               theme={type}

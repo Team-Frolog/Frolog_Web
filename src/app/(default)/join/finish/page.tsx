@@ -4,15 +4,14 @@ import Image from 'next/image';
 import PopperAnimation from '@/components/animation/PopperAnimation';
 import QuitButton from '@/components/Button/QuitButton';
 import { IMAGES } from '@/constants/images';
-import { TestStartButton, FinishLight } from '@/features/Join';
+import { FinishLight } from '@/features/Join';
 import { PAGES } from '@/constants/page';
+import LinkButton from '@/components/Button/LinkButton';
 
 function JoinFinishPage() {
   return (
     <div className='safe-screen relative flex w-full flex-col justify-between overflow-hidden'>
       <FinishLight frog={IMAGES.flash.congrats}>
-        야호!
-        <br />
         가입이
         <br />
         완료되었어요
@@ -21,7 +20,7 @@ function JoinFinishPage() {
         route={PAGES.HOME}
         classes='absolute left-[24px] top-[24px] z-100 cursor-pointer'
       />
-      <div className='flex-col-center w-full justify-end gap-[12px]'>
+      <div>
         <Image
           src={IMAGES.ground}
           alt='ground'
@@ -30,7 +29,9 @@ function JoinFinishPage() {
           className='w-full [@media(max-width:350px)]:h-[200px]'
           loading='eager'
         />
-        <TestStartButton />
+        <div className='absolute bottom-5 left-0 flex w-full p-page'>
+          <LinkButton route={PAGES.HOME}>프롤로그 입장하기</LinkButton>
+        </div>
       </div>
       <PopperAnimation />
     </div>

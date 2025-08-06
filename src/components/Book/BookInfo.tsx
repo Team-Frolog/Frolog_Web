@@ -20,6 +20,7 @@ interface Props {
 /** 도서 상세 페이지, 리뷰/메모 리스트 내 도서 정보 컴포넌트 (도서 커버, 배경 포함) */
 function BookInfo({ bookId, bookData, canClick = false }: Props) {
   const isInFeed = useIsInFeed();
+  const isEmpty = !bookData.title;
 
   return (
     <CustomLink
@@ -41,12 +42,31 @@ function BookInfo({ bookId, bookData, canClick = false }: Props) {
         />
       </div>
 
-      <Book imageUrl={bookData?.image} canClick={canClick} />
+      <Book
+        imageUrl={bookData.image || IMAGES.book.cover}
+        canClick={canClick}
+      />
       <div className='flex-col-center w-[80%] gap-[4px]'>
-        <h3 className='text-center text-title-lg-bold'>{bookData?.title}</h3>
-        <span className='flex text-body-sm text-gray-600'>
-          {bookData?.author} | {bookData?.publisher}
-        </span>
+        {isEmpty && (
+          <>
+            <span className='rounded-[12px] bg-gray-900 px-[12px] py-[4px] text-caption-bold text-white'>
+              ...
+            </span>
+            <h1 className='text-title-lg-bold text-gray-800'>
+              책 정보 불러오는 중...
+            </h1>
+          </>
+        )}
+        {!isEmpty && (
+          <>
+            <h3 className='text-center text-title-lg-bold'>
+              {bookData?.title}
+            </h3>
+            <span className='flex text-body-sm text-gray-600'>
+              {bookData?.author} | {bookData?.publisher}
+            </span>
+          </>
+        )}
       </div>
     </CustomLink>
   );

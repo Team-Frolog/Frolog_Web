@@ -4,8 +4,6 @@ import { JoinForm } from '../types/form';
 export const defaultValue: JoinForm = {
   email: '',
   password: '',
-  passwordCheck: '',
-  username: '',
 
   consents: {
     age: {
@@ -32,15 +30,14 @@ export const defaultValue: JoinForm = {
 
   personal_infos: {
     occupation: {
-      value: '학생',
-      visibility: true,
-    },
-    birth_date: {
-      value: getMinDate(),
+      value: '선택',
       visibility: true,
     },
     gender: {
-      value: '남성',
+      visibility: false,
+    },
+    birth_date: {
+      value: getMinDate(),
       visibility: true,
     },
   },
