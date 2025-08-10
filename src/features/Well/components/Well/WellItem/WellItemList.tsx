@@ -59,7 +59,7 @@ const WellItemList = React.memo(
     handleMoveItem,
   }: Props) => {
     const { wellItemCount, isLoading: isWellItemCountLoading } =
-      useWellItemCount(userId);
+      useWellItemCount(userId, isRootUser);
     const { baseFrogsCount } = useUserFrogsCount();
 
     const isGotFirstFrog = localStorage.getItem(STORAGE_KEY.gotFirstFrog);
