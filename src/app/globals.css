@@ -88,7 +88,7 @@ body {
   position: relative;
   display: flex;
   overflow: auto;
-  -webkit-transform:translate3d(0,0,0);
+  -webkit-transform: translate3d(0, 0, 0);
 
   /* PC view setting */
   @media screen and (min-width: 430px) {
@@ -163,6 +163,10 @@ input[type='date']::-ms-expand {
 }
 
 .slick-track {
+  height: 100%;
+}
+
+.slick-list {
   height: 100%;
 }
 

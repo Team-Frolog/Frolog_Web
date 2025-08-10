@@ -23,32 +23,27 @@ function OnBoardingSlide({ setActiveSlide }: Props) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: false,
-    adaptiveHeight: true,
+    adaptiveHeight: false,
     beforeChange: (_, next) => {
       setActiveSlide(next + 1);
     },
   };
 
   return (
-    <div className='flex flex-col gap-[20px] bg-gray-900 pt-[24px] transition-all duration-200'>
-      <BackButton
-        fill='#B3B6C4'
-        onClick={() => router.back()}
-        extraClass='px-page'
-      />
-      <Slider {...settings} className='w-full'>
-        <div className='relative !flex h-[calc(80dvh-54px)] flex-col [@media(max-height:750px)]:h-[calc(75dvh-54px)]'>
+    <div className='flex h-[100%] flex-col gap-[20px] bg-gray-900 pt-[24px] transition-all duration-200'>
+      <Slider {...settings} className='h-full w-full'>
+        <div className='relative !flex h-full flex-col'>
           <h1 className='absolute left-1/2 top-[18%] z-50 -translate-x-1/2 text-center text-title-xl-bold text-gray-900 [@media(max-width:375px)]:text-title-lg-bold'>
             {onBoarding[1].title()}
           </h1>
           <div className='w-full translate-y-[2px] [@media(max-height:670px)]:translate-y-[3px]'>
             <LightBg />
           </div>
-          <div className='flex flex-1 translate-y-[1px] flex-col justify-end bg-gray-300 [@media(max-height:670px)]:translate-y-[2px]'>
+          <div className='mt-auto flex flex-1 translate-y-[1px] flex-col justify-end bg-gray-300 [@media(max-height:670px)]:translate-y-[2px]'>
             <Slide1 className='h-auto w-full' />
           </div>
         </div>
-        <div className='relative !flex h-[calc(80dvh-54px)] flex-col [@media(max-height:750px)]:h-[calc(75dvh-54px)]'>
+        <div className='relative !flex h-full flex-col'>
           <h1 className='absolute left-1/2 top-[18%] z-50 -translate-x-1/2 text-center text-title-xl-bold text-gray-900 [@media(max-width:375px)]:text-title-lg-bold'>
             {onBoarding[2].title()}
           </h1>
@@ -59,7 +54,7 @@ function OnBoardingSlide({ setActiveSlide }: Props) {
             <Slide2 className='my-auto h-auto w-full' />
           </div>
         </div>
-        <div className='relative !flex h-[calc(80dvh-54px)] flex-col [@media(max-height:750px)]:h-[calc(75dvh-54px)]'>
+        <div className='relative !flex h-full flex-col'>
           <h1 className='absolute left-1/2 top-[18%] z-50 w-[25dvw] -translate-x-1/2 text-center text-title-xl-bold text-gray-900 mobile:w-[70dvw] [@media(max-width:375px)]:text-title-lg-bold'>
             {onBoarding[3].title()}
           </h1>
