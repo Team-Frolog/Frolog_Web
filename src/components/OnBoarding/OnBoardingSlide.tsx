@@ -1,12 +1,10 @@
 import React from 'react';
 import { onBoarding } from '@/data/ui/onBoarding';
-import { useRouter } from 'next/navigation';
 import Slider, { Settings } from 'react-slick';
 import Slide1 from 'public/images/onBoarding/slide-1.svg';
 import Slide2 from 'public/images/onBoarding/slide-2.svg';
 import Slide3 from 'public/images/onBoarding/slide-3.svg';
 import LightBg from 'public/images/flash/light-bg-onboarding.svg';
-import BackButton from '../Button/BackButton';
 
 interface Props {
   setActiveSlide: React.Dispatch<React.SetStateAction<number>>;
@@ -14,8 +12,6 @@ interface Props {
 
 /** 온보딩 소개 슬라이드 */
 function OnBoardingSlide({ setActiveSlide }: Props) {
-  const router = useRouter();
-
   const settings: Settings = {
     dots: false,
     arrows: false,
