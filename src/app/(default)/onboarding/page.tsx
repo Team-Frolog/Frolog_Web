@@ -41,7 +41,7 @@ function OnBoardingPage() {
     <div className='safe-screen safe-bottom safe-header flex h-[100dvh] w-full flex-col bg-gray-900'>
       <OnBoardingSlide setActiveSlide={setActiveSlide} />
       <div
-        className={`flex h-[22dvh] w-full flex-col items-center gap-[20px] ${activeSlide === 1 ? 'bg-category-bg-science' : 'bg-gray-300'} px-page py-[32px] pt-[12px] transition-all duration-200 [@media(max-height:750px)]:h-[25dvh]`}
+        className={`flex w-full flex-col items-center gap-[20px] pb-[36px] pt-[16px] ${activeSlide === 1 ? 'bg-category-bg-science' : 'bg-gray-300'} px-page transition-all duration-200`}
       >
         <div className='flex gap-[8px]'>
           {Array(3)
