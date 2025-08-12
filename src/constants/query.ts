@@ -25,4 +25,5 @@ export const QUERY_KEY = {
   profileFeed: 'profileFeed',
   wellItemCount: 'wellItemCount',
   userFrogs: 'userFrogs',
+  memoCount: 'memoCount',
 } as const;

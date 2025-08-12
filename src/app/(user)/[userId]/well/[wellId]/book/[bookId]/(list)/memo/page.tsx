@@ -1,15 +1,16 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import AddButton from '@/components/Button/AddButton';
-import MemoListSkeleton from '@/components/Fallback/Skeleton/Memo/MemoListSkeleton';
 import React, { Suspense } from 'react';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/utils/auth/nextAuth';
+import { headers } from 'next/headers';
 import { Metadata } from 'next';
-import { NAV_ITEM } from '@/constants/nav';
-import { getPath } from '@/utils/getPath';
-import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
+import { authOptions } from '@/utils/auth/nextAuth';
+import MemoListSkeleton from '@/components/Fallback/Skeleton/Memo/MemoListSkeleton';
 import { MemoList } from '@/features/Memo';
 import { getMemoList } from '@/features/Memo/api/memo.server.api';
+import WithConditionalRendering from '@/components/HOC/WithConditionalRendering';
+import AddButton from '@/components/Button/AddButton';
+import { getPath } from '@/utils/getPath';
+import { NAV_ITEM } from '@/constants/nav';
 
 interface Props {
   params: {
@@ -19,7 +20,11 @@ interface Props {
   };
 }
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
+  headers();
   const session = await getServerSession(authOptions);
   const memoList = await getMemoList(bookId, userId);
 
@@ -27,7 +32,7 @@ async function MemoPage({ params: { wellId, userId, bookId } }: Props) {
     <>
       <WithConditionalRendering condition={userId === session?.user.id}>
         <div className='add-button-wrapper'>
-          {memoList.count === 0 ? (
+          {memoList?.count === 0 ? (
             <AddButton
               route={`${getPath.newFirstMemo(userId, wellId, bookId)}?nav=${NAV_ITEM.well.key}`}
               text='이 책을 읽기로 결심한 이유는?'
