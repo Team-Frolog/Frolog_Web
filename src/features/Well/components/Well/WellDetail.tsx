@@ -75,7 +75,6 @@ function WellDetail({
       order: newOrder,
     });
 
-    console.log(prevChanges);
     setOrderChanges(prevChanges);
 
     setItems((prevItems) => {
