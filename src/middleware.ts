@@ -47,7 +47,7 @@ export async function middleware(req: NextRequest) {
   let newSessionToken: string | undefined = undefined;
 
   if (sessionToken && isRemember?.value === 'false' && !isLoggedIn) {
-    response = NextResponse.redirect(new URL('/default', req.url));
+    response = NextResponse.redirect(new URL('/onboarding', req.url));
     response.cookies.set(process.env.NEXTAUTH_TOKEN_NAME || '', '', {
       httpOnly: true,
       secure: true,
@@ -110,7 +110,7 @@ export async function middleware(req: NextRequest) {
 
   if (pathname === '/') {
     if (!sessionToken) {
-      return NextResponse.redirect(new URL('/default', req.url));
+      return NextResponse.redirect(new URL('/onboarding', req.url));
     } else if (defaultWellId && !referer?.includes('/well')) {
       // 재발급
       const redirectResponse = NextResponse.redirect(
