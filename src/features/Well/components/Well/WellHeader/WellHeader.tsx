@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { EditIcon, WellListIcon } from 'public/icons';
+import { EditIcon, WellListIcon, BackIcon } from 'public/icons';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { PAGES } from '@/constants/page';
 import WellEditSheet from './WellEditSheet';
 
@@ -27,18 +28,28 @@ function WellHeader({
   hasHomeButton = true,
   isDefaultWell,
 }: Props) {
+  const router = useRouter();
   const isMyWell = isRootUser && userId && wellId;
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className='safe-header absolute left-[50%] z-20 flex w-[450px] translate-x-[-50%] gap-[20px] pt-[70px] mobile:left-0 mobile:w-full mobile:translate-x-0'>
-      {hasHomeButton && (
+      {hasHomeButton && isMyWell && (
         <Link
           href={PAGES.HOME}
           className='absolute left-[28px] top-[28px] z-20'
         >
           <WellListIcon />
         </Link>
+      )}
+      {hasHomeButton && !isMyWell && (
+        <button
+          type='button'
+          onClick={() => router.back()}
+          className='absolute left-[28px] top-[28px] z-20'
+        >
+          <BackIcon id='icon' fill='#B3B6C4' />
+        </button>
       )}
       {isMyWell && !isDefaultWell && (
         <button

@@ -50,7 +50,7 @@ export const useMemos = (
         pages: [initialMemoList],
         pageParams: [0],
       },
-      staleTime: 1000 * 5,
+      staleTime: 0,
     });
 
   const { mutate: handleDeleteMemo } = useMutation({
